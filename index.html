@@ -233,8 +233,34 @@
     .warn { background: rgba(255,191,71,.18); color: #ffdf95; }
     .ban { background: rgba(255,107,136,.2); color: #ff9fb4; }
 
-    .game-wrap {
+    .mode-switch {
       margin-top: var(--space-6);
+      margin-bottom: var(--space-3);
+      display: inline-flex;
+      border-radius: var(--radius-full);
+      padding: .25rem;
+      background: rgba(4,6,12,.85);
+      border: 1px solid rgba(191,198,255,.35);
+    }
+    .mode-btn {
+      border-radius: var(--radius-full);
+      padding: .4rem 1.1rem;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-text-muted);
+      background: transparent;
+      border: none;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .mode-btn.active {
+      color: var(--color-text-inverse);
+      background: linear-gradient(135deg, #6c8cff, #8aa3ff);
+      box-shadow: 0 10px 25px rgba(108,140,255,.6);
+    }
+
+    .game-wrap {
+      margin-top: var(--space-3);
       display: grid;
       grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.9fr);
       gap: var(--space-6);
@@ -261,6 +287,7 @@
       background: rgba(4,6,12,.9);
       border: 1px solid rgba(191,198,255,.28);
       box-shadow: var(--shadow-sm);
+      min-width: 0;
     }
     .stat-label {
       color: var(--color-text-faint);
@@ -398,7 +425,8 @@
 
     .log {
       display: grid; gap: .55rem;
-      max-height: 230px; overflow: auto;
+      max-height: 230px;
+      overflow-y: auto;
       padding-right: .15rem;
       min-width: 0;
     }
@@ -412,6 +440,8 @@
       word-wrap: break-word;
       overflow-wrap: break-word;
       white-space: normal;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .footer-note {
@@ -439,6 +469,7 @@
       align-items: center;
       background: rgba(4,6,12,.9);
       border: 1px solid rgba(191,198,255,.3);
+      min-width: 0;
     }
     .result-banner strong { text-transform: uppercase; letter-spacing: .12em; }
 
@@ -520,10 +551,16 @@
       </aside>
     </section>
 
+    <div class="mode-switch" aria-label="Выбор режима тренажёра">
+      <button class="mode-btn active" type="button" data-mode="moderation">Модераторы</button>
+      <button class="mode-btn" type="button" data-mode="support">Агенты поддержки</button>
+    </div>
+
     <section class="game-wrap" id="game">
-      <section class="panel game-card" aria-labelledby="gameTitle">
+      <!-- РЕЖИМ 1: МОДЕРАТОРЫ -->
+      <section class="panel game-card" id="mode-moderation" aria-labelledby="gameTitleModeration">
         <div>
-          <h2 id="gameTitle">Панель модератора</h2>
+          <h2 id="gameTitleModeration">Панель модератора</h2>
           <p>Выбирай: нет нарушения, устное/пред/мут или бан/перма/глобал. Игра считает, сколько решений совпало с эталоном.</p>
         </div>
 
@@ -575,6 +612,30 @@
             <button class="action-btn warn-btn" type="button" data-action="warn">⚠️ Устное / Пред / Мут</button>
             <button class="action-btn ban-btn"  type="button" data-action="ban">🔨 Бан / Перма / Глобал</button>
           </div>
+        </div>
+      </section>
+
+      <!-- РЕЖИМ 2: АГЕНТЫ ПОДДЕРЖКИ (пока без логики) -->
+      <section class="panel game-card" id="mode-support" aria-labelledby="gameTitleSupport" style="display:none;">
+        <div>
+          <h2 id="gameTitleSupport">Режим: агенты поддержки</h2>
+          <p>Здесь будет отдельный тренажёр для поддержки: ответы на вопросы, работа с конфликтами, эскалация и т.д. Пока это заготовка страницы без вопросов и вариантов ответов.</p>
+        </div>
+        <div class="feed">
+          <article class="message-card">
+            <div class="channel"><span class="channel-dot"></span># tambov-73 / support</div>
+            <div class="author-row">
+              <div class="avatar">AG</div>
+              <div>
+                <div class="author-name">Шаблон смены агента</div>
+                <div class="author-meta">Сценарии поддержки будут добавлены позже</div>
+              </div>
+            </div>
+            <div class="message-text">
+              Здесь можно будет тренировать агентов поддержки: отработка типичных вопросов, решение конфликтов, корректные формулировки и правила эскалации на модерацию.
+            </div>
+            <div class="hint">Сейчас режим выключен. Когда будете готовы — сюда можно добавить свои кейсы и логику проверки ответов.</div>
+          </article>
         </div>
       </section>
 
@@ -831,7 +892,7 @@
     function pushLog(text) {
       state.log.unshift(text);
       state.log = state.log.slice(0, 40);
-      el.logList.innerHTML = state.log.map(item => `<div class="log-item">${item}</div>`).join('');
+      el.logList.innerHTML = state.log.map(item => `<div class="log-item" title="${text}">${item}</div>`).join('');
     }
 
     function updateStats() {
@@ -955,6 +1016,17 @@
         syncButton();
       });
     })();
+
+    // Переключатель режимов
+    document.querySelectorAll('.mode-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const mode = btn.dataset.mode;
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('mode-moderation').style.display = mode === 'moderation' ? '' : 'none';
+        document.getElementById('mode-support').style.display    = mode === 'support' ? '' : 'none';
+      });
+    });
 
     updateStats();
   </script>
