@@ -47,7 +47,7 @@
       --transition: 220ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* БАЗОВАЯ (МОДЕРАТОРЫ): синий */
+    /* ФОН КАК БЫЛО: тёмный градиент; переключение розового по data-site-theme на html */
     body {
       min-height: 100dvh;
       font-family: var(--font-body);
@@ -61,8 +61,7 @@
         linear-gradient(160deg, #05060a, #05060a 45%, #040711 100%);
       transition: background 350ms ease;
     }
-
-    [data-site-theme="support"] body {
+    html[data-site-theme="support"] body {
       background:
         radial-gradient(circle at top left, rgba(255, 184, 222, .30), transparent 55%),
         radial-gradient(circle at bottom right, rgba(255, 120, 180, .30), transparent 55%),
@@ -114,7 +113,7 @@
       border: 1px solid rgba(255,255,255,.25);
       transition: background 350ms ease, border-color 350ms ease;
     }
-    [data-site-theme="support"] .logo {
+    html[data-site-theme="support"] .logo {
       background: radial-gradient(circle at 20% 0%, rgba(255,255,255,.22), transparent 55%),
                   linear-gradient(135deg, rgba(255,160,210,.65), rgba(255,120,180,.6));
       border-color: rgba(255, 210, 240, .7);
@@ -150,11 +149,11 @@
       border: 1px solid rgba(191,198,255,.28);
       box-shadow: var(--shadow-lg);
       backdrop-filter: blur(18px);
-      transition: background 350ms ease, border-color 350ms ease, box-shadow 350ms ease;
       background: radial-gradient(circle at top left, rgba(108,140,255,.23), transparent 55%),
                   linear-gradient(155deg, rgba(18,22,38,.98), rgba(6,7,16,1));
+      transition: background 350ms ease, border-color 350ms ease, box-shadow 350ms ease;
     }
-    [data-site-theme="support"] .panel {
+    html[data-site-theme="support"] .panel {
       background: radial-gradient(circle at top left, rgba(255,160,210,.30), transparent 55%),
                   linear-gradient(155deg, rgba(35,10,26,.98), rgba(16,4,20,1));
       border-color: rgba(255,190,230,.45);
@@ -190,11 +189,11 @@
       color: #18171c;
       border-color: transparent;
     }
-    [data-site-theme="support"] .badge {
+    html[data-site-theme="support"] .badge {
       background: rgba(34, 7, 24, .96);
       border-color: rgba(255, 190, 230, .5);
     }
-    [data-site-theme="support"] .badge.xp {
+    html[data-site-theme="support"] .badge.xp {
       background: #ff8fc4;
       color: #250512;
     }
@@ -211,7 +210,7 @@
       color: var(--color-primary);
       text-shadow: 0 0 22px rgba(108,140,255,.65);
     }
-    [data-site-theme="support"] .hero h1 span {
+    html[data-site-theme="support"] .hero h1 span {
       color: #ff8fc4;
       text-shadow: 0 0 26px rgba(255,143,196,.9);
     }
@@ -242,12 +241,12 @@
       transition: background 250ms ease, box-shadow 250ms ease;
     }
     .btn-primary:hover { background: linear-gradient(135deg, #8aa3ff, #b1c3ff); }
-    [data-site-theme="support"] .btn-primary {
+    html[data-site-theme="support"] .btn-primary {
       background: radial-gradient(circle at 0 0, rgba(255,255,255,.20), transparent 55%),
                   linear-gradient(135deg, #ff78b4, #ffb0dd);
       box-shadow: 0 20px 45px rgba(255,144,196,.78);
     }
-    [data-site-theme="support"] .btn-primary:hover {
+    html[data-site-theme="support"] .btn-primary:hover {
       background: linear-gradient(135deg, #ff9fca, #ffd0ea);
     }
 
@@ -276,7 +275,7 @@
       background: rgba(13,16,32,.95);
       border: 1px solid rgba(191,198,255,.3);
     }
-    [data-site-theme="support"] .rule-item {
+    html[data-site-theme="support"] .rule-item {
       background: rgba(35,10,26,.96);
       border-color: rgba(255,190,230,.55);
     }
@@ -312,7 +311,7 @@
       background: linear-gradient(135deg, #6c8cff, #8aa3ff);
       box-shadow: 0 10px 25px rgba(108,140,255,.6);
     }
-    [data-site-theme="support"] .mode-btn.active[data-mode="support"] {
+    html[data-site-theme="support"] .mode-btn.active[data-mode="support"] {
       background: linear-gradient(135deg, #ff78b4, #ffb0dd);
       box-shadow: 0 10px 25px rgba(255,144,196,.7);
     }
@@ -376,7 +375,7 @@
       border-radius: inherit;
       box-shadow: 0 0 26px rgba(255,191,71,.7);
     }
-    [data-site-theme="support"] .xp-fill {
+    html[data-site-theme="support"] .xp-fill {
       background: linear-gradient(90deg, #ff9fca, #ffd0ea);
       box-shadow: 0 0 26px rgba(255,159,202,.7);
     }
@@ -406,12 +405,12 @@
       opacity: .6;
       transition: background 350ms ease;
     }
-    [data-site-theme="support"] .message-card {
+    html[data-site-theme="support"] .message-card {
       background: radial-gradient(circle at 0 0, rgba(255,160,210,.45), transparent 70%),
                   linear-gradient(160deg, rgba(35,10,26,.98), rgba(16,4,20,1));
       border-color: rgba(255,190,230,.55);
     }
-    [data-site-theme="support"] .message-card::after {
+    html[data-site-theme="support"] .message-card::after {
       background: radial-gradient(circle, rgba(255,159,202,.55), transparent 65%);
     }
 
@@ -430,7 +429,7 @@
       box-shadow: 0 0 12px rgba(61,214,140,.9);
       transition: background 300ms ease, box-shadow 300ms ease;
     }
-    [data-site-theme="support"] .channel-dot {
+    html[data-site-theme="support"] .channel-dot {
       background: #ff90c4;
       box-shadow: 0 0 12px rgba(255,144,196,.9);
     }
@@ -446,7 +445,7 @@
       flex: 0 0 auto;
       transition: background 350ms ease;
     }
-    [data-site-theme="support"] .avatar {
+    html[data-site-theme="support"] .avatar {
       background: conic-gradient(from 210deg, #ff78b4, #ffd0ea, #ff9fca, #ff78b4);
     }
     .author-name { font-weight: 800; }
@@ -571,7 +570,7 @@
     }
   </style>
 </head>
-<body data-site-theme-container>
+<body>
   <main class="page">
     <header class="topbar">
       <div class="brand" aria-label="Логотип игры">
@@ -584,7 +583,6 @@
           </svg>
         </div>
         <div>
-          <!-- текст здесь будем обновлять из JS -->
           <div class="brand-title" id="brandTitle">Tambov 73</div>
           <div class="brand-sub" id="brandSubtitle">Тренажёр модерации Discord</div>
         </div>
@@ -599,7 +597,6 @@
           <span class="badge" id="heroBadge2">Симулятор смены</span>
           <span class="badge xp" id="heroBadge3">15 XP за каждые 10 правильных</span>
         </div>
-        <!-- этот заголовок тоже меняем из JS -->
         <h1 id="heroTitle">Лови <span>нарушения</span> и думай сам.</h1>
         <p id="heroText">Симулятор смены модератора Discord сервера Tambov 73. Большой пул разных сообщений, без подсказок — модератор сам решает, какое наказание применить.</p>
         <div class="hero-actions">
@@ -643,7 +640,6 @@
     </div>
 
     <section class="game-wrap" id="game">
-      <!-- РЕЖИМ 1: МОДЕРАТОРЫ -->
       <section class="panel game-card" id="mode-moderation" aria-labelledby="gameTitleModeration">
         <div>
           <h2 id="gameTitleModeration">Панель модератора</h2>
@@ -701,7 +697,6 @@
         </div>
       </section>
 
-      <!-- РЕЖИМ 2: АГЕНТЫ ПОДДЕРЖКИ -->
       <section class="panel game-card" id="mode-support" aria-labelledby="gameTitleSupport" style="display:none;">
         <div>
           <h2 id="gameTitleSupport">Режим: агенты поддержки</h2>
@@ -967,7 +962,6 @@
       logList:       document.getElementById('logList'),
       startBtn:      document.getElementById('startBtn'),
       resetBtn:      document.getElementById('resetBtn'),
-      brandTitle:    document.getElementById('brandTitle'),
       brandSubtitle: document.getElementById('brandSubtitle'),
       heroTitle:     document.getElementById('heroTitle'),
       heroText:      document.getElementById('heroText'),
@@ -1108,7 +1102,7 @@
     el.startBtn.addEventListener('click', startGame);
     el.resetBtn.addEventListener('click', resetGame);
 
-    // Переключатель светлой/тёмной темы (иконка, как было)
+    // Тёмная / светлая тема (кнопка справа сверху)
     (function () {
       const toggle = document.querySelector('[data-theme-toggle]');
       const root = document.documentElement;
@@ -1126,56 +1120,56 @@
       });
     })();
 
-    // Тексты для двух режимов (верхняя часть)
+    // Копирайт: тексты для двух режимов
     const copyModeration = {
-      brandSubtitle: 'Тренажёр модерации Discord',
-      heroTitle: 'Лови <span>нарушения</span> и думай сам.',
-      heroText: 'Симулятор смены модератора Discord сервера Tambov 73. Большой пул разных сообщений, без подсказок — модератор сам решает, какое наказание применить.',
-      badge1: 'Discord • Модерация',
-      badge2: 'Симулятор смены',
-      badge3: '15 XP за каждые 10 правильных',
+      subtitle: 'Тренажёр модерации Discord',
+      title:    'Лови <span>нарушения</span> и думай сам.',
+      text:     'Симулятор смены модератора Discord сервера Tambov 73. Большой пул разных сообщений, без подсказок — модератор сам решает, какое наказание применить.',
+      badge1:   'Discord • Модерация',
+      badge2:   'Симулятор смены',
+      badge3:   '15 XP за каждые 10 правильных',
       rulesTitle: 'Как считаем XP',
-      rulesText: 'XP выдаётся вручную на сервере, игра только считает итог смены.',
-      rule1Title: '15 XP за 10 правильных',
-      rule1Text:  'Формула: XP = floor(правильных / 10) × 15. Например: 10–19 → 15 XP, 20–29 → 30 XP и т.д.',
-      rule2Title: 'Решение за модератором',
-      rule2Text:  'Игра не показывает номера правил и не подсвечивает правильный ответ.',
-      rule3Title: 'Экономика под контролем',
-      rule3Text:  'XP выдаёт старшая модерация, опираясь на результат смены и лог.'
+      rulesText:  'XP выдаётся вручную на сервере, игра только считает итог смены.',
+      r1Title: '15 XP за 10 правильных',
+      r1Text:  'Формула: XP = floor(правильных / 10) × 15. Например: 10–19 → 15 XP, 20–29 → 30 XP и т.д.',
+      r2Title: 'Решение за модератором',
+      r2Text:  'Игра не показывает номера правил и не подсвечивает правильный ответ.',
+      r3Title: 'Экономика под контролем',
+      r3Text:  'XP выдаёт старшая модерация, опираясь на результат смены и лог.'
     };
 
     const copySupport = {
-      brandSubtitle: 'Агенты поддержки Tambov 73',
-      heroTitle: 'Помогай <span>игрокам</span> и держи уют.',
-      heroText: 'Режим для агентов поддержки Discord сервера Tambov 73. Вместо наказаний — ответы на вопросы игроков, объяснение механик и вежливая коммуникация.',
-      badge1: 'Discord • Поддержка',
-      badge2: 'Игровые вопросы',
-      badge3: 'XP за качественные ответы',
+      subtitle: 'Симулятор смены агентов поддержки',
+      title:    'Помогай <span>игрокам</span> на каждом шаге.',
+      text:     'Режим для агентов поддержки Discord сервера Tambov 73. Вместо наказаний — ответы на вопросы игроков, объяснение механик и вежливая коммуникация.',
+      badge1:   'Discord • Поддержка',
+      badge2:   'Игровые вопросы',
+      badge3:   'XP за качественные ответы',
       rulesTitle: 'Роль агента поддержки',
-      rulesText: 'Агент поддержки не наказывает игроков. Он отвечает на вопросы, направляет к нужным разделам и, при необходимости, передаёт кейс модерации.',
-      rule1Title: 'Фокус на помощи',
-      rule1Text:  'Главная метрика — довольный игрок, который понял, что делать дальше.',
-      rule2Title: 'Без наказаний',
-      rule2Text:  'Агент не выдаёт муты и баны, а корректно объясняет правила и процессы.',
-      rule3Title: 'Эскалация кейсов',
-      rule3Text:  'Сложные случаи агент передаёт старшим модераторам или администрации.'
+      rulesText:  'Агент поддержки не наказывает игроков. Он отвечает на вопросы, направляет к нужным разделам и, при необходимости, передаёт кейс модерации.',
+      r1Title: 'Фокус на помощи',
+      r1Text:  'Главная метрика — довольный игрок, который понял, что делать дальше.',
+      r2Title: 'Без наказаний',
+      r2Text:  'Агент не выдаёт муты и баны, а корректно объясняет правила и процессы.',
+      r3Title: 'Эскалация кейсов',
+      r3Text:  'Сложные случаи агент передаёт старшим модераторам или администрации.'
     };
 
-    function applyCopy(copy) {
-      el.brandSubtitle.textContent = copy.brandSubtitle;
-      el.heroTitle.innerHTML       = copy.heroTitle;
-      el.heroText.textContent      = copy.heroText;
-      el.heroBadge1.textContent    = copy.badge1;
-      el.heroBadge2.textContent    = copy.badge2;
-      el.heroBadge3.textContent    = copy.badge3;
-      el.rulesTitle.textContent    = copy.rulesTitle;
-      el.rulesText.textContent     = copy.rulesText;
-      el.rule1Title.textContent    = copy.rule1Title;
-      el.rule1Text.textContent     = copy.rule1Text;
-      el.rule2Title.textContent    = copy.rule2Title;
-      el.rule2Text.textContent     = copy.rule2Text;
-      el.rule3Title.textContent    = copy.rule3Title;
-      el.rule3Text.textContent     = copy.rule3Text;
+    function applyCopy(c) {
+      el.brandSubtitle.textContent = c.subtitle;
+      el.heroTitle.innerHTML       = c.title;
+      el.heroText.textContent      = c.text;
+      el.heroBadge1.textContent    = c.badge1;
+      el.heroBadge2.textContent    = c.badge2;
+      el.heroBadge3.textContent    = c.badge3;
+      el.rulesTitle.textContent    = c.rulesTitle;
+      el.rulesText.textContent     = c.rulesText;
+      el.rule1Title.textContent    = c.r1Title;
+      el.rule1Text.textContent     = c.r1Text;
+      el.rule2Title.textContent    = c.r2Title;
+      el.rule2Text.textContent     = c.r2Text;
+      el.rule3Title.textContent    = c.r3Title;
+      el.rule3Text.textContent     = c.r3Text;
     }
 
     // Переключатель режимов + розовая тема
@@ -1188,7 +1182,6 @@
         document.getElementById('mode-moderation').style.display = mode === 'moderation' ? '' : 'none';
         document.getElementById('mode-support').style.display    = mode === 'support' ? '' : 'none';
 
-        // плавный переход темы через data-атрибут на html
         const html = document.documentElement;
         if (mode === 'support') {
           html.setAttribute('data-site-theme', 'support');
@@ -1200,7 +1193,7 @@
       });
     });
 
-    // Инициализация стартовых текстов и темы
+    // Старт: модерация, темный градиент как был
     document.documentElement.setAttribute('data-site-theme', 'mod');
     applyCopy(copyModeration);
     updateStats();
