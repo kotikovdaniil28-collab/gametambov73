@@ -14,7 +14,6 @@
       --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
       --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
       --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
-      --space-1: 0.25rem;
       --space-2: 0.5rem;
       --space-3: 0.75rem;
       --space-4: 1rem;
@@ -22,9 +21,6 @@
       --space-6: 1.5rem;
       --space-8: 2rem;
       --space-10: 2.5rem;
-      --space-12: 3rem;
-      --space-16: 4rem;
-      --radius-sm: 0.375rem;
       --radius-md: 0.5rem;
       --radius-lg: 0.75rem;
       --radius-xl: 1rem;
@@ -74,7 +70,7 @@
     button {
       cursor: pointer;
       border: none;
-      transition: transform var(--transition), background var(--transition), box-shadow var(--transition), opacity var(--transition);
+      transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
     }
     button:hover { transform: translateY(-1px); }
     button:active { transform: translateY(1px) scale(.99); }
@@ -106,7 +102,6 @@
       border-radius: 16px;
       box-shadow: var(--shadow-md);
       border: 1px solid rgba(255,255,255,.25);
-      transition: background 350ms ease, border-color 350ms ease;
     }
     html[data-site-theme="support"] .logo {
       background: radial-gradient(circle at 20% 0%, rgba(255,255,255,.22), transparent 55%),
@@ -122,7 +117,7 @@
     .brand-sub {
       color: var(--color-text-muted);
       font-size: var(--text-sm);
-      max-width: 26ch;
+      max-width: 30ch;
     }
     .theme-toggle {
       min-width: 44px; min-height: 44px;
@@ -148,7 +143,6 @@
       backdrop-filter: blur(18px);
       background: radial-gradient(circle at top left, rgba(108,140,255,.23), transparent 55%),
                   linear-gradient(155deg, rgba(18,22,38,.98), rgba(6,7,16,1));
-      transition: background 350ms ease, border-color 350ms ease, box-shadow 350ms ease;
     }
     html[data-site-theme="support"] .panel {
       background: radial-gradient(circle at top left, rgba(255,160,210,.30), transparent 55%),
@@ -162,7 +156,6 @@
       display: flex;
       flex-direction: column;
       gap: var(--space-4);
-      min-height: 100%;
     }
     .badge-row {
       display: flex;
@@ -249,7 +242,6 @@
       padding: clamp(1.1rem, 2vw, 1.7rem);
       display: grid;
       gap: var(--space-4);
-      align-content: start;
     }
     .rules h2 { font-size: var(--text-lg); }
     .rules p { color: var(--color-text-muted); font-size: var(--text-sm); }
@@ -269,11 +261,13 @@
       border-color: rgba(255,190,230,.55);
     }
     .rule-icon {
-      width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; font-size: 1.1rem; font-weight: 900;
+      width: 32px; height: 32px; border-radius: 10px;
+      display: grid; place-items: center;
+      font-size: 1.1rem; font-weight: 900;
     }
-    .ok { background: rgba(82,199,123,.14); color: #8df0ae; }
+    .ok   { background: rgba(82,199,123,.14); color: #8df0ae; }
     .warn { background: rgba(255,191,71,.18); color: #ffdf95; }
-    .ban { background: rgba(255,107,136,.2); color: #ff9fb4; }
+    .ban  { background: rgba(255,107,136,.2); color: #ff9fb4; }
 
     .mode-switch {
       margin-top: var(--space-4);
@@ -388,7 +382,6 @@
       pointer-events: none;
       opacity: .6;
     }
-
     html[data-site-theme="support"] .message-card {
       background: radial-gradient(circle at 0 0, rgba(255,160,210,.45), transparent 70%),
                   linear-gradient(160deg, rgba(35,10,26,.98), rgba(16,4,20,1));
@@ -603,7 +596,7 @@
         </div>
         <div>
           <div class="brand-title">Tambov 73</div>
-          <div class="brand-sub" id="brandSubtitle">Симулятор смены модератора и агентов поддержки</div>
+          <div class="brand-sub" id="brandSubtitle">Симулятор смены модераторов и агентов поддержки</div>
         </div>
       </div>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Сменить тему">🌙</button>
@@ -612,50 +605,51 @@
     <section class="hero">
       <article class="panel hero-card">
         <div class="badge-row">
-          <span class="badge" id="heroBadge1">Discord • Модерация</span>
+          <span class="badge" id="heroBadge1">Discord • Tambov 73</span>
           <span class="badge" id="heroBadge2">Режимы: модеры / АП / О сайте</span>
           <span class="badge xp" id="heroBadge3">XP выдаёте вручную</span>
         </div>
-        <h1 id="heroTitle">Лови <span>нарушения</span> и помогай игрокам.</h1>
+        <h1 id="heroTitle">Начни <span>смену</span> и тренируйся.</h1>
         <p id="heroText">
-          Модераторы тренируют наказания по правилам. Агенты поддержки — ответы на вопросы по серверу, GPS и форуму. В режиме «О сайте» — информация о создателях.
+          Вопросы в обоих режимах появляются только после начала смены. Ничего не видно заранее — как на реальной смене.
         </p>
         <div class="hero-actions">
-          <button class="btn btn-primary" type="button" id="startBtn">Начать смену модератора</button>
+          <button class="btn btn-primary" type="button" id="startBtn">Начать смену</button>
           <button class="btn btn-secondary" type="button" id="resetBtn">Сбросить смену</button>
         </div>
       </article>
 
       <aside class="panel rules">
-        <h2 id="rulesTitle">Как использовать тренажёр</h2>
-        <p id="rulesText">
-          В модераторском режиме игра считает совпадения с эталоном наказаний. В режиме АП — проверяет, попадает ли ответ по смыслу. В режиме «О сайте» можно посмотреть, кем создан тренажёр.
+        <h2>Как использовать</h2>
+        <p>
+          Выбираешь режим (Модераторы, Агенты поддержки или О сайте). Затем жмёшь «Начать смену».
+          Для модерации будут выпадать сообщения, для АП — вопросы игроков по серверу.
         </p>
         <div class="rule-list">
           <div class="rule-item">
-            <div class="rule-icon ok">✓</div>
+            <div class="rule-icon ok">M</div>
             <div>
-              <strong id="rule1Title">Модераторы</strong><br>
-              <span class="brand-sub" id="rule1Text">
-                Решают: нет нарушения, устное/пред/мут или бан/перма/глобал.
+              <strong>Режим «Модераторы»</strong><br>
+              <span class="brand-sub">
+                Три кнопки: без нарушения, устное/пред/мут, бан/перма/глобал. Система считает совпадения с эталонным ответом.
               </span>
             </div>
           </div>
           <div class="rule-item">
-            <div class="rule-icon warn">?</div>
+            <div class="rule-icon warn">A</div>
             <div>
-              <strong id="rule2Title">Агенты поддержки</strong><br>
-              <span class="brand-sub" id="rule2Text">
-                Отвечают на вопросы игроков: куда писать, какие команды, где форум и GPS.
+              <strong>Режим «Агенты поддержки»</strong><br>
+              <span class="brand-sub">
+                Вопросы по GPS, форуму, F.A.Q, нормативам и т.д. Ты пишешь ответ, а игра проверяет по ключевым словам.
               </span>
             </div>
           </div>
           <div class="rule-item">
             <div class="rule-icon ban">ℹ</div>
             <div>
-              <strong id="rule3Title">О сайте</strong><br>
-              <span class="brand-sub" id="rule3Text">
-                Раздел с информацией о создателях тренажёра и поддержке проекта.
+              <strong>Режим «О сайте»</strong><br>
+              <span class="brand-sub">
+                Информация о создателе тренажёра: John_Wick и поддержка Leha_Mackenzie, Andrey_Caypen и Евгении Бабешко.
               </span>
             </div>
           </div>
@@ -674,7 +668,7 @@
       <section class="panel game-card" id="mode-moderation">
         <div>
           <h2>Панель модератора</h2>
-          <p>Определи, есть ли нарушение, и выбери наказание. Игра считает только совпадения с эталоном.</p>
+          <p>Сообщения и нарушения появятся после нажатия «Начать смену».</p>
         </div>
 
         <div class="stats-grid">
@@ -702,7 +696,7 @@
           </div>
           <div class="result-banner" id="resultBanner">
             <span><strong>Результат:</strong> смена ещё не начата</span>
-            <span id="resultHint">Нажми «Начать смену модератора», чтобы получить первое сообщение.</span>
+            <span id="resultHint">Нажми «Начать смену», чтобы получить первое сообщение.</span>
           </div>
         </div>
 
@@ -717,9 +711,9 @@
               </div>
             </div>
             <div class="message-text" id="messageText">
-              Нажми «Начать смену модератора», чтобы увидеть первое сообщение на проверку.
+              Пока сообщений нет. Нажми «Начать смену».
             </div>
-            <div class="hint" id="hintText">Подсказка: оценивай по правилам 2.1–5.3.</div>
+            <div class="hint" id="hintText">Оценка: без нарушения, устное/пред/мут, бан/перма/глобал.</div>
           </article>
 
           <div class="controls">
@@ -734,7 +728,7 @@
       <section class="panel game-card" id="mode-support" style="display:none;">
         <div>
           <h2>Режим: агенты поддержки</h2>
-          <p>Вопросы игроков по серверу, форуму, GPS, F.A.Q и системе АП. Сначала нажми «Следующий вопрос».</p>
+          <p>Вопросы появляются только после начала смены и нажатия «Следующий вопрос».</p>
         </div>
 
         <div class="feed">
@@ -744,11 +738,11 @@
               <div class="avatar">AG</div>
               <div>
                 <div class="author-name" id="supportQuestionTitle">Игровой вопрос</div>
-                <div class="author-meta" id="supportMeta">Вопрос появится после нажатия «Следующий вопрос»</div>
+                <div class="author-meta" id="supportMeta">Вопросы пока скрыты — начни смену</div>
               </div>
             </div>
             <div class="message-text" id="supportQuestionText">
-              Сначала нажми «Следующий вопрос», чтобы получить запрос игрока.
+              Нажми «Начать смену», затем «Следующий вопрос», чтобы увидеть запрос игрока.
             </div>
             <div class="support-answer-row">
               <div class="support-answer-row-inner">
@@ -774,7 +768,7 @@
       <section class="panel game-card" id="mode-about" style="display:none;">
         <div>
           <h2>О сайте</h2>
-          <p>Этот тренажёр создан для внутреннего обучения модераторов и агентов поддержки сервера Tambov 73.</p>
+          <p>Информация о создании тренажёра.</p>
         </div>
         <div class="feed">
           <article class="message-card">
@@ -787,12 +781,12 @@
               </div>
             </div>
             <div class="message-text">
-              Проект создан <strong>John_Wick</strong> с поддержкой
+              Этот тренажёр создан <strong>John_Wick</strong> с поддержкой
               <strong>Leha_Mackenzie</strong>, <strong>Andrey_Caypen</strong>
               и <strong>Евгении Бабешко</strong>.
             </div>
             <div class="hint">
-              Если нужно добавить новые вопросы или обновить правила, обращайтесь к указанным людям в Discord / на форуме.
+              Используйте его для отработки смен модераторов и агентов поддержки перед реальной работой на сервере.
             </div>
           </article>
         </div>
@@ -801,23 +795,23 @@
       <aside class="panel side">
         <div>
           <h2>Что тренируем</h2>
-          <p>Модератор — про наказания и правила. Агент поддержки — про помощь игрокам и ссылки на нужные разделы. Раздел «О сайте» — информация о создателях.</p>
+          <p>Модераторы — наказания и правила. Агенты поддержки — ответы игрокам. «О сайте» — кто всё это сделал.</p>
           <div class="rank-list">
             <div class="rank-item">
               <span>Модераторы</span>
-              <strong>Нарушения, наказания, точность</strong>
+              <strong>Нарушения и наказания</strong>
             </div>
             <div class="rank-item">
               <span>Агенты поддержки</span>
-              <strong>Ответы, направляющие, форум</strong>
+              <strong>Ответы, ссылки, помощь</strong>
             </div>
           </div>
         </div>
         <div>
           <h2>Лог смены</h2>
-          <p>По логу старший состав может посмотреть решения модератора и ответы агента поддержки.</p>
+          <p>Фиксирует решения модератора и примерную оценку ответов АП.</p>
           <div class="log" id="logList">
-            <div class="log-item">Пока пусто. Запусти смену модератора или режим АП и сделай первые действия.</div>
+            <div class="log-item">Пока пусто. Нажми «Начать смену», чтобы начать работу.</div>
           </div>
         </div>
       </aside>
@@ -934,7 +928,7 @@
     const generatedMessages = [];
     baseTemplates.forEach(t => {
       t.texts.forEach(text => {
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 8; i++) {
           generatedMessages.push({ type: t.type, baseText: text });
         }
       });
@@ -1016,7 +1010,7 @@
       let hint  = `Сейчас рекомендовано ${xp} XP (по 15 за каждые 10 правильных).`;
       if (!state.started || state.resolved === 0) {
         label = 'Результат: смена ещё не начата';
-        hint  = 'Нажми «Начать смену модератора», чтобы получить первое сообщение.';
+        hint  = 'Нажми «Начать смену», чтобы получить первое сообщение.';
       }
       el.resultBanner.firstElementChild.innerHTML = `<strong>${label}</strong>`;
       el.resultHint.textContent = hint;
@@ -1050,7 +1044,7 @@
       state.log      = [];
       currentPool    = pickUniquePool(600);
       poolIndex      = 0;
-      el.logList.innerHTML = '<div class="log-item">Смена модератора началась. Решения появятся здесь.</div>';
+      el.logList.innerHTML = '<div class="log-item">Смена началась. Решения и ответы появятся здесь.</div>';
       randomMessage();
       updateStats();
       document.getElementById('game').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1060,10 +1054,16 @@
       state = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false, log: [] };
       el.authorName.textContent  = 'System';
       el.authorMeta.textContent  = 'Сообщение появится после старта смены';
-      el.messageText.textContent = 'Нажми «Начать смену модератора», чтобы увидеть первое сообщение на проверку.';
+      el.messageText.textContent = 'Пока сообщений нет. Нажми «Начать смену».';
       el.avatarBox.textContent   = 'T7';
-      el.hintText.textContent    = 'Подсказка: оценивай по правилам 2.1–5.3.';
-      el.logList.innerHTML = '<div class="log-item">Пока пусто. Запусти смену модератора или режим АП и сделай первые действия.</div>';
+      el.hintText.textContent    = 'Оценка: без нарушения, устное/пред/мут, бан/перма/глобал.';
+      el.supportQuestionTitle.textContent = 'Игровой вопрос';
+      el.supportQuestionText.textContent  = 'Нажми «Начать смену», затем «Следующий вопрос».';
+      el.supportAnswerInput.value         = '';
+      el.supportResultText.textContent    = '';
+      el.supportResultText.style.color    = 'var(--color-text-muted)';
+      supportState.currentIndex           = -1;
+      el.logList.innerHTML = '<div class="log-item">Пока пусто. Нажми «Начать смену», чтобы начать работу.</div>';
       updateStats();
     }
 
@@ -1113,113 +1113,219 @@
       });
     })();
 
-    // -------- АГЕНТЫ ПОДДЕРЖКИ --------
+    // -------- АГЕНТЫ ПОДДЕРЖКИ ( ~40 вопросов-шаблонов ) --------
     const supportQuestions = [
       {
         title: 'Где находится ближайшая заправка?',
-        text: 'Игрок спрашивает: «Где находится ближайшая заправка на Тамбове?» Опиши, как открыть GPS и найти нужную точку.',
-        keywordsGood: ['gps','гпс','navigator','навигац','карта','заправ','5-4-3','5 4 3']
+        text: 'Игрок: «Где ближайшая заправка на Тамбове?» Опиши, как открыть GPS и найти точку.',
+        keywordsGood: ['gps','гпс','карта','навигац','заправ','маршрут']
       },
       {
         title: 'Основные команды сервера',
-        text: 'Игрок: «Я только зашёл, где посмотреть основные команды сервера?»',
+        text: 'Игрок: «Где посмотреть основные команды сервера?»',
         keywordsGood: ['/help','/cmd','команды сервера','раздел команд','форум','f1','f11']
       },
       {
-        title: 'Меню помощи / F.A.Q',
-        text: 'Игрок интересуется, есть ли меню помощи или F.A.Q по серверу и как его открыть.',
-        keywordsGood: ['faq','f.a.q','меню помощи','форум','раздел помощи','f1','клавиша f1']
+        title: 'Меню помощи / FAQ',
+        text: 'Игрок: «Есть ли меню помощи или FAQ по серверу? Как открыть?»',
+        keywordsGood: ['faq','f.a.q','меню помощи','форум','раздел помощи','f1']
       },
       {
-        title: 'Куда писать жалобу на игрока',
-        text: 'Игрок: «Где оставить жалобу на нарушителя?»',
+        title: 'Жалоба на игрока',
+        text: 'Игрок: «Куда подать жалобу на нарушителя?»',
         keywordsGood: ['форум','раздел жалоб','жалобу','тикет','ticket','/report']
       },
       {
         title: 'Заявление на снятие наказания',
-        text: 'Игрок хочет подать заявление на снятие бана / мута.',
+        text: 'Игрок: «Где оставить заявление на снятие бана / мута?»',
         keywordsGood: ['заявление','снятие наказ','форум','форма','шаблон','раздел снятия']
       },
       {
         title: 'Система снятия наказаний',
-        text: 'Игрок спрашивает, по какой системе снимают наказания и где это почитать.',
+        text: 'Игрок: «По какой системе снимают наказания и где это прочитать?»',
         keywordsGood: ['система снятия','описание системы','форум','раздел ап','правила снятия']
       },
       {
-        title: 'Как открыть GPS',
-        text: 'Игрок: «Как вообще открыть GPS и выбрать нужную точку маршрута?»',
+        title: 'Открытие GPS',
+        text: 'Игрок: «Как открыть GPS и выбрать нужную точку?»',
         keywordsGood: ['gps','гпс','меню','карта','клавиша','кнопка','команда']
       },
       {
-        title: 'Работы и фракции на проекте',
-        text: 'Игрок спрашивает, какие основные работы / фракции есть и где это посмотреть.',
+        title: 'Работы и фракции',
+        text: 'Игрок: «Какие работы / фракции есть на проекте и где это посмотреть?»',
         keywordsGood: ['форум','раздел работ','список работ','фракции','faq','гид']
       },
       {
         title: 'Магазин агентов поддержки',
-        text: 'Агент: «Где посмотреть магазин АП и что там можно получить?»',
+        text: 'АП: «Где посмотреть магазин агентов поддержки?»',
         keywordsGood: ['магазин агентов','ап магазин','форум','раздел ап','товары']
       },
       {
         title: 'Дополнительные баллы АП',
-        text: 'Агент хочет узнать, как подать на дополнительные баллы за активность.',
+        text: 'АП: «Как подать на дополнительные баллы за активность?»',
         keywordsGood: ['дополнительные баллы','заявление','форум','раздел ап','шаблон']
       },
       {
         title: 'Норматив и ночное дежурство',
-        text: 'Агент: «Где посмотреть ежедневный норматив и ночные дежурства АП?»',
+        text: 'АП: «Где посмотреть ежедневный норматив и ночные дежурства?»',
         keywordsGood: ['ежедневный норматив','ночное дежурство','форум','раздел ап','расписание']
       },
       {
         title: 'Лучший агент поддержки недели',
-        text: 'Агент интересуется, где отслеживается система «Лучший АП недели».',
+        text: 'АП: «Где посмотреть систему Лучший АП недели?»',
         keywordsGood: ['лучший агент','ап недели','книга рекордов','форум','раздел ап']
       },
       {
-        title: 'RP и игровые термины',
-        text: 'Игрок не понимает, что такое РП / МГ / ДМ. Куда его направить за расшифровкой?',
-        keywordsGood: ['раcшифровка','словарь','rp термины','форум','раздел терминов','faq']
+        title: 'RP и термины',
+        text: 'Игрок: «Что такое РП/МГ/ДМ и где прочитать подробнее?»',
+        keywordsGood: ['словарь','rp термины','форум','раздел терминов','faq']
       },
       {
         title: 'Перевод на пост администратора',
-        text: 'Игрок: «Хочу в админку. Где почитать правила перевода на пост администратора?»',
-        keywordsGood: ['правила перевода','пост администратора','форум','раздел ап','документ']
+        text: 'Игрок: «Хочу в админку. Где почитать правила перевода?»',
+        keywordsGood: ['правила перевода','пост администратора','форум','раздел ап']
       },
       {
         title: 'Команды фракций',
-        text: 'Игрок спрашивает, где посмотреть команды своей фракции / организации.',
+        text: 'Игрок: «Где посмотреть команды моей фракции?»',
         keywordsGood: ['команды фракции','форум','раздел фракций','/help','/cmd']
       },
       {
         title: 'Системные мероприятия',
-        text: 'Игрок интересуется, где посмотреть расписание системных мероприятий на сервере.',
+        text: 'Игрок: «Где посмотреть расписание системных мероприятий?»',
         keywordsGood: ['расписание','системных мероприятий','форум','календарь','ивенты']
       },
       {
         title: 'Контакты руководства АП',
-        text: 'Агент: «Где взять контакты руководства АП, чтобы задать вопрос?»',
+        text: 'АП: «Где найти контакты руководства АП?»',
         keywordsGood: ['контакты руководства','агентов поддержки','форум','раздел ап','discord','vk']
       },
       {
         title: 'Обязанности агента поддержки',
-        text: 'Кандидат на АП спрашивает, какие обязанности у агентов поддержки.',
-        keywordsGood: ['правила и обязанности','агентов поддержки','форум','раздел ап','документ']
+        text: 'Кандидат АП: «Какие обязанности у агентов поддержки?»',
+        keywordsGood: ['правила и обязанности','агентов поддержки','форум','раздел ап']
       },
       {
         title: 'Шаблоны ответов АП',
-        text: 'Агент: «Есть ли готовые шаблоны ответов на типичные вопросы игроков?»',
+        text: 'АП: «Есть ли шаблоны ответов на типичные вопросы игроков?»',
         keywordsGood: ['шаблоны ответов','форум','раздел ап','шаблон','готовые ответы']
       },
       {
         title: 'Ежедневный норматив АП',
-        text: 'Агент хочет узнать, какой ежедневный норматив по ответам у АП.',
+        text: 'АП: «Какой ежедневный норматив по ответам у АП?»',
         keywordsGood: ['ежедневный норматив','агентов поддержки','форум','раздел ап','требования']
+      },
+      // ещё 20 простых вариаций, чтобы набить пул
+      {
+        title: 'Где посмотреть правила сервера?',
+        text: 'Игрок: «Где почитать полные правила сервера?»',
+        keywordsGood: ['правила сервера','форум','раздел правил']
+      },
+      {
+        title: 'Куда писать по вопросам доната?',
+        text: 'Игрок: «Куда обратиться по вопросам доната?»',
+        keywordsGood: ['форум','раздел доната','поддержка','donate']
+      },
+      {
+        title: 'Вопрос по привязке аккаунта',
+        text: 'Игрок: «Как привязать аккаунт, чтобы не потерять прогресс?»',
+        keywordsGood: ['привязка','защита аккаунта','2fa','форум','faq']
+      },
+      {
+        title: 'Как открыть карту?',
+        text: 'Игрок: «Как открыть карту на сервере?»',
+        keywordsGood: ['карта','gps','гпс','клавиша','кнопка']
+      },
+      {
+        title: 'Где узнать о новых обновлениях?',
+        text: 'Игрок: «Где смотреть новости и обновления сервера?»',
+        keywordsGood: ['форум','раздел новостей','обновления','changelog']
+      },
+      {
+        title: 'Где написать благодарность администрации?',
+        text: 'Игрок: «Хочу написать благодарность админу, куда?»',
+        keywordsGood: ['форум','раздел благодар','отзывы','администрации']
+      },
+      {
+        title: 'Вопрос по фракции',
+        text: 'Игрок: «Где прочитать устав моей фракции?»',
+        keywordsGood: ['устав фракции','форум','раздел фракции','правила фракции']
+      },
+      {
+        title: 'Как попасть в АП?',
+        text: 'Игрок: «Как попасть в агенты поддержки?»',
+        keywordsGood: ['заявка в ап','набор в ап','форум','раздел ап','анкета']
+      },
+      {
+        title: 'Где посмотреть отчёты АП?',
+        text: 'АП: «Где найти свои отчёты или отчёты других агентов?»',
+        keywordsGood: ['отчёты ап','форум','раздел ап','таблица','форма']
+      },
+      {
+        title: 'Перепутал раздел на форуме',
+        text: 'Игрок: «Я написал не в тот раздел, что делать?»',
+        keywordsGood: ['перенос темы','обратиться','модератор форума','правильный раздел']
+      },
+      {
+        title: 'Вопрос по голосовой связи',
+        text: 'Игрок: «Не слышу никого в голосовом, что делать?»',
+        keywordsGood: ['настройка микрофона','настройка звука','faq','раздел помощи']
+      },
+      {
+        title: 'Проблема с авторизацией',
+        text: 'Игрок: «Не могу зайти на аккаунт, куда писать?»',
+        keywordsGood: ['поддержка','форум','раздел техподдержки','ticket','тикет']
+      },
+      {
+        title: 'Где взять информацию по ивентам?',
+        text: 'Игрок: «Где заранее посмотреть ивенты на сервере?»',
+        keywordsGood: ['форум','расписание ивентов','раздел мероприятий','календарь']
+      },
+      {
+        title: 'Где узнать про наказания за нарушения?',
+        text: 'Игрок: «Где почитать, какие наказания за какие нарушения даются?»',
+        keywordsGood: ['форум','таблица наказаний','правила','система наказаний']
+      },
+      {
+        title: 'Как правильно оформить тему на форуме?',
+        text: 'Игрок: «Есть ли шаблон оформления темы на форуме?»',
+        keywordsGood: ['шаблон темы','форум','образец','пример оформления']
+      },
+      {
+        title: 'Куда писать по багам?',
+        text: 'Игрок: «Нашёл баг, куда написать?»',
+        keywordsGood: ['форум','раздел багов','баг-репорт','ticket','тикет']
+      },
+      {
+        title: 'Можно ли перенести прогресс?',
+        text: 'Игрок: «Можно ли перенести прогресс на другой сервер?»',
+        keywordsGood: ['форум','правила переноса','раздел ап','администрация']
+      },
+      {
+        title: 'Где посмотреть список админов?',
+        text: 'Игрок: «Где посмотреть список администрации сервера?»',
+        keywordsGood: ['форум','список администрации','staff','раздел сервера']
+      },
+      {
+        title: 'Где узнать про правила чата?',
+        text: 'Игрок: «Есть отдельные правила для чата?»',
+        keywordsGood: ['правила чата','форум','раздел правил','faq']
+      },
+      {
+        title: 'Где задать вопрос, если не понимаю формат?',
+        text: 'Игрок: «Я не понимаю формат жалобы, где спросить?»',
+        keywordsGood: ['форум','агент поддержки','раздел ап','пояснить формат']
       }
     ];
 
     let supportState = { currentIndex: -1 };
 
     function pickSupportQuestion() {
+      if (!state.started) {
+        el.supportResultText.textContent = 'Сначала нажми «Начать смену» вверху.';
+        el.supportResultText.style.color = 'var(--color-warning)';
+        return;
+      }
       if (supportQuestions.length === 0) return;
       supportState.currentIndex = (supportState.currentIndex + 1) % supportQuestions.length;
       const q = supportQuestions[supportState.currentIndex];
@@ -1229,10 +1335,16 @@
       el.supportResultText.textContent    = '';
       el.supportResultText.style.color    = 'var(--color-text-muted)';
       el.supportAnswerInput.focus();
+      pushLog(`🟦 АП: выдан вопрос «${q.title}»`);
     }
 
     function checkSupportAnswer() {
       const idx = supportState.currentIndex;
+      if (!state.started) {
+        el.supportResultText.textContent = 'Сначала нажми «Начать смену».';
+        el.supportResultText.style.color = 'var(--color-warning)';
+        return;
+      }
       if (idx < 0) {
         pickSupportQuestion();
         return;
@@ -1248,12 +1360,12 @@
       const hasKeyword = q.keywordsGood.some(k => answer.includes(k));
       if (hasKeyword) {
         el.supportResultText.textContent =
-          'Примерно верно: ты указал правильное направление (форум / нужный раздел / GPS / команды).';
+          'Примерно верно: направление задано правильно (форум / раздел / GPS / команды).';
         el.supportResultText.style.color = 'var(--color-success)';
         pushLog(`🟢 АП: ответ по вопросу «${q.title}» попал по смыслу.`);
       } else {
         el.supportResultText.textContent =
-          'Ответ мимо сути. Подумай, что игроку нужно: ссылку на форум / раздел, команду или объяснение GPS.';
+          'Ответ мимо. Подумай, что игроку нужно: ссылка на форум/раздел, команда или объяснение.',
         el.supportResultText.style.color = 'var(--color-error)';
         pushLog(`🔴 АП: ответ по вопросу «${q.title}» не попал по ключевым словам.`);
       }
@@ -1282,19 +1394,17 @@
         const html = document.documentElement;
         html.setAttribute('data-site-theme', mode === 'support' ? 'support' : 'mod');
 
-        if (mode === 'support') {
-          // Вопросы АП показываем только после нажатия «Следующий вопрос»
+        if (mode === 'support' && !state.started) {
           el.supportQuestionTitle.textContent = 'Игровой вопрос';
-          el.supportQuestionText.textContent  = 'Сначала нажми «Следующий вопрос», чтобы получить запрос игрока.';
+          el.supportQuestionText.textContent  = 'Нажми «Начать смену», затем «Следующий вопрос».';
           el.supportAnswerInput.value         = '';
           el.supportResultText.textContent    = '';
-          el.supportResultText.style.color    = 'var(--color-text-muted)';
           supportState.currentIndex           = -1;
         }
       });
     });
 
-    // Старт: модерация
+    // Тема по умолчанию
     document.documentElement.setAttribute('data-site-theme', 'mod');
     updateStats();
   </script>
