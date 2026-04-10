@@ -122,7 +122,7 @@
     .brand-sub {
       color: var(--color-text-muted);
       font-size: var(--text-sm);
-      max-width: 24ch;
+      max-width: 26ch;
     }
     .theme-toggle {
       min-width: 44px; min-height: 44px;
@@ -543,28 +543,6 @@
       white-space: normal;
     }
 
-    .result-banner {
-      margin-top: var(--space-2);
-      padding: .65rem .75rem;
-      border-radius: 12px;
-      font-size: var(--text-sm);
-      display: flex;
-      justify-content: space-between;
-      gap: var(--space-3);
-      align-items: center;
-      background: rgba(4,6,12,.9);
-      border: 1px solid rgba(191,198,255,.3);
-      flex-wrap: wrap;
-    }
-    .result-banner strong { text-transform: uppercase; letter-spacing: .12em; }
-
-    .footer-note {
-      margin-top: var(--space-5);
-      text-align: center;
-      color: var(--color-text-faint);
-      font-size: var(--text-sm);
-    }
-
     @media (max-width: 900px) {
       .hero,
       .game-wrap {
@@ -635,13 +613,12 @@
       <article class="panel hero-card">
         <div class="badge-row">
           <span class="badge" id="heroBadge1">Discord • Модерация</span>
-          <span class="badge" id="heroBadge2">Режимы: модеры / АП</span>
+          <span class="badge" id="heroBadge2">Режимы: модеры / АП / О сайте</span>
           <span class="badge xp" id="heroBadge3">XP выдаёте вручную</span>
         </div>
         <h1 id="heroTitle">Лови <span>нарушения</span> и помогай игрокам.</h1>
         <p id="heroText">
-          Слева — симулятор смены модератора Discord Tambov 73 по правилам 2.1–5.3.
-          В режиме АП — вопросы игроков по серверу, GPS, форуму и правилам, без наказаний.
+          Модераторы тренируют наказания по правилам. Агенты поддержки — ответы на вопросы по серверу, GPS и форуму. В режиме «О сайте» — информация о создателях.
         </p>
         <div class="hero-actions">
           <button class="btn btn-primary" type="button" id="startBtn">Начать смену модератора</button>
@@ -652,16 +629,15 @@
       <aside class="panel rules">
         <h2 id="rulesTitle">Как использовать тренажёр</h2>
         <p id="rulesText">
-          В модераторском режиме игра считает, сколько решений совпало с эталоном.
-          В режиме АП — просто проверяет, попал ли ответ по смыслу.
+          В модераторском режиме игра считает совпадения с эталоном наказаний. В режиме АП — проверяет, попадает ли ответ по смыслу. В режиме «О сайте» можно посмотреть, кем создан тренажёр.
         </p>
         <div class="rule-list">
           <div class="rule-item">
             <div class="rule-icon ok">✓</div>
             <div>
-              <strong id="rule1Title">Модерация</strong><br>
+              <strong id="rule1Title">Модераторы</strong><br>
               <span class="brand-sub" id="rule1Text">
-                Выбираешь: нет нарушения, устное/пред/мут или бан/перма/глобал.
+                Решают: нет нарушения, устное/пред/мут или бан/перма/глобал.
               </span>
             </div>
           </div>
@@ -670,16 +646,16 @@
             <div>
               <strong id="rule2Title">Агенты поддержки</strong><br>
               <span class="brand-sub" id="rule2Text">
-                Читаешь вопрос игрока и пишешь ответ. Проверка идёт по ключевым словам: форум, GPS, разделы, команды.
+                Отвечают на вопросы игроков: куда писать, какие команды, где форум и GPS.
               </span>
             </div>
           </div>
           <div class="rule-item">
-            <div class="rule-icon ban">✕</div>
+            <div class="rule-icon ban">ℹ</div>
             <div>
-              <strong id="rule3Title">XP и система проекта</strong><br>
+              <strong id="rule3Title">О сайте</strong><br>
               <span class="brand-sub" id="rule3Text">
-                Сам тренажёр XP не выдаёт. Итог смены модератора и качество ответов АП вы оцениваете сами на сервере.
+                Раздел с информацией о создателях тренажёра и поддержке проекта.
               </span>
             </div>
           </div>
@@ -690,6 +666,7 @@
     <div class="mode-switch">
       <button class="mode-btn active" type="button" data-mode="moderation">Модераторы</button>
       <button class="mode-btn" type="button" data-mode="support">Агенты поддержки</button>
+      <button class="mode-btn" type="button" data-mode="about">О сайте</button>
     </div>
 
     <section class="game-wrap" id="game">
@@ -725,7 +702,7 @@
           </div>
           <div class="result-banner" id="resultBanner">
             <span><strong>Результат:</strong> смена ещё не начата</span>
-            <span id="resultHint">Начни смену и обработай хотя бы 10 сообщений.</span>
+            <span id="resultHint">Нажми «Начать смену модератора», чтобы получить первое сообщение.</span>
           </div>
         </div>
 
@@ -736,13 +713,13 @@
               <div class="avatar" id="avatarBox">T7</div>
               <div>
                 <div class="author-name" id="authorName">System</div>
-                <div class="author-meta" id="authorMeta">Неизвестно, есть ли нарушение</div>
+                <div class="author-meta" id="authorMeta">Сообщение появится после старта смены</div>
               </div>
             </div>
             <div class="message-text" id="messageText">
-              Нажми «Начать смену модератора», чтобы получить первое сообщение и потренироваться.
+              Нажми «Начать смену модератора», чтобы увидеть первое сообщение на проверку.
             </div>
-            <div class="hint" id="hintText">Подсказка: думай как реальный модератор Tambov 73 по правилам 2.1–5.3.</div>
+            <div class="hint" id="hintText">Подсказка: оценивай по правилам 2.1–5.3.</div>
           </article>
 
           <div class="controls">
@@ -757,7 +734,7 @@
       <section class="panel game-card" id="mode-support" style="display:none;">
         <div>
           <h2>Режим: агенты поддержки</h2>
-          <p>Здесь нет наказаний и баллов. Есть вопросы игроков и строка, куда ты пишешь свой ответ как агент поддержки.</p>
+          <p>Вопросы игроков по серверу, форуму, GPS, F.A.Q и системе АП. Сначала нажми «Следующий вопрос».</p>
         </div>
 
         <div class="feed">
@@ -767,11 +744,11 @@
               <div class="avatar">AG</div>
               <div>
                 <div class="author-name" id="supportQuestionTitle">Игровой вопрос</div>
-                <div class="author-meta" id="supportMeta">Ответь как агент поддержки, без наказаний</div>
+                <div class="author-meta" id="supportMeta">Вопрос появится после нажатия «Следующий вопрос»</div>
               </div>
             </div>
             <div class="message-text" id="supportQuestionText">
-              Нажми «Следующий вопрос», чтобы потренироваться отвечать игрокам.
+              Сначала нажми «Следующий вопрос», чтобы получить запрос игрока.
             </div>
             <div class="support-answer-row">
               <div class="support-answer-row-inner">
@@ -793,10 +770,38 @@
         </div>
       </section>
 
+      <!-- О САЙТЕ -->
+      <section class="panel game-card" id="mode-about" style="display:none;">
+        <div>
+          <h2>О сайте</h2>
+          <p>Этот тренажёр создан для внутреннего обучения модераторов и агентов поддержки сервера Tambov 73.</p>
+        </div>
+        <div class="feed">
+          <article class="message-card">
+            <div class="channel"><span class="channel-dot"></span># info / about</div>
+            <div class="author-row">
+              <div class="avatar">JW</div>
+              <div>
+                <div class="author-name">John_Wick</div>
+                <div class="author-meta">Создатель тренажёра</div>
+              </div>
+            </div>
+            <div class="message-text">
+              Проект создан <strong>John_Wick</strong> с поддержкой
+              <strong>Leha_Mackenzie</strong>, <strong>Andrey_Caypen</strong>
+              и <strong>Евгении Бабешко</strong>.
+            </div>
+            <div class="hint">
+              Если нужно добавить новые вопросы или обновить правила, обращайтесь к указанным людям в Discord / на форуме.
+            </div>
+          </article>
+        </div>
+      </section>
+
       <aside class="panel side">
         <div>
           <h2>Что тренируем</h2>
-          <p>Модератор — про наказания и правила. Агент поддержки — про помощь, ссылки на форум, GPS, F.A.Q и разъяснение механик.</p>
+          <p>Модератор — про наказания и правила. Агент поддержки — про помощь игрокам и ссылки на нужные разделы. Раздел «О сайте» — информация о создателях.</p>
           <div class="rank-list">
             <div class="rank-item">
               <span>Модераторы</span>
@@ -810,21 +815,17 @@
         </div>
         <div>
           <h2>Лог смены</h2>
-          <p>По логу старший состав может посмотреть, как работал модератор и какие ответы давал агент поддержки.</p>
+          <p>По логу старший состав может посмотреть решения модератора и ответы агента поддержки.</p>
           <div class="log" id="logList">
             <div class="log-item">Пока пусто. Запусти смену модератора или режим АП и сделай первые действия.</div>
           </div>
         </div>
       </aside>
     </section>
-
-    <p class="footer-note">
-      Вопросы АП по тематике: GPS, команды, форум, F.A.Q, магазин АП, нормативы и снятие наказаний — как в разделе «Агенты поддержки» на форуме Black Russia.
-    </p>
   </main>
 
   <script>
-    // ---------------- МОДЕРАЦИЯ ----------------
+    // -------- МОДЕРАЦИЯ --------
     const funnyLeft = [
       'Мелстройность', 'Смешнявка', 'Капслокер', 'ВиртоСлив', 'Громкий_Микрофон',
       'Рассыльщик_Мемов', 'ПолитТоксик', 'РелигБаттл', 'Дед_с_Клавой', 'Флуд_Бот',
@@ -1015,7 +1016,7 @@
       let hint  = `Сейчас рекомендовано ${xp} XP (по 15 за каждые 10 правильных).`;
       if (!state.started || state.resolved === 0) {
         label = 'Результат: смена ещё не начата';
-        hint  = 'Начни смену и обработай хотя бы 10 сообщений.';
+        hint  = 'Нажми «Начать смену модератора», чтобы получить первое сообщение.';
       }
       el.resultBanner.firstElementChild.innerHTML = `<strong>${label}</strong>`;
       el.resultHint.textContent = hint;
@@ -1039,7 +1040,6 @@
       el.messageText.textContent = hydrated.text;
       el.avatarBox.textContent   = initials(hydrated.user || 'T7');
       el.hintText.textContent    = 'Выбери: без нарушения, устное/пред/мут или бан.';
-      el.messageCard.classList.remove('flash-ok', 'flash-bad');
     }
 
     function startGame() {
@@ -1050,7 +1050,7 @@
       state.log      = [];
       currentPool    = pickUniquePool(600);
       poolIndex      = 0;
-      el.logList.innerHTML = '<div class="log-item">Смена началась. Решения будут появляться здесь.</div>';
+      el.logList.innerHTML = '<div class="log-item">Смена модератора началась. Решения появятся здесь.</div>';
       randomMessage();
       updateStats();
       document.getElementById('game').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1059,14 +1059,11 @@
     function resetGame() {
       state = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false, log: [] };
       el.authorName.textContent  = 'System';
-      el.authorMeta.textContent  = 'Неизвестно, есть ли нарушение';
-      el.messageText.textContent = 'Нажми «Начать смену модератора», чтобы получить первое сообщение и потренироваться.';
+      el.authorMeta.textContent  = 'Сообщение появится после старта смены';
+      el.messageText.textContent = 'Нажми «Начать смену модератора», чтобы увидеть первое сообщение на проверку.';
       el.avatarBox.textContent   = 'T7';
-      el.hintText.textContent    = 'Подсказка: думай как реальный модератор Tambov 73 по правилам 2.1–5.3.';
-      el.messageCard.classList.remove('flash-ok', 'flash-bad');
+      el.hintText.textContent    = 'Подсказка: оценивай по правилам 2.1–5.3.';
       el.logList.innerHTML = '<div class="log-item">Пока пусто. Запусти смену модератора или режим АП и сделай первые действия.</div>';
-      currentPool = pickUniquePool(600);
-      poolIndex   = 0;
       updateStats();
     }
 
@@ -1081,12 +1078,10 @@
       if (isCorrect) {
         state.correct += 1;
         el.hintText.textContent = 'Решение сохранено.';
-        el.messageCard.classList.add('flash-ok');
         pushLog(`✅ ${item.user}: верное решение (${item.type.toUpperCase()})`);
       } else {
         state.mistakes += 1;
         el.hintText.textContent = 'Решение сохранено.';
-        el.messageCard.classList.add('flash-bad');
         const map = { good: 'Без нарушения', warn: 'Устное / Пред / Мут', ban: 'Бан / Перма / Глобал' };
         pushLog(`❌ ${item.user}: эталон — «${map[item.type]}»`);
       }
@@ -1118,7 +1113,7 @@
       });
     })();
 
-    // ---------------- АГЕНТЫ ПОДДЕРЖКИ ----------------
+    // -------- АГЕНТЫ ПОДДЕРЖКИ --------
     const supportQuestions = [
       {
         title: 'Где находится ближайшая заправка?',
@@ -1279,17 +1274,27 @@
         const mode = btn.dataset.mode;
         document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+
         document.getElementById('mode-moderation').style.display = mode === 'moderation' ? '' : 'none';
         document.getElementById('mode-support').style.display    = mode === 'support' ? '' : 'none';
+        document.getElementById('mode-about').style.display      = mode === 'about' ? '' : 'none';
+
         const html = document.documentElement;
         html.setAttribute('data-site-theme', mode === 'support' ? 'support' : 'mod');
+
         if (mode === 'support') {
-          pickSupportQuestion();
+          // Вопросы АП показываем только после нажатия «Следующий вопрос»
+          el.supportQuestionTitle.textContent = 'Игровой вопрос';
+          el.supportQuestionText.textContent  = 'Сначала нажми «Следующий вопрос», чтобы получить запрос игрока.';
+          el.supportAnswerInput.value         = '';
+          el.supportResultText.textContent    = '';
+          el.supportResultText.style.color    = 'var(--color-text-muted)';
+          supportState.currentIndex           = -1;
         }
       });
     });
 
-    // Стартовые значения
+    // Старт: модерация
     document.documentElement.setAttribute('data-site-theme', 'mod');
     updateStats();
   </script>
