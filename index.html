@@ -4,9 +4,982 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tambov 73 — Discord Mod XP Game</title>
-  <!-- стили и скрипт будут здесь; опущены в этом фрагменте для краткости -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --radius-sm: 0.375rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --radius-full: 9999px;
+      --color-bg: #0b0d12;
+      --color-surface: #151925;
+      --color-surface-2: #191e2c;
+      --color-border: rgba(191, 198, 255, 0.26);
+      --color-divider: rgba(191, 198, 255, 0.18);
+      --color-text: #f5f5ff;
+      --color-text-muted: #9ba3c5;
+      --color-text-faint: #6c7392;
+      --color-text-inverse: #0b0d12;
+      --color-primary: #6c8cff;
+      --color-primary-hover: #8da4ff;
+      --color-success: #52c77b;
+      --color-warning: #ffbf47;
+      --color-error: #ff6b88;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,.35);
+      --shadow-md: 0 14px 40px rgba(0,0,0,.6);
+      --shadow-lg: 0 24px 80px rgba(0,0,0,.85);
+      --font-display: 'Russo One', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100dvh;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--color-text);
+      background:
+        radial-gradient(circle at top left, rgba(108, 140, 255, .2), transparent 50%),
+        radial-gradient(circle at bottom right, rgba(255, 107, 136, .18), transparent 55%),
+        linear-gradient(160deg, #05060a, #05060a 45%, #040711 100%);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    button, input { font: inherit; }
+    button {
+      cursor: pointer;
+      border: none;
+      transition: transform var(--transition), background var(--transition), box-shadow var(--transition), opacity var(--transition);
+    }
+    button:hover { transform: translateY(-1px); }
+    button:active { transform: translateY(1px) scale(.99); }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .page {
+      width: min(1120px, 100% - 2.5rem);
+      margin: 0 auto;
+      padding: var(--space-6) 0 var(--space-10);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .logo {
+      width: 52px; height: 52px;
+      display: grid; place-items: center;
+      color: var(--color-text);
+      background: radial-gradient(circle at 20% 0%, rgba(255,255,255,.16), transparent 55%),
+                  linear-gradient(135deg, rgba(108,140,255,.32), rgba(255,107,136,.22));
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 16px;
+      box-shadow: var(--shadow-md);
+    }
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .brand-sub {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+    }
+    .theme-toggle {
+      min-width: 44px; min-height: 44px;
+      padding: 0 var(--space-3);
+      border-radius: var(--radius-full);
+      color: var(--color-text);
+      background: rgba(16, 21, 40, .85);
+      border: 1px solid rgba(191, 198, 255, 0.35);
+      box-shadow: 0 10px 26px rgba(0,0,0,.8);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+      gap: var(--space-6);
+      align-items: stretch;
+    }
+    .panel {
+      background: radial-gradient(circle at top left, rgba(108,140,255,.23), transparent 55%),
+                  linear-gradient(155deg, rgba(18,22,38,.98), rgba(6,7,16,1));
+      border: 1px solid rgba(191,198,255,.28);
+      border-radius: 26px;
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(18px);
+    }
+    .hero-card {
+      padding: clamp(1.3rem, 2.2vw, 2rem);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+      min-height: 100%;
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+    .badge {
+      padding: .45rem .85rem;
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 800;
+      border: 1px solid rgba(191,198,255,.28);
+      color: var(--color-text-muted);
+      background: rgba(9, 12, 26, .82);
+    }
+    .badge.xp { color: #18171c; background: #ffbf47; border-color: transparent; }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5.2vw, 4.4rem);
+      line-height: .9;
+      text-transform: uppercase;
+      max-width: 11ch;
+    }
+    .hero h1 span {
+      color: var(--color-primary);
+      text-shadow: 0 0 22px rgba(108,140,255,.65);
+    }
+    .hero p {
+      color: var(--color-text-muted);
+      max-width: 60ch;
+    }
+    .hero-actions {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+    }
+    .btn {
+      min-height: 48px;
+      padding: .95rem 1.3rem;
+      border-radius: 16px;
+      font-size: var(--text-sm);
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .btn-primary {
+      background: radial-gradient(circle at 0 0, rgba(255,255,255,.18), transparent 55%),
+                  linear-gradient(135deg, #6c8cff, #8aa3ff);
+      color: white;
+      box-shadow: 0 20px 45px rgba(108,140,255,.72);
+    }
+    .btn-primary:hover { background: linear-gradient(135deg, #8aa3ff, #b1c3ff); }
+    .btn-secondary {
+      color: var(--color-text-muted);
+      background: rgba(9, 12, 26, .86);
+      border: 1px solid rgba(191, 198, 255, .3);
+    }
+
+    .rules {
+      padding: clamp(1.1rem, 2vw, 1.7rem);
+      display: grid;
+      gap: var(--space-4);
+      align-content: start;
+    }
+    .rules h2 { font-size: var(--text-lg); }
+    .rules p { color: var(--color-text-muted); font-size: var(--text-sm); }
+    .rule-list { display: grid; gap: var(--space-3); }
+    .rule-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--space-3);
+      align-items: start;
+      padding: var(--space-3);
+      border-radius: 18px;
+      background: radial-gradient(circle at 0 0, rgba(108,140,255,.22), transparent 60%),
+                  linear-gradient(150deg, rgba(13,16,32,.95), rgba(8,9,18,1));
+      border: 1px solid rgba(191,198,255,.3);
+    }
+    .rule-icon {
+      width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center; font-size: 1.2rem; font-weight: 900;
+    }
+    .ok { background: rgba(82,199,123,.14); color: #8df0ae; }
+    .warn { background: rgba(255,191,71,.18); color: #ffdf95; }
+    .ban { background: rgba(255,107,136,.2); color: #ff9fb4; }
+
+    .game-wrap {
+      margin-top: var(--space-6);
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, .9fr);
+      gap: var(--space-6);
+      align-items: start;
+    }
+    .game-card {
+      padding: clamp(1.1rem, 2.1vw, 1.7rem);
+      display: grid;
+      gap: var(--space-4);
+    }
+    .game-card h2 { font-size: var(--text-lg); }
+    .game-card > p { color: var(--color-text-muted); font-size: var(--text-sm); }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-3);
+    }
+    .stat {
+      padding: var(--space-4);
+      border-radius: 18px;
+      background: rgba(4,6,12,.9);
+      border: 1px solid rgba(191,198,255,.28);
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-label {
+      color: var(--color-text-faint);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      margin-bottom: .35rem;
+      display: block;
+    }
+    .stat-value {
+      font-size: var(--text-lg);
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .xp-bar {
+      height: 16px;
+      background: rgba(4,6,12,.9);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      border: 1px solid rgba(191,198,255,.35);
+    }
+    .xp-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ffbf47, #ffe38e);
+      transition: width 300ms ease;
+      border-radius: inherit;
+      box-shadow: 0 0 26px rgba(255,191,71,.7);
+    }
+
+    .feed { display: grid; gap: var(--space-4); }
+    .message-card {
+      padding: clamp(1.1rem, 2vw, 1.7rem);
+      border-radius: 22px;
+      background: radial-gradient(circle at 0 0, rgba(108,140,255,.45), transparent 70%),
+                  linear-gradient(160deg, rgba(13,16,32,.98), rgba(5,7,15,1));
+      border: 1px solid rgba(191,198,255,.4);
+      min-height: 260px;
+      display: grid;
+      align-content: start;
+      gap: var(--space-4);
+      position: relative;
+      overflow: hidden;
+    }
+    .message-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -40px auto;
+      width: 180px; height: 180px;
+      background: radial-gradient(circle, rgba(255,191,71,.45), transparent 65%);
+      pointer-events: none;
+      opacity: .6;
+    }
+    .channel {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+    }
+    .channel-dot {
+      width: 6px; height: 6px; border-radius: 999px;
+      background: #3dd68c;
+      box-shadow: 0 0 12px rgba(61,214,140,.9);
+    }
+
+    .author-row { display: flex; align-items: center; gap: var(--space-3); }
+    .avatar {
+      width: 50px; height: 50px; border-radius: 16px;
+      display: grid; place-items: center;
+      font-weight: 900;
+      color: white;
+      background: conic-gradient(from 210deg, #6c8cff, #ffbf47, #ff6b88, #6c8cff);
+      box-shadow: 0 18px 32px rgba(0,0,0,.95);
+      flex: 0 0 auto;
+    }
+    .author-name { font-weight: 800; }
+    .author-meta { color: var(--color-text-faint); font-size: var(--text-sm); }
+    .rule-tag {
+      margin-top: .1rem;
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      color: #ffbf47;
+    }
+
+    .message-text {
+      font-size: clamp(1.15rem, 1.1rem + .28vw, 1.4rem);
+      line-height: 1.55;
+      max-width: 62ch;
+    }
+    .hint {
+      color: var(--color-text-faint);
+      font-size: var(--text-sm);
+      min-height: 1.5em;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-3);
+    }
+    .action-btn {
+      min-height: 56px;
+      padding: .95rem 1rem;
+      border-radius: 18px;
+      font-weight: 800;
+      font-size: var(--text-sm);
+      border: 1px solid transparent;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .skip-btn { background: rgba(82,199,123,.12); color: #9af2b4; border-color: rgba(82,199,123,.5); }
+    .warn-btn { background: rgba(255,191,71,.15); color: #ffe29a; border-color: rgba(255,191,71,.55); }
+    .ban-btn { background: rgba(255,107,136,.18); color: #ffb1c1; border-color: rgba(255,107,136,.6); }
+
+    .side {
+      padding: clamp(1.1rem, 2vw, 1.7rem);
+      display: grid;
+      gap: var(--space-4);
+      position: sticky;
+      top: 1.2rem;
+    }
+    .side h2 { font-size: var(--text-lg); }
+    .side p { color: var(--color-text-muted); font-size: var(--text-sm); }
+
+    .rank-list { display: grid; gap: var(--space-2); }
+    .rank-item {
+      display: flex; justify-content: space-between; gap: var(--space-3);
+      padding: .85rem .95rem;
+      border-radius: 15px;
+      background: rgba(4,6,12,.92);
+      border: 1px solid rgba(191,198,255,.28);
+      font-size: var(--text-sm);
+    }
+    .rank-item strong { font-variant-numeric: tabular-nums; }
+    .rank-item.active {
+      outline: 1px solid rgba(255,191,71,.9);
+      background: radial-gradient(circle at 0 0, rgba(255,191,71,.25), transparent 70%), rgba(11,12,24,.98);
+    }
+
+    .log {
+      display: grid; gap: .55rem;
+      max-height: 230px; overflow: auto;
+      padding-right: .15rem;
+    }
+    .log-item {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      padding: .7rem .85rem;
+      border-radius: 13px;
+      background: rgba(4,6,12,.94);
+      border: 1px solid rgba(191,198,255,.22);
+    }
+
+    .footer-note {
+      margin-top: var(--space-6);
+      text-align: center;
+      color: var(--color-text-faint);
+      font-size: var(--text-sm);
+    }
+
+    .flash-ok {
+      box-shadow: 0 0 0 1px rgba(82,199,123,.5), 0 0 0 12px rgba(82,199,123,.13), var(--shadow-lg);
+    }
+    .flash-bad {
+      box-shadow: 0 0 0 1px rgba(255,107,136,.55), 0 0 0 12px rgba(255,107,136,.16), var(--shadow-lg);
+    }
+
+    .result-banner {
+      margin-top: var(--space-2);
+      padding: .75rem .9rem;
+      border-radius: 14px;
+      font-size: var(--text-sm);
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-3);
+      align-items: center;
+      background: rgba(4,6,12,.9);
+      border: 1px solid rgba(191,198,255,.3);
+    }
+    .result-banner strong { text-transform: uppercase; letter-spacing: .12em; }
+
+    @media (max-width: 960px) {
+      .hero, .game-wrap { grid-template-columns: 1fr; }
+      .side { position: static; }
+      .page { width: min(100% - 1.5rem, 1120px); padding-top: var(--space-4); }
+    }
+    @media (max-width: 720px) {
+      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .controls { grid-template-columns: 1fr; }
+      .topbar { align-items: flex-start; }
+      .hero h1 { max-width: 12ch; font-size: clamp(2.1rem, 9vw, 3.3rem); }
+    }
+  </style>
 </head>
 <body>
-  <!-- здесь будет обновлённая логика правил и XP -->
+  <a class="sr-only" href="#game">Перейти к игре</a>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand" aria-label="Логотип игры">
+        <div class="logo" aria-hidden="true">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 18.5V6.8C4 5.8 4.8 5 5.8 5h4.4"></path>
+            <rect x="9" y="3.5" width="11" height="8" rx="2"></rect>
+            <path d="M8 12.5 12 7l4 5.5"></path>
+            <path d="M4 21h9.5"></path>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">Tambov 73</div>
+          <div class="brand-sub">Discord moderation XP game</div>
+        </div>
+      </div>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Сменить тему">🌙</button>
+    </header>
+
+    <section class="hero">
+      <article class="panel hero-card">
+        <div class="badge-row">
+          <span class="badge">Discord • Модерация</span>
+          <span class="badge">Правила 2.1–5.3</span>
+          <span class="badge xp">XP: норма / перенорма / герой дня</span>
+        </div>
+        <h1>Лови <span>нарушения</span> и тренируй модеров.</h1>
+        <p>Симулятор смены модератора Discord сервера Tambov 73. Смотрим сообщения, применяем наказания по правилам 2.1–5.3, а в конце смены получаем результат: норма, перенорма или герой дня.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" type="button" id="startBtn">Начать смену</button>
+          <button class="btn btn-secondary" type="button" id="resetBtn">Сбросить смену</button>
+        </div>
+      </article>
+
+      <aside class="panel rules">
+        <h2>Как считать XP на сервере</h2>
+        <p>Игра сама XP не выдаёт — она только считает, как модератор отработал смену. Вы вручную выдаёте ему XP на сервере по результату:</p>
+        <div class="rule-list">
+          <div class="rule-item">
+            <div class="rule-icon ok">✓</div>
+            <div>
+              <strong>Норма — 15 XP</strong><br>
+              <span class="brand-sub">Минимальный план: <u id="normMessages">10</u> сообщений и точность ≥ <u id="normAccuracy">70%</u>.</span>
+            </div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-icon warn">!</div>
+            <div>
+              <strong>Перенорма — 30 XP</strong><br>
+              <span class="brand-sub">Усиленный план: <u id="perMessages">20</u> сообщений и точность ≥ <u id="perAccuracy">85%</u>.</span>
+            </div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-icon ban">✕</div>
+            <div>
+              <strong>Герой дня — 60 XP</strong><br>
+              <span class="brand-sub">Максимум: <u id="heroMessages">30</u> сообщений и точность ≥ <u id="heroAccuracy">95%</u>.</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="game-wrap" id="game">
+      <section class="panel game-card" aria-labelledby="gameTitle">
+        <div>
+          <h2 id="gameTitle">Панель модератора</h2>
+          <p>Определи, есть ли нарушение, и выбери правильное наказание по правилам Discord сервера. В конце игры увидишь, выполнил ли норму.</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat">
+            <span class="stat-label">Обработано</span>
+            <div class="stat-value" id="resolvedValue">0</div>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Точность</span>
+            <div class="stat-value" id="accuracyValue">0%</div>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Правильных</span>
+            <div class="stat-value" id="correctValue">0</div>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Ошибок</span>
+            <div class="stat-value" id="mistakeValue">0</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="xp-bar" aria-label="Прогресс до результата смены">
+            <div class="xp-fill" id="xpFill"></div>
+          </div>
+          <div class="result-banner" id="resultBanner">
+            <span><strong>Результат:</strong> пока нет — начни смену.</span>
+            <span id="resultHint">XP вы выдаёте вручную по итогу смены.</span>
+          </div>
+        </div>
+
+        <div class="feed">
+          <article class="message-card" id="messageCard" aria-live="polite">
+            <div class="channel"><span class="channel-dot"></span># tambov-73 / moderation</div>
+            <div class="author-row">
+              <div class="avatar" id="avatarBox">T7</div>
+              <div>
+                <div class="author-name" id="authorName">System</div>
+                <div class="author-meta" id="authorMeta">Система смены</div>
+                <div class="rule-tag" id="ruleTag">Добро пожаловать</div>
+              </div>
+            </div>
+            <div class="message-text" id="messageText">Нажми «Начать смену», чтобы получить первое сообщение на проверку по правилам 2.1–5.3.</div>
+            <div class="hint" id="hintText">Подсказка: оценивай как реальный модератор Tambov 73.</div>
+          </article>
+
+          <div class="controls">
+            <button class="action-btn skip-btn" type="button" data-action="good">✅ Без нарушения</button>
+            <button class="action-btn warn-btn" type="button" data-action="warn">⚠️ Устное / Пред / Мут</button>
+            <button class="action-btn ban-btn" type="button" data-action="ban">🔨 Бан / Перма / Глобал</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="panel side">
+        <div>
+          <h2>Категории нарушений</h2>
+          <p>Каждому сообщению внутри игры уже назначено «правильное» наказание по номеру правила, чтобы тренировать модераторов.</p>
+          <div class="rank-list" id="ruleSummary">
+            <div class="rank-item">
+              <span>Устное / Пред / Мут</span>
+              <strong>2.1, 2.10, 2.16–2.19, 3.1–3.5, 4.1–4.4, 5.1, 5.3</strong>
+            </div>
+            <div class="rank-item">
+              <span>Бан / Перма / Глобал</span>
+              <strong>2.2–2.9, 2.11–2.15, 2.20, 2.21, 5.2</strong>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h2>Лог смены</h2>
+          <p>Используйте лог и финальный результат, чтобы вручную выдать модератору XP на сервере.</p>
+          <div class="log" id="logList">
+            <div class="log-item">Пока пусто. Запусти смену и сделай первые решения.</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <p class="footer-note">Если нужно, можно будет расширить игру: добавить таймер смены, таблицу лидеров и экспорт результатов.</p>
+  </main>
+
+  <script>
+    const config = {
+      totalMessagesPerShift: 30,
+      norm: { messages: 10, accuracy: 70, xp: 15 },
+      per: { messages: 20, accuracy: 85, xp: 30 },
+      hero: { messages: 30, accuracy: 95, xp: 60 }
+    };
+
+    document.getElementById('normMessages').textContent = config.norm.messages;
+    document.getElementById('normAccuracy').textContent = config.norm.accuracy + '%';
+    document.getElementById('perMessages').textContent = config.per.messages;
+    document.getElementById('perAccuracy').textContent = config.per.accuracy + '%';
+    document.getElementById('heroMessages').textContent = config.hero.messages;
+    document.getElementById('heroAccuracy').textContent = config.hero.accuracy + '%';
+
+    const funnyLeft = [
+      'Мелстройность', 'Смешнявка', 'Капслокер', 'ВиртоСлив', 'Громкий_Микрофон',
+      'Рассыльщик_Мема', 'ПолитТоксик', 'РелигБаттл', 'Дед_с_Клавой', 'Флуд_Бот'
+    ];
+    const funnyRight = [
+      'из_Тамбова', 'без_микрофона', 'на_ГлОбАнЕ', 'в_муте', 'с_вечным_баном',
+      'тянет_конфу', 'обижен_на_админов', 'любит_капс', 'ищет_баги', 'продаёт_вирты'
+    ];
+
+    function randomFunnyNick() {
+      const l = funnyLeft[Math.floor(Math.random() * funnyLeft.length)];
+      const r = funnyRight[Math.floor(Math.random() * funnyRight.length)];
+      const tag = String(Math.floor(1000 + Math.random() * 8999));
+      return `${l}_${r}#${tag}`;
+    }
+
+    const messages = [
+      {
+        rule: '2.1',
+        user: () => randomFunnyNick(),
+        text: 'Да вы все нулевые, проект мёртвый, играете как боты.',
+        type: 'warn',
+        note: 'Неадекват / провокация — устное / пред / мут (2.1)'
+      },
+      {
+        rule: '2.2',
+        user: () => 'ВиртоСлив_Тамбовский#1337',
+        text: 'Перекину вам дискорд-голду с другого сервера, пишите в лс.',
+        type: 'ban',
+        note: 'Трансфер валюты между серверами — перма / обнуление (2.2)'
+      },
+      {
+        rule: '2.3',
+        user: () => randomFunnyNick(),
+        text: 'Заходите на новый сервер, там раздают админки всем подряд!',
+        type: 'ban',
+        note: 'Реклама стороннего проекта — бан / перма / глобал (2.3)'
+      },
+      {
+        rule: '2.4',
+        user: () => '18plus_шокКонтент#2501',
+        text: 'Кому кинуть видос с жёстким шок-контентом, там прям жесть.',
+        type: 'ban',
+        note: 'Возрастной / шок контент — мут / бан / перма (2.4)'
+      },
+      {
+        rule: '2.5',
+        user: () => randomFunnyNick(),
+        text: 'У него номер телефона такой-то, могу ещё адрес найти.',
+        type: 'ban',
+        note: 'Персональные данные без согласия — бан / перма (2.5)'
+      },
+      {
+        rule: '2.6',
+        user: () => 'Честный_Скамер#4040',
+        text: 'Давай я тебе продам донат подешевле, потом всё верну, честно.',
+        type: 'ban',
+        note: 'Обман / введение в заблуждение — мут / бан / перма (2.6)'
+      },
+      {
+        rule: '2.7',
+        user: () => 'ПолитБаттл_228#7777',
+        text: 'Ща расскажу, кто прав в этой стране и почему ваша религия не такая.',
+        type: 'warn',
+        note: 'Политика / религия — устное / мут / бан (2.7)'
+      },
+      {
+        rule: '2.8',
+        user: () => 'Продам_всё_за_Реал#9090',
+        text: 'Продаю любой лут за реальные деньги, пишите, договоримся.',
+        type: 'ban',
+        note: 'Продажа за реал — бан / перма / глобал (2.8)'
+      },
+      {
+        rule: '2.9',
+        user: () => randomFunnyNick(),
+        text: 'Нашёл лазейку в правилах, можно обнулять другим баланс, админы не прописали.',
+        type: 'ban',
+        note: 'Использование дыр в правилах / багоюз — бан / перма / глобал / обнуление (2.9)'
+      },
+      {
+        rule: '2.10',
+        user: () => 'Постоянно_прошу#5555',
+        text: 'Дайте роль, дайте деньги, дайте всё, ну что вам жалко что ли.',
+        type: 'warn',
+        note: 'Попрошайничество — устное / пред / мут (2.10)'
+      },
+      {
+        rule: '2.11',
+        user: () => 'Слив_Проекта#1312',
+        text: 'Все ливаем с проекта, он загнулся, идём в другой ДС.',
+        type: 'ban',
+        note: 'Деструктивные действия против проекта — бан / перма / глобал (2.11)'
+      },
+      {
+        rule: '2.12',
+        user: () => 'ТриАкка_подряд#3030',
+        text: 'Если что, это мой второй акк, на первом бан, но я всё равно с вами.',
+        type: 'ban',
+        note: 'Обход наказаний — перманентная блокировка (2.12)'
+      },
+      {
+        rule: '2.13',
+        user: () => randomFunnyNick(),
+        text: 'Твоя мама вообще ничего не понимает, лучше бы тебя не рожали.',
+        type: 'warn',
+        note: 'Оскорбления родных — мут / бан (2.13)'
+      },
+      {
+        rule: '2.14',
+        user: () => 'СливФайлов#6060',
+        text: 'Кидаю вам архив, там прога одна, не бойтесь, всё норм будет.',
+        type: 'ban',
+        note: 'Распространение сторонних файлов — бан / перма / глобал (2.14)'
+      },
+      {
+        rule: '2.15',
+        user: () => 'Наркопропагандист#4200',
+        text: 'Все должны попробовать, это лучший кайф, ничего страшного.',
+        type: 'ban',
+        note: 'Пропаганда запрещённых вещей — перма / глобал (2.15)'
+      },
+      {
+        rule: '2.16',
+        user: () => randomFunnyNick(),
+        text: 'С такими как ты вообще общаться нельзя, вы все второго сорта.',
+        type: 'warn',
+        note: 'Расизм / дискриминация — устное / пред / мут / бан (2.16)'
+      },
+      {
+        rule: '2.17',
+        user: () => 'АнтиМодер#9999',
+        text: 'Все жалуемся на модеров, завалим им все заявки и тикеты.',
+        type: 'warn',
+        note: 'Помеха работе модерации — устное / пред / мут (2.17)'
+      },
+      {
+        rule: '2.18',
+        user: () => randomFunnyNick(),
+        text: 'Давайте все вместе нарушим правило, посмотрим, что админы сделают.',
+        type: 'warn',
+        note: 'Провокация к нарушению — мут / бан (2.18)'
+      },
+      {
+        rule: '2.19',
+        user: () => 'Угрожатор#9110',
+        text: 'Если ещё раз так напишешь, я найду тебя и будет очень плохо.',
+        type: 'warn',
+        note: 'Угрозы пользователям — мут / бан (2.19)'
+      },
+      {
+        rule: '3.1',
+        user: () => 'Флуд_машина#2222',
+        text: 'привет привет привет привет привет привет привет привет',
+        type: 'warn',
+        note: 'Флуд / спам / не по теме — устное / пред / мут (3.1)'
+      },
+      {
+        rule: '3.3',
+        user: () => 'КапСлоКер#7777',
+        text: 'КТО СЕЙЧАС ИГРАЕТ НА ТАМБОВЕ ОТЗОВИТЕСЬ!!!',
+        type: 'warn',
+        note: 'Чрезмерный капс — устное / пред / мут (3.3)'
+      },
+      {
+        rule: '4.1',
+        user: () => 'Микрофон_в_рот#5555',
+        text: 'В голосовом включает музыку на полную громкость и мешает всем.',
+        type: 'warn',
+        note: 'Помехи в голосовом — устное / мут (4.1)'
+      },
+      {
+        rule: '5.2',
+        user: () => 'Админчик_Фейк#1010',
+        text: 'Меняет ник на [Гл. Администратор] Tambov 73, хотя не в администрации.',
+        type: 'ban',
+        note: 'Оскорбительный / провокационный ник / фейк-должность — бан (5.2)'
+      },
+      {
+        rule: '-',
+        user: () => 'Обычный_Игрок#1234',
+        text: 'Ребят, подскажите, где найти раздел с жалобами на игроков?',
+        type: 'good',
+        note: 'Корректный вопрос, нарушения нет.'
+      },
+      {
+        rule: '-',
+        user: () => 'RP_Парень#2020',
+        text: 'Спасибо за ивент, было реально прикольно, ждём ещё.',
+        type: 'good',
+        note: 'Позитивный отзыв, всё чисто.'
+      }
+    ];
+
+    let state = {
+      resolved: 0,
+      correct: 0,
+      mistakes: 0,
+      current: null,
+      started: false,
+      log: []
+    };
+
+    const el = {
+      resolvedValue: document.getElementById('resolvedValue'),
+      accuracyValue: document.getElementById('accuracyValue'),
+      correctValue: document.getElementById('correctValue'),
+      mistakeValue: document.getElementById('mistakeValue'),
+      xpFill: document.getElementById('xpFill'),
+      resultBanner: document.getElementById('resultBanner'),
+      resultHint: document.getElementById('resultHint'),
+      authorName: document.getElementById('authorName'),
+      authorMeta: document.getElementById('authorMeta'),
+      messageText: document.getElementById('messageText'),
+      avatarBox: document.getElementById('avatarBox'),
+      hintText: document.getElementById('hintText'),
+      ruleTag: document.getElementById('ruleTag'),
+      messageCard: document.getElementById('messageCard'),
+      logList: document.getElementById('logList'),
+      startBtn: document.getElementById('startBtn'),
+      resetBtn: document.getElementById('resetBtn')
+    };
+
+    function initials(name) {
+      return name.split(/[#_\s]+/).filter(Boolean).slice(0, 2).map(p => p[0]).join('').toUpperCase();
+    }
+
+    function pushLog(text) {
+      state.log.unshift(text);
+      state.log = state.log.slice(0, 10);
+      el.logList.innerHTML = state.log.map(item => `<div class="log-item">${item}</div>`).join('');
+    }
+
+    function updateStats() {
+      const acc = state.resolved === 0 ? 0 : Math.round((state.correct / state.resolved) * 100);
+      el.resolvedValue.textContent = state.resolved;
+      el.correctValue.textContent = state.correct;
+      el.mistakeValue.textContent = state.mistakes;
+      el.accuracyValue.textContent = acc + '%';
+
+      let label = 'Результат: смена в процессе';
+      let hint = 'До XP результата доиграй смену.';
+      let progress = Math.min(state.resolved / config.hero.messages, 1) * 100;
+
+      if (state.resolved >= config.hero.messages && acc >= config.hero.accuracy) {
+        label = 'Результат: герой дня — 60 XP';
+        hint = 'Выдайте модератору 60 XP на сервере за эту смену.';
+        progress = 100;
+      } else if (state.resolved >= config.per.messages && acc >= config.per.accuracy) {
+        label = 'Результат: перенорма — 30 XP';
+        hint = 'Выдайте модератору 30 XP на сервере за эту смену.';
+      } else if (state.resolved >= config.norm.messages && acc >= config.norm.accuracy) {
+        label = 'Результат: норма — 15 XP';
+        hint = 'Выдайте модератору 15 XP на сервере за эту смену.';
+      } else {
+        hint = 'XP пока не полагается: не выполнена норма по точности или количеству.';
+      }
+
+      el.resultBanner.firstElementChild.innerHTML = `<strong>${label.split(' — ')[0]}</strong> — ${label.split(' — ')[1] || ''}`;
+      el.resultHint.textContent = hint;
+      el.xpFill.style.width = progress + '%';
+    }
+
+    function randomMessage() {
+      const item = messages[Math.floor(Math.random() * messages.length)];
+      const hydrated = {
+        ...item,
+        user: typeof item.user === 'function' ? item.user() : item.user
+      };
+      state.current = hydrated;
+      el.authorName.textContent = hydrated.user;
+      el.authorMeta.textContent = hydrated.rule && hydrated.rule !== '-' ? `Нарушение: ${hydrated.rule}` : 'Сообщение без нарушения';
+      el.messageText.textContent = hydrated.text;
+      el.avatarBox.textContent = initials(hydrated.user || 'T7');
+      el.ruleTag.textContent = hydrated.note;
+      el.hintText.textContent = 'Выбери наказание: без нарушения, мут/пред или бан.';
+      el.messageCard.classList.remove('flash-ok', 'flash-bad');
+    }
+
+    function startGame() {
+      state.started = true;
+      state.resolved = 0;
+      state.correct = 0;
+      state.mistakes = 0;
+      state.log = [];
+      el.logList.innerHTML = '';
+      randomMessage();
+      updateStats();
+      document.getElementById('game').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function resetGame() {
+      state = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false, log: [] };
+      el.authorName.textContent = 'System';
+      el.authorMeta.textContent = 'Система смены';
+      el.messageText.textContent = 'Нажми «Начать смену», чтобы получить первое сообщение на проверку по правилам 2.1–5.3.';
+      el.avatarBox.textContent = 'T7';
+      el.ruleTag.textContent = 'Добро пожаловать';
+      el.hintText.textContent = 'Подсказка: оценивай как реальный модератор Tambov 73.';
+      el.messageCard.classList.remove('flash-ok', 'flash-bad');
+      el.logList.innerHTML = '<div class="log-item">Пока пусто. Запусти смену и сделай первые решения.</div>';
+      updateStats();
+    }
+
+    function judge(action) {
+      if (!state.started || !state.current) {
+        startGame();
+        return;
+      }
+
+      const item = state.current;
+      const isCorrect = action === item.type;
+      state.resolved += 1;
+
+      if (isCorrect) {
+        state.correct += 1;
+        el.hintText.textContent = 'Верно — наказание выбрано корректно.';
+        el.messageCard.classList.add('flash-ok');
+        pushLog(`✅ [${item.rule}] ${item.user}: верное наказание (${item.type.toUpperCase()})`);
+      } else {
+        state.mistakes += 1;
+        el.hintText.textContent = 'Ошибка — посмотри подсказку по правилу.';
+        el.messageCard.classList.add('flash-bad');
+        const map = { good: 'Без нарушения', warn: 'Устное / Пред / Мут', ban: 'Бан / Перма / Глобал' };
+        pushLog(`❌ [${item.rule}] ${item.user}: нужно было «${map[item.type]}»`);
+      }
+
+      updateStats();
+      setTimeout(randomMessage, 360);
+    }
+
+    document.querySelectorAll('[data-action]').forEach(btn => {
+      btn.addEventListener('click', () => judge(btn.dataset.action));
+    });
+    el.startBtn.addEventListener('click', startGame);
+    el.resetBtn.addEventListener('click', resetGame);
+
+    (function () {
+      const toggle = document.querySelector('[data-theme-toggle]');
+      const root = document.documentElement;
+      let theme = 'dark';
+      root.setAttribute('data-theme', theme);
+      function syncButton() {
+        toggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+        toggle.setAttribute('aria-label', theme === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему');
+      }
+      syncButton();
+      toggle.addEventListener('click', () => {
+        theme = theme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', theme);
+        syncButton();
+      });
+    })();
+
+    updateStats();
+  </script>
 </body>
 </html>
