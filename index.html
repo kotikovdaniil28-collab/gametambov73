@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tambov 73 — Discord Mod XP Game</title>
+  <title>Tambov 73 — Discord Mod & Support Trainer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -430,6 +430,7 @@
       padding-right: .15rem;
       min-width: 0;
     }
+
     .log-item {
       font-size: var(--text-sm);
       color: var(--color-text-muted);
@@ -442,6 +443,11 @@
       white-space: normal;
       overflow: hidden;
       text-overflow: ellipsis;
+
+      /* 3–4 строки, потом обрезка */
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
     }
 
     .footer-note {
@@ -501,7 +507,7 @@
         </div>
         <div>
           <div class="brand-title">Tambov 73</div>
-          <div class="brand-sub">Discord moderation XP game</div>
+          <div class="brand-sub">Discord Mod & Support Trainer</div>
         </div>
       </div>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Сменить тему">🌙</button>
@@ -615,11 +621,11 @@
         </div>
       </section>
 
-      <!-- РЕЖИМ 2: АГЕНТЫ ПОДДЕРЖКИ (пока без логики) -->
+      <!-- РЕЖИМ 2: АГЕНТЫ ПОДДЕРЖКИ (заготовка) -->
       <section class="panel game-card" id="mode-support" aria-labelledby="gameTitleSupport" style="display:none;">
         <div>
           <h2 id="gameTitleSupport">Режим: агенты поддержки</h2>
-          <p>Здесь будет отдельный тренажёр для поддержки: ответы на вопросы, работа с конфликтами, эскалация и т.д. Пока это заготовка страницы без вопросов и вариантов ответов.</p>
+          <p>Отдельный тренажёр для поддержки: ответы на вопросы, работа с конфликтами, эскалация и т.д. Сейчас это только заготовка без логики и кейсов.</p>
         </div>
         <div class="feed">
           <article class="message-card">
@@ -627,14 +633,15 @@
             <div class="author-row">
               <div class="avatar">AG</div>
               <div>
-                <div class="author-name">Шаблон смены агента</div>
-                <div class="author-meta">Сценарии поддержки будут добавлены позже</div>
+                <div class="author-name">Шаблон смены агента поддержки</div>
+                <div class="author-meta">Здесь позже появятся сценарии и варианты ответов</div>
               </div>
             </div>
             <div class="message-text">
-              Здесь можно будет тренировать агентов поддержки: отработка типичных вопросов, решение конфликтов, корректные формулировки и правила эскалации на модерацию.
+              План: добавить вопросы от игроков (про тех. проблемы, жалобы, споры), несколько готовых вариантов ответов
+              и систему оценки: корректно ли агент решил кейс, когда надо эскалировать на модерацию и администрацию.
             </div>
-            <div class="hint">Сейчас режим выключен. Когда будете готовы — сюда можно добавить свои кейсы и логику проверки ответов.</div>
+            <div class="hint">Когда будешь готов — сюда можно вставить свои кейсы и правила оценки смены для агентов поддержки.</div>
           </article>
         </div>
       </section>
@@ -892,7 +899,11 @@
     function pushLog(text) {
       state.log.unshift(text);
       state.log = state.log.slice(0, 40);
-      el.logList.innerHTML = state.log.map(item => `<div class="log-item" title="${text}">${item}</div>`).join('');
+      // короткий вариант в DOM + полный в title
+      el.logList.innerHTML = state.log.map(item => {
+        const short = item.length > 160 ? item.slice(0, 157) + '…' : item;
+        return `<div class="log-item" title="${item.replace(/"/g, '&quot;')}">${short}</div>`;
+      }).join('');
     }
 
     function updateStats() {
@@ -1017,7 +1028,7 @@
       });
     })();
 
-    // Переключатель режимов
+    // Переключатель режимов: модераторы / агенты поддержки
     document.querySelectorAll('.mode-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const mode = btn.dataset.mode;
