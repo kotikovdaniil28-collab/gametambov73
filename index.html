@@ -834,18 +834,20 @@
       return currentPool[poolIndex++];
     }
 
-    function randomMessage() {
-      const base = nextFromPool();
-      const user = randomFunnyNick();
-      const hydrated = { ...base, user, text: base.baseText };
-      state.current = hydrated;
-      el.authorName.textContent  = hydrated.user;
-      el.authorMeta.textContent  = 'Сообщение для проверки модератором';
-      el.messageText.textContent = hydrated.text;
-      el.avatarBox.textContent   = initials(hydrated.user || 'T7');
-      el.hintText.textContent    = 'Выбери наказание: без нарушения, устное/пред/мут или бан.';
-      el.messageCard.classList.remove('flash-ok', 'flash-bad');
-    }
+function randomMessage() {
+  const base = nextFromPool();
+  const user = randomFunnyNick();
+  const hydrated = { ...base, user, text: base.baseText };
+  state.current = hydrated;
+
+  el.authorName.textContent  = hydrated.user;
+  // ВАЖНО: здесь больше нет подсказки и нет ответа
+  el.authorMeta.textContent  = 'Неизвестно, есть ли нарушение';
+  el.messageText.textContent = hydrated.text;
+  el.avatarBox.textContent   = initials(hydrated.user || 'T7');
+  el.hintText.textContent    = 'Выбери наказание: без нарушения, устное/пред/мут или бан.';
+  el.messageCard.classList.remove('flash-ok', 'flash-bad');
+}
 
     function startGame() {
       state.started  = true;
