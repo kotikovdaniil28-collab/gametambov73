@@ -47,7 +47,6 @@
       --transition: 220ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* ФОН КАК БЫЛО: тёмный градиент; переключение розового по data-site-theme на html */
     body {
       min-height: 100dvh;
       font-family: var(--font-body);
@@ -84,9 +83,9 @@
     }
 
     .page {
-      width: min(1120px, 100% - 2.5rem);
+      width: min(1120px, 100% - 2rem);
       margin: 0 auto;
-      padding: var(--space-6) 0 var(--space-10);
+      padding: var(--space-4) 0 var(--space-8);
       transition: color 250ms ease;
     }
 
@@ -95,7 +94,7 @@
       justify-content: space-between;
       align-items: center;
       gap: var(--space-4);
-      margin-bottom: var(--space-6);
+      margin-bottom: var(--space-4);
     }
     .brand {
       display: flex;
@@ -103,7 +102,7 @@
       gap: var(--space-3);
     }
     .logo {
-      width: 52px; height: 52px;
+      width: 48px; height: 48px;
       display: grid; place-items: center;
       color: var(--color-text);
       background: radial-gradient(circle at 20% 0%, rgba(255,255,255,.16), transparent 55%),
@@ -127,6 +126,7 @@
     .brand-sub {
       color: var(--color-text-muted);
       font-size: var(--text-sm);
+      max-width: 22ch;
     }
     .theme-toggle {
       min-width: 44px; min-height: 44px;
@@ -136,16 +136,17 @@
       background: rgba(16, 21, 40, .85);
       border: 1px solid rgba(191, 198, 255, 0.35);
       box-shadow: 0 10px 26px rgba(0,0,0,.8);
+      flex-shrink: 0;
     }
 
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
-      gap: var(--space-6);
+      gap: var(--space-4);
       align-items: stretch;
     }
     .panel {
-      border-radius: 26px;
+      border-radius: 22px;
       border: 1px solid rgba(191,198,255,.28);
       box-shadow: var(--shadow-lg);
       backdrop-filter: blur(18px);
@@ -161,10 +162,10 @@
     }
 
     .hero-card {
-      padding: clamp(1.3rem, 2.2vw, 2rem);
+      padding: clamp(1.2rem, 2.2vw, 1.7rem);
       display: flex;
       flex-direction: column;
-      gap: var(--space-5);
+      gap: var(--space-4);
       min-height: 100%;
     }
     .badge-row {
@@ -173,7 +174,7 @@
       gap: var(--space-2);
     }
     .badge {
-      padding: .45rem .85rem;
+      padding: .4rem .85rem;
       border-radius: var(--radius-full);
       font-size: var(--text-xs);
       text-transform: uppercase;
@@ -200,10 +201,10 @@
 
     .hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(2.4rem, 5.2vw, 4.4rem);
-      line-height: .9;
+      font-size: clamp(2.1rem, 5.2vw, 3.4rem);
+      line-height: .95;
       text-transform: uppercase;
-      max-width: 11ch;
+      max-width: 12ch;
       transition: color 250ms ease, text-shadow 250ms ease;
     }
     .hero h1 span {
@@ -218,6 +219,7 @@
     .hero p {
       color: var(--color-text-muted);
       max-width: 60ch;
+      font-size: var(--text-sm);
     }
     .hero-actions {
       display: flex;
@@ -225,8 +227,8 @@
       flex-wrap: wrap;
     }
     .btn {
-      min-height: 48px;
-      padding: .95rem 1.3rem;
+      min-height: 44px;
+      padding: .85rem 1.2rem;
       border-radius: 16px;
       font-size: var(--text-sm);
       font-weight: 800;
@@ -280,14 +282,14 @@
       border-color: rgba(255,190,230,.55);
     }
     .rule-icon {
-      width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center; font-size: 1.2rem; font-weight: 900;
+      width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; font-size: 1.1rem; font-weight: 900;
     }
     .ok { background: rgba(82,199,123,.14); color: #8df0ae; }
     .warn { background: rgba(255,191,71,.18); color: #ffdf95; }
     .ban { background: rgba(255,107,136,.2); color: #ff9fb4; }
 
     .mode-switch {
-      margin-top: var(--space-6);
+      margin-top: var(--space-4);
       margin-bottom: var(--space-3);
       display: inline-flex;
       border-radius: var(--radius-full);
@@ -319,9 +321,9 @@
     .game-wrap {
       margin-top: var(--space-3);
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.9fr);
-      gap: var(--space-6);
-      align-items: start;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr);
+      gap: var(--space-4);
+      align-items: flex-start;
     }
 
     .game-card {
@@ -339,8 +341,8 @@
       gap: var(--space-3);
     }
     .stat {
-      padding: var(--space-4);
-      border-radius: 18px;
+      padding: var(--space-3);
+      border-radius: 16px;
       background: rgba(4,6,12,.9);
       border: 1px solid rgba(191,198,255,.28);
       box-shadow: var(--shadow-sm);
@@ -355,13 +357,13 @@
       display: block;
     }
     .stat-value {
-      font-size: var(--text-lg);
+      font-size: 1.1rem;
       font-weight: 800;
       font-variant-numeric: tabular-nums;
     }
 
     .xp-bar {
-      height: 16px;
+      height: 14px;
       background: rgba(4,6,12,.9);
       border-radius: var(--radius-full);
       overflow: hidden;
@@ -380,17 +382,17 @@
       box-shadow: 0 0 26px rgba(255,159,202,.7);
     }
 
-    .feed { display: grid; gap: var(--space-4); }
+    .feed { display: grid; gap: var(--space-3); }
     .message-card {
-      padding: clamp(1.1rem, 2vw, 1.7rem);
-      border-radius: 22px;
+      padding: clamp(1rem, 2vw, 1.5rem);
+      border-radius: 18px;
       background: radial-gradient(circle at 0 0, rgba(108,140,255,.45), transparent 70%),
                   linear-gradient(160deg, rgba(13,16,32,.98), rgba(5,7,15,1));
       border: 1px solid rgba(191,198,255,.4);
-      min-height: 260px;
+      min-height: 220px;
       display: grid;
       align-content: start;
-      gap: var(--space-4);
+      gap: var(--space-3);
       position: relative;
       overflow: hidden;
       transition: background 350ms ease, border-color 350ms ease;
@@ -399,7 +401,7 @@
       content: "";
       position: absolute;
       inset: auto -40px -40px auto;
-      width: 180px; height: 180px;
+      width: 160px; height: 160px;
       background: radial-gradient(circle, rgba(255,191,71,.45), transparent 65%);
       pointer-events: none;
       opacity: .6;
@@ -436,7 +438,7 @@
 
     .author-row { display: flex; align-items: center; gap: var(--space-3); }
     .avatar {
-      width: 50px; height: 50px; border-radius: 16px;
+      width: 44px; height: 44px; border-radius: 14px;
       display: grid; place-items: center;
       font-weight: 900;
       color: white;
@@ -448,11 +450,11 @@
     html[data-site-theme="support"] .avatar {
       background: conic-gradient(from 210deg, #ff78b4, #ffd0ea, #ff9fca, #ff78b4);
     }
-    .author-name { font-weight: 800; }
-    .author-meta { color: var(--color-text-faint); font-size: var(--text-sm); }
+    .author-name { font-weight: 800; font-size: var(--text-sm); }
+    .author-meta { color: var(--color-text-faint); font-size: var(--text-xs); }
 
     .message-text {
-      font-size: clamp(1.15rem, 1.1rem + .28vw, 1.4rem);
+      font-size: 1rem;
       line-height: 1.55;
       max-width: 62ch;
     }
@@ -468,9 +470,9 @@
       gap: var(--space-3);
     }
     .action-btn {
-      min-height: 56px;
-      padding: .95rem 1rem;
-      border-radius: 18px;
+      min-height: 44px;
+      padding: .85rem 1rem;
+      border-radius: 16px;
       font-weight: 800;
       font-size: var(--text-sm);
       border: 1px solid transparent;
@@ -481,12 +483,56 @@
     .warn-btn { background: rgba(255,191,71,.15); color: #ffe29a; border-color: rgba(255,191,71,.55); }
     .ban-btn  { background: rgba(255,107,136,.18); color: #ffb1c1; border-color: rgba(255,107,136,.6); }
 
+    .support-answer-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .support-answer-row-inner {
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+    .support-input {
+      flex: 1 1 0;
+      min-width: 0;
+      padding: .6rem .75rem;
+      border-radius: 12px;
+      border: 1px solid rgba(191,198,255,.35);
+      background: rgba(4,6,12,.9);
+      color: var(--color-text);
+      font-size: var(--text-sm);
+    }
+    .support-input::placeholder {
+      color: var(--color-text-faint);
+    }
+    .support-check-btn {
+      min-height: 40px;
+      padding: .6rem .9rem;
+      border-radius: 12px;
+      font-size: var(--text-sm);
+      font-weight: 700;
+      background: rgba(108,140,255,.16);
+      border: 1px solid rgba(108,140,255,.7);
+      color: var(--color-text);
+      white-space: nowrap;
+    }
+    html[data-site-theme="support"] .support-check-btn {
+      background: rgba(255,144,196,.18);
+      border-color: rgba(255,144,196,.8);
+    }
+    .support-result {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      min-height: 1.4em;
+    }
+
     .side {
-      padding: clamp(1.1rem, 2vw, 1.7rem);
+      padding: clamp(1rem, 2vw, 1.5rem);
       display: grid;
       gap: var(--space-4);
       position: sticky;
-      top: 1.2rem;
+      top: 1rem;
       min-width: 0;
     }
     .side h2 { font-size: var(--text-lg); }
@@ -495,8 +541,8 @@
     .rank-list { display: grid; gap: var(--space-2); }
     .rank-item {
       display: flex; justify-content: space-between; gap: var(--space-3);
-      padding: .85rem .95rem;
-      border-radius: 15px;
+      padding: .7rem .8rem;
+      border-radius: 14px;
       background: rgba(4,6,12,.92);
       border: 1px solid rgba(191,198,255,.28);
       font-size: var(--text-sm);
@@ -505,8 +551,8 @@
     .rank-item strong { font-variant-numeric: tabular-nums; }
 
     .log {
-      display: grid; gap: .55rem;
-      max-height: 230px;
+      display: grid; gap: .5rem;
+      max-height: 220px;
       overflow-y: auto;
       padding-right: .15rem;
       min-width: 0;
@@ -514,38 +560,33 @@
     .log-item {
       font-size: var(--text-sm);
       color: var(--color-text-muted);
-      padding: .7rem .85rem;
-      border-radius: 13px;
+      padding: .55rem .7rem;
+      border-radius: 12px;
       background: rgba(4,6,12,.94);
       border: 1px solid rgba(191,198,255,.22);
       word-wrap: break-word;
       overflow-wrap: break-word;
       white-space: normal;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
     }
 
     .footer-note {
-      margin-top: var(--space-6);
+      margin-top: var(--space-5);
       text-align: center;
       color: var(--color-text-faint);
       font-size: var(--text-sm);
     }
 
     .flash-ok {
-      box-shadow: 0 0 0 1px rgba(82,199,123,.5), 0 0 0 12px rgba(82,199,123,.13), var(--shadow-lg);
+      box-shadow: 0 0 0 1px rgba(82,199,123,.5), 0 0 0 10px rgba(82,199,123,.13), var(--shadow-lg);
     }
     .flash-bad {
-      box-shadow: 0 0 0 1px rgba(255,107,136,.55), 0 0 0 12px rgba(255,107,136,.16), var(--shadow-lg);
+      box-shadow: 0 0 0 1px rgba(255,107,136,.55), 0 0 0 10px rgba(255,107,136,.16), var(--shadow-lg);
     }
 
     .result-banner {
       margin-top: var(--space-2);
-      padding: .75rem .9rem;
-      border-radius: 14px;
+      padding: .65rem .75rem;
+      border-radius: 12px;
       font-size: var(--text-sm);
       display: flex;
       justify-content: space-between;
@@ -554,19 +595,53 @@
       background: rgba(4,6,12,.9);
       border: 1px solid rgba(191,198,255,.3);
       min-width: 0;
+      flex-wrap: wrap;
     }
     .result-banner strong { text-transform: uppercase; letter-spacing: .12em; }
 
-    @media (max-width: 960px) {
-      .hero, .game-wrap { grid-template-columns: 1fr; }
-      .side { position: static; }
-      .page { width: min(100% - 1.5rem, 1120px); padding-top: var(--space-4); }
+    @media (max-width: 900px) {
+      .hero,
+      .game-wrap {
+        grid-template-columns: 1fr;
+      }
+      .side {
+        position: static;
+      }
+      .page {
+        width: min(1120px, 100% - 1.5rem);
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .controls {
+        grid-template-columns: 1fr;
+      }
+      .topbar {
+        align-items: flex-start;
+      }
     }
-    @media (max-width: 720px) {
-      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .controls  { grid-template-columns: 1fr; }
-      .topbar    { align-items: flex-start; }
-      .hero h1   { max-width: 12ch; font-size: clamp(2.1rem, 9vw, 3.3rem); }
+
+    @media (max-width: 540px) {
+      .topbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .theme-toggle {
+        align-self: flex-end;
+      }
+      .hero-actions {
+        flex-direction: column;
+      }
+      .support-answer-row-inner {
+        flex-direction: column;
+      }
+      .support-check-btn {
+        width: 100%;
+        text-align: center;
+      }
+      .brand-sub {
+        max-width: 30ch;
+      }
     }
   </style>
 </head>
@@ -575,7 +650,7 @@
     <header class="topbar">
       <div class="brand" aria-label="Логотип игры">
         <div class="logo" aria-hidden="true">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 18.5V6.8C4 5.8 4.8 5 5.8 5h4.4"></path>
             <rect x="9" y="3.5" width="11" height="8" rx="2"></rect>
             <path d="M8 12.5 12 7l4 5.5"></path>
@@ -640,6 +715,7 @@
     </div>
 
     <section class="game-wrap" id="game">
+      <!-- МОДЕРАЦИЯ -->
       <section class="panel game-card" id="mode-moderation" aria-labelledby="gameTitleModeration">
         <div>
           <h2 id="gameTitleModeration">Панель модератора</h2>
@@ -697,29 +773,58 @@
         </div>
       </section>
 
+      <!-- АГЕНТЫ ПОДДЕРЖКИ -->
       <section class="panel game-card" id="mode-support" aria-labelledby="gameTitleSupport" style="display:none;">
         <div>
           <h2 id="gameTitleSupport">Режим: агенты поддержки</h2>
           <p>Агенты поддержки не ищут нарушения и не наказывают игроков. Их задача — помогать по игровым вопросам, объяснять механики и подсказывать, куда обращаться дальше.</p>
         </div>
+
+        <div class="stats-grid" style="grid-template-columns: repeat(3, minmax(0,1fr));">
+          <div class="stat">
+            <span class="stat-label">Вопросов</span>
+            <div class="stat-value" id="supportTotal">0</div>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Примерно верно</span>
+            <div class="stat-value" id="supportOk">0</div>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Мимо</span>
+            <div class="stat-value" id="supportBad">0</div>
+          </div>
+        </div>
+
         <div class="feed">
-          <article class="message-card">
+          <article class="message-card" id="supportCard">
             <div class="channel"><span class="channel-dot"></span># tambov-73 / support</div>
             <div class="author-row">
               <div class="avatar">AG</div>
               <div>
-                <div class="author-name">Шаблон смены агента поддержки</div>
-                <div class="author-meta">Только игровые вопросы и ответы, без наказаний</div>
+                <div class="author-name" id="supportQuestionTitle">Игровой вопрос</div>
+                <div class="author-meta" id="supportMeta">Ответь как агент поддержки, без наказаний</div>
               </div>
             </div>
-            <div class="message-text">
-              Здесь будут реальные вопросы игроков: как зайти на сервер, что делать при баге, как работает та или иная система,
-              куда писать жалобу. Агент поддержки отвечает вежливо, по шаблонам и при необходимости передаёт вопрос модерации или администрации.
+            <div class="message-text" id="supportQuestionText">
+              Нажми «Следующий вопрос», чтобы потренироваться отвечать игрокам.
             </div>
-            <div class="hint">
-              Сейчас это заготовка. Позже сюда можно будет добавить свои кейсы и систему XP именно за качественные ответы поддержки.
+            <div class="support-answer-row">
+              <div class="support-answer-row-inner">
+                <input
+                  id="supportAnswerInput"
+                  class="support-input"
+                  type="text"
+                  placeholder="Напиши сюда свой ответ игроку..."
+                />
+                <button class="support-check-btn" type="button" id="supportCheckBtn">Проверить ответ</button>
+              </div>
+              <div class="support-result" id="supportResultText"></div>
             </div>
           </article>
+
+          <button class="btn btn-secondary" type="button" id="supportNextBtn" style="width:100%;">
+            Следующий вопрос
+          </button>
         </div>
       </section>
 
@@ -748,7 +853,7 @@
       </aside>
     </section>
 
-    <p class="footer-note">Можно отдельно придумать систему XP для агентов поддержки (за количество и качество ответов).</p>
+    <p class="footer-note">Для поддержки можно переписать вопросы под формат форума Black Russia (Раздел для агентов поддержки).</p>
   </main>
 
   <script>
@@ -914,7 +1019,7 @@
     const generatedMessages = [];
     baseTemplates.forEach(template => {
       template.texts.forEach(text => {
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < 6; i++) {
           generatedMessages.push({
             type: template.type,
             baseText: text
@@ -933,7 +1038,7 @@
       return result;
     }
 
-    let currentPool = pickUniquePool(1000);
+    let currentPool = pickUniquePool(600);
     let poolIndex = 0;
 
     let state = {
@@ -975,7 +1080,16 @@
       rule2Title:    document.getElementById('rule2Title'),
       rule2Text:     document.getElementById('rule2Text'),
       rule3Title:    document.getElementById('rule3Title'),
-      rule3Text:     document.getElementById('rule3Text')
+      rule3Text:     document.getElementById('rule3Text'),
+      supportTotal:  document.getElementById('supportTotal'),
+      supportOk:     document.getElementById('supportOk'),
+      supportBad:    document.getElementById('supportBad'),
+      supportQuestionTitle: document.getElementById('supportQuestionTitle'),
+      supportQuestionText:  document.getElementById('supportQuestionText'),
+      supportAnswerInput:   document.getElementById('supportAnswerInput'),
+      supportResultText:    document.getElementById('supportResultText'),
+      supportCheckBtn:      document.getElementById('supportCheckBtn'),
+      supportNextBtn:       document.getElementById('supportNextBtn')
     };
 
     function initials(name) {
@@ -991,9 +1105,8 @@
       state.log.unshift(text);
       state.log = state.log.slice(0, 40);
       el.logList.innerHTML = state.log.map(item => {
-        const short = item.length > 160 ? item.slice(0, 157) + '…' : item;
         const escaped = item.replace(/"/g, '&quot;');
-        return `<div class="log-item" title="${escaped}">${short}</div>`;
+        return `<div class="log-item" title="${escaped}">${item}</div>`;
       }).join('');
     }
 
@@ -1022,7 +1135,7 @@
 
     function nextFromPool() {
       if (poolIndex >= currentPool.length) {
-        currentPool = pickUniquePool(1000);
+        currentPool = pickUniquePool(600);
         poolIndex = 0;
       }
       return currentPool[poolIndex++];
@@ -1047,7 +1160,7 @@
       state.correct  = 0;
       state.mistakes = 0;
       state.log      = [];
-      currentPool    = pickUniquePool(1000);
+      currentPool    = pickUniquePool(600);
       poolIndex      = 0;
       el.logList.innerHTML = '<div class="log-item">Смена началась. Решения будут появляться здесь.</div>';
       randomMessage();
@@ -1064,7 +1177,7 @@
       el.hintText.textContent    = 'Подсказка: думай как реальный модератор Tambov 73.';
       el.messageCard.classList.remove('flash-ok', 'flash-bad');
       el.logList.innerHTML = '<div class="log-item">Пока пусто. Запусти смену и сделай первые решения.</div>';
-      currentPool = pickUniquePool(1000);
+      currentPool = pickUniquePool(600);
       poolIndex   = 0;
       updateStats();
     }
@@ -1102,7 +1215,7 @@
     el.startBtn.addEventListener('click', startGame);
     el.resetBtn.addEventListener('click', resetGame);
 
-    // Тёмная / светлая тема (кнопка справа сверху)
+    // Тёмная / светлая тема (справа сверху)
     (function () {
       const toggle = document.querySelector('[data-theme-toggle]');
       const root = document.documentElement;
@@ -1120,7 +1233,7 @@
       });
     })();
 
-    // Копирайт: тексты для двух режимов
+    // Тексты для двух режимов
     const copyModeration = {
       subtitle: 'Тренажёр модерации Discord',
       title:    'Лови <span>нарушения</span> и думай сам.',
@@ -1172,6 +1285,95 @@
       el.rule3Text.textContent     = c.r3Text;
     }
 
+    // Вопросы для агентов поддержки — можно расширять
+    const supportQuestions = [
+      {
+        title: 'Где находится ближайшая заправка?',
+        text:  'Игрок спрашивает: «Где находится ближайшая заправка?» Ответ должен подсказать, где её найти (например, через GPS, карту или команду).',
+        keywordsGood: ['gps', 'гпс', 'навигац', 'маршрут', 'карта', 'заправ'],
+      },
+      {
+        title: 'Как открыть меню помощи по серверу?',
+        text:  'Игрок спрашивает, где найти основную информацию по серверу и правилам.',
+        keywordsGood: ['f1', 'f11', '/help', 'меню помощи', 'клавиша f1', 'кнопка f1'],
+      },
+      {
+        title: 'Куда писать жалобу на игрока?',
+        text:  'Игрок хочет оформить жалобу на нарушителя.',
+        keywordsGood: ['форум', 'раздел жалоб', 'тикет', 'ticket', '/report', 'жалоб'],
+      },
+      {
+        title: 'Что делать, если пропали деньги/вирты?',
+        text:  'Игрок пишет, что у него пропали игровые деньги.',
+        keywordsGood: ['жалобу', 'форум', 'лог', 'проверка', 'агент', 'поддержк', 'скрин'],
+      },
+      {
+        title: 'Как узнать команды фракции / работы?',
+        text:  'Игрок спрашивает про команды своей организации или работы.',
+        keywordsGood: ['/help', '/cmd', 'команды фракции', 'форум раздел', 'гид', 'manual'],
+      }
+    ];
+
+    let supportState = {
+      currentIndex: -1,
+      total: 0,
+      ok: 0,
+      bad: 0
+    };
+
+    function updateSupportStats() {
+      el.supportTotal.textContent = supportState.total;
+      el.supportOk.textContent    = supportState.ok;
+      el.supportBad.textContent   = supportState.bad;
+    }
+
+    function pickSupportQuestion() {
+      if (supportQuestions.length === 0) return;
+      supportState.currentIndex = (supportState.currentIndex + 1) % supportQuestions.length;
+      const q = supportQuestions[supportState.currentIndex];
+      el.supportQuestionTitle.textContent = q.title;
+      el.supportQuestionText.textContent  = q.text;
+      el.supportAnswerInput.value         = '';
+      el.supportResultText.textContent    = '';
+      el.supportAnswerInput.focus();
+    }
+
+    function checkSupportAnswer() {
+      const idx = supportState.currentIndex;
+      if (idx < 0) {
+        pickSupportQuestion();
+        return;
+      }
+      const q = supportQuestions[idx];
+      const answer = el.supportAnswerInput.value.trim().toLowerCase();
+      if (!answer) {
+        el.supportResultText.textContent = 'Сначала напиши ответ игроку.';
+        return;
+      }
+      supportState.total += 1;
+
+      const hasKeyword = q.keywordsGood.some(k => answer.includes(k));
+      if (hasKeyword) {
+        supportState.ok += 1;
+        el.supportResultText.textContent = 'Примерно верно: ты подсказал направление. Можно уточнить формулировку, но в целом игрок поймёт.';
+        el.supportResultText.style.color = 'var(--color-success)';
+      } else {
+        supportState.bad += 1;
+        el.supportResultText.textContent = 'Ответ мимо сути. Подумай, что игроку нужно: куда нажать, какую команду написать или куда обратиться.';
+        el.supportResultText.style.color = 'var(--color-error)';
+      }
+      updateSupportStats();
+    }
+
+    el.supportCheckBtn.addEventListener('click', checkSupportAnswer);
+    el.supportNextBtn.addEventListener('click', pickSupportQuestion);
+    el.supportAnswerInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        checkSupportAnswer();
+      }
+    });
+
     // Переключатель режимов + розовая тема
     document.querySelectorAll('.mode-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1186,6 +1388,7 @@
         if (mode === 'support') {
           html.setAttribute('data-site-theme', 'support');
           applyCopy(copySupport);
+          pickSupportQuestion();
         } else {
           html.setAttribute('data-site-theme', 'mod');
           applyCopy(copyModeration);
@@ -1193,10 +1396,11 @@
       });
     });
 
-    // Старт: модерация, темный градиент как был
+    // Стартовый режим
     document.documentElement.setAttribute('data-site-theme', 'mod');
     applyCopy(copyModeration);
     updateStats();
+    updateSupportStats();
   </script>
 </body>
 </html>
