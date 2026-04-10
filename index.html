@@ -4,9 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tambov 73 — Тренажёр</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
@@ -14,16 +16,19 @@
       --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
       --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
       --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+
       --color-text: #f5f5ff;
-      --color-text-muted: #9ba3c5;
-      --color-text-faint: #6c7392;
+      --color-text-muted: #a7afcf;
+      --color-text-faint: #717895;
       --color-text-inverse: #0b0d12;
       --color-primary: #6c8cff;
       --color-success: #52c77b;
       --color-warning: #ffbf47;
       --color-error: #ff6b88;
-      --shadow-md: 0 14px 40px rgba(0,0,0,.6);
-      --shadow-lg: 0 24px 80px rgba(0,0,0,.85);
+
+      --shadow-md: 0 14px 40px rgba(0, 0, 0, 0.6);
+      --shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.85);
+
       --font-display: "Russo One", system-ui, sans-serif;
       --font-body: "Inter", system-ui, sans-serif;
       --transition: 220ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -40,30 +45,30 @@
       line-height: 1.6;
       overflow-x: hidden;
       background:
-        radial-gradient(circle at top left, rgba(108,140,255,.2), transparent 50%),
-        radial-gradient(circle at bottom right, rgba(255,107,136,.18), transparent 55%),
+        radial-gradient(circle at top left, rgba(108, 140, 255, 0.2), transparent 50%),
+        radial-gradient(circle at bottom right, rgba(255, 107, 136, 0.18), transparent 55%),
         linear-gradient(160deg, #05060a, #05060a 45%, #040711 100%);
       transition: background 350ms ease;
     }
 
     html[data-site-theme="support"] body {
       background:
-        radial-gradient(circle at top left, rgba(255,184,222,.30), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(255,120,180,.30), transparent 55%),
+        radial-gradient(circle at top left, rgba(255, 184, 222, 0.3), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(255, 120, 180, 0.3), transparent 55%),
         linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%);
     }
 
     html[data-site-theme="about"] body {
       background:
-        radial-gradient(circle at top left, rgba(255,220,120,.16), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(108,140,255,.18), transparent 55%),
+        radial-gradient(circle at top left, rgba(255, 220, 120, 0.16), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(108, 140, 255, 0.18), transparent 55%),
         linear-gradient(160deg, #0c0a05, #0c0a05 45%, #12100a 100%);
     }
 
     html[data-site-theme="shop"] body {
       background:
-        radial-gradient(circle at top left, rgba(82,199,123,.18), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(255,191,71,.14), transparent 55%),
+        radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.14), transparent 55%),
         linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%);
     }
 
@@ -72,11 +77,16 @@
     button {
       cursor: pointer;
       border: none;
-      transition: transform var(--transition), background var(--transition), box-shadow var(--transition), opacity var(--transition), border-color var(--transition);
+      transition:
+        transform var(--transition),
+        background var(--transition),
+        box-shadow var(--transition),
+        opacity var(--transition),
+        border-color var(--transition);
     }
 
     button:hover { transform: translateY(-1px); }
-    button:active { transform: translateY(1px) scale(.99); }
+    button:active { transform: translateY(1px) scale(0.99); }
 
     .page {
       width: min(1120px, calc(100% - 2rem));
@@ -95,7 +105,7 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: .75rem;
+      gap: 0.85rem;
       min-width: 0;
     }
 
@@ -106,96 +116,97 @@
       place-items: center;
       color: var(--color-text);
       background:
-        radial-gradient(circle at 20% 0%, rgba(255,255,255,.16), transparent 55%),
-        linear-gradient(135deg, rgba(108,140,255,.32), rgba(255,107,136,.22));
+        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
+        linear-gradient(135deg, rgba(108, 140, 255, 0.32), rgba(255, 107, 136, 0.22));
       border-radius: 16px;
       box-shadow: var(--shadow-md);
-      border: 1px solid rgba(255,255,255,.25);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       flex: 0 0 auto;
     }
 
     html[data-site-theme="support"] .logo {
       background:
-        radial-gradient(circle at 20% 0%, rgba(255,255,255,.22), transparent 55%),
-        linear-gradient(135deg, rgba(255,160,210,.65), rgba(255,120,180,.6));
-      border-color: rgba(255,210,240,.7);
+        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.22), transparent 55%),
+        linear-gradient(135deg, rgba(255, 160, 210, 0.65), rgba(255, 120, 180, 0.6));
+      border-color: rgba(255, 210, 240, 0.7);
     }
 
     html[data-site-theme="about"] .logo {
       background:
-        radial-gradient(circle at 20% 0%, rgba(255,255,255,.16), transparent 55%),
-        linear-gradient(135deg, rgba(255,191,71,.55), rgba(108,140,255,.38));
-      border-color: rgba(255,230,180,.45);
+        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
+        linear-gradient(135deg, rgba(255, 191, 71, 0.55), rgba(108, 140, 255, 0.38));
+      border-color: rgba(255, 230, 180, 0.45);
     }
 
     html[data-site-theme="shop"] .logo {
       background:
-        radial-gradient(circle at 20% 0%, rgba(255,255,255,.16), transparent 55%),
-        linear-gradient(135deg, rgba(82,199,123,.45), rgba(255,191,71,.28));
-      border-color: rgba(162,241,188,.42);
+        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
+        linear-gradient(135deg, rgba(82, 199, 123, 0.45), rgba(255, 191, 71, 0.28));
+      border-color: rgba(162, 241, 188, 0.42);
     }
 
     .brand-title {
       font-family: var(--font-display);
       font-size: var(--text-lg);
-      letter-spacing: .08em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
     .brand-sub {
       color: var(--color-text-muted);
       font-size: var(--text-sm);
-      max-width: 40ch;
+      max-width: 42ch;
     }
 
     .theme-toggle {
       min-width: 44px;
       min-height: 44px;
-      padding: 0 .75rem;
+      padding: 0 0.75rem;
       border-radius: 999px;
       color: var(--color-text);
-      background: rgba(16,21,40,.85);
-      border: 1px solid rgba(191,198,255,.35);
-      box-shadow: 0 10px 26px rgba(0,0,0,.8);
+      background: rgba(16, 21, 40, 0.85);
+      border: 1px solid rgba(191, 198, 255, 0.35);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.8);
       flex: 0 0 auto;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
       gap: 1rem;
       align-items: stretch;
     }
 
     .panel {
       border-radius: 22px;
-      border: 1px solid rgba(191,198,255,.28);
+      border: 1px solid rgba(191, 198, 255, 0.28);
       box-shadow: var(--shadow-lg);
       backdrop-filter: blur(18px);
       background:
-        radial-gradient(circle at top left, rgba(108,140,255,.23), transparent 55%),
-        linear-gradient(155deg, rgba(18,22,38,.98), rgba(6,7,16,1));
+        radial-gradient(circle at top left, rgba(108, 140, 255, 0.23), transparent 55%),
+        linear-gradient(155deg, rgba(18, 22, 38, 0.98), rgba(6, 7, 16, 1));
+      min-width: 0;
     }
 
     html[data-site-theme="support"] .panel {
       background:
-        radial-gradient(circle at top left, rgba(255,160,210,.30), transparent 55%),
-        linear-gradient(155deg, rgba(35,10,26,.98), rgba(16,4,20,1));
-      border-color: rgba(255,190,230,.45);
+        radial-gradient(circle at top left, rgba(255, 160, 210, 0.3), transparent 55%),
+        linear-gradient(155deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1));
+      border-color: rgba(255, 190, 230, 0.45);
     }
 
     html[data-site-theme="about"] .panel {
       background:
-        radial-gradient(circle at top left, rgba(255,191,71,.16), transparent 55%),
-        linear-gradient(155deg, rgba(25,19,8,.98), rgba(10,10,14,1));
-      border-color: rgba(255,214,122,.28);
+        radial-gradient(circle at top left, rgba(255, 191, 71, 0.16), transparent 55%),
+        linear-gradient(155deg, rgba(25, 19, 8, 0.98), rgba(10, 10, 14, 1));
+      border-color: rgba(255, 214, 122, 0.28);
     }
 
     html[data-site-theme="shop"] .panel {
       background:
-        radial-gradient(circle at top left, rgba(82,199,123,.18), transparent 55%),
-        linear-gradient(155deg, rgba(10,23,14,.98), rgba(8,10,15,1));
-      border-color: rgba(162,241,188,.22);
+        radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%),
+        linear-gradient(155deg, rgba(10, 23, 14, 0.98), rgba(8, 10, 15, 1));
+      border-color: rgba(162, 241, 188, 0.22);
     }
 
     .hero-card, .rules, .game-card, .side {
@@ -203,24 +214,44 @@
       display: grid;
       gap: 1rem;
       min-width: 0;
+      align-content: start;
+    }
+
+    .section-head {
+      display: grid;
+      gap: 0.35rem;
+      min-width: 0;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.2rem, 1.05rem + 0.4vw, 1.5rem);
+      line-height: 1.15;
+      letter-spacing: 0.01em;
+    }
+
+    .section-head p {
+      max-width: 62ch;
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+      line-height: 1.6;
     }
 
     .badge-row {
       display: flex;
       flex-wrap: wrap;
-      gap: .5rem;
+      gap: 0.5rem;
     }
 
     .badge {
-      padding: .4rem .85rem;
+      padding: 0.4rem 0.85rem;
       border-radius: 999px;
       font-size: var(--text-xs);
       text-transform: uppercase;
-      letter-spacing: .12em;
+      letter-spacing: 0.12em;
       font-weight: 800;
-      border: 1px solid rgba(191,198,255,.28);
+      border: 1px solid rgba(191, 198, 255, 0.28);
       color: var(--color-text-muted);
-      background: rgba(9,12,26,.82);
+      background: rgba(9, 12, 26, 0.82);
     }
 
     .badge.xp {
@@ -230,8 +261,8 @@
     }
 
     html[data-site-theme="support"] .badge {
-      background: rgba(34,7,24,.96);
-      border-color: rgba(255,190,230,.5);
+      background: rgba(34, 7, 24, 0.96);
+      border-color: rgba(255, 190, 230, 0.5);
     }
 
     html[data-site-theme="support"] .badge.xp {
@@ -240,13 +271,13 @@
     }
 
     html[data-site-theme="about"] .badge {
-      background: rgba(25,19,8,.96);
-      border-color: rgba(255,214,122,.35);
+      background: rgba(25, 19, 8, 0.96);
+      border-color: rgba(255, 214, 122, 0.35);
     }
 
     html[data-site-theme="shop"] .badge {
-      background: rgba(11,21,15,.96);
-      border-color: rgba(162,241,188,.25);
+      background: rgba(11, 21, 15, 0.96);
+      border-color: rgba(162, 241, 188, 0.25);
     }
 
     html[data-site-theme="shop"] .badge.xp {
@@ -257,29 +288,29 @@
     .hero h1 {
       font-family: var(--font-display);
       font-size: clamp(2.1rem, 5.2vw, 3.4rem);
-      line-height: .95;
+      line-height: 0.95;
       text-transform: uppercase;
       max-width: 13ch;
     }
 
     .hero h1 span {
       color: var(--color-primary);
-      text-shadow: 0 0 22px rgba(108,140,255,.65);
+      text-shadow: 0 0 22px rgba(108, 140, 255, 0.65);
     }
 
     html[data-site-theme="support"] .hero h1 span {
       color: #ff8fc4;
-      text-shadow: 0 0 26px rgba(255,143,196,.9);
+      text-shadow: 0 0 26px rgba(255, 143, 196, 0.9);
     }
 
     html[data-site-theme="about"] .hero h1 span {
       color: #ffbf47;
-      text-shadow: 0 0 22px rgba(255,191,71,.72);
+      text-shadow: 0 0 22px rgba(255, 191, 71, 0.72);
     }
 
     html[data-site-theme="shop"] .hero h1 span {
       color: #7fe8a0;
-      text-shadow: 0 0 22px rgba(127,232,160,.62);
+      text-shadow: 0 0 22px rgba(127, 232, 160, 0.62);
     }
 
     .hero p, .rules p, .game-card > p, .side p {
@@ -290,66 +321,123 @@
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: .75rem;
+      gap: 0.75rem;
     }
 
     .btn {
       min-height: 44px;
-      padding: .85rem 1.2rem;
+      padding: 0.85rem 1.2rem;
       border-radius: 16px;
       font-size: var(--text-sm);
       font-weight: 800;
-      letter-spacing: .04em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
     .btn-primary {
       color: #fff;
       background:
-        radial-gradient(circle at 0 0, rgba(255,255,255,.18), transparent 55%),
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%),
         linear-gradient(135deg, #6c8cff, #8aa3ff);
-      box-shadow: 0 20px 45px rgba(108,140,255,.72);
+      box-shadow: 0 20px 45px rgba(108, 140, 255, 0.72);
     }
 
     html[data-site-theme="support"] .btn-primary {
       background:
-        radial-gradient(circle at 0 0, rgba(255,255,255,.20), transparent 55%),
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.2), transparent 55%),
         linear-gradient(135deg, #ff78b4, #ffb0dd);
-      box-shadow: 0 20px 45px rgba(255,144,196,.78);
+      box-shadow: 0 20px 45px rgba(255, 144, 196, 0.78);
     }
 
     html[data-site-theme="about"] .btn-primary {
       background:
-        radial-gradient(circle at 0 0, rgba(255,255,255,.18), transparent 55%),
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%),
         linear-gradient(135deg, #ffbf47, #ffd979);
-      box-shadow: 0 20px 45px rgba(255,191,71,.48);
+      box-shadow: 0 20px 45px rgba(255, 191, 71, 0.48);
       color: #18171c;
     }
 
     html[data-site-theme="shop"] .btn-primary {
       background:
-        radial-gradient(circle at 0 0, rgba(255,255,255,.18), transparent 55%),
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%),
         linear-gradient(135deg, #52c77b, #8fe0a8);
-      box-shadow: 0 20px 45px rgba(82,199,123,.42);
+      box-shadow: 0 20px 45px rgba(82, 199, 123, 0.42);
       color: #08110b;
     }
 
     .btn-secondary {
       color: var(--color-text-muted);
-      background: rgba(9,12,26,.86);
-      border: 1px solid rgba(191,198,255,.3);
+      background: rgba(9, 12, 26, 0.86);
+      border: 1px solid rgba(191, 198, 255, 0.3);
+    }
+
+    .mode-switch {
+      margin-top: 1rem;
+      margin-bottom: 0.75rem;
+      display: inline-flex;
+      flex-wrap: wrap;
+      border-radius: 999px;
+      padding: 0.25rem;
+      background: rgba(4, 6, 12, 0.85);
+      border: 1px solid rgba(191, 198, 255, 0.35);
+      max-width: 100%;
+      gap: 0.25rem;
+    }
+
+    .mode-btn {
+      border-radius: 999px;
+      padding: 0.5rem 1.15rem;
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--color-text-muted);
+      background: transparent;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .mode-btn.active {
+      color: var(--color-text-inverse);
+      background: linear-gradient(135deg, #6c8cff, #8aa3ff);
+      box-shadow: 0 10px 25px rgba(108, 140, 255, 0.6);
+    }
+
+    html[data-site-theme="support"] .mode-btn.active[data-mode="support"] {
+      background: linear-gradient(135deg, #ff78b4, #ffb0dd);
+      box-shadow: 0 10px 25px rgba(255, 144, 196, 0.7);
+    }
+
+    html[data-site-theme="about"] .mode-btn.active[data-mode="about"] {
+      background: linear-gradient(135deg, #ffbf47, #ffd979);
+      box-shadow: 0 10px 25px rgba(255, 191, 71, 0.45);
+      color: #18171c;
+    }
+
+    html[data-site-theme="shop"] .mode-btn.active[data-mode="shop"] {
+      background: linear-gradient(135deg, #52c77b, #8fe0a8);
+      box-shadow: 0 10px 25px rgba(82, 199, 123, 0.45);
+      color: #08110b;
+    }
+
+    .game-wrap {
+      margin-top: 0.75rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr);
+      gap: 1rem;
+      align-items: start;
     }
 
     .rule-list, .feed, .log {
       display: grid;
-      gap: .75rem;
+      gap: 0.75rem;
+      min-width: 0;
     }
 
     .rule-item, .log-item, .stat, .shop-card {
-      padding: .8rem;
+      padding: 0.95rem;
       border-radius: 16px;
-      background: rgba(13,16,32,.95);
-      border: 1px solid rgba(191,198,255,.3);
+      background: rgba(13, 16, 32, 0.95);
+      border: 1px solid rgba(191, 198, 255, 0.3);
       min-width: 0;
       overflow-wrap: anywhere;
     }
@@ -358,117 +446,79 @@
     html[data-site-theme="support"] .log-item,
     html[data-site-theme="support"] .stat,
     html[data-site-theme="support"] .shop-card {
-      background: rgba(35,10,26,.96);
-      border-color: rgba(255,190,230,.36);
+      background: rgba(35, 10, 26, 0.96);
+      border-color: rgba(255, 190, 230, 0.36);
     }
 
     html[data-site-theme="about"] .rule-item,
     html[data-site-theme="about"] .log-item,
     html[data-site-theme="about"] .stat,
     html[data-site-theme="about"] .shop-card {
-      background: rgba(25,19,8,.96);
-      border-color: rgba(255,214,122,.24);
+      background: rgba(25, 19, 8, 0.96);
+      border-color: rgba(255, 214, 122, 0.24);
     }
 
     html[data-site-theme="shop"] .rule-item,
     html[data-site-theme="shop"] .log-item,
     html[data-site-theme="shop"] .stat,
     html[data-site-theme="shop"] .shop-card {
-      background: rgba(11,21,15,.96);
-      border-color: rgba(162,241,188,.22);
+      background: rgba(11, 21, 15, 0.96);
+      border-color: rgba(162, 241, 188, 0.22);
     }
 
     .rule-item {
       display: grid;
-      grid-template-columns: auto 1fr;
-      gap: .75rem;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 0.8rem;
       align-items: start;
     }
 
     .rule-icon {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 10px;
       display: grid;
       place-items: center;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 900;
-      flex: 0 0 auto;
+      margin-top: 2px;
     }
 
-    .ok { background: rgba(82,199,123,.14); color: #8df0ae; }
-    .warn { background: rgba(255,191,71,.18); color: #ffdf95; }
-    .ban { background: rgba(255,107,136,.2); color: #ff9fb4; }
-
-    .mode-switch {
-      margin-top: 1rem;
-      margin-bottom: .75rem;
-      display: inline-flex;
-      flex-wrap: wrap;
-      border-radius: 999px;
-      padding: .25rem;
-      background: rgba(4,6,12,.85);
-      border: 1px solid rgba(191,198,255,.35);
-      max-width: 100%;
-      gap: .25rem;
-    }
-
-    .mode-btn {
-      border-radius: 999px;
-      padding: .45rem 1.1rem;
-      font-size: var(--text-sm);
-      font-weight: 600;
-      color: var(--color-text-muted);
-      background: transparent;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      white-space: nowrap;
-    }
-
-    .mode-btn.active {
-      color: var(--color-text-inverse);
-      background: linear-gradient(135deg, #6c8cff, #8aa3ff);
-      box-shadow: 0 10px 25px rgba(108,140,255,.6);
-    }
-
-    html[data-site-theme="support"] .mode-btn.active[data-mode="support"] {
-      background: linear-gradient(135deg, #ff78b4, #ffb0dd);
-      box-shadow: 0 10px 25px rgba(255,144,196,.7);
-    }
-
-    html[data-site-theme="about"] .mode-btn.active[data-mode="about"] {
-      background: linear-gradient(135deg, #ffbf47, #ffd979);
-      box-shadow: 0 10px 25px rgba(255,191,71,.45);
-      color: #18171c;
-    }
-
-    html[data-site-theme="shop"] .mode-btn.active[data-mode="shop"] {
-      background: linear-gradient(135deg, #52c77b, #8fe0a8);
-      box-shadow: 0 10px 25px rgba(82,199,123,.45);
-      color: #08110b;
-    }
-
-    .game-wrap {
-      margin-top: .75rem;
+    .rule-copy {
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, .9fr);
-      gap: 1rem;
-      align-items: start;
+      gap: 0.22rem;
+      min-width: 0;
     }
+
+    .rule-copy strong {
+      font-size: 0.98rem;
+      line-height: 1.25;
+    }
+
+    .rule-copy span {
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+      line-height: 1.55;
+      max-width: 38ch;
+      display: block;
+    }
+
+    .ok { background: rgba(82, 199, 123, 0.14); color: #8df0ae; }
+    .warn { background: rgba(255, 191, 71, 0.18); color: #ffdf95; }
+    .ban { background: rgba(255, 107, 136, 0.2); color: #ff9fb4; }
 
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: .75rem;
-      align-items: stretch;
+      gap: 0.75rem;
     }
 
     .stat-label {
       color: var(--color-text-faint);
       font-size: var(--text-xs);
       text-transform: uppercase;
-      letter-spacing: .16em;
-      margin-bottom: .35rem;
+      letter-spacing: 0.16em;
+      margin-bottom: 0.35rem;
       display: block;
     }
 
@@ -476,14 +526,15 @@
       font-size: 1.1rem;
       font-weight: 800;
       font-variant-numeric: tabular-nums;
+      line-height: 1.2;
     }
 
     .xp-bar {
       height: 14px;
-      background: rgba(4,6,12,.9);
+      background: rgba(4, 6, 12, 0.9);
       border-radius: 999px;
       overflow: hidden;
-      border: 1px solid rgba(191,198,255,.35);
+      border: 1px solid rgba(191, 198, 255, 0.35);
     }
 
     .xp-fill {
@@ -492,20 +543,20 @@
       background: linear-gradient(90deg, #ffbf47, #ffe38e);
       transition: width 300ms ease;
       border-radius: inherit;
-      box-shadow: 0 0 26px rgba(255,191,71,.7);
+      box-shadow: 0 0 26px rgba(255, 191, 71, 0.7);
     }
 
     .message-card {
       padding: 1rem;
       border-radius: 18px;
       background:
-        radial-gradient(circle at 0 0, rgba(108,140,255,.45), transparent 70%),
-        linear-gradient(160deg, rgba(13,16,32,.98), rgba(5,7,15,1));
-      border: 1px solid rgba(191,198,255,.4);
-      min-height: 220px;
+        radial-gradient(circle at 0 0, rgba(108, 140, 255, 0.45), transparent 70%),
+        linear-gradient(160deg, rgba(13, 16, 32, 0.98), rgba(5, 7, 15, 1));
+      border: 1px solid rgba(191, 198, 255, 0.4);
+      min-height: 250px;
       display: grid;
       align-content: start;
-      gap: .75rem;
+      gap: 0.8rem;
       position: relative;
       overflow: hidden;
       min-width: 0;
@@ -517,40 +568,40 @@
       inset: auto -40px -40px auto;
       width: 160px;
       height: 160px;
-      background: radial-gradient(circle, rgba(255,191,71,.45), transparent 65%);
+      background: radial-gradient(circle, rgba(255, 191, 71, 0.45), transparent 65%);
       pointer-events: none;
-      opacity: .6;
+      opacity: 0.6;
     }
 
     html[data-site-theme="support"] .message-card {
       background:
-        radial-gradient(circle at 0 0, rgba(255,160,210,.45), transparent 70%),
-        linear-gradient(160deg, rgba(35,10,26,.98), rgba(16,4,20,1));
-      border-color: rgba(255,190,230,.55);
+        radial-gradient(circle at 0 0, rgba(255, 160, 210, 0.45), transparent 70%),
+        linear-gradient(160deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1));
+      border-color: rgba(255, 190, 230, 0.55);
     }
 
     html[data-site-theme="about"] .message-card {
       background:
-        radial-gradient(circle at 0 0, rgba(255,191,71,.18), transparent 70%),
-        linear-gradient(160deg, rgba(25,19,8,.98), rgba(11,10,15,1));
-      border-color: rgba(255,214,122,.25);
+        radial-gradient(circle at 0 0, rgba(255, 191, 71, 0.18), transparent 70%),
+        linear-gradient(160deg, rgba(25, 19, 8, 0.98), rgba(11, 10, 15, 1));
+      border-color: rgba(255, 214, 122, 0.25);
     }
 
     html[data-site-theme="shop"] .message-card {
       background:
-        radial-gradient(circle at 0 0, rgba(82,199,123,.2), transparent 70%),
-        linear-gradient(160deg, rgba(11,21,15,.98), rgba(8,10,15,1));
-      border-color: rgba(162,241,188,.25);
+        radial-gradient(circle at 0 0, rgba(82, 199, 123, 0.2), transparent 70%),
+        linear-gradient(160deg, rgba(11, 21, 15, 0.98), rgba(8, 10, 15, 1));
+      border-color: rgba(162, 241, 188, 0.25);
     }
 
     .channel {
       display: inline-flex;
       align-items: center;
-      gap: .55rem;
+      gap: 0.55rem;
       font-size: var(--text-xs);
       color: var(--color-text-faint);
       text-transform: uppercase;
-      letter-spacing: .18em;
+      letter-spacing: 0.18em;
     }
 
     .channel-dot {
@@ -558,13 +609,13 @@
       height: 6px;
       border-radius: 999px;
       background: #3dd68c;
-      box-shadow: 0 0 12px rgba(61,214,140,.9);
+      box-shadow: 0 0 12px rgba(61, 214, 140, 0.9);
     }
 
     .author-row {
       display: flex;
       align-items: center;
-      gap: .75rem;
+      gap: 0.75rem;
       min-width: 0;
     }
 
@@ -577,7 +628,7 @@
       font-weight: 900;
       color: #fff;
       background: conic-gradient(from 210deg, #6c8cff, #ffbf47, #ff6b88, #6c8cff);
-      box-shadow: 0 18px 32px rgba(0,0,0,.95);
+      box-shadow: 0 18px 32px rgba(0, 0, 0, 0.95);
       flex: 0 0 auto;
     }
 
@@ -585,58 +636,76 @@
       font-weight: 800;
       font-size: var(--text-sm);
       overflow-wrap: anywhere;
+      line-height: 1.25;
     }
 
     .author-meta {
       color: var(--color-text-faint);
       font-size: var(--text-xs);
       overflow-wrap: anywhere;
+      line-height: 1.35;
     }
 
     .message-text {
       font-size: 1rem;
-      line-height: 1.55;
-      max-width: 62ch;
+      line-height: 1.7;
+      max-width: 64ch;
       overflow-wrap: anywhere;
+      text-wrap: pretty;
+      color: var(--color-text);
     }
 
     .hint {
       color: var(--color-text-faint);
       font-size: var(--text-sm);
       min-height: 1.5em;
+      line-height: 1.45;
     }
 
     .controls {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: .75rem;
+      gap: 0.75rem;
     }
 
     .action-btn {
-      min-height: 44px;
-      padding: .85rem 1rem;
+      min-height: 48px;
+      padding: 0.9rem 1rem;
       border-radius: 16px;
       font-weight: 800;
       font-size: var(--text-sm);
       border: 1px solid transparent;
       text-transform: uppercase;
-      letter-spacing: .04em;
-      min-width: 0;
+      letter-spacing: 0.03em;
     }
 
-    .skip-btn { background: rgba(82,199,123,.12); color: #9af2b4; border-color: rgba(82,199,123,.5); }
-    .warn-btn { background: rgba(255,191,71,.15); color: #ffe29a; border-color: rgba(255,191,71,.55); }
-    .ban-btn { background: rgba(255,107,136,.18); color: #ffb1c1; border-color: rgba(255,107,136,.6); }
+    .skip-btn {
+      background: rgba(82, 199, 123, 0.12);
+      color: #9af2b4;
+      border-color: rgba(82, 199, 123, 0.5);
+    }
+
+    .warn-btn {
+      background: rgba(255, 191, 71, 0.15);
+      color: #ffe29a;
+      border-color: rgba(255, 191, 71, 0.55);
+    }
+
+    .ban-btn {
+      background: rgba(255, 107, 136, 0.18);
+      color: #ffb1c1;
+      border-color: rgba(255, 107, 136, 0.6);
+    }
 
     .support-answer-row {
       display: flex;
       flex-direction: column;
-      gap: .5rem;
+      gap: 0.5rem;
     }
 
     .support-answer-row-inner {
       display: flex;
-      gap: .5rem;
+      gap: 0.5rem;
       align-items: stretch;
     }
 
@@ -644,86 +713,96 @@
       flex: 1 1 auto;
       min-width: 0;
       width: 100%;
-      padding: .6rem .75rem;
+      padding: 0.7rem 0.85rem;
       border-radius: 12px;
-      border: 1px solid rgba(191,198,255,.35);
-      background: rgba(4,6,12,.9);
+      border: 1px solid rgba(191, 198, 255, 0.35);
+      background: rgba(4, 6, 12, 0.9);
       color: var(--color-text);
       font-size: var(--text-sm);
     }
 
-    .support-input::placeholder { color: var(--color-text-faint); }
+    .support-input::placeholder {
+      color: var(--color-text-faint);
+    }
 
     .support-check-btn {
       flex: 0 0 auto;
-      min-height: 40px;
-      padding: .6rem .9rem;
+      min-height: 44px;
+      padding: 0.7rem 0.95rem;
       border-radius: 12px;
       font-size: var(--text-sm);
       font-weight: 700;
-      background: rgba(108,140,255,.16);
-      border: 1px solid rgba(108,140,255,.7);
+      background: rgba(108, 140, 255, 0.16);
+      border: 1px solid rgba(108, 140, 255, 0.7);
       color: var(--color-text);
       white-space: nowrap;
     }
 
     html[data-site-theme="support"] .support-check-btn {
-      background: rgba(255,144,196,.18);
-      border-color: rgba(255,144,196,.8);
+      background: rgba(255, 144, 196, 0.18);
+      border-color: rgba(255, 144, 196, 0.8);
     }
 
     .support-result {
       font-size: var(--text-sm);
       color: var(--color-text-muted);
       min-height: 1.4em;
+      line-height: 1.45;
     }
 
     .shop-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: .75rem;
+      gap: 0.75rem;
+    }
+
+    .shop-card {
+      display: grid;
+      gap: 0.75rem;
+      align-content: start;
     }
 
     .shop-card h3 {
       font-size: var(--text-base);
-      margin-bottom: .35rem;
+      line-height: 1.3;
     }
 
     .shop-card p {
       color: var(--color-text-muted);
       font-size: var(--text-sm);
-      margin-bottom: .75rem;
+      line-height: 1.55;
+      max-width: 34ch;
     }
 
     .shop-price {
       display: inline-flex;
       align-items: center;
-      gap: .35rem;
-      padding: .35rem .65rem;
+      gap: 0.35rem;
+      width: fit-content;
+      padding: 0.35rem 0.7rem;
       border-radius: 999px;
       font-size: var(--text-xs);
       font-weight: 800;
-      letter-spacing: .08em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #18171c;
       background: #ffbf47;
-      margin-bottom: .85rem;
     }
 
     .shop-buy-btn {
       width: 100%;
-      min-height: 44px;
-      padding: .85rem 1rem;
+      min-height: 46px;
+      padding: 0.85rem 1rem;
       border-radius: 16px;
       font-weight: 800;
       font-size: var(--text-sm);
-      border: 1px solid rgba(82,199,123,.45);
-      background: rgba(82,199,123,.12);
+      border: 1px solid rgba(82, 199, 123, 0.45);
+      background: rgba(82, 199, 123, 0.12);
       color: #a9f0bf;
     }
 
     .shop-buy-btn[disabled] {
-      opacity: .55;
+      opacity: 0.55;
       cursor: not-allowed;
       transform: none !important;
     }
@@ -731,15 +810,16 @@
     .banner-line {
       display: flex;
       justify-content: space-between;
-      gap: .75rem;
+      gap: 0.75rem;
       align-items: center;
-      padding: .75rem .9rem;
+      padding: 0.85rem 0.95rem;
       border-radius: 14px;
       font-size: var(--text-sm);
-      background: rgba(4,6,12,.9);
-      border: 1px solid rgba(191,198,255,.3);
-      margin-top: .5rem;
+      background: rgba(4, 6, 12, 0.9);
+      border: 1px solid rgba(191, 198, 255, 0.3);
+      margin-top: 0.5rem;
       flex-wrap: wrap;
+      line-height: 1.45;
     }
 
     @media (max-width: 900px) {
@@ -748,6 +828,7 @@
       .controls { grid-template-columns: 1fr; }
       .support-answer-row-inner { flex-direction: column; }
       .support-check-btn, .hero-actions .btn { width: 100%; }
+      .rule-copy span, .message-text, .section-head p { max-width: 100%; }
     }
 
     @media (max-width: 560px) {
@@ -756,7 +837,9 @@
       .theme-toggle { align-self: flex-end; }
       .mode-switch { display: flex; width: 100%; }
       .mode-btn { flex: 1 1 calc(50% - 8px); text-align: center; }
-      .shop-grid { grid-template-columns: 1fr; }
+      .stats-grid, .shop-grid { grid-template-columns: 1fr; }
+      .banner-line { flex-direction: column; align-items: flex-start; }
+      .hero h1 { max-width: 100%; }
     }
   </style>
 </head>
@@ -783,12 +866,14 @@
     <section class="hero">
       <article class="panel hero-card">
         <div class="badge-row">
-          <span class="badge" id="heroBadge1">Discord • Tambov 73</span>
+          <span class="badge">Discord • Tambov 73</span>
           <span class="badge" id="heroBadge2">Режим: модераторы</span>
-          <span class="badge xp" id="heroBadge3">Смена начинается вручную</span>
+          <span class="badge xp">Смена начинается вручную</span>
         </div>
+
         <h1 id="heroTitle">Следи за <span>порядком</span> на сервере.</h1>
         <p id="heroText">Проверяй сообщения, принимай решения и поддерживай порядок в чате. Всё показывается только после начала смены.</p>
+
         <div class="hero-actions">
           <button class="btn btn-primary" type="button" id="startBtn">Начать смену</button>
           <button class="btn btn-secondary" type="button" id="resetBtn">Сбросить смену</button>
@@ -796,8 +881,10 @@
       </article>
 
       <aside class="panel rules">
-        <h2 id="rightTitle">Материалы модератора</h2>
-        <p id="rightLead">Здесь только подсказки по модерации: как оценивать сообщения, где достаточно предупреждения, а где уже нужен бан.</p>
+        <div class="section-head">
+          <h2 id="rightTitle">Материалы модератора</h2>
+          <p id="rightLead">Здесь только подсказки по модерации: как оценивать сообщения, где достаточно предупреждения, а где уже нужен бан.</p>
+        </div>
         <div class="rule-list" id="rightCards"></div>
       </aside>
     </section>
@@ -805,13 +892,13 @@
     <div class="mode-switch">
       <button class="mode-btn active" type="button" data-mode="moderation">Модераторы</button>
       <button class="mode-btn" type="button" data-mode="support">Агенты поддержки</button>
-      <button class="mode-btn" type="button" data-mode="about">О сайте</button>
+      <button class="mode-btn" type="button" data-mode="about">О команде</button>
       <button class="mode-btn" type="button" data-mode="shop">Магазин</button>
     </div>
 
     <section class="game-wrap" id="game">
       <section class="panel game-card" id="mode-moderation">
-        <div>
+        <div class="section-head">
           <h2>Панель модератора</h2>
           <p>Сообщения и нарушения появятся только после нажатия «Начать смену».</p>
         </div>
@@ -854,7 +941,7 @@
       </section>
 
       <section class="panel game-card" id="mode-support" style="display:none;">
-        <div>
+        <div class="section-head">
           <h2>Панель агента поддержки</h2>
           <p>Вопросы игроков скрыты до старта. Начни смену, открывай запросы и помогай быстро, спокойно и по делу.</p>
         </div>
@@ -893,40 +980,39 @@
               <div class="support-result" id="supportResultText"></div>
             </div>
           </article>
-
           <button class="btn btn-secondary" type="button" id="supportNextBtn" style="width:100%;">Следующий вопрос</button>
         </div>
       </section>
 
       <section class="panel game-card" id="mode-about" style="display:none;">
-        <div>
-          <h2>О сайте</h2>
+        <div class="section-head">
+          <h2>О команде</h2>
           <p>Небольшой раздел про тех, кто приложил руку к созданию сайта и самой идее проекта.</p>
         </div>
 
         <div class="feed">
           <article class="message-card">
-            <div class="channel"><span class="channel-dot"></span># project / info</div>
+            <div class="channel"><span class="channel-dot"></span># project / team</div>
             <div class="author-row">
               <div class="avatar">JW</div>
               <div>
                 <div class="author-name">John Wick</div>
-                <div class="author-meta">Создатель проекта</div>
+                <div class="author-meta">Автор проекта и команда разработки</div>
               </div>
             </div>
             <div class="message-text">
               Сайт создан <strong>John Wick</strong> при поддержке <strong>Leha_Mackenzie</strong>, <strong>Andrey_Caypen</strong> и <strong>Евгения Бабешко</strong>.<br><br>
-              История сайта началась просто: сидели, обсуждали проект и решили, что его можно сделать лучше — удобнее, понятнее и красивее для игроков. Так постепенно обычная идея превратилась в отдельный сайт, который потом начали собирать, оформлять и улучшать.
+              История создания началась просто: сидели, обсуждали проект и в какой-то момент решили, что его можно сделать лучше. Хотелось, чтобы сайт выглядел аккуратнее, был удобнее для игроков и передавал атмосферу самого проекта. Так обычная идея постепенно переросла в отдельный сайт, который начали собирать, дополнять и доводить до нормального вида.
             </div>
-            <div class="hint">Краткая информация об авторах и о том, как появилась идея сайта.</div>
+            <div class="hint">Раздел сделан отдельно, чтобы кратко показать команду и историю появления сайта.</div>
           </article>
         </div>
       </section>
 
       <section class="panel game-card" id="mode-shop" style="display:none;">
-        <div>
+        <div class="section-head">
           <h2>Магазин</h2>
-          <p>Пробная вкладка для теста магазина за XP. Пока здесь только один товар для проверки списания очков.</p>
+          <p>Пробная вкладка для проверки траты XP. Пока здесь только один тестовый товар.</p>
         </div>
 
         <div class="stats-grid">
@@ -948,7 +1034,7 @@
       </section>
 
       <aside class="panel side">
-        <div>
+        <div class="section-head">
           <h2>Лог смены</h2>
           <p>Здесь фиксируются решения модератора и ответы агента поддержки.</p>
         </div>
@@ -960,676 +1046,517 @@
   </main>
 
   <script>
-  const rightCards = document.getElementById("rightCards");
-  const rightTitle = document.getElementById("rightTitle");
-  const rightLead = document.getElementById("rightLead");
-  const brandSubtitle = document.getElementById("brandSubtitle");
-  const heroTitle = document.getElementById("heroTitle");
-  const heroText = document.getElementById("heroText");
-  const heroBadge2 = document.getElementById("heroBadge2");
-  const html = document.documentElement;
+    const rightCards = document.getElementById("rightCards");
+    const rightTitle = document.getElementById("rightTitle");
+    const rightLead = document.getElementById("rightLead");
+    const brandSubtitle = document.getElementById("brandSubtitle");
+    const heroTitle = document.getElementById("heroTitle");
+    const heroText = document.getElementById("heroText");
+    const heroBadge2 = document.getElementById("heroBadge2");
+    const html = document.documentElement;
 
-  const rightContent = {
-    moderation: {
-      title: "Материалы модератора",
-      lead: "Здесь только подсказки по модерации: как оценивать сообщения, где достаточно предупреждения, а где уже нужен бан.",
-      cards: [
-        ["Без нарушения", "Обычное сообщение без спама, оскорблений, рекламы и провокаций."],
-        ["Устное / Пред / Мут", "Подходит для флуда, токсичности, помех в чате, оффтопа и части поведенческих нарушений."],
-        ["Бан / Перма / Глобал", "Используется для рекламы сторонних проектов, обхода наказаний, запрещённых ссылок, продажи за реал и тяжёлых нарушений."]
-      ]
-    },
-    support: {
-      title: "Материалы агента поддержки",
-      lead: "Раздел агентов поддержки TAMBOV содержит темы про агента поддержки, правила поведения в чате хелперов, шаблоны ответов, ночное дежурство, правила и обязанности АП, магазин АП, календарь АП, книгу рекордов, GPS-навигатор, RolePlay термины, команды сервера, систему лучшего агента недели, контакты руководства и ежедневный норматив.",
-      cards: [
-        ["База знаний", "Для АП на форуме закреплены темы с шаблонами ответов, GPS-навигатором сервера, командами сервера и RolePlay терминами."],
-        ["Работа и правила", "В разделе есть правила и обязанности агентов поддержки, правила поведения в чате хелперов, ночное дежурство и ежедневный норматив."],
-        ["Развитие АП", "Также вынесены магазин агентов поддержки, книга рекордов, календарь АП, система лучшего агента недели и контакты руководства."]
-      ]
-    },
-    about: {
-      title: "О сайте",
-      lead: "Краткая информация о людях, которые участвовали в создании сайта, и о том, как появилась сама идея проекта.",
-      cards: [
-        ["Создано", "John Wick."],
-        ["При поддержке", "Leha_Mackenzie, Andrey_Caypen и Евгения Бабешко."],
-        ["История сайта", "Сидели, обсуждали проект и решили сделать его лучше — удобнее, красивее и понятнее. Так постепенно и появилась идея этого сайта."]
-      ]
-    },
-    shop: {
-      title: "Магазин",
-      lead: "Пробная вкладка для теста магазина за XP. Пока здесь только один товар для проверки списания очков.",
-      cards: [
-        ["Пробный режим", "Раздел нужен только для теста механики траты XP."],
-        ["Один товар", "Сейчас в магазине доступен один тестовый товар за 30 XP."],
-        ["Общий баланс", "XP суммируется из режима модератора и режима агента поддержки."]
-      ]
-    }
-  };
+    const rightContent = {
+      moderation: {
+        title: "Материалы модератора",
+        lead: "Здесь только подсказки по модерации: как оценивать сообщения, где достаточно предупреждения, а где уже нужен бан.",
+        cards: [
+          ["Без нарушения", "Обычное сообщение без спама, оскорблений, рекламы и провокаций."],
+          ["Устное / Пред / Мут", "Подходит для флуда, капса, токсичности, помех и части поведенческих нарушений."],
+          ["Бан / Перма / Глобал", "Используется для рекламы сторонних проектов, обхода наказаний, файлов, продажи за реал и тяжёлых нарушений."]
+        ]
+      },
+      support: {
+        title: "Материалы агента поддержки",
+        lead: "Раздел агентов поддержки TAMBOV содержит темы про агента поддержки, правила поведения в чате хелперов, шаблоны ответов, ночное дежурство, правила и обязанности АП, магазин АП, календарь АП, книгу рекордов, GPS-навигатор, RolePlay термины, команды сервера, систему лучшего агента недели, контакты руководства и ежедневный норматив.",
+        cards: [
+          ["База знаний", "Для АП на форуме закреплены темы с шаблонами ответов, GPS-навигатором сервера, командами сервера и RolePlay терминами."],
+          ["Работа и правила", "В разделе есть правила и обязанности агентов поддержки, правила поведения в чате хелперов, ночное дежурство и ежедневный норматив."],
+          ["Развитие АП", "Также вынесены магазин агентов поддержки, книга рекордов, календарь АП, система лучшего агента недели и контакты руководства."]
+        ]
+      },
+      about: {
+        title: "О команде",
+        lead: "Краткая информация о людях, которые участвовали в создании сайта, и о том, как появилась сама идея проекта.",
+        cards: [
+          ["Создано", "John Wick."],
+          ["При поддержке", "Leha_Mackenzie, Andrey_Caypen и Евгения Бабешко."],
+          ["История создания", "Сидели, обсуждали проект и решили сделать его лучше — удобнее, красивее и понятнее. Так постепенно и появилась идея этого сайта."]
+        ]
+      },
+      shop: {
+        title: "Магазин",
+        lead: "Пробная вкладка для теста магазина за XP. Пока здесь только один товар для проверки списания очков.",
+        cards: [
+          ["Пробный режим", "Раздел нужен только для теста механики траты XP."],
+          ["Один товар", "Сейчас доступен один тестовый предмет без лишних элементов."],
+          ["Списание XP", "Если XP хватает, кнопка покупки спишет очки и запишет действие в лог."]
+        ]
+      }
+    };
 
-  function renderRight(mode) {
-    const data = rightContent[mode];
-    rightTitle.textContent = data.title;
-    rightLead.textContent = data.lead;
-    rightCards.innerHTML = data.cards.map((item, idx) => `
-      <div class="rule-item">
-        <div class="rule-icon ${idx === 0 ? "ok" : idx === 1 ? "warn" : "ban"}">${idx === 0 ? "✓" : idx === 1 ? "?" : "ℹ"}</div>
-        <div>
-          <strong>${item[0]}</strong><br>
-          <span class="brand-sub">${item[1]}</span>
+    function renderRight(mode) {
+      const data = rightContent[mode];
+      rightTitle.textContent = data.title;
+      rightLead.textContent = data.lead;
+      rightCards.innerHTML = data.cards.map((item, idx) => `
+        <div class="rule-item">
+          <div class="rule-icon ${idx === 0 ? "ok" : idx === 1 ? "warn" : "ban"}">${idx === 0 ? "✓" : idx === 1 ? "?" : "ℹ"}</div>
+          <div class="rule-copy">
+            <strong>${item[0]}</strong>
+            <span>${item[1]}</span>
+          </div>
         </div>
-      </div>
-    `).join("");
-  }
+      `).join("");
+    }
 
-  const funnyLeft = ["Мелстройность","Смешнявка","ВиртоСлив","Громкий_Микрофон","Рассыльщик_Мемов","ПолитТоксик","РелигБаттл","Дед_с_Клавой","Флуд_Бот","Сонный_Игрок"];
-  const funnyRight = ["из_Тамбова","без_микрофона","в_муте","с_вечным_баном","тянет_конфу","обижен_на_админов","ищет_баги","продаёт_вирты","любит_спорить","в_репортах"];
-  const randomFunnyNick = () => `${funnyLeft[Math.floor(Math.random() * funnyLeft.length)]}_${funnyRight[Math.floor(Math.random() * funnyRight.length)]}#${Math.floor(1000 + Math.random() * 8999)}`;
+    const funnyLeft = ["Мелстройность","Смешнявка","Капслокер","ВиртоСлив","Громкий_Микрофон","Рассыльщик_Мемов","ПолитТоксик","РелигБаттл","Дед_с_Клавой","Флуд_Бот"];
+    const funnyRight = ["из_Тамбова","без_микрофона","на_ГлОбАнЕ","в_муте","с_вечным_баном","тянет_конфу","обижен_на_админов","любит_капс","ищет_баги","продаёт_вирты"];
 
-  const moderationMessages = [
-    { type: "warn", text: "Флудит одинаковыми сообщениями в общий чат. Ситуация №1." },
-    { type: "warn", text: "Провоцирует игроков на конфликт. Ситуация №1." },
-    { type: "warn", text: "Переходит на токсичное общение без тяжёлых оскорблений. Ситуация №1." },
-    { type: "warn", text: "Засоряет чат бессмысленными сообщениями. Ситуация №1." },
-    { type: "warn", text: "Намеренно пишет оффтоп в служебный канал. Ситуация №1." },
-    { type: "warn", text: "Публикует бессмысленные символы и повторяющиеся знаки. Ситуация №1." },
-    { type: "warn", text: "Устраивает словесную перепалку в общем чате. Ситуация №1." },
-    { type: "warn", text: "Пытается разжечь конфликт между игроками. Ситуация №1." },
-    { type: "warn", text: "Пишет слишком много сообщений подряд, сбивая чат. Ситуация №1." },
-    { type: "warn", text: "Навязчиво выпрашивает имущество у игроков. Ситуация №1." },
-    { type: "warn", text: "Злоупотребляет упоминаниями участников сервера. Ситуация №1." },
-    { type: "warn", text: "Спорит с модерацией в неподходящем канале. Ситуация №1." },
-    { type: "warn", text: "Пишет грубо и провокационно в дискуссии. Ситуация №1." },
-    { type: "warn", text: "Нарушает атмосферу сервера токсичным поведением. Ситуация №1." },
-    { type: "warn", text: "Мешает общению повторяющимися вопросами. Ситуация №1." },
-    { type: "warn", text: "Намеренно отвлекает чат в разгар обсуждения. Ситуация №1." },
-    { type: "warn", text: "Пытается унизить игрока в переписке. Ситуация №1." },
-    { type: "warn", text: "Засоряет чат короткими однотипными сообщениями. Ситуация №1." },
-    { type: "warn", text: "Создаёт помехи в разговоре постоянными вбросами. Ситуация №1." },
-    { type: "warn", text: "Уходит в навязчивый оффтоп и мешает чату. Ситуация №1." },
-    { type: "warn", text: "Флудит одинаковыми сообщениями в общий чат. Ситуация №2." },
-    { type: "warn", text: "Провоцирует игроков на конфликт. Ситуация №2." },
-    { type: "warn", text: "Переходит на токсичное общение без тяжёлых оскорблений. Ситуация №2." },
-    { type: "warn", text: "Засоряет чат бессмысленными сообщениями. Ситуация №2." },
-    { type: "warn", text: "Намеренно пишет оффтоп в служебный канал. Ситуация №2." },
-    { type: "warn", text: "Публикует бессмысленные символы и повторяющиеся знаки. Ситуация №2." },
-    { type: "warn", text: "Устраивает словесную перепалку в общем чате. Ситуация №2." },
-    { type: "warn", text: "Пытается разжечь конфликт между игроками. Ситуация №2." },
-    { type: "warn", text: "Пишет слишком много сообщений подряд, сбивая чат. Ситуация №2." },
-    { type: "warn", text: "Навязчиво выпрашивает имущество у игроков. Ситуация №2." },
-    { type: "warn", text: "Злоупотребляет упоминаниями участников сервера. Ситуация №2." },
-    { type: "warn", text: "Спорит с модерацией в неподходящем канале. Ситуация №2." },
-    { type: "warn", text: "Пишет грубо и провокационно в дискуссии. Ситуация №2." },
-    { type: "warn", text: "Нарушает атмосферу сервера токсичным поведением. Ситуация №2." },
-    { type: "warn", text: "Мешает общению повторяющимися вопросами. Ситуация №2." },
-    { type: "warn", text: "Намеренно отвлекает чат в разгар обсуждения. Ситуация №2." },
-    { type: "warn", text: "Пытается унизить игрока в переписке. Ситуация №2." },
-    { type: "warn", text: "Засоряет чат короткими однотипными сообщениями. Ситуация №2." },
-    { type: "warn", text: "Создаёт помехи в разговоре постоянными вбросами. Ситуация №2." },
-    { type: "warn", text: "Уходит в навязчивый оффтоп и мешает чату. Ситуация №2." },
-    { type: "warn", text: "Флудит одинаковыми сообщениями в общий чат. Ситуация №3." },
-    { type: "warn", text: "Провоцирует игроков на конфликт. Ситуация №3." },
-    { type: "warn", text: "Переходит на токсичное общение без тяжёлых оскорблений. Ситуация №3." },
-    { type: "warn", text: "Засоряет чат бессмысленными сообщениями. Ситуация №3." },
-    { type: "warn", text: "Намеренно пишет оффтоп в служебный канал. Ситуация №3." },
-    { type: "warn", text: "Публикует бессмысленные символы и повторяющиеся знаки. Ситуация №3." },
-    { type: "warn", text: "Устраивает словесную перепалку в общем чате. Ситуация №3." },
-    { type: "warn", text: "Пытается разжечь конфликт между игроками. Ситуация №3." },
-    { type: "warn", text: "Пишет слишком много сообщений подряд, сбивая чат. Ситуация №3." },
-    { type: "warn", text: "Навязчиво выпрашивает имущество у игроков. Ситуация №3." },
-    { type: "warn", text: "Злоупотребляет упоминаниями участников сервера. Ситуация №3." },
-    { type: "warn", text: "Спорит с модерацией в неподходящем канале. Ситуация №3." },
-    { type: "warn", text: "Пишет грубо и провокационно в дискуссии. Ситуация №3." },
-    { type: "warn", text: "Нарушает атмосферу сервера токсичным поведением. Ситуация №3." },
-    { type: "warn", text: "Мешает общению повторяющимися вопросами. Ситуация №3." },
-    { type: "warn", text: "Намеренно отвлекает чат в разгар обсуждения. Ситуация №3." },
-    { type: "warn", text: "Пытается унизить игрока в переписке. Ситуация №3." },
-    { type: "warn", text: "Засоряет чат короткими однотипными сообщениями. Ситуация №3." },
-    { type: "warn", text: "Создаёт помехи в разговоре постоянными вбросами. Ситуация №3." },
-    { type: "warn", text: "Уходит в навязчивый оффтоп и мешает чату. Ситуация №3." },
-    { type: "warn", text: "Флудит одинаковыми сообщениями в общий чат. Ситуация №4." },
-    { type: "warn", text: "Провоцирует игроков на конфликт. Ситуация №4." },
-    { type: "warn", text: "Переходит на токсичное общение без тяжёлых оскорблений. Ситуация №4." },
-    { type: "warn", text: "Засоряет чат бессмысленными сообщениями. Ситуация №4." },
-    { type: "warn", text: "Намеренно пишет оффтоп в служебный канал. Ситуация №4." },
-    { type: "warn", text: "Публикует бессмысленные символы и повторяющиеся знаки. Ситуация №4." },
-    { type: "warn", text: "Устраивает словесную перепалку в общем чате. Ситуация №4." },
-    { type: "warn", text: "Пытается разжечь конфликт между игроками. Ситуация №4." },
-    { type: "warn", text: "Пишет слишком много сообщений подряд, сбивая чат. Ситуация №4." },
-    { type: "warn", text: "Навязчиво выпрашивает имущество у игроков. Ситуация №4." },
-    { type: "warn", text: "Злоупотребляет упоминаниями участников сервера. Ситуация №4." },
-    { type: "warn", text: "Спорит с модерацией в неподходящем канале. Ситуация №4." },
-    { type: "warn", text: "Пишет грубо и провокационно в дискуссии. Ситуация №4." },
-    { type: "warn", text: "Нарушает атмосферу сервера токсичным поведением. Ситуация №4." },
-    { type: "warn", text: "Мешает общению повторяющимися вопросами. Ситуация №4." },
-    { type: "warn", text: "Намеренно отвлекает чат в разгар обсуждения. Ситуация №4." },
-    { type: "warn", text: "Пытается унизить игрока в переписке. Ситуация №4." },
-    { type: "warn", text: "Засоряет чат короткими однотипными сообщениями. Ситуация №4." },
-    { type: "warn", text: "Создаёт помехи в разговоре постоянными вбросами. Ситуация №4." },
-    { type: "warn", text: "Уходит в навязчивый оффтоп и мешает чату. Ситуация №4." },
-    { type: "warn", text: "Флудит одинаковыми сообщениями в общий чат. Ситуация №5." },
-    { type: "warn", text: "Провоцирует игроков на конфликт. Ситуация №5." },
-    { type: "warn", text: "Переходит на токсичное общение без тяжёлых оскорблений. Ситуация №5." },
-    { type: "warn", text: "Засоряет чат бессмысленными сообщениями. Ситуация №5." },
-    { type: "warn", text: "Намеренно пишет оффтоп в служебный канал. Ситуация №5." },
-    { type: "warn", text: "Публикует бессмысленные символы и повторяющиеся знаки. Ситуация №5." },
-    { type: "warn", text: "Устраивает словесную перепалку в общем чате. Ситуация №5." },
-    { type: "warn", text: "Пытается разжечь конфликт между игроками. Ситуация №5." },
-    { type: "warn", text: "Пишет слишком много сообщений подряд, сбивая чат. Ситуация №5." },
-    { type: "warn", text: "Навязчиво выпрашивает имущество у игроков. Ситуация №5." },
-    { type: "warn", text: "Злоупотребляет упоминаниями участников сервера. Ситуация №5." },
-    { type: "warn", text: "Спорит с модерацией в неподходящем канале. Ситуация №5." },
-    { type: "warn", text: "Пишет грубо и провокационно в дискуссии. Ситуация №5." },
-    { type: "warn", text: "Нарушает атмосферу сервера токсичным поведением. Ситуация №5." },
-    { type: "warn", text: "Мешает общению повторяющимися вопросами. Ситуация №5." },
-    { type: "warn", text: "Намеренно отвлекает чат в разгар обсуждения. Ситуация №5." },
-    { type: "warn", text: "Пытается унизить игрока в переписке. Ситуация №5." },
-    { type: "warn", text: "Засоряет чат короткими однотипными сообщениями. Ситуация №5." },
-    { type: "warn", text: "Создаёт помехи в разговоре постоянными вбросами. Ситуация №5." },
-    { type: "warn", text: "Уходит в навязчивый оффтоп и мешает чату. Ситуация №5." },
+    function randomFunnyNick() {
+      return `${funnyLeft[Math.floor(Math.random() * funnyLeft.length)]}_${funnyRight[Math.floor(Math.random() * funnyRight.length)]}#${Math.floor(1000 + Math.random() * 8999)}`;
+    }
 
-    { type: "ban", text: "Рекламирует сторонний проект в чате. Ситуация №1." },
-    { type: "ban", text: "Предлагает купить имущество за реальные деньги. Ситуация №1." },
-    { type: "ban", text: "Публикует вредоносный или подозрительный файл. Ситуация №1." },
-    { type: "ban", text: "Распространяет шок-контент. Ситуация №1." },
-    { type: "ban", text: "Выдаёт чужие личные данные в чате. Ситуация №1." },
-    { type: "ban", text: "Обходит наказание через второй аккаунт. Ситуация №1." },
-    { type: "ban", text: "Продаёт аккаунт или игровые ценности. Ситуация №1." },
-    { type: "ban", text: "Пытается увести игроков на другой сервер. Ситуация №1." },
-    { type: "ban", text: "Предлагает обмен ресурсов вне правил проекта. Ситуация №1." },
-    { type: "ban", text: "Отправляет запрещённые ссылки. Ситуация №1." },
-    { type: "ban", text: "Торгует донатом или услугами за реал. Ситуация №1." },
-    { type: "ban", text: "Признаётся в обходе блокировки. Ситуация №1." },
-    { type: "ban", text: "Публикует откровенно запрещённый контент. Ситуация №1." },
-    { type: "ban", text: "Пытается слить личную информацию игрока. Ситуация №1." },
-    { type: "ban", text: "Рассылает рекламу по нескольким каналам. Ситуация №1." },
-    { type: "ban", text: "Предлагает услуги читов или багов. Ситуация №1." },
-    { type: "ban", text: "Публикует инструкции по обходу наказаний. Ситуация №1." },
-    { type: "ban", text: "Заманивает игроков на мошеннический ресурс. Ситуация №1." },
-    { type: "ban", text: "Продаёт игровую валюту за реальные деньги. Ситуация №1." },
-    { type: "ban", text: "Сознательно распространяет опасные материалы. Ситуация №1." },
-    { type: "ban", text: "Рекламирует сторонний проект в чате. Ситуация №2." },
-    { type: "ban", text: "Предлагает купить имущество за реальные деньги. Ситуация №2." },
-    { type: "ban", text: "Публикует вредоносный или подозрительный файл. Ситуация №2." },
-    { type: "ban", text: "Распространяет шок-контент. Ситуация №2." },
-    { type: "ban", text: "Выдаёт чужие личные данные в чате. Ситуация №2." },
-    { type: "ban", text: "Обходит наказание через второй аккаунт. Ситуация №2." },
-    { type: "ban", text: "Продаёт аккаунт или игровые ценности. Ситуация №2." },
-    { type: "ban", text: "Пытается увести игроков на другой сервер. Ситуация №2." },
-    { type: "ban", text: "Предлагает обмен ресурсов вне правил проекта. Ситуация №2." },
-    { type: "ban", text: "Отправляет запрещённые ссылки. Ситуация №2." },
-    { type: "ban", text: "Торгует донатом или услугами за реал. Ситуация №2." },
-    { type: "ban", text: "Признаётся в обходе блокировки. Ситуация №2." },
-    { type: "ban", text: "Публикует откровенно запрещённый контент. Ситуация №2." },
-    { type: "ban", text: "Пытается слить личную информацию игрока. Ситуация №2." },
-    { type: "ban", text: "Рассылает рекламу по нескольким каналам. Ситуация №2." },
-    { type: "ban", text: "Предлагает услуги читов или багов. Ситуация №2." },
-    { type: "ban", text: "Публикует инструкции по обходу наказаний. Ситуация №2." },
-    { type: "ban", text: "Заманивает игроков на мошеннический ресурс. Ситуация №2." },
-    { type: "ban", text: "Продаёт игровую валюту за реальные деньги. Ситуация №2." },
-    { type: "ban", text: "Сознательно распространяет опасные материалы. Ситуация №2." },
-    { type: "ban", text: "Рекламирует сторонний проект в чате. Ситуация №3." },
-    { type: "ban", text: "Предлагает купить имущество за реальные деньги. Ситуация №3." },
-    { type: "ban", text: "Публикует вредоносный или подозрительный файл. Ситуация №3." },
-    { type: "ban", text: "Распространяет шок-контент. Ситуация №3." },
-    { type: "ban", text: "Выдаёт чужие личные данные в чате. Ситуация №3." },
-    { type: "ban", text: "Обходит наказание через второй аккаунт. Ситуация №3." },
-    { type: "ban", text: "Продаёт аккаунт или игровые ценности. Ситуация №3." },
-    { type: "ban", text: "Пытается увести игроков на другой сервер. Ситуация №3." },
-    { type: "ban", text: "Предлагает обмен ресурсов вне правил проекта. Ситуация №3." },
-    { type: "ban", text: "Отправляет запрещённые ссылки. Ситуация №3." },
-    { type: "ban", text: "Торгует донатом или услугами за реал. Ситуация №3." },
-    { type: "ban", text: "Признаётся в обходе блокировки. Ситуация №3." },
-    { type: "ban", text: "Публикует откровенно запрещённый контент. Ситуация №3." },
-    { type: "ban", text: "Пытается слить личную информацию игрока. Ситуация №3." },
-    { type: "ban", text: "Рассылает рекламу по нескольким каналам. Ситуация №3." },
-    { type: "ban", text: "Предлагает услуги читов или багов. Ситуация №3." },
-    { type: "ban", text: "Публикует инструкции по обходу наказаний. Ситуация №3." },
-    { type: "ban", text: "Заманивает игроков на мошеннический ресурс. Ситуация №3." },
-    { type: "ban", text: "Продаёт игровую валюту за реальные деньги. Ситуация №3." },
-    { type: "ban", text: "Сознательно распространяет опасные материалы. Ситуация №3." },
-    { type: "ban", text: "Рекламирует сторонний проект в чате. Ситуация №4." },
-    { type: "ban", text: "Предлагает купить имущество за реальные деньги. Ситуация №4." },
-    { type: "ban", text: "Публикует вредоносный или подозрительный файл. Ситуация №4." },
-    { type: "ban", text: "Распространяет шок-контент. Ситуация №4." },
-    { type: "ban", text: "Выдаёт чужие личные данные в чате. Ситуация №4." },
-    { type: "ban", text: "Обходит наказание через второй аккаунт. Ситуация №4." },
-    { type: "ban", text: "Продаёт аккаунт или игровые ценности. Ситуация №4." },
-    { type: "ban", text: "Пытается увести игроков на другой сервер. Ситуация №4." },
-    { type: "ban", text: "Предлагает обмен ресурсов вне правил проекта. Ситуация №4." },
-    { type: "ban", text: "Отправляет запрещённые ссылки. Ситуация №4." },
-    { type: "ban", text: "Торгует донатом или услугами за реал. Ситуация №4." },
-    { type: "ban", text: "Признаётся в обходе блокировки. Ситуация №4." },
-    { type: "ban", text: "Публикует откровенно запрещённый контент. Ситуация №4." },
-    { type: "ban", text: "Пытается слить личную информацию игрока. Ситуация №4." },
-    { type: "ban", text: "Рассылает рекламу по нескольким каналам. Ситуация №4." },
-    { type: "ban", text: "Предлагает услуги читов или багов. Ситуация №4." },
-    { type: "ban", text: "Публикует инструкции по обходу наказаний. Ситуация №4." },
-    { type: "ban", text: "Заманивает игроков на мошеннический ресурс. Ситуация №4." },
-    { type: "ban", text: "Продаёт игровую валюту за реальные деньги. Ситуация №4." },
-    { type: "ban", text: "Сознательно распространяет опасные материалы. Ситуация №4." },
-    { type: "ban", text: "Рекламирует сторонний проект в чате. Ситуация №5." },
-    { type: "ban", text: "Предлагает купить имущество за реальные деньги. Ситуация №5." },
-    { type: "ban", text: "Публикует вредоносный или подозрительный файл. Ситуация №5." },
-    { type: "ban", text: "Распространяет шок-контент. Ситуация №5." },
-    { type: "ban", text: "Выдаёт чужие личные данные в чате. Ситуация №5." },
-    { type: "ban", text: "Обходит наказание через второй аккаунт. Ситуация №5." },
-    { type: "ban", text: "Продаёт аккаунт или игровые ценности. Ситуация №5." },
-    { type: "ban", text: "Пытается увести игроков на другой сервер. Ситуация №5." },
-    { type: "ban", text: "Предлагает обмен ресурсов вне правил проекта. Ситуация №5." },
-    { type: "ban", text: "Отправляет запрещённые ссылки. Ситуация №5." },
-    { type: "ban", text: "Торгует донатом или услугами за реал. Ситуация №5." },
-    { type: "ban", text: "Признаётся в обходе блокировки. Ситуация №5." },
-    { type: "ban", text: "Публикует откровенно запрещённый контент. Ситуация №5." },
-    { type: "ban", text: "Пытается слить личную информацию игрока. Ситуация №5." },
-    { type: "ban", text: "Рассылает рекламу по нескольким каналам. Ситуация №5." },
-    { type: "ban", text: "Предлагает услуги читов или багов. Ситуация №5." },
-    { type: "ban", text: "Публикует инструкции по обходу наказаний. Ситуация №5." },
-    { type: "ban", text: "Заманивает игроков на мошеннический ресурс. Ситуация №5." },
-    { type: "ban", text: "Продаёт игровую валюту за реальные деньги. Ситуация №5." },
-    { type: "ban", text: "Сознательно распространяет опасные материалы. Ситуация №5." },
+    function createModerationMessages() {
+      const warn = [
+        "Флудит одинаковыми сообщениями в общий чат.",
+        "Спамит капсом и мешает общению.",
+        "Провоцирует игроков на конфликт.",
+        "Переходит на токсичное общение без тяжёлых оскорблений.",
+        "Засоряет чат бессмысленными сообщениями.",
+        "Намеренно пишет оффтоп в служебный канал.",
+        "Публикует бессмысленные символы и повторяющиеся знаки.",
+        "Устраивает словесную перепалку в общем чате.",
+        "Пытается разжечь конфликт между игроками.",
+        "Пишет слишком много сообщений подряд, сбивая чат.",
+        "Навязчиво выпрашивает имущество у игроков.",
+        "Злоупотребляет упоминаниями участников сервера.",
+        "Спорит с модерацией в неподходящем канале.",
+        "Пишет грубо и провокационно в дискуссии.",
+        "Нарушает атмосферу сервера токсичным поведением.",
+        "Мешает общению повторяющимися вопросами.",
+        "Намеренно отвлекает чат в разгар обсуждения.",
+        "Использует чрезмерный капс и агрессию.",
+        "Пытается унизить игрока в переписке.",
+        "Засоряет чат короткими однотипными сообщениями."
+      ];
 
-    { type: "good", text: "Спрашивает, где находится форум проекта. Ситуация №1." },
-    { type: "good", text: "Уточняет, как подать жалобу на игрока. Ситуация №1." },
-    { type: "good", text: "Просит подсказать команду сервера. Ситуация №1." },
-    { type: "good", text: "Интересуется, где посмотреть правила. Ситуация №1." },
-    { type: "good", text: "Спокойно просит помощь по игровому вопросу. Ситуация №1." },
-    { type: "good", text: "Спрашивает, где найти администрацию. Ситуация №1." },
-    { type: "good", text: "Уточняет, как восстановить доступ. Ситуация №1." },
-    { type: "good", text: "Интересуется, как вступить в организацию. Ситуация №1." },
-    { type: "good", text: "Просит ссылку на раздел заявлений. Ситуация №1." },
-    { type: "good", text: "Спрашивает про ивенты на сервере. Ситуация №1." },
-    { type: "good", text: "Уточняет, где посмотреть команды для новичков. Ситуация №1." },
-    { type: "good", text: "Интересуется расписанием мероприятий. Ситуация №1." },
-    { type: "good", text: "Спрашивает, как работает система наказаний. Ситуация №1." },
-    { type: "good", text: "Просит подсказать, куда писать по багу. Ситуация №1." },
-    { type: "good", text: "Уточняет, где найти контакты руководства. Ситуация №1." },
-    { type: "good", text: "Интересуется RP-терминами. Ситуация №1." },
-    { type: "good", text: "Спрашивает про FAQ проекта. Ситуация №1." },
-    { type: "good", text: "Ищет раздел со списком работ. Ситуация №1." },
-    { type: "good", text: "Уточняет, куда писать по технической проблеме. Ситуация №1." },
-    { type: "good", text: "Просит помощь без нарушений. Ситуация №1." },
-    { type: "good", text: "Спрашивает, где находится форум проекта. Ситуация №2." },
-    { type: "good", text: "Уточняет, как подать жалобу на игрока. Ситуация №2." },
-    { type: "good", text: "Просит подсказать команду сервера. Ситуация №2." },
-    { type: "good", text: "Интересуется, где посмотреть правила. Ситуация №2." },
-    { type: "good", text: "Спокойно просит помощь по игровому вопросу. Ситуация №2." },
-    { type: "good", text: "Спрашивает, где найти администрацию. Ситуация №2." },
-    { type: "good", text: "Уточняет, как восстановить доступ. Ситуация №2." },
-    { type: "good", text: "Интересуется, как вступить в организацию. Ситуация №2." },
-    { type: "good", text: "Просит ссылку на раздел заявлений. Ситуация №2." },
-    { type: "good", text: "Спрашивает про ивенты на сервере. Ситуация №2." },
-    { type: "good", text: "Уточняет, где посмотреть команды для новичков. Ситуация №2." },
-    { type: "good", text: "Интересуется расписанием мероприятий. Ситуация №2." },
-    { type: "good", text: "Спрашивает, как работает система наказаний. Ситуация №2." },
-    { type: "good", text: "Просит подсказать, куда писать по багу. Ситуация №2." },
-    { type: "good", text: "Уточняет, где найти контакты руководства. Ситуация №2." },
-    { type: "good", text: "Интересуется RP-терминами. Ситуация №2." },
-    { type: "good", text: "Спрашивает про FAQ проекта. Ситуация №2." },
-    { type: "good", text: "Ищет раздел со списком работ. Ситуация №2." },
-    { type: "good", text: "Уточняет, куда писать по технической проблеме. Ситуация №2." },
-    { type: "good", text: "Просит помощь без нарушений. Ситуация №2." },
-    { type: "good", text: "Спрашивает, где находится форум проекта. Ситуация №3." },
-    { type: "good", text: "Уточняет, как подать жалобу на игрока. Ситуация №3." },
-    { type: "good", text: "Просит подсказать команду сервера. Ситуация №3." },
-    { type: "good", text: "Интересуется, где посмотреть правила. Ситуация №3." },
-    { type: "good", text: "Спокойно просит помощь по игровому вопросу. Ситуация №3." },
-    { type: "good", text: "Спрашивает, где найти администрацию. Ситуация №3." },
-    { type: "good", text: "Уточняет, как восстановить доступ. Ситуация №3." },
-    { type: "good", text: "Интересуется, как вступить в организацию. Ситуация №3." },
-    { type: "good", text: "Просит ссылку на раздел заявлений. Ситуация №3." },
-    { type: "good", text: "Спрашивает про ивенты на сервере. Ситуация №3." },
-    { type: "good", text: "Уточняет, где посмотреть команды для новичков. Ситуация №3." },
-    { type: "good", text: "Интересуется расписанием мероприятий. Ситуация №3." },
-    { type: "good", text: "Спрашивает, как работает система наказаний. Ситуация №3." },
-    { type: "good", text: "Просит подсказать, куда писать по багу. Ситуация №3." },
-    { type: "good", text: "Уточняет, где найти контакты руководства. Ситуация №3." },
-    { type: "good", text: "Интересуется RP-терминами. Ситуация №3." },
-    { type: "good", text: "Спрашивает про FAQ проекта. Ситуация №3." },
-    { type: "good", text: "Ищет раздел со списком работ. Ситуация №3." },
-    { type: "good", text: "Уточняет, куда писать по технической проблеме. Ситуация №3." },
-    { type: "good", text: "Просит помощь без нарушений. Ситуация №3." },
-    { type: "good", text: "Спрашивает, где находится форум проекта. Ситуация №4." },
-    { type: "good", text: "Уточняет, как подать жалобу на игрока. Ситуация №4." },
-    { type: "good", text: "Просит подсказать команду сервера. Ситуация №4." },
-    { type: "good", text: "Интересуется, где посмотреть правила. Ситуация №4." },
-    { type: "good", text: "Спокойно просит помощь по игровому вопросу. Ситуация №4." },
-    { type: "good", text: "Спрашивает, где найти администрацию. Ситуация №4." },
-    { type: "good", text: "Уточняет, как восстановить доступ. Ситуация №4." },
-    { type: "good", text: "Интересуется, как вступить в организацию. Ситуация №4." },
-    { type: "good", text: "Просит ссылку на раздел заявлений. Ситуация №4." },
-    { type: "good", text: "Спрашивает про ивенты на сервере. Ситуация №4." },
-    { type: "good", text: "Уточняет, где посмотреть команды для новичков. Ситуация №4." },
-    { type: "good", text: "Интересуется расписанием мероприятий. Ситуация №4." },
-    { type: "good", text: "Спрашивает, как работает система наказаний. Ситуация №4." },
-    { type: "good", text: "Просит подсказать, куда писать по багу. Ситуация №4." },
-    { type: "good", text: "Уточняет, где найти контакты руководства. Ситуация №4." },
-    { type: "good", text: "Интересуется RP-терминами. Ситуация №4." },
-    { type: "good", text: "Спрашивает про FAQ проекта. Ситуация №4." },
-    { type: "good", text: "Ищет раздел со списком работ. Ситуация №4." },
-    { type: "good", text: "Уточняет, куда писать по технической проблеме. Ситуация №4." },
-    { type: "good", text: "Просит помощь без нарушений. Ситуация №4." },
-    { type: "good", text: "Спрашивает, где находится форум проекта. Ситуация №5." },
-    { type: "good", text: "Уточняет, как подать жалобу на игрока. Ситуация №5." },
-    { type: "good", text: "Просит подсказать команду сервера. Ситуация №5." },
-    { type: "good", text: "Интересуется, где посмотреть правила. Ситуация №5." },
-    { type: "good", text: "Спокойно просит помощь по игровому вопросу. Ситуация №5." },
-    { type: "good", text: "Спрашивает, где найти администрацию. Ситуация №5." },
-    { type: "good", text: "Уточняет, как восстановить доступ. Ситуация №5." },
-    { type: "good", text: "Интересуется, как вступить в организацию. Ситуация №5." },
-    { type: "good", text: "Просит ссылку на раздел заявлений. Ситуация №5." },
-    { type: "good", text: "Спрашивает про ивенты на сервере. Ситуация №5." },
-    { type: "good", text: "Уточняет, где посмотреть команды для новичков. Ситуация №5." },
-    { type: "good", text: "Интересуется расписанием мероприятий. Ситуация №5." },
-    { type: "good", text: "Спрашивает, как работает система наказаний. Ситуация №5." },
-    { type: "good", text: "Просит подсказать, куда писать по багу. Ситуация №5." },
-    { type: "good", text: "Уточняет, где найти контакты руководства. Ситуация №5." },
-    { type: "good", text: "Интересуется RP-терминами. Ситуация №5." },
-    { type: "good", text: "Спрашивает про FAQ проекта. Ситуация №5." },
-    { type: "good", text: "Ищет раздел со списком работ. Ситуация №5." },
-    { type: "good", text: "Уточняет, куда писать по технической проблеме. Ситуация №5." },
-    { type: "good", text: "Просит помощь без нарушений. Ситуация №5." }
-  ];
+      const ban = [
+        "Рекламирует сторонний проект в чате.",
+        "Предлагает купить имущество за реальные деньги.",
+        "Публикует вредоносный или подозрительный файл.",
+        "Распространяет шок-контент.",
+        "Выдаёт чужие личные данные в чате.",
+        "Обходит наказание через второй аккаунт.",
+        "Продаёт аккаунт или игровые ценности.",
+        "Пытается увести игроков на другой сервер.",
+        "Предлагает обмен ресурсов вне правил проекта.",
+        "Отправляет запрещённые ссылки.",
+        "Торгует донатом или услугами за реал.",
+        "Признаётся в обходе блокировки.",
+        "Публикует откровенно запрещённый контент.",
+        "Пытается слить личную информацию игрока.",
+        "Рассылает рекламу по нескольким каналам.",
+        "Предлагает услуги читов или багов.",
+        "Публикует инструкции по обходу наказаний.",
+        "Заманивает игроков на мошеннический ресурс.",
+        "Продаёт игровую валюту за реальные деньги.",
+        "Сознательно распространяет опасные материалы."
+      ];
 
-  const supportQuestions = [
-    { title: "Кто такой агент поддержки", text: "Игрок просит подсказать нужный раздел форума. Запрос №1 по теме «Кто такой агент поддержки».", keywords: ["агент", "поддержки", "помог"] },
-    { title: "Кто такой агент поддержки", text: "Игрок не понимает, где искать информацию. Запрос №2 по теме «Кто такой агент поддержки».", keywords: ["агент", "поддержки", "помог"] },
-    { title: "Кто такой агент поддержки", text: "Новичок просит кратко объяснить тему. Запрос №3 по теме «Кто такой агент поддержки».", keywords: ["агент", "поддержки", "помог"] },
-    { title: "Кто такой агент поддержки", text: "Кандидат в АП хочет найти нужный раздел. Запрос №4 по теме «Кто такой агент поддержки».", keywords: ["агент", "поддержки", "помог"] },
-    { title: "Кто такой агент поддержки", text: "Игрок просит направить его по правильной теме. Запрос №5 по теме «Кто такой агент поддержки».", keywords: ["агент", "поддержки", "помог"] },
-    { title: "Кто такой агент поддержки", text: "Пользователь хочет получить точную ссылку на раздел. Запрос №6 по теме «Кто такой агент поддержки».", keywords: ["агент", "поддержки", "помог"] },
-    { title: "Кто такой агент поддержки", text: "Игрок просит объяснить, где это находится. Запрос №7 по теме «Кто такой агент поддержки».", keywords: ["агент", "поддержки", "помог"] },
-    { title: "Кто такой агент поддержки", text: "Нужно коротко и понятно направить игрока. Запрос №8 по теме «Кто такой агент поддержки».", keywords: ["агент", "поддержки", "помог"] },
-    { title: "Кто такой агент поддержки", text: "Игрок задаёт типовой вопрос по форуму. Запрос №9 по теме «Кто такой агент поддержки».", keywords: ["агент", "поддержки", "помог"] },
-    { title: "Кто такой агент поддержки", text: "Нужно ответить без воды и по сути. Запрос №10 по теме «Кто такой агент поддержки».", keywords: ["агент", "поддержки", "помог"] },
+      const good = [
+        "Спрашивает, где находится форум проекта.",
+        "Уточняет, как подать жалобу на игрока.",
+        "Просит подсказать команду сервера.",
+        "Интересуется, где посмотреть правила.",
+        "Спокойно просит помощь по игровому вопросу.",
+        "Спрашивает, где найти администрацию.",
+        "Уточняет, как восстановить доступ.",
+        "Интересуется, как вступить в организацию.",
+        "Просит ссылку на раздел заявлений.",
+        "Спрашивает про ивенты на сервере.",
+        "Уточняет, где посмотреть команды для новичков.",
+        "Интересуется расписанием мероприятий.",
+        "Спрашивает, как работает система наказаний.",
+        "Просит подсказать, куда писать по багу.",
+        "Уточняет, где найти контакты руководства.",
+        "Интересуется RP-терминами.",
+        "Спрашивает про FAQ проекта.",
+        "Ищет раздел со списком работ.",
+        "Уточняет, куда писать по технической проблеме.",
+        "Просит помощь без нарушений."
+      ];
 
-    { title: "Шаблоны ответов", text: "Игрок просит подсказать нужный раздел форума. Запрос №11 по теме «Шаблоны ответов».", keywords: ["шаблон", "ответ", "форум"] },
-    { title: "Шаблоны ответов", text: "Игрок не понимает, где искать информацию. Запрос №12 по теме «Шаблоны ответов».", keywords: ["шаблон", "ответ", "форум"] },
-    { title: "Шаблоны ответов", text: "Новичок просит кратко объяснить тему. Запрос №13 по теме «Шаблоны ответов».", keywords: ["шаблон", "ответ", "форум"] },
-    { title: "Шаблоны ответов", text: "Кандидат в АП хочет найти нужный раздел. Запрос №14 по теме «Шаблоны ответов».", keywords: ["шаблон", "ответ", "форум"] },
-    { title: "Шаблоны ответов", text: "Игрок просит направить его по правильной теме. Запрос №15 по теме «Шаблоны ответов».", keywords: ["шаблон", "ответ", "форум"] },
-    { title: "Шаблоны ответов", text: "Пользователь хочет получить точную ссылку на раздел. Запрос №16 по теме «Шаблоны ответов».", keywords: ["шаблон", "ответ", "форум"] },
-    { title: "Шаблоны ответов", text: "Игрок просит объяснить, где это находится. Запрос №17 по теме «Шаблоны ответов».", keywords: ["шаблон", "ответ", "форум"] },
-    { title: "Шаблоны ответов", text: "Нужно коротко и понятно направить игрока. Запрос №18 по теме «Шаблоны ответов».", keywords: ["шаблон", "ответ", "форум"] },
-    { title: "Шаблоны ответов", text: "Игрок задаёт типовой вопрос по форуму. Запрос №19 по теме «Шаблоны ответов».", keywords: ["шаблон", "ответ", "форум"] },
-    { title: "Шаблоны ответов", text: "Нужно ответить без воды и по сути. Запрос №20 по теме «Шаблоны ответов».", keywords: ["шаблон", "ответ", "форум"] }
+      const messages = [];
+      for (let i = 1; i <= 5; i++) warn.forEach(text => messages.push({ type: "warn", text: `${text} Ситуация №${i}.` }));
+      for (let i = 1; i <= 5; i++) ban.forEach(text => messages.push({ type: "ban", text: `${text} Ситуация №${i}.` }));
+      for (let i = 1; i <= 5; i++) good.forEach(text => messages.push({ type: "good", text: `${text} Ситуация №${i}.` }));
+      return messages.slice(0, 300);
+    }
 
-    // ДАЛЬШЕ ПО ТОМУ ЖЕ ПРИНЦИПУ ДО 300.
-    // Чтобы не оборвать тебе чат лимитом символов, я здесь честно отмечаю:
-    // в одном сообщении весь <script> с 300 + 300 может не влезть.
-  ];
+    function createSupportQuestions() {
+      const titles = [
+        "Кто такой агент поддержки","Шаблоны ответов","GPS-навигатор","Команды сервера","RolePlay термины",
+        "Правила поведения в чате хелперов","Правила и обязанности АП","Ночное дежурство","Еженедельное собрание АП",
+        "Ежедневный норматив АП","Магазин АП","Книга рекордов АП","Лучший агент недели","Календарь АП",
+        "Контакты руководства","Список основных работ","Список ЕПП транспорта","FAQ защита аккаунта",
+        "Расшифровка аббревиатур","Системные мероприятия","Реферальная система АП","Снятие наказаний",
+        "Дополнительные баллы","Товары из магазина"
+      ];
 
-  let state = {
-    resolved: 0,
-    correct: 0,
-    mistakes: 0,
-    current: null,
-    started: false,
-    log: []
-  };
+      const prompts = [
+        "Игрок просит подсказать нужный раздел форума.",
+        "Игрок не понимает, где искать информацию.",
+        "Новичок просит кратко объяснить тему.",
+        "Кандидат в АП хочет найти нужный раздел.",
+        "Игрок просит направить его по правильной теме.",
+        "Пользователь хочет получить точную ссылку на раздел.",
+        "Игрок просит объяснить, где это находится.",
+        "Нужно коротко и понятно направить игрока.",
+        "Игрок задаёт типовой вопрос по форуму.",
+        "Нужно ответить без воды и по сути."
+      ];
 
-  let supportState = {
-    resolved: 0,
-    correct: 0,
-    mistakes: 0,
-    currentIndex: -1
-  };
+      const keywordsMap = {
+        "Кто такой агент поддержки": ["агент","поддержки","помог"],
+        "Шаблоны ответов": ["шаблон","ответ","форум"],
+        "GPS-навигатор": ["gps","навиг","форум","карта"],
+        "Команды сервера": ["команд","сервер","форум"],
+        "RolePlay термины": ["roleplay","термин","форум","rp"],
+        "Правила поведения в чате хелперов": ["правил","чат","хелпер","форум"],
+        "Правила и обязанности АП": ["правила","обязанности","агент","форум"],
+        "Ночное дежурство": ["ночное","дежур","форум"],
+        "Еженедельное собрание АП": ["собра","агент","форум"],
+        "Ежедневный норматив АП": ["ежедневный","норматив","агент","форум"],
+        "Магазин АП": ["магазин","агент","форум"],
+        "Книга рекордов АП": ["книга","рекорд","агент","форум"],
+        "Лучший агент недели": ["лучший","агент","недел","форум"],
+        "Календарь АП": ["календар","агент","форум"],
+        "Контакты руководства": ["контакт","руковод","агент","форум"],
+        "Список основных работ": ["список","работ","проект","форум"],
+        "Список ЕПП транспорта": ["епп","транспорт","форум"],
+        "FAQ защита аккаунта": ["faq","защит","аккаунт","форум"],
+        "Расшифровка аббревиатур": ["аббрев","расшиф","форум"],
+        "Системные мероприятия": ["расписан","системн","меропр","форум"],
+        "Реферальная система АП": ["реферал","агент","форум"],
+        "Снятие наказаний": ["сняти","наказан","заявлен"],
+        "Дополнительные баллы": ["дополн","балл","заявлен"],
+        "Товары из магазина": ["товар","магазин","заявлен"]
+      };
 
-  let shopState = {
-    spent: 0,
-    purchased: false
-  };
+      const result = [];
+      let idx = 1;
 
-  const el = {
-    resolvedValue: document.getElementById("resolvedValue"),
-    correctValue: document.getElementById("correctValue"),
-    mistakeValue: document.getElementById("mistakeValue"),
-    xpValue: document.getElementById("xpValue"),
-    xpFill: document.getElementById("xpFill"),
-    resultBanner: document.getElementById("resultBanner"),
-    resultHint: document.getElementById("resultHint"),
-    authorName: document.getElementById("authorName"),
-    authorMeta: document.getElementById("authorMeta"),
-    messageText: document.getElementById("messageText"),
-    avatarBox: document.getElementById("avatarBox"),
-    hintText: document.getElementById("hintText"),
-    logList: document.getElementById("logList"),
+      titles.forEach(title => {
+        prompts.forEach(prompt => {
+          result.push({
+            title,
+            text: `${prompt} Запрос №${idx} по теме «${title}».`,
+            keywords: keywordsMap[title]
+          });
+          idx++;
+        });
+      });
 
-    supportResolvedValue: document.getElementById("supportResolvedValue"),
-    supportCorrectValue: document.getElementById("supportCorrectValue"),
-    supportMistakeValue: document.getElementById("supportMistakeValue"),
-    supportXpValue: document.getElementById("supportXpValue"),
-    supportXpFill: document.getElementById("supportXpFill"),
-    supportBanner: document.getElementById("supportBanner"),
-    supportBannerHint: document.getElementById("supportBannerHint"),
-    supportQuestionTitle: document.getElementById("supportQuestionTitle"),
-    supportMeta: document.getElementById("supportMeta"),
-    supportQuestionText: document.getElementById("supportQuestionText"),
-    supportAnswerInput: document.getElementById("supportAnswerInput"),
-    supportResultText: document.getElementById("supportResultText"),
+      while (result.length < 240) {
+        titles.forEach(title => {
+          if (result.length < 240) {
+            result.push({
+              title,
+              text: `Игрок снова уточняет тему «${title}». Дополнительный запрос №${result.length + 1}.`,
+              keywords: keywordsMap[title]
+            });
+          }
+        });
+      }
 
-    shopModXp: document.getElementById("shopModXp"),
-    shopSupportXp: document.getElementById("shopSupportXp"),
-    shopTotalXp: document.getElementById("shopTotalXp"),
-    shopSpentXp: document.getElementById("shopSpentXp"),
-    shopBuyHint: document.getElementById("shopBuyHint"),
-    buyTestItemBtn: document.getElementById("buyTestItemBtn")
-  };
+      return result;
+    }
 
-  const initials = name => name.split(/[#_\\s]+/).filter(Boolean).slice(0, 2).map(p => p[0]).join("").toUpperCase();
-  const calcXP = value => Math.floor(value / 10) * 15;
+    const moderationMessages = createModerationMessages();
+    const supportQuestions = createSupportQuestions();
 
-  function pushLog(text) {
-    state.log.unshift(text);
-    state.log = state.log.slice(0, 50);
-    el.logList.innerHTML = state.log.map(item => `<div class="log-item">${item}</div>`).join("");
-  }
+    let state = {
+      resolved: 0,
+      correct: 0,
+      mistakes: 0,
+      current: null,
+      started: false,
+      log: []
+    };
 
-  function availableXp() {
-    return calcXP(state.correct) + calcXP(supportState.correct) - shopState.spent;
-  }
+    let supportState = {
+      resolved: 0,
+      correct: 0,
+      mistakes: 0,
+      currentIndex: -1
+    };
 
-  function updateShopStats() {
-    const modXp = calcXP(state.correct);
-    const supportXp = calcXP(supportState.correct);
-    const totalXp = Math.max(0, modXp + supportXp - shopState.spent);
+    let shopState = {
+      spent: 0,
+      purchased: false
+    };
 
-    el.shopModXp.textContent = modXp;
-    el.shopSupportXp.textContent = supportXp;
-    el.shopTotalXp.textContent = totalXp;
-    el.shopSpentXp.textContent = shopState.spent;
+    const el = {
+      resolvedValue: document.getElementById("resolvedValue"),
+      correctValue: document.getElementById("correctValue"),
+      mistakeValue: document.getElementById("mistakeValue"),
+      xpValue: document.getElementById("xpValue"),
+      xpFill: document.getElementById("xpFill"),
+      resultBanner: document.getElementById("resultBanner"),
+      resultHint: document.getElementById("resultHint"),
+      authorName: document.getElementById("authorName"),
+      authorMeta: document.getElementById("authorMeta"),
+      messageText: document.getElementById("messageText"),
+      avatarBox: document.getElementById("avatarBox"),
+      hintText: document.getElementById("hintText"),
+      logList: document.getElementById("logList"),
+      supportResolvedValue: document.getElementById("supportResolvedValue"),
+      supportCorrectValue: document.getElementById("supportCorrectValue"),
+      supportMistakeValue: document.getElementById("supportMistakeValue"),
+      supportXpValue: document.getElementById("supportXpValue"),
+      supportXpFill: document.getElementById("supportXpFill"),
+      supportBanner: document.getElementById("supportBanner"),
+      supportBannerHint: document.getElementById("supportBannerHint"),
+      supportQuestionTitle: document.getElementById("supportQuestionTitle"),
+      supportMeta: document.getElementById("supportMeta"),
+      supportQuestionText: document.getElementById("supportQuestionText"),
+      supportAnswerInput: document.getElementById("supportAnswerInput"),
+      supportResultText: document.getElementById("supportResultText"),
+      shopModXp: document.getElementById("shopModXp"),
+      shopSupportXp: document.getElementById("shopSupportXp"),
+      shopTotalXp: document.getElementById("shopTotalXp"),
+      shopSpentXp: document.getElementById("shopSpentXp"),
+      shopBuyHint: document.getElementById("shopBuyHint"),
+      buyTestItemBtn: document.getElementById("buyTestItemBtn")
+    };
 
-    if (el.buyTestItemBtn) {
+    function initials(name) {
+      return name.split(/[#_\\s]+/).filter(Boolean).slice(0, 2).map(part => part[0]).join("").toUpperCase();
+    }
+
+    function calcXP(value) {
+      return Math.floor(value / 10) * 15;
+    }
+
+    function pushLog(text) {
+      state.log.unshift(text);
+      state.log = state.log.slice(0, 50);
+      el.logList.innerHTML = state.log.map(item => `<div class="log-item">${item}</div>`).join("");
+    }
+
+    function availableXp() {
+      return calcXP(state.correct) + calcXP(supportState.correct) - shopState.spent;
+    }
+
+    function updateShopStats() {
+      const modXp = calcXP(state.correct);
+      const supportXp = calcXP(supportState.correct);
+      const totalXp = Math.max(0, modXp + supportXp - shopState.spent);
+
+      el.shopModXp.textContent = modXp;
+      el.shopSupportXp.textContent = supportXp;
+      el.shopTotalXp.textContent = totalXp;
+      el.shopSpentXp.textContent = shopState.spent;
+
       el.buyTestItemBtn.disabled = shopState.purchased || totalXp < 30;
       el.buyTestItemBtn.textContent = shopState.purchased ? "Уже куплено" : "Купить для проверки";
+
+      if (!shopState.purchased) {
+        el.shopBuyHint.textContent = totalXp >= 30
+          ? "XP хватает — можешь проверить покупку."
+          : "Сначала заработай минимум 30 XP в режимах модератора или поддержки.";
+      }
     }
 
-    if (el.shopBuyHint && !shopState.purchased) {
-      el.shopBuyHint.textContent = totalXp >= 30
-        ? "XP хватает — можешь проверить покупку."
-        : "Сначала заработай минимум 30 XP в режимах модератора или поддержки.";
-    }
-  }
+    function updateModStats() {
+      const xp = calcXP(state.correct);
+      el.resolvedValue.textContent = state.resolved;
+      el.correctValue.textContent = state.correct;
+      el.mistakeValue.textContent = state.mistakes;
+      el.xpValue.textContent = xp;
+      el.xpFill.style.width = (Math.min(1, (state.correct % 10 || (state.correct ? 10 : 0)) / 10) * 100) + "%";
 
-  function updateModStats() {
-    const xp = calcXP(state.correct);
-    el.resolvedValue.textContent = state.resolved;
-    el.correctValue.textContent = state.correct;
-    el.mistakeValue.textContent = state.mistakes;
-    el.xpValue.textContent = xp;
-    el.xpFill.style.width = (Math.min(1, (state.correct % 10 || (state.correct ? 10 : 0)) / 10) * 100) + "%";
-    el.resultBanner.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
-    el.resultHint.textContent = !state.started ? "Нажми «Начать смену», чтобы получить первое сообщение." : `Сейчас рекомендовано ${xp} XP.`;
-    updateShopStats();
-  }
+      el.resultBanner.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
+      el.resultHint.textContent = !state.started
+        ? "Нажми «Начать смену», чтобы получить первое сообщение."
+        : `Сейчас рекомендовано ${xp} XP.`;
 
-  function updateSupportStats() {
-    const xp = calcXP(supportState.correct);
-    el.supportResolvedValue.textContent = supportState.resolved;
-    el.supportCorrectValue.textContent = supportState.correct;
-    el.supportMistakeValue.textContent = supportState.mistakes;
-    el.supportXpValue.textContent = xp;
-    el.supportXpFill.style.width = (Math.min(1, (supportState.correct % 10 || (supportState.correct ? 10 : 0)) / 10) * 100) + "%";
-    el.supportBanner.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
-    el.supportBannerHint.textContent = !state.started ? "Нажми «Начать смену», чтобы открыть первый вопрос." : `Сейчас рекомендовано ${xp} XP.`;
-    updateShopStats();
-  }
-
-  function randomMessage() {
-    const item = moderationMessages[Math.floor(Math.random() * moderationMessages.length)];
-    const user = randomFunnyNick();
-    state.current = { ...item, user };
-
-    el.authorName.textContent = user;
-    el.authorMeta.textContent = "Неизвестно, есть ли нарушение";
-    el.messageText.textContent = item.text;
-    el.avatarBox.textContent = initials(user);
-    el.hintText.textContent = "Выбери: без нарушения, устное/пред/мут или бан.";
-  }
-
-  function startGame() {
-    state.started = true;
-    state.resolved = 0;
-    state.correct = 0;
-    state.mistakes = 0;
-    supportState.resolved = 0;
-    supportState.correct = 0;
-    supportState.mistakes = 0;
-    supportState.currentIndex = -1;
-    state.log = [];
-    shopState = { spent: 0, purchased: false };
-
-    el.logList.innerHTML = '<div class="log-item">Смена началась. Используй текущий режим ниже.</div>';
-    el.supportQuestionTitle.textContent = "Вопрос скрыт";
-    el.supportMeta.textContent = "Нажми «Следующий вопрос»";
-    el.supportQuestionText.textContent = "Смена началась. Теперь можно открыть первый вопрос агента поддержки.";
-    el.supportAnswerInput.value = "";
-    el.supportResultText.textContent = "";
-
-    randomMessage();
-    updateModStats();
-    updateSupportStats();
-    document.getElementById("game").scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  function resetGame() {
-    state = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false, log: [] };
-    supportState = { resolved: 0, correct: 0, mistakes: 0, currentIndex: -1 };
-    shopState = { spent: 0, purchased: false };
-
-    el.authorName.textContent = "System";
-    el.authorMeta.textContent = "Сообщение появится после старта смены";
-    el.messageText.textContent = "Пока сообщений нет. Нажми «Начать смену».";
-    el.avatarBox.textContent = "T7";
-    el.hintText.textContent = "Оценка: без нарушения, устное/пред/мут, бан/перма/глобал.";
-
-    el.supportQuestionTitle.textContent = "Вопрос скрыт";
-    el.supportMeta.textContent = "Появится после начала смены";
-    el.supportQuestionText.textContent = "Нажми «Начать смену», затем открой вопрос и помоги игроку разобраться.";
-    el.supportAnswerInput.value = "";
-    el.supportResultText.textContent = "";
-
-    el.logList.innerHTML = '<div class="log-item">Пока пусто. Нажми «Начать смену», чтобы начать работу.</div>';
-
-    updateModStats();
-    updateSupportStats();
-  }
-
-  function judge(action) {
-    if (!state.started || !state.current) {
-      startGame();
-      return;
+      updateShopStats();
     }
 
-    const isCorrect = action === state.current.type;
-    state.resolved++;
+    function updateSupportStats() {
+      const xp = calcXP(supportState.correct);
+      el.supportResolvedValue.textContent = supportState.resolved;
+      el.supportCorrectValue.textContent = supportState.correct;
+      el.supportMistakeValue.textContent = supportState.mistakes;
+      el.supportXpValue.textContent = xp;
+      el.supportXpFill.style.width = (Math.min(1, (supportState.correct % 10 || (supportState.correct ? 10 : 0)) / 10) * 100) + "%";
 
-    if (isCorrect) {
-      state.correct++;
-      pushLog(`✅ ${state.current.user}: верное решение (${action.toUpperCase()})`);
-    } else {
-      state.mistakes++;
-      pushLog(`❌ ${state.current.user}: решение не совпало с эталоном`);
+      el.supportBanner.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
+      el.supportBannerHint.textContent = !state.started
+        ? "Нажми «Начать смену», чтобы открыть первый вопрос."
+        : `Сейчас рекомендовано ${xp} XP.`;
+
+      updateShopStats();
     }
 
-    updateModStats();
-    setTimeout(randomMessage, 300);
-  }
+    function randomMessage() {
+      const item = moderationMessages[Math.floor(Math.random() * moderationMessages.length)];
+      const user = randomFunnyNick();
 
-  document.querySelectorAll("[data-action]").forEach(btn => {
-    btn.addEventListener("click", () => judge(btn.dataset.action));
-  });
-
-  document.getElementById("startBtn").addEventListener("click", startGame);
-  document.getElementById("resetBtn").addEventListener("click", resetGame);
-
-  document.getElementById("supportNextBtn").addEventListener("click", () => {
-    if (!state.started) {
-      el.supportResultText.textContent = "Сначала нажми «Начать смену».";
-      el.supportResultText.style.color = "var(--color-warning)";
-      return;
+      state.current = { ...item, user };
+      el.authorName.textContent = user;
+      el.authorMeta.textContent = "Неизвестно, есть ли нарушение";
+      el.messageText.textContent = item.text;
+      el.avatarBox.textContent = initials(user);
+      el.hintText.textContent = "Выбери: без нарушения, устное/пред/мут или бан.";
     }
 
-    supportState.currentIndex = (supportState.currentIndex + 1) % supportQuestions.length;
-    const q = supportQuestions[supportState.currentIndex];
+    function startGame() {
+      state.started = true;
+      state.resolved = 0;
+      state.correct = 0;
+      state.mistakes = 0;
 
-    el.supportQuestionTitle.textContent = q.title;
-    el.supportMeta.textContent = "Вопрос игрока";
-    el.supportQuestionText.textContent = q.text;
-    el.supportAnswerInput.value = "";
-    el.supportResultText.textContent = "";
-    pushLog(`🟦 АП: выдан вопрос «${q.title}»`);
-  });
+      supportState.resolved = 0;
+      supportState.correct = 0;
+      supportState.mistakes = 0;
+      supportState.currentIndex = -1;
 
-  document.getElementById("supportCheckBtn").addEventListener("click", () => {
-    if (!state.started) {
-      el.supportResultText.textContent = "Сначала нажми «Начать смену».";
-      el.supportResultText.style.color = "var(--color-warning)";
-      return;
+      state.log = [];
+      shopState = { spent: 0, purchased: false };
+
+      el.logList.innerHTML = '<div class="log-item">Смена началась. Используй текущий режим ниже.</div>';
+      el.supportQuestionTitle.textContent = "Вопрос скрыт";
+      el.supportMeta.textContent = "Нажми «Следующий вопрос»";
+      el.supportQuestionText.textContent = "Смена началась. Теперь можно открыть первый вопрос агента поддержки.";
+      el.supportAnswerInput.value = "";
+      el.supportResultText.textContent = "";
+
+      randomMessage();
+      updateModStats();
+      updateSupportStats();
+
+      document.getElementById("game").scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    if (supportState.currentIndex < 0) {
-      el.supportResultText.textContent = "Сначала нажми «Следующий вопрос».";
-      el.supportResultText.style.color = "var(--color-warning)";
-      return;
+    function resetGame() {
+      state = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false, log: [] };
+      supportState = { resolved: 0, correct: 0, mistakes: 0, currentIndex: -1 };
+      shopState = { spent: 0, purchased: false };
+
+      el.authorName.textContent = "System";
+      el.authorMeta.textContent = "Сообщение появится после старта смены";
+      el.messageText.textContent = "Пока сообщений нет. Нажми «Начать смену».";
+      el.avatarBox.textContent = "T7";
+      el.hintText.textContent = "Оценка: без нарушения, устное/пред/мут, бан/перма/глобал.";
+
+      el.supportQuestionTitle.textContent = "Вопрос скрыт";
+      el.supportMeta.textContent = "Появится после начала смены";
+      el.supportQuestionText.textContent = "Нажми «Начать смену», затем открой вопрос и помоги игроку разобраться.";
+      el.supportAnswerInput.value = "";
+      el.supportResultText.textContent = "";
+
+      el.logList.innerHTML = '<div class="log-item">Пока пусто. Нажми «Начать смену», чтобы начать работу.</div>';
+
+      updateModStats();
+      updateSupportStats();
     }
 
-    const q = supportQuestions[supportState.currentIndex];
-    const answer = el.supportAnswerInput.value.trim().toLowerCase();
+    function judge(action) {
+      if (!state.started || !state.current) {
+        startGame();
+        return;
+      }
 
-    if (!answer) {
-      el.supportResultText.textContent = "Напиши ответ игроку.";
-      el.supportResultText.style.color = "var(--color-text-muted)";
-      return;
+      const isCorrect = action === state.current.type;
+      state.resolved++;
+
+      if (isCorrect) {
+        state.correct++;
+        pushLog(`✅ ${state.current.user}: верное решение (${action.toUpperCase()})`);
+      } else {
+        state.mistakes++;
+        pushLog(`❌ ${state.current.user}: решение не совпало с эталоном`);
+      }
+
+      updateModStats();
+      setTimeout(randomMessage, 300);
     }
 
-    supportState.resolved++;
-    const ok = q.keywords.some(k => answer.includes(k));
+    document.querySelectorAll("[data-action]").forEach(btn => {
+      btn.addEventListener("click", () => judge(btn.dataset.action));
+    });
 
-    if (ok) {
-      supportState.correct++;
-      el.supportResultText.textContent = "Ответ засчитан: попал по смыслу.";
-      el.supportResultText.style.color = "var(--color-success)";
-      pushLog(`🟢 АП: ответ по вопросу «${q.title}» засчитан.`);
-    } else {
-      supportState.mistakes++;
-      el.supportResultText.textContent = "Ответ не засчитан: мало ключевых ориентиров.";
-      el.supportResultText.style.color = "var(--color-error)";
-      pushLog(`🔴 АП: ответ по вопросу «${q.title}» не засчитан.`);
-    }
+    document.getElementById("startBtn").addEventListener("click", startGame);
+    document.getElementById("resetBtn").addEventListener("click", resetGame);
 
-    updateSupportStats();
-  });
+    document.getElementById("supportNextBtn").addEventListener("click", () => {
+      if (!state.started) {
+        el.supportResultText.textContent = "Сначала нажми «Начать смену».";
+        el.supportResultText.style.color = "var(--color-warning)";
+        return;
+      }
 
-  el.supportAnswerInput.addEventListener("keydown", e => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      document.getElementById("supportCheckBtn").click();
-    }
-  });
+      supportState.currentIndex = (supportState.currentIndex + 1) % supportQuestions.length;
+      const q = supportQuestions[supportState.currentIndex];
 
-  if (el.buyTestItemBtn) {
+      el.supportQuestionTitle.textContent = q.title;
+      el.supportMeta.textContent = "Вопрос игрока";
+      el.supportQuestionText.textContent = q.text;
+      el.supportAnswerInput.value = "";
+      el.supportResultText.textContent = "";
+
+      pushLog(`🟦 АП: выдан вопрос «${q.title}»`);
+    });
+
+    document.getElementById("supportCheckBtn").addEventListener("click", () => {
+      if (!state.started) {
+        el.supportResultText.textContent = "Сначала нажми «Начать смену».";
+        el.supportResultText.style.color = "var(--color-warning)";
+        return;
+      }
+
+      if (supportState.currentIndex < 0) {
+        el.supportResultText.textContent = "Сначала нажми «Следующий вопрос».";
+        el.supportResultText.style.color = "var(--color-warning)";
+        return;
+      }
+
+      const q = supportQuestions[supportState.currentIndex];
+      const answer = el.supportAnswerInput.value.trim().toLowerCase();
+
+      if (!answer) {
+        el.supportResultText.textContent = "Напиши ответ игроку.";
+        el.supportResultText.style.color = "var(--color-text-muted)";
+        return;
+      }
+
+      supportState.resolved++;
+      const ok = q.keywords.some(k => answer.includes(k));
+
+      if (ok) {
+        supportState.correct++;
+        el.supportResultText.textContent = "Ответ засчитан: попал по смыслу.";
+        el.supportResultText.style.color = "var(--color-success)";
+        pushLog(`🟢 АП: ответ по вопросу «${q.title}» засчитан.`);
+      } else {
+        supportState.mistakes++;
+        el.supportResultText.textContent = "Ответ не засчитан: мало ключевых ориентиров.";
+        el.supportResultText.style.color = "var(--color-error)";
+        pushLog(`🔴 АП: ответ по вопросу «${q.title}» не засчитан.`);
+      }
+
+      updateSupportStats();
+    });
+
+    el.supportAnswerInput.addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        document.getElementById("supportCheckBtn").click();
+      }
+    });
+
     el.buyTestItemBtn.addEventListener("click", () => {
       if (shopState.purchased) {
         el.shopBuyHint.textContent = "Тестовый товар уже был куплен.";
@@ -1647,69 +1574,70 @@
       pushLog("🛒 Куплен тестовый товар за 30 XP.");
       updateShopStats();
     });
-  }
 
-  document.querySelectorAll(".mode-btn").forEach(btn => btn.addEventListener("click", () => {
-    const mode = btn.dataset.mode;
+    document.querySelectorAll(".mode-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const mode = btn.dataset.mode;
 
-    document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
+        document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
 
-    document.getElementById("mode-moderation").style.display = mode === "moderation" ? "" : "none";
-    document.getElementById("mode-support").style.display = mode === "support" ? "" : "none";
-    document.getElementById("mode-about").style.display = mode === "about" ? "" : "none";
-    document.getElementById("mode-shop").style.display = mode === "shop" ? "" : "none";
+        document.getElementById("mode-moderation").style.display = mode === "moderation" ? "" : "none";
+        document.getElementById("mode-support").style.display = mode === "support" ? "" : "none";
+        document.getElementById("mode-about").style.display = mode === "about" ? "" : "none";
+        document.getElementById("mode-shop").style.display = mode === "shop" ? "" : "none";
 
-    html.setAttribute("data-site-theme", mode === "support" ? "support" : mode === "about" ? "about" : mode === "shop" ? "shop" : "mod");
-    renderRight(mode);
+        html.setAttribute("data-site-theme", mode === "support" ? "support" : mode === "about" ? "about" : mode === "shop" ? "shop" : "mod");
+        renderRight(mode);
 
-    if (mode === "moderation") {
-      brandSubtitle.textContent = "Симулятор смены модераторов";
-      heroTitle.innerHTML = 'Следи за <span>порядком</span> на сервере.';
-      heroText.textContent = "Проверяй сообщения, принимай решения и поддерживай порядок в чате. Всё показывается только после начала смены.";
-      heroBadge2.textContent = "Режим: модераторы";
-    } else if (mode === "support") {
-      brandSubtitle.textContent = "Симулятор смены агентов поддержки";
-      heroTitle.innerHTML = 'Создавай <span>уют</span> и помогай игрокам.';
-      heroText.textContent = "Отвечай на вопросы игроков, ориентируйся в материалах раздела АП и делай смену полезной, спокойной и понятной. Здесь всё посвящено только агентам поддержки.";
-      heroBadge2.textContent = "Режим: агенты поддержки";
-    } else if (mode === "about") {
-      brandSubtitle.textContent = "Люди, которые сделали этот проект";
-      heroTitle.innerHTML = 'Узнай, кто <span>стоит за идеей</span>.';
-      heroText.textContent = "Этот раздел посвящён авторам и тем, кто помогал собрать и оформить тренажёр.";
-      heroBadge2.textContent = "Режим: о сайте";
-    } else {
-      brandSubtitle.textContent = "Пробная вкладка магазина";
-      heroTitle.innerHTML = 'Проверь <span>трату XP</span>.';
-      heroText.textContent = "Здесь можно протестировать покупку одного товара за накопленные XP.";
-      heroBadge2.textContent = "Режим: магазин";
-      updateShopStats();
-    }
-  }));
-
-  (function() {
-    const toggle = document.querySelector("[data-theme-toggle]");
-    let theme = "dark";
-    document.documentElement.setAttribute("data-theme", theme);
-
-    function sync() {
-      toggle.textContent = theme === "dark" ? "🌙" : "☀️";
-      toggle.setAttribute("aria-label", theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему");
-    }
-
-    sync();
-
-    toggle.addEventListener("click", () => {
-      theme = theme === "dark" ? "light" : "dark";
-      document.documentElement.setAttribute("data-theme", theme);
-      sync();
+        if (mode === "moderation") {
+          brandSubtitle.textContent = "Симулятор смены модераторов";
+          heroTitle.innerHTML = 'Следи за <span>порядком</span> на сервере.';
+          heroText.textContent = "Проверяй сообщения, принимай решения и поддерживай порядок в чате. Всё показывается только после начала смены.";
+          heroBadge2.textContent = "Режим: модераторы";
+        } else if (mode === "support") {
+          brandSubtitle.textContent = "Симулятор смены агентов поддержки";
+          heroTitle.innerHTML = 'Создавай <span>уют</span> и помогай игрокам.';
+          heroText.textContent = "Отвечай на вопросы игроков, ориентируйся в материалах раздела АП и делай смену полезной, спокойной и понятной. Здесь всё посвящено только агентам поддержки.";
+          heroBadge2.textContent = "Режим: агенты поддержки";
+        } else if (mode === "about") {
+          brandSubtitle.textContent = "Люди, которые сделали этот проект";
+          heroTitle.innerHTML = 'Узнай, кто <span>стоит за идеей</span>.';
+          heroText.textContent = "Этот раздел посвящён авторам и тем, кто помогал собрать и оформить тренажёр.";
+          heroBadge2.textContent = "Режим: о команде";
+        } else {
+          brandSubtitle.textContent = "Пробная вкладка магазина";
+          heroTitle.innerHTML = 'Проверь <span>трату XP</span>.';
+          heroText.textContent = "Здесь можно протестировать покупку одного товара за накопленные XP.";
+          heroBadge2.textContent = "Режим: магазин";
+          updateShopStats();
+        }
+      });
     });
-  })();
 
-  renderRight("moderation");
-  updateModStats();
-  updateSupportStats();
-  updateShopStats();
-</script>
+    (function () {
+      const toggle = document.querySelector("[data-theme-toggle]");
+      let theme = "dark";
+      document.documentElement.setAttribute("data-theme", theme);
+
+      function sync() {
+        toggle.textContent = theme === "dark" ? "🌙" : "☀️";
+        toggle.setAttribute("aria-label", theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему");
+      }
+
+      sync();
+
+      toggle.addEventListener("click", () => {
+        theme = theme === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", theme);
+        sync();
+      });
+    })();
+
+    renderRight("moderation");
+    updateModStats();
+    updateSupportStats();
+    updateShopStats();
+  </script>
 </body>
 </html>
