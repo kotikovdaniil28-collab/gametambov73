@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root, [data-theme="light"] {
+    :root {
       --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
       --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
       --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
@@ -29,11 +29,6 @@
       --radius-lg: 0.75rem;
       --radius-xl: 1rem;
       --radius-full: 9999px;
-      --color-bg: #0b0d12;
-      --color-surface: #151925;
-      --color-surface-2: #191e2c;
-      --color-border: rgba(191, 198, 255, 0.26);
-      --color-divider: rgba(191, 198, 255, 0.18);
       --color-text: #f5f5ff;
       --color-text-muted: #9ba3c5;
       --color-text-faint: #6c7392;
@@ -51,6 +46,70 @@
       --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    /* Базовая (синяя) тема */
+    [data-site-theme="mod"] body {
+      background:
+        radial-gradient(circle at top left, rgba(108, 140, 255, .2), transparent 50%),
+        radial-gradient(circle at bottom right, rgba(255, 107, 136, .18), transparent 55%),
+        linear-gradient(160deg, #05060a, #05060a 45%, #040711 100%);
+    }
+    [data-site-theme="mod"] .panel {
+      background: radial-gradient(circle at top left, rgba(108,140,255,.23), transparent 55%),
+                  linear-gradient(155deg, rgba(18,22,38,.98), rgba(6,7,16,1));
+      border-color: rgba(191,198,255,.28);
+    }
+    [data-site-theme="mod"] .logo {
+      background: radial-gradient(circle at 20% 0%, rgba(255,255,255,.16), transparent 55%),
+                  linear-gradient(135deg, rgba(108,140,255,.32), rgba(255,107,136,.22));
+    }
+    [data-site-theme="mod"] .mode-btn.active {
+      background: linear-gradient(135deg, #6c8cff, #8aa3ff);
+    }
+    [data-site-theme="mod"] .badge.xp {
+      background: #ffbf47;
+      color: #18171c;
+    }
+
+    /* Розовая тема для поддержки */
+    [data-site-theme="support"] body {
+      background:
+        radial-gradient(circle at top left, rgba(255, 184, 222, .30), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(255, 120, 180, .30), transparent 55%),
+        linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%);
+    }
+    [data-site-theme="support"] .panel {
+      background: radial-gradient(circle at top left, rgba(255,160,210,.30), transparent 60%),
+                  linear-gradient(155deg, rgba(35,10,26,.98), rgba(16,4,20,1));
+      border-color: rgba(255,190,230,.40);
+    }
+    [data-site-theme="support"] .logo {
+      background: radial-gradient(circle at 20% 0%, rgba(255,255,255,.2), transparent 55%),
+                  linear-gradient(135deg, rgba(255,160,210,.55), rgba(255,120,180,.5));
+    }
+    [data-site-theme="support"] .mode-btn.active {
+      background: linear-gradient(135deg, #ff78b4, #ffb0dd);
+    }
+    [data-site-theme="support"] .badge.xp {
+      background: #ff8fc4;
+      color: #250512;
+    }
+    [data-site-theme="support"] .channel-dot {
+      background: #ff90c4;
+      box-shadow: 0 0 12px rgba(255,144,196,.9);
+    }
+    [data-site-theme="support"] .btn-primary {
+      background: radial-gradient(circle at 0 0, rgba(255,255,255,.18), transparent 55%),
+                  linear-gradient(135deg, #ff78b4, #ffb0dd);
+      box-shadow: 0 20px 45px rgba(255,144,196,.75);
+    }
+    [data-site-theme="support"] .btn-primary:hover {
+      background: linear-gradient(135deg, #ff9fca, #ffd0ea);
+    }
+    [data-site-theme="support"] .xp-fill {
+      background: linear-gradient(90deg, #ff9fca, #ffd0ea);
+      box-shadow: 0 0 26px rgba(255,159,202,.7);
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -58,12 +117,9 @@
       font-family: var(--font-body);
       font-size: var(--text-base);
       color: var(--color-text);
-      background:
-        radial-gradient(circle at top left, rgba(108, 140, 255, .2), transparent 50%),
-        radial-gradient(circle at bottom right, rgba(255, 107, 136, .18), transparent 55%),
-        linear-gradient(160deg, #05060a, #05060a 45%, #040711 100%);
       line-height: 1.6;
       overflow-x: hidden;
+      transition: background 300ms ease;
     }
     button, input { font: inherit; }
     button {
@@ -100,9 +156,6 @@
       width: 52px; height: 52px;
       display: grid; place-items: center;
       color: var(--color-text);
-      background: radial-gradient(circle at 20% 0%, rgba(255,255,255,.16), transparent 55%),
-                  linear-gradient(135deg, rgba(108,140,255,.32), rgba(255,107,136,.22));
-      border: 1px solid rgba(255,255,255,0.28);
       border-radius: 16px;
       box-shadow: var(--shadow-md);
     }
@@ -133,12 +186,11 @@
       align-items: stretch;
     }
     .panel {
-      background: radial-gradient(circle at top left, rgba(108,140,255,.23), transparent 55%),
-                  linear-gradient(155deg, rgba(18,22,38,.98), rgba(6,7,16,1));
-      border: 1px solid rgba(191,198,255,.28);
       border-radius: 26px;
+      border: 1px solid rgba(191,198,255,.28);
       box-shadow: var(--shadow-lg);
       backdrop-filter: blur(18px);
+      transition: background 300ms ease, border-color 300ms ease;
     }
     .hero-card {
       padding: clamp(1.3rem, 2.2vw, 2rem);
@@ -163,7 +215,7 @@
       color: var(--color-text-muted);
       background: rgba(9, 12, 26, .82);
     }
-    .badge.xp { color: #18171c; background: #ffbf47; border-color: transparent; }
+    .badge.xp { border-color: transparent; }
     .hero h1 {
       font-family: var(--font-display);
       font-size: clamp(2.4rem, 5.2vw, 4.4rem);
@@ -194,12 +246,9 @@
       text-transform: uppercase;
     }
     .btn-primary {
-      background: radial-gradient(circle at 0 0, rgba(255,255,255,.18), transparent 55%),
-                  linear-gradient(135deg, #6c8cff, #8aa3ff);
       color: white;
       box-shadow: 0 20px 45px rgba(108,140,255,.72);
     }
-    .btn-primary:hover { background: linear-gradient(135deg, #8aa3ff, #b1c3ff); }
     .btn-secondary {
       color: var(--color-text-muted);
       background: rgba(9, 12, 26, .86);
@@ -222,8 +271,7 @@
       align-items: start;
       padding: var(--space-3);
       border-radius: 18px;
-      background: radial-gradient(circle at 0 0, rgba(108,140,255,.22), transparent 60%),
-                  linear-gradient(150deg, rgba(13,16,32,.95), rgba(8,9,18,1));
+      background: rgba(13,16,32,.95);
       border: 1px solid rgba(191,198,255,.3);
     }
     .rule-icon {
@@ -255,7 +303,6 @@
     }
     .mode-btn.active {
       color: var(--color-text-inverse);
-      background: linear-gradient(135deg, #6c8cff, #8aa3ff);
       box-shadow: 0 10px 25px rgba(108,140,255,.6);
     }
 
@@ -332,6 +379,12 @@
       gap: var(--space-4);
       position: relative;
       overflow: hidden;
+      transition: background 300ms ease, border-color 300ms ease;
+    }
+    [data-site-theme="support"] .message-card {
+      background: radial-gradient(circle at 0 0, rgba(255,160,210,.45), transparent 70%),
+                  linear-gradient(160deg, rgba(35,10,26,.98), rgba(16,4,20,1));
+      border-color: rgba(255,190,230,.5);
     }
     .message-card::after {
       content: "";
@@ -342,6 +395,10 @@
       pointer-events: none;
       opacity: .6;
     }
+    [data-site-theme="support"] .message-card::after {
+      background: radial-gradient(circle, rgba(255,159,202,.55), transparent 65%);
+    }
+
     .channel {
       display: inline-flex;
       align-items: center;
@@ -366,6 +423,9 @@
       background: conic-gradient(from 210deg, #6c8cff, #ffbf47, #ff6b88, #6c8cff);
       box-shadow: 0 18px 32px rgba(0,0,0,.95);
       flex: 0 0 auto;
+    }
+    [data-site-theme="support"] .avatar {
+      background: conic-gradient(from 210deg, #ff78b4, #ffd0ea, #ff9fca, #ff78b4);
     }
     .author-name { font-weight: 800; }
     .author-meta { color: var(--color-text-faint); font-size: var(--text-sm); }
@@ -443,8 +503,6 @@
       white-space: normal;
       overflow: hidden;
       text-overflow: ellipsis;
-
-      /* 3–4 строки, потом обрезка */
       display: -webkit-box;
       -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
@@ -492,7 +550,7 @@
     }
   </style>
 </head>
-<body>
+<body data-site-theme="mod">
   <a class="sr-only" href="#game">Перейти к игре</a>
   <main class="page">
     <header class="topbar">
@@ -621,11 +679,11 @@
         </div>
       </section>
 
-      <!-- РЕЖИМ 2: АГЕНТЫ ПОДДЕРЖКИ (заготовка) -->
+      <!-- РЕЖИМ 2: АГЕНТЫ ПОДДЕРЖКИ -->
       <section class="panel game-card" id="mode-support" aria-labelledby="gameTitleSupport" style="display:none;">
         <div>
           <h2 id="gameTitleSupport">Режим: агенты поддержки</h2>
-          <p>Отдельный тренажёр для поддержки: ответы на вопросы, работа с конфликтами, эскалация и т.д. Сейчас это только заготовка без логики и кейсов.</p>
+          <p>Агенты поддержки не ищут нарушения и не наказывают игроков. Их задача — помогать по игровым вопросам, объяснять механики и подсказывать, куда обращаться дальше.</p>
         </div>
         <div class="feed">
           <article class="message-card">
@@ -634,14 +692,17 @@
               <div class="avatar">AG</div>
               <div>
                 <div class="author-name">Шаблон смены агента поддержки</div>
-                <div class="author-meta">Здесь позже появятся сценарии и варианты ответов</div>
+                <div class="author-meta">Только игровые вопросы и ответы, без наказаний</div>
               </div>
             </div>
             <div class="message-text">
-              План: добавить вопросы от игроков (про тех. проблемы, жалобы, споры), несколько готовых вариантов ответов
-              и систему оценки: корректно ли агент решил кейс, когда надо эскалировать на модерацию и администрацию.
+              План для этого режима: добавить реальные вопросы игроков (как зайти на сервер, что делать при баге,
+              как работает та или иная система, куда писать жалобу) и варианты корректных ответов от агента поддержки.
+              Агент не выдаёт муты и баны — максимум, вежливо объясняет, что дальше разберётся модерация или администрация.
             </div>
-            <div class="hint">Когда будешь готов — сюда можно вставить свои кейсы и правила оценки смены для агентов поддержки.</div>
+            <div class="hint">
+              Сейчас это заготовка. Позже сюда можно будет добавить свои кейсы и систему XP за качественные ответы поддержки.
+            </div>
           </article>
         </div>
       </section>
@@ -649,15 +710,15 @@
       <aside class="panel side">
         <div>
           <h2>Что тренируем</h2>
-          <p>Не просто знание правил, а чувство меры: когда достаточно устного, когда нужен мут, а когда уже бан.</p>
+          <p>В модераторском режиме тренируется чувство меры по наказаниям. В режиме поддержки — грамотная коммуникация и помощь игрокам.</p>
           <div class="rank-list">
             <div class="rank-item">
-              <span>Мягкие меры</span>
-              <strong>Устное, предупреждение, мут</strong>
+              <span>Модерация</span>
+              <strong>Устное, предупреждение, мут, бан</strong>
             </div>
             <div class="rank-item">
-              <span>Жёсткие меры</span>
-              <strong>Бан, перма, глобал</strong>
+              <span>Поддержка</span>
+              <strong>Ответы, разъяснения, эскалация</strong>
             </div>
           </div>
         </div>
@@ -671,7 +732,7 @@
       </aside>
     </section>
 
-    <p class="footer-note">При желании можно добавить таймер, лимит вопросов и экспорт результатов.</p>
+    <p class="footer-note">Можно отдельно придумать систему XP для агентов поддержки (за количество и качество ответов).</p>
   </main>
 
   <script>
@@ -899,10 +960,10 @@
     function pushLog(text) {
       state.log.unshift(text);
       state.log = state.log.slice(0, 40);
-      // короткий вариант в DOM + полный в title
       el.logList.innerHTML = state.log.map(item => {
         const short = item.length > 160 ? item.slice(0, 157) + '…' : item;
-        return `<div class="log-item" title="${item.replace(/"/g, '&quot;')}">${short}</div>`;
+        const escaped = item.replace(/"/g, '&quot;');
+        return `<div class="log-item" title="${escaped}">${short}</div>`;
       }).join('');
     }
 
@@ -1028,7 +1089,7 @@
       });
     })();
 
-    // Переключатель режимов: модераторы / агенты поддержки
+    // Переключатель режимов + смена цветовой темы
     document.querySelectorAll('.mode-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const mode = btn.dataset.mode;
@@ -1036,6 +1097,9 @@
         btn.classList.add('active');
         document.getElementById('mode-moderation').style.display = mode === 'moderation' ? '' : 'none';
         document.getElementById('mode-support').style.display    = mode === 'support' ? '' : 'none';
+
+        const body = document.body;
+        body.setAttribute('data-site-theme', mode === 'support' ? 'support' : 'mod');
       });
     });
 
