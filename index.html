@@ -54,6 +54,8 @@
       transition: background 350ms ease;
     }
 
+    /* === ТЕМЫ ОФОРМЛЕНИЯ === */
+    /* Агенты поддержки */
     html[data-site-theme="support"] body {
       background:
         radial-gradient(circle at top left, rgba(255, 184, 222, 0.3), transparent 55%),
@@ -61,6 +63,7 @@
         linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%);
     }
 
+    /* О команде */
     html[data-site-theme="about"] body {
       background:
         radial-gradient(circle at top left, rgba(255, 220, 120, 0.16), transparent 55%),
@@ -68,6 +71,7 @@
         linear-gradient(160deg, #0c0a05, #0c0a05 45%, #12100a 100%);
     }
 
+    /* Магазин */
     html[data-site-theme="shop"] body {
       background:
         radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%),
@@ -75,11 +79,28 @@
         linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%);
     }
 
+    /* Отчетность */
     html[data-site-theme="report"] body {
       background:
         radial-gradient(circle at top left, rgba(162, 108, 255, 0.2), transparent 50%),
         radial-gradient(circle at bottom right, rgba(108, 204, 255, 0.18), transparent 55%),
         linear-gradient(160deg, #090510, #0a0512 45%, #050411 100%);
+    }
+
+    /* Руководство (Бирюзовый/Циановый) */
+    html[data-site-theme="guide"] body {
+      background:
+        radial-gradient(circle at top left, rgba(0, 229, 255, 0.15), transparent 50%),
+        radial-gradient(circle at bottom right, rgba(0, 180, 216, 0.15), transparent 55%),
+        linear-gradient(160deg, #020a10, #041018 45%, #02080d 100%);
+    }
+
+    /* Лидерборд (Огненно-оранжевый) */
+    html[data-site-theme="leaderboard"] body {
+      background:
+        radial-gradient(circle at top left, rgba(255, 61, 0, 0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(255, 158, 0, 0.15), transparent 55%),
+        linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%);
     }
 
     button, input { font: inherit; }
@@ -119,6 +140,7 @@
       min-width: 0;
     }
 
+    /* ЛОГОТИП */
     .logo {
       width: 48px;
       height: 48px;
@@ -133,33 +155,41 @@
       border: 1px solid rgba(255, 255, 255, 0.25);
       flex: 0 0 auto;
     }
-
     html[data-site-theme="support"] .logo {
       background:
         radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.22), transparent 55%),
         linear-gradient(135deg, rgba(255, 160, 210, 0.65), rgba(255, 120, 180, 0.6));
       border-color: rgba(255, 210, 240, 0.7);
     }
-
     html[data-site-theme="about"] .logo {
       background:
         radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
         linear-gradient(135deg, rgba(255, 191, 71, 0.55), rgba(108, 140, 255, 0.38));
       border-color: rgba(255, 230, 180, 0.45);
     }
-
     html[data-site-theme="shop"] .logo {
       background:
         radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
         linear-gradient(135deg, rgba(82, 199, 123, 0.45), rgba(255, 191, 71, 0.28));
       border-color: rgba(162, 241, 188, 0.42);
     }
-
     html[data-site-theme="report"] .logo {
       background:
         radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
         linear-gradient(135deg, rgba(162, 108, 255, 0.55), rgba(108, 204, 255, 0.38));
       border-color: rgba(200, 180, 255, 0.45);
+    }
+    html[data-site-theme="guide"] .logo {
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
+        linear-gradient(135deg, rgba(0, 229, 255, 0.45), rgba(0, 180, 216, 0.35));
+      border-color: rgba(180, 240, 255, 0.4);
+    }
+    html[data-site-theme="leaderboard"] .logo {
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
+        linear-gradient(135deg, rgba(255, 61, 0, 0.45), rgba(255, 158, 0, 0.35));
+      border-color: rgba(255, 180, 150, 0.4);
     }
 
     .brand-title {
@@ -194,6 +224,7 @@
       align-items: stretch;
     }
 
+    /* ПАНЕЛИ */
     .panel {
       border-radius: 22px;
       border: 1px solid rgba(191, 198, 255, 0.28);
@@ -204,33 +235,29 @@
         linear-gradient(155deg, rgba(18, 22, 38, 0.98), rgba(6, 7, 16, 1));
       min-width: 0;
     }
-
     html[data-site-theme="support"] .panel {
-      background:
-        radial-gradient(circle at top left, rgba(255, 160, 210, 0.3), transparent 55%),
-        linear-gradient(155deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1));
+      background: radial-gradient(circle at top left, rgba(255, 160, 210, 0.3), transparent 55%), linear-gradient(155deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1));
       border-color: rgba(255, 190, 230, 0.45);
     }
-
     html[data-site-theme="about"] .panel {
-      background:
-        radial-gradient(circle at top left, rgba(255, 191, 71, 0.16), transparent 55%),
-        linear-gradient(155deg, rgba(25, 19, 8, 0.98), rgba(10, 10, 14, 1));
+      background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.16), transparent 55%), linear-gradient(155deg, rgba(25, 19, 8, 0.98), rgba(10, 10, 14, 1));
       border-color: rgba(255, 214, 122, 0.28);
     }
-
     html[data-site-theme="shop"] .panel {
-      background:
-        radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%),
-        linear-gradient(155deg, rgba(10, 23, 14, 0.98), rgba(8, 10, 15, 1));
+      background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), linear-gradient(155deg, rgba(10, 23, 14, 0.98), rgba(8, 10, 15, 1));
       border-color: rgba(162, 241, 188, 0.22);
     }
-
     html[data-site-theme="report"] .panel {
-      background:
-        radial-gradient(circle at top left, rgba(162, 108, 255, 0.16), transparent 55%),
-        linear-gradient(155deg, rgba(16, 9, 25, 0.98), rgba(10, 10, 14, 1));
+      background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.16), transparent 55%), linear-gradient(155deg, rgba(16, 9, 25, 0.98), rgba(10, 10, 14, 1));
       border-color: rgba(180, 150, 255, 0.28);
+    }
+    html[data-site-theme="guide"] .panel {
+      background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.12), transparent 55%), linear-gradient(155deg, rgba(4, 14, 22, 0.98), rgba(2, 8, 12, 1));
+      border-color: rgba(0, 229, 255, 0.25);
+    }
+    html[data-site-theme="leaderboard"] .panel {
+      background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.12), transparent 55%), linear-gradient(155deg, rgba(22, 8, 4, 0.98), rgba(12, 4, 2, 1));
+      border-color: rgba(255, 61, 0, 0.25);
     }
 
     .hero-card, .rules, .game-card, .side {
@@ -266,6 +293,7 @@
       gap: 0.5rem;
     }
 
+    /* БЕЙДЖИ */
     .badge {
       padding: 0.4rem 0.85rem;
       border-radius: 999px;
@@ -277,47 +305,27 @@
       color: var(--color-text-muted);
       background: rgba(9, 12, 26, 0.82);
     }
-
     .badge.xp {
       background: #ffbf47;
       color: #18171c;
       border-color: transparent;
     }
+    html[data-site-theme="support"] .badge { background: rgba(34, 7, 24, 0.96); border-color: rgba(255, 190, 230, 0.5); }
+    html[data-site-theme="support"] .badge.xp { background: #ff8fc4; color: #250512; }
+    
+    html[data-site-theme="about"] .badge { background: rgba(25, 19, 8, 0.96); border-color: rgba(255, 214, 122, 0.35); }
+    
+    html[data-site-theme="shop"] .badge { background: rgba(11, 21, 15, 0.96); border-color: rgba(162, 241, 188, 0.25); }
+    html[data-site-theme="shop"] .badge.xp { background: #52c77b; color: #08110b; }
+    
+    html[data-site-theme="report"] .badge { background: rgba(16, 9, 25, 0.96); border-color: rgba(180, 150, 255, 0.35); }
+    html[data-site-theme="report"] .badge.xp { background: #a26cff; color: #fff; }
 
-    html[data-site-theme="support"] .badge {
-      background: rgba(34, 7, 24, 0.96);
-      border-color: rgba(255, 190, 230, 0.5);
-    }
+    html[data-site-theme="guide"] .badge { background: rgba(4, 18, 28, 0.96); border-color: rgba(0, 229, 255, 0.3); }
+    html[data-site-theme="guide"] .badge.xp { background: #00e5ff; color: #002229; }
 
-    html[data-site-theme="support"] .badge.xp {
-      background: #ff8fc4;
-      color: #250512;
-    }
-
-    html[data-site-theme="about"] .badge {
-      background: rgba(25, 19, 8, 0.96);
-      border-color: rgba(255, 214, 122, 0.35);
-    }
-
-    html[data-site-theme="shop"] .badge {
-      background: rgba(11, 21, 15, 0.96);
-      border-color: rgba(162, 241, 188, 0.25);
-    }
-
-    html[data-site-theme="shop"] .badge.xp {
-      background: #52c77b;
-      color: #08110b;
-    }
-
-    html[data-site-theme="report"] .badge {
-      background: rgba(16, 9, 25, 0.96);
-      border-color: rgba(180, 150, 255, 0.35);
-    }
-
-    html[data-site-theme="report"] .badge.xp {
-      background: #a26cff;
-      color: #fff;
-    }
+    html[data-site-theme="leaderboard"] .badge { background: rgba(28, 10, 4, 0.96); border-color: rgba(255, 61, 0, 0.3); }
+    html[data-site-theme="leaderboard"] .badge.xp { background: #ff3d00; color: #fff; }
 
     .hero h1 {
       font-family: var(--font-display);
@@ -327,30 +335,14 @@
       max-width: 13ch;
     }
 
-    .hero h1 span {
-      color: var(--color-primary);
-      text-shadow: 0 0 22px rgba(108, 140, 255, 0.65);
-    }
-
-    html[data-site-theme="support"] .hero h1 span {
-      color: #ff8fc4;
-      text-shadow: 0 0 26px rgba(255, 143, 196, 0.9);
-    }
-
-    html[data-site-theme="about"] .hero h1 span {
-      color: #ffbf47;
-      text-shadow: 0 0 22px rgba(255, 191, 71, 0.72);
-    }
-
-    html[data-site-theme="shop"] .hero h1 span {
-      color: #7fe8a0;
-      text-shadow: 0 0 22px rgba(127, 232, 160, 0.62);
-    }
-
-    html[data-site-theme="report"] .hero h1 span {
-      color: #a26cff;
-      text-shadow: 0 0 22px rgba(162, 108, 255, 0.72);
-    }
+    /* ЦВЕТ ЗАГОЛОВКОВ */
+    .hero h1 span { color: var(--color-primary); text-shadow: 0 0 22px rgba(108, 140, 255, 0.65); }
+    html[data-site-theme="support"] .hero h1 span { color: #ff8fc4; text-shadow: 0 0 26px rgba(255, 143, 196, 0.9); }
+    html[data-site-theme="about"] .hero h1 span { color: #ffbf47; text-shadow: 0 0 22px rgba(255, 191, 71, 0.72); }
+    html[data-site-theme="shop"] .hero h1 span { color: #7fe8a0; text-shadow: 0 0 22px rgba(127, 232, 160, 0.62); }
+    html[data-site-theme="report"] .hero h1 span { color: #a26cff; text-shadow: 0 0 22px rgba(162, 108, 255, 0.72); }
+    html[data-site-theme="guide"] .hero h1 span { color: #00e5ff; text-shadow: 0 0 22px rgba(0, 229, 255, 0.65); }
+    html[data-site-theme="leaderboard"] .hero h1 span { color: #ff5419; text-shadow: 0 0 22px rgba(255, 61, 0, 0.65); }
 
     .hero p, .rules p, .game-card > p, .side p {
       color: var(--color-text-muted);
@@ -363,6 +355,7 @@
       gap: 0.75rem;
     }
 
+    /* КНОПКИ */
     .btn {
       min-height: 44px;
       padding: 0.85rem 1.2rem;
@@ -375,42 +368,15 @@
 
     .btn-primary {
       color: #fff;
-      background:
-        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%),
-        linear-gradient(135deg, #6c8cff, #8aa3ff);
+      background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #6c8cff, #8aa3ff);
       box-shadow: 0 20px 45px rgba(108, 140, 255, 0.72);
     }
-
-    html[data-site-theme="support"] .btn-primary {
-      background:
-        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.2), transparent 55%),
-        linear-gradient(135deg, #ff78b4, #ffb0dd);
-      box-shadow: 0 20px 45px rgba(255, 144, 196, 0.78);
-    }
-
-    html[data-site-theme="about"] .btn-primary {
-      background:
-        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%),
-        linear-gradient(135deg, #ffbf47, #ffd979);
-      box-shadow: 0 20px 45px rgba(255, 191, 71, 0.48);
-      color: #18171c;
-    }
-
-    html[data-site-theme="shop"] .btn-primary {
-      background:
-        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%),
-        linear-gradient(135deg, #52c77b, #8fe0a8);
-      box-shadow: 0 20px 45px rgba(82, 199, 123, 0.42);
-      color: #08110b;
-    }
-
-    html[data-site-theme="report"] .btn-primary {
-      background:
-        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%),
-        linear-gradient(135deg, #a26cff, #c4a1ff);
-      box-shadow: 0 20px 45px rgba(162, 108, 255, 0.48);
-      color: #fff;
-    }
+    html[data-site-theme="support"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.2), transparent 55%), linear-gradient(135deg, #ff78b4, #ffb0dd); box-shadow: 0 20px 45px rgba(255, 144, 196, 0.78); }
+    html[data-site-theme="about"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #ffbf47, #ffd979); box-shadow: 0 20px 45px rgba(255, 191, 71, 0.48); color: #18171c; }
+    html[data-site-theme="shop"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #52c77b, #8fe0a8); box-shadow: 0 20px 45px rgba(82, 199, 123, 0.42); color: #08110b; }
+    html[data-site-theme="report"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 20px 45px rgba(162, 108, 255, 0.48); color: #fff; }
+    html[data-site-theme="guide"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #00b4d8, #00e5ff); box-shadow: 0 20px 45px rgba(0, 229, 255, 0.45); color: #001a22; }
+    html[data-site-theme="leaderboard"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #ff3d00, #ff9e00); box-shadow: 0 20px 45px rgba(255, 61, 0, 0.45); color: #fff; }
 
     .btn-secondary {
       color: var(--color-text-muted);
@@ -449,28 +415,12 @@
       box-shadow: 0 10px 25px rgba(108, 140, 255, 0.6);
     }
 
-    html[data-site-theme="support"] .mode-btn.active[data-mode="support"] {
-      background: linear-gradient(135deg, #ff78b4, #ffb0dd);
-      box-shadow: 0 10px 25px rgba(255, 144, 196, 0.7);
-    }
-
-    html[data-site-theme="about"] .mode-btn.active[data-mode="about"] {
-      background: linear-gradient(135deg, #ffbf47, #ffd979);
-      box-shadow: 0 10px 25px rgba(255, 191, 71, 0.45);
-      color: #18171c;
-    }
-
-    html[data-site-theme="shop"] .mode-btn.active[data-mode="shop"] {
-      background: linear-gradient(135deg, #52c77b, #8fe0a8);
-      box-shadow: 0 10px 25px rgba(82, 199, 123, 0.45);
-      color: #08110b;
-    }
-
-    html[data-site-theme="report"] .mode-btn.active[data-mode="report"] {
-      background: linear-gradient(135deg, #a26cff, #c4a1ff);
-      box-shadow: 0 10px 25px rgba(162, 108, 255, 0.45);
-      color: #fff;
-    }
+    html[data-site-theme="support"] .mode-btn.active[data-mode="support"] { background: linear-gradient(135deg, #ff78b4, #ffb0dd); box-shadow: 0 10px 25px rgba(255, 144, 196, 0.7); }
+    html[data-site-theme="about"] .mode-btn.active[data-mode="about"] { background: linear-gradient(135deg, #ffbf47, #ffd979); box-shadow: 0 10px 25px rgba(255, 191, 71, 0.45); color: #18171c; }
+    html[data-site-theme="shop"] .mode-btn.active[data-mode="shop"] { background: linear-gradient(135deg, #52c77b, #8fe0a8); box-shadow: 0 10px 25px rgba(82, 199, 123, 0.45); color: #08110b; }
+    html[data-site-theme="report"] .mode-btn.active[data-mode="report"] { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 10px 25px rgba(162, 108, 255, 0.45); color: #fff; }
+    html[data-site-theme="guide"] .mode-btn.active[data-mode="guide"] { background: linear-gradient(135deg, #00b4d8, #00e5ff); box-shadow: 0 10px 25px rgba(0, 229, 255, 0.45); color: #001a22; }
+    html[data-site-theme="leaderboard"] .mode-btn.active[data-mode="leaderboard"] { background: linear-gradient(135deg, #ff3d00, #ff9e00); box-shadow: 0 10px 25px rgba(255, 61, 0, 0.45); color: #fff; }
 
     .game-wrap {
       margin-top: 0.75rem;
@@ -486,6 +436,7 @@
       min-width: 0;
     }
 
+    /* ЭЛЕМЕНТЫ ПРАВИЛ И ЛОГОВ */
     .rule-item, .log-item, .stat, .shop-card {
       padding: 0.95rem;
       border-radius: 16px;
@@ -495,37 +446,12 @@
       overflow-wrap: anywhere;
     }
 
-    html[data-site-theme="support"] .rule-item,
-    html[data-site-theme="support"] .log-item,
-    html[data-site-theme="support"] .stat,
-    html[data-site-theme="support"] .shop-card {
-      background: rgba(35, 10, 26, 0.96);
-      border-color: rgba(255, 190, 230, 0.36);
-    }
-
-    html[data-site-theme="about"] .rule-item,
-    html[data-site-theme="about"] .log-item,
-    html[data-site-theme="about"] .stat,
-    html[data-site-theme="about"] .shop-card {
-      background: rgba(25, 19, 8, 0.96);
-      border-color: rgba(255, 214, 122, 0.24);
-    }
-
-    html[data-site-theme="shop"] .rule-item,
-    html[data-site-theme="shop"] .log-item,
-    html[data-site-theme="shop"] .stat,
-    html[data-site-theme="shop"] .shop-card {
-      background: rgba(11, 21, 15, 0.96);
-      border-color: rgba(162, 241, 188, 0.22);
-    }
-
-    html[data-site-theme="report"] .rule-item,
-    html[data-site-theme="report"] .log-item,
-    html[data-site-theme="report"] .stat,
-    html[data-site-theme="report"] .shop-card {
-      background: rgba(16, 9, 25, 0.96);
-      border-color: rgba(180, 150, 255, 0.24);
-    }
+    html[data-site-theme="support"] .rule-item, html[data-site-theme="support"] .log-item, html[data-site-theme="support"] .stat, html[data-site-theme="support"] .shop-card { background: rgba(35, 10, 26, 0.96); border-color: rgba(255, 190, 230, 0.36); }
+    html[data-site-theme="about"] .rule-item, html[data-site-theme="about"] .log-item, html[data-site-theme="about"] .stat, html[data-site-theme="about"] .shop-card { background: rgba(25, 19, 8, 0.96); border-color: rgba(255, 214, 122, 0.24); }
+    html[data-site-theme="shop"] .rule-item, html[data-site-theme="shop"] .log-item, html[data-site-theme="shop"] .stat, html[data-site-theme="shop"] .shop-card { background: rgba(11, 21, 15, 0.96); border-color: rgba(162, 241, 188, 0.22); }
+    html[data-site-theme="report"] .rule-item, html[data-site-theme="report"] .log-item, html[data-site-theme="report"] .stat, html[data-site-theme="report"] .shop-card { background: rgba(16, 9, 25, 0.96); border-color: rgba(180, 150, 255, 0.24); }
+    html[data-site-theme="guide"] .rule-item, html[data-site-theme="guide"] .log-item, html[data-site-theme="guide"] .stat, html[data-site-theme="guide"] .shop-card { background: rgba(4, 14, 22, 0.96); border-color: rgba(0, 229, 255, 0.22); }
+    html[data-site-theme="leaderboard"] .rule-item, html[data-site-theme="leaderboard"] .log-item, html[data-site-theme="leaderboard"] .stat, html[data-site-theme="leaderboard"] .shop-card { background: rgba(22, 8, 4, 0.96); border-color: rgba(255, 61, 0, 0.22); }
 
     .rule-item {
       display: grid;
@@ -564,14 +490,10 @@
       display: block;
     }
     
-    .rule-copy a {
-      color: var(--color-primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .rule-copy a:hover {
-      text-decoration: underline;
-    }
+    .rule-copy a { color: var(--color-primary); text-decoration: none; font-weight: 600; }
+    html[data-site-theme="guide"] .rule-copy a { color: #00e5ff; }
+    html[data-site-theme="leaderboard"] .rule-copy a { color: #ff5419; }
+    .rule-copy a:hover { text-decoration: underline; }
 
     .ok { background: rgba(82, 199, 123, 0.14); color: #8df0ae; }
     .warn { background: rgba(255, 191, 71, 0.18); color: #ffdf95; }
@@ -616,6 +538,7 @@
       box-shadow: 0 0 26px rgba(255, 191, 71, 0.7);
     }
 
+    /* КАРТОЧКИ СООБЩЕНИЙ */
     .message-card {
       padding: 1rem;
       border-radius: 18px;
@@ -643,33 +566,12 @@
       opacity: 0.6;
     }
 
-    html[data-site-theme="support"] .message-card {
-      background:
-        radial-gradient(circle at 0 0, rgba(255, 160, 210, 0.45), transparent 70%),
-        linear-gradient(160deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1));
-      border-color: rgba(255, 190, 230, 0.55);
-    }
-
-    html[data-site-theme="about"] .message-card {
-      background:
-        radial-gradient(circle at 0 0, rgba(255, 191, 71, 0.18), transparent 70%),
-        linear-gradient(160deg, rgba(25, 19, 8, 0.98), rgba(11, 10, 15, 1));
-      border-color: rgba(255, 214, 122, 0.25);
-    }
-
-    html[data-site-theme="shop"] .message-card {
-      background:
-        radial-gradient(circle at 0 0, rgba(82, 199, 123, 0.2), transparent 70%),
-        linear-gradient(160deg, rgba(11, 21, 15, 0.98), rgba(8, 10, 15, 1));
-      border-color: rgba(162, 241, 188, 0.25);
-    }
-
-    html[data-site-theme="report"] .message-card {
-      background:
-        radial-gradient(circle at 0 0, rgba(162, 108, 255, 0.18), transparent 70%),
-        linear-gradient(160deg, rgba(16, 9, 25, 0.98), rgba(11, 10, 15, 1));
-      border-color: rgba(180, 150, 255, 0.25);
-    }
+    html[data-site-theme="support"] .message-card { background: radial-gradient(circle at 0 0, rgba(255, 160, 210, 0.45), transparent 70%), linear-gradient(160deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1)); border-color: rgba(255, 190, 230, 0.55); }
+    html[data-site-theme="about"] .message-card { background: radial-gradient(circle at 0 0, rgba(255, 191, 71, 0.18), transparent 70%), linear-gradient(160deg, rgba(25, 19, 8, 0.98), rgba(11, 10, 15, 1)); border-color: rgba(255, 214, 122, 0.25); }
+    html[data-site-theme="shop"] .message-card { background: radial-gradient(circle at 0 0, rgba(82, 199, 123, 0.2), transparent 70%), linear-gradient(160deg, rgba(11, 21, 15, 0.98), rgba(8, 10, 15, 1)); border-color: rgba(162, 241, 188, 0.25); }
+    html[data-site-theme="report"] .message-card { background: radial-gradient(circle at 0 0, rgba(162, 108, 255, 0.18), transparent 70%), linear-gradient(160deg, rgba(16, 9, 25, 0.98), rgba(11, 10, 15, 1)); border-color: rgba(180, 150, 255, 0.25); }
+    html[data-site-theme="guide"] .message-card { background: radial-gradient(circle at 0 0, rgba(0, 229, 255, 0.15), transparent 70%), linear-gradient(160deg, rgba(4, 14, 22, 0.98), rgba(2, 8, 12, 1)); border-color: rgba(0, 229, 255, 0.25); }
+    html[data-site-theme="leaderboard"] .message-card { background: radial-gradient(circle at 0 0, rgba(255, 61, 0, 0.15), transparent 70%), linear-gradient(160deg, rgba(22, 8, 4, 0.98), rgba(12, 4, 2, 1)); border-color: rgba(255, 61, 0, 0.25); }
 
     .channel {
       display: inline-flex;
@@ -731,6 +633,9 @@
       text-wrap: pretty;
       color: var(--color-text);
     }
+    
+    html[data-site-theme="guide"] .message-text strong { color: #00e5ff; }
+    html[data-site-theme="leaderboard"] .message-text strong { color: #ff5419; }
 
     .hint {
       color: var(--color-text-faint);
@@ -815,15 +720,8 @@
       white-space: nowrap;
     }
 
-    html[data-site-theme="support"] .support-check-btn {
-      background: rgba(255, 144, 196, 0.18);
-      border-color: rgba(255, 144, 196, 0.8);
-    }
-    
-    html[data-site-theme="report"] .support-check-btn {
-      background: rgba(162, 108, 255, 0.18);
-      border-color: rgba(162, 108, 255, 0.8);
-    }
+    html[data-site-theme="support"] .support-check-btn { background: rgba(255, 144, 196, 0.18); border-color: rgba(255, 144, 196, 0.8); }
+    html[data-site-theme="report"] .support-check-btn { background: rgba(162, 108, 255, 0.18); border-color: rgba(162, 108, 255, 0.8); }
 
     .support-result {
       font-size: var(--text-sm);
@@ -913,6 +811,11 @@
       background: rgba(4, 6, 12, 0.7);
       border: 1px solid rgba(162, 108, 255, 0.25);
     }
+    
+    html[data-site-theme="leaderboard"] .report-list-item {
+      border-color: rgba(255, 61, 0, 0.25);
+    }
+
     .report-list-item span {
       font-size: var(--text-xs);
       color: var(--color-text-faint);
@@ -1036,7 +939,6 @@
       </aside>
     </section>
 
-    <!-- ОРИГИНАЛЬНОЕ МЕНЮ НАВИГАЦИИ БЕЗ ВЫДЕЛЕНИЙ -->
     <div class="mode-switch">
       <button class="mode-btn active" type="button" data-mode="moderation">Модераторы</button>
       <button class="mode-btn" type="button" data-mode="support">Агенты поддержки</button>
@@ -1243,8 +1145,8 @@
 
       <aside class="panel side">
         <div class="section-head">
-          <h2 id="rightTitle">Лог смены</h2>
-          <p id="rightLead">Здесь фиксируются решения модератора и ответы агента поддержки.</p>
+          <h2>Лог смены</h2>
+          <p>Здесь фиксируются решения модератора и ответы агента поддержки.</p>
         </div>
         <div class="log" id="logList">
           <!-- Карточки руководства или логи генерируются тут -->
@@ -1266,7 +1168,6 @@
     let pendingAction = null; 
 
     let hasAccessCode = localStorage.getItem('access_JohnWickModer') === 'true';
-    // Добавили отдельную переменную для проверки доступа к Отчетности
     let hasReportAccessCode = localStorage.getItem('access_JohnWIckTopModer') === 'true';
 
     // Список аккаунтов, которые будут видеть кнопку проверки отчетов:
@@ -1278,7 +1179,8 @@
       mistakes: 0,
       current: null,
       started: false,
-      log: []
+      log: [],
+      reportXp: 0 
     };
 
     let supportState = {
@@ -1300,8 +1202,8 @@
 
     async function loadProgress() {
       if(!currentUser) return;
-      const { data, error } = await supa.from('user_stats').select('*').eq('user_id', currentUser.id).single();
       
+      const { data, error } = await supa.from('user_stats').select('*').eq('user_id', currentUser.id).single();
       if(data) {
         state.resolved = data.mod_resolved || 0;
         state.correct = data.mod_correct || 0;
@@ -1310,11 +1212,17 @@
         supportState.correct = data.sup_correct || 0;
         supportState.mistakes = data.sup_mistakes || 0;
         shopState.spent = data.shop_spent || 0;
-        
-        updateModStats();
-        updateSupportStats();
-        updateShopStats();
       }
+      
+      const { data: repData } = await supa.from('reports').select('xp').eq('email', currentUser.email);
+      state.reportXp = 0;
+      if (repData) {
+          state.reportXp = repData.reduce((sum, r) => sum + (r.xp || 0), 0);
+      }
+      
+      updateModStats();
+      updateSupportStats();
+      updateShopStats();
     }
 
     async function saveProgress() {
@@ -1335,7 +1243,6 @@
       
       const { error } = await supa.from('user_stats').upsert(payload);
       
-      // Если колонки nickname или email нет в таблице
       if (error) {
         const fallbackPayload = { ...payload };
         delete fallbackPayload.email;
@@ -1374,7 +1281,6 @@
       await supa.auth.signOut(); 
     };
 
-    // ВХОД В АККАУНТ
     document.getElementById('authLoginSubmit').onclick = async () => {
       const email = document.getElementById('authEmail').value;
       const password = document.getElementById('authPassword').value;
@@ -1384,7 +1290,6 @@
         authErrorMsg.style.display = 'block';
         return;
       }
-      
       const { data, error } = await supa.auth.signInWithPassword({ email, password });
       if(error) { 
         authErrorMsg.textContent = error.message; 
@@ -1393,7 +1298,6 @@
       }
     };
 
-    // РЕГИСТРАЦИЯ
     document.getElementById('authRegisterSubmit').onclick = async () => {
       const email = document.getElementById('authEmail').value;
       const nickname = document.getElementById('authNickname').value;
@@ -1409,19 +1313,14 @@
       const { data, error } = await supa.auth.signUp({ 
         email, 
         password,
-        options: {
-          data: {
-            nickname: nickname
-          }
-        }
+        options: { data: { nickname: nickname } }
       });
       
       if(error) { 
         authErrorMsg.textContent = error.message; 
         authErrorMsg.style.color = "var(--color-error)";
         authErrorMsg.style.display = 'block'; 
-      }
-      else { 
+      } else { 
         authErrorMsg.textContent = "Успешно! Вы зарегистрированы и вошли."; 
         authErrorMsg.style.color = "var(--color-success)"; 
         authErrorMsg.style.display = 'block'; 
@@ -1544,7 +1443,6 @@
         "ээээ, ты чё такой умный? давай один на один разберёмся, герой нашёлся",
         "пошли уже все на капт, вы чё там в афк стоите? движ нужен!"
       ];
-
       const ban = [
         "РЕБЯТА, ВСЕ НА ЭТОТ ТОП ПРОЕКТ, ТУТ ВЫДАЮТ АДМИНКИ БЕСПЛАТНО!!!",
         "кому нужны ВИРТЫ, ПРОДАЮ ДЕШЕВО, ПИШИТЕ В ЛС, ОПЛАТА НА КАРТУ",
@@ -1552,7 +1450,6 @@
         "я тут нашёл баг на дюп бабок, могу продать инфу за реал",
         "кто хочет купить мой аккаунт с огромным донатом, пишите срочно"
       ];
-
       const good = [
         "Ребят, подскажите, где можно посмотреть все правила сервера?",
         "Здравствуйте, а где находится раздел с жалобами на игроков?",
@@ -1569,14 +1466,13 @@
     }
 
     function createSupportQuestions() {
-      const result = [
+      return [
         { title: "Навигация и GPS", text: "Как найти заправку через GPS?", keywords: ["gps","заправ","бензин"] },
         { title: "Навигация и GPS", text: "Подскажите, как в навигаторе включить маршрут до автосалона?", keywords: ["gps","автосалон","маршрут"] },
         { title: "Работа и уровень", text: "С какого уровня я могу устроиться инкассатором?", keywords: ["инкассатор","уровень","работа"] },
         { title: "Фракции и организации", text: "Как мне попасть в ОПГ, куда подавать заявку?", keywords: ["опг","заявк","форум"] },
         { title: "Донат и VIP", text: "Как открыть донат-меню и купить Black Pass?", keywords: ["донат","black","pass"] }
       ];
-      return result;
     }
 
     const moderationMessages = createModerationMessages();
@@ -1623,9 +1519,7 @@
     }
 
     function getReportXp() {
-      if (!currentUser) return 0;
-      let bonuses = JSON.parse(localStorage.getItem('tambov_bonuses') || '{}');
-      return bonuses[currentUser.email] || 0;
+      return state.reportXp || 0;
     }
 
     function renderLogs() {
@@ -1646,26 +1540,20 @@
       }
     }
 
-    // Итоговый доступный ХР БЕЗ учета ответов АП
     function availableXp() {
       return Math.max(0, calcXP(state.correct) + getReportXp() - shopState.spent);
     }
 
-    // Загрузка Лидерборда
     async function loadLeaderboard() {
       const lb = document.getElementById("leaderboardList");
       lb.innerHTML = '<div class="message-text">Загрузка...</div>';
       
       try {
-        const { data, error } = await supa
-          .from('user_stats')
-          .select('*')
-          .order('mod_correct', { ascending: false })
-          .limit(10);
+        const { data, error } = await supa.from('user_stats').select('*').order('mod_correct', { ascending: false }).limit(10);
           
         if (error || !data) {
            console.error("Supabase Error:", error);
-           lb.innerHTML = '<div class="message-text" style="color:var(--color-error)">Не удалось загрузить таблицу. Убедитесь, что в Supabase (RLS) включено чтение для таблицы user_stats!</div>';
+           lb.innerHTML = '<div class="message-text" style="color:var(--color-error)">Не удалось загрузить таблицу. Убедитесь, что RLS позволяет чтение таблицы user_stats!</div>';
            return;
         }
         
@@ -1675,7 +1563,7 @@
         }
 
         lb.innerHTML = data.map((u, i) => {
-          const userXp = Math.floor((u.mod_correct || 0) / 10) * 15 - (u.shop_spent || 0);
+          const userXp = Math.floor((u.mod_correct || 0) / 10) * 15 - (u.shop_spent || 0); 
           const name = u.nickname || (u.email ? u.email.split('@')[0] : `User_${u.user_id.substring(0,4)}`);
           
           return `
@@ -1689,7 +1577,6 @@
           `;
         }).join('');
       } catch (err) {
-        console.error(err);
         lb.innerHTML = '<div class="message-text">Ошибка при загрузке.</div>';
       }
     }
@@ -1811,12 +1698,14 @@
       else if(mode === "about") currentTheme = "about";
       else if(mode === "shop") currentTheme = "shop";
       else if(mode === "report") currentTheme = "report";
+      else if(mode === "guide") currentTheme = "guide"; // Добавлена новая тема
+      else if(mode === "leaderboard") currentTheme = "leaderboard"; // Добавлена новая тема
       html.setAttribute("data-site-theme", currentTheme);
+      
+      renderRight(mode);
       
       if(mode === 'moderation' || mode === 'support') {
          renderLogs();
-      } else {
-         renderRight(mode);
       }
 
       if (mode === "moderation") {
@@ -1892,7 +1781,6 @@
 
       if (type && type.startsWith('switch_tab_')) {
         const mode = type.replace('switch_tab_', '');
-        
         if (mode === 'shop' && code === 'JohnWickModer') {
           localStorage.setItem('access_JohnWickModer', 'true');
           hasAccessCode = true;
@@ -1913,7 +1801,7 @@
       document.getElementById('accessModal').style.display = 'none';
     });
 
-    document.getElementById('submitReportBtn').addEventListener('click', () => {
+    document.getElementById('submitReportBtn').addEventListener('click', async () => {
       const link = document.getElementById('reportLinkInput').value.trim();
       const res = document.getElementById('reportResultText');
       if(!link) {
@@ -1927,18 +1815,23 @@
         return;
       }
 
-      let storedReports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
-
       const newReport = {
         id: Date.now().toString() + Math.random().toString(36).substr(2, 9), 
         email: currentUser ? currentUser.email : 'Неизвестно',
         link: link,
         date: new Date().toLocaleString('ru-RU'),
-        status: null 
+        status: null,
+        xp: 0
       };
-      storedReports.unshift(newReport); 
-      localStorage.setItem('tambov_reports', JSON.stringify(storedReports));
       
+      const { error } = await supa.from('reports').insert([newReport]);
+      
+      if (error) {
+          res.textContent = "Ошибка при сохранении: " + error.message;
+          res.style.color = "var(--color-error)";
+          return;
+      }
+
       res.textContent = "Отчет успешно отправлен и сохранен!";
       res.style.color = "var(--color-success)";
       document.getElementById('reportLinkInput').value = '';
@@ -1949,41 +1842,37 @@
       }
     });
 
-    window.gradeReport = function(id, statusText, xpAmount) {
-      let reports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
-      let bonuses = JSON.parse(localStorage.getItem('tambov_bonuses') || '{}');
+    window.gradeReport = async function(id, statusText, xpAmount, email) {
+      const finalStatus = statusText + (xpAmount > 0 ? ` (+${xpAmount} XP)` : '');
+      
+      const { error } = await supa.from('reports').update({ status: finalStatus, xp: xpAmount }).eq('id', id);
 
-      let repIndex = reports.findIndex(r => r.id === id);
-      if (repIndex > -1) {
-        let rep = reports[repIndex];
-        rep.status = statusText + (xpAmount > 0 ? ` (+${xpAmount} XP)` : '');
-        
-        if (xpAmount > 0) {
-          bonuses[rep.email] = (bonuses[rep.email] || 0) + xpAmount;
-          localStorage.setItem('tambov_bonuses', JSON.stringify(bonuses));
-        }
-        
-        localStorage.setItem('tambov_reports', JSON.stringify(reports));
-        renderReportsList(); 
-        
-        let totalBonus = bonuses[rep.email] || 0;
-        alert(`✅ Отчет оценен: ${statusText}!\n\nПользователю ${rep.email} начислено ${xpAmount} XP.\n\nВсего ХР с отчетов у этого модератора: ${totalBonus} XP.`);
-        
-        if (currentUser && currentUser.email === rep.email) {
-          updateModStats();
-          updateSupportStats();
-          updateShopStats();
-        }
+      if (error) {
+        alert('Ошибка при оценке: ' + error.message);
+        return;
+      }
+      
+      await renderReportsList(); 
+      alert(`✅ Отчет оценен: ${statusText}!\n\nПользователю ${email} начислено ${xpAmount} XP.`);
+      
+      if (currentUser && currentUser.email === email) {
+        await loadProgress(); 
       }
     };
 
-    function renderReportsList() {
+    async function renderReportsList() {
       const area = document.getElementById('reportsListArea');
       area.style.display = 'flex';
+      area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка отчетов...</div>';
       
-      let storedReports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
+      const { data: storedReports, error } = await supa.from('reports').select('*').order('date', { ascending: false });
 
-      if (storedReports.length === 0) {
+      if (error) {
+        area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`;
+        return;
+      }
+
+      if (!storedReports || storedReports.length === 0) {
         area.innerHTML = `<div class="report-list-item" style="text-align:center;">Отчетов пока нет.</div>`;
         return;
       }
@@ -1994,10 +1883,10 @@
           <a href="${rep.link}" target="_blank" rel="noopener noreferrer">${rep.link}</a>
           ${!rep.status ? `
             <div style="display:flex; gap:0.5rem; margin-top:0.5rem; flex-wrap:wrap;">
-              <button class="badge xp" onclick="gradeReport('${rep.id}', 'Норма', 15)" style="cursor:pointer; border:1px solid rgba(255,191,71,0.5);">Норма</button>
-              <button class="badge xp" style="background:#52c77b; color:#08110b; cursor:pointer; border:1px solid rgba(82,199,123,0.5);" onclick="gradeReport('${rep.id}', 'Перенорма', 30)">Перенорма</button>
-              <button class="badge xp" style="background:#a26cff; color:#fff; cursor:pointer; border:1px solid rgba(162,108,255,0.5);" onclick="gradeReport('${rep.id}', 'Герой дня', 60)">Герой дня</button>
-              <button class="badge ban" style="cursor:pointer; border:1px solid rgba(255,107,136,0.5);" onclick="gradeReport('${rep.id}', 'Не засчитано', 0)">Не засчитано</button>
+              <button class="badge xp" onclick="gradeReport('${rep.id}', 'Норма', 15, '${rep.email}')" style="cursor:pointer; border:1px solid rgba(255,191,71,0.5);">Норма</button>
+              <button class="badge xp" style="background:#52c77b; color:#08110b; cursor:pointer; border:1px solid rgba(82,199,123,0.5);" onclick="gradeReport('${rep.id}', 'Перенорма', 30, '${rep.email}')">Перенорма</button>
+              <button class="badge xp" style="background:#a26cff; color:#fff; cursor:pointer; border:1px solid rgba(162,108,255,0.5);" onclick="gradeReport('${rep.id}', 'Герой дня', 60, '${rep.email}')">Герой дня</button>
+              <button class="badge ban" style="cursor:pointer; border:1px solid rgba(255,107,136,0.5);" onclick="gradeReport('${rep.id}', 'Не засчитано', 0, '${rep.email}')">Не засчитано</button>
             </div>
           ` : `
             <div style="margin-top:0.5rem; font-size:var(--text-xs); font-weight:800; color:var(--color-success); letter-spacing:0.06em;">СТАТУС: ${rep.status}</div>
