@@ -570,7 +570,7 @@
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 0.75rem;
     }
 
@@ -920,7 +920,8 @@
 
     @media (max-width: 900px) {
       .hero, .game-wrap { grid-template-columns: 1fr; }
-      .stats-grid, .shop-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .shop-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .controls { grid-template-columns: 1fr; }
       .support-answer-row-inner { flex-direction: column; }
       .support-check-btn, .hero-actions .btn { width: 100%; }
@@ -933,7 +934,8 @@
       .theme-toggle { align-self: flex-end; }
       .mode-switch { display: flex; width: 100%; }
       .mode-btn { flex: 1 1 calc(50% - 8px); text-align: center; }
-      .stats-grid, .shop-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .shop-grid { grid-template-columns: 1fr; }
       .banner-line { flex-direction: column; align-items: flex-start; }
       .hero h1 { max-width: 100%; }
       .auth-actions { flex-direction: column; }
@@ -1037,7 +1039,7 @@
           <p>Сообщения и нарушения появятся только после нажатия «Начать смену».</p>
         </div>
 
-        <div class="stats-grid">
+        <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
           <div class="stat"><span class="stat-label">Обработано</span><div class="stat-value" id="resolvedValue">0</div></div>
           <div class="stat"><span class="stat-label">Правильных</span><div class="stat-value" id="correctValue">0</div></div>
           <div class="stat"><span class="stat-label">Ошибок</span><div class="stat-value" id="mistakeValue">0</div></div>
@@ -1080,7 +1082,7 @@
           <p>Вопросы игроков скрыты до старта. Начни смену, открывай запросы и помогай быстро, спокойно и по делу.</p>
         </div>
 
-        <div class="stats-grid">
+        <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
           <div class="stat"><span class="stat-label">Вопросов</span><div class="stat-value" id="supportResolvedValue">0</div></div>
           <div class="stat"><span class="stat-label">Зачтено</span><div class="stat-value" id="supportCorrectValue">0</div></div>
           <div class="stat"><span class="stat-label">Ошибок</span><div class="stat-value" id="supportMistakeValue">0</div></div>
@@ -1149,10 +1151,11 @@
           <p>Здесь можно потратить накопленные XP на ускорение повышения или дисциплинарные бонусы.</p>
         </div>
 
-        <div class="stats-grid">
-          <div class="stat"><span class="stat-label">Заработано (Модер)</span><div class="stat-value" id="shopModXp">0</div></div>
-          <div class="stat"><span class="stat-label">Заработано (АП)</span><div class="stat-value" id="shopSupportXp">0</div></div>
-          <div class="stat"><span class="stat-label">Всего потрачено</span><div class="stat-value" id="shopSpentXp">0</div></div>
+        <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
+          <div class="stat"><span class="stat-label">Модератор</span><div class="stat-value" id="shopModXp">0</div></div>
+          <div class="stat"><span class="stat-label">Поддержка</span><div class="stat-value" id="shopSupportXp">0</div></div>
+          <div class="stat"><span class="stat-label">Отчеты</span><div class="stat-value" id="shopReportXp">0</div></div>
+          <div class="stat"><span class="stat-label">Потрачено</span><div class="stat-value" id="shopSpentXp">0</div></div>
           <div class="stat"><span class="stat-label">Доступно XP</span><div class="stat-value" id="shopTotalXp" style="color:var(--color-primary);">0</div></div>
         </div>
 
@@ -1195,7 +1198,7 @@
           </div>
           
           <!-- Зона для отображения отчетов после ввода пароля -->
-          <div id="reportsListArea" style="display:none; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+          <div id="reportsListArea" style="display:none; margin-top: 0.5rem; flex-direction: column; gap: 0.5rem;">
             <!-- Список отчетов будет тут -->
           </div>
         </div>
@@ -1222,14 +1225,14 @@
     const supa = window.supabase.createClient(supabaseUrl, supabaseKey);
 
     let currentUser = null;
-    let hasAccessCode = false;
     let pendingAction = null; // Хранит действие, которое ждет ввода кода
+
+    // Запоминаем в кэш введенные пароли, чтобы не просить дважды
+    let hasAccessCode = localStorage.getItem('access_JohnWickModer') === 'true';
+    let hasStaffCode = localStorage.getItem('access_StaffModerQ980') === 'true';
 
     // Email адреса, которым разрешено видеть форму в Отчетности
     const allowedReportEmails = ['daniiltimosin72@gmail.com', 'isayevrufat37@gmail.com', 'leha.br222@gmail.com'];
-
-    // Локальное хранилище для отчетов
-    let storedReports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
 
     let state = {
       resolved: 0,
@@ -1521,6 +1524,7 @@
       supportResultText: document.getElementById("supportResultText"),
       shopModXp: document.getElementById("shopModXp"),
       shopSupportXp: document.getElementById("shopSupportXp"),
+      shopReportXp: document.getElementById("shopReportXp"),
       shopTotalXp: document.getElementById("shopTotalXp"),
       shopSpentXp: document.getElementById("shopSpentXp")
     };
@@ -1548,14 +1552,22 @@
       return Math.floor(value / 10) * 15;
     }
 
+    // Подсчитываем ХР, полученное за отчеты
+    function getReportXp() {
+      if (!currentUser) return 0;
+      let bonuses = JSON.parse(localStorage.getItem('tambov_bonuses') || '{}');
+      return bonuses[currentUser.email] || 0;
+    }
+
     function pushLog(text) {
       state.log.unshift(text);
       state.log = state.log.slice(0, 50);
       el.logList.innerHTML = state.log.map(item => `<div class="log-item">${item}</div>`).join("");
     }
 
+    // Итоговый доступный ХР с учетом всех источников и трат
     function availableXp() {
-      return Math.max(0, calcXP(state.correct) + calcXP(supportState.correct) - shopState.spent);
+      return Math.max(0, calcXP(state.correct) + calcXP(supportState.correct) + getReportXp() - shopState.spent);
     }
 
     function renderShopItems() {
@@ -1589,10 +1601,12 @@
     function updateShopStats() {
       const modXp = calcXP(state.correct);
       const supportXp = calcXP(supportState.correct);
+      const repXp = getReportXp();
       const totalXp = availableXp();
 
       el.shopModXp.textContent = modXp;
       el.shopSupportXp.textContent = supportXp;
+      if(el.shopReportXp) el.shopReportXp.textContent = repXp;
       el.shopTotalXp.textContent = totalXp;
       el.shopSpentXp.textContent = shopState.spent;
 
@@ -1712,7 +1726,11 @@
 
     // Обработчик кнопки "Посмотреть отчеты"
     document.getElementById('viewReportsBtn').addEventListener('click', () => {
-      requestAccess('view_reports', null);
+      if (hasStaffCode) {
+        renderReportsList();
+      } else {
+        requestAccess('view_reports', null);
+      }
     });
 
     document.getElementById('accessSubmitBtn').addEventListener('click', () => {
@@ -1720,19 +1738,27 @@
       const type = pendingAction?.type;
 
       // Проверка для вкладок Магазин/Отчетность
-      if (type && type.startsWith('switch_tab_') && code === 'JohnWickModer') {
-        hasAccessCode = true;
-        document.getElementById('accessModal').style.display = 'none';
-        const mode = type.replace('switch_tab_', '');
-        switchMode(mode, pendingAction.btn);
+      if (type && type.startsWith('switch_tab_')) {
+        if (code === 'JohnWickModer') {
+          localStorage.setItem('access_JohnWickModer', 'true');
+          hasAccessCode = true;
+          document.getElementById('accessModal').style.display = 'none';
+          const mode = type.replace('switch_tab_', '');
+          switchMode(mode, pendingAction.btn);
+        } else {
+          document.getElementById('accessErrorMsg').style.display = 'block';
+        }
       } 
       // Проверка для просмотра отчетов
-      else if (type === 'view_reports' && code === 'StaffModerQ980') {
-        document.getElementById('accessModal').style.display = 'none';
-        renderReportsList();
-      } 
-      else {
-        document.getElementById('accessErrorMsg').style.display = 'block';
+      else if (type === 'view_reports') {
+        if (code === 'StaffModerQ980') {
+          localStorage.setItem('access_StaffModerQ980', 'true');
+          hasStaffCode = true;
+          document.getElementById('accessModal').style.display = 'none';
+          renderReportsList();
+        } else {
+          document.getElementById('accessErrorMsg').style.display = 'block';
+        }
       }
     });
 
@@ -1755,11 +1781,16 @@
         return;
       }
 
+      // Достаем сохраненные отчеты
+      let storedReports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
+
       // Сохраняем в localStorage
       const newReport = {
+        id: Date.now().toString() + Math.random().toString(36).substr(2, 9), // Уникальный ID
         email: currentUser ? currentUser.email : 'Неизвестно',
         link: link,
-        date: new Date().toLocaleString('ru-RU')
+        date: new Date().toLocaleString('ru-RU'),
+        status: null // Статус оценки
       };
       storedReports.unshift(newReport); // добавляем в начало
       localStorage.setItem('tambov_reports', JSON.stringify(storedReports));
@@ -1775,11 +1806,46 @@
       }
     });
 
+    // Функция оценки отчета (вызывается из кнопок)
+    window.gradeReport = function(id, statusText, xpAmount) {
+      let reports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
+      let bonuses = JSON.parse(localStorage.getItem('tambov_bonuses') || '{}');
+
+      let repIndex = reports.findIndex(r => r.id === id);
+      if (repIndex > -1) {
+        let rep = reports[repIndex];
+        // Устанавливаем статус
+        rep.status = statusText + (xpAmount > 0 ? ` (+${xpAmount} XP)` : '');
+        
+        // Начисляем ХР
+        if (xpAmount > 0) {
+          bonuses[rep.email] = (bonuses[rep.email] || 0) + xpAmount;
+          localStorage.setItem('tambov_bonuses', JSON.stringify(bonuses));
+        }
+        
+        // Сохраняем изменения отчетов
+        localStorage.setItem('tambov_reports', JSON.stringify(reports));
+        renderReportsList(); // Перерисовываем список
+        
+        let totalBonus = bonuses[rep.email] || 0;
+        alert(`✅ Отчет оценен: ${statusText}!\n\nПользователю ${rep.email} начислено ${xpAmount} XP.\n\nВсего ХР с отчетов у этого модератора: ${totalBonus} XP.`);
+        
+        // Если оценивали сами себя, обновим статистику в интерфейсе
+        if (currentUser && currentUser.email === rep.email) {
+          updateModStats();
+          updateSupportStats();
+          updateShopStats();
+        }
+      }
+    };
+
     // Функция отображения сохраненных отчетов
     function renderReportsList() {
       const area = document.getElementById('reportsListArea');
       area.style.display = 'flex';
       
+      let storedReports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
+
       if (storedReports.length === 0) {
         area.innerHTML = `<div class="report-list-item" style="text-align:center;">Отчетов пока нет.</div>`;
         return;
@@ -1789,6 +1855,16 @@
         <div class="report-list-item">
           <span>Сотрудник: <strong>${rep.email}</strong> • Дата: ${rep.date}</span>
           <a href="${rep.link}" target="_blank" rel="noopener noreferrer">${rep.link}</a>
+          ${!rep.status ? `
+            <div style="display:flex; gap:0.5rem; margin-top:0.5rem; flex-wrap:wrap;">
+              <button class="badge xp" onclick="gradeReport('${rep.id}', 'Норма', 15)" style="cursor:pointer; border:1px solid rgba(255,191,71,0.5);">Норма</button>
+              <button class="badge xp" style="background:#52c77b; color:#08110b; cursor:pointer; border:1px solid rgba(82,199,123,0.5);" onclick="gradeReport('${rep.id}', 'Перенорма', 30)">Перенорма</button>
+              <button class="badge xp" style="background:#a26cff; color:#fff; cursor:pointer; border:1px solid rgba(162,108,255,0.5);" onclick="gradeReport('${rep.id}', 'Герой дня', 60)">Герой дня</button>
+              <button class="badge ban" style="cursor:pointer; border:1px solid rgba(255,107,136,0.5);" onclick="gradeReport('${rep.id}', 'Не засчитано', 0)">Не засчитано</button>
+            </div>
+          ` : `
+            <div style="margin-top:0.5rem; font-size:var(--text-xs); font-weight:800; color:var(--color-success); letter-spacing:0.06em;">СТАТУС: ${rep.status}</div>
+          `}
         </div>
       `).join('');
     }
