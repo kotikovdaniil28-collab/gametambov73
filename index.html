@@ -75,6 +75,13 @@
         linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%);
     }
 
+    html[data-site-theme="report"] body {
+      background:
+        radial-gradient(circle at top left, rgba(162, 108, 255, 0.2), transparent 50%),
+        radial-gradient(circle at bottom right, rgba(108, 204, 255, 0.18), transparent 55%),
+        linear-gradient(160deg, #090510, #0a0512 45%, #050411 100%);
+    }
+
     button, input { font: inherit; }
 
     button {
@@ -148,6 +155,13 @@
       border-color: rgba(162, 241, 188, 0.42);
     }
 
+    html[data-site-theme="report"] .logo {
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
+        linear-gradient(135deg, rgba(162, 108, 255, 0.55), rgba(108, 204, 255, 0.38));
+      border-color: rgba(200, 180, 255, 0.45);
+    }
+
     .brand-title {
       font-family: var(--font-display);
       font-size: var(--text-lg);
@@ -210,6 +224,13 @@
         radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%),
         linear-gradient(155deg, rgba(10, 23, 14, 0.98), rgba(8, 10, 15, 1));
       border-color: rgba(162, 241, 188, 0.22);
+    }
+
+    html[data-site-theme="report"] .panel {
+      background:
+        radial-gradient(circle at top left, rgba(162, 108, 255, 0.16), transparent 55%),
+        linear-gradient(155deg, rgba(16, 9, 25, 0.98), rgba(10, 10, 14, 1));
+      border-color: rgba(180, 150, 255, 0.28);
     }
 
     .hero-card, .rules, .game-card, .side {
@@ -288,6 +309,16 @@
       color: #08110b;
     }
 
+    html[data-site-theme="report"] .badge {
+      background: rgba(16, 9, 25, 0.96);
+      border-color: rgba(180, 150, 255, 0.35);
+    }
+
+    html[data-site-theme="report"] .badge.xp {
+      background: #a26cff;
+      color: #fff;
+    }
+
     .hero h1 {
       font-family: var(--font-display);
       font-size: clamp(2.1rem, 5.2vw, 3.4rem);
@@ -314,6 +345,11 @@
     html[data-site-theme="shop"] .hero h1 span {
       color: #7fe8a0;
       text-shadow: 0 0 22px rgba(127, 232, 160, 0.62);
+    }
+
+    html[data-site-theme="report"] .hero h1 span {
+      color: #a26cff;
+      text-shadow: 0 0 22px rgba(162, 108, 255, 0.72);
     }
 
     .hero p, .rules p, .game-card > p, .side p {
@@ -366,6 +402,14 @@
         linear-gradient(135deg, #52c77b, #8fe0a8);
       box-shadow: 0 20px 45px rgba(82, 199, 123, 0.42);
       color: #08110b;
+    }
+
+    html[data-site-theme="report"] .btn-primary {
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%),
+        linear-gradient(135deg, #a26cff, #c4a1ff);
+      box-shadow: 0 20px 45px rgba(162, 108, 255, 0.48);
+      color: #fff;
     }
 
     .btn-secondary {
@@ -422,6 +466,12 @@
       color: #08110b;
     }
 
+    html[data-site-theme="report"] .mode-btn.active[data-mode="report"] {
+      background: linear-gradient(135deg, #a26cff, #c4a1ff);
+      box-shadow: 0 10px 25px rgba(162, 108, 255, 0.45);
+      color: #fff;
+    }
+
     .game-wrap {
       margin-top: 0.75rem;
       display: grid;
@@ -467,6 +517,14 @@
     html[data-site-theme="shop"] .shop-card {
       background: rgba(11, 21, 15, 0.96);
       border-color: rgba(162, 241, 188, 0.22);
+    }
+
+    html[data-site-theme="report"] .rule-item,
+    html[data-site-theme="report"] .log-item,
+    html[data-site-theme="report"] .stat,
+    html[data-site-theme="report"] .shop-card {
+      background: rgba(16, 9, 25, 0.96);
+      border-color: rgba(180, 150, 255, 0.24);
     }
 
     .rule-item {
@@ -595,6 +653,13 @@
         radial-gradient(circle at 0 0, rgba(82, 199, 123, 0.2), transparent 70%),
         linear-gradient(160deg, rgba(11, 21, 15, 0.98), rgba(8, 10, 15, 1));
       border-color: rgba(162, 241, 188, 0.25);
+    }
+
+    html[data-site-theme="report"] .message-card {
+      background:
+        radial-gradient(circle at 0 0, rgba(162, 108, 255, 0.18), transparent 70%),
+        linear-gradient(160deg, rgba(16, 9, 25, 0.98), rgba(11, 10, 15, 1));
+      border-color: rgba(180, 150, 255, 0.25);
     }
 
     .channel {
@@ -745,6 +810,11 @@
       background: rgba(255, 144, 196, 0.18);
       border-color: rgba(255, 144, 196, 0.8);
     }
+    
+    html[data-site-theme="report"] .support-check-btn {
+      background: rgba(162, 108, 255, 0.18);
+      border-color: rgba(162, 108, 255, 0.8);
+    }
 
     .support-result {
       font-size: var(--text-sm);
@@ -865,6 +935,18 @@
     </div>
   </div>
 
+  <!-- Модальное окно кода доступа (Магазин / Отчетность) -->
+  <div id="accessModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center;">
+    <div class="panel" style="padding: 2rem; width: 90%; max-width: 360px; display: grid; gap: 1rem; box-sizing: border-box;">
+      <h2 style="margin: 0; font-family: var(--font-display);">Доступ закрыт</h2>
+      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Введите код доступа для просмотра этого раздела.</p>
+      <input type="password" id="accessCodeInput" class="support-input" placeholder="Код доступа">
+      <div id="accessErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0; line-height: 1.4;">Неверный код доступа!</div>
+      <button id="accessSubmitBtn" class="btn btn-primary" style="padding: 0.75rem;">Подтвердить</button>
+      <button id="accessCloseBtn" class="btn" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted); padding: 0.75rem;">Отмена</button>
+    </div>
+  </div>
+
   <main class="page">
     <header class="topbar">
       <div class="brand">
@@ -922,6 +1004,7 @@
       <button class="mode-btn" type="button" data-mode="support">Агенты поддержки</button>
       <button class="mode-btn" type="button" data-mode="about">О команде</button>
       <button class="mode-btn" type="button" data-mode="shop">Магазин</button>
+      <button class="mode-btn" type="button" data-mode="report">Отчетность</button>
     </div>
 
     <section class="game-wrap" id="game">
@@ -1040,7 +1123,7 @@
       <section class="panel game-card" id="mode-shop" style="display:none;">
         <div class="section-head">
           <h2>Магазин</h2>
-          <p>Пробная вкладка для проверки траты XP. Пока здесь только один тестовый товар.</p>
+          <p>Здесь можно потратить накопленные XP на ускорение повышения или дисциплинарные бонусы.</p>
         </div>
 
         <div class="stats-grid">
@@ -1050,13 +1133,38 @@
           <div class="stat"><span class="stat-label">Потрачено</span><div class="stat-value" id="shopSpentXp">0</div></div>
         </div>
 
-        <div class="shop-grid">
-          <article class="shop-card">
-            <h3>Тестовый товар</h3>
-            <p>Обычная проверка магазина: можно ли списывать XP после прохождения смен.</p>
-            <div class="shop-price">30 XP</div>
-            <button class="shop-buy-btn" type="button" id="buyTestItemBtn">Купить для проверки</button>
-            <div class="hint" id="shopBuyHint">Сначала заработай XP в режимах модератора или поддержки.</div>
+        <div class="shop-grid" id="shopItemsContainer">
+          <!-- Товары магазина генерируются через JS -->
+        </div>
+      </section>
+
+      <section class="panel game-card" id="mode-report" style="display:none;">
+        <div class="section-head">
+          <h2>Форма отчетности</h2>
+          <p>Отправьте ссылку на скриншот онлайна в Discord. Форма доступна только указанным сотрудникам.</p>
+        </div>
+
+        <div id="reportAccessWarning" class="message-card" style="min-height: auto; align-content: center; text-align: center; color: var(--color-warning);">
+          У вас нет прав для просмотра формы отчетности. <br><span style="font-size: var(--text-sm); color: var(--color-text-muted);">Авторизуйтесь под аккаунтом с нужным уровнем доступа.</span>
+        </div>
+
+        <div class="feed" id="reportFormArea" style="display:none;">
+          <article class="message-card" style="min-height: auto;">
+            <div class="channel"><span class="channel-dot" style="background:#a26cff; box-shadow:0 0 12px rgba(162,108,255,0.9);"></span># tambov-73 / reports</div>
+            <div class="author-row">
+              <div class="avatar" style="background: conic-gradient(from 210deg, #a26cff, #c4a1ff, #a26cff);">R</div>
+              <div>
+                <div class="author-name">Отчет Discord (Онлайн)</div>
+                <div class="author-meta">Загрузите скриншот на хостинг и отправьте ссылку</div>
+              </div>
+            </div>
+            <div class="support-answer-row">
+              <div class="support-answer-row-inner">
+                <input id="reportLinkInput" class="support-input" type="url" placeholder="Ссылка на фотохостинг (Imgur, Yapx, Postimages)...">
+                <button class="support-check-btn" type="button" id="submitReportBtn">Отправить</button>
+              </div>
+              <div class="support-result" id="reportResultText"></div>
+            </div>
           </article>
         </div>
       </section>
@@ -1082,6 +1190,11 @@
     const supa = window.supabase.createClient(supabaseUrl, supabaseKey);
 
     let currentUser = null;
+    let hasAccessCode = false;
+    let pendingMode = null;
+
+    // Email адреса, которым разрешено видеть форму в Отчетности
+    const allowedReportEmails = ['daniiltimosin72@gmail.com', 'isayevrufat37@gmail.com', 'leha.br222@gmail.com'];
 
     let state = {
       resolved: 0,
@@ -1100,8 +1213,7 @@
     };
 
     let shopState = {
-      spent: 0,
-      purchased: false
+      spent: 0
     };
 
     // UI элементы авторизации
@@ -1143,7 +1255,6 @@
         sup_mistakes: supportState.mistakes,
         shop_spent: shopState.spent
       };
-      // Upsert: обновит строку, если она есть, или создаст новую
       await supa.from('user_stats').upsert(payload);
     }
 
@@ -1155,13 +1266,14 @@
         loginBtnUI.style.display = 'none';
         logoutBtnUI.style.display = 'block';
         authModal.style.display = 'none';
-        loadProgress(); // Загружаем стату при входе
+        loadProgress(); 
       } else {
         userEmailDisplay.textContent = '';
         loginBtnUI.style.display = 'block';
         logoutBtnUI.style.display = 'none';
-        resetGame(); // Сбрасываем UI при выходе
+        resetGame(); 
       }
+      checkReportAccess(); // Проверяем права на отображение формы Отчетности
     });
 
     // Обработчики кнопок меню и модалки
@@ -1210,6 +1322,18 @@
     };
     // ============================================
 
+    // Каталог товаров магазина
+    const shopItems = [
+      { id: 'mm_1', title: "ММ: Скидка -1 день", desc: "Ускоряет повышение Младшего Модератора (ММ → М).", price: 200 },
+      { id: 'mm_2', title: "ММ: Скидка -2 дня", desc: "Максимальная скидка. Повышение через 5 дней.", price: 450 },
+      { id: 'm_1', title: "М: Скидка -1 день", desc: "Ускоряет повышение Модератора (М → СМ).", price: 250 },
+      { id: 'm_2', title: "М: Скидка -2 дня", desc: "Ускоряет повышение Модератора (М → СМ).", price: 500 },
+      { id: 'm_4', title: "М: Скидка -4 дня", desc: "Максимальная скидка. Повышение через 10 дней.", price: 900 },
+      { id: 'bonus_1', title: "Снятие выговора", desc: "Серьезная покупка для исправления репутации.", price: 750 },
+      { id: 'bonus_2', title: "Иммунитет на ошибку", desc: "Покупается заранее. Спасает от наказания за мелкий косяк.", price: 400 },
+      { id: 'fortune', title: "Колесо Фортуны", desc: "Испытай удачу и получи случайный бонус!", price: 250 }
+    ];
+
     const rightCards = document.getElementById("rightCards");
     const rightTitle = document.getElementById("rightTitle");
     const rightLead = document.getElementById("rightLead");
@@ -1248,12 +1372,21 @@
         ]
       },
       shop: {
-        title: "Магазин",
-        lead: "Пробная вкладка для теста магазина за XP. Пока здесь только один товар для проверки списания очков.",
+        title: "Магазин модераторов",
+        lead: "Здесь вы можете потратить заработанные XP на полезные бонусы, скидки к повышению и снятие выговоров.",
         cards: [
-          ["Пробный режим", "Раздел нужен только для теста механики траты XP."],
-          ["Один товар", "Сейчас доступен один тестовый предмет без лишних элементов."],
-          ["Списание XP", "Если XP хватает, кнопка покупки спишет очки и запишет действие в лог."]
+          ["Ускорение повышения", "Пример: Младший Модератор хочет повыситься за 5 дней вместо 7. Ему нужно 450 XP (Скидка -2 дня)."],
+          ["Конкуренция", "Чтобы реально успеть к 5-му дню, нужно делать либо 3 Перенормы в день (90 XP), либо активно работать в Ночную смену. Кто больше работает, тот быстрее двигается по карьерной лестнице."],
+          ["Выдача", "После покупки сделайте скриншот уведомления на экране и отправьте его руководству для получения бонуса."]
+        ]
+      },
+      report: {
+        title: "Отчетность",
+        lead: "Раздел для сдачи отчетов о проделанной работе и времени, проведенном в голосовых каналах Discord.",
+        cards: [
+          ["Доступ", "Только для авторизованных модераторов по коду доступа."],
+          ["Формат", "Отправьте ссылку на любой фотохостинг со скриншотом вашего онлайна."],
+          ["Проверка", "Руководство проверит скриншот и зачислит норму."]
         ]
       }
     };
@@ -1277,39 +1410,7 @@
         "что за бред вы придумываете, правила нормальные придумать не можете?",
         "@here КТО МОЖЕТ ДАТЬ МНЕ 100К ПЖПЖПЖПЖ, ОЧЕНЬ НАДО!!!",
         "эй, @Admin, ответь уже, чё игноришь, я вообще-то важный вопрос задаю",
-        "ДАВАЙТЕ УЖЕ ЗАПУСКАЙТЕ СЕРВЕР НОРМАЛЬНО, СКОЛЬКО МОЖНО ЖДАТЬ",
-        "ну да, конечно, админы у нас самые умные, особенно когда мут раздают просто так",
-        "эй, ты, с ником красным, чё такой важный? без админки кто ты вообще?",
-        "КТО СО МНОЙ НА РЕЙД В ВОЙС? ЗАХОДИТЕ В КОМНАТУ, ЩАС ШУТИТЬ БУДИМ",
-        "я сейчас тут такой флуд устрою, пока мне мут не выдадут, смотрите",
-        "ну давай, дай мне ещё одно предупреждение, всё равно уже всё равно",
-        "ребят, все в войс, там будет угар, залетайте быстрее",
-        "@everyone КТО ТУТ ЖИВОЙ ЕЩЁ? ГО НА КАПТЫ/ДВИЖ/Покатушки",
-        "да вам лишь бы муты раздавать, а нормально поговорить нельзя?",
-        "я щас маме расскажу, что вы меня кикнули, вот тогда посмотрим",
-        "какой ещё капс, вы о чём, Я ВСЕГДА ТАК ПИШУ, МНЕ ТАК УДОБНО",
-        "смысл ваших правил, если вы сами их не соблюдаете?",
-        "ой, да перестаньте ныть, обычный флуд, в чём проблема то",
-        "да ну этот сервер, одни ограничения, ничего сделать нельзя",
-        "щас соберу всех в войс и расскажу, какие вы тут крутые модеры",
-        "ну да, за три сообщения уже мут дают, нормально вообще?",
-        "давай, забань меня, я всё равно вернусь с твинка",
-        "ХАХАХАХАХАХА, ну вы и шутники, конечно, админчики",
-        "КТО МОЖЕТ ВЗЯТЬ МЕНЯ В ОРГАНИЗАЦИЮ, Я АКТИВНЫЙ ОЧЕНЬ, ДАВАЙТЕЕЕЕЕЕ",
-        "ну чё вы такие злые, я всего пару сообщений написал",
-        "эй, модератор, ты тут вообще что-то делаешь или только сидишь?",
-        "ДАВАЙТЕ УЖЕ МЕРОПРИЯТИЕ ЗАПУСТИМ, А ТО СКУКА ПОЛНАЯ",
-        "вы специально игнорите мои сообщения или это новый вид наказания?",
-        "хаха, давайте спорить про политику, всё равно делать нечего",
-        "ну и религия у тебя, конечно, я в шоке просто",
-        "какой ещё оффтоп, мы норм общались, вы придираетесь",
-        "кто может за меня квест пройти, я сам не хочу",
-        "эй, гоу все в дискорд, там пообщаемся без этих ваших правил",
-        "да вы вообще читать не умеете, что я вам пишу?",
-        "мне вообще всё равно, что там в правилах написано",
-        "почему ему можно флудить, а мне нельзя, двойные стандарты",
-        "эй, админ, покажи, где в правилах это написано, а?",
-        "ну да, конечно, как обычный игрок — сразу мут, как друг админа — можно всё"
+        "ДАВАЙТЕ УЖЕ ЗАПУСКАЙТЕ СЕРВЕР НОРМАЛЬНО, СКОЛЬКО МОЖНО ЖДАТЬ"
       ];
 
       const ban = [
@@ -1322,34 +1423,7 @@
         "кто хочет купить мой аккаунт с огромным донатом, пишите срочно",
         "вот вам файлик, скачайте, там моды и скрипты, только никому не говорите",
         "админы, если не снимете с меня бан, я солью ваш проект везде",
-        "я знаю, где живёт один из админов, могу рассказать подробности",
-        "твоя мама такая... дальше сам знаешь, не буду в чате писать",
-        "таких, как ты, надо в реале учить, выйди со мной в город поговорим",
-        "вот ссылка на лучший сервер, здесь делать нечего, валим туда",
-        "плевать я хотел на ваши правила, делаю, что хочу",
-        "да я уже десятый аккаунт создаю, вы меня всё равно не остановите",
-        "если кто-то даст мне денег, солью личные фотки одного игрока",
-        "хаха, я только что скинул вирус в чат, проверяйте свои пк",
-        "покупайте у меня роли и возможности, дешевле, чем в донат-меню",
-        "не забудьте ввести мой промокод на другом проекте, получите бонусы",
-        "завтра все узнают, какой у вас ужасный сервер, я всем расскажу",
-        "я создал фейковый канал от имени администрации, заходите туда",
-        "на этом сервере нет нормальной защиты, я его уроню, если захочу",
-        "да мне вообще всё равно, забаните ещё раз, у меня 100 аккаунтов",
-        "кто хочет купить доступ к панели админа, у меня есть знакомый",
-        "я не шучу, найду тебя по айпи, готовься",
-        "вот архив с модами, в нём есть всё, что нужно, качайте",
-        "да, это чит, и что? мне так интереснее играть",
-        "ставлю сюда ссылку на магазин виртов, модеры всё равно не успеют удалить",
-        "ваш сервер отстой, нормальные пацаны давно на другом проекте",
-        "буду кидать сюда 18+ фотки, пока меня не забанят насовсем",
-        "держите ссылку на телеграм-канал, там продаём любые услуги по игре",
-        "если вы меня забаните, я пойду на форум сливать всё, что знаю",
-        "все ваши игроки — мусор, только мы на другом сервере нормальные",
-        "кинул сюда софт, который ломает античит, пользуйтесь",
-        "да, это реклама, и мне всё равно, что вы там запретили",
-        "ещё раз кто-то мне слово скажет — узнает, что такое реальная жизнь",
-        "давайте все вместе выйдем отсюда и пойдём на НОРМАЛЬНЫЙ проект"
+        "я знаю, где живёт один из админов, могу рассказать подробности"
       ];
 
       const good = [
@@ -1360,34 +1434,7 @@
         "Ребята, а где можно посмотреть расписание мероприятий?",
         "подскажите, где тут можно прочитать про систему семей?",
         "Здравствуйте, не подскажете, как найти дискорд нашего сервера?",
-        "Кто может объяснить, как работает система уровней?",
-        "Ребят, подскажите, где находится раздел для агентов поддержки?",
-        "подскажите, где на форуме можно найти информацию про донат?",
-        "Кто может скинуть ссылку на правила фракций?",
-        "Здравствуйте, мне нужна помощь по аккаунту, куда обратиться?",
-        "Ребята, а где можно посмотреть список всех работ на сервере?",
-        "подскажите, пожалуйста, как найти раздел с тех.поддержкой?",
-        "Кто может объяснить, как правильно оформить жалобу?",
-        "Ребят, если я новичок, с чего лучше начать игру?",
-        "Здравствуйте, а где найти информацию по ЕПП транспорту?",
-        "подскажите, как узнать контакты руководства сервера?",
-        "Кто знает, где расписаны все аббревиатуры и термины?",
-        "Ребята, куда писать, если я нашёл баг?",
-        "подскажите, пожалуйста, где взять промокод для старта?",
-        "Кто может объяснить, как работает реферальная система?",
-        "Здравствуйте, подскажите, где найти раздел с FAQ по защите аккаунта?",
-        "Ребят, подскажите, как посмотреть список системных мероприятий?",
-        "подскажите, пожалуйста, где найти магазин АП на форуме?",
-        "Кто знает, где посмотреть книгу рекордов агентов поддержки?",
-        "Ребята, а где найти тему про лучшего агента недели?",
-        "подскажите, как попасть на еженедельное собрание АП?",
-        "Здравствуйте, а где можно оставить заявку на АП?",
-        "Ребята, подскажите, где находится форум нашего именно сервера Tambov?",
-        "подскажите, пожалуйста, как посмотреть свои старые жалобы на форуме?",
-        "Кто может объяснить, как снять наказание через форум?",
-        "Ребята, а где найти список разрешённых модификаций?",
-        "подскажите, как узнать, за что мне выдали варн?",
-        "Здравствуйте, а где на форуме читать новости проекта?"
+        "Кто может объяснить, как работает система уровней?"
       ];
 
       const messages = [];
@@ -1401,63 +1448,10 @@
       const result = [
         { title: "Навигация и GPS", text: "Как найти заправку через GPS?", keywords: ["gps","заправ","бензин"] },
         { title: "Навигация и GPS", text: "Подскажите, как в навигаторе включить маршрут до автосалона?", keywords: ["gps","автосалон","маршрут"] },
-        { title: "Навигация и GPS", text: "Где в меню найти GPS-навигатор, я новичок.", keywords: ["gps","меню","новичок"] },
-
         { title: "Работа и уровень", text: "С какого уровня я могу устроиться инкассатором?", keywords: ["инкассатор","уровень","работа"] },
-        { title: "Работа и уровень", text: "Как устроиться на работу водолаза, и что для этого нужно?", keywords: ["водолаз","работа","уровень"] },
-        { title: "Работа и уровень", text: "Куда подойти, чтобы начать работать в транспортной компании?", keywords: ["транспортн","компани","работ"] },
-
         { title: "Фракции и организации", text: "Как мне попасть в ОПГ, куда подавать заявку?", keywords: ["опг","заявк","форум"] },
-        { title: "Фракции и организации", text: "Где узнать требования для вступления в ГИБДД?", keywords: ["гибдд","требован","вступлен"] },
-        { title: "Фракции и организации", text: "Куда писать, если хочу подать заявку на лидера?", keywords: ["лидер","заявк","форум"] },
-
-        { title: "Семьи", text: "Как создать свою семью и сколько это стоит?", keywords: ["семь","создать","стоимост"] },
-        { title: "Семьи", text: "Что нужно, чтобы вступить в существующую семью?", keywords: ["семь","вступить","инвайт"] },
-
-        { title: "Транспорт", text: "Как арендовать скутер, я только зашёл на сервер?", keywords: ["аренд","скутер","новичок"] },
-        { title: "Транспорт", text: "Как закрыть машину на замок, чтобы её не угнали?", keywords: ["машин","lock","закрыт"] },
-        { title: "Транспорт", text: "Где находится автосалон низкого класса?", keywords: ["автосалон","низк","gps"] },
-
-        { title: "Финансы", text: "Какой командой передать деньги другому игроку?", keywords: ["pay","передат","деньг"] },
-        { title: "Финансы", text: "Где оплатить штрафы за нарушения?", keywords: ["штраф","банк","оплат"] },
-        { title: "Финансы", text: "Как посмотреть, сколько у меня всего денег и на руках, и в банке?", keywords: ["деньг","баланс","банк"] },
-
-        { title: "Донат и VIP", text: "Как открыть донат-меню и купить Black Pass?", keywords: ["донат","black","pass"] },
-        { title: "Донат и VIP", text: "Что даёт Platinum VIP, какие у него преимущества?", keywords: ["platinum","vip","преимущ"] },
-        { title: "Донат и VIP", text: "Где вводить промокод, который мне дали?", keywords: ["промокод","mm","меню"] },
-
-        { title: "Лицензии", text: "Где купить лицензию на оружие?", keywords: ["лиценз","оруж","правительств"] },
-        { title: "Лицензии", text: "Как получить водительские права, куда подходить?", keywords: ["права","лиценз","автошкол"] },
-
-        { title: "Жильё и недвижимость", text: "Как купить квартиру и где её искать?", keywords: ["квартир","дом","покупк"] },
-        { title: "Жильё и недвижимость", text: "Можно ли оплатить дом сразу на месяц вперёд?", keywords: ["дом","оплат","месяц"] },
-
-        { title: "Бизнес", text: "Как купить бизнес через аукцион?", keywords: ["бизнес","аукцион","купит"] },
-        { title: "Бизнес", text: "Где посмотреть, когда слетает бизнес?", keywords: ["бизнес","слет","время"] },
-
-        { title: "RP термины и правила", text: "Что такое ДМ и где почитать про это в правилах?", keywords: ["дм","dm","правил"] },
-        { title: "RP термины и правила", text: "Объясните, пожалуйста, что такое ТК?", keywords: ["тк","tk","термин"] },
-        { title: "RP термины и правила", text: "Разрешён ли ЕПП на инкассаторе?", keywords: ["епп","инкассатор","правил"] },
-
-        { title: "Наказания", text: "За что могут выдать варн на сервере?", keywords: ["варн","warn","наказан"] },
-        { title: "Наказания", text: "Куда подать жалобу, если меня посадили просто так?", keywords: ["жалоб","тюрьм","форум"] },
-        { title: "Наказания", text: "Как подать апелляцию на блокировку аккаунта?", keywords: ["апелляц","бан","форум"] },
-
-        { title: "Техподдержка", text: "Игра вылетает каждые 5 минут, что мне делать?", keywords: ["вылет","тех","поддержк"] },
-        { title: "Техподдержка", text: "Куда писать, если у меня не заходят на сервер?", keywords: ["не заходит","сервер","тех"] },
-        { title: "Техподдержка", text: "Как привязать свой аккаунт к почте или телефону?", keywords: ["привязк","почт","телефон"] },
-
-        { title: "Связь и телефон", text: "Как позвонить другому игроку по телефону?", keywords: ["call","телефон","звонок"] },
-        { title: "Связь и телефон", text: "Как написать СМС с телефона в игре?", keywords: ["sms","телефон","сообщен"] },
-
-        { title: "Аксессуары и одежда", text: "Где купить рюкзак и другие аксессуары?", keywords: ["рюкзак","аксессуар","магазин"] },
-        { title: "Аксессуары и одежда", text: "Как поменять скин персонажа?", keywords: ["скин","одежд","сменит"] },
-
-        { title: "Агенты поддержки", text: "Как стать агентом поддержки на нашем сервере?", keywords: ["агент","поддержк","заявк"] },
-        { title: "Агенты поддержки", text: "Где посмотреть ежедневный норматив для АП?", keywords: ["норматив","агент","форум"] },
-        { title: "Агенты поддержки", text: "Куда писать, если у меня вопрос по работе АП?", keywords: ["агент","контакт","руковод"] }
+        { title: "Донат и VIP", text: "Как открыть донат-меню и купить Black Pass?", keywords: ["донат","black","pass"] }
       ];
-
       return result;
     }
 
@@ -1493,9 +1487,7 @@
       shopModXp: document.getElementById("shopModXp"),
       shopSupportXp: document.getElementById("shopSupportXp"),
       shopTotalXp: document.getElementById("shopTotalXp"),
-      shopSpentXp: document.getElementById("shopSpentXp"),
-      shopBuyHint: document.getElementById("shopBuyHint"),
-      buyTestItemBtn: document.getElementById("buyTestItemBtn")
+      shopSpentXp: document.getElementById("shopSpentXp")
     };
 
     function renderRight(mode) {
@@ -1531,6 +1523,32 @@
       return calcXP(state.correct) + calcXP(supportState.correct) - shopState.spent;
     }
 
+    function renderShopItems() {
+      const container = document.getElementById('shopItemsContainer');
+      container.innerHTML = shopItems.map(item => `
+        <article class="shop-card">
+          <h3>${item.title}</h3>
+          <p>${item.desc}</p>
+          <div class="shop-price">${item.price} XP</div>
+          <button class="shop-buy-btn" type="button" data-shop-id="${item.id}" data-price="${item.price}" data-title="${item.title}">Купить</button>
+        </article>
+      `).join('');
+
+      container.querySelectorAll('.shop-buy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const price = parseInt(btn.dataset.price);
+          const title = btn.dataset.title;
+          if (availableXp() >= price) {
+            shopState.spent += price;
+            updateShopStats();
+            saveProgress();
+            pushLog(`🛒 Куплен товар: ${title} за ${price} XP.`);
+            alert(`✅ ВЫ УСПЕШНО КУПИЛИ ТОВАР:\n\n"${title}" за ${price} XP\n\n📸 Сделайте скриншот этого сообщения и отправьте его руководству для выдачи скидки/бонуса!`);
+          }
+        });
+      });
+    }
+
     function updateShopStats() {
       const modXp = calcXP(state.correct);
       const supportXp = calcXP(supportState.correct);
@@ -1541,14 +1559,11 @@
       el.shopTotalXp.textContent = totalXp;
       el.shopSpentXp.textContent = shopState.spent;
 
-      el.buyTestItemBtn.disabled = shopState.purchased || totalXp < 30;
-      el.buyTestItemBtn.textContent = shopState.purchased ? "Уже куплено" : "Купить для проверки";
-
-      if (!shopState.purchased) {
-        el.shopBuyHint.textContent = totalXp >= 30
-          ? "XP хватает — можешь проверить покупку."
-          : "Сначала заработай минимум 30 XP в режимах модератора или поддержки.";
-      }
+      document.querySelectorAll('.shop-buy-btn').forEach(btn => {
+        const price = parseInt(btn.dataset.price);
+        btn.disabled = totalXp < price;
+        btn.textContent = totalXp < price ? "Не хватает XP" : "Купить";
+      });
     }
 
     function updateModStats() {
@@ -1582,6 +1597,119 @@
 
       updateShopStats();
     }
+
+    function checkReportAccess() {
+      const warn = document.getElementById('reportAccessWarning');
+      const form = document.getElementById('reportFormArea');
+      
+      if (currentUser && allowedReportEmails.includes(currentUser.email)) {
+        warn.style.display = 'none';
+        form.style.display = 'block';
+      } else {
+        warn.style.display = 'block';
+        form.style.display = 'none';
+      }
+    }
+
+    function switchMode(mode, btn) {
+      document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      document.getElementById("mode-moderation").style.display = mode === "moderation" ? "" : "none";
+      document.getElementById("mode-support").style.display = mode === "support" ? "" : "none";
+      document.getElementById("mode-about").style.display = mode === "about" ? "" : "none";
+      document.getElementById("mode-shop").style.display = mode === "shop" ? "" : "none";
+      document.getElementById("mode-report").style.display = mode === "report" ? "" : "none";
+
+      html.setAttribute("data-site-theme", mode === "support" ? "support" : mode === "about" ? "about" : mode === "shop" ? "shop" : mode === "report" ? "report" : "mod");
+      renderRight(mode);
+
+      if (mode === "moderation") {
+        brandSubtitle.textContent = "Симулятор смены модераторов";
+        heroTitle.innerHTML = 'Следи за <span>порядком</span> на сервере.';
+        heroText.textContent = "Проверяй сообщения, принимай решения и поддерживай порядок в чате. Всё показывается только после начала смены.";
+        heroBadge2.textContent = "Режим: модераторы";
+      } else if (mode === "support") {
+        brandSubtitle.textContent = "Симулятор смены агентов поддержки";
+        heroTitle.innerHTML = 'Создавай <span>уют</span> и помогай игрокам.';
+        heroText.textContent = "Отвечай на вопросы игроков, ориентируйся в материалах раздела АП и делай смену полезной, спокойной и понятной. Здесь всё посвящено только агентам поддержки.";
+        heroBadge2.textContent = "Режим: агенты поддержки";
+      } else if (mode === "about") {
+        brandSubtitle.textContent = "Люди, которые сделали этот проект";
+        heroTitle.innerHTML = 'Узнай, кто <span>стоит за идеей</span>.';
+        heroText.textContent = "Этот раздел посвящён авторам и тем, кто помогал собрать и оформить тренажёр.";
+        heroBadge2.textContent = "Режим: о команде";
+      } else if (mode === "shop") {
+        brandSubtitle.textContent = "Магазин за XP";
+        heroTitle.innerHTML = 'Трать <span>Опыт</span> на бонусы.';
+        heroText.textContent = "Покупайте скидки для ускорения повышения или бонусы для снятия выговоров за накопленные XP.";
+        heroBadge2.textContent = "Режим: магазин";
+        updateShopStats();
+      } else if (mode === "report") {
+        brandSubtitle.textContent = "Симулятор смены: Отчетность";
+        heroTitle.innerHTML = 'Сдавай <span>отчеты</span> вовремя.';
+        heroText.textContent = "Отправляй скриншоты своего онлайна в Discord для проверки руководством. Доступ к форме есть только у доверенных лиц.";
+        heroBadge2.textContent = "Режим: отчетность";
+        checkReportAccess();
+      }
+    }
+
+    function checkAccessAndSwitch(mode, btn) {
+      if ((mode === 'shop' || mode === 'report') && !hasAccessCode) {
+        pendingMode = mode;
+        document.getElementById('accessModal').style.display = 'flex';
+        document.getElementById('accessErrorMsg').style.display = 'none';
+        document.getElementById('accessCodeInput').value = '';
+        return;
+      }
+      switchMode(mode, btn);
+    }
+
+    document.querySelectorAll(".mode-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const mode = btn.dataset.mode;
+        checkAccessAndSwitch(mode, btn);
+      });
+    });
+
+    document.getElementById('accessSubmitBtn').addEventListener('click', () => {
+      const code = document.getElementById('accessCodeInput').value;
+      if (code === 'JohnWickModer') {
+        hasAccessCode = true;
+        document.getElementById('accessModal').style.display = 'none';
+        if (pendingMode) {
+          const btn = document.querySelector(`.mode-btn[data-mode="${pendingMode}"]`);
+          switchMode(pendingMode, btn);
+        }
+      } else {
+        document.getElementById('accessErrorMsg').style.display = 'block';
+      }
+    });
+
+    document.getElementById('accessCloseBtn').addEventListener('click', () => {
+      document.getElementById('accessModal').style.display = 'none';
+    });
+
+    // Обработчик отправки отчета
+    document.getElementById('submitReportBtn').addEventListener('click', () => {
+      const link = document.getElementById('reportLinkInput').value.trim();
+      const res = document.getElementById('reportResultText');
+      if(!link) {
+        res.textContent = "Пожалуйста, вставьте ссылку.";
+        res.style.color = "var(--color-warning)";
+        return;
+      }
+      if(!link.startsWith('http')) {
+        res.textContent = "Ссылка должна начинаться с http:// или https://";
+        res.style.color = "var(--color-warning)";
+        return;
+      }
+      
+      res.textContent = "Отчет успешно отправлен на проверку!";
+      res.style.color = "var(--color-success)";
+      document.getElementById('reportLinkInput').value = '';
+      pushLog(`📝 Отправлен отчет онлайна: ${link}`);
+    });
 
     function randomMessage() {
       const item = moderationMessages[Math.floor(Math.random() * moderationMessages.length)];
@@ -1622,7 +1750,6 @@
     }
 
     function resetGame() {
-      // Сбрасываем только текущий статус, прогресс не обнуляем, чтобы он сохранялся глобально.
       state.current = null;
       state.started = false;
       state.log = [];
@@ -1663,7 +1790,7 @@
       }
 
       updateModStats();
-      saveProgress(); // Сохраняем прогресс в БД
+      saveProgress(); 
       setTimeout(randomMessage, 300);
     }
 
@@ -1731,7 +1858,7 @@
       }
 
       updateSupportStats();
-      saveProgress(); // Сохраняем прогресс в БД
+      saveProgress(); 
     });
 
     el.supportAnswerInput.addEventListener("keydown", e => {
@@ -1739,65 +1866,6 @@
         e.preventDefault();
         document.getElementById("supportCheckBtn").click();
       }
-    });
-
-    el.buyTestItemBtn.addEventListener("click", () => {
-      if (shopState.purchased) {
-        el.shopBuyHint.textContent = "Тестовый товар уже был куплен.";
-        return;
-      }
-
-      if (availableXp() < 30) {
-        el.shopBuyHint.textContent = "Недостаточно XP для покупки.";
-        return;
-      }
-
-      shopState.spent += 30;
-      shopState.purchased = true;
-      el.shopBuyHint.textContent = "Покупка прошла успешно: 30 XP списано.";
-      pushLog("🛒 Куплен тестовый товар за 30 XP.");
-      updateShopStats();
-      saveProgress(); // Сохраняем покупку
-    });
-
-    document.querySelectorAll(".mode-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const mode = btn.dataset.mode;
-
-        document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        document.getElementById("mode-moderation").style.display = mode === "moderation" ? "" : "none";
-        document.getElementById("mode-support").style.display = mode === "support" ? "" : "none";
-        document.getElementById("mode-about").style.display = mode === "about" ? "" : "none";
-        document.getElementById("mode-shop").style.display = mode === "shop" ? "" : "none";
-
-        html.setAttribute("data-site-theme", mode === "support" ? "support" : mode === "about" ? "about" : mode === "shop" ? "shop" : "mod");
-        renderRight(mode);
-
-        if (mode === "moderation") {
-          brandSubtitle.textContent = "Симулятор смены модераторов";
-          heroTitle.innerHTML = 'Следи за <span>порядком</span> на сервере.';
-          heroText.textContent = "Проверяй сообщения, принимай решения и поддерживай порядок в чате. Всё показывается только после начала смены.";
-          heroBadge2.textContent = "Режим: модераторы";
-        } else if (mode === "support") {
-          brandSubtitle.textContent = "Симулятор смены агентов поддержки";
-          heroTitle.innerHTML = 'Создавай <span>уют</span> и помогай игрокам.';
-          heroText.textContent = "Отвечай на вопросы игроков, ориентируйся в материалах раздела АП и делай смену полезной, спокойной и понятной. Здесь всё посвящено только агентам поддержки.";
-          heroBadge2.textContent = "Режим: агенты поддержки";
-        } else if (mode === "about") {
-          brandSubtitle.textContent = "Люди, которые сделали этот проект";
-          heroTitle.innerHTML = 'Узнай, кто <span>стоит за идеей</span>.';
-          heroText.textContent = "Этот раздел посвящён авторам и тем, кто помогал собрать и оформить тренажёр.";
-          heroBadge2.textContent = "Режим: о команде";
-        } else {
-          brandSubtitle.textContent = "Пробная вкладка магазина";
-          heroTitle.innerHTML = 'Проверь <span>трату XP</span>.';
-          heroText.textContent = "Здесь можно протестировать покупку одного товара за накопленные XP.";
-          heroBadge2.textContent = "Режим: магазин";
-          updateShopStats();
-        }
-      });
     });
 
     (function () {
@@ -1820,6 +1888,7 @@
     })();
 
     renderRight("moderation");
+    renderShopItems();
     updateModStats();
     updateSupportStats();
     updateShopStats();
