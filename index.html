@@ -471,6 +471,13 @@
       box-shadow: 0 10px 25px rgba(162, 108, 255, 0.45);
       color: #fff;
     }
+    
+    html[data-site-theme="mod"] .mode-btn.active[data-mode="guide"],
+    html[data-site-theme="mod"] .mode-btn.active[data-mode="leaderboard"] {
+      background: linear-gradient(135deg, #6c8cff, #8aa3ff);
+      box-shadow: 0 10px 25px rgba(108, 140, 255, 0.6);
+      color: var(--color-text-inverse);
+    }
 
     .game-wrap {
       margin-top: 0.75rem;
@@ -562,6 +569,15 @@
       line-height: 1.55;
       max-width: 38ch;
       display: block;
+    }
+    
+    .rule-copy a {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .rule-copy a:hover {
+      text-decoration: underline;
     }
 
     .ok { background: rgba(82, 199, 123, 0.14); color: #8df0ae; }
@@ -1027,6 +1043,8 @@
     <div class="mode-switch">
       <button class="mode-btn active" type="button" data-mode="moderation">Модераторы</button>
       <button class="mode-btn" type="button" data-mode="support">Агенты поддержки</button>
+      <button class="mode-btn" type="button" data-mode="guide">Руководство Сервера</button>
+      <button class="mode-btn" type="button" data-mode="leaderboard">Лидерборд</button>
       <button class="mode-btn" type="button" data-mode="about">О команде</button>
       <button class="mode-btn" type="button" data-mode="shop">Магазин</button>
       <button class="mode-btn" type="button" data-mode="report">Отчетность</button>
@@ -1086,7 +1104,7 @@
           <div class="stat"><span class="stat-label">Вопросов</span><div class="stat-value" id="supportResolvedValue">0</div></div>
           <div class="stat"><span class="stat-label">Зачтено</span><div class="stat-value" id="supportCorrectValue">0</div></div>
           <div class="stat"><span class="stat-label">Ошибок</span><div class="stat-value" id="supportMistakeValue">0</div></div>
-          <div class="stat"><span class="stat-label">Остаток XP</span><div class="stat-value" id="supportXpValue">0</div></div>
+          <div class="stat"><span class="stat-label">Общий XP</span><div class="stat-value" id="supportXpValue">0</div></div>
         </div>
 
         <div>
@@ -1117,6 +1135,28 @@
             </div>
           </article>
           <button class="btn btn-secondary" type="button" id="supportNextBtn" style="width:100%;">Следующий вопрос</button>
+        </div>
+      </section>
+
+      <section class="panel game-card" id="mode-guide" style="display:none;">
+        <div class="section-head">
+          <h2>Руководство Сервера</h2>
+          <p>Здесь представлена основная информация и контакты руководящего состава. Выберите нужный контакт из панели справа для быстрой связи.</p>
+        </div>
+        <div class="feed">
+          <article class="message-card" style="min-height: auto;">
+            <div class="message-text" style="padding: 1rem 0;">Вся контактная информация (ВК) для связи с Руководством находится в правой панели экрана. Перейдите по нужной ссылке!</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel game-card" id="mode-leaderboard" style="display:none;">
+        <div class="section-head">
+          <h2>Таблица лидеров (Топ-10)</h2>
+          <p>Самые активные сотрудники по количеству заработанного XP (на основе ответов Модератора и за вычетом покупок).</p>
+        </div>
+        <div class="feed" id="leaderboardList">
+          <div class="message-text">Загрузка...</div>
         </div>
       </section>
 
@@ -1225,13 +1265,11 @@
     const supa = window.supabase.createClient(supabaseUrl, supabaseKey);
 
     let currentUser = null;
-    let pendingAction = null; // Хранит действие, которое ждет ввода кода
+    let pendingAction = null; 
 
-    // Запоминаем в кэш введенные пароли, чтобы не просить дважды
     let hasAccessCode = localStorage.getItem('access_JohnWickModer') === 'true';
     let hasStaffCode = localStorage.getItem('access_StaffModerQ980') === 'true';
 
-    // Email адреса, которым разрешено видеть форму в Отчетности
     const allowedReportEmails = ['daniiltimosin72@gmail.com', 'isayevrufat37@gmail.com', 'leha.br222@gmail.com'];
 
     let state = {
@@ -1254,14 +1292,12 @@
       spent: 0
     };
 
-    // UI элементы авторизации
     const authModal = document.getElementById('authModal');
     const loginBtnUI = document.getElementById('loginBtnUI');
     const logoutBtnUI = document.getElementById('logoutBtnUI');
     const userEmailDisplay = document.getElementById('userEmailDisplay');
     const authErrorMsg = document.getElementById('authErrorMsg');
 
-    // Сохранение и загрузка из БД
     async function loadProgress() {
       if(!currentUser) return;
       const { data, error } = await supa.from('user_stats').select('*').eq('user_id', currentUser.id).single();
@@ -1283,8 +1319,10 @@
 
     async function saveProgress() {
       if(!currentUser) return;
+      
       const payload = {
         user_id: currentUser.id,
+        email: currentUser.email, // ВНИМАНИЕ: нужна колонка email в таблице user_stats!
         mod_resolved: state.resolved,
         mod_correct: state.correct,
         mod_mistakes: state.mistakes,
@@ -1293,10 +1331,18 @@
         sup_mistakes: supportState.mistakes,
         shop_spent: shopState.spent
       };
-      await supa.from('user_stats').upsert(payload);
+      
+      const { error } = await supa.from('user_stats').upsert(payload);
+      
+      // Если колонки email нет в БД, мы отправляем фоллбэк без нее, чтобы не сломать сохранение:
+      if (error) {
+        console.warn("Ошибка с сохранением email (вероятно, нет колонки). Сохраняю без почты:", error);
+        const fallbackPayload = { ...payload };
+        delete fallbackPayload.email;
+        await supa.from('user_stats').upsert(fallbackPayload);
+      }
     }
 
-    // Прослушивание изменений статуса авторизации
     supa.auth.onAuthStateChange((event, session) => {
       currentUser = session?.user || null;
       if (currentUser) {
@@ -1311,10 +1357,9 @@
         logoutBtnUI.style.display = 'none';
         resetGame(); 
       }
-      checkReportAccess(); // Проверяем права на отображение формы Отчетности
+      checkReportAccess(); 
     });
 
-    // Обработчики кнопок меню и модалки
     loginBtnUI.onclick = () => { 
       authModal.style.display = 'flex'; 
       authErrorMsg.style.display = 'none'; 
@@ -1358,9 +1403,7 @@
         authErrorMsg.style.display = 'block'; 
       }
     };
-    // ============================================
 
-    // Каталог товаров магазина
     const shopItems = [
       { id: 'mm_1', title: "ММ: Скидка -1 день", desc: "Ускоряет повышение Младшего Модератора (ММ → М).", price: 200 },
       { id: 'mm_2', title: "ММ: Скидка -2 дня", desc: "Максимальная скидка. Повышение через 5 дней.", price: 450 },
@@ -1393,11 +1436,28 @@
       },
       support: {
         title: "Материалы агента поддержки",
-        lead: "Раздел агентов поддержки TAMBOV содержит темы про агента поддержки, правила поведения в чате хелперов, шаблоны ответов, ночное дежурство, правила и обязанности АП, магазин АП, календарь АП, книгу рекордов, GPS-навигатор, RolePlay термины, команды сервера, систему лучшего агента недели, контакты руководства и ежедневный норматив.",
+        lead: "Раздел агентов поддержки TAMBOV содержит темы про агента поддержки, шаблоны ответов и т.д.",
         cards: [
-          ["База знаний", "Для АП на форуме закреплены темы с шаблонами ответов, GPS-навигатором сервера, командами сервера и RolePlay терминами."],
-          ["Работа и правила", "В разделе есть правила и обязанности агентов поддержки, правила поведения в чате хелперов, ночное дежурство и ежедневный норматив."],
-          ["Развитие АП", "Также вынесены магазин агентов поддержки, книга рекордов, календарь АП, система лучшего агента недели и контакты руководства."]
+          ["База знаний", "Для АП на форуме закреплены темы с шаблонами ответов, GPS-навигатором сервера и RolePlay терминами."],
+          ["Работа и правила", "В разделе есть правила и обязанности агентов поддержки, правила поведения в чате хелперов и ежедневный норматив."],
+          ["Важно!", "Обратите внимание: за ответы агента поддержки XP больше не зачисляются на ваш баланс."]
+        ]
+      },
+      guide: {
+        title: "Контактная информация (ВК)",
+        lead: "Связь с руководством",
+        cards: [
+          ["Модерация", "Главный Модератор - Lexa_Mackenzie - <a href='https://vk.com/id783455796' target='_blank'>VK</a><br>Зам. ГМ - John Wick - <a href='https://vk.ru/its.daniqz' target='_blank'>VK</a><br>Зам. ГМ - Andrey_Caypen - <a href='https://vk.ru/andreycaypen' target='_blank'>VK</a><br>Куратор - Hunter_Mackenzie - <a href='https://vk.ru/exdsw1ndy' target='_blank'>VK</a>"],
+          ["Администрация", "ГА - Lars_Crown - <a href='https://vk.com/larsellorcrowner' target='_blank'>VK</a><br>ЗГА - Egor_Versachi - <a href='https://vk.com/id775315885' target='_blank'>VK</a><br>ЗГА - Oskar_Lofrein - <a href='https://vk.com/oooutlivq' target='_blank'>VK</a><br>Куратор - Kiruha_Lubera - <a href='https://vk.ru/kiruha_wl' target='_blank'>VK</a>"],
+          ["Агенты Поддержки", "Куратор - Ioana_Lost - <a href='https://vk.com/ioanalost' target='_blank'>VK</a><br>Зам. Куратора - Kirill_Rendi - <a href='https://vk.com/takeru_ferguson' target='_blank'>VK</a>"]
+        ]
+      },
+      leaderboard: {
+        title: "О Лидерборде",
+        lead: "Рейтинг формируется на основе заработанного XP (опыт модерации минус траты в магазине).",
+        cards: [
+          ["Обновление", "Таблица автоматически загружается и обновляется при входе в этот раздел."],
+          ["XP за ответы", "Напоминаем, что за работу в качестве Агента Поддержки XP больше не зачисляется."]
         ]
       },
       about: {
@@ -1445,33 +1505,22 @@
         "ТОКСИКИ КАК ВЫ ВООБЩЕ ТУТ ИГРАЕТЕ, НА СЕРВЕРЕ ОДНА ШКОЛОТА",
         "пошли уже все на капт, вы чё там в афк стоите? движ нужен!",
         "АДМИН, ТЫ ЧЁ ТВОРИШЬ, СНИМИ НАКАЗАНИЕ ПРЯМО СЕЙЧАС, Я НИ В ЧЁМ НЕ ВИНОВАТ",
-        "что за бред вы придумываете, правила нормальные придумать не можете?",
-        "@here КТО МОЖЕТ ДАТЬ МНЕ 100К ПЖПЖПЖПЖ, ОЧЕНЬ НАДО!!!",
-        "эй, @Admin, ответь уже, чё игноришь, я вообще-то важный вопрос задаю",
-        "ДАВАЙТЕ УЖЕ ЗАПУСКАЙТЕ СЕРВЕР НОРМАЛЬНО, СКОЛЬКО МОЖНО ЖДАТЬ"
+        "что за бред вы придумываете, правила нормальные придумать не можете?"
       ];
 
       const ban = [
         "РЕБЯТА, ВСЕ НА ЭТОТ ТОП ПРОЕКТ, ТУТ ВЫДАЮТ АДМИНКИ БЕСПЛАТНО!!!",
         "кому нужны ВИРТЫ, ПРОДАЮ ДЕШЕВО, ПИШИТЕ В ЛС, ОПЛАТА НА КАРТУ",
         "зайдите на мой дискорд-сервер, там раздача денег и промокодов, ссылка: discord.gg/******",
-        "если хотите читы на этот сервер, пишите мне, дам со скидкой",
         "я тут нашёл баг на дюп бабок, могу продать инфу за реал",
-        "куплю любой бизнес на этом сервере за реальные деньги, пишите в личку",
-        "кто хочет купить мой аккаунт с огромным донатом, пишите срочно",
-        "вот вам файлик, скачайте, там моды и скрипты, только никому не говорите",
-        "админы, если не снимете с меня бан, я солью ваш проект везде",
-        "я знаю, где живёт один из админов, могу рассказать подробности"
+        "кто хочет купить мой аккаунт с огромным донатом, пишите срочно"
       ];
 
       const good = [
         "Ребят, подскажите, где можно посмотреть все правила сервера?",
         "Здравствуйте, а где находится раздел с жалобами на игроков?",
         "подскажите, пожалуйста, где найти список всех команд?",
-        "Кто знает, как правильно подать жалобу на форум?",
         "Ребята, а где можно посмотреть расписание мероприятий?",
-        "подскажите, где тут можно прочитать про систему семей?",
-        "Здравствуйте, не подскажете, как найти дискорд нашего сервера?",
         "Кто может объяснить, как работает система уровней?"
       ];
 
@@ -1552,7 +1601,6 @@
       return Math.floor(value / 10) * 15;
     }
 
-    // Подсчитываем ХР, полученное за отчеты
     function getReportXp() {
       if (!currentUser) return 0;
       let bonuses = JSON.parse(localStorage.getItem('tambov_bonuses') || '{}');
@@ -1565,9 +1613,48 @@
       el.logList.innerHTML = state.log.map(item => `<div class="log-item">${item}</div>`).join("");
     }
 
-    // Итоговый доступный ХР с учетом всех источников и трат
+    // Итоговый доступный ХР БЕЗ учета ответов АП
     function availableXp() {
-      return Math.max(0, calcXP(state.correct) + calcXP(supportState.correct) + getReportXp() - shopState.spent);
+      return Math.max(0, calcXP(state.correct) + getReportXp() - shopState.spent);
+    }
+
+    // Загрузка Лидерборда
+    async function loadLeaderboard() {
+      const lb = document.getElementById("leaderboardList");
+      lb.innerHTML = '<div class="message-text">Загрузка...</div>';
+      
+      const { data, error } = await supa
+        .from('user_stats')
+        .select('*')
+        .order('mod_correct', { ascending: false })
+        .limit(10);
+        
+      if (error || !data) {
+         lb.innerHTML = '<div class="message-text">Не удалось загрузить таблицу лидеров.</div>';
+         return;
+      }
+      
+      if(data.length === 0) {
+         lb.innerHTML = '<div class="message-text">Пока никого нет.</div>';
+         return;
+      }
+
+      lb.innerHTML = data.map((u, i) => {
+        // Считаем XP только по правилам (Модерация) минус магазин
+        const userXp = Math.floor((u.mod_correct || 0) / 10) * 15 - (u.shop_spent || 0);
+        // Используем email, если нет — сокращенный ID
+        const name = u.email ? u.email.split('@')[0] : `User_${u.user_id.substring(0,4)}`;
+        
+        return `
+          <div class="report-list-item" style="display:flex; justify-content:space-between; align-items:center; flex-direction:row;">
+            <div>
+              <strong style="font-size:1.1rem; color:var(--color-primary);">#${i+1}</strong> 
+              <span style="margin-left:0.5rem; font-weight: 600;">${name}</span>
+            </div>
+            <div class="badge xp">${userXp} XP</div>
+          </div>
+        `;
+      }).join('');
     }
 
     function renderShopItems() {
@@ -1586,11 +1673,11 @@
           const price = parseInt(btn.dataset.price);
           const title = btn.dataset.title;
           if (availableXp() >= price) {
-            shopState.spent += price; // ТРАТИМ ОЧКИ
+            shopState.spent += price; 
             updateShopStats();
-            updateModStats(); // Обновляем везде, чтобы показать актуальный остаток
+            updateModStats(); 
             updateSupportStats();
-            saveProgress(); // Сохраняем в БД
+            saveProgress(); 
             pushLog(`🛒 Куплен товар: ${title} за ${price} XP.`);
             alert(`✅ ВЫ УСПЕШНО КУПИЛИ ТОВАР:\n\n"${title}" за ${price} XP\n\n📸 Сделайте скриншот этого сообщения и отправьте его руководству для выдачи скидки/бонуса!`);
           }
@@ -1600,7 +1687,7 @@
 
     function updateShopStats() {
       const modXp = calcXP(state.correct);
-      const supportXp = calcXP(supportState.correct);
+      const supportXp = 0; // ОБНУЛЕН (убрано зачисление ХР за ответы АП)
       const repXp = getReportXp();
       const totalXp = availableXp();
 
@@ -1643,8 +1730,8 @@
 
       el.supportBanner.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
       el.supportBannerHint.textContent = !state.started
-        ? "Нажми «Начать смену», чтобы открыть первый вопрос."
-        : `Сейчас доступно ${xp} XP (с учетом трат).`;
+        ? "Нажми «Начать смену», чтобы открыть вопрос. (За АП не дается XP)"
+        : `Общий баланс: ${xp} XP (Ответы АП не дают XP).`;
 
       updateShopStats();
     }
@@ -1668,6 +1755,8 @@
 
       document.getElementById("mode-moderation").style.display = mode === "moderation" ? "" : "none";
       document.getElementById("mode-support").style.display = mode === "support" ? "" : "none";
+      document.getElementById("mode-guide").style.display = mode === "guide" ? "" : "none";
+      document.getElementById("mode-leaderboard").style.display = mode === "leaderboard" ? "" : "none";
       document.getElementById("mode-about").style.display = mode === "about" ? "" : "none";
       document.getElementById("mode-shop").style.display = mode === "shop" ? "" : "none";
       document.getElementById("mode-report").style.display = mode === "report" ? "" : "none";
@@ -1683,8 +1772,19 @@
       } else if (mode === "support") {
         brandSubtitle.textContent = "Симулятор смены агентов поддержки";
         heroTitle.innerHTML = 'Создавай <span>уют</span> и помогай игрокам.';
-        heroText.textContent = "Отвечай на вопросы игроков, ориентируйся в материалах раздела АП и делай смену полезной, спокойной и понятной. Здесь всё посвящено только агентам поддержки.";
+        heroText.textContent = "Отвечай на вопросы игроков, ориентируйся в материалах. За ответы агентов поддержки XP не зачисляется.";
         heroBadge2.textContent = "Режим: агенты поддержки";
+      } else if (mode === "guide") {
+        brandSubtitle.textContent = "Руководство Сервера";
+        heroTitle.innerHTML = 'Контакты <span>руководства</span>.';
+        heroText.textContent = "Основная информация и контактные данные. Все кликабельные ссылки (ВК) находятся в панели справа.";
+        heroBadge2.textContent = "Режим: руководство";
+      } else if (mode === "leaderboard") {
+        brandSubtitle.textContent = "Таблица лидеров";
+        heroTitle.innerHTML = 'Топ <span>модераторов</span>.';
+        heroText.textContent = "Здесь отображаются сотрудники с наибольшим количеством XP (за вычетом трат в магазине).";
+        heroBadge2.textContent = "Режим: лидерборд";
+        loadLeaderboard();
       } else if (mode === "about") {
         brandSubtitle.textContent = "Люди, которые сделали этот проект";
         heroTitle.innerHTML = 'Узнай, кто <span>стоит за идеей</span>.';
@@ -1705,7 +1805,6 @@
       }
     }
 
-    // Универсальная функция для проверки доступа
     function requestAccess(actionType, targetElementBtn) {
       pendingAction = { type: actionType, btn: targetElementBtn };
       document.getElementById('accessModal').style.display = 'flex';
@@ -1724,7 +1823,6 @@
       });
     });
 
-    // Обработчик кнопки "Посмотреть отчеты"
     document.getElementById('viewReportsBtn').addEventListener('click', () => {
       if (hasStaffCode) {
         renderReportsList();
@@ -1737,7 +1835,6 @@
       const code = document.getElementById('accessCodeInput').value;
       const type = pendingAction?.type;
 
-      // Проверка для вкладок Магазин/Отчетность
       if (type && type.startsWith('switch_tab_')) {
         if (code === 'JohnWickModer') {
           localStorage.setItem('access_JohnWickModer', 'true');
@@ -1749,7 +1846,6 @@
           document.getElementById('accessErrorMsg').style.display = 'block';
         }
       } 
-      // Проверка для просмотра отчетов
       else if (type === 'view_reports') {
         if (code === 'StaffModerQ980') {
           localStorage.setItem('access_StaffModerQ980', 'true');
@@ -1766,7 +1862,6 @@
       document.getElementById('accessModal').style.display = 'none';
     });
 
-    // Обработчик отправки отчета
     document.getElementById('submitReportBtn').addEventListener('click', () => {
       const link = document.getElementById('reportLinkInput').value.trim();
       const res = document.getElementById('reportResultText');
@@ -1781,18 +1876,16 @@
         return;
       }
 
-      // Достаем сохраненные отчеты
       let storedReports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
 
-      // Сохраняем в localStorage
       const newReport = {
-        id: Date.now().toString() + Math.random().toString(36).substr(2, 9), // Уникальный ID
+        id: Date.now().toString() + Math.random().toString(36).substr(2, 9), 
         email: currentUser ? currentUser.email : 'Неизвестно',
         link: link,
         date: new Date().toLocaleString('ru-RU'),
-        status: null // Статус оценки
+        status: null 
       };
-      storedReports.unshift(newReport); // добавляем в начало
+      storedReports.unshift(newReport); 
       localStorage.setItem('tambov_reports', JSON.stringify(storedReports));
       
       res.textContent = "Отчет успешно отправлен и сохранен!";
@@ -1800,13 +1893,11 @@
       document.getElementById('reportLinkInput').value = '';
       pushLog(`📝 Отправлен отчет онлайна: ${link}`);
       
-      // Если список уже открыт, обновляем его
       if (document.getElementById('reportsListArea').style.display === 'flex') {
         renderReportsList();
       }
     });
 
-    // Функция оценки отчета (вызывается из кнопок)
     window.gradeReport = function(id, statusText, xpAmount) {
       let reports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
       let bonuses = JSON.parse(localStorage.getItem('tambov_bonuses') || '{}');
@@ -1814,23 +1905,19 @@
       let repIndex = reports.findIndex(r => r.id === id);
       if (repIndex > -1) {
         let rep = reports[repIndex];
-        // Устанавливаем статус
         rep.status = statusText + (xpAmount > 0 ? ` (+${xpAmount} XP)` : '');
         
-        // Начисляем ХР
         if (xpAmount > 0) {
           bonuses[rep.email] = (bonuses[rep.email] || 0) + xpAmount;
           localStorage.setItem('tambov_bonuses', JSON.stringify(bonuses));
         }
         
-        // Сохраняем изменения отчетов
         localStorage.setItem('tambov_reports', JSON.stringify(reports));
-        renderReportsList(); // Перерисовываем список
+        renderReportsList(); 
         
         let totalBonus = bonuses[rep.email] || 0;
         alert(`✅ Отчет оценен: ${statusText}!\n\nПользователю ${rep.email} начислено ${xpAmount} XP.\n\nВсего ХР с отчетов у этого модератора: ${totalBonus} XP.`);
         
-        // Если оценивали сами себя, обновим статистику в интерфейсе
         if (currentUser && currentUser.email === rep.email) {
           updateModStats();
           updateSupportStats();
@@ -1839,7 +1926,6 @@
       }
     };
 
-    // Функция отображения сохраненных отчетов
     function renderReportsList() {
       const area = document.getElementById('reportsListArea');
       area.style.display = 'flex';
