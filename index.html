@@ -52,7 +52,7 @@
       transition: background 350ms ease;
     }
 
-    /* ТЕМЫ */
+    /* === ТЕМЫ ОФОРМЛЕНИЯ === */
     html[data-site-theme="support"] body { background: radial-gradient(circle at top left, rgba(255, 184, 222, 0.3), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 120, 180, 0.3), transparent 55%), linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%); }
     html[data-site-theme="about"] body { background: radial-gradient(circle at top left, rgba(255, 220, 120, 0.16), transparent 55%), radial-gradient(circle at bottom right, rgba(108, 140, 255, 0.18), transparent 55%), linear-gradient(160deg, #0c0a05, #0c0a05 45%, #12100a 100%); }
     html[data-site-theme="shop"] body { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.14), transparent 55%), linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%); }
@@ -135,7 +135,16 @@
     .btn-primary { color: #fff; background: linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 20px 45px rgba(108, 140, 255, 0.72); }
     .btn-secondary { color: var(--color-text-muted); background: rgba(9, 12, 26, 0.86); border: 1px solid rgba(191, 198, 255, 0.3); }
 
-    /* === ОБНОВЛЕННАЯ ДВУХУРОВНЕВАЯ НАВИГАЦИЯ === */
+    html[data-site-theme="support"] .btn-primary { background: linear-gradient(135deg, #ff78b4, #ffb0dd); box-shadow: 0 20px 45px rgba(255, 144, 196, 0.78); }
+    html[data-site-theme="about"] .btn-primary { background: linear-gradient(135deg, #ffbf47, #ffd979); box-shadow: 0 20px 45px rgba(255, 191, 71, 0.48); color: #18171c; }
+    html[data-site-theme="shop"] .btn-primary { background: linear-gradient(135deg, #52c77b, #8fe0a8); box-shadow: 0 20px 45px rgba(82, 199, 123, 0.42); color: #08110b; }
+    html[data-site-theme="report"] .btn-primary { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 20px 45px rgba(162, 108, 255, 0.48); color: #fff; }
+    html[data-site-theme="guide"] .btn-primary { background: linear-gradient(135deg, #00b4d8, #00e5ff); box-shadow: 0 20px 45px rgba(0, 229, 255, 0.45); color: #001a22; }
+    html[data-site-theme="leaderboard"] .btn-primary { background: linear-gradient(135deg, #ff3d00, #ff9e00); box-shadow: 0 20px 45px rgba(255, 61, 0, 0.45); color: #fff; }
+    html[data-site-theme="complaints"] .btn-primary { background: linear-gradient(135deg, #ff3b60, #ff6b88); box-shadow: 0 20px 45px rgba(255, 107, 136, 0.6); }
+    html[data-site-theme="quests"] .btn-primary { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 20px 45px rgba(162, 108, 255, 0.6); }
+
+    /* === ДВУХУРОВНЕВАЯ НАВИГАЦИЯ === */
     .nav-container { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0 1rem; }
     .main-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; background: rgba(13, 16, 32, 0.8); padding: 0.4rem; border-radius: 18px; border: 1px solid rgba(191, 198, 255, 0.2); width: fit-content; }
     
@@ -208,6 +217,7 @@
     .support-answer-row { display: flex; flex-direction: column; gap: 0.5rem; }
     .support-answer-row-inner { display: flex; gap: 0.5rem; align-items: stretch; }
     .support-input { flex: 1 1 auto; min-width: 0; width: 100%; padding: 0.7rem 0.85rem; border-radius: 12px; border: 1px solid rgba(191, 198, 255, 0.35); background: rgba(4, 6, 12, 0.9); color: var(--color-text); font-size: var(--text-sm); }
+    .support-input::placeholder { color: var(--color-text-faint); }
     .support-check-btn { flex: 0 0 auto; min-height: 44px; padding: 0.7rem 0.95rem; border-radius: 12px; font-size: var(--text-sm); font-weight: 700; background: rgba(108, 140, 255, 0.16); border: 1px solid rgba(108, 140, 255, 0.7); color: var(--color-text); white-space: nowrap; }
     .support-result { font-size: var(--text-sm); color: var(--color-text-muted); min-height: 1.4em; line-height: 1.45; }
 
@@ -278,7 +288,7 @@
       <input type="email" id="authEmail" class="support-input" placeholder="Ваш Email">
       <input type="text" id="authNickname" class="support-input" placeholder="Ваш Никнейм (Обязательно)">
       <input type="password" id="authPassword" class="support-input" placeholder="Пароль">
-      <div id="authErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0;"></div>
+      <div id="authErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0; line-height: 1.4;"></div>
       <div class="auth-actions" style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
         <button id="authLoginSubmit" class="btn btn-primary" type="button" style="flex: 1; padding: 0.75rem;">Войти</button>
         <button id="authRegisterSubmit" class="btn btn-secondary" type="button" style="flex: 1; padding: 0.75rem;">Создать</button>
@@ -301,7 +311,7 @@
       <h2 style="margin: 0; font-family: var(--font-display);">Доступ закрыт</h2>
       <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Введите код доступа для выполнения этого действия.</p>
       <input type="password" id="accessCodeInput" class="support-input" placeholder="Код доступа">
-      <div id="accessErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0;">Неверный код доступа!</div>
+      <div id="accessErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0; line-height: 1.4;">Неверный код доступа!</div>
       <button id="accessSubmitBtn" class="btn btn-primary" type="button" style="padding: 0.75rem;">Подтвердить</button>
       <button id="accessCloseBtn" class="btn" type="button" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted); padding: 0.75rem;">Отмена</button>
     </div>
@@ -311,12 +321,7 @@
     <div class="panel" style="padding: 2rem; width: 95%; max-width: 600px; display: flex; flex-direction: column; gap: 1rem; box-sizing: border-box; text-align: center;">
       <h2 style="margin: 0; font-family: var(--font-display); font-size: var(--text-xl); color: #ffbf47;">Колесо Фортуны</h2>
       <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Испытай удачу! Призы будут добавлены на баланс или отправлены Руководству.</p>
-      
-      <div class="roulette-wrapper">
-        <div class="roulette-pointer"></div>
-        <div class="roulette-track" id="rouletteTrack"></div>
-      </div>
-      
+      <div class="roulette-wrapper"><div class="roulette-pointer"></div><div class="roulette-track" id="rouletteTrack"></div></div>
       <div id="fortuneResultText" style="min-height: 2em; font-size: var(--text-lg); font-weight: bold; color: var(--color-success); margin-top: 0.5rem;"></div>
       <button id="closeFortuneBtn" class="btn btn-secondary" type="button" style="margin-top: 1rem; display: none;">Закрыть и забрать</button>
     </div>
@@ -327,10 +332,7 @@
       <div class="brand">
         <div class="logo" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 18.5V6.8C4 5.8 4.8 5 5.8 5h4.4"></path>
-            <rect x="9" y="3.5" width="11" height="8" rx="2"></rect>
-            <path d="M8 12.5 12 7l4 5.5"></path>
-            <path d="M4 21h9.5"></path>
+            <path d="M4 18.5V6.8C4 5.8 4.8 5 5.8 5h4.4"></path><rect x="9" y="3.5" width="11" height="8" rx="2"></rect><path d="M8 12.5 12 7l4 5.5"></path><path d="M4 21h9.5"></path>
           </svg>
         </div>
         <div>
@@ -355,10 +357,8 @@
           <span class="badge" id="heroBadge2">Режим: модераторы</span>
           <span class="badge xp">Смена начинается вручную</span>
         </div>
-
         <h1 id="heroTitle">Следи за <span>порядком</span> на сервере.</h1>
         <p id="heroText">Проверяй сообщения, принимай решения и поддерживай порядок в чате. Всё показывается только после начала смены.</p>
-
         <div class="hero-actions">
           <button class="btn btn-primary" type="button" id="startBtn">Начать смену</button>
           <button class="btn btn-secondary" type="button" id="resetBtn">Сбросить смену</button>
@@ -368,7 +368,7 @@
       <aside class="panel rules">
         <div class="section-head">
           <h2 id="rightTitle">Материалы модератора</h2>
-          <p id="rightLead">Здесь только подсказки по модерации: как оценивать сообщения, где достаточно предупреждения, а где уже нужен бан.</p>
+          <p id="rightLead">Здесь только подсказки по модерации.</p>
         </div>
         <div class="rule-list" id="rightCards"></div>
       </aside>
@@ -519,8 +519,7 @@
           <h2>Система Квестов</h2>
           <p>Выполняй задания в тренажёрах и получай бонусный XP на свой баланс.</p>
         </div>
-        <div class="feed" id="questsContainer">
-          </div>
+        <div class="feed" id="questsContainer"></div>
       </section>
 
       <section class="panel game-card" id="mode-leaderboard" style="display:none;">
@@ -630,10 +629,9 @@
   </main>
 
   <script>
-    // ВАЖНО: Весь код обернут в DOMContentLoaded, чтобы ничего не ломалось до загрузки страницы
     document.addEventListener("DOMContentLoaded", () => {
         
-        // Инициализация БД
+        // === БАЗА ДАННЫХ И ИНИЦИАЛИЗАЦИЯ ===
         const supabaseUrl = 'https://icfihnroblyjjflsfepq.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljZmlobnJvYmx5ampmbHNmZXBxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4NjAxMDksImV4cCI6MjA5MTQzNjEwOX0.Hrvjg572mIKBG-2ffYEr4Fxvpz0hOAex9d6n7WylVkQ';
         const supa = window.supabase.createClient(supabaseUrl, supabaseKey);
@@ -1026,6 +1024,7 @@
           const data = localStorage.getItem('quests_' + currentUser.email); return data ? JSON.parse(data) : [];
         }
 
+        // Делаем функцию глобальной, чтобы onclick из HTML ее видел
         window.claimQuest = function(qId, reward) {
           if(!currentUser) return;
           const claimed = getClaimedQuests();
