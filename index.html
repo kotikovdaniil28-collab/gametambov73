@@ -370,10 +370,10 @@
       <div style="font-size: 3.5rem; margin-bottom: -1rem;">👮‍♂️</div>
       <h2 style="margin: 0; font-family: var(--font-display); color: var(--color-error); font-size: var(--text-lg); text-transform: uppercase;">Слишком быстро!</h2>
       <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0; line-height: 1.5;">
-        Кажется, вы нажимаете наугад. Тренажёр создан для вдумчивой работы, а не для кликера. Пожалуйста, освежите знания правил, прежде чем продолжить.
+        Кажется, вы нажимаете наугад. Тренажёр создан для вдумчивой работы, а не для кликера. В качестве штрафа <strong>выдача вердиктов заблокирована на 1 минуту</strong>. Пожалуйста, освежите знания правил.
       </p>
       <a href="https://rules-ds.netlify.app" target="_blank" class="btn btn-primary" style="text-decoration: none; display: inline-block; background: linear-gradient(135deg, #ff3b60, #ff6b88); box-shadow: 0 10px 25px rgba(255, 107, 136, 0.5);">Читать правила сервера</a>
-      <button id="closeSpamModal" class="btn" type="button" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted);">Я понял, продолжить</button>
+      <button id="closeSpamModal" class="btn" type="button" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted);">Блокировка...</button>
     </div>
   </div>
 
@@ -1576,24 +1576,67 @@
           });
         }
 
-        // === АНТИ-СПАМ ===
+        // === АНТИ-СПАМ С ЖЕСТКОЙ БЛОКИРОВКОЙ ===
         let clickTimestamps = [];
+        let blockUntil = 0;
+        let spamTimerInterval;
+
         function isSpamming() {
           const now = Date.now();
+          
+          // Если игрок уже в блокировке
+          if (now < blockUntil) {
+            document.getElementById('spamModal').style.display = 'flex';
+            return true;
+          }
+
           clickTimestamps.push(now);
           // Оставляем только клики за последние 3 секунды
           clickTimestamps = clickTimestamps.filter(time => now - time <= 3000);
           
+          // 5 кликов за 3 секунды = спам
           if (clickTimestamps.length >= 5) {
-            document.getElementById('spamModal').style.display = 'flex';
-            clickTimestamps = []; // сбрасываем счетчик, чтобы не спамило
+            blockUntil = now + 60000; // Ровно 60 секунд блокировки
+            clickTimestamps = []; // Сбрасываем историю
+            showSpamModalWithTimer();
             return true;
           }
           return false;
         }
 
-        document.getElementById('closeSpamModal').addEventListener('click', () => {
-          document.getElementById('spamModal').style.display = 'none';
+        function showSpamModalWithTimer() {
+          const modal = document.getElementById('spamModal');
+          const closeBtn = document.getElementById('closeSpamModal');
+          
+          modal.style.display = 'flex';
+          closeBtn.disabled = true;
+          closeBtn.style.opacity = '0.5';
+          closeBtn.style.cursor = 'not-allowed';
+          
+          let timeLeft = Math.ceil((blockUntil - Date.now()) / 1000);
+          if (timeLeft < 0) timeLeft = 60;
+          
+          closeBtn.textContent = `Блокировка: ${timeLeft} сек...`;
+
+          clearInterval(spamTimerInterval);
+          spamTimerInterval = setInterval(() => {
+            timeLeft--;
+            if (timeLeft <= 0) {
+              clearInterval(spamTimerInterval);
+              closeBtn.disabled = false;
+              closeBtn.style.opacity = '1';
+              closeBtn.style.cursor = 'pointer';
+              closeBtn.textContent = 'Я понял, больше не буду';
+            } else {
+              closeBtn.textContent = `Блокировка: ${timeLeft} сек...`;
+            }
+          }, 1000);
+        }
+
+        document.getElementById('closeSpamModal').addEventListener('click', (e) => {
+          if (!e.target.disabled) {
+            document.getElementById('spamModal').style.display = 'none';
+          }
         });
 
         // === ИГРОВАЯ ЛОГИКА ===
