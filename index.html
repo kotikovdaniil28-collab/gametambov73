@@ -245,38 +245,20 @@
 
     /* === СТИЛИ ДЛЯ РУЛЕТКИ (КОЛЕСО ФОРТУНЫ) === */
     .roulette-wrapper {
-      width: 100%;
-      height: 140px;
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      background: #0b0d12;
+      width: 100%; height: 140px; position: relative; overflow: hidden;
+      border-radius: 12px; background: #0b0d12;
       border: 2px solid rgba(191, 198, 255, 0.3);
-      box-shadow: inset 0 0 40px rgba(0,0,0,0.8);
-      margin-top: 1rem;
+      box-shadow: inset 0 0 40px rgba(0,0,0,0.8); margin-top: 1rem;
     }
-    .roulette-track {
-      display: flex;
-      height: 100%;
-      /* Анимация будет задаваться через JS */
-    }
+    .roulette-track { display: flex; height: 100%; }
     .roulette-item {
-      flex: 0 0 160px; /* Ширина одного лота */
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 0.5rem;
-      border-right: 1px solid rgba(255,255,255,0.1);
-      font-size: var(--text-sm);
-      font-weight: 700;
-      color: #fff;
+      flex: 0 0 160px; height: 100%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 0.5rem; border-right: 1px solid rgba(255,255,255,0.1);
+      font-size: var(--text-sm); font-weight: 700; color: #fff;
     }
     .roulette-item i { font-size: 1.5rem; margin-bottom: 5px; }
     
-    /* Цвета редкостей */
     .r-leg { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #1a1a1a; text-shadow: 0px 1px 2px rgba(255,255,255,0.5); }
     .r-rare { background: linear-gradient(135deg, #00b4d8, #0077b6); }
     .r-bonus { background: linear-gradient(135deg, #52c77b, #2e7d32); }
@@ -285,30 +267,12 @@
     .r-fine { background: linear-gradient(135deg, #ff6b88, #b71c1c); }
 
     .roulette-pointer {
-      position: absolute;
-      top: 0; bottom: 0; left: 50%;
-      width: 4px;
-      background: #ff3d00;
-      transform: translateX(-50%);
-      z-index: 10;
+      position: absolute; top: 0; bottom: 0; left: 50%; width: 4px;
+      background: #ff3d00; transform: translateX(-50%); z-index: 10;
       box-shadow: 0 0 15px #ff3d00;
     }
-    .roulette-pointer::after {
-      content: "▼";
-      position: absolute;
-      top: -5px; left: 50%;
-      transform: translateX(-50%);
-      color: #ff3d00;
-      font-size: 1.2rem;
-    }
-    .roulette-pointer::before {
-      content: "▲";
-      position: absolute;
-      bottom: -5px; left: 50%;
-      transform: translateX(-50%);
-      color: #ff3d00;
-      font-size: 1.2rem;
-    }
+    .roulette-pointer::after { content: "▼"; position: absolute; top: -5px; left: 50%; transform: translateX(-50%); color: #ff3d00; font-size: 1.2rem; }
+    .roulette-pointer::before { content: "▲"; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); color: #ff3d00; font-size: 1.2rem; }
 
     @media (max-width: 900px) {
       .hero, .game-wrap { grid-template-columns: 1fr; }
@@ -658,7 +622,6 @@
     let supportState = { resolved: 0, correct: 0, mistakes: 0, currentIndex: -1 };
     let shopState = { spent: 0 };
 
-    // Системы для уникальных вопросов без повторений
     let modQueue = [];
     let supQueue = [];
 
@@ -678,7 +641,6 @@
 
     async function ensureNickname() {
       if (!currentUser) return;
-      
       let nick = currentUser.user_metadata?.nickname;
       
       if (!nick) {
@@ -719,18 +681,18 @@
       if(!currentUser) return;
       const { data, error } = await supa.from('user_stats').select('*').eq('user_id', currentUser.id).single();
       if(data) {
-        state.resolved = data.mod_resolved || 0;
-        state.correct = data.mod_correct || 0;
-        state.mistakes = data.mod_mistakes || 0;
-        supportState.resolved = data.sup_resolved || 0;
-        supportState.correct = data.sup_correct || 0;
-        supportState.mistakes = data.sup_mistakes || 0;
-        shopState.spent = data.shop_spent || 0;
+        state.resolved = Number(data.mod_resolved) || 0;
+        state.correct = Number(data.mod_correct) || 0;
+        state.mistakes = Number(data.mod_mistakes) || 0;
+        supportState.resolved = Number(data.sup_resolved) || 0;
+        supportState.correct = Number(data.sup_correct) || 0;
+        supportState.mistakes = Number(data.sup_mistakes) || 0;
+        shopState.spent = Number(data.shop_spent) || 0;
       }
       
       const { data: repData } = await supa.from('reports').select('xp').eq('email', currentUser.email);
       state.reportXp = 0;
-      if (repData) state.reportXp = repData.reduce((sum, r) => sum + (r.xp || 0), 0);
+      if (repData) state.reportXp = repData.reduce((sum, r) => sum + (Number(r.xp) || 0), 0);
       
       updateModStats();
       updateSupportStats();
@@ -743,9 +705,9 @@
       const payload = {
         user_id: currentUser.id, email: currentUser.email, 
         nickname: currentNickname || currentUser.user_metadata?.nickname || currentUser.email.split('@')[0],
-        mod_resolved: state.resolved, mod_correct: state.correct, mod_mistakes: state.mistakes,
-        sup_resolved: supportState.resolved, sup_correct: supportState.correct, sup_mistakes: supportState.mistakes,
-        shop_spent: shopState.spent
+        mod_resolved: Number(state.resolved), mod_correct: Number(state.correct), mod_mistakes: Number(state.mistakes),
+        sup_resolved: Number(supportState.resolved), sup_correct: Number(supportState.correct), sup_mistakes: Number(supportState.mistakes),
+        shop_spent: Number(shopState.spent)
       };
       const { error } = await supa.from('user_stats').upsert(payload);
       if (error) {
@@ -1234,8 +1196,8 @@
     };
 
     function initials(name) { return name.split(/[#_\s]+/).filter(Boolean).slice(0, 2).map(part => part[0]).join("").toUpperCase(); }
-    function calcXP(value) { return Math.floor(value / 10) * 15; }
-    function getReportXp() { return state.reportXp || 0; }
+    function calcXP(value) { return Math.floor(Number(value) / 10) * 15; }
+    function getReportXp() { return Number(state.reportXp) || 0; }
 
     function renderLogs() {
       const logList = document.getElementById("logList");
@@ -1252,7 +1214,7 @@
       if(curMode === 'moderation' || curMode === 'support') { renderLogs(); }
     }
 
-    function availableXp() { return Math.max(0, calcXP(state.correct) + getReportXp() - shopState.spent); }
+    function availableXp() { return Math.max(0, calcXP(state.correct) + getReportXp() - Number(shopState.spent)); }
 
     // ==========================================
     // ЛИДЕРБОРД ТОЛЬКО ПО НИКНЕЙМАМ
@@ -1272,19 +1234,19 @@
         if (reportsRes.data) {
           reportsRes.data.forEach(r => {
             if (r.email && r.xp) {
-              repXpMap[r.email] = (repXpMap[r.email] || 0) + r.xp;
+              repXpMap[r.email] = (repXpMap[r.email] || 0) + Number(r.xp);
             }
           });
         }
 
         let calculatedData = statsRes.data.map(u => {
-          const modXp = Math.floor((u.mod_correct || 0) / 10) * 15;
+          const modXp = Math.floor((Number(u.mod_correct) || 0) / 10) * 15;
           const userRepXp = repXpMap[u.email] || 0;
-          const userXp = modXp + userRepXp - (u.shop_spent || 0);
+          const userXp = Math.max(0, modXp + userRepXp - (Number(u.shop_spent) || 0));
           return { ...u, userXp };
         });
 
-        // Фильтруем тех, у кого нет нормального никнейма (старые записи)
+        // Фильтруем тех, у кого нет нормального никнейма
         calculatedData = calculatedData.filter(u => u.nickname && u.nickname.trim().length > 0);
 
         calculatedData.sort((a, b) => b.userXp - a.userXp);
@@ -1342,7 +1304,7 @@
       // Генерируем "ленту" призов (80 элементов)
       const numItems = 80;
       const itemWidth = 160;
-      let winningIndex = Math.floor(Math.random() * 10) + 65; // Победитель где-то в конце
+      let winningIndex = Math.floor(Math.random() * 10) + 65; 
       
       let winnerItem = null;
 
@@ -1356,24 +1318,20 @@
         track.appendChild(el);
       }
 
-      // Небольшая задержка перед стартом анимации, чтобы DOM обновился
       setTimeout(() => {
-        const offset = (winningIndex * itemWidth) - (itemWidth / 2) + (Math.random() * 40 - 20); // Центрируем на победителе + рандомный сдвиг
+        const offset = (winningIndex * itemWidth) - (itemWidth / 2) + (Math.random() * 40 - 20); 
         track.style.transition = 'transform 6s cubic-bezier(0.15, 0.85, 0.2, 1)';
         track.style.transform = `translateX(-${offset}px)`;
         
-        // После остановки рулетки
         setTimeout(() => {
           let outcomeMsg = `Вы выиграли: ${winnerItem.text}!`;
           
-          // Применяем XP если это пакет или штраф
           if (winnerItem.xp) {
             if (winnerItem.xp > 0) {
-              // Добавляем XP через фиктивную "сдачу отчета" или бонус, но проще всего временно изменить shopState.spent в минус, так как XP считается динамически
-              shopState.spent -= winnerItem.xp; 
+              shopState.spent = Number(shopState.spent) - Number(winnerItem.xp); 
               outcomeMsg += `\nНа баланс зачислено ${winnerItem.xp} XP!`;
             } else {
-              shopState.spent -= winnerItem.xp; // минус на минус дает плюс, значит потрачено больше
+              shopState.spent = Number(shopState.spent) - Number(winnerItem.xp); 
               outcomeMsg += `\nС баланса списано ${Math.abs(winnerItem.xp)} XP!`;
             }
             updateShopStats();
@@ -1419,7 +1377,7 @@
           const id = btn.dataset.shopId;
           
           if (availableXp() >= price) {
-            shopState.spent += price; 
+            shopState.spent = Number(shopState.spent) + price; 
             updateShopStats(); updateModStats(); updateSupportStats(); saveProgress(); 
             
             if (id === 'fortune') {
@@ -1691,9 +1649,16 @@
 
     function judge(action) {
       if (!state.started || !state.current) { startGame(); return; }
-      const isCorrect = action === state.current.type; state.resolved++;
-      if (isCorrect) { state.correct++; pushLog(`✅ ${state.current.user}: верное решение (${action.toUpperCase()})`); } 
-      else { state.mistakes++; pushLog(`❌ ${state.current.user}: решение не совпало с эталоном`); }
+      const isCorrect = action === state.current.type; 
+      state.resolved = Number(state.resolved) + 1;
+      if (isCorrect) { 
+        state.correct = Number(state.correct) + 1; 
+        pushLog(`✅ ${state.current.user}: верное решение (${action.toUpperCase()})`); 
+      } 
+      else { 
+        state.mistakes = Number(state.mistakes) + 1; 
+        pushLog(`❌ ${state.current.user}: решение не совпало с эталоном`); 
+      }
       updateModStats(); saveProgress(); setTimeout(randomMessage, 300);
     }
 
@@ -1721,13 +1686,15 @@
       const answer = el.supportAnswerInput.value.trim().toLowerCase();
       if (!answer) { el.supportResultText.textContent = "Напиши ответ игроку."; el.supportResultText.style.color = "var(--color-text-muted)"; return; }
 
-      supportState.resolved++;
+      supportState.resolved = Number(supportState.resolved) + 1;
       const ok = q.keywords.some(k => answer.includes(k));
       if (ok) {
-        supportState.correct++; el.supportResultText.textContent = "Ответ засчитан: попал по смыслу."; el.supportResultText.style.color = "var(--color-success)";
+        supportState.correct = Number(supportState.correct) + 1; 
+        el.supportResultText.textContent = "Ответ засчитан: попал по смыслу."; el.supportResultText.style.color = "var(--color-success)";
         pushLog(`🟢 АП: ответ по вопросу «${q.title}» засчитан.`);
       } else {
-        supportState.mistakes++; el.supportResultText.textContent = "Ответ не засчитан: мало ключевых ориентиров."; el.supportResultText.style.color = "var(--color-error)";
+        supportState.mistakes = Number(supportState.mistakes) + 1; 
+        el.supportResultText.textContent = "Ответ не засчитан: мало ключевых ориентиров."; el.supportResultText.style.color = "var(--color-error)";
         pushLog(`🔴 АП: ответ по вопросу «${q.title}» не засчитан.`);
       }
       updateSupportStats(); saveProgress(); 
