@@ -1247,13 +1247,12 @@
       warn.forEach(text => { messages.push({ type: "warn", text }); });
       ban.forEach(text => { messages.push({ type: "ban", text }); });
       good.forEach(text => { messages.push({ type: "good", text }); });
-      messages.sort(() => Math.random() - 0.5);
       return messages;
     }
 
     
     function createSupportQuestions() {
-      const questions = [
+      const result = [
         { title: "Навигация и GPS", text: "Как найти заправку через GPS?", keywords: ["gps","заправ","бензин"] },
         { title: "Навигация и GPS", text: "Подскажите, как в навигаторе включить маршрут до автосалона?", keywords: ["gps","автосалон","маршрут"] },
         { title: "Навигация и GPS", text: "Где в меню найти GPS-навигатор, я новичок.", keywords: ["gps","меню","новичок"] },
@@ -1313,9 +1312,6 @@
         { title: "Агенты поддержки", text: "Куда писать, если у меня вопрос по работе АП?", keywords: ["агент","контакт","руковод"] }
       ];
 
-      const result = [];
-      questions.forEach(q => result.push(q));
-      result.sort(() => Math.random() - 0.5);
       return result;
     }
 
