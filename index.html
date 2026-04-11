@@ -230,8 +230,6 @@
     .author-name { font-weight: 800; font-size: var(--text-sm); overflow-wrap: anywhere; line-height: 1.25; }
     .author-meta { color: var(--color-text-faint); font-size: var(--text-xs); overflow-wrap: anywhere; line-height: 1.35; }
     .message-text { font-size: 1rem; line-height: 1.7; max-width: 64ch; overflow-wrap: anywhere; text-wrap: pretty; color: var(--color-text); }
-    html[data-site-theme="guide"] .message-text strong { color: #00e5ff; }
-    html[data-site-theme="leaderboard"] .message-text strong { color: #ff5419; }
     .hint { color: var(--color-text-faint); font-size: var(--text-sm); min-height: 1.5em; line-height: 1.45; }
     .controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
     .action-btn { min-height: 48px; padding: 0.9rem 1rem; border-radius: 16px; font-weight: 800; font-size: var(--text-sm); border: 1px solid transparent; text-transform: uppercase; letter-spacing: 0.03em; }
@@ -679,14 +677,16 @@
         mainNavBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        Object.values(subNavs).forEach(nav => nav.style.display = 'none');
+        Object.values(subNavs).forEach(nav => {
+           if(nav) nav.style.display = 'none';
+        });
 
         const cat = btn.dataset.cat;
-        subNavs[cat].style.display = 'flex';
-
-        // Кликаем по первой кнопке подменю автоматически
-        const firstBtn = subNavs[cat].querySelector('.mode-btn');
-        if(firstBtn) firstBtn.click();
+        if(subNavs[cat]) {
+           subNavs[cat].style.display = 'flex';
+           const firstBtn = subNavs[cat].querySelector('.mode-btn');
+           if(firstBtn) firstBtn.click();
+        }
       });
     });
 
@@ -836,7 +836,7 @@
          document.getElementById("rightCards").innerHTML = "";
          return;
       }
-      //... Остальные правила без изменений ... (см. константы)
+      
       document.getElementById("rightTitle").textContent = "Правила раздела";
       document.getElementById("rightLead").textContent = "Обращайте внимание на основные пункты.";
       document.getElementById("rightCards").innerHTML = ""; 
@@ -1432,17 +1432,17 @@
         warn.style.display = 'none';
         formArea.style.display = 'block';
         if (adminEmails.includes(currentUser.email)) { 
-          adminPanel.style.display = 'block'; 
-          adminTabBtn.style.display = 'inline-block';
+          if(adminPanel) adminPanel.style.display = 'block'; 
+          if(adminTabBtn) adminTabBtn.style.display = 'inline-block';
         } else { 
-          adminPanel.style.display = 'none'; 
-          adminTabBtn.style.display = 'none';
+          if(adminPanel) adminPanel.style.display = 'none'; 
+          if(adminTabBtn) adminTabBtn.style.display = 'none';
         }
       } else {
         warn.style.display = 'block';
         warn.innerHTML = 'Вы не авторизованы!<br><span style="font-size: var(--text-sm); color: var(--color-text-muted);">Войдите в аккаунт, чтобы сдать отчет.</span>';
         formArea.style.display = 'none';
-        adminTabBtn.style.display = 'none';
+        if(adminTabBtn) adminTabBtn.style.display = 'none';
       }
     }
 
@@ -1615,7 +1615,8 @@
     })();
 
     // Запускаем изначальный рендер
-    document.querySelector('.main-cat-btn.active').click();
+    const initialActiveBtn = document.querySelector('.main-cat-btn.active');
+    if(initialActiveBtn) initialActiveBtn.click();
     renderLogs(); renderShopItems(); updateModStats(); updateSupportStats(); updateShopStats();
   </script>
 </body>
