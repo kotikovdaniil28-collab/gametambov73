@@ -853,7 +853,7 @@
   <div id="authModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center;">
     <div class="panel" style="padding: 2rem; width: 90%; max-width: 360px; display: grid; gap: 1rem; box-sizing: border-box;">
       <h2 style="margin: 0; font-family: var(--font-display);">Авторизация</h2>
-      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Войдите или зарегистрируйтесь, чтобы начать смену.</p>
+      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Войдите или зарегистрируйтесь, чтобы начать смену и сохранять прогресс.</p>
       <input type="email" id="authEmail" class="support-input" placeholder="Ваш Email">
       <input type="password" id="authPassword" class="support-input" placeholder="Пароль">
       <div id="authErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0; line-height: 1.4;"></div>
@@ -1083,12 +1083,69 @@
 
     let currentUser = null;
 
+    let state = {
+      resolved: 0,
+      correct: 0,
+      mistakes: 0,
+      current: null,
+      started: false,
+      log: []
+    };
+
+    let supportState = {
+      resolved: 0,
+      correct: 0,
+      mistakes: 0,
+      currentIndex: -1
+    };
+
+    let shopState = {
+      spent: 0,
+      purchased: false
+    };
+
     // UI элементы авторизации
     const authModal = document.getElementById('authModal');
     const loginBtnUI = document.getElementById('loginBtnUI');
     const logoutBtnUI = document.getElementById('logoutBtnUI');
     const userEmailDisplay = document.getElementById('userEmailDisplay');
     const authErrorMsg = document.getElementById('authErrorMsg');
+
+    // Сохранение и загрузка из БД
+    async function loadProgress() {
+      if(!currentUser) return;
+      const { data, error } = await supa.from('user_stats').select('*').eq('user_id', currentUser.id).single();
+      
+      if(data) {
+        state.resolved = data.mod_resolved || 0;
+        state.correct = data.mod_correct || 0;
+        state.mistakes = data.mod_mistakes || 0;
+        supportState.resolved = data.sup_resolved || 0;
+        supportState.correct = data.sup_correct || 0;
+        supportState.mistakes = data.sup_mistakes || 0;
+        shopState.spent = data.shop_spent || 0;
+        
+        updateModStats();
+        updateSupportStats();
+        updateShopStats();
+      }
+    }
+
+    async function saveProgress() {
+      if(!currentUser) return;
+      const payload = {
+        user_id: currentUser.id,
+        mod_resolved: state.resolved,
+        mod_correct: state.correct,
+        mod_mistakes: state.mistakes,
+        sup_resolved: supportState.resolved,
+        sup_correct: supportState.correct,
+        sup_mistakes: supportState.mistakes,
+        shop_spent: shopState.spent
+      };
+      // Upsert: обновит строку, если она есть, или создаст новую
+      await supa.from('user_stats').upsert(payload);
+    }
 
     // Прослушивание изменений статуса авторизации
     supa.auth.onAuthStateChange((event, session) => {
@@ -1097,16 +1154,13 @@
         userEmailDisplay.textContent = currentUser.email;
         loginBtnUI.style.display = 'none';
         logoutBtnUI.style.display = 'block';
-        authModal.style.display = 'none'; // Закрыть окно, если оно открыто
+        authModal.style.display = 'none';
+        loadProgress(); // Загружаем стату при входе
       } else {
         userEmailDisplay.textContent = '';
         loginBtnUI.style.display = 'block';
         logoutBtnUI.style.display = 'none';
-        
-        // Сбросить смену, если пользователь вышел
-        if(state && state.started) {
-          resetGame();
-        }
+        resetGame(); // Сбрасываем UI при выходе
       }
     });
 
@@ -1149,7 +1203,7 @@
         authErrorMsg.style.display = 'block'; 
       }
       else { 
-        authErrorMsg.textContent = "Успешно! (Возможно потребуется подтверждение на почте)"; 
+        authErrorMsg.textContent = "Успешно! Вы зарегистрированы и вошли."; 
         authErrorMsg.style.color = "var(--color-success)"; 
         authErrorMsg.style.display = 'block'; 
       }
@@ -1203,21 +1257,6 @@
         ]
       }
     };
-
-    function renderRight(mode) {
-      const data = rightContent[mode];
-      rightTitle.textContent = data.title;
-      rightLead.textContent = data.lead;
-      rightCards.innerHTML = data.cards.map((item, idx) => `
-        <div class="rule-item">
-          <div class="rule-icon ${idx === 0 ? "ok" : idx === 1 ? "warn" : "ban"}">${idx === 0 ? "✓" : idx === 1 ? "?" : "ℹ"}</div>
-          <div class="rule-copy">
-            <strong>${item[0]}</strong>
-            <span>${item[1]}</span>
-          </div>
-        </div>
-      `).join("");
-    }
 
     const funnyLeft = ["Мелстройность","Смешнявка","Капслокер","ВиртоСлив","Громкий_Микрофон","Рассыльщик_Мемов","ПолитТоксик","РелигБаттл","Дед_с_Клавой","Флуд_Бот"];
     const funnyRight = ["из_Тамбова","без_микрофона","на_ГлОбАнЕ","в_муте","с_вечным_баном","тянет_конфу","обижен_на_админов","любит_капс","ищет_баги","продаёт_вирты"];
@@ -1425,27 +1464,6 @@
     const moderationMessages = createModerationMessages();
     const supportQuestions = createSupportQuestions();
 
-    let state = {
-      resolved: 0,
-      correct: 0,
-      mistakes: 0,
-      current: null,
-      started: false,
-      log: []
-    };
-
-    let supportState = {
-      resolved: 0,
-      correct: 0,
-      mistakes: 0,
-      currentIndex: -1
-    };
-
-    let shopState = {
-      spent: 0,
-      purchased: false
-    };
-
     const el = {
       resolvedValue: document.getElementById("resolvedValue"),
       correctValue: document.getElementById("correctValue"),
@@ -1479,6 +1497,21 @@
       shopBuyHint: document.getElementById("shopBuyHint"),
       buyTestItemBtn: document.getElementById("buyTestItemBtn")
     };
+
+    function renderRight(mode) {
+      const data = rightContent[mode];
+      rightTitle.textContent = data.title;
+      rightLead.textContent = data.lead;
+      rightCards.innerHTML = data.cards.map((item, idx) => `
+        <div class="rule-item">
+          <div class="rule-icon ${idx === 0 ? "ok" : idx === 1 ? "warn" : "ban"}">${idx === 0 ? "✓" : idx === 1 ? "?" : "ℹ"}</div>
+          <div class="rule-copy">
+            <strong>${item[0]}</strong>
+            <span>${item[1]}</span>
+          </div>
+        </div>
+      `).join("");
+    }
 
     function initials(name) {
       return name.split(/[#_\\s]+/).filter(Boolean).slice(0, 2).map(part => part[0]).join("").toUpperCase();
@@ -1563,7 +1596,6 @@
     }
 
     function startGame() {
-      // Проверяем авторизацию перед стартом
       if (!currentUser) {
         authModal.style.display = 'flex';
         authErrorMsg.textContent = 'Для начала смены необходимо войти в аккаунт!';
@@ -1573,17 +1605,7 @@
       }
 
       state.started = true;
-      state.resolved = 0;
-      state.correct = 0;
-      state.mistakes = 0;
-
-      supportState.resolved = 0;
-      supportState.correct = 0;
-      supportState.mistakes = 0;
-      supportState.currentIndex = -1;
-
       state.log = [];
-      shopState = { spent: 0, purchased: false };
 
       el.logList.innerHTML = '<div class="log-item">Смена началась. Используй текущий режим ниже.</div>';
       el.supportQuestionTitle.textContent = "Вопрос скрыт";
@@ -1600,9 +1622,10 @@
     }
 
     function resetGame() {
-      state = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false, log: [] };
-      supportState = { resolved: 0, correct: 0, mistakes: 0, currentIndex: -1 };
-      shopState = { spent: 0, purchased: false };
+      // Сбрасываем только текущий статус, прогресс не обнуляем, чтобы он сохранялся глобально.
+      state.current = null;
+      state.started = false;
+      state.log = [];
 
       el.authorName.textContent = "System";
       el.authorMeta.textContent = "Сообщение появится после старта смены";
@@ -1640,6 +1663,7 @@
       }
 
       updateModStats();
+      saveProgress(); // Сохраняем прогресс в БД
       setTimeout(randomMessage, 300);
     }
 
@@ -1707,6 +1731,7 @@
       }
 
       updateSupportStats();
+      saveProgress(); // Сохраняем прогресс в БД
     });
 
     el.supportAnswerInput.addEventListener("keydown", e => {
@@ -1732,6 +1757,7 @@
       el.shopBuyHint.textContent = "Покупка прошла успешно: 30 XP списано.";
       pushLog("🛒 Куплен тестовый товар за 30 XP.");
       updateShopStats();
+      saveProgress(); // Сохраняем покупку
     });
 
     document.querySelectorAll(".mode-btn").forEach(btn => {
