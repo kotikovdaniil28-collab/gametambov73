@@ -71,6 +71,9 @@
     html[data-site-theme="leaderboard"] body {
       background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 158, 0, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%);
     }
+    html[data-site-theme="admin_log"] body {
+      background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%);
+    }
 
     button, input { font: inherit; }
     button { cursor: pointer; border: none; transition: transform var(--transition), background var(--transition), box-shadow var(--transition), opacity var(--transition), border-color var(--transition); }
@@ -92,6 +95,7 @@
     html[data-site-theme="report"] .logo { background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%), linear-gradient(135deg, rgba(162, 108, 255, 0.55), rgba(108, 204, 255, 0.38)); border-color: rgba(200, 180, 255, 0.45); }
     html[data-site-theme="guide"] .logo { background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%), linear-gradient(135deg, rgba(0, 229, 255, 0.45), rgba(0, 180, 216, 0.35)); border-color: rgba(180, 240, 255, 0.4); }
     html[data-site-theme="leaderboard"] .logo { background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%), linear-gradient(135deg, rgba(255, 61, 0, 0.45), rgba(255, 158, 0, 0.35)); border-color: rgba(255, 180, 150, 0.4); }
+    html[data-site-theme="admin_log"] .logo { background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%), linear-gradient(135deg, rgba(255, 191, 71, 0.45), rgba(255, 61, 0, 0.35)); border-color: rgba(255, 214, 122, 0.4); }
 
     .brand-title { font-family: var(--font-display); font-size: var(--text-lg); letter-spacing: 0.08em; text-transform: uppercase; }
     .brand-sub { color: var(--color-text-muted); font-size: var(--text-sm); max-width: 42ch; }
@@ -107,6 +111,7 @@
     html[data-site-theme="report"] .panel { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.16), transparent 55%), linear-gradient(155deg, rgba(16, 9, 25, 0.98), rgba(10, 10, 14, 1)); border-color: rgba(180, 150, 255, 0.28); }
     html[data-site-theme="guide"] .panel { background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.12), transparent 55%), linear-gradient(155deg, rgba(4, 14, 22, 0.98), rgba(2, 8, 12, 1)); border-color: rgba(0, 229, 255, 0.25); }
     html[data-site-theme="leaderboard"] .panel { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.12), transparent 55%), linear-gradient(155deg, rgba(22, 8, 4, 0.98), rgba(12, 4, 2, 1)); border-color: rgba(255, 61, 0, 0.25); }
+    html[data-site-theme="admin_log"] .panel { background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.12), transparent 55%), linear-gradient(155deg, rgba(25, 19, 8, 0.98), rgba(10, 10, 14, 1)); border-color: rgba(255, 191, 71, 0.25); }
 
     .hero-card, .rules, .game-card, .side { padding: 1.2rem; display: grid; gap: 1rem; min-width: 0; align-content: start; }
     .section-head { display: grid; gap: 0.35rem; min-width: 0; }
@@ -160,17 +165,11 @@
     html[data-site-theme="report"] .mode-btn.active[data-mode="report"] { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 10px 25px rgba(162, 108, 255, 0.45); color: #fff; }
     html[data-site-theme="guide"] .mode-btn.active[data-mode="guide"] { background: linear-gradient(135deg, #00b4d8, #00e5ff); box-shadow: 0 10px 25px rgba(0, 229, 255, 0.45); color: #001a22; }
     html[data-site-theme="leaderboard"] .mode-btn.active[data-mode="leaderboard"] { background: linear-gradient(135deg, #ff3d00, #ff9e00); box-shadow: 0 10px 25px rgba(255, 61, 0, 0.45); color: #fff; }
+    html[data-site-theme="admin_log"] .mode-btn.active[data-mode="admin_log"] { background: linear-gradient(135deg, #ffbf47, #ff9e00); box-shadow: 0 10px 25px rgba(255, 191, 71, 0.45); color: #18171c; }
 
     .game-wrap { margin-top: 0.75rem; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr); gap: 1rem; align-items: start; }
     .rule-list, .feed, .log { display: grid; gap: 0.75rem; min-width: 0; }
     .rule-item, .log-item, .stat, .shop-card { padding: 0.95rem; border-radius: 16px; background: rgba(13, 16, 32, 0.95); border: 1px solid rgba(191, 198, 255, 0.3); min-width: 0; overflow-wrap: anywhere; }
-
-    html[data-site-theme="support"] .rule-item, html[data-site-theme="support"] .log-item, html[data-site-theme="support"] .stat, html[data-site-theme="support"] .shop-card { background: rgba(35, 10, 26, 0.96); border-color: rgba(255, 190, 230, 0.36); }
-    html[data-site-theme="about"] .rule-item, html[data-site-theme="about"] .log-item, html[data-site-theme="about"] .stat, html[data-site-theme="about"] .shop-card { background: rgba(25, 19, 8, 0.96); border-color: rgba(255, 214, 122, 0.24); }
-    html[data-site-theme="shop"] .rule-item, html[data-site-theme="shop"] .log-item, html[data-site-theme="shop"] .stat, html[data-site-theme="shop"] .shop-card { background: rgba(11, 21, 15, 0.96); border-color: rgba(162, 241, 188, 0.22); }
-    html[data-site-theme="report"] .rule-item, html[data-site-theme="report"] .log-item, html[data-site-theme="report"] .stat, html[data-site-theme="report"] .shop-card { background: rgba(16, 9, 25, 0.96); border-color: rgba(180, 150, 255, 0.24); }
-    html[data-site-theme="guide"] .rule-item, html[data-site-theme="guide"] .log-item, html[data-site-theme="guide"] .stat, html[data-site-theme="guide"] .shop-card { background: rgba(4, 14, 22, 0.96); border-color: rgba(0, 229, 255, 0.22); }
-    html[data-site-theme="leaderboard"] .rule-item, html[data-site-theme="leaderboard"] .log-item, html[data-site-theme="leaderboard"] .stat, html[data-site-theme="leaderboard"] .shop-card { background: rgba(22, 8, 4, 0.96); border-color: rgba(255, 61, 0, 0.22); }
 
     .rule-item { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0.8rem; align-items: start; }
     .rule-icon { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-size: 1rem; font-weight: 900; margin-top: 2px; }
@@ -179,8 +178,6 @@
     .rule-copy span { color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.55; max-width: 38ch; display: block; }
     
     .rule-copy a { color: var(--color-primary); text-decoration: none; font-weight: 600; }
-    html[data-site-theme="guide"] .rule-copy a { color: #00e5ff; }
-    html[data-site-theme="leaderboard"] .rule-copy a { color: #ff5419; }
     .rule-copy a:hover { text-decoration: underline; }
 
     .ok { background: rgba(82, 199, 123, 0.14); color: #8df0ae; }
@@ -341,7 +338,7 @@
   <div id="fortuneModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center;">
     <div class="panel" style="padding: 2rem; width: 95%; max-width: 600px; display: flex; flex-direction: column; gap: 1rem; box-sizing: border-box; text-align: center;">
       <h2 style="margin: 0; font-family: var(--font-display); font-size: var(--text-xl); color: #ffbf47;">Колесо Фортуны</h2>
-      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Испытай удачу! Призы могут быть добавлены на твой баланс или переданы Руководству.</p>
+      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Испытай удачу! Призы будут добавлены на баланс или отправлены Руководству.</p>
       
       <div class="roulette-wrapper">
         <div class="roulette-pointer"></div>
@@ -414,6 +411,7 @@
       <button class="mode-btn" type="button" data-mode="about">О команде</button>
       <button class="mode-btn" type="button" data-mode="shop">Магазин</button>
       <button class="mode-btn" type="button" data-mode="report">Отчетность</button>
+      <button class="mode-btn" type="button" data-mode="admin_log" id="adminLogTabBtn" style="display:none; color: var(--color-warning);">Выдачи (Админ)</button>
     </div>
 
     <section class="game-wrap" id="game">
@@ -546,7 +544,7 @@
       <section class="panel game-card" id="mode-shop" style="display:none;">
         <div class="section-head">
           <h2>Магазин</h2>
-          <p>Здесь можно потратить накопленные XP на ускорение повышения или дисциплинарные бонусы.</p>
+          <p>Здесь можно потратить накопленные XP на ускорение повышения или дисциплинарные бонусы. <strong>Все покупки автоматически отправляются руководству.</strong></p>
         </div>
         <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
           <div class="stat"><span class="stat-label">Модератор</span><div class="stat-value" id="shopModXp">0</div></div>
@@ -592,6 +590,17 @@
         </div>
       </section>
 
+      <section class="panel game-card" id="mode-admin_log" style="display:none;">
+        <div class="section-head">
+          <h2 style="color: #ffbf47;">Логи выдачи (Руководство)</h2>
+          <p>Здесь отображаются покупки в магазине и призы с Рулетки. Нажимайте «Отметить как выданное» после выдачи приза в Discord.</p>
+        </div>
+        <button class="btn btn-secondary" type="button" id="loadAdminLogsBtn" style="width:100%; margin-bottom:1rem;">Обновить список</button>
+        <div class="feed" id="adminLogsArea">
+          <div class="message-text">Нажмите «Обновить список»</div>
+        </div>
+      </section>
+
       <aside class="panel side">
         <div class="section-head">
           <h2>Лог смены</h2>
@@ -616,7 +625,12 @@
     let hasAccessCode = localStorage.getItem('access_JohnWickModer') === 'true';
     let hasReportAccessCode = localStorage.getItem('access_JohnWIckTopModer') === 'true';
 
-    const adminEmails = ['daniiltimosin72@gmail.com', 'isayevrufat37@gmail.com', 'leha.br222@gmail.com'];
+    const adminEmails = [
+      'daniiltimosin72@gmail.com', 
+      'isayevrufat37@gmail.com', 
+      'leha.br222@gmail.com',
+      'maksimladnyj4@gmail.com'
+    ];
     
     let state = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false, log: [], reportXp: 0 };
     let supportState = { resolved: 0, correct: 0, mistakes: 0, currentIndex: -1 };
@@ -661,21 +675,15 @@
 
     document.getElementById('forceNicknameBtn').addEventListener('click', async () => {
       const val = document.getElementById('forceNicknameInput').value.trim();
-      if (val.length < 3) {
-        alert("Никнейм должен быть длиннее 3 символов!");
-        return;
-      }
+      if (val.length < 3) { alert("Никнейм должен быть длиннее 3 символов!"); return; }
       
       await supa.auth.updateUser({ data: { nickname: val } });
-      if (currentUser) {
-        await supa.from('user_stats').update({ nickname: val }).eq('user_id', currentUser.id);
-      }
+      if (currentUser) { await supa.from('user_stats').update({ nickname: val }).eq('user_id', currentUser.id); }
       
       currentNickname = val;
       userEmailDisplay.textContent = val;
       nicknameModal.style.display = 'none';
     });
-
 
     async function loadProgress() {
       if(!currentUser) return;
@@ -753,6 +761,20 @@
       else { authErrorMsg.textContent = "Успешно! Вы зарегистрированы и вошли."; authErrorMsg.style.color = "var(--color-success)"; authErrorMsg.style.display = 'block'; }
     };
 
+    // ФУНКЦИЯ ЛОГИРОВАНИЯ ПОКУПОК
+    async function logPurchase(itemName, isAutoLog) {
+      if (!currentUser) return;
+      const newLog = {
+        id: Date.now().toString() + Math.random().toString(36).substr(2, 9),
+        email: currentNickname || currentUser.email,
+        link: '[АВТОВЫДАЧА] ' + itemName,
+        date: new Date().toLocaleString('ru-RU'),
+        status: isAutoLog ? 'Автоматически зачислено' : 'Ожидает выдачи',
+        xp: 0
+      };
+      await supa.from('reports').insert([newLog]);
+    }
+
     const shopItems = [
       { id: 'mm_1', title: "ММ: Скидка -1 день", desc: "Ускоряет повышение Младшего Модератора (ММ → М).", price: 200 },
       { id: 'mm_2', title: "ММ: Скидка -2 дня", desc: "Максимальная скидка. Повышение через 5 дней.", price: 450 },
@@ -773,57 +795,64 @@
     const heroBadge2 = document.getElementById("heroBadge2");
     const html = document.documentElement;
 
-    const rightContent = {
-      moderation: {
-        title: "Материалы модератора", lead: "Здесь только подсказки по модерации: как оценивать сообщения, где достаточно предупреждения, а где уже нужен бан.",
-        cards: [
-          ["Без нарушения", "Обычное сообщение без спама, оскорблений, рекламы и провокаций."],
-          ["Устное / Пред / Мут", "Подходит для флуда, капса, токсичности, помех и части поведенческих нарушений."],
-          ["Бан / Перма / Глобал", "Используется для рекламы сторонних проектов, обхода наказаний, файлов, продажи за реал и тяжёлых нарушений."]
-        ]
-      },
-      support: {
-        title: "Материалы агента поддержки", lead: "Раздел агентов поддержки TAMBOV содержит темы про агента поддержки, шаблоны ответов и т.д.",
-        cards: [
-          ["База знаний", "Для АП на форуме закреплены темы с шаблонами ответов, GPS-навигатором сервера и RolePlay терминами."],
-          ["Работа и правила", "В разделе есть правила и обязанности агентов поддержки, правила поведения в чате хелперов и ежедневный норматив."],
-          ["Важно!", "Обратите внимание: за ответы агента поддержки XP больше не зачисляются на ваш баланс."]
-        ]
-      },
-      guide: {
-        title: "Контактная информация (ВК)", lead: "Связь с руководством",
-        cards: [
-          ["Модерация", "Главный Модератор - Lexa_Mackenzie - <a href='https://vk.com/id783455796' target='_blank'>VK</a><br>Зам. ГМ - John Wick - <a href='https://vk.ru/its.daniqz' target='_blank'>VK</a><br>Зам. ГМ - Andrey_Caypen - <a href='https://vk.ru/andreycaypen' target='_blank'>VK</a><br>Куратор - Hunter_Mackenzie - <a href='https://vk.ru/exdsw1ndy' target='_blank'>VK</a>"],
-          ["Администрация", "ГА - Lars_Crown - <a href='https://vk.com/larsellorcrowner' target='_blank'>VK</a><br>ЗГА - Egor_Versachi - <a href='https://vk.com/id775315885' target='_blank'>VK</a><br>ЗГА - Oskar_Lofrein - <a href='https://vk.com/oooutlivq' target='_blank'>VK</a><br>Куратор - Kiruha_Lubera - <a href='https://vk.ru/kiruha_wl' target='_blank'>VK</a>"],
-          ["Агенты Поддержки", "Куратор - Ioana_Lost - <a href='https://vk.com/ioanalost' target='_blank'>VK</a><br>Зам. Куратора - Kirill_Rendi - <a href='https://vk.com/takeru_ferguson' target='_blank'>VK</a>"]
-        ]
-      },
-      leaderboard: {
-        title: "О Лидерборде", lead: "Рейтинг формируется на основе заработанного XP.",
-        cards: [
-          ["Обновление", "Таблица автоматически загружается и обновляется при входе в этот раздел."],
-          ["Сортировка", "Теперь таблица точно рассчитывает баланс XP, учитывая ответы на вопросы и траты в магазине."],
-          ["Внимание", "Отображаются только никнеймы сотрудников. Без никнейма в топ попасть нельзя."]
-        ]
-      },
-      about: {
-        title: "О команде", lead: "Краткая информация о людях, которые участвовали в создании сайта.",
-        cards: [
-          ["Создано", "John Wick."],
-          ["При поддержке", "Leha_Mackenzie, Andrey_Caypen и Евгения Бабешко."]
-        ]
-      },
-      shop: {
-        title: "Магазин модераторов", lead: "Здесь вы можете потратить заработанные XP.",
-        cards: [ ["Выдача", "После покупки сделайте скриншот уведомления на экране и отправьте его руководству для получения бонуса."] ]
-      },
-      report: {
-        title: "Отчетность", lead: "Раздел для сдачи отчетов.",
-        cards: [ ["Доступ", "Доступно всем авторизованным модераторам для сдачи."], ["Проверка", "Руководство (Администраторы) имеет доступ к панели проверки."] ]
-      }
-    };
-
     function renderRight(mode) {
+      if(mode === 'admin_log') {
+         rightTitle.textContent = "Панель логов";
+         rightLead.textContent = "Только для руководства";
+         rightCards.innerHTML = "";
+         return;
+      }
+
+      const rightContent = {
+        moderation: {
+          title: "Материалы модератора", lead: "Здесь только подсказки по модерации: как оценивать сообщения, где достаточно предупреждения, а где уже нужен бан.",
+          cards: [
+            ["Без нарушения", "Обычное сообщение без спама, оскорблений, рекламы и провокаций."],
+            ["Устное / Пред / Мут", "Подходит для флуда, капса, токсичности, помех и части поведенческих нарушений."],
+            ["Бан / Перма / Глобал", "Используется для рекламы сторонних проектов, обхода наказаний, файлов, продажи за реал и тяжёлых нарушений."]
+          ]
+        },
+        support: {
+          title: "Материалы агента поддержки", lead: "Раздел агентов поддержки TAMBOV содержит темы про агента поддержки, шаблоны ответов и т.д.",
+          cards: [
+            ["База знаний", "Для АП на форуме закреплены темы с шаблонами ответов, GPS-навигатором сервера и RolePlay терминами."],
+            ["Работа и правила", "В разделе есть правила и обязанности агентов поддержки, правила поведения в чате хелперов и ежедневный норматив."],
+            ["Важно!", "Обратите внимание: за ответы агента поддержки XP больше не зачисляются на ваш баланс."]
+          ]
+        },
+        guide: {
+          title: "Контактная информация (ВК)", lead: "Связь с руководством",
+          cards: [
+            ["Модерация", "Главный Модератор - Lexa_Mackenzie - <a href='https://vk.com/id783455796' target='_blank'>VK</a><br>Зам. ГМ - John Wick - <a href='https://vk.ru/its.daniqz' target='_blank'>VK</a><br>Зам. ГМ - Andrey_Caypen - <a href='https://vk.ru/andreycaypen' target='_blank'>VK</a><br>Куратор - Hunter_Mackenzie - <a href='https://vk.ru/exdsw1ndy' target='_blank'>VK</a>"],
+            ["Администрация", "ГА - Lars_Crown - <a href='https://vk.com/larsellorcrowner' target='_blank'>VK</a><br>ЗГА - Egor_Versachi - <a href='https://vk.com/id775315885' target='_blank'>VK</a><br>ЗГА - Oskar_Lofrein - <a href='https://vk.com/oooutlivq' target='_blank'>VK</a><br>Куратор - Kiruha_Lubera - <a href='https://vk.ru/kiruha_wl' target='_blank'>VK</a>"],
+            ["Агенты Поддержки", "Куратор - Ioana_Lost - <a href='https://vk.com/ioanalost' target='_blank'>VK</a><br>Зам. Куратора - Kirill_Rendi - <a href='https://vk.com/takeru_ferguson' target='_blank'>VK</a>"]
+          ]
+        },
+        leaderboard: {
+          title: "О Лидерборде", lead: "Рейтинг формируется на основе заработанного XP.",
+          cards: [
+            ["Обновление", "Таблица автоматически загружается и обновляется при входе в этот раздел."],
+            ["Сортировка", "Теперь таблица точно рассчитывает баланс XP, учитывая ответы на вопросы и траты в магазине."],
+            ["Внимание", "Отображаются только никнеймы сотрудников. Без никнейма в топ попасть нельзя."]
+          ]
+        },
+        about: {
+          title: "О команде", lead: "Краткая информация о людях, которые участвовали в создании сайта.",
+          cards: [
+            ["Создано", "John Wick."],
+            ["При поддержке", "Leha_Mackenzie, Andrey_Caypen и Евгения Бабешко."]
+          ]
+        },
+        shop: {
+          title: "Магазин модераторов", lead: "Здесь вы можете потратить заработанные XP.",
+          cards: [ ["Выдача", "Все покупки автоматически уходят в панель руководству на выдачу. Больше не нужно кидать скриншоты."] ]
+        },
+        report: {
+          title: "Отчетность", lead: "Раздел для сдачи отчетов.",
+          cards: [ ["Доступ", "Доступно всем авторизованным модераторам для сдачи."], ["Проверка", "Руководство (Администраторы) имеет доступ к панели проверки."] ]
+        }
+      };
+
       const data = rightContent[mode];
       if (data) {
         rightTitle.textContent = data.title;
@@ -874,7 +903,7 @@
         "Кто за какую партию голосовал? Давайте обсудим",
         "Политики вообще оборзели в край",
         "Ты вообще клоун, иди откисай на спавне",
-        "Да вы все тут нули, я вас один раскидаю",
+        "Да вы вы тут нули, я вас один раскидаю",
         "Плачь больше, форумная крыса",
         "Чел, у тебя iq как у хлебушка, не пиши сюда",
         "Боже, какие же криворукие сидят в этой фракции",
@@ -1241,7 +1270,7 @@
 
         let calculatedData = statsRes.data.map(u => {
           const modXp = Math.floor((Number(u.mod_correct) || 0) / 10) * 15;
-          const userRepXp = repXpMap[u.email] || 0;
+          const userRepXp = repXpMap[u.nickname || u.email] || repXpMap[u.email] || 0;
           const userXp = Math.max(0, modXp + userRepXp - (Number(u.shop_spent) || 0));
           return { ...u, userXp };
         });
@@ -1293,6 +1322,7 @@
       const track = document.getElementById('rouletteTrack');
       const resultText = document.getElementById('fortuneResultText');
       const closeBtn = document.getElementById('closeFortuneBtn');
+      const wrapper = document.querySelector('.roulette-wrapper');
       
       modal.style.display = 'flex';
       resultText.textContent = 'Крутим...';
@@ -1301,7 +1331,6 @@
       track.style.transform = 'translateX(0px)';
       track.innerHTML = '';
 
-      // Генерируем "ленту" призов (80 элементов)
       const numItems = 80;
       const itemWidth = 160;
       let winningIndex = Math.floor(Math.random() * 10) + 65; 
@@ -1319,36 +1348,39 @@
       }
 
       setTimeout(() => {
-        const offset = (winningIndex * itemWidth) - (itemWidth / 2) + (Math.random() * 40 - 20); 
+        const wrapperWidth = wrapper.offsetWidth;
+        const targetCenter = (winningIndex * itemWidth) + (itemWidth / 2);
+        const randomShift = (Math.random() * 80) - 40; 
+        const offset = targetCenter - (wrapperWidth / 2) + randomShift;
+
         track.style.transition = 'transform 6s cubic-bezier(0.15, 0.85, 0.2, 1)';
         track.style.transform = `translateX(-${offset}px)`;
         
-        setTimeout(() => {
-          let outcomeMsg = `Вы выиграли: ${winnerItem.text}!`;
+        setTimeout(async () => {
+          let outcomeMsg = `Вы выиграли: ${winnerItem.text}!\n\n`;
           
           if (winnerItem.xp) {
             if (winnerItem.xp > 0) {
               shopState.spent = Number(shopState.spent) - Number(winnerItem.xp); 
-              outcomeMsg += `\nНа баланс зачислено ${winnerItem.xp} XP!`;
+              outcomeMsg += `Опыт автоматически зачислен на баланс (+${winnerItem.xp} XP).`;
             } else {
               shopState.spent = Number(shopState.spent) - Number(winnerItem.xp); 
-              outcomeMsg += `\nС баланса списано ${Math.abs(winnerItem.xp)} XP!`;
+              outcomeMsg += `Штраф списан с баланса (${winnerItem.xp} XP).`;
             }
-            updateShopStats();
-            updateModStats();
-            updateSupportStats();
-            saveProgress();
+            updateShopStats(); updateModStats(); updateSupportStats(); saveProgress();
+            
+            await logPurchase(`Рулетка: ${winnerItem.text}`, true);
+          } else if (winnerItem.type === 'r-fail') {
+             outcomeMsg += `В этот раз не повезло. Попробуйте еще раз!`;
+          } else {
+             outcomeMsg += `Заявка на выдачу приза отправлена Руководству! Ожидайте.`;
+             await logPurchase(`Рулетка: ${winnerItem.text}`, false);
           }
 
           resultText.textContent = `🎁 ${winnerItem.text} 🎁`;
-          
           pushLog(`🎰 Рулетка: Выпал приз "${winnerItem.text}".`);
           
-          if(!winnerItem.xp) {
-             alert(`✅ КОЛЕСО ФОРТУНЫ!\n\nВы выиграли: "${winnerItem.text}"\n\n📸 Сделайте скриншот этого сообщения и отправьте его руководству для выдачи приза!`);
-          } else {
-             alert(`✅ КОЛЕСО ФОРТУНЫ!\n\n${outcomeMsg}`);
-          }
+          alert(`✅ КОЛЕСО ФОРТУНЫ!\n\n${outcomeMsg}`);
           
           closeBtn.style.display = 'inline-block';
         }, 6200);
@@ -1371,7 +1403,7 @@
       `).join('');
       
       container.querySelectorAll('.shop-buy-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', async () => {
           const price = parseInt(btn.dataset.price);
           const title = btn.dataset.title;
           const id = btn.dataset.shopId;
@@ -1385,7 +1417,8 @@
                startFortuneWheel();
             } else {
                pushLog(`🛒 Куплен товар: ${title} за ${price} XP.`);
-               alert(`✅ ВЫ УСПЕШНО КУПИЛИ ТОВАР:\n\n"${title}" за ${price} XP\n\n📸 Сделайте скриншот этого сообщения и отправьте его руководству для выдачи скидки/бонуса!`);
+               alert(`✅ ВЫ УСПЕШНО КУПИЛИ ТОВАР:\n\n"${title}" за ${price} XP\n\nИнформация об этом уже отправлена Руководству. Ничего присылать не нужно!`);
+               await logPurchase(`Магазин: ${title}`, false);
             }
           }
         });
@@ -1432,15 +1465,23 @@
       const warn = document.getElementById('reportAccessWarning');
       const formArea = document.getElementById('reportFormArea');
       const adminPanel = document.getElementById('adminPanelArea');
+      const adminTabBtn = document.getElementById('adminLogTabBtn');
 
       if (currentUser) {
         warn.style.display = 'none';
         formArea.style.display = 'block';
-        if (adminEmails.includes(currentUser.email)) { adminPanel.style.display = 'block'; } else { adminPanel.style.display = 'none'; }
+        if (adminEmails.includes(currentUser.email)) { 
+          adminPanel.style.display = 'block'; 
+          adminTabBtn.style.display = 'inline-block';
+        } else { 
+          adminPanel.style.display = 'none'; 
+          adminTabBtn.style.display = 'none';
+        }
       } else {
         warn.style.display = 'block';
         warn.innerHTML = 'Вы не авторизованы!<br><span style="font-size: var(--text-sm); color: var(--color-text-muted);">Войдите в аккаунт, чтобы сдать отчет.</span>';
         formArea.style.display = 'none';
+        adminTabBtn.style.display = 'none';
       }
     }
 
@@ -1455,6 +1496,7 @@
       document.getElementById("mode-about").style.display = mode === "about" ? "" : "none";
       document.getElementById("mode-shop").style.display = mode === "shop" ? "" : "none";
       document.getElementById("mode-report").style.display = mode === "report" ? "" : "none";
+      document.getElementById("mode-admin_log").style.display = mode === "admin_log" ? "" : "none";
 
       let currentTheme = "mod";
       if(mode === "support") currentTheme = "support";
@@ -1463,6 +1505,7 @@
       else if(mode === "report") currentTheme = "report";
       else if(mode === "guide") currentTheme = "guide";
       else if(mode === "leaderboard") currentTheme = "leaderboard";
+      else if(mode === "admin_log") currentTheme = "admin_log";
 
       html.setAttribute("data-site-theme", currentTheme);
       renderRight(mode);
@@ -1503,6 +1546,11 @@
         heroTitle.innerHTML = 'Сдавай <span>отчеты</span> вовремя.';
         heroText.textContent = "Отправляй скриншоты своего онлайна в Discord для проверки руководством.";
         heroBadge2.textContent = "Режим: отчетность"; checkReportAccess();
+      } else if (mode === "admin_log") {
+        brandSubtitle.textContent = "Админ-Панель";
+        heroTitle.innerHTML = 'Логи <span>выдач</span>.';
+        heroText.textContent = "Здесь отображаются все покупки и выигрыши в рулетку, требующие ручной выдачи Руководством в Discord.";
+        heroBadge2.textContent = "Режим: руководство"; renderAdminLogs();
       }
     }
 
@@ -1523,6 +1571,7 @@
     });
 
     document.getElementById('viewReportsBtn').addEventListener('click', () => { renderReportsList(); });
+    document.getElementById('loadAdminLogsBtn').addEventListener('click', () => { renderAdminLogs(); });
 
     document.getElementById('accessSubmitBtn').addEventListener('click', () => {
       const code = document.getElementById('accessCodeInput').value;
@@ -1547,7 +1596,7 @@
       if(!link) { res.textContent = "Пожалуйста, вставьте ссылку."; res.style.color = "var(--color-warning)"; return; }
       if(!link.startsWith('http')) { res.textContent = "Ссылка должна начинаться с http:// или https://"; res.style.color = "var(--color-warning)"; return; }
 
-      const newReport = { id: Date.now().toString() + Math.random().toString(36).substr(2, 9), email: currentUser ? currentUser.email : 'Неизвестно', link: link, date: new Date().toLocaleString('ru-RU'), status: null, xp: 0 };
+      const newReport = { id: Date.now().toString() + Math.random().toString(36).substr(2, 9), email: currentNickname || currentUser.email, link: link, date: new Date().toLocaleString('ru-RU'), status: null, xp: 0 };
       const { error } = await supa.from('reports').insert([newReport]);
       if (error) { res.textContent = "Ошибка при сохранении: " + error.message; res.style.color = "var(--color-error)"; return; }
 
@@ -1563,13 +1612,20 @@
       if (error) { alert('Ошибка при оценке: ' + error.message); return; }
       await renderReportsList();
       alert(`✅ Отчет оценен: ${statusText}!\n\nПользователю ${email} начислено ${xpAmount} XP.`);
-      if (currentUser && currentUser.email === email) { await loadProgress(); }
+      if (currentUser && (currentUser.email === email || currentNickname === email)) { await loadProgress(); }
     };
 
+    window.markAdminLogIssued = async function(id) {
+      const { error } = await supa.from('reports').update({ status: 'Выдано Руководством' }).eq('id', id);
+      if (error) { alert('Ошибка: ' + error.message); return; }
+      await renderAdminLogs();
+    };
+
+    // Обновленная функция рендера отчетов, чтобы она скрывала логи выдачи
     async function renderReportsList() {
       const area = document.getElementById('reportsListArea');
       area.style.display = 'flex'; area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка отчетов...</div>';
-      const { data: storedReports, error } = await supa.from('reports').select('*').order('date', { ascending: false });
+      const { data: storedReports, error } = await supa.from('reports').select('*').not('link', 'like', '[АВТОВЫДАЧА]%').order('date', { ascending: false });
       if (error) { area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`; return; }
       if (!storedReports || storedReports.length === 0) { area.innerHTML = `<div class="report-list-item" style="text-align:center;">Отчетов пока нет.</div>`; return; }
 
@@ -1586,6 +1642,30 @@
             </div>
           ` : `
             <div style="margin-top:0.5rem; font-size:var(--text-xs); font-weight:800; color:var(--color-success); letter-spacing:0.06em;">СТАТУС: ${rep.status}</div>
+          `}
+        </div>
+      `).join('');
+    }
+
+    // Рендер логов для админов
+    async function renderAdminLogs() {
+      const area = document.getElementById('adminLogsArea');
+      area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка логов...</div>';
+      const { data: storedLogs, error } = await supa.from('reports').select('*').like('link', '[АВТОВЫДАЧА]%').order('date', { ascending: false });
+      
+      if (error) { area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`; return; }
+      if (!storedLogs || storedLogs.length === 0) { area.innerHTML = `<div class="report-list-item" style="text-align:center;">Новых логов нет.</div>`; return; }
+
+      area.innerHTML = storedLogs.map(log => `
+        <div class="report-list-item" style="border-color: rgba(255, 191, 71, 0.4);">
+          <span>Сотрудник: <strong style="color: #fff; font-size: var(--text-sm);">${log.email}</strong> • Дата: ${log.date}</span>
+          <span style="font-size: var(--text-sm); color: var(--color-primary); font-weight: bold; margin-top: 0.2rem;">${log.link.replace('[АВТОВЫДАЧА] ', '📦 ')}</span>
+          ${log.status === 'Ожидает выдачи' ? `
+            <div style="display:flex; gap:0.5rem; margin-top:0.5rem;">
+              <button class="badge xp" onclick="markAdminLogIssued('${log.id}')" style="cursor:pointer; border:1px solid rgba(82,199,123,0.8); background: rgba(82, 199, 123, 0.15); color: #52c77b;">Отметить как выданное ✅</button>
+            </div>
+          ` : `
+            <div style="margin-top:0.5rem; font-size:var(--text-xs); font-weight:800; color:var(--color-text-faint); letter-spacing:0.06em;">СТАТУС: ${log.status}</div>
           `}
         </div>
       `).join('');
