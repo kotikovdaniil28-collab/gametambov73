@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tambov 73 — Система Модерации</title>
+  <title>Tambov 73 — Панель Персонала</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,58 +45,125 @@
       font-size: var(--text-base);
       color: var(--color-text);
       line-height: 1.6;
-      background: linear-gradient(160deg, #05060a, #040711 100%);
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(108, 140, 255, 0.2), transparent 50%),
+        radial-gradient(circle at bottom right, rgba(255, 107, 136, 0.18), transparent 55%),
+        linear-gradient(160deg, #05060a, #05060a 45%, #040711 100%);
       transition: background 350ms ease;
     }
 
-    /* Навигация и Стили Вкладок */
+    html[data-site-theme="support"] body {
+      background: radial-gradient(circle at top left, rgba(255, 184, 222, 0.3), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(255, 120, 180, 0.3), transparent 55%),
+                  linear-gradient(160deg, #2b0714, #180212 100%);
+    }
+
+    html[data-site-theme="shop"] body {
+      background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.14), transparent 55%),
+                  linear-gradient(160deg, #061008, #0a1116 100%);
+    }
+
+    button, input { font: inherit; }
+
+    button {
+      cursor: pointer; border: none;
+      transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+    }
+
+    button:hover { transform: translateY(-1px); }
+    button:active { transform: translateY(1px) scale(0.99); }
+
     .page { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; padding: 1rem 0 2rem; }
-    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-    
+
+    .topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1rem; margin-bottom: 1.5rem;
+    }
+
+    .brand { display: flex; align-items: center; gap: 0.85rem; }
+    .logo {
+      width: 48px; height: 48px; display: grid; place-items: center;
+      background: linear-gradient(135deg, rgba(108, 140, 255, 0.32), rgba(255, 107, 136, 0.22));
+      border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
     .panel {
-      border-radius: 22px;
-      border: 1px solid rgba(191, 198, 255, 0.2);
-      backdrop-filter: blur(18px);
-      background: rgba(18, 22, 38, 0.9);
-      padding: 1.5rem;
+      border-radius: 22px; border: 1px solid rgba(191, 198, 255, 0.28);
+      box-shadow: var(--shadow-lg); backdrop-filter: blur(18px);
+      background: rgba(18, 22, 38, 0.95); padding: 1.5rem;
     }
 
     .btn {
-      padding: 0.85rem 1.2rem; border-radius: 16px; font-weight: 800; border: none; cursor: pointer;
-      text-transform: uppercase; transition: transform 0.2s;
+      padding: 0.85rem 1.2rem; border-radius: 16px; font-weight: 800;
+      letter-spacing: 0.04em; text-transform: uppercase; font-size: var(--text-sm);
     }
-    .btn-primary { background: var(--color-primary); color: #fff; box-shadow: 0 10px 30px rgba(108, 140, 255, 0.4); }
-    .btn-secondary { background: rgba(9, 12, 26, 0.8); color: var(--color-text-muted); border: 1px solid rgba(255,255,255,0.1); }
-    .btn:active { transform: scale(0.95); }
+    .btn-primary {
+      color: #fff; background: linear-gradient(135deg, #6c8cff, #8aa3ff);
+      box-shadow: 0 15px 35px rgba(108, 140, 255, 0.4);
+    }
+    .btn-secondary {
+      color: var(--color-text-muted); background: rgba(9, 12, 26, 0.86);
+      border: 1px solid rgba(191, 198, 255, 0.3);
+    }
 
+    /* Навигация */
     .mode-switch {
-      margin: 1rem 0; display: inline-flex; border-radius: 999px; padding: 0.25rem;
-      background: rgba(4, 6, 12, 0.85); border: 1px solid rgba(255,255,255,0.1); gap: 0.25rem;
+      margin: 1.5rem 0; display: inline-flex; flex-wrap: wrap; border-radius: 999px;
+      padding: 0.25rem; background: rgba(4, 6, 12, 0.85); border: 1px solid rgba(255,255,255,0.1);
     }
     .mode-btn {
-      border-radius: 999px; padding: 0.6rem 1.2rem; font-size: 14px; font-weight: 700;
-      color: var(--color-text-muted); background: transparent; cursor: pointer; border: none;
+      border-radius: 999px; padding: 0.5rem 1.15rem; font-size: var(--text-sm);
+      font-weight: 700; color: var(--color-text-muted); background: transparent;
+      text-transform: uppercase; letter-spacing: 0.06em;
     }
-    .mode-btn.active { background: var(--color-primary); color: #fff; }
+    .mode-btn.active {
+      color: #fff; background: var(--color-primary);
+      box-shadow: 0 8px 20px rgba(108, 140, 255, 0.4);
+    }
 
-    /* Сетка магазина и предметов */
-    .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-    .shop-item { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 18px; display: grid; gap: 0.5rem; }
-    .price-tag { color: var(--color-warning); font-weight: 900; font-size: 1.2rem; }
+    /* Геймплей */
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
+    .stat-card {
+      padding: 1rem; border-radius: 16px; background: rgba(13, 16, 32, 0.95);
+      border: 1px solid rgba(191, 198, 255, 0.2); text-align: center;
+    }
+    .stat-label { font-size: 10px; color: var(--color-text-faint); text-transform: uppercase; display: block; }
+    .stat-value { font-size: 1.2rem; font-weight: 800; color: #fff; }
+
+    .message-card {
+      padding: 1.5rem; border-radius: 18px; border: 1px solid rgba(191, 198, 255, 0.3);
+      background: linear-gradient(160deg, rgba(13, 16, 32, 0.98), rgba(5, 7, 15, 1));
+      min-height: 200px; position: relative; overflow: hidden; margin-bottom: 1.5rem;
+    }
+
+    .controls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
+    /* Магазин */
+    .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+    .shop-item {
+      background: rgba(0,0,0,0.3); padding: 1.2rem; border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .shop-price { color: var(--color-warning); font-weight: 900; font-size: 1.1rem; }
+
+    /* Секретные зоны */
+    .lock-screen {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 400px; text-align: center; gap: 1.5rem;
+    }
+    .input-field {
+      background: #000; border: 1px solid #333; color: #fff; padding: 12px 20px;
+      border-radius: 12px; width: 100%; max-width: 300px; text-align: center;
+    }
 
     /* Колесо */
-    .wheel-zone { text-align: center; padding: 2rem; border: 2px dashed rgba(255, 255, 255, 0.1); border-radius: 30px; margin-bottom: 2rem; }
-    #fortune-display { font-size: 1.5rem; font-weight: 800; color: var(--color-success); margin-top: 1rem; min-height: 2rem; }
-
-    /* Лок-экраны */
-    .locked-content { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 300px; text-align: center; gap: 1rem; }
-    .input-code { background: #000; border: 1px solid #333; color: #fff; padding: 12px; border-radius: 10px; width: 250px; text-align: center; }
-
-    /* Геймплейные элементы (Модерация / Поддержка) */
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin: 1rem 0; }
-    .stat-card { background: rgba(0,0,0,0.2); padding: 10px; border-radius: 12px; text-align: center; }
-    .message-card { background: #0d1020; border: 1px solid #1e2548; padding: 1.5rem; border-radius: 20px; margin: 1rem 0; min-height: 180px; }
-    .controls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .wheel-container {
+      text-align: center; padding: 2.5rem; border: 2px dashed rgba(255,255,255,0.1);
+      border-radius: 30px; margin-bottom: 2rem;
+    }
+    #wheel-result { font-size: 1.8rem; font-weight: 900; color: var(--color-success); margin-top: 1.5rem; }
 
     @media (max-width: 768px) {
       .stats-grid { grid-template-columns: 1fr 1fr; }
@@ -106,200 +173,200 @@
 </head>
 <body>
 
-  <!-- Модальное окно авторизации -->
-  <div id="authModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center;">
-    <div class="panel" style="width: 350px;">
-      <h2 style="font-family: var(--font-display);">Вход в систему</h2>
-      <p style="font-size: 14px; color: #666; margin-bottom: 15px;">Введите данные для сохранения прогресса.</p>
-      <input type="email" id="authEmail" class="input-code" style="width: 100%; margin-bottom: 10px;" placeholder="Email">
-      <input type="password" id="authPass" class="input-code" style="width: 100%; margin-bottom: 15px;" placeholder="Пароль">
-      <div id="authError" style="color: var(--color-error); font-size: 12px; display: none; margin-bottom: 10px;"></div>
+  <!-- Авторизация -->
+  <div id="authModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 10000; align-items: center; justify-content: center;">
+    <div class="panel" style="width: 380px; text-align: center;">
+      <h2 style="font-family: var(--font-display); margin-bottom: 10px;">ВХОД В СИСТЕМУ</h2>
+      <p style="font-size: 14px; color: #666; margin-bottom: 20px;">Для доступа к инструментам авторизуйтесь</p>
+      <input type="email" id="authEmail" class="input-field" style="margin-bottom: 10px;" placeholder="Ваш Email">
+      <input type="password" id="authPass" class="input-field" style="margin-bottom: 20px;" placeholder="Пароль">
       <button class="btn btn-primary" style="width: 100%;" onclick="handleAuth('login')">Войти</button>
       <button class="btn btn-secondary" style="width: 100%; margin-top: 10px;" onclick="handleAuth('signup')">Регистрация</button>
+      <div id="authError" style="color: var(--color-error); font-size: 12px; margin-top: 15px; display: none;"></div>
     </div>
   </div>
 
   <div class="page">
     <header class="topbar">
-      <div>
-        <h1 style="font-family: var(--font-display); letter-spacing: 2px;">TAMBOV 73</h1>
-        <div id="user-display" style="font-size: 12px; color: #555;">Авторизуйтесь для работы</div>
+      <div class="brand">
+        <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <h1 style="font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 1px;">TAMBOV 73</h1>
+          <div id="user-status" style="font-size: 12px; color: var(--color-text-faint);">Ожидание авторизации...</div>
+        </div>
       </div>
-      <div style="display: flex; gap: 10px; align-items: center;">
-          <div class="stat-card" style="border: 1px solid var(--color-warning);">
-              <span style="font-size: 10px; display: block; color: #666;">ТВОЙ БАЛАНС</span>
+      <div style="display: flex; gap: 15px; align-items: center;">
+          <div class="panel" style="padding: 10px 20px; border-radius: 14px;">
+              <span class="stat-label">Твой Баланс</span>
               <span id="global-xp" style="font-weight: 900; color: var(--color-warning);">0 XP</span>
           </div>
-          <button id="logout-btn" class="btn btn-secondary" style="display:none;" onclick="supa.auth.signOut()">Выйти</button>
+          <button id="logout-btn" class="btn btn-secondary" style="display:none" onclick="supa.auth.signOut()">Выход</button>
       </div>
     </header>
 
-    <div class="mode-switch">
-      <button class="mode-btn active" onclick="setMode('moderation')">Модерация</button>
-      <button class="mode-btn" onclick="setMode('support')">Поддержка</button>
-      <button class="mode-btn" onclick="setMode('reports')">Отчетность 🔒</button>
-      <button class="mode-btn" onclick="setMode('shop')">Магазин 🔒</button>
-    </div>
+    <nav class="mode-switch">
+      <button class="mode-btn active" onclick="switchTab('moderation')">Модерация</button>
+      <button class="mode-btn" onclick="switchTab('support')">Поддержка</button>
+      <button class="mode-btn" onclick="switchTab('reports')">Отчетность 📋</button>
+      <button class="mode-btn" onclick="switchTab('shop')">Магазин 🛒</button>
+    </nav>
 
-    <!-- Режим: Модерация -->
-    <section id="mode-moderation" class="mode-zone">
+    <!-- ВКЛАДКА: МОДЕРАЦИЯ -->
+    <section id="tab-moderation" class="tab-content">
       <div class="panel">
         <div class="stats-grid">
-            <div class="stat-card"><span>Обработано</span><div id="mod-res">0</div></div>
-            <div class="stat-card"><span>Верно</span><div id="mod-cor">0</div></div>
-            <div class="stat-card"><span>Ошибки</span><div id="mod-mis">0</div></div>
-            <div class="stat-card"><span>Доход XP</span><div id="mod-xp">0</div></div>
+            <div class="stat-card"><span class="stat-label">Обработано</span><div id="m-res" class="stat-value">0</div></div>
+            <div class="stat-card"><span class="stat-label">Правильно</span><div id="m-cor" class="stat-value">0</div></div>
+            <div class="stat-card"><span class="stat-label">Ошибки</span><div id="m-mis" class="stat-value">0</div></div>
+            <div class="stat-card"><span class="stat-label">Доход XP</span><div id="m-xp" class="stat-value">0</div></div>
         </div>
         <div class="message-card">
-            <div id="mod-author" style="font-weight: 800; color: var(--color-primary); margin-bottom: 5px;">System</div>
-            <div id="mod-text" style="font-size: 1.1rem;">Нажмите "Начать смену", чтобы получать сообщения.</div>
+            <div id="m-author" style="font-weight: 800; color: var(--color-primary); margin-bottom: 8px;">System</div>
+            <div id="m-text" style="font-size: 1.2rem;">Нажмите "Начать смену", чтобы заступить на пост.</div>
         </div>
         <div class="controls">
-            <button class="btn btn-primary" id="start-mod" onclick="startShift('mod')">Начать смену</button>
-            <div id="mod-game-btns" style="display: none; contents;">
-                <button class="btn btn-secondary" style="background: rgba(82, 199, 123, 0.1); color: #8df0ae;" onclick="judge('good')">✅ OK</button>
-                <button class="btn btn-secondary" style="background: rgba(255, 191, 71, 0.1); color: #ffdf95;" onclick="judge('warn')">⚠️ ПРЕД</button>
-                <button class="btn btn-secondary" style="background: rgba(255, 107, 136, 0.1); color: #ff9fb4;" onclick="judge('ban')">🔨 БАН</button>
+            <button class="btn btn-primary" id="m-start" onclick="startShift('mod')">Начать смену</button>
+            <div id="m-game" style="display:none; grid-column: span 3; gap: 10px; display: grid; grid-template-columns: repeat(3, 1fr);">
+                <button class="btn btn-secondary" style="border-color: var(--color-success);" onclick="judge('good')">✅ OK</button>
+                <button class="btn btn-secondary" style="border-color: var(--color-warning);" onclick="judge('warn')">⚠️ ПРЕД</button>
+                <button class="btn btn-secondary" style="border-color: var(--color-error);" onclick="judge('ban')">🔨 БАН</button>
             </div>
         </div>
       </div>
     </section>
 
-    <!-- Режим: Поддержка -->
-    <section id="mode-support" class="mode-zone" style="display:none;">
-      <div class="panel">
-        <div class="stats-grid">
-            <div class="stat-card"><span>Вопросов</span><div id="sup-res">0</div></div>
-            <div class="stat-card"><span>Верно</span><div id="sup-cor">0</div></div>
-            <div class="stat-card"><span>Ошибки</span><div id="sup-mis">0</div></div>
-            <div class="stat-card"><span>Доход XP</span><div id="sup-xp">0</div></div>
+    <!-- ВКЛАДКА: ПОДДЕРЖКА -->
+    <section id="tab-support" class="tab-content" style="display:none;">
+        <div class="panel">
+            <div class="stats-grid">
+                <div class="stat-card"><span class="stat-label">Вопросов</span><div id="s-res" class="stat-value">0</div></div>
+                <div class="stat-card"><span class="stat-label">Верно</span><div id="s-cor" class="stat-value">0</div></div>
+                <div class="stat-card"><span class="stat-label">Ошибки</span><div id="s-mis" class="stat-value">0</div></div>
+                <div class="stat-card"><span class="stat-label">Доход XP</span><div id="s-xp" class="stat-value">0</div></div>
+            </div>
+            <div class="message-card">
+                <div style="font-weight: 800; color: var(--color-success);">Агент Поддержки</div>
+                <div id="s-text" style="margin-top: 10px;">Для получения вопроса нажмите на кнопку ниже.</div>
+                <div id="s-input-zone" style="display:none; margin-top: 20px;">
+                    <input type="text" id="s-answer" class="input-field" style="width: 100%; text-align: left;" placeholder="Введите ответ игроку...">
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 15px;" onclick="checkSupport()">Отправить ответ</button>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="s-start" onclick="startShift('sup')">Открыть вопрос</button>
         </div>
-        <div class="message-card">
-            <div id="sup-title" style="font-weight: 800; color: var(--color-success);">Техподдержка</div>
-            <div id="sup-text" style="margin-top: 10px;">Нажмите кнопку ниже для получения вопроса.</div>
-            <div id="sup-input-zone" style="display:none; margin-top: 15px;">
-                <input type="text" id="sup-answer" class="input-code" style="width: 100%; text-align: left;" placeholder="Введите ваш ответ...">
-                <button class="btn btn-primary" style="margin-top: 10px; width: 100%;" onclick="checkSupport()">Ответить</button>
+    </section>
+
+    <!-- ВКЛАДКА: ОТЧЕТНОСТЬ (ТОЛЬКО ДЛЯ VIP ПОЧТ) -->
+    <section id="tab-reports" class="tab-content" style="display:none;">
+        <div class="panel" id="rep-denied">
+            <div class="lock-screen">
+                <h2 style="color: var(--color-error);">ДОСТУП ЗАПРЕЩЕН</h2>
+                <p>Ваша почта не входит в список доверенных лиц для подачи отчетности.</p>
             </div>
         </div>
-        <button class="btn btn-primary" id="start-sup" onclick="startShift('sup')">Открыть вопрос</button>
-      </div>
+        <div class="panel" id="rep-allowed" style="display:none;">
+            <h2>Еженедельная Отчетность</h2>
+            <p style="color: #666; margin-bottom: 25px;">Загрузите скриншот вашего онлайна (Discord) и вставьте ссылку ниже.</p>
+            <input type="text" id="report-url" class="input-field" style="width: 100%; text-align: left; margin-bottom: 15px;" placeholder="Пример: https://yapx.ru/v/...">
+            <button class="btn btn-primary" style="width: 100%;" onclick="submitReport()">Подать отчет администрации</button>
+        </div>
     </section>
 
-    <!-- Режим: Отчетность -->
-    <section id="mode-reports" class="mode-zone" style="display:none;">
-      <div class="panel" id="reports-lock">
-          <div class="locked-content">
-              <h2>Режим отчетности</h2>
-              <p>Доступно только для персонала. Введите код доступа.</p>
-              <input type="password" id="code-rep" class="input-code" placeholder="Код доступа">
-              <button class="btn btn-primary" onclick="unlock('reports')">Войти</button>
-          </div>
-      </div>
-      <div class="panel" id="reports-main" style="display:none;">
-          <h2>Подача отчета</h2>
-          <p style="color: #666; margin-bottom: 20px;">Загрузите скриншот онлайна в Discord на любой хостинг и прикрепите ссылку.</p>
-          <input type="text" id="rep-link" class="input-code" style="width: 100%; text-align: left; margin-bottom: 15px;" placeholder="Пример: https://imgur.com/a/abc123">
-          <button class="btn btn-primary" onclick="submitReport()">Отправить отчет администрации</button>
-      </div>
+    <!-- ВКЛАДКА: МАГАЗИН (ПО КОДУ) -->
+    <section id="tab-shop" class="tab-content" style="display:none;">
+        <div class="panel" id="shop-lock">
+            <div class="lock-screen">
+                <h2>МАГАЗИН ПООЩРЕНИЙ</h2>
+                <p>Введите код доступа для просмотра товаров.</p>
+                <input type="password" id="shop-code" class="input-field" placeholder="Код доступа">
+                <button class="btn btn-primary" onclick="unlockShop()">Открыть</button>
+            </div>
+        </div>
+        <div id="shop-main" style="display:none;">
+            <div class="panel wheel-container">
+                <h2 style="font-family: var(--font-display);">🎡 КОЛЕСО ФОРТУНЫ</h2>
+                <p>Испытай удачу всего за 250 XP!</p>
+                <button class="btn btn-primary" id="spin-btn" style="margin-top: 15px;" onclick="spinWheel()">Крутить за 250 XP</button>
+                <div id="wheel-result"></div>
+            </div>
+
+            <div class="shop-grid">
+                <!-- Группа Младшие Модераторы -->
+                <div class="panel">
+                    <h3 style="color: var(--color-primary); margin-bottom: 15px;">ДЛЯ МЛ. МОДЕРАТОРОВ</h3>
+                    <div class="shop-item">
+                        <b>Скидка -1 день</b>
+                        <span class="shop-price">200 XP</span>
+                        <button class="btn btn-secondary buy-btn" onclick="buy('Скидка -1 день (ММ)', 200)">Купить</button>
+                    </div>
+                    <div class="shop-item" style="margin-top:10px;">
+                        <b>Скидка -2 дня (Макс)</b>
+                        <span class="shop-price">450 XP</span>
+                        <button class="btn btn-secondary buy-btn" onclick="buy('Скидка -2 дня (ММ)', 450)">Купить</button>
+                    </div>
+                </div>
+                <!-- Группа Модераторы -->
+                <div class="panel">
+                    <h3 style="color: var(--color-success); margin-bottom: 15px;">ДЛЯ МОДЕРАТОРОВ</h3>
+                    <div class="shop-item">
+                        <b>Скидка -1 день</b>
+                        <span class="shop-price">250 XP</span>
+                        <button class="btn btn-secondary buy-btn" onclick="buy('Скидка -1 день (М)', 250)">Купить</button>
+                    </div>
+                    <div class="shop-item" style="margin-top:10px;">
+                        <b>Скидка -4 дня (Макс)</b>
+                        <span class="shop-price">900 XP</span>
+                        <button class="btn btn-secondary buy-btn" onclick="buy('Скидка -4 дня (М)', 900)">Купить</button>
+                    </div>
+                </div>
+                <!-- Группа Дисциплина -->
+                <div class="panel">
+                    <h3 style="color: var(--color-error); margin-bottom: 15px;">ДИСЦИПЛИНА</h3>
+                    <div class="shop-item">
+                        <b>Снять 1 выговор</b>
+                        <span class="shop-price">750 XP</span>
+                        <button class="btn btn-secondary buy-btn" onclick="buy('Снятие выговора', 750)">Купить</button>
+                    </div>
+                    <div class="shop-item" style="margin-top:10px;">
+                        <b>Иммунитет на ошибку</b>
+                        <span class="shop-price">400 XP</span>
+                        <button class="btn btn-secondary buy-btn" onclick="buy('Иммунитет', 400)">Купить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Режим: Магазин -->
-    <section id="mode-shop" class="mode-zone" style="display:none;">
-      <div class="panel" id="shop-lock">
-          <div class="locked-content">
-              <h2>Магазин Поощрений</h2>
-              <p>Трать свои XP на игровые бонусы и привилегии.</p>
-              <input type="password" id="code-sh" class="input-code" placeholder="Код доступа">
-              <button class="btn btn-primary" onclick="unlock('shop')">Войти</button>
-          </div>
-      </div>
-      <div id="shop-main" style="display:none;">
-          <div class="panel wheel-zone">
-              <h2>🎡 Колесо Фортуны</h2>
-              <p>Стоимость: 250 XP. Испытай свою удачу!</p>
-              <button class="btn btn-primary" id="wheel-btn" onclick="spinWheel()">Крутить за 250 XP</button>
-              <div id="fortune-display"></div>
-          </div>
-
-          <div class="shop-grid">
-              <!-- Блок ММ -->
-              <div class="panel">
-                  <h3 style="color: var(--color-primary);">Младшим Модераторам</h3>
-                  <p style="font-size: 12px; color: #555; margin-bottom: 10px;">ММ → М</p>
-                  <div class="shop-item">
-                      <span>Скидка -1 день</span>
-                      <span class="price-tag">200 XP</span>
-                      <button class="btn btn-secondary buy-btn" onclick="buyItem('Скидка -1 день (ММ)', 200)">Купить</button>
-                  </div>
-                  <div class="shop-item" style="margin-top:10px;">
-                      <span>Скидка -2 дня (Макс)</span>
-                      <span class="price-tag">450 XP</span>
-                      <button class="btn btn-secondary buy-btn" onclick="buyItem('Скидка -2 дня (ММ)', 450)">Купить</button>
-                  </div>
-              </div>
-
-              <!-- Блок М -->
-              <div class="panel">
-                  <h3 style="color: var(--color-success);">Модераторам</h3>
-                  <p style="font-size: 12px; color: #555; margin-bottom: 10px;">М → СМ</p>
-                  <div class="shop-item">
-                      <span>Скидка -1 день</span>
-                      <span class="price-tag">250 XP</span>
-                      <button class="btn btn-secondary buy-btn" onclick="buyItem('Скидка -1 день (М)', 250)">Купить</button>
-                  </div>
-                  <div class="shop-item" style="margin-top:10px;">
-                      <span>Скидка -4 дня (Макс)</span>
-                      <span class="price-tag">900 XP</span>
-                      <button class="btn btn-secondary buy-btn" onclick="buyItem('Скидка -4 дня (М)', 900)">Купить</button>
-                  </div>
-              </div>
-
-              <!-- Бонусы -->
-              <div class="panel">
-                  <h3 style="color: var(--color-error);">Дисциплина</h3>
-                  <div class="shop-item">
-                      <span>Аннулирование выговора</span>
-                      <span class="price-tag">750 XP</span>
-                      <button class="btn btn-secondary buy-btn" onclick="buyItem('Снятие выговора', 750)">Купить</button>
-                  </div>
-                  <div class="shop-item" style="margin-top:10px;">
-                      <span>Иммунитет на ошибку</span>
-                      <span class="price-tag">400 XP</span>
-                      <button class="btn btn-secondary buy-btn" onclick="buyItem('Иммунитет', 400)">Купить</button>
-                  </div>
-              </div>
-          </div>
-      </div>
-    </section>
   </div>
 
   <script>
-    // --- Конфигурация Supabase ---
+    // --- Инициализация ---
     const supabaseUrl = 'https://icfihnroblyjjflsfepq.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljZmlobnJvYmx5ampmbHNmZXBxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4NjAxMDksImV4cCI6MjA5MTQzNjEwOX0.Hrvjg572mIKBG-2ffYEr4Fxvpz0hOAex9d6n7WylVkQ';
     const supa = window.supabase.createClient(supabaseUrl, supabaseKey);
 
     let user = null;
-    let stats = { mod_res: 0, mod_cor: 0, mod_mis: 0, sup_res: 0, sup_cor: 0, sup_mis: 0, shop_spent: 0 };
-    let currentShift = { mod: false, sup: false };
-    let currentModItem = null;
-    let currentSupItem = null;
+    let stats = { m_res: 0, m_cor: 0, m_mis: 0, s_res: 0, s_cor: 0, s_mis: 0, shop_spent: 0 };
+    let activeModItem = null;
+    let activeSupItem = null;
 
-    const ACCESS_CODE = "JohnWickModer";
+    const MASTER_CODE = "JohnWickModer";
+    const VIP_EMAILS = ["daniiltimosin72@gmail.com", "isayevrufat37@gmail.com", "leha.br222@gmail.com"];
 
     // --- Авторизация ---
     async function handleAuth(type) {
         const email = document.getElementById('authEmail').value;
         const pass = document.getElementById('authPass').value;
+        const err = document.getElementById('authError');
         if(!email || !pass) return alert("Заполни поля!");
 
-        let res;
-        if(type === 'login') res = await supa.auth.signInWithPassword({ email, password: pass });
-        else res = await supa.auth.signUp({ email, password: pass });
+        let res = type === 'login' 
+            ? await supa.auth.signInWithPassword({ email, password: pass })
+            : await supa.auth.signUp({ email, password: pass });
 
         if(res.error) {
-            const err = document.getElementById('authError');
             err.textContent = res.error.message;
             err.style.display = 'block';
         }
@@ -308,64 +375,81 @@
     supa.auth.onAuthStateChange((event, session) => {
         user = session?.user || null;
         const modal = document.getElementById('authModal');
-        const display = document.getElementById('user-display');
+        const status = document.getElementById('user-status');
         const logout = document.getElementById('logout-btn');
 
         if(user) {
             modal.style.display = 'none';
-            display.textContent = "Сотрудник: " + user.email;
+            status.textContent = "Авторизован: " + user.email;
             logout.style.display = 'block';
             syncStats('load');
+            checkVipAccess();
         } else {
             modal.style.display = 'flex';
-            display.textContent = "Авторизуйтесь для работы";
+            status.textContent = "Ожидание авторизации...";
             logout.style.display = 'none';
         }
     });
 
-    // --- Синхронизация данных ---
-    async function syncStats(action) {
+    // --- Проверка Доступов ---
+    function checkVipAccess() {
+        const isVip = VIP_EMAILS.includes(user.email);
+        document.getElementById('rep-denied').style.display = isVip ? 'none' : 'block';
+        document.getElementById('rep-allowed').style.display = isVip ? 'block' : 'none';
+    }
+
+    function unlockShop() {
+        const code = document.getElementById('shop-code').value;
+        if(code === MASTER_CODE) {
+            document.getElementById('shop-lock').style.display = 'none';
+            document.getElementById('shop-main').style.display = 'block';
+        } else {
+            alert("Неверный код доступа!");
+        }
+    }
+
+    // --- Синхронизация ---
+    async function syncStats(type) {
         if(!user) return;
-        if(action === 'load') {
+        if(type === 'load') {
             const { data } = await supa.from('user_stats').select('*').eq('user_id', user.id).single();
             if(data) {
-                stats.mod_res = data.mod_resolved || 0;
-                stats.mod_cor = data.mod_correct || 0;
-                stats.mod_mis = data.mod_mistakes || 0;
-                stats.sup_res = data.sup_resolved || 0;
-                stats.sup_cor = data.sup_correct || 0;
-                stats.sup_mis = data.sup_mistakes || 0;
+                stats.m_res = data.mod_resolved || 0;
+                stats.m_cor = data.mod_correct || 0;
+                stats.m_mis = data.mod_mistakes || 0;
+                stats.s_res = data.sup_resolved || 0;
+                stats.s_cor = data.sup_correct || 0;
+                stats.s_mis = data.sup_mistakes || 0;
                 stats.shop_spent = data.shop_spent || 0;
             }
         } else {
             await supa.from('user_stats').upsert({
                 user_id: user.id,
-                mod_resolved: stats.mod_res, mod_correct: stats.mod_cor, mod_mistakes: stats.mod_mis,
-                sup_resolved: stats.sup_res, sup_correct: stats.sup_cor, sup_mistakes: stats.sup_mis,
+                mod_resolved: stats.m_res, mod_correct: stats.m_cor, mod_mistakes: stats.m_mis,
+                sup_resolved: stats.s_res, sup_correct: stats.s_cor, sup_mistakes: stats.s_mis,
                 shop_spent: stats.shop_spent
             });
         }
-        renderUI();
+        updateUI();
     }
 
-    function renderUI() {
-        const modXP = Math.floor(stats.mod_cor / 10) * 15;
-        const supXP = Math.floor(stats.sup_cor / 10) * 15;
+    function updateUI() {
+        const modXP = Math.floor(stats.m_cor / 10) * 15;
+        const supXP = Math.floor(stats.s_cor / 10) * 15;
         const totalXP = modXP + supXP - stats.shop_spent;
 
-        document.getElementById('mod-res').textContent = stats.mod_res;
-        document.getElementById('mod-cor').textContent = stats.mod_cor;
-        document.getElementById('mod-mis').textContent = stats.mod_mis;
-        document.getElementById('mod-xp').textContent = modXP;
+        document.getElementById('m-res').textContent = stats.m_res;
+        document.getElementById('m-cor').textContent = stats.m_cor;
+        document.getElementById('m-mis').textContent = stats.m_mis;
+        document.getElementById('m-xp').textContent = modXP;
 
-        document.getElementById('sup-res').textContent = stats.sup_res;
-        document.getElementById('sup-cor').textContent = stats.sup_cor;
-        document.getElementById('sup-mis').textContent = stats.sup_mis;
-        document.getElementById('sup-xp').textContent = supXP;
+        document.getElementById('s-res').textContent = stats.s_res;
+        document.getElementById('s-cor').textContent = stats.s_cor;
+        document.getElementById('s-mis').textContent = stats.s_mis;
+        document.getElementById('s-xp').textContent = supXP;
 
         document.getElementById('global-xp').textContent = totalXP + " XP";
 
-        // Кнопки магазина
         document.querySelectorAll('.buy-btn').forEach(btn => {
             const price = parseInt(btn.previousElementSibling.textContent);
             btn.disabled = totalXP < price;
@@ -373,148 +457,138 @@
         });
     }
 
-    // --- Логика переключения режимов ---
-    function setMode(mode) {
-        document.querySelectorAll('.mode-zone').forEach(z => z.style.display = 'none');
+    // --- Логика переключения вкладок ---
+    function switchTab(tab) {
+        document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
         document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById('mode-' + mode).style.display = 'block';
+        document.getElementById('tab-' + tab).style.display = 'block';
         event.target.classList.add('active');
+
+        // Смена темы дизайна
+        if(tab === 'support') document.documentElement.setAttribute("data-site-theme", "support");
+        else if(tab === 'shop') document.documentElement.setAttribute("data-site-theme", "shop");
+        else document.documentElement.setAttribute("data-site-theme", "mod");
     }
 
-    function unlock(type) {
-        const input = document.getElementById(type === 'reports' ? 'code-rep' : 'code-sh');
-        if(input.value === ACCESS_CODE) {
-            document.getElementById(type + '-lock').style.display = 'none';
-            document.getElementById(type + '-main').style.display = 'block';
-        } else {
-            alert("Неверный код доступа!");
-        }
-    }
-
-    // --- База Сообщений (Тот самый массив) ---
-    const MOD_DB = [
-        { type: "warn", author: "User_123", text: "АДМИНЫЫЫЫ ТУТ ЧИТЕР КИЛЬНУЛ МЕНЯ БЫСТРЕЕ СЮДА!!!!" },
-        { type: "good", author: "Player_Zero", text: "Подскажите, пожалуйста, со скольки лет можно вступить в организацию?" },
-        { type: "ban", author: "Rich_Man", text: "Продаю вирты на сервере Тамбов! Очень дешево, пишите в тг @virty73" },
-        { type: "warn", author: "Toxic_Guy", text: "вы все нули тупые играть не умеете я вашу маму вчера видел" },
-        { type: "good", author: "Nikita_King", text: "Где на форуме найти раздел с жалобами на игроков?" },
-        { type: "ban", author: "Promo_Bot", text: "Заходи на лучший сервер Black Russia! Ссылка в описании профиля!" },
-        { type: "warn", author: "Caps_Lock", text: "КТО В КФ ПОЙДЕТЕ? ПОШЛИ ВСЕ В КФ ПРЯМО ЩАС!!!" },
-        { type: "good", author: "Helper_Fan", text: "Какая команда для передачи денег игроку?" },
-        { type: "warn", author: "Flood_Master", text: "куплю дом\nкуплю дом\nкуплю дом\nкуплю дом\nкуплю дом" },
-        { type: "ban", author: "Cheat_Dev", text: "Сделал приватный чит на ГМ и Аим. Ссылка на скачивание: cheat.ru" }
+    // --- База Сообщений (Большой список) ---
+    const MESSAGES = [
+        { type: "warn", author: "Vanya_777", text: "АДМИНЫ ТУТ ЧИТЕР НА ШАХТЕ ОН ВСЕ РЕСУРСЫ ЗАБИРАЕТ ПОМОГИТЕ!!!!" },
+        { type: "good", author: "Liza_King", text: "Подскажите, где на форуме можно найти систему повышения для ФСБ?" },
+        { type: "ban", author: "Money_Bot", text: "Продаю аккаунты с донатом и вирты по 50р за 1кк! Писать в ЛС" },
+        { type: "warn", author: "Noob_Saibot", text: "почему меня посадили ни за что я просто стоял и никого не трогал вы плохие админы" },
+        { type: "good", author: "Artem_Volkov", text: "Какая команда чтобы пожать руку игроку?" },
+        { type: "ban", author: "Spam_Lord", text: "Залетай на наш сервер! Тут выдают админки бесплатно - discord.gg/cheatbr" },
+        { type: "warn", author: "Angry_Kid", text: "Я ТВОЮ МАМУ ВЧЕРА В КИНО ВИДЕЛ ТЫ ПОНЯЛ МЕНЯ ДА?" },
+        { type: "good", author: "Dima_Rich", text: "Как арендовать скутер если я новичок?" },
+        { type: "warn", author: "Flood_Giga", text: "дайте денег\nдайте денег\nдайте денег\nдайте денег" },
+        { type: "ban", author: "Soft_User", text: "Скидываю софт на бесконечные патроны и спидхак в своем профиле!" },
+        { type: "warn", author: "Abuzer", text: "ЭЙ ТЫ МОДЕР СЛЫШЬ СЮДА ПОДОЙДИ РАЗБЕРЕМСЯ МУЖСКОЙ РАЗГОВОР" },
+        { type: "good", author: "Pavel_Durov", text: "Где находится ближайший банкомат через GPS?" },
+        { type: "warn", author: "Caps_King", text: "КТО В ОПГ ХОЧЕТ ПОШЛИ СО МНОЙ Я ТАМ ЗАМ ПРИМУ ВСЕХ" }
     ];
 
-    const SUP_DB = [
-        { q: "Как найти ближайшую заправку?", k: ["gps", "заправ", "бензин"] },
-        { q: "Как вступить в ОПГ?", k: ["форум", "заяв", "лидер"] },
-        { q: "Где купить лицензию на оружие?", k: ["правительств", "мэрия", "лиценз"] },
-        { q: "Что такое ДМ?", k: ["убийство", "причин", "термин"] },
-        { q: "Как закрыть машину?", k: ["/lock", "сигнализ", "l"] }
+    const QUESTIONS = [
+        { q: "Как найти заправку в GPS?", k: ["gps", "заправ", "бензин"] },
+        { q: "Как устроиться на работу инкассатора?", k: ["уровень", "правительств", "банк"] },
+        { q: "Что такое СК (SK)?", k: ["убийство", "появлен", "спавн"] },
+        { q: "Как передать деньги другу?", k: ["/pay", "id"] },
+        { q: "Как написать в репорт?", k: ["/report", "команд"] },
+        { q: "Как открыть меню персонажа?", k: ["/mm", "меню"] },
+        { q: "Где купить квартиру?", k: ["агентство", "недвижимость", "gps"] }
     ];
 
-    // --- Логика игры ---
+    // --- Геймплей ---
     function startShift(type) {
         if(type === 'mod') {
-            currentShift.mod = true;
-            document.getElementById('mod-game-btns').style.display = 'contents';
-            document.getElementById('start-mod').style.display = 'none';
+            document.getElementById('m-start').style.display = 'none';
+            document.getElementById('m-game').style.display = 'grid';
             nextMod();
         } else {
-            document.getElementById('sup-input-zone').style.display = 'block';
-            document.getElementById('start-sup').style.display = 'none';
+            document.getElementById('s-start').style.display = 'none';
+            document.getElementById('s-input-zone').style.display = 'block';
             nextSup();
         }
     }
 
     function nextMod() {
-        currentModItem = MOD_DB[Math.floor(Math.random() * MOD_DB.length)];
-        document.getElementById('mod-author').textContent = currentModItem.author;
-        document.getElementById('mod-text').textContent = currentModItem.text;
+        activeModItem = MESSAGES[Math.floor(Math.random() * MESSAGES.length)];
+        document.getElementById('m-author').textContent = activeModItem.author;
+        document.getElementById('m-text').textContent = activeModItem.text;
     }
 
-    function judge(action) {
-        if(!currentModItem) return;
-        stats.mod_res++;
-        if(action === currentModItem.type) stats.mod_cor++;
-        else stats.mod_mis++;
+    function judge(act) {
+        if(!activeModItem) return;
+        stats.m_res++;
+        if(act === activeModItem.type) stats.m_cor++;
+        else stats.m_mis++;
         syncStats('save');
         nextMod();
     }
 
     function nextSup() {
-        currentSupItem = SUP_DB[Math.floor(Math.random() * SUP_DB.length)];
-        document.getElementById('sup-title').textContent = "Вопрос от игрока";
-        document.getElementById('sup-text').textContent = currentSupItem.q;
-        document.getElementById('sup-answer').value = "";
+        activeSupItem = QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)];
+        document.getElementById('s-text').textContent = activeSupItem.q;
+        document.getElementById('s-answer').value = "";
     }
 
     function checkSupport() {
-        const val = document.getElementById('sup-answer').value.toLowerCase();
+        const val = document.getElementById('s-answer').value.toLowerCase();
         if(!val) return;
-        stats.sup_res++;
-        const ok = currentSupItem.k.some(key => val.includes(key));
-        if(ok) {
-            stats.sup_cor++;
-            alert("Верно! Вы помогли игроку.");
-        } else {
-            stats.sup_mis++;
-            alert("Не совсем так. Перечитайте правила сервера.");
-        }
+        stats.s_res++;
+        const ok = activeSupItem.k.some(key => val.includes(key));
+        if(ok) { stats.s_cor++; alert("Верно!"); }
+        else { stats.s_mis++; alert("Неверно. Проверь базу ответов."); }
         syncStats('save');
         nextSup();
     }
 
-    // --- Админские функции (Отчеты и Покупки) ---
-    async function logActivity(type, content) {
-        await supa.from('activity_log').insert([
-            { user_id: user.id, user_email: user.email, type: type, content: content }
-        ]);
+    // --- Магазин и Отчетность ---
+    async function logActivity(type, info) {
+        await supa.from('activity_log').insert([{ 
+            user_id: user.id, user_email: user.email, type: type, content: info 
+        }]);
     }
 
     async function submitReport() {
-        const link = document.getElementById('rep-link').value;
-        if(!link || !link.startsWith('http')) return alert("Вставь ссылку!");
-        
-        await logActivity('REPORT', link);
-        alert("Отчет успешно отправлен администрации!");
-        document.getElementById('rep-link').value = "";
+        const url = document.getElementById('report-url').value;
+        if(!url || !url.includes('http')) return alert("Вставь правильную ссылку!");
+        await logActivity('REPORT', url);
+        alert("Отчет успешно отправлен!");
+        document.getElementById('report-url').value = "";
     }
 
-    async function buyItem(name, price) {
-        const totalXP = parseInt(document.getElementById('global-xp').textContent);
-        if(totalXP < price) return alert("Недостаточно XP!");
-
-        if(confirm(`Вы действительно хотите купить: ${name}?`)) {
+    async function buy(name, price) {
+        const xp = parseInt(document.getElementById('global-xp').textContent);
+        if(xp < price) return alert("Недостаточно XP!");
+        if(confirm(`Купить "${name}" за ${price} XP?`)) {
             stats.shop_spent += price;
             await syncStats('save');
             await logActivity('PURCHASE', name);
-            alert("Покупка совершена! Напишите Гл.Модератору, чтобы он выдал награду.");
+            alert("Покупка совершена! Уведомление отправлено.");
         }
     }
 
     function spinWheel() {
-        const price = 250;
-        const totalXP = parseInt(document.getElementById('global-xp').textContent);
-        if(totalXP < price) return alert("Недостаточно XP!");
+        const xp = parseInt(document.getElementById('global-xp').textContent);
+        if(xp < 250) return alert("Нужно 250 XP!");
 
-        stats.shop_spent += price;
+        stats.shop_spent += 250;
         syncStats('save');
-        
-        const display = document.getElementById('fortune-display');
-        const btn = document.getElementById('wheel-btn');
+
+        const btn = document.getElementById('spin-btn');
+        const res = document.getElementById('wheel-result');
         btn.disabled = true;
-        display.textContent = "🎡 КРУТИМ...";
+        res.textContent = "🎡 КРУТИМ...";
 
         setTimeout(async () => {
-            const prizes = ["Ничего", "Иммунитет на ошибку", "Скидка -1 день (ММ)", "+50 XP (Возврат)", "Выговор (Шутка)"];
-            const res = prizes[Math.floor(Math.random() * prizes.length)];
-            display.textContent = "ВЫИГРЫШ: " + res;
-            await logActivity('WHEEL', res);
+            const list = ["Иммунитет", "Скидка -1 день", "Ничего", "Вернули 100 XP", "Снятие выговора"];
+            const win = list[Math.floor(Math.random() * list.length)];
+            res.textContent = "ПРИЗ: " + win;
+            await logActivity('WHEEL', win);
+            if(win.includes("100 XP")) { stats.shop_spent -= 100; syncStats('save'); }
             btn.disabled = false;
         }, 2000);
     }
-
   </script>
 </body>
 </html>
