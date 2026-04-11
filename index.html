@@ -421,31 +421,26 @@
     .mode-switch {
       margin-top: 1rem;
       margin-bottom: 0.75rem;
-      display: flex;
+      display: inline-flex;
       flex-wrap: wrap;
-      border-radius: 12px;
-      padding: 0.5rem;
+      border-radius: 999px;
+      padding: 0.25rem;
       background: rgba(4, 6, 12, 0.85);
       border: 1px solid rgba(191, 198, 255, 0.35);
-      gap: 0.5rem;
+      max-width: 100%;
+      gap: 0.25rem;
     }
 
     .mode-btn {
-      border-radius: 8px;
-      padding: 0.6rem 1.15rem;
+      border-radius: 999px;
+      padding: 0.5rem 1.15rem;
       font-size: var(--text-sm);
       font-weight: 700;
       color: var(--color-text-muted);
-      background: rgba(20, 25, 45, 0.5);
+      background: transparent;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       white-space: nowrap;
-      border: 1px solid transparent;
-    }
-    
-    .mode-btn:hover {
-      background: rgba(108, 140, 255, 0.1);
-      color: #fff;
     }
 
     .mode-btn.active {
@@ -476,10 +471,6 @@
       box-shadow: 0 10px 25px rgba(162, 108, 255, 0.45);
       color: #fff;
     }
-
-    /* Выделяем нужные кнопки, чтобы их 100% заметили */
-    .highlight-btn-guide { border: 1px solid rgba(108, 140, 255, 0.5); color: #8aa3ff; }
-    .highlight-btn-lb { border: 1px solid rgba(255, 191, 71, 0.5); color: #ffe38e; }
 
     .game-wrap {
       margin-top: 0.75rem;
@@ -950,6 +941,8 @@
       .page { width: min(100% - 1rem, 1120px); }
       .topbar { flex-direction: column; align-items: stretch; }
       .theme-toggle { align-self: flex-end; }
+      .mode-switch { display: flex; width: 100%; }
+      .mode-btn { flex: 1 1 calc(50% - 8px); text-align: center; }
       .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .shop-grid { grid-template-columns: 1fr; }
       .banner-line { flex-direction: column; align-items: flex-start; }
@@ -965,8 +958,11 @@
     <div class="panel" style="padding: 2rem; width: 90%; max-width: 360px; display: grid; gap: 1rem; box-sizing: border-box;">
       <h2 style="margin: 0; font-family: var(--font-display);">Авторизация</h2>
       <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Войдите или зарегистрируйтесь, чтобы начать смену и сохранять прогресс.</p>
+      
       <input type="email" id="authEmail" class="support-input" placeholder="Ваш Email">
+      <input type="text" id="authNickname" class="support-input" placeholder="Ваш Никнейм (только для регистрации)">
       <input type="password" id="authPassword" class="support-input" placeholder="Пароль">
+      
       <div id="authErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0; line-height: 1.4;"></div>
       <div class="auth-actions" style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
         <button id="authLoginSubmit" class="btn btn-primary" style="flex: 1; padding: 0.75rem;">Войти</button>
@@ -1040,15 +1036,15 @@
       </aside>
     </section>
 
-    <!-- ИЗМЕНЕННОЕ МЕНЮ НАВИГАЦИИ -->
+    <!-- ОРИГИНАЛЬНОЕ МЕНЮ НАВИГАЦИИ БЕЗ ВЫДЕЛЕНИЙ -->
     <div class="mode-switch">
       <button class="mode-btn active" type="button" data-mode="moderation">Модераторы</button>
       <button class="mode-btn" type="button" data-mode="support">Агенты поддержки</button>
-      <button class="mode-btn highlight-btn-guide" type="button" data-mode="guide">Руководство</button>
-      <button class="mode-btn highlight-btn-lb" type="button" data-mode="leaderboard">Лидерборд</button>
+      <button class="mode-btn" type="button" data-mode="guide">Руководство</button>
+      <button class="mode-btn" type="button" data-mode="leaderboard">Лидерборд</button>
+      <button class="mode-btn" type="button" data-mode="about">О команде</button>
       <button class="mode-btn" type="button" data-mode="shop">Магазин</button>
       <button class="mode-btn" type="button" data-mode="report">Отчетность</button>
-      <button class="mode-btn" type="button" data-mode="about">О команде</button>
     </div>
 
     <section class="game-wrap" id="game">
@@ -1139,7 +1135,6 @@
         </div>
       </section>
 
-      <!-- СЕКЦИЯ РУКОВОДСТВА -->
       <section class="panel game-card" id="mode-guide" style="display:none;">
         <div class="section-head">
           <h2>Руководство Сервера</h2>
@@ -1152,7 +1147,6 @@
         </div>
       </section>
 
-      <!-- СЕКЦИЯ ЛИДЕРБОРДА -->
       <section class="panel game-card" id="mode-leaderboard" style="display:none;">
         <div class="section-head">
           <h2>Таблица лидеров (Топ-10)</h2>
@@ -1207,7 +1201,6 @@
         </div>
       </section>
 
-      <!-- ИСПРАВЛЕННАЯ СЕКЦИЯ ОТЧЕТНОСТИ -->
       <section class="panel game-card" id="mode-report" style="display:none;">
         <div class="section-head">
           <h2>Форма отчетности</h2>
@@ -1237,13 +1230,11 @@
             </div>
           </article>
           
-          <!-- ПАНЕЛЬКА ДЛЯ ДАНИИЛА И КУРАТОРОВ -->
           <div id="adminPanelArea" style="display:none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(191,198,255,0.2);">
             <h3 style="margin-bottom: 0.5rem; font-size: var(--text-sm); color: var(--color-primary); letter-spacing: 0.05em; text-transform: uppercase;">Панель Руководства</h3>
             <button class="btn btn-secondary" type="button" id="viewReportsBtn" style="width:100%;">Проверить сданные отчеты</button>
           </div>
           
-          <!-- Зона для отображения отчетов -->
           <div id="reportsListArea" style="display:none; margin-top: 0.5rem; flex-direction: column; gap: 0.5rem;">
             <!-- Список отчетов будет тут -->
           </div>
@@ -1330,6 +1321,7 @@
       const payload = {
         user_id: currentUser.id,
         email: currentUser.email, 
+        nickname: currentUser.user_metadata?.nickname || currentUser.email.split('@')[0],
         mod_resolved: state.resolved,
         mod_correct: state.correct,
         mod_mistakes: state.mistakes,
@@ -1341,9 +1333,11 @@
       
       const { error } = await supa.from('user_stats').upsert(payload);
       
+      // Если колонки nickname или email нет в таблице
       if (error) {
         const fallbackPayload = { ...payload };
         delete fallbackPayload.email;
+        delete fallbackPayload.nickname;
         await supa.from('user_stats').upsert(fallbackPayload);
       }
     }
@@ -1351,7 +1345,7 @@
     supa.auth.onAuthStateChange((event, session) => {
       currentUser = session?.user || null;
       if (currentUser) {
-        userEmailDisplay.textContent = currentUser.email;
+        userEmailDisplay.textContent = currentUser.user_metadata?.nickname || currentUser.email;
         loginBtnUI.style.display = 'none';
         logoutBtnUI.style.display = 'block';
         authModal.style.display = 'none';
@@ -1378,10 +1372,16 @@
       await supa.auth.signOut(); 
     };
 
+    // ВХОД В АККАУНТ
     document.getElementById('authLoginSubmit').onclick = async () => {
       const email = document.getElementById('authEmail').value;
       const password = document.getElementById('authPassword').value;
-      if(!email || !password) return;
+      if(!email || !password) {
+        authErrorMsg.textContent = "Введите Email и Пароль!";
+        authErrorMsg.style.color = "var(--color-warning)";
+        authErrorMsg.style.display = 'block';
+        return;
+      }
       
       const { data, error } = await supa.auth.signInWithPassword({ email, password });
       if(error) { 
@@ -1391,12 +1391,29 @@
       }
     };
 
+    // РЕГИСТРАЦИЯ
     document.getElementById('authRegisterSubmit').onclick = async () => {
       const email = document.getElementById('authEmail').value;
+      const nickname = document.getElementById('authNickname').value;
       const password = document.getElementById('authPassword').value;
-      if(!email || !password) return;
+      
+      if(!email || !password || !nickname) {
+         authErrorMsg.textContent = "Заполните все поля, включая Никнейм!"; 
+         authErrorMsg.style.color = "var(--color-warning)";
+         authErrorMsg.style.display = 'block'; 
+         return;
+      }
 
-      const { data, error } = await supa.auth.signUp({ email, password });
+      const { data, error } = await supa.auth.signUp({ 
+        email, 
+        password,
+        options: {
+          data: {
+            nickname: nickname
+          }
+        }
+      });
+      
       if(error) { 
         authErrorMsg.textContent = error.message; 
         authErrorMsg.style.color = "var(--color-error)";
@@ -1463,7 +1480,7 @@
         cards: [
           ["Обновление", "Таблица автоматически загружается и обновляется при входе в этот раздел."],
           ["XP за ответы", "Напоминаем, что за работу в качестве Агента Поддержки XP больше не зачисляется."],
-          ["Внимание", "Если таблица пуста, попросите Руководство разрешить чтение `user_stats` в БД Supabase."]
+          ["Внимание", "Если таблица пуста, создайте колонку `nickname` (тип text) в таблице `user_stats` в БД Supabase."]
         ]
       },
       about: {
@@ -1492,8 +1509,6 @@
     };
 
     function renderRight(mode) {
-      // Если мы в режиме модерации/саппортов - показываем Лог или подсказки. 
-      // Но для удобства выведем просто подсказки:
       const data = rightContent[mode];
       if (data) {
         rightTitle.textContent = data.title;
@@ -1508,7 +1523,6 @@
           </div>
         `).join("");
       } else {
-        // Fallback для логов, если нужно.
         renderLogs();
       }
     }
@@ -1622,7 +1636,6 @@
       state.log.unshift(text);
       state.log = state.log.slice(0, 50);
       
-      // Если мы находимся в режиме Модерации или Саппортов, покажем логи
       const curMode = document.querySelector(".mode-btn.active").dataset.mode;
       if(curMode === 'moderation' || curMode === 'support') {
          renderLogs();
@@ -1658,9 +1671,8 @@
         }
 
         lb.innerHTML = data.map((u, i) => {
-          // Считаем XP только по правилам (Модерация) минус магазин
           const userXp = Math.floor((u.mod_correct || 0) / 10) * 15 - (u.shop_spent || 0);
-          const name = u.email ? u.email.split('@')[0] : `User_${u.user_id.substring(0,4)}`;
+          const name = u.nickname || (u.email ? u.email.split('@')[0] : `User_${u.user_id.substring(0,4)}`);
           
           return `
             <div class="report-list-item" style="display:flex; justify-content:space-between; align-items:center; flex-direction:row;">
@@ -1708,7 +1720,7 @@
 
     function updateShopStats() {
       const modXp = calcXP(state.correct);
-      const supportXp = 0; // ОБНУЛЕН (убрано зачисление ХР за ответы АП)
+      const supportXp = 0; 
       const repXp = getReportXp();
       const totalXp = availableXp();
 
@@ -1762,12 +1774,10 @@
       const formArea = document.getElementById('reportFormArea');
       const adminPanel = document.getElementById('adminPanelArea');
 
-      // 1) Проверка авторизации: могут сдавать все, кто авторизован
       if (currentUser) {
         warn.style.display = 'none';
         formArea.style.display = 'block';
 
-        // 2) Если пользователь из руководства, покажем Панель проверки
         if (adminEmails.includes(currentUser.email)) {
           adminPanel.style.display = 'block';
         } else {
@@ -1792,7 +1802,6 @@
       document.getElementById("mode-shop").style.display = mode === "shop" ? "" : "none";
       document.getElementById("mode-report").style.display = mode === "report" ? "" : "none";
 
-      // Смена темы
       let currentTheme = "mod";
       if(mode === "support") currentTheme = "support";
       else if(mode === "about") currentTheme = "about";
@@ -1800,7 +1809,6 @@
       else if(mode === "report") currentTheme = "report";
       html.setAttribute("data-site-theme", currentTheme);
       
-      // Обновляем правую панель
       if(mode === 'moderation' || mode === 'support') {
          renderLogs();
       } else {
@@ -1858,7 +1866,6 @@
     document.querySelectorAll(".mode-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const mode = btn.dataset.mode;
-        // Отчетность теперь открыта всем! Код нужен только для Магазина
         if (mode === 'shop' && !hasAccessCode) {
           requestAccess('switch_tab_' + mode, btn);
           return;
