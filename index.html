@@ -354,7 +354,7 @@
     </div>
   </div>
 
-  <div id="accessModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center;">
+  <div id="accessModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); z-index: 9999; align-items: center; justify-content: center;">
     <div class="panel" style="padding: 2rem; width: 90%; max-width: 360px; display: grid; gap: 1rem; box-sizing: border-box;">
       <h2 style="margin: 0; font-family: var(--font-display);">Доступ закрыт</h2>
       <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Введите код доступа для выполнения этого действия.</p>
@@ -362,6 +362,18 @@
       <div id="accessErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0; line-height: 1.4;">Неверный код доступа!</div>
       <button id="accessSubmitBtn" class="btn btn-primary" type="button" style="padding: 0.75rem;">Подтвердить</button>
       <button id="accessCloseBtn" class="btn" type="button" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted); padding: 0.75rem;">Отмена</button>
+    </div>
+  </div>
+
+  <div id="spamModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(8px); z-index: 10000; align-items: center; justify-content: center;">
+    <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 420px; display: grid; gap: 1.2rem; box-sizing: border-box; text-align: center; border-color: rgba(255, 107, 136, 0.5);">
+      <div style="font-size: 3.5rem; margin-bottom: -1rem;">👮‍♂️</div>
+      <h2 style="margin: 0; font-family: var(--font-display); color: var(--color-error); font-size: var(--text-lg); text-transform: uppercase;">Слишком быстро!</h2>
+      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0; line-height: 1.5;">
+        Кажется, вы нажимаете наугад. Тренажёр создан для вдумчивой работы, а не для кликера. Пожалуйста, освежите знания правил, прежде чем продолжить.
+      </p>
+      <a href="https://rules-ds.netlify.app" target="_blank" class="btn btn-primary" style="text-decoration: none; display: inline-block; background: linear-gradient(135deg, #ff3b60, #ff6b88); box-shadow: 0 10px 25px rgba(255, 107, 136, 0.5);">Читать правила сервера</a>
+      <button id="closeSpamModal" class="btn" type="button" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted);">Я понял, продолжить</button>
     </div>
   </div>
 
@@ -581,11 +593,35 @@
       <section class="panel game-card" id="mode-guide" style="display:none;">
         <div class="section-head">
           <h2>Руководство Сервера</h2>
-          <p>Контакты руководящего состава. Выберите нужный контакт из панели справа.</p>
+          <p>Контакты руководящего состава для связи.</p>
         </div>
         <div class="feed">
-          <article class="message-card" style="min-height: auto;">
-            <div class="message-text" style="padding: 1rem 0;">Вся контактная информация находится <strong>в правой панели экрана</strong>.</div>
+          <article class="message-card" style="min-height: auto; gap: 1.5rem; background: rgba(13, 16, 32, 0.6);">
+            <div>
+              <h3 style="color: #6c8cff; margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid rgba(108,140,255,0.3); padding-bottom: 0.3rem;">Модерация Discord</h3>
+              <div style="display: grid; gap: 0.6rem; font-size: var(--text-sm); color: var(--color-text-muted);">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ГМ</strong> — Lexa_Mackenzie</span> <a href="https://vk.com/lexa_br" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ЗГМ</strong> — John Wick</span> <a href="https://vk.com/daniil_timoshin" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ЗГМ</strong> — Andrey_Caypen</span> <a href="https://vk.com/andrey_caypen" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Куратор</strong> — Hunter_Mackenzie</span> <a href="https://vk.com/" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
+              </div>
+            </div>
+            <div>
+              <h3 style="color: #ffbf47; margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid rgba(255,191,71,0.3); padding-bottom: 0.3rem;">Администрация Сервера</h3>
+              <div style="display: grid; gap: 0.6rem; font-size: var(--text-sm); color: var(--color-text-muted);">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ГА</strong> — Lars_Crown</span> <a href="https://vk.com/" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ЗГА</strong> — Egor_Versachi</span> <a href="https://vk.com/" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ЗГА</strong> — Oskar_Lofrein</span> <a href="https://vk.com/" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Куратор Адм.</strong> — Kiruha_Lubera</span> <a href="https://vk.com/" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
+              </div>
+            </div>
+            <div>
+              <h3 style="color: #52c77b; margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid rgba(82,199,123,0.3); padding-bottom: 0.3rem;">Агенты Поддержки</h3>
+              <div style="display: grid; gap: 0.6rem; font-size: var(--text-sm); color: var(--color-text-muted);">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Куратор АП</strong> — Ioana_Lost</span> <a href="https://vk.com/" target="_blank" style="color:#52c77b;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Зам. Куратора АП</strong> — Kirill_Rendi</span> <a href="https://vk.com/" target="_blank" style="color:#52c77b;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
+              </div>
+            </div>
           </article>
         </div>
       </section>
@@ -713,7 +749,7 @@
         const userEmailDisplay = document.getElementById('userEmailDisplay');
         const authErrorMsg = document.getElementById('authErrorMsg');
 
-        // === ИНИЦИАЛИЗАЦИЯ ДАННЫХ (ВОССТАНОВЛЕНО) ===
+        // === ИНИЦИАЛИЗАЦИЯ ДАННЫХ ===
         function createModerationMessages() {
           const warn = [
             "АХАХАХАХХАХАХАХАХАХАХАХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХ",
@@ -1072,12 +1108,10 @@
             ]
           },
           guide: {
-            title: "Контактная информация (ВК)",
-            lead: "Связь с руководством",
+            title: "Контакты (ВК)",
+            lead: "Все актуальные ссылки находятся в центре экрана.",
             cards: [
-              ["Модерация", "ГМ - Lexa_Mackenzie<br>ЗГМ - John Wick<br>ЗГМ - Andrey_Caypen<br>Куратор - Hunter_Mackenzie"],
-              ["Администрация", "ГА - Lars_Crown<br>ЗГА - Egor_Versachi<br>ЗГА - Oskar_Lofrein<br>Куратор - Kiruha_Lubera"],
-              ["Агенты Поддержки", "Куратор - Ioana_Lost<br>Зам. Куратора - Kirill_Rendi"]
+              ["Кликабельно", "Нажмите на ссылку [Перейти в ВК], чтобы написать Руководству."]
             ]
           },
           leaderboard: {
@@ -1240,12 +1274,45 @@
           }
         }
 
+        // === ОБРАБОТЧИКИ ДОСТУПА ===
         function requestAccess(actionType, targetElementBtn) {
           pendingAction = { type: actionType, btn: targetElementBtn };
           document.getElementById('accessModal').style.display = 'flex';
           document.getElementById('accessErrorMsg').style.display = 'none';
           document.getElementById('accessCodeInput').value = '';
         }
+
+        document.getElementById('accessCloseBtn').addEventListener('click', () => {
+          document.getElementById('accessModal').style.display = 'none';
+          pendingAction = null;
+        });
+
+        document.getElementById('accessSubmitBtn').addEventListener('click', () => {
+          const val = document.getElementById('accessCodeInput').value.trim();
+          const err = document.getElementById('accessErrorMsg');
+          
+          if (pendingAction && pendingAction.type === 'switch_tab_shop') {
+              if (val === 'JohnWickModer') {
+                  localStorage.setItem('access_JohnWickModer', 'true');
+                  hasAccessCode = true;
+                  document.getElementById('accessModal').style.display = 'none';
+                  switchMode('shop', pendingAction.btn);
+                  pendingAction = null;
+              } else {
+                  err.style.display = 'block';
+              }
+          } else if (pendingAction && pendingAction.type === 'switch_tab_report') {
+              if (val === 'JohnWIckTopModer') {
+                  localStorage.setItem('access_JohnWIckTopModer', 'true');
+                  hasReportAccessCode = true;
+                  document.getElementById('accessModal').style.display = 'none';
+                  switchMode('report', pendingAction.btn);
+                  pendingAction = null;
+              } else {
+                  err.style.display = 'block';
+              }
+          }
+        });
 
         document.querySelectorAll(".mode-btn").forEach(btn => {
           btn.addEventListener("click", () => {
@@ -1509,6 +1576,26 @@
           });
         }
 
+        // === АНТИ-СПАМ ===
+        let clickTimestamps = [];
+        function isSpamming() {
+          const now = Date.now();
+          clickTimestamps.push(now);
+          // Оставляем только клики за последние 3 секунды
+          clickTimestamps = clickTimestamps.filter(time => now - time <= 3000);
+          
+          if (clickTimestamps.length >= 5) {
+            document.getElementById('spamModal').style.display = 'flex';
+            clickTimestamps = []; // сбрасываем счетчик, чтобы не спамило
+            return true;
+          }
+          return false;
+        }
+
+        document.getElementById('closeSpamModal').addEventListener('click', () => {
+          document.getElementById('spamModal').style.display = 'none';
+        });
+
         // === ИГРОВАЯ ЛОГИКА ===
         function fillModQueue() { modQueue = allModMessages.map((_, i) => i); shuffleArray(modQueue); }
         function fillSupQueue() { supQueue = allSupQuestions.map((_, i) => i); shuffleArray(supQueue); }
@@ -1592,6 +1679,8 @@
 
         function judge(action) {
           if (!state.started || !state.current) { startGame(); return; }
+          if (isSpamming()) return; // Проверка на анти-спам
+
           const isCorrect = action === state.current.type;
           state.resolved = Number(state.resolved) + 1;
           if (isCorrect) { state.correct = Number(state.correct) + 1; pushLog(`✅ Тренажёр: верное решение (${action.toUpperCase()})`); } 
@@ -1601,6 +1690,8 @@
 
         function judgeComplaint(action) {
           if (!state.started || !complaintState.current) { startGame(); return; }
+          if (isSpamming()) return; // Проверка на анти-спам
+
           const isCorrect = action === complaintState.current.type;
           complaintState.resolved = Number(complaintState.resolved) + 1;
           if (isCorrect) { 
@@ -1681,14 +1772,27 @@
               <a href="${rep.link}" target="_blank" rel="noopener noreferrer">${rep.link}</a>
               ${!rep.status ? `
                 <div style="display:flex; gap:0.5rem; margin-top:0.5rem; flex-wrap:wrap;">
-                  <button class="badge xp" onclick="gradeReport('${rep.id}', 'Норма', 15, '${rep.email}')" style="cursor:pointer; border:1px solid rgba(255,191,71,0.5);">Норма</button>
-                  <button class="badge xp" style="background:#52c77b; color:#08110b; cursor:pointer; border:1px solid rgba(82,199,123,0.5);" onclick="gradeReport('${rep.id}', 'Перенорма', 30, '${rep.email}')">Перенорма</button>
-                  <button class="badge xp" style="background:#a26cff; color:#fff; cursor:pointer; border:1px solid rgba(162,108,255,0.5);" onclick="gradeReport('${rep.id}', 'Герой дня', 60, '${rep.email}')">Герой дня</button>
-                  <button class="badge ban" style="cursor:pointer; border:1px solid rgba(255,107,136,0.5);" onclick="gradeReport('${rep.id}', 'Не засчитано', 0, '${rep.email}')">Не засчитано</button>
+                  <button class="badge xp grade-btn" data-id="${rep.id}" data-email="${rep.email}" data-verdict="Норма" data-xp="15" style="cursor:pointer; border:1px solid rgba(255,191,71,0.5);">Норма</button>
+                  <button class="badge xp grade-btn" data-id="${rep.id}" data-email="${rep.email}" data-verdict="Перенорма" data-xp="30" style="background:#52c77b; color:#08110b; cursor:pointer; border:1px solid rgba(82,199,123,0.5);">Перенорма</button>
+                  <button class="badge xp grade-btn" data-id="${rep.id}" data-email="${rep.email}" data-verdict="Герой дня" data-xp="60" style="background:#a26cff; color:#fff; cursor:pointer; border:1px solid rgba(162,108,255,0.5);">Герой дня</button>
+                  <button class="badge ban grade-btn" data-id="${rep.id}" data-email="${rep.email}" data-verdict="Не засчитано" data-xp="0" style="cursor:pointer; border:1px solid rgba(255,107,136,0.5);">Не засчитано</button>
                 </div>
               ` : `<div style="margin-top:0.5rem; font-size:var(--text-xs); font-weight:800; color:var(--color-success); letter-spacing:0.06em;">СТАТУС: ${rep.status}</div>`}
             </div>
           `).join('');
+
+          area.querySelectorAll('.grade-btn').forEach(btn => {
+            btn.addEventListener('click', async () => {
+               const { id, email, verdict, xp } = btn.dataset;
+               btn.disabled = true;
+               const xpReward = parseInt(xp);
+               const newStatus = verdict + (xpReward > 0 ? ` (+${xpReward} XP)` : '');
+               const { error } = await supa.from('reports').update({ status: newStatus, xp: xpReward }).eq('id', id);
+               if (error) { alert('Ошибка: ' + error.message); btn.disabled = false; return; }
+               pushLog(`📋 Отчет ${email} проверен: ${verdict}`);
+               await renderReportsList();
+            });
+          });
         }
 
         async function renderAdminLogs() {
@@ -1703,11 +1807,23 @@
               <span style="font-size: var(--text-sm); color: var(--color-primary); font-weight: bold; margin-top: 0.2rem;">${log.link.replace('[АВТОВЫДАЧА] ', '📦 ')}</span>
               ${log.status === 'Ожидает выдачи' ? `
                 <div style="display:flex; gap:0.5rem; margin-top:0.5rem;">
-                  <button class="badge xp" onclick="markAdminLogIssued('${log.id}')" style="cursor:pointer; border:1px solid rgba(82,199,123,0.8); background: rgba(82, 199, 123, 0.15); color: #52c77b;">Отметить как выданное ✅</button>
+                  <button class="badge xp issue-btn" data-id="${log.id}" style="cursor:pointer; border:1px solid rgba(82,199,123,0.8); background: rgba(82, 199, 123, 0.15); color: #52c77b;">Отметить как выданное ✅</button>
                 </div>
               ` : `<div style="margin-top:0.5rem; font-size:var(--text-xs); font-weight:800; color:var(--color-text-faint); letter-spacing:0.06em;">СТАТУС: ${log.status}</div>`}
             </div>
           `).join('');
+
+          // Привязываем обработчик события для кнопок выдачи
+          area.querySelectorAll('.issue-btn').forEach(btn => {
+            btn.addEventListener('click', async () => {
+               const id = btn.dataset.id;
+               btn.disabled = true;
+               btn.textContent = "Обновление...";
+               const { error } = await supa.from('reports').update({ status: 'Выдано Руководством' }).eq('id', id);
+               if (error) { alert('Ошибка: ' + error.message); btn.disabled = false; btn.textContent = "Отметить как выданное ✅"; return; }
+               await renderAdminLogs();
+            });
+          });
         }
 
         document.getElementById('viewReportsBtn')?.addEventListener('click', () => { renderReportsList(); });
