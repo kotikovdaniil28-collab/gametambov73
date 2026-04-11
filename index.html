@@ -52,52 +52,16 @@
       transition: background 350ms ease;
     }
 
-    /* === СПЕЦИАЛЬНЫЕ ЦВЕТА И ТЕМЫ ДЛЯ КАЖДОГО РЕЖИМА === */
-    /* Поддержка (Розовый) */
+    /* === ТЕМЫ ОФОРМЛЕНИЯ === */
     html[data-site-theme="support"] body { background: radial-gradient(circle at top left, rgba(255, 184, 222, 0.3), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 120, 180, 0.3), transparent 55%), linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%); }
-    html[data-site-theme="support"] .panel { background: radial-gradient(circle at top left, rgba(255, 160, 210, 0.3), transparent 55%), linear-gradient(155deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1)); border-color: rgba(255, 190, 230, 0.45); }
-    html[data-site-theme="support"] .btn-primary { background: linear-gradient(135deg, #ff78b4, #ffb0dd); box-shadow: 0 20px 45px rgba(255, 144, 196, 0.78); }
-    html[data-site-theme="support"] .hero h1 span { color: #ff8fc4; text-shadow: 0 0 26px rgba(255, 143, 196, 0.9); }
-    html[data-site-theme="support"] .logo { background: linear-gradient(135deg, rgba(255, 160, 210, 0.65), rgba(255, 120, 180, 0.6)); border-color: rgba(255, 210, 240, 0.7); }
-
-    /* Жалобы (Красный) */
-    html[data-site-theme="complaints"] body { background: radial-gradient(circle at top left, rgba(255, 61, 61, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 107, 136, 0.15), transparent 55%), linear-gradient(160deg, #120505, #180408 45%, #0d0202 100%); }
-    html[data-site-theme="complaints"] .panel { background: radial-gradient(circle at top left, rgba(255, 107, 136, 0.2), transparent 55%), linear-gradient(155deg, rgba(28, 10, 14, 0.98), rgba(16, 4, 6, 1)); border-color: rgba(255, 107, 136, 0.35); }
-    html[data-site-theme="complaints"] .btn-primary { background: linear-gradient(135deg, #ff3b60, #ff6b88); box-shadow: 0 20px 45px rgba(255, 107, 136, 0.6); }
-    html[data-site-theme="complaints"] .hero h1 span { color: #ff6b88; text-shadow: 0 0 26px rgba(255, 107, 136, 0.9); }
-    html[data-site-theme="complaints"] .logo { background: linear-gradient(135deg, rgba(255, 107, 136, 0.65), rgba(255, 59, 96, 0.6)); border-color: rgba(255, 107, 136, 0.5); }
-
-    /* Квесты (Фиолетовый) */
-    html[data-site-theme="quests"] body { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(196, 161, 255, 0.15), transparent 55%), linear-gradient(160deg, #0d0514, #120818 45%, #0a040d 100%); }
-    html[data-site-theme="quests"] .panel { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.2), transparent 55%), linear-gradient(155deg, rgba(18, 12, 28, 0.98), rgba(10, 6, 16, 1)); border-color: rgba(180, 150, 255, 0.35); }
-    html[data-site-theme="quests"] .btn-primary { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 20px 45px rgba(162, 108, 255, 0.6); }
-    html[data-site-theme="quests"] .hero h1 span { color: #c4a1ff; text-shadow: 0 0 26px rgba(162, 108, 255, 0.9); }
-    html[data-site-theme="quests"] .logo { background: linear-gradient(135deg, rgba(162, 108, 255, 0.65), rgba(196, 161, 255, 0.6)); border-color: rgba(180, 150, 255, 0.5); }
-
-    /* Общие разделы (Желтый/Оранжевый) */
-    html[data-site-theme="general"] body, html[data-site-theme="about"] body, html[data-site-theme="admin_log"] body { background: radial-gradient(circle at top left, rgba(255, 220, 120, 0.16), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.18), transparent 55%), linear-gradient(160deg, #0c0a05, #0c0a05 45%, #12100a 100%); }
-    html[data-site-theme="general"] .panel, html[data-site-theme="about"] .panel, html[data-site-theme="admin_log"] .panel { background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.16), transparent 55%), linear-gradient(155deg, rgba(25, 19, 8, 0.98), rgba(10, 10, 14, 1)); border-color: rgba(255, 214, 122, 0.28); }
-    html[data-site-theme="general"] .btn-primary, html[data-site-theme="about"] .btn-primary, html[data-site-theme="admin_log"] .btn-primary { background: linear-gradient(135deg, #ffbf47, #ffd979); box-shadow: 0 20px 45px rgba(255, 191, 71, 0.48); color: #18171c; }
-    html[data-site-theme="general"] .hero h1 span, html[data-site-theme="about"] .hero h1 span, html[data-site-theme="admin_log"] .hero h1 span { color: #ffbf47; text-shadow: 0 0 22px rgba(255, 191, 71, 0.72); }
-    html[data-site-theme="general"] .logo, html[data-site-theme="about"] .logo, html[data-site-theme="admin_log"] .logo { background: linear-gradient(135deg, rgba(255, 191, 71, 0.55), rgba(108, 140, 255, 0.38)); border-color: rgba(255, 230, 180, 0.45); }
-
-    /* Лидерборд (Огненный) */
-    html[data-site-theme="leaderboard"] body { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 158, 0, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); }
-    html[data-site-theme="leaderboard"] .panel { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.12), transparent 55%), linear-gradient(155deg, rgba(22, 8, 4, 0.98), rgba(12, 4, 2, 1)); border-color: rgba(255, 61, 0, 0.25); }
-    html[data-site-theme="leaderboard"] .btn-primary { background: linear-gradient(135deg, #ff3d00, #ff9e00); box-shadow: 0 20px 45px rgba(255, 61, 0, 0.45); color: #fff; }
-    html[data-site-theme="leaderboard"] .hero h1 span { color: #ff5419; text-shadow: 0 0 22px rgba(255, 61, 0, 0.65); }
-    
-    /* Магазин (Зеленый) */
+    html[data-site-theme="about"] body { background: radial-gradient(circle at top left, rgba(255, 220, 120, 0.16), transparent 55%), radial-gradient(circle at bottom right, rgba(108, 140, 255, 0.18), transparent 55%), linear-gradient(160deg, #0c0a05, #0c0a05 45%, #12100a 100%); }
     html[data-site-theme="shop"] body { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.14), transparent 55%), linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%); }
-    html[data-site-theme="shop"] .panel { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), linear-gradient(155deg, rgba(10, 23, 14, 0.98), rgba(8, 10, 15, 1)); border-color: rgba(162, 241, 188, 0.22); }
-    html[data-site-theme="shop"] .btn-primary { background: linear-gradient(135deg, #52c77b, #8fe0a8); box-shadow: 0 20px 45px rgba(82, 199, 123, 0.42); color: #08110b; }
-    html[data-site-theme="shop"] .hero h1 span { color: #7fe8a0; text-shadow: 0 0 22px rgba(127, 232, 160, 0.62); }
-
-    /* Руководство (Бирюзовый) */
+    html[data-site-theme="report"] body { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.2), transparent 50%), radial-gradient(circle at bottom right, rgba(108, 204, 255, 0.18), transparent 55%), linear-gradient(160deg, #090510, #0a0512 45%, #050411 100%); }
     html[data-site-theme="guide"] body { background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.15), transparent 50%), radial-gradient(circle at bottom right, rgba(0, 180, 216, 0.15), transparent 55%), linear-gradient(160deg, #020a10, #041018 45%, #02080d 100%); }
-    html[data-site-theme="guide"] .panel { background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.12), transparent 55%), linear-gradient(155deg, rgba(4, 14, 22, 0.98), rgba(2, 8, 12, 1)); border-color: rgba(0, 229, 255, 0.25); }
-    html[data-site-theme="guide"] .btn-primary { background: linear-gradient(135deg, #00b4d8, #00e5ff); box-shadow: 0 20px 45px rgba(0, 229, 255, 0.45); color: #001a22; }
-    html[data-site-theme="guide"] .hero h1 span { color: #00e5ff; text-shadow: 0 0 22px rgba(0, 229, 255, 0.65); }
+    html[data-site-theme="leaderboard"] body { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 158, 0, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); }
+    html[data-site-theme="admin_log"] body { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); }
+    html[data-site-theme="complaints"] body { background: radial-gradient(circle at top left, rgba(255, 61, 61, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 107, 136, 0.15), transparent 55%), linear-gradient(160deg, #120505, #180408 45%, #0d0202 100%); }
+    html[data-site-theme="quests"] body { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.15), transparent 55%), linear-gradient(160deg, #0d0514, #120818 45%, #0a040d 100%); }
 
     button, input { font: inherit; }
     button { cursor: pointer; border: none; transition: transform var(--transition), background var(--transition), box-shadow var(--transition), opacity var(--transition), border-color var(--transition); }
@@ -108,6 +72,12 @@
     .topbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
     .brand { display: flex; align-items: center; gap: 0.85rem; min-width: 0; }
 
+    .logo {
+      width: 48px; height: 48px; display: grid; place-items: center; color: var(--color-text);
+      background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%), linear-gradient(135deg, rgba(108, 140, 255, 0.32), rgba(255, 107, 136, 0.22));
+      border-radius: 16px; box-shadow: var(--shadow-md); border: 1px solid rgba(255, 255, 255, 0.25); flex: 0 0 auto;
+    }
+    
     .brand-title { font-family: var(--font-display); font-size: var(--text-lg); letter-spacing: 0.08em; text-transform: uppercase; }
     .brand-sub { color: var(--color-text-muted); font-size: var(--text-sm); max-width: 42ch; }
 
@@ -135,7 +105,7 @@
     .btn-primary { color: #fff; background: linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 20px 45px rgba(108, 140, 255, 0.72); }
     .btn-secondary { color: var(--color-text-muted); background: rgba(9, 12, 26, 0.86); border: 1px solid rgba(191, 198, 255, 0.3); }
 
-    /* === ОБНОВЛЕННАЯ ДВУХУРОВНЕВАЯ НАВИГАЦИЯ === */
+    /* === НАВИГАЦИЯ === */
     .nav-container { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0 1rem; }
     .main-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; background: rgba(13, 16, 32, 0.8); padding: 0.4rem; border-radius: 18px; border: 1px solid rgba(191, 198, 255, 0.2); width: fit-content; }
     
@@ -151,17 +121,17 @@
 
     .mode-btn { border-radius: 999px; padding: 0.5rem 1.15rem; font-size: var(--text-sm); font-weight: 700; color: var(--color-text-muted); background: transparent; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; transition: all 0.3s; }
     .mode-btn.active { color: var(--color-text-inverse); background: linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 8px 20px rgba(108, 140, 255, 0.5); }
-
-    /* Цвет активной кнопки в подменю зависит от выбранной темы */
+    
+    /* Стили для активных кнопок подменю */
     html[data-site-theme="support"] .mode-btn.active { background: linear-gradient(135deg, #ff78b4, #ffb0dd); box-shadow: 0 8px 20px rgba(255, 144, 196, 0.6); }
     html[data-site-theme="complaints"] .mode-btn.active { background: linear-gradient(135deg, #ff6b88, #ff3b60); box-shadow: 0 8px 20px rgba(255, 107, 136, 0.5); color: #fff; }
     html[data-site-theme="quests"] .mode-btn.active { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 8px 20px rgba(162, 108, 255, 0.45); color: #fff; }
     html[data-site-theme="shop"] .mode-btn.active { background: linear-gradient(135deg, #52c77b, #8fe0a8); box-shadow: 0 8px 20px rgba(82, 199, 123, 0.35); color: #08110b; }
-    html[data-site-theme="report"] .mode-btn.active { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 8px 20px rgba(162, 108, 255, 0.35); color: #fff; }
-    html[data-site-theme="guide"] .mode-btn.active { background: linear-gradient(135deg, #00b4d8, #00e5ff); box-shadow: 0 8px 20px rgba(0, 229, 255, 0.35); color: #001a22; }
-    html[data-site-theme="leaderboard"] .mode-btn.active { background: linear-gradient(135deg, #ff3d00, #ff9e00); box-shadow: 0 8px 20px rgba(255, 61, 0, 0.35); color: #fff; }
-    html[data-site-theme="about"] .mode-btn.active { background: linear-gradient(135deg, #ffbf47, #ffd979); box-shadow: 0 8px 20px rgba(255, 191, 71, 0.35); color: #18171c; }
-    html[data-site-theme="admin_log"] .mode-btn.active { background: linear-gradient(135deg, #ffbf47, #ff9e00); box-shadow: 0 8px 20px rgba(255, 191, 71, 0.35); color: #18171c; }
+    html[data-site-theme="report"] .mode-btn.active { background: linear-gradient(135deg, #a26cff, #c4a1ff); color: #fff; }
+    html[data-site-theme="guide"] .mode-btn.active { background: linear-gradient(135deg, #00b4d8, #00e5ff); color: #001a22; }
+    html[data-site-theme="leaderboard"] .mode-btn.active { background: linear-gradient(135deg, #ff3d00, #ff9e00); color: #fff; }
+    html[data-site-theme="about"] .mode-btn.active { background: linear-gradient(135deg, #ffbf47, #ffd979); color: #18171c; }
+    html[data-site-theme="admin_log"] .mode-btn.active { background: linear-gradient(135deg, #ffbf47, #ff9e00); color: #18171c; }
 
     .game-wrap { margin-top: 0.75rem; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr); gap: 1rem; align-items: start; }
     .rule-list, .feed, .log { display: grid; gap: 0.75rem; min-width: 0; }
@@ -172,7 +142,9 @@
     .rule-copy { display: grid; gap: 0.22rem; min-width: 0; }
     .rule-copy strong { font-size: 0.98rem; line-height: 1.25; }
     .rule-copy span { color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.55; max-width: 38ch; display: block; }
-    
+    .rule-copy a { color: var(--color-primary); text-decoration: none; font-weight: 600; }
+    .rule-copy a:hover { text-decoration: underline; }
+
     .ok { background: rgba(82, 199, 123, 0.14); color: #8df0ae; }
     .warn { background: rgba(255, 191, 71, 0.18); color: #ffdf95; }
     .ban { background: rgba(255, 107, 136, 0.2); color: #ff9fb4; }
@@ -276,7 +248,7 @@
       <input type="email" id="authEmail" class="support-input" placeholder="Ваш Email">
       <input type="text" id="authNickname" class="support-input" placeholder="Ваш Никнейм (Обязательно)">
       <input type="password" id="authPassword" class="support-input" placeholder="Пароль">
-      <div id="authErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0;"></div>
+      <div id="authErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0; line-height: 1.4;"></div>
       <div class="auth-actions" style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
         <button id="authLoginSubmit" class="btn btn-primary" style="flex: 1; padding: 0.75rem;">Войти</button>
         <button id="authRegisterSubmit" class="btn btn-secondary" style="flex: 1; padding: 0.75rem;">Создать</button>
@@ -299,7 +271,7 @@
       <h2 style="margin: 0; font-family: var(--font-display);">Доступ закрыт</h2>
       <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Введите код доступа для выполнения этого действия.</p>
       <input type="password" id="accessCodeInput" class="support-input" placeholder="Код доступа">
-      <div id="accessErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0;">Неверный код доступа!</div>
+      <div id="accessErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0; line-height: 1.4;">Неверный код доступа!</div>
       <button id="accessSubmitBtn" class="btn btn-primary" style="padding: 0.75rem;">Подтвердить</button>
       <button id="accessCloseBtn" class="btn" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted); padding: 0.75rem;">Отмена</button>
     </div>
@@ -308,8 +280,14 @@
   <div id="fortuneModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center;">
     <div class="panel" style="padding: 2rem; width: 95%; max-width: 600px; display: flex; flex-direction: column; gap: 1rem; box-sizing: border-box; text-align: center;">
       <h2 style="margin: 0; font-family: var(--font-display); font-size: var(--text-xl); color: #ffbf47;">Колесо Фортуны</h2>
-      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Испытай удачу! Призы будут добавлены на баланс или отправлены Руководству.</p>
-      <div class="roulette-wrapper"><div class="roulette-pointer"></div><div class="roulette-track" id="rouletteTrack"></div></div>
+      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Испытай удачу! Призы могут быть добавлены на твой баланс или переданы Руководству.</p>
+      
+      <div class="roulette-wrapper">
+        <div class="roulette-pointer"></div>
+        <div class="roulette-track" id="rouletteTrack">
+        </div>
+      </div>
+      
       <div id="fortuneResultText" style="min-height: 2em; font-size: var(--text-lg); font-weight: bold; color: var(--color-success); margin-top: 0.5rem;"></div>
       <button id="closeFortuneBtn" class="btn btn-secondary" style="margin-top: 1rem; display: none;">Закрыть и забрать</button>
     </div>
@@ -320,7 +298,10 @@
       <div class="brand">
         <div class="logo" aria-hidden="true">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 18.5V6.8C4 5.8 4.8 5 5.8 5h4.4"></path><rect x="9" y="3.5" width="11" height="8" rx="2"></rect><path d="M8 12.5 12 7l4 5.5"></path><path d="M4 21h9.5"></path>
+            <path d="M4 18.5V6.8C4 5.8 4.8 5 5.8 5h4.4"></path>
+            <rect x="9" y="3.5" width="11" height="8" rx="2"></rect>
+            <path d="M8 12.5 12 7l4 5.5"></path>
+            <path d="M4 21h9.5"></path>
           </svg>
         </div>
         <div>
@@ -345,8 +326,10 @@
           <span class="badge" id="heroBadge2">Режим: модераторы</span>
           <span class="badge xp">Смена начинается вручную</span>
         </div>
+
         <h1 id="heroTitle">Следи за <span>порядком</span> на сервере.</h1>
         <p id="heroText">Проверяй сообщения, принимай решения и поддерживай порядок в чате. Всё показывается только после начала смены.</p>
+
         <div class="hero-actions">
           <button class="btn btn-primary" type="button" id="startBtn">Начать смену</button>
           <button class="btn btn-secondary" type="button" id="resetBtn">Сбросить смену</button>
@@ -356,7 +339,7 @@
       <aside class="panel rules">
         <div class="section-head">
           <h2 id="rightTitle">Материалы модератора</h2>
-          <p id="rightLead">Здесь только подсказки по модерации.</p>
+          <p id="rightLead">Здесь только подсказки по модерации: как оценивать сообщения, где достаточно предупреждения, а где уже нужен бан.</p>
         </div>
         <div class="rule-list" id="rightCards"></div>
       </aside>
@@ -618,10 +601,12 @@
   </main>
 
   <script>
+    // Инициализация БД
     const supabaseUrl = 'https://icfihnroblyjjflsfepq.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljZmlobnJvYmx5ampmbHNmZXBxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4NjAxMDksImV4cCI6MjA5MTQzNjEwOX0.Hrvjg572mIKBG-2ffYEr4Fxvpz0hOAex9d6n7WylVkQ';
     const supa = window.supabase.createClient(supabaseUrl, supabaseKey);
 
+    // Глобальные переменные
     let currentUser = null;
     let currentNickname = null;
     let pendingAction = null; 
@@ -636,18 +621,16 @@
       'maksimladnyj4@gmail.com'
     ];
     
+    // Состояния прогресса
     let state = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false, log: [], reportXp: 0 };
     let supportState = { resolved: 0, correct: 0, mistakes: 0, currentIndex: -1 };
     let complaintState = { resolved: 0, correct: 0, mistakes: 0, current: null };
     let shopState = { spent: 0 };
 
-    let allModMessages = [];
-    let allSupQuestions = [];
-    let allComplaints = [];
-    let modQueue = [];
-    let supQueue = [];
-    let compQueue = [];
+    let allModMessages = []; let allSupQuestions = []; let allComplaints = [];
+    let modQueue = []; let supQueue = []; let compQueue = [];
 
+    // Элементы
     const authModal = document.getElementById('authModal');
     const nicknameModal = document.getElementById('nicknameModal');
     const loginBtnUI = document.getElementById('loginBtnUI');
@@ -655,212 +638,7 @@
     const userEmailDisplay = document.getElementById('userEmailDisplay');
     const authErrorMsg = document.getElementById('authErrorMsg');
 
-    // === ВОССТАНОВЛЕНИЕ КОНТЕНТА ПРАВОЙ ПАНЕЛИ ===
-    const rightContent = {
-      moderation: {
-        title: "Материалы модератора",
-        lead: "Подсказки по модерации: как оценивать сообщения.",
-        cards: [
-          ["Без нарушения", "Обычное сообщение без спама, оскорблений, рекламы."],
-          ["Устное / Пред / Мут", "Флуд, капс, токсичность, помехи, политика."],
-          ["Бан / Перма / Глобал", "Реклама проектов, РМТ, обход наказаний, слив инфы."]
-        ]
-      },
-      support: {
-        title: "Материалы агента поддержки",
-        lead: "База знаний для АП и шаблоны ответов.",
-        cards: [
-          ["База знаний", "Используйте команды /gps и знайте уровни работ."],
-          ["Ответы", "Давайте четкие и понятные ответы по игровому моду."],
-          ["Важно!", "XP за агента поддержки не зачисляется на общий баланс."]
-        ]
-      },
-      complaints: {
-        title: "Правила жалоб",
-        lead: "Как рассматривать репорты игроков.",
-        cards: [
-          ["Одобрить", "На скринах явное нарушение правил дискорда (оск, реклама)."],
-          ["Отказать", "Нет док-в, обрезаны, или нарушение из игры (ДМ, ДБ)."],
-          ["Передать КГМ", "Использовать СТРОГО для обжалования ЧСМ или банов ГМ."]
-        ]
-      },
-      quests: {
-        title: "Квесты",
-        lead: "Выполняй задания и забирай XP.",
-        cards: [
-          ["Прогресс", "Выполняйте норму в тренажерах, чтобы заполнить шкалу."],
-          ["Награды", "Нажмите кнопку 'Забрать', когда квест выполнен."]
-        ]
-      },
-      guide: {
-        title: "Контактная информация (ВК)",
-        lead: "Связь с руководством",
-        cards: [
-          ["Модерация", "ГМ - Lexa_Mackenzie<br>ЗГМ - John Wick<br>ЗГМ - Andrey_Caypen<br>Куратор - Hunter_Mackenzie"],
-          ["Администрация", "ГА - Lars_Crown<br>ЗГА - Egor_Versachi<br>ЗГА - Oskar_Lofrein<br>Куратор - Kiruha_Lubera"],
-          ["Агенты Поддержки", "Куратор - Ioana_Lost<br>Зам. Куратора - Kirill_Rendi"]
-        ]
-      },
-      leaderboard: {
-        title: "О Лидерборде",
-        lead: "Рейтинг формируется на основе заработанного XP.",
-        cards: [
-          ["Обновление", "Таблица рассчитывает баланс XP (опыт минус траты)."],
-          ["Никнейм", "Отображаются только сотрудники с установленным никнеймом."]
-        ]
-      },
-      about: {
-        title: "О команде",
-        lead: "Информация о людях, создавших тренажёр.",
-        cards: [
-          ["Создано", "John Wick."],
-          ["При поддержке", "Leha_Mackenzie, Andrey_Caypen и Евгения Бабешко."]
-        ]
-      },
-      shop: {
-        title: "Магазин модераторов",
-        lead: "Потратьте накопленные XP на скидки или рулетку.",
-        cards: [
-          ["Выдача", "Все покупки автоматически уходят в панель руководства."],
-          ["Рулетка", "Призы из рулетки выдаются либо автоматически (XP), либо отправляются логом руководству."]
-        ]
-      },
-      report: {
-        title: "Отчетность",
-        lead: "Сдача ежедневных отчетов онлайна.",
-        cards: [
-          ["Доступ", "Сдавать отчеты могут все авторизованные модераторы."],
-          ["Проверка", "Только администрация может проверять и начислять XP."]
-        ]
-      },
-      admin_log: {
-        title: "Панель логов",
-        lead: "Только для руководства",
-        cards: [
-          ["Выдача", "Нажимайте 'Отметить как выданное' после выдачи приза/покупки в Discord."]
-        ]
-      }
-    };
-
-    function renderRight(mode) {
-      const rt = document.getElementById("rightTitle"); 
-      const rl = document.getElementById("rightLead"); 
-      const rc = document.getElementById("rightCards");
-      if(!rt || !rl || !rc) return;
-
-      const data = rightContent[mode];
-      if (data) {
-        rt.innerHTML = data.title;
-        rl.innerHTML = data.lead;
-        rc.innerHTML = data.cards.map((item, idx) => `
-          <div class="rule-item">
-            <div class="rule-icon ${idx === 0 ? "ok" : idx === 1 ? "warn" : "ban"}">${idx === 0 ? "✓" : idx === 1 ? "?" : "ℹ"}</div>
-            <div class="rule-copy"><strong>${item[0]}</strong><span>${item[1]}</span></div>
-          </div>
-        `).join("");
-      }
-    }
-
-    // === ДВУХУРОВНЕВАЯ НАВИГАЦИЯ ===
-    const mainNavBtns = document.querySelectorAll('.main-cat-btn');
-    const subNavs = {
-      general: document.getElementById('subNavGeneral'),
-      moderation: document.getElementById('subNavModeration'),
-      support: document.getElementById('subNavSupport')
-    };
-
-    mainNavBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        mainNavBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        Object.values(subNavs).forEach(nav => { if(nav) nav.style.display = 'none'; });
-
-        const cat = btn.dataset.cat;
-        if(subNavs[cat]) {
-           subNavs[cat].style.display = 'flex';
-           const firstBtn = subNavs[cat].querySelector('.mode-btn');
-           if(firstBtn) firstBtn.click();
-        }
-      });
-    });
-
-    const allModesList = ["moderation", "complaints", "support", "guide", "leaderboard", "about", "shop", "report", "admin_log", "quests"];
-    
-    function switchMode(mode, btn) {
-      document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
-      if(btn) btn.classList.add("active");
-
-      allModesList.forEach(m => {
-        const panel = document.getElementById("mode-" + m);
-        if(panel) { panel.style.display = (m === mode) ? "" : "none"; }
-      });
-
-      let currentTheme = "mod";
-      if(mode === "support") currentTheme = "support";
-      else if(mode === "about") currentTheme = "about";
-      else if(mode === "shop") currentTheme = "shop";
-      else if(mode === "report") currentTheme = "report";
-      else if(mode === "guide") currentTheme = "guide";
-      else if(mode === "leaderboard") currentTheme = "leaderboard";
-      else if(mode === "admin_log") currentTheme = "admin_log";
-      else if(mode === "complaints") currentTheme = "complaints";
-      else if(mode === "quests") currentTheme = "quests";
-
-      document.documentElement.setAttribute("data-site-theme", currentTheme);
-      renderRight(mode);
-      
-      if(mode === 'moderation' || mode === 'support' || mode === 'complaints') { renderLogs(); }
-      if(mode === 'leaderboard') loadLeaderboard();
-      if(mode === 'shop') updateShopStats();
-      if(mode === 'report') checkReportAccess();
-      if(mode === 'admin_log') renderAdminLogs();
-      if(mode === 'quests') renderQuests();
-
-      const brandSub = document.getElementById("brandSubtitle");
-      const hTitle = document.getElementById("heroTitle");
-      const hText = document.getElementById("heroText");
-      const hBadge = document.getElementById("heroBadge2");
-
-      if (mode === "moderation") {
-        if(brandSub) brandSub.textContent = "Симулятор смены модераторов"; if(hTitle) hTitle.innerHTML = 'Следи за <span>порядком</span> на сервере.'; if(hText) hText.textContent = "Проверяй сообщения, принимай решения и поддерживай порядок в чате."; if(hBadge) hBadge.textContent = "Режим: модераторы";
-      } else if (mode === "complaints") {
-        if(brandSub) brandSub.textContent = "Симулятор смены: Жалобы"; if(hTitle) hTitle.innerHTML = 'Рассматривай <span>репорты</span>.'; if(hText) hText.textContent = "Изучай доказательства игроков и выноси вердикты. Спорные моменты и ЧСМ передавай КГМ."; if(hBadge) hBadge.textContent = "Режим: жалобы";
-      } else if (mode === "support") {
-        if(brandSub) brandSub.textContent = "Симулятор смены агентов поддержки"; if(hTitle) hTitle.innerHTML = 'Создавай <span>уют</span> и помогай игрокам.'; if(hText) hText.textContent = "Отвечай на вопросы игроков, ориентируйся в материалах."; if(hBadge) hBadge.textContent = "Режим: агенты поддержки";
-      } else if (mode === "quests") {
-        if(brandSub) brandSub.textContent = "Квесты сотрудников"; if(hTitle) hTitle.innerHTML = 'Выполняй <span>задания</span>.'; if(hText) hText.textContent = "Получай бонусный XP за активную работу в симуляторе. Задания обновляются автоматически."; if(hBadge) hBadge.textContent = "Режим: квесты";
-      } else if (mode === "guide") {
-        if(brandSub) brandSub.textContent = "Руководство Сервера"; if(hTitle) hTitle.innerHTML = 'Контакты <span>руководства</span>.'; if(hText) hText.textContent = "Основная информация и контактные данные."; if(hBadge) hBadge.textContent = "Режим: руководство";
-      } else if (mode === "leaderboard") {
-        if(brandSub) brandSub.textContent = "Таблица лидеров"; if(hTitle) hTitle.innerHTML = 'Топ <span>модераторов</span>.'; if(hText) hText.textContent = "Отображаются сотрудники с наибольшим количеством XP."; if(hBadge) hBadge.textContent = "Режим: лидерборд";
-      } else if (mode === "about") {
-        if(brandSub) brandSub.textContent = "Люди, которые сделали этот проект"; if(hTitle) hTitle.innerHTML = 'Узнай, кто <span>стоит за идеей</span>.'; if(hText) hText.textContent = "Этот раздел посвящён авторам и тем, кто помогал собрать тренажёр."; if(hBadge) hBadge.textContent = "Режим: о команде";
-      } else if (mode === "shop") {
-        if(brandSub) brandSub.textContent = "Магазин за XP"; if(hTitle) hTitle.innerHTML = 'Трать <span>Опыт</span> на бонусы.'; if(hText) hText.textContent = "Покупайте скидки для ускорения повышения или бонусы за накопленные XP."; if(hBadge) hBadge.textContent = "Режим: магазин";
-      } else if (mode === "report") {
-        if(brandSub) brandSub.textContent = "Симулятор смены: Отчетность"; if(hTitle) hTitle.innerHTML = 'Сдавай <span>отчеты</span> вовремя.'; if(hText) hText.textContent = "Отправляй скриншоты своего онлайна в Discord для проверки руководством."; if(hBadge) hBadge.textContent = "Режим: отчетность";
-      } else if (mode === "admin_log") {
-        if(brandSub) brandSub.textContent = "Админ-Панель"; if(hTitle) hTitle.innerHTML = 'Логи <span>выдач</span>.'; if(hText) hText.textContent = "Здесь отображаются все покупки и выигрыши в рулетку, требующие ручной выдачи Руководством в Discord."; if(hBadge) hBadge.textContent = "Режим: руководство";
-      }
-    }
-
-    function requestAccess(actionType, targetElementBtn) {
-      pendingAction = { type: actionType, btn: targetElementBtn };
-      document.getElementById('accessModal').style.display = 'flex';
-      document.getElementById('accessErrorMsg').style.display = 'none';
-      document.getElementById('accessCodeInput').value = '';
-    }
-
-    document.querySelectorAll(".mode-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const mode = btn.dataset.mode;
-        if (mode === 'shop' && !hasAccessCode) { requestAccess('switch_tab_' + mode, btn); return; }
-        if (mode === 'report' && !hasReportAccessCode) { requestAccess('switch_tab_' + mode, btn); return; }
-        switchMode(mode, btn);
-      });
-    });
-
+    // === ФУНКЦИИ ===
     function shuffleArray(array) {
       for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -885,9 +663,7 @@
       await supa.auth.updateUser({ data: { nickname: val } });
       if (currentUser) { await supa.from('user_stats').update({ nickname: val }).eq('user_id', currentUser.id); }
       currentNickname = val; userEmailDisplay.textContent = val; nicknameModal.style.display = 'none';
-      
-      // Автостарт если сбилось
-      if(!state.started && el.authorName?.textContent === "System") { startGame(); }
+      if(!state.started && document.getElementById("authorName")?.textContent === "System") { startGame(); }
     });
 
     function loadLocalState() {
@@ -895,20 +671,17 @@
       const cStr = localStorage.getItem('comp_stats_' + currentUser.email);
       if(cStr) {
         const cParsed = JSON.parse(cStr);
-        complaintState.resolved = cParsed.resolved || 0;
-        complaintState.correct = cParsed.correct || 0;
-        complaintState.mistakes = cParsed.mistakes || 0;
+        complaintState.resolved = Number(cParsed.resolved) || 0;
+        complaintState.correct = Number(cParsed.correct) || 0;
+        complaintState.mistakes = Number(cParsed.mistakes) || 0;
       }
-      updateComplaintStats();
-      renderQuests();
+      updateComplaintStats(); renderQuests();
     }
 
     function saveLocalState() {
       if(!currentUser) return;
       localStorage.setItem('comp_stats_' + currentUser.email, JSON.stringify({
-        resolved: complaintState.resolved,
-        correct: complaintState.correct,
-        mistakes: complaintState.mistakes
+        resolved: complaintState.resolved, correct: complaintState.correct, mistakes: complaintState.mistakes
       }));
     }
 
@@ -924,8 +697,7 @@
       const { data: repData } = await supa.from('reports').select('xp').eq('email', currentUser.email);
       state.reportXp = 0; if (repData) state.reportXp = repData.reduce((sum, r) => sum + (Number(r.xp) || 0), 0);
       
-      loadLocalState();
-      updateModStats(); updateSupportStats(); updateShopStats(); ensureNickname();
+      loadLocalState(); updateModStats(); updateSupportStats(); updateShopStats(); ensureNickname();
     }
 
     async function saveProgress() {
@@ -937,25 +709,23 @@
         sup_resolved: Number(supportState.resolved), sup_correct: Number(supportState.correct), sup_mistakes: Number(supportState.mistakes),
         shop_spent: Number(shopState.spent)
       };
-      const { error } = await supa.from('user_stats').upsert(payload);
-      if (error) {
-        const fallbackPayload = { ...payload };
-        delete fallbackPayload.email; delete fallbackPayload.nickname;
-        await supa.from('user_stats').upsert(fallbackPayload);
-      }
+      await supa.from('user_stats').upsert(payload);
       saveLocalState();
     }
 
-    supa.auth.onAuthStateChange((event, session) => {
+    // AUTH
+    supa.auth.getSession().then(({ data: { session } }) => { handleSession(session); });
+    supa.auth.onAuthStateChange((event, session) => { handleSession(session); });
+
+    function handleSession(session) {
       currentUser = session?.user || null;
       if (currentUser) {
         currentNickname = currentUser.user_metadata?.nickname; userEmailDisplay.textContent = currentNickname || currentUser.email;
         loginBtnUI.style.display = 'none'; logoutBtnUI.style.display = 'block'; authModal.style.display = 'none'; loadProgress(); 
       } else {
-        userEmailDisplay.textContent = ''; loginBtnUI.style.display = 'block'; logoutBtnUI.style.display = 'none'; resetGame(); 
+        userEmailDisplay.textContent = ''; loginBtnUI.style.display = 'block'; logoutBtnUI.style.display = 'none'; resetGame(); checkReportAccess(); renderQuests();
       }
-      checkReportAccess(); 
-    });
+    }
 
     loginBtnUI.onclick = () => { authModal.style.display = 'flex'; authErrorMsg.style.display = 'none'; };
     document.getElementById('authCloseModal').onclick = () => { authModal.style.display = 'none'; };
@@ -993,123 +763,14 @@
       { id: 'fortune', title: "Колесо Фортуны", desc: "Испытай удачу и получи случайный бонус или штраф!", price: 250 }
     ];
 
-    const funnyLeft = ["Мелстройность","Смешнявка","Макенза","Сраупен","бурмалда","Рассыльщик_Мемов","ПолитТоксик","РелигБаттл","Дед_с_Клавой","Флуд_Бот"];
-    const funnyRight = ["из_Тамбова","без_микрофона","на_ГлОбАнЕ","в_муте","с_вечным_баном","тянет_конфу","обижен_на_админов","любит_капс","ищет_баги","продаёт_вирты"];
-    function randomFunnyNick() { return `${funnyLeft[Math.floor(Math.random() * funnyLeft.length)]}_${funnyRight[Math.floor(Math.random() * funnyRight.length)]}#${Math.floor(1000 + Math.random() * 8999)}`; }
-
-    function createModerationMessages() {
-      const warn = [
-        "АХАХАХАХХАХАХАХАХАХАХАХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХ", "АААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААА",
-        "ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ", "ООООООООООООООООООООООООООООООООООООООООООООООООООООООООООООООО",
-        "Как дела ????????????????????????", "Куплю супру срочно!!!!!!!!!!!!!!!!!!!!", "Эй,,,,,,,,,, кто тут главный????????",
-        "Кто в патруль? \nКто в патруль? \nКто в патруль?", "1\n2\n3\n4\n5\nПроверка чата", "фвлыофдвлофыдвло (сори клаву проверяю)", "spam spam spam spam spam",
-        "@everyone зайдите в игру пж", "@here кто продаст ремку?", "@Lexa_Mackenzie @Lexa_Mackenzie @Lexa_Mackenzie", "@John Wick ответь в лс",
-        "Дайте 10к на развитие пожалуйста, я новичок", "Пацаны, скиньтесь по 100 рублей на фаму пж", "Админы, дайте админку или виртов хоть чуть-чуть",
-        "Да ваш президент вообще ничего не понимает в экономике", "Моя религия самая правильная, а вы все не правы", "Слава [название страны]! Все остальные — мусор",
-        "Ты вообще клоун, иди откисай на спавне", "Да вы вы тут нули, я вас один раскидаю", "Плачь больше, форумная крыса", "Чел, у тебя iq как у хлебушка, не пиши сюда",
-        "Все бабы в этой игре играть не умеют", "Ненавижу [национальность], вечно они всё руинят", "Твое место на кухне, а не в ОПГ",
-        "Админ, я тебе в лс флудить буду пока не ответишь", "Давайте все вместе репорт админам заспамим",
-        "Давай, забань меня, тебе же хуже будет", "Я тебя по IP вычислю, жди гостей вечером", "Жди докс, клоун, я тебя найду"
-      ];
-      const ban = [
-        "Продам вирты, 1кк = 50 рублей. Писать в ЛС, оплата на киви", "Куплю жирный аккаунт с випкой за реал, предлагайте цены",
-        "Обменяю скины в CS:GO на вирты тут", "Продаю симку блатную, оплата криптой", "Куплю админку за деньги, кому переводить?",
-        "Обменяю 10кк на 1 сервере на ваши 10кк на 5 сервере", "Перекину вирты с Тамбова на другой сервер, кто поможет?",
-        "Парни, открылся новый топ РП проект, бонус при старте 50кк! Залетайте: discord.gg/fake-rp", "Надоел этот сервер, пошлите играть на [Название конкурента], там обнова крутая",
-        "Смотрите какую жесткую аварию с трупами нашел [ссылка]", "Кому скинуть слив фоток той девки из фамы? Пишите +", "Зацените расчлененку, жесть просто [ссылка]",
-        "Я пробил его по номеру, вот его адрес: ул. Пушкина д. 10. Идите бейте его", "Слил номер телефона ГА в открытый доступ, чекайте",
-        "Прокачаю ваш аккаунт бесплатно, скидывайте логин и пароль в лс", "Работает баг на удвоение денег! Переведите мне на счет 50к, я верну 100к",
-        "Парни, нашел баг на дюп виртов через багажник, продам инфу за 1кк", "Сливаю приватный аимбот на наш сервер, качайте пока не пофиксили",
-        "Проект скатился в помойку, разработчики только донат сосут, ливаем отсюда!", "Экономика убита, админы блатят, сервер мертв, удаляйте игру",
-        "Хах, мне основу забанили за читы, ну я с твинка зашел, мне норм", "Обошел бан по айпи через VPN, админы сосут",
-        "Скрипт на авто-рыбалку (работает 100%): dropmefiles.com/virus", "Кто хочет подзаработать? Ищем курьеров для раскладки (закладки), ЗП высокая",
-        "Твоя мать сдохла канаве, выблядок", "Я твою всю семью резал, понял меня?", "Чтоб твои родители сгорели"
-      ];
-      const good = [
-        "ПАЦАНЫ КТО НА КАПТ БЫСТРО ЗАЛЕТАЙТЕ ВСЕ В ИГРУ!!!!", "АДМИНЫ ПОЧЕМУ СЕРВЕР ЛАГАЕТ СДЕЛАЙТЕ ЧТО НИБУДЬ", "БЫСТРЕЕ ВСЕ В ДИСКОРД ФАМЫ, СБОР НА ВЫШКИ",
-        "Парни, всем привет! Как настроение?", "Кто может подсказать, во сколько сегодня собеседование в Мэрию?", "Куплю BMW M5 F90, бюджет 15кк. Пишите в ЛС",
-        "Ребята, а как вступить в семью? Что для этого нужно?", "Подскажите команду, чтобы посмотреть свой счет в банке",
-        "Где на форуме найти раздел с жалобами на игроков?", "Во сколько обнуляются ежедневные задания в Блек Пассе?", "Кто продаст ремкомплект? Стою на трассе Южный - Арзамас",
-        "Как повысить законопослушность, если она в минусе?", "Сколько стоит страховка на спорткар?", "Спасибо админам за быстрый ответ в репорт!",
-        "Кто-нибудь знает, когда выйдет следующее обновление?", "Могу ли я иметь две машины, если у меня нет випки?", "Всем спокойной ночи, завтра на капт зайду",
-        "Ищу друга для совместного развития на сервере", "Где купить лицензию на оружие?", "Как долго делается лицензия пилота?"
-      ];
-      const messages = [];
-      warn.forEach(text => { messages.push({ type: "warn", text }); });
-      ban.forEach(text => { messages.push({ type: "ban", text }); });
-      good.forEach(text => { messages.push({ type: "good", text }); });
-      return messages;
-    }
-
-    function createSupportQuestions() {
-      return [
-        { title: "Навигация", text: "Как найти правительство области в GPS?", keywords: ["/gps 1"] },
-        { title: "Навигация", text: "Где находится здание ФСБ?", keywords: ["/gps 1"] },
-        { title: "Навигация", text: "Как доехать до автосалона низкого класса?", keywords: ["/gps 3"] },
-        { title: "Навигация", text: "Где купить мотоцикл?", keywords: ["/gps 3"] },
-        { title: "Навигация", text: "В каком разделе GPS найти ферму?", keywords: ["/gps 2"] },
-        { title: "Навигация", text: "Где найти базу Батыревской ОПГ?", keywords: ["/gps 5"] },
-        { title: "Навигация", text: "Как найти ближайшую заправку?", keywords: ["/gps 9", "команда /gps"] },
-        { title: "Навигация", text: "Где находится работа водолаза?", keywords: ["/gps 4"] },
-        { title: "Навигация", text: "Как найти автошколу?", keywords: ["/gps 1"] },
-        { title: "Навигация", text: "Где находится казино?", keywords: ["/gps 1"] },
-        { title: "Навигация", text: "Как доехать до Рублевки?", keywords: ["/gps 5"] },
-        { title: "Команды", text: "Какой командой открыть инвентарь?", keywords: ["/inv", "/i"] },
-        { title: "Команды", text: "Как показать свой паспорт игроку?", keywords: ["/pass"] },
-        { title: "Команды", text: "Какая команда для передачи денег другому?", keywords: ["/pay"] },
-        { title: "Команды", text: "Как мне сменить ник в игре?", keywords: ["/mm", "/donate"] },
-        { title: "Команды", text: "Как использовать ремкомплект для починки?", keywords: ["/repair", "ремкомплект", "через инвентарь"] },
-        { title: "Команды", text: "Подскажите команду, чтобы завести машину.", keywords: ["/engine"] },
-        { title: "Команды", text: "Как выкинуть пассажира из моего авто?", keywords: ["/eject"] },
-        { title: "Команды", text: "Как заправить машину на АЗС?", keywords: ["/fill"] },
-        { title: "Команды", text: "Как посмотреть свою статистику и уровень?", keywords: ["/mm", "/stat"] },
-        { title: "Команды", text: "Как продать свою машину другому игроку?", keywords: ["/sellmycar"] },
-        { title: "Команды", text: "Как пристегнуть ремень безопасности?", keywords: ["/rem"] },
-        { title: "Уровни", text: "Какой уровень нужен для работы дальнобойщиком?", keywords: ["18"] },
-        { title: "Уровни", text: "С какого уровня доступна работа водолазом?", keywords: ["18"] },
-        { title: "Уровни", text: "Какой уровень нужен на инкассатора?", keywords: ["15"] },
-        { title: "Уровни", text: "С какого лвл я могу работать кладоискателем?", keywords: ["3"] },
-        { title: "Уровни", text: "С какого уровня доступна работа в МЧС?", keywords: ["3"] },
-        { title: "Уровни", text: "Какой лвл нужен для работы таксистом?", keywords: ["3"] },
-        { title: "Уровни", text: "С какого уровня можно создать свою семью?", keywords: ["3"] },
-        { title: "Уровни", text: "Какой уровень нужен для работы строителем?", keywords: ["1", "начальн"] },
-        { title: "Уровни", text: "С какого уровня можно купить бизнес?", keywords: ["10"] },
-        { title: "Вопросы", text: "Где можно купить ремкомплект?", keywords: ["24/7", "магазин", "азс"] },
-        { title: "Вопросы", text: "Где взять лицензию на оружие?", keywords: ["лицензер", "правительств", "/gps 1"] },
-        { title: "Вопросы", text: "Как получить военный билет?", keywords: ["арми", "вч", "военкомат"] },
-        { title: "Вопросы", text: "Где подать жалобу на игрока?", keywords: ["форум", "forum.blackrussia"] },
-        { title: "Вопросы", text: "Как устроиться в ОПГ?", keywords: ["собеседован", "форум"] },
-        { title: "Вопросы", text: "Сколько стоит создание семьи?", keywords: ["3кк", "3 миллион"] },
-        { title: "Вопросы", text: "Как купить Black Pass?", keywords: ["/donate", "/bp"] },
-        { title: "Вопросы", text: "Как использовать аптечку?", keywords: ["/healme", "/inv"] },
-        { title: "Вопросы", text: "Как подселить друга в дом?", keywords: ["/live"] },
-        { title: "Вопросы", text: "Как оплатить штрафы?", keywords: ["банк", "банкомат", "/gps 1"] }
-      ];
-    }
-
-    function createComplaints() {
-      return [
-        { type: "approve", text: "Пользователь пишет мне в личные сообщения рекламу своего сервера дискорд.", evidence: "Скриншот ЛС: 'Залетай к нам на сервер, тут раздача админок discord.gg/fake'." },
-        { type: "approve", text: "Оскорбление родных в голосовом чате.", evidence: "Видеозапись: Пользователь кричит 'Твоя м*** сдохла'." },
-        { type: "approve", text: "Чел поставил на аватарку свастику.", evidence: "Скриншот профиля Discord с запрещенной символикой." },
-        { type: "approve", text: "Спам символами в основном чате.", evidence: "Скриншот чата: 'АХАХАХХАХАХАХАХХАХАХАХАХАХАХАХАХАХАХАХА'." },
-        { type: "approve", text: "Вымогает деньги у новичков.", evidence: "Скриншот чата: 'Дайте 10к быстро или я вас по айпи вычислю'." },
-        { type: "reject", text: "Меня убил игрок возле больницы, накажите его!", evidence: "Фрапс из игры с ДМ-ом." },
-        { type: "reject", text: "Лидер уволил меня просто так!!!", evidence: "Скриншот увольнения в игре." },
-        { type: "reject", text: "Забаньте этого мошенника, он кинул меня на машину.", evidence: "Отсутствуют доказательства." },
-        { type: "reject", text: "Он назвал меня дураком в игре.", evidence: "Скриншот игрового чата." },
-        { type: "pass", text: "Мне выдали ЧСМ за слив админ информации, но меня взломали, проверьте логи!", evidence: "Скриншот с табличкой блокировки ЧСМ." },
-        { type: "pass", text: "Главный модератор забанил меня без причины, прошу пересмотр.", evidence: "Скриншот бана от ГМ." },
-        { type: "pass", text: "Хочу обжаловать свой ЧСМ, который получил полгода назад. Осознал ошибку.", evidence: "Текст с извинениями." }
-      ];
-    }
-
-    allModMessages = createModerationMessages();
-    allSupQuestions = createSupportQuestions();
-    allComplaints = createComplaints();
-
     function calcXP(value) { return Math.floor(Number(value) / 10) * 15; }
     function getReportXp() { return Number(state.reportXp) || 0; }
+    function availableXp() { return Math.max(0, calcXP(state.correct) + getReportXp() - Number(shopState.spent)); }
+
+    function pushLog(text) {
+      state.log.unshift(text); state.log = state.log.slice(0, 50);
+      renderLogs();
+    }
 
     function renderLogs() {
       const logList = document.getElementById("logList");
@@ -1117,82 +778,7 @@
       logList.innerHTML = state.log.length > 0 ? state.log.map(item => `<div class="log-item">${item}</div>`).join("") : '<div class="log-item">Пока пусто. Нажми «Начать смену».</div>';
     }
 
-    function pushLog(text) {
-      state.log.unshift(text); state.log = state.log.slice(0, 50);
-      const activeBtn = document.querySelector(".mode-btn.active");
-      if(activeBtn) {
-         const curMode = activeBtn.dataset.mode;
-         if(curMode === 'moderation' || curMode === 'support' || curMode === 'complaints') { renderLogs(); }
-      }
-    }
-
-    function availableXp() { return Math.max(0, calcXP(state.correct) + getReportXp() - Number(shopState.spent)); }
-
-    async function loadLeaderboard() {
-      const lb = document.getElementById("leaderboardList");
-      if(!lb) return;
-      lb.innerHTML = '<div class="message-text">Загрузка...</div>';
-      try {
-        const [statsRes, reportsRes] = await Promise.all([ supa.from('user_stats').select('*'), supa.from('reports').select('email, xp') ]);
-        if (statsRes.error) throw statsRes.error;
-
-        const repXpMap = {};
-        if (reportsRes.data) { reportsRes.data.forEach(r => { if (r.email && r.xp) repXpMap[r.email] = (repXpMap[r.email] || 0) + Number(r.xp); }); }
-
-        let calculatedData = statsRes.data.map(u => {
-          const modXp = Math.floor((Number(u.mod_correct) || 0) / 10) * 15;
-          const userRepXp = repXpMap[u.nickname || u.email] || repXpMap[u.email] || 0;
-          const userXp = Math.max(0, modXp + userRepXp - (Number(u.shop_spent) || 0));
-          return { ...u, userXp };
-        });
-
-        calculatedData = calculatedData.filter(u => u.nickname && u.nickname.trim().length > 0);
-        calculatedData.sort((a, b) => b.userXp - a.userXp);
-        const top10 = calculatedData.slice(0, 10);
-
-        if(top10.length === 0) { lb.innerHTML = '<div class="message-text">Пока никого нет или пользователи не обновили никнеймы.</div>'; return; }
-        lb.innerHTML = top10.map((u, i) => `
-            <div class="report-list-item" style="display:flex; justify-content:space-between; align-items:center; flex-direction:row;">
-              <div><strong style="font-size:1.1rem; color:var(--color-primary);">#${i+1}</strong><span style="margin-left:0.5rem; font-weight: 600;">${u.nickname}</span></div>
-              <div class="badge xp">${u.userXp} XP</div>
-            </div>`).join('');
-      } catch (err) { console.error(err); lb.innerHTML = '<div class="message-text">Ошибка при загрузке.</div>'; }
-    }
-
-    function startFortuneWheel() {
-      const modal = document.getElementById('fortuneModal'); const track = document.getElementById('rouletteTrack'); const resultText = document.getElementById('fortuneResultText'); const closeBtn = document.getElementById('closeFortuneBtn'); const wrapper = document.querySelector('.roulette-wrapper');
-      modal.style.display = 'flex'; resultText.textContent = 'Крутим...'; closeBtn.style.display = 'none'; track.style.transition = 'none'; track.style.transform = 'translateX(0px)'; track.innerHTML = '';
-      const numItems = 80; const itemWidth = 160; let winningIndex = Math.floor(Math.random() * 10) + 65; let winnerItem = null;
-
-      for (let i = 0; i < numItems; i++) {
-        const p = fortunePrizes[Math.floor(Math.random() * fortunePrizes.length)];
-        if (i === winningIndex) winnerItem = p;
-        const el = document.createElement('div'); el.className = `roulette-item ${p.type}`; el.innerHTML = `<i>${p.icon}</i><span>${p.text}</span>`; track.appendChild(el);
-      }
-
-      setTimeout(() => {
-        const wrapperWidth = wrapper.offsetWidth; const targetCenter = (winningIndex * itemWidth) + (itemWidth / 2); const randomShift = (Math.random() * 80) - 40; const offset = targetCenter - (wrapperWidth / 2) + randomShift;
-        track.style.transition = 'transform 6s cubic-bezier(0.15, 0.85, 0.2, 1)'; track.style.transform = `translateX(-${offset}px)`;
-        
-        setTimeout(async () => {
-          let outcomeMsg = `Вы выиграли: ${winnerItem.text}!\n\n`;
-          if (winnerItem.xp) {
-            shopState.spent = Number(shopState.spent) - Number(winnerItem.xp); 
-            outcomeMsg += winnerItem.xp > 0 ? `Опыт автоматически зачислен на баланс (+${winnerItem.xp} XP).` : `Штраф списан с баланса (${Math.abs(winnerItem.xp)} XP).`;
-            updateShopStats(); updateModStats(); updateSupportStats(); updateComplaintStats(); saveProgress(); renderQuests();
-            await logPurchase(`Рулетка: ${winnerItem.text}`, true);
-          } else if (winnerItem.type === 'r-fail') { outcomeMsg += `В этот раз не повезло. Попробуйте еще раз!`;
-          } else { outcomeMsg += `Заявка на выдачу приза отправлена Руководству! Ожидайте.`; await logPurchase(`Рулетка: ${winnerItem.text}`, false); }
-
-          resultText.textContent = `🎁 ${winnerItem.text} 🎁`; pushLog(`🎰 Рулетка: Выпал приз "${winnerItem.text}".`);
-          alert(`✅ КОЛЕСО ФОРТУНЫ!\n\n${outcomeMsg}`); closeBtn.style.display = 'inline-block';
-        }, 6200);
-      }, 100);
-    }
-
-    document.getElementById('closeFortuneBtn').addEventListener('click', () => { document.getElementById('fortuneModal').style.display = 'none'; });
-
-    // === КВЕСТЫ (NEW) ===
+    // === КВЕСТЫ ===
     const questsData = [
       { id: 'q1', title: 'Младший Модератор', desc: 'Рассмотреть 50 сообщений в тренажёре', max: 50, getProgress: () => state.resolved, reward: 150 },
       { id: 'q2', title: 'Активный Помощник', desc: 'Ответить на 25 вопросов игроков', max: 25, getProgress: () => supportState.resolved, reward: 100 },
@@ -1202,16 +788,16 @@
 
     function getClaimedQuests() {
       if(!currentUser) return [];
-      const data = localStorage.getItem('quests_' + currentUser.email);
-      return data ? JSON.parse(data) : [];
+      const data = localStorage.getItem('quests_' + currentUser.email); return data ? JSON.parse(data) : [];
     }
 
     window.claimQuest = function(qId, reward) {
+      if(!currentUser) return;
       const claimed = getClaimedQuests();
-      claimed.push(qId);
-      localStorage.setItem('quests_' + currentUser.email, JSON.stringify(claimed));
+      if(claimed.includes(qId)) return;
+      claimed.push(qId); localStorage.setItem('quests_' + currentUser.email, JSON.stringify(claimed));
       
-      shopState.spent -= reward;
+      shopState.spent = Number(shopState.spent) - reward;
       updateShopStats(); updateModStats(); updateSupportStats(); updateComplaintStats(); saveProgress();
       
       pushLog(`🏆 Квест выполнен! Зачислено +${reward} XP.`);
@@ -1220,33 +806,24 @@
     };
 
     function renderQuests() {
-      const container = document.getElementById('questsContainer');
-      if(!container) return;
+      const container = document.getElementById('questsContainer'); if(!container) return;
       if(!currentUser) { container.innerHTML = '<div class="message-text">Войдите в аккаунт, чтобы выполнять квесты.</div>'; return; }
       
       const claimed = getClaimedQuests();
       container.innerHTML = questsData.map(q => {
-        const prog = Math.min(q.getProgress(), q.max);
-        const pct = (prog / q.max) * 100;
-        const isClaimed = claimed.includes(q.id);
-        const canClaim = prog >= q.max && !isClaimed;
+        const prog = Math.min(q.getProgress(), q.max); const pct = (prog / q.max) * 100;
+        const isClaimed = claimed.includes(q.id); const canClaim = prog >= q.max && !isClaimed;
         
         let btnHTML = '';
         if(isClaimed) btnHTML = `<button class="quest-btn disabled" disabled>Выполнено</button>`;
-        else if(canClaim) btnHTML = `<button class="quest-btn claim" onclick="claimQuest('${q.id}', ${q.reward})">Забрать +${q.reward} XP</button>`;
+        else if(canClaim) btnHTML = `<button class="quest-btn claim" onclick="window.claimQuest('${q.id}', ${q.reward})">Забрать +${q.reward} XP</button>`;
         else btnHTML = `<button class="quest-btn disabled" disabled>В процессе</button>`;
 
-        return `
-          <div class="quest-card">
-            <div class="quest-header"><span class="quest-title">${q.title}</span><span class="quest-reward">+${q.reward} XP</span></div>
-            <div class="quest-desc">${q.desc} (${prog} / ${q.max})</div>
-            <div class="quest-progress-wrap"><div class="quest-progress-fill" style="width: ${pct}%;"></div></div>
-            ${btnHTML}
-          </div>
-        `;
+        return `<div class="quest-card"><div class="quest-header"><span class="quest-title">${q.title}</span><span class="quest-reward">+${q.reward} XP</span></div><div class="quest-desc">${q.desc} (${prog} / ${q.max})</div><div class="quest-progress-wrap"><div class="quest-progress-fill" style="width: ${pct}%;"></div></div>${btnHTML}</div>`;
       }).join('');
     }
 
+    // === СТАТИСТИКА ===
     function updateModStats() {
       const xp = availableXp();
       const elRes = document.getElementById("resolvedValue"); if(elRes) elRes.textContent = state.resolved;
@@ -1280,18 +857,28 @@
       renderQuests();
     }
 
+    function updateShopStats() {
+      const totalXp = availableXp();
+      const sM = document.getElementById("shopModXp"); if(sM) sM.textContent = calcXP(state.correct);
+      const sS = document.getElementById("shopSupportXp"); if(sS) sS.textContent = 0;
+      const sR = document.getElementById("shopReportXp"); if(sR) sR.textContent = getReportXp();
+      const sT = document.getElementById("shopTotalXp"); if(sT) sT.textContent = totalXp;
+      const sSp = document.getElementById("shopSpentXp"); if(sSp) sSp.textContent = shopState.spent;
+      document.querySelectorAll('.shop-buy-btn').forEach(btn => {
+        const price = parseInt(btn.dataset.price);
+        btn.disabled = totalXp < price;
+        btn.textContent = totalXp < price ? "Не хватает XP" : "Купить";
+      });
+    }
+
+    // === ИГРОВАЯ ЛОГИКА ===
     function fillModQueue() { modQueue = allModMessages.map((_, i) => i); shuffleArray(modQueue); }
     function fillSupQueue() { supQueue = allSupQuestions.map((_, i) => i); shuffleArray(supQueue); }
     function fillCompQueue() { compQueue = allComplaints.map((_, i) => i); shuffleArray(compQueue); }
 
     function randomMessage() {
-      if (modQueue.length === 0) fillModQueue();
-      const index = modQueue.pop();
-      const item = allModMessages[index];
-      
-      const user = randomFunnyNick();
-      state.current = { ...item, user };
-      
+      if (modQueue.length === 0) fillModQueue(); const index = modQueue.pop(); const item = allModMessages[index];
+      const user = randomFunnyNick(); state.current = { ...item, user };
       const elA = document.getElementById("authorName"); if(elA) elA.textContent = user; 
       const elM = document.getElementById("authorMeta"); if(elM) elM.textContent = "Неизвестно, есть ли нарушение";
       const elT = document.getElementById("messageText"); if(elT) elT.textContent = item.text; 
@@ -1300,13 +887,8 @@
     }
 
     function randomComplaint() {
-      if (compQueue.length === 0) fillCompQueue();
-      const index = compQueue.pop();
-      const item = allComplaints[index];
-      
-      const user = randomFunnyNick();
-      complaintState.current = { ...item, user };
-      
+      if (compQueue.length === 0) fillCompQueue(); const index = compQueue.pop(); const item = allComplaints[index];
+      const user = randomFunnyNick(); complaintState.current = { ...item, user };
       const cAuthor = document.getElementById("compAuthor"); if(cAuthor) cAuthor.textContent = "Жалоба от " + user;
       const cMeta = document.getElementById("compMeta"); if(cMeta) cMeta.textContent = "Требуется вердикт";
       const cText = document.getElementById("compText"); if(cText) cText.textContent = item.text;
@@ -1329,9 +911,7 @@
       pushLog('Смена началась. Используй текущий режим ниже.');
       randomMessage(); randomComplaint(); 
       updateModStats(); updateSupportStats(); updateComplaintStats();
-      
-      const gameEl = document.getElementById("game");
-      if(gameEl) gameEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      const gameEl = document.getElementById("game"); if(gameEl) gameEl.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     function resetGame() {
@@ -1430,6 +1010,117 @@
     const elSI = document.getElementById("supportAnswerInput");
     if(elSI) elSI.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); document.getElementById("supportCheckBtn")?.click(); } });
 
+    // ТЕМЫ, МАГАЗИН И ПРОЧЕЕ
+    function checkReportAccess() {
+      const warn = document.getElementById('reportAccessWarning'); const formArea = document.getElementById('reportFormArea'); const adminPanel = document.getElementById('adminPanelArea'); const adminTabBtn = document.getElementById('adminLogTabBtn');
+      if (currentUser) {
+        if(warn) warn.style.display = 'none'; if(formArea) formArea.style.display = 'block';
+        if (adminEmails.includes(currentUser.email)) { 
+          if(adminPanel) adminPanel.style.display = 'block'; if(adminTabBtn) adminTabBtn.style.display = 'inline-block';
+        } else { 
+          if(adminPanel) adminPanel.style.display = 'none'; if(adminTabBtn) adminTabBtn.style.display = 'none';
+        }
+      } else {
+        if(warn) warn.style.display = 'block'; if(formArea) formArea.style.display = 'none'; if(adminTabBtn) adminTabBtn.style.display = 'none';
+      }
+    }
+
+    document.getElementById('viewReportsBtn')?.addEventListener('click', () => { renderReportsList(); });
+    document.getElementById('loadAdminLogsBtn')?.addEventListener('click', () => { renderAdminLogs(); });
+    document.getElementById('submitReportBtn')?.addEventListener('click', async () => {
+      const link = document.getElementById('reportLinkInput').value.trim(); const res = document.getElementById('reportResultText');
+      if(!link || !link.startsWith('http')) { res.textContent = "Вставьте корректную ссылку (http/https)."; res.style.color = "var(--color-warning)"; return; }
+      const newReport = { id: Date.now().toString() + Math.random().toString(36).substr(2, 9), email: currentNickname || currentUser.email, link: link, date: new Date().toLocaleString('ru-RU'), status: null, xp: 0 };
+      const { error } = await supa.from('reports').insert([newReport]);
+      if (error) { res.textContent = "Ошибка при сохранении: " + error.message; res.style.color = "var(--color-error)"; return; }
+      res.textContent = "Отчет успешно отправлен и сохранен!"; res.style.color = "var(--color-success)"; document.getElementById('reportLinkInput').value = ''; pushLog(`📝 Отправлен отчет: ${link}`);
+      if (document.getElementById('reportsListArea').style.display === 'flex') { renderReportsList(); }
+    });
+
+    window.gradeReport = async function(id, statusText, xpAmount, email) {
+      const finalStatus = statusText + (xpAmount > 0 ? ` (+${xpAmount} XP)` : '');
+      const { error } = await supa.from('reports').update({ status: finalStatus, xp: xpAmount }).eq('id', id);
+      if (error) { alert('Ошибка при оценке: ' + error.message); return; }
+      await renderReportsList(); alert(`✅ Отчет оценен: ${statusText}!\n\nПользователю ${email} начислено ${xpAmount} XP.`);
+      if (currentUser && (currentUser.email === email || currentNickname === email)) { await loadProgress(); }
+    };
+
+    window.markAdminLogIssued = async function(id) {
+      const { error } = await supa.from('reports').update({ status: 'Выдано Руководством' }).eq('id', id);
+      if (error) { alert('Ошибка: ' + error.message); return; }
+      await renderAdminLogs();
+    };
+
+    async function renderReportsList() {
+      const area = document.getElementById('reportsListArea'); area.style.display = 'flex'; area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка отчетов...</div>';
+      const { data: storedReports, error } = await supa.from('reports').select('*').not('link', 'like', '[АВТОВЫДАЧА]%').order('date', { ascending: false });
+      if (error) { area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`; return; }
+      if (!storedReports || storedReports.length === 0) { area.innerHTML = `<div class="report-list-item" style="text-align:center;">Отчетов пока нет.</div>`; return; }
+
+      area.innerHTML = storedReports.map(rep => `
+        <div class="report-list-item">
+          <span>Сотрудник: <strong>${rep.email}</strong> • Дата: ${rep.date}</span>
+          <a href="${rep.link}" target="_blank" rel="noopener noreferrer">${rep.link}</a>
+          ${!rep.status ? `
+            <div style="display:flex; gap:0.5rem; margin-top:0.5rem; flex-wrap:wrap;">
+              <button class="badge xp" onclick="gradeReport('${rep.id}', 'Норма', 15, '${rep.email}')" style="cursor:pointer; border:1px solid rgba(255,191,71,0.5);">Норма</button>
+              <button class="badge xp" style="background:#52c77b; color:#08110b; cursor:pointer; border:1px solid rgba(82,199,123,0.5);" onclick="gradeReport('${rep.id}', 'Перенорма', 30, '${rep.email}')">Перенорма</button>
+              <button class="badge xp" style="background:#a26cff; color:#fff; cursor:pointer; border:1px solid rgba(162,108,255,0.5);" onclick="gradeReport('${rep.id}', 'Герой дня', 60, '${rep.email}')">Герой дня</button>
+              <button class="badge ban" style="cursor:pointer; border:1px solid rgba(255,107,136,0.5);" onclick="gradeReport('${rep.id}', 'Не засчитано', 0, '${rep.email}')">Не засчитано</button>
+            </div>
+          ` : `<div style="margin-top:0.5rem; font-size:var(--text-xs); font-weight:800; color:var(--color-success); letter-spacing:0.06em;">СТАТУС: ${rep.status}</div>`}
+        </div>
+      `).join('');
+    }
+
+    async function renderAdminLogs() {
+      const area = document.getElementById('adminLogsArea'); area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка логов...</div>';
+      const { data: storedLogs, error } = await supa.from('reports').select('*').like('link', '[АВТОВЫДАЧА]%').order('date', { ascending: false });
+      if (error) { area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`; return; }
+      if (!storedLogs || storedLogs.length === 0) { area.innerHTML = `<div class="report-list-item" style="text-align:center;">Новых логов нет.</div>`; return; }
+
+      area.innerHTML = storedLogs.map(log => `
+        <div class="report-list-item" style="border-color: rgba(255, 191, 71, 0.4);">
+          <span>Сотрудник: <strong style="color: #fff; font-size: var(--text-sm);">${log.email}</strong> • Дата: ${log.date}</span>
+          <span style="font-size: var(--text-sm); color: var(--color-primary); font-weight: bold; margin-top: 0.2rem;">${log.link.replace('[АВТОВЫДАЧА] ', '📦 ')}</span>
+          ${log.status === 'Ожидает выдачи' ? `
+            <div style="display:flex; gap:0.5rem; margin-top:0.5rem;">
+              <button class="badge xp" onclick="markAdminLogIssued('${log.id}')" style="cursor:pointer; border:1px solid rgba(82,199,123,0.8); background: rgba(82, 199, 123, 0.15); color: #52c77b;">Отметить как выданное ✅</button>
+            </div>
+          ` : `<div style="margin-top:0.5rem; font-size:var(--text-xs); font-weight:800; color:var(--color-text-faint); letter-spacing:0.06em;">СТАТУС: ${log.status}</div>`}
+        </div>
+      `).join('');
+    }
+
+    function renderShopItems() {
+      const container = document.getElementById('shopItemsContainer');
+      if(!container) return;
+      container.innerHTML = shopItems.map(item => `
+        <article class="shop-card">
+          <h3>${item.title}</h3><p>${item.desc}</p>
+          <div class="shop-price">${item.price} XP</div>
+          <button class="shop-buy-btn" type="button" data-shop-id="${item.id}" data-price="${item.price}" data-title="${item.title}">Купить</button>
+        </article>
+      `).join('');
+      
+      container.querySelectorAll('.shop-buy-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const price = parseInt(btn.dataset.price); const title = btn.dataset.title; const id = btn.dataset.shopId;
+          if (availableXp() >= price) {
+            shopState.spent = Number(shopState.spent) + price; 
+            updateShopStats(); updateModStats(); updateSupportStats(); updateComplaintStats(); saveProgress(); 
+            
+            if (id === 'fortune') { pushLog(`🛒 Куплен билет "Колесо Фортуны" за ${price} XP.`); startFortuneWheel(); } 
+            else {
+               pushLog(`🛒 Куплен товар: ${title} за ${price} XP.`);
+               alert(`✅ ВЫ УСПЕШНО КУПИЛИ ТОВАР:\n\n"${title}" за ${price} XP\n\nИнформация об этом уже отправлена Руководству. Ничего присылать не нужно!`);
+               await logPurchase(`Магазин: ${title}`, false);
+            }
+          }
+        });
+      });
+    }
+
     (function () {
       const toggle = document.querySelector("[data-theme-toggle]");
       if(!toggle) return;
@@ -1439,10 +1130,18 @@
       toggle.addEventListener("click", () => { theme = theme === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", theme); sync(); });
     })();
 
-    // Запускаем изначальный рендер
-    const initialActiveBtn = document.querySelector('.main-cat-btn.active');
-    if(initialActiveBtn) initialActiveBtn.click();
-    renderLogs(); renderShopItems(); updateModStats(); updateSupportStats(); updateShopStats();
+    // Инициализация при загрузке страницы
+    document.addEventListener("DOMContentLoaded", () => {
+      allModMessages = createModerationMessages();
+      allSupQuestions = createSupportQuestions();
+      allComplaints = createComplaints();
+      renderShopItems();
+      
+      // Запускаем изначальный рендер главного экрана
+      const initialActiveBtn = document.querySelector('.main-cat-btn.active');
+      if(initialActiveBtn) initialActiveBtn.click();
+    });
+
   </script>
 </body>
 </html>
