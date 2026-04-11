@@ -1437,7 +1437,7 @@
       { id: 'fortune', title: "Колесо Фортуны", desc: "Испытай удачу и получи случайный бонус!", price: 250 }
     ];
 
-    const rightCards = document.getElementById("logList"); // Мы заменяем логи на карточки в нужных режимах
+    const rightCards = document.getElementById("rightCards");
     const rightTitle = document.getElementById("rightTitle");
     const rightLead = document.getElementById("rightLead");
     const brandSubtitle = document.getElementById("brandSubtitle");
@@ -1627,9 +1627,11 @@
     }
 
     function renderLogs() {
-      rightTitle.textContent = "Лог смены";
-      rightLead.textContent = "Здесь фиксируются решения модератора и ответы агента поддержки.";
-      rightCards.innerHTML = state.log.length > 0 ? state.log.map(item => `<div class="log-item">${item}</div>`).join("") : '<div class="log-item">Пока пусто. Нажми «Начать смену», чтобы начать работу.</div>';
+      const logList = document.getElementById("logList");
+      if (!logList) return;
+      logList.innerHTML = state.log.length > 0
+        ? state.log.map(item => `<div class="log-item">${item}</div>`).join("")
+        : '<div class="log-item">Пока пусто. Нажми «Начать смену», чтобы начать работу.</div>';
     }
 
     function pushLog(text) {
@@ -1809,11 +1811,8 @@
       else if(mode === "report") currentTheme = "report";
       html.setAttribute("data-site-theme", currentTheme);
       
-      if(mode === 'moderation' || mode === 'support') {
-         renderLogs();
-      } else {
-         renderRight(mode);
-      }
+      renderRight(mode);
+      renderLogs();
 
       if (mode === "moderation") {
         brandSubtitle.textContent = "Симулятор смены модераторов";
@@ -2169,6 +2168,7 @@
     })();
 
     renderRight("moderation");
+    renderLogs();
     renderShopItems();
     updateModStats();
     updateSupportStats();
