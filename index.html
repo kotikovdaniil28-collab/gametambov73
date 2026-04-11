@@ -421,26 +421,31 @@
     .mode-switch {
       margin-top: 1rem;
       margin-bottom: 0.75rem;
-      display: inline-flex;
+      display: flex;
       flex-wrap: wrap;
-      border-radius: 999px;
-      padding: 0.25rem;
+      border-radius: 12px;
+      padding: 0.5rem;
       background: rgba(4, 6, 12, 0.85);
       border: 1px solid rgba(191, 198, 255, 0.35);
-      max-width: 100%;
-      gap: 0.25rem;
+      gap: 0.5rem;
     }
 
     .mode-btn {
-      border-radius: 999px;
-      padding: 0.5rem 1.15rem;
+      border-radius: 8px;
+      padding: 0.6rem 1.15rem;
       font-size: var(--text-sm);
       font-weight: 700;
       color: var(--color-text-muted);
-      background: transparent;
+      background: rgba(20, 25, 45, 0.5);
       text-transform: uppercase;
       letter-spacing: 0.06em;
       white-space: nowrap;
+      border: 1px solid transparent;
+    }
+    
+    .mode-btn:hover {
+      background: rgba(108, 140, 255, 0.1);
+      color: #fff;
     }
 
     .mode-btn.active {
@@ -471,13 +476,10 @@
       box-shadow: 0 10px 25px rgba(162, 108, 255, 0.45);
       color: #fff;
     }
-    
-    html[data-site-theme="mod"] .mode-btn.active[data-mode="guide"],
-    html[data-site-theme="mod"] .mode-btn.active[data-mode="leaderboard"] {
-      background: linear-gradient(135deg, #6c8cff, #8aa3ff);
-      box-shadow: 0 10px 25px rgba(108, 140, 255, 0.6);
-      color: var(--color-text-inverse);
-    }
+
+    /* Выделяем нужные кнопки, чтобы их 100% заметили */
+    .highlight-btn-guide { border: 1px solid rgba(108, 140, 255, 0.5); color: #8aa3ff; }
+    .highlight-btn-lb { border: 1px solid rgba(255, 191, 71, 0.5); color: #ffe38e; }
 
     .game-wrap {
       margin-top: 0.75rem;
@@ -948,8 +950,6 @@
       .page { width: min(100% - 1rem, 1120px); }
       .topbar { flex-direction: column; align-items: stretch; }
       .theme-toggle { align-self: flex-end; }
-      .mode-switch { display: flex; width: 100%; }
-      .mode-btn { flex: 1 1 calc(50% - 8px); text-align: center; }
       .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .shop-grid { grid-template-columns: 1fr; }
       .banner-line { flex-direction: column; align-items: flex-start; }
@@ -976,7 +976,7 @@
     </div>
   </div>
 
-  <!-- Модальное окно кода доступа (Магазин / Отчетность / Просмотр отчетов) -->
+  <!-- Модальное окно кода доступа (Магазин / Отчетность) -->
   <div id="accessModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center;">
     <div class="panel" style="padding: 2rem; width: 90%; max-width: 360px; display: grid; gap: 1rem; box-sizing: border-box;">
       <h2 style="margin: 0; font-family: var(--font-display);">Доступ закрыт</h2>
@@ -1040,14 +1040,15 @@
       </aside>
     </section>
 
+    <!-- ИЗМЕНЕННОЕ МЕНЮ НАВИГАЦИИ -->
     <div class="mode-switch">
       <button class="mode-btn active" type="button" data-mode="moderation">Модераторы</button>
       <button class="mode-btn" type="button" data-mode="support">Агенты поддержки</button>
-      <button class="mode-btn" type="button" data-mode="guide">Руководство Сервера</button>
-      <button class="mode-btn" type="button" data-mode="leaderboard">Лидерборд</button>
-      <button class="mode-btn" type="button" data-mode="about">О команде</button>
+      <button class="mode-btn highlight-btn-guide" type="button" data-mode="guide">Руководство</button>
+      <button class="mode-btn highlight-btn-lb" type="button" data-mode="leaderboard">Лидерборд</button>
       <button class="mode-btn" type="button" data-mode="shop">Магазин</button>
       <button class="mode-btn" type="button" data-mode="report">Отчетность</button>
+      <button class="mode-btn" type="button" data-mode="about">О команде</button>
     </div>
 
     <section class="game-wrap" id="game">
@@ -1138,6 +1139,7 @@
         </div>
       </section>
 
+      <!-- СЕКЦИЯ РУКОВОДСТВА -->
       <section class="panel game-card" id="mode-guide" style="display:none;">
         <div class="section-head">
           <h2>Руководство Сервера</h2>
@@ -1145,11 +1147,12 @@
         </div>
         <div class="feed">
           <article class="message-card" style="min-height: auto;">
-            <div class="message-text" style="padding: 1rem 0;">Вся контактная информация (ВК) для связи с Руководством находится в правой панели экрана. Перейдите по нужной ссылке!</div>
+            <div class="message-text" style="padding: 1rem 0; font-size: 1.1rem; line-height: 1.8;">Вся контактная информация (ВК) для связи с Руководством находится <strong>в правой панели экрана</strong> (или внизу на мобильных). Перейдите по нужной ссылке!</div>
           </article>
         </div>
       </section>
 
+      <!-- СЕКЦИЯ ЛИДЕРБОРДА -->
       <section class="panel game-card" id="mode-leaderboard" style="display:none;">
         <div class="section-head">
           <h2>Таблица лидеров (Топ-10)</h2>
@@ -1204,14 +1207,15 @@
         </div>
       </section>
 
+      <!-- ИСПРАВЛЕННАЯ СЕКЦИЯ ОТЧЕТНОСТИ -->
       <section class="panel game-card" id="mode-report" style="display:none;">
         <div class="section-head">
           <h2>Форма отчетности</h2>
-          <p>Отправьте ссылку на скриншот онлайна в Discord. Форма доступна только указанным сотрудникам.</p>
+          <p>Сдайте свой ежедневный отчет онлайна из Discord сюда.</p>
         </div>
 
         <div id="reportAccessWarning" class="message-card" style="min-height: auto; align-content: center; text-align: center; color: var(--color-warning);">
-          У вас нет прав для просмотра формы отчетности. <br><span style="font-size: var(--text-sm); color: var(--color-text-muted);">Авторизуйтесь под аккаунтом с нужным уровнем доступа.</span>
+          Вы не авторизованы! <br><span style="font-size: var(--text-sm); color: var(--color-text-muted);">Войдите в аккаунт, чтобы сдать отчет.</span>
         </div>
 
         <div class="feed" id="reportFormArea" style="display:none;">
@@ -1233,11 +1237,13 @@
             </div>
           </article>
           
-          <div style="margin-top: 0.5rem;">
-            <button class="btn btn-secondary" type="button" id="viewReportsBtn" style="width:100%;">Посмотреть Отчеты</button>
+          <!-- ПАНЕЛЬКА ДЛЯ ДАНИИЛА И КУРАТОРОВ -->
+          <div id="adminPanelArea" style="display:none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(191,198,255,0.2);">
+            <h3 style="margin-bottom: 0.5rem; font-size: var(--text-sm); color: var(--color-primary); letter-spacing: 0.05em; text-transform: uppercase;">Панель Руководства</h3>
+            <button class="btn btn-secondary" type="button" id="viewReportsBtn" style="width:100%;">Проверить сданные отчеты</button>
           </div>
           
-          <!-- Зона для отображения отчетов после ввода пароля -->
+          <!-- Зона для отображения отчетов -->
           <div id="reportsListArea" style="display:none; margin-top: 0.5rem; flex-direction: column; gap: 0.5rem;">
             <!-- Список отчетов будет тут -->
           </div>
@@ -1246,10 +1252,11 @@
 
       <aside class="panel side">
         <div class="section-head">
-          <h2>Лог смены</h2>
-          <p>Здесь фиксируются решения модератора и ответы агента поддержки.</p>
+          <h2 id="rightTitle">Лог смены</h2>
+          <p id="rightLead">Здесь фиксируются решения модератора и ответы агента поддержки.</p>
         </div>
         <div class="log" id="logList">
+          <!-- Карточки руководства или логи генерируются тут -->
           <div class="log-item">Пока пусто. Нажми «Начать смену», чтобы начать работу.</div>
         </div>
       </aside>
@@ -1268,9 +1275,9 @@
     let pendingAction = null; 
 
     let hasAccessCode = localStorage.getItem('access_JohnWickModer') === 'true';
-    let hasStaffCode = localStorage.getItem('access_StaffModerQ980') === 'true';
 
-    const allowedReportEmails = ['daniiltimosin72@gmail.com', 'isayevrufat37@gmail.com', 'leha.br222@gmail.com'];
+    // Список аккаунтов, которые будут видеть кнопку проверки отчетов:
+    const adminEmails = ['daniiltimosin72@gmail.com', 'isayevrufat37@gmail.com', 'leha.br222@gmail.com'];
 
     let state = {
       resolved: 0,
@@ -1322,7 +1329,7 @@
       
       const payload = {
         user_id: currentUser.id,
-        email: currentUser.email, // ВНИМАНИЕ: нужна колонка email в таблице user_stats!
+        email: currentUser.email, 
         mod_resolved: state.resolved,
         mod_correct: state.correct,
         mod_mistakes: state.mistakes,
@@ -1334,9 +1341,7 @@
       
       const { error } = await supa.from('user_stats').upsert(payload);
       
-      // Если колонки email нет в БД, мы отправляем фоллбэк без нее, чтобы не сломать сохранение:
       if (error) {
-        console.warn("Ошибка с сохранением email (вероятно, нет колонки). Сохраняю без почты:", error);
         const fallbackPayload = { ...payload };
         delete fallbackPayload.email;
         await supa.from('user_stats').upsert(fallbackPayload);
@@ -1415,7 +1420,7 @@
       { id: 'fortune', title: "Колесо Фортуны", desc: "Испытай удачу и получи случайный бонус!", price: 250 }
     ];
 
-    const rightCards = document.getElementById("rightCards");
+    const rightCards = document.getElementById("logList"); // Мы заменяем логи на карточки в нужных режимах
     const rightTitle = document.getElementById("rightTitle");
     const rightLead = document.getElementById("rightLead");
     const brandSubtitle = document.getElementById("brandSubtitle");
@@ -1454,40 +1459,59 @@
       },
       leaderboard: {
         title: "О Лидерборде",
-        lead: "Рейтинг формируется на основе заработанного XP (опыт модерации минус траты в магазине).",
+        lead: "Рейтинг формируется на основе заработанного XP.",
         cards: [
           ["Обновление", "Таблица автоматически загружается и обновляется при входе в этот раздел."],
-          ["XP за ответы", "Напоминаем, что за работу в качестве Агента Поддержки XP больше не зачисляется."]
+          ["XP за ответы", "Напоминаем, что за работу в качестве Агента Поддержки XP больше не зачисляется."],
+          ["Внимание", "Если таблица пуста, попросите Руководство разрешить чтение `user_stats` в БД Supabase."]
         ]
       },
       about: {
         title: "О команде",
-        lead: "Краткая информация о людях, которые участвовали в создании сайта, и о том, как появилась сама идея проекта.",
+        lead: "Краткая информация о людях, которые участвовали в создании сайта.",
         cards: [
           ["Создано", "John Wick."],
-          ["При поддержке", "Leha_Mackenzie, Andrey_Caypen и Евгения Бабешко."],
-          ["История создания", "Сидели, обсуждали проект и решили сделать его лучше — удобнее, красивее и понятнее. Так постепенно и появилась идея этого сайта."]
+          ["При поддержке", "Leha_Mackenzie, Andrey_Caypen и Евгения Бабешко."]
         ]
       },
       shop: {
         title: "Магазин модераторов",
-        lead: "Здесь вы можете потратить заработанные XP на полезные бонусы, скидки к повышению и снятие выговоров.",
+        lead: "Здесь вы можете потратить заработанные XP.",
         cards: [
-          ["Ускорение повышения", "Пример: Младший Модератор хочет повыситься за 5 дней вместо 7. Ему нужно 450 XP (Скидка -2 дня)."],
-          ["Конкуренция", "Чтобы реально успеть к 5-му дню, нужно делать либо 3 Перенормы в день (90 XP), либо активно работать в Ночную смену. Кто больше работает, тот быстрее двигается по карьерной лестнице."],
           ["Выдача", "После покупки сделайте скриншот уведомления на экране и отправьте его руководству для получения бонуса."]
         ]
       },
       report: {
         title: "Отчетность",
-        lead: "Раздел для сдачи отчетов о проделанной работе и времени, проведенном в голосовых каналах Discord.",
+        lead: "Раздел для сдачи отчетов.",
         cards: [
-          ["Доступ", "Только для авторизованных модераторов по коду доступа."],
-          ["Формат", "Отправьте ссылку на любой фотохостинг со скриншотом вашего онлайна."],
-          ["Проверка", "Руководство проверит скриншот и зачислит норму."]
+          ["Доступ", "Доступно всем авторизованным модераторам для сдачи."],
+          ["Проверка", "Руководство (Администраторы) имеет доступ к панели проверки."]
         ]
       }
     };
+
+    function renderRight(mode) {
+      // Если мы в режиме модерации/саппортов - показываем Лог или подсказки. 
+      // Но для удобства выведем просто подсказки:
+      const data = rightContent[mode];
+      if (data) {
+        rightTitle.textContent = data.title;
+        rightLead.textContent = data.lead;
+        rightCards.innerHTML = data.cards.map((item, idx) => `
+          <div class="rule-item">
+            <div class="rule-icon ${idx === 0 ? "ok" : idx === 1 ? "warn" : "ban"}">${idx === 0 ? "✓" : idx === 1 ? "?" : "ℹ"}</div>
+            <div class="rule-copy">
+              <strong>${item[0]}</strong>
+              <span>${item[1]}</span>
+            </div>
+          </div>
+        `).join("");
+      } else {
+        // Fallback для логов, если нужно.
+        renderLogs();
+      }
+    }
 
     const funnyLeft = ["Мелстройность","Смешнявка","Капслокер","ВиртоСлив","Громкий_Микрофон","Рассыльщик_Мемов","ПолитТоксик","РелигБаттл","Дед_с_Клавой","Флуд_Бот"];
     const funnyRight = ["из_Тамбова","без_микрофона","на_ГлОбАнЕ","в_муте","с_вечным_баном","тянет_конфу","обижен_на_админов","любит_капс","ищет_баги","продаёт_вирты"];
@@ -1502,10 +1526,7 @@
         "АДМИНЫ, ПОЧЕМУ МЕНЯ УВОЛИЛИ ИЗ ФРЫ, ВЕРНИТЕ ВСЁ ОБРАТНО!!!!",
         "ну и сервер... ничего нормально сделать не можете, одни нули тут сидят",
         "ээээ, ты чё такой умный? давай один на один разберёмся, герой нашёлся",
-        "ТОКСИКИ КАК ВЫ ВООБЩЕ ТУТ ИГРАЕТЕ, НА СЕРВЕРЕ ОДНА ШКОЛОТА",
-        "пошли уже все на капт, вы чё там в афк стоите? движ нужен!",
-        "АДМИН, ТЫ ЧЁ ТВОРИШЬ, СНИМИ НАКАЗАНИЕ ПРЯМО СЕЙЧАС, Я НИ В ЧЁМ НЕ ВИНОВАТ",
-        "что за бред вы придумываете, правила нормальные придумать не можете?"
+        "пошли уже все на капт, вы чё там в афк стоите? движ нужен!"
       ];
 
       const ban = [
@@ -1558,7 +1579,6 @@
       messageText: document.getElementById("messageText"),
       avatarBox: document.getElementById("avatarBox"),
       hintText: document.getElementById("hintText"),
-      logList: document.getElementById("logList"),
       supportResolvedValue: document.getElementById("supportResolvedValue"),
       supportCorrectValue: document.getElementById("supportCorrectValue"),
       supportMistakeValue: document.getElementById("supportMistakeValue"),
@@ -1578,21 +1598,6 @@
       shopSpentXp: document.getElementById("shopSpentXp")
     };
 
-    function renderRight(mode) {
-      const data = rightContent[mode];
-      rightTitle.textContent = data.title;
-      rightLead.textContent = data.lead;
-      rightCards.innerHTML = data.cards.map((item, idx) => `
-        <div class="rule-item">
-          <div class="rule-icon ${idx === 0 ? "ok" : idx === 1 ? "warn" : "ban"}">${idx === 0 ? "✓" : idx === 1 ? "?" : "ℹ"}</div>
-          <div class="rule-copy">
-            <strong>${item[0]}</strong>
-            <span>${item[1]}</span>
-          </div>
-        </div>
-      `).join("");
-    }
-
     function initials(name) {
       return name.split(/[#_\\s]+/).filter(Boolean).slice(0, 2).map(part => part[0]).join("").toUpperCase();
     }
@@ -1607,10 +1612,21 @@
       return bonuses[currentUser.email] || 0;
     }
 
+    function renderLogs() {
+      rightTitle.textContent = "Лог смены";
+      rightLead.textContent = "Здесь фиксируются решения модератора и ответы агента поддержки.";
+      rightCards.innerHTML = state.log.length > 0 ? state.log.map(item => `<div class="log-item">${item}</div>`).join("") : '<div class="log-item">Пока пусто. Нажми «Начать смену», чтобы начать работу.</div>';
+    }
+
     function pushLog(text) {
       state.log.unshift(text);
       state.log = state.log.slice(0, 50);
-      el.logList.innerHTML = state.log.map(item => `<div class="log-item">${item}</div>`).join("");
+      
+      // Если мы находимся в режиме Модерации или Саппортов, покажем логи
+      const curMode = document.querySelector(".mode-btn.active").dataset.mode;
+      if(curMode === 'moderation' || curMode === 'support') {
+         renderLogs();
+      }
     }
 
     // Итоговый доступный ХР БЕЗ учета ответов АП
@@ -1623,38 +1639,43 @@
       const lb = document.getElementById("leaderboardList");
       lb.innerHTML = '<div class="message-text">Загрузка...</div>';
       
-      const { data, error } = await supa
-        .from('user_stats')
-        .select('*')
-        .order('mod_correct', { ascending: false })
-        .limit(10);
+      try {
+        const { data, error } = await supa
+          .from('user_stats')
+          .select('*')
+          .order('mod_correct', { ascending: false })
+          .limit(10);
+          
+        if (error || !data) {
+           console.error("Supabase Error:", error);
+           lb.innerHTML = '<div class="message-text" style="color:var(--color-error)">Не удалось загрузить таблицу. Убедитесь, что в Supabase (RLS) включено чтение для таблицы user_stats!</div>';
+           return;
+        }
         
-      if (error || !data) {
-         lb.innerHTML = '<div class="message-text">Не удалось загрузить таблицу лидеров.</div>';
-         return;
-      }
-      
-      if(data.length === 0) {
-         lb.innerHTML = '<div class="message-text">Пока никого нет.</div>';
-         return;
-      }
+        if(data.length === 0) {
+           lb.innerHTML = '<div class="message-text">Пока никого нет.</div>';
+           return;
+        }
 
-      lb.innerHTML = data.map((u, i) => {
-        // Считаем XP только по правилам (Модерация) минус магазин
-        const userXp = Math.floor((u.mod_correct || 0) / 10) * 15 - (u.shop_spent || 0);
-        // Используем email, если нет — сокращенный ID
-        const name = u.email ? u.email.split('@')[0] : `User_${u.user_id.substring(0,4)}`;
-        
-        return `
-          <div class="report-list-item" style="display:flex; justify-content:space-between; align-items:center; flex-direction:row;">
-            <div>
-              <strong style="font-size:1.1rem; color:var(--color-primary);">#${i+1}</strong> 
-              <span style="margin-left:0.5rem; font-weight: 600;">${name}</span>
+        lb.innerHTML = data.map((u, i) => {
+          // Считаем XP только по правилам (Модерация) минус магазин
+          const userXp = Math.floor((u.mod_correct || 0) / 10) * 15 - (u.shop_spent || 0);
+          const name = u.email ? u.email.split('@')[0] : `User_${u.user_id.substring(0,4)}`;
+          
+          return `
+            <div class="report-list-item" style="display:flex; justify-content:space-between; align-items:center; flex-direction:row;">
+              <div>
+                <strong style="font-size:1.1rem; color:var(--color-primary);">#${i+1}</strong> 
+                <span style="margin-left:0.5rem; font-weight: 600;">${name}</span>
+              </div>
+              <div class="badge xp">${userXp} XP</div>
             </div>
-            <div class="badge xp">${userXp} XP</div>
-          </div>
-        `;
-      }).join('');
+          `;
+        }).join('');
+      } catch (err) {
+        console.error(err);
+        lb.innerHTML = '<div class="message-text">Ошибка при загрузке.</div>';
+      }
     }
 
     function renderShopItems() {
@@ -1738,14 +1759,24 @@
 
     function checkReportAccess() {
       const warn = document.getElementById('reportAccessWarning');
-      const form = document.getElementById('reportFormArea');
-      
-      if (currentUser && allowedReportEmails.includes(currentUser.email)) {
+      const formArea = document.getElementById('reportFormArea');
+      const adminPanel = document.getElementById('adminPanelArea');
+
+      // 1) Проверка авторизации: могут сдавать все, кто авторизован
+      if (currentUser) {
         warn.style.display = 'none';
-        form.style.display = 'block';
+        formArea.style.display = 'block';
+
+        // 2) Если пользователь из руководства, покажем Панель проверки
+        if (adminEmails.includes(currentUser.email)) {
+          adminPanel.style.display = 'block';
+        } else {
+          adminPanel.style.display = 'none';
+        }
       } else {
         warn.style.display = 'block';
-        form.style.display = 'none';
+        warn.innerHTML = 'Вы не авторизованы!<br><span style="font-size: var(--text-sm); color: var(--color-text-muted);">Войдите в аккаунт, чтобы сдать отчет.</span>';
+        formArea.style.display = 'none';
       }
     }
 
@@ -1761,8 +1792,20 @@
       document.getElementById("mode-shop").style.display = mode === "shop" ? "" : "none";
       document.getElementById("mode-report").style.display = mode === "report" ? "" : "none";
 
-      html.setAttribute("data-site-theme", mode === "support" ? "support" : mode === "about" ? "about" : mode === "shop" ? "shop" : mode === "report" ? "report" : "mod");
-      renderRight(mode);
+      // Смена темы
+      let currentTheme = "mod";
+      if(mode === "support") currentTheme = "support";
+      else if(mode === "about") currentTheme = "about";
+      else if(mode === "shop") currentTheme = "shop";
+      else if(mode === "report") currentTheme = "report";
+      html.setAttribute("data-site-theme", currentTheme);
+      
+      // Обновляем правую панель
+      if(mode === 'moderation' || mode === 'support') {
+         renderLogs();
+      } else {
+         renderRight(mode);
+      }
 
       if (mode === "moderation") {
         brandSubtitle.textContent = "Симулятор смены модераторов";
@@ -1799,7 +1842,7 @@
       } else if (mode === "report") {
         brandSubtitle.textContent = "Симулятор смены: Отчетность";
         heroTitle.innerHTML = 'Сдавай <span>отчеты</span> вовремя.';
-        heroText.textContent = "Отправляй скриншоты своего онлайна в Discord для проверки руководством. Доступ к форме есть только у доверенных лиц.";
+        heroText.textContent = "Отправляй скриншоты своего онлайна в Discord для проверки руководством.";
         heroBadge2.textContent = "Режим: отчетность";
         checkReportAccess();
       }
@@ -1815,7 +1858,8 @@
     document.querySelectorAll(".mode-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const mode = btn.dataset.mode;
-        if ((mode === 'shop' || mode === 'report') && !hasAccessCode) {
+        // Отчетность теперь открыта всем! Код нужен только для Магазина
+        if (mode === 'shop' && !hasAccessCode) {
           requestAccess('switch_tab_' + mode, btn);
           return;
         }
@@ -1824,11 +1868,7 @@
     });
 
     document.getElementById('viewReportsBtn').addEventListener('click', () => {
-      if (hasStaffCode) {
-        renderReportsList();
-      } else {
-        requestAccess('view_reports', null);
-      }
+      renderReportsList();
     });
 
     document.getElementById('accessSubmitBtn').addEventListener('click', () => {
@@ -1842,16 +1882,6 @@
           document.getElementById('accessModal').style.display = 'none';
           const mode = type.replace('switch_tab_', '');
           switchMode(mode, pendingAction.btn);
-        } else {
-          document.getElementById('accessErrorMsg').style.display = 'block';
-        }
-      } 
-      else if (type === 'view_reports') {
-        if (code === 'StaffModerQ980') {
-          localStorage.setItem('access_StaffModerQ980', 'true');
-          hasStaffCode = true;
-          document.getElementById('accessModal').style.display = 'none';
-          renderReportsList();
         } else {
           document.getElementById('accessErrorMsg').style.display = 'block';
         }
@@ -1979,13 +2009,13 @@
       state.started = true;
       state.log = [];
 
-      el.logList.innerHTML = '<div class="log-item">Смена началась. Используй текущий режим ниже.</div>';
       el.supportQuestionTitle.textContent = "Вопрос скрыт";
       el.supportMeta.textContent = "Нажми «Следующий вопрос»";
       el.supportQuestionText.textContent = "Смена началась. Теперь можно открыть первый вопрос агента поддержки.";
       el.supportAnswerInput.value = "";
       el.supportResultText.textContent = "";
 
+      pushLog('Смена началась. Используй текущий режим ниже.');
       randomMessage();
       updateModStats();
       updateSupportStats();
@@ -2010,7 +2040,7 @@
       el.supportAnswerInput.value = "";
       el.supportResultText.textContent = "";
 
-      el.logList.innerHTML = '<div class="log-item">Пока пусто. Нажми «Начать смену», чтобы начать работу.</div>';
+      pushLog('Пока пусто. Нажми «Начать смену», чтобы начать работу.');
 
       updateModStats();
       updateSupportStats();
