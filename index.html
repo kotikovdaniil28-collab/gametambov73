@@ -1054,12 +1054,7 @@
       good.forEach(text => { messages.push({ type: "good", text }); });
       return messages;
     }
-      return messages;
-    }
 
-    // ==========================================
-    // ПОЛНЫЙ МАССИВ ВОПРОСОВ ВОССТАНОВЛЕН
-    // ==========================================
     function createSupportQuestions() {
       return [
         { title: "Навигация и GPS", text: "Как найти заправку через GPS?", keywords: ["gps","заправ","бензин","ближ"] },
@@ -1387,7 +1382,8 @@
 
     function updateModStats() {
       const xp = availableXp();
-      el.resolvedValue.textContent = state.resolved; el.correctValue.textContent = state.correct;
+      el.resolvedValue.textContent = state.resolved;
+      el.correctValue.textContent = state.correct;
       el.mistakeValue.textContent = state.mistakes; el.xpValue.textContent = xp;
       el.xpFill.style.width = (Math.min(1, (state.correct % 10 || (state.correct ? 10 : 0)) / 10) * 100) + "%";
       el.resultBanner.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
@@ -1397,7 +1393,8 @@
 
     function updateSupportStats() {
       const xp = availableXp();
-      el.supportResolvedValue.textContent = supportState.resolved; el.supportCorrectValue.textContent = supportState.correct;
+      el.supportResolvedValue.textContent = supportState.resolved;
+      el.supportCorrectValue.textContent = supportState.correct;
       el.supportMistakeValue.textContent = supportState.mistakes; el.supportXpValue.textContent = xp;
       el.supportXpFill.style.width = (Math.min(1, (supportState.correct % 10 || (supportState.correct ? 10 : 0)) / 10) * 100) + "%";
       el.supportBanner.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
@@ -1411,7 +1408,8 @@
       const adminPanel = document.getElementById('adminPanelArea');
 
       if (currentUser) {
-        warn.style.display = 'none'; formArea.style.display = 'block';
+        warn.style.display = 'none';
+        formArea.style.display = 'block';
         if (adminEmails.includes(currentUser.email)) { adminPanel.style.display = 'block'; } else { adminPanel.style.display = 'none'; }
       } else {
         warn.style.display = 'block';
@@ -1527,7 +1525,8 @@
       const { error } = await supa.from('reports').insert([newReport]);
       if (error) { res.textContent = "Ошибка при сохранении: " + error.message; res.style.color = "var(--color-error)"; return; }
 
-      res.textContent = "Отчет успешно отправлен и сохранен!"; res.style.color = "var(--color-success)";
+      res.textContent = "Отчет успешно отправлен и сохранен!";
+      res.style.color = "var(--color-success)";
       document.getElementById('reportLinkInput').value = ''; pushLog(`📝 Отправлен отчет онлайна: ${link}`);
       if (document.getElementById('reportsListArea').style.display === 'flex') { renderReportsList(); }
     });
