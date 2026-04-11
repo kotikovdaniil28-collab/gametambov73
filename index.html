@@ -53,7 +53,6 @@
     }
 
     /* === ТЕМЫ ОФОРМЛЕНИЯ === */
-    /* Агенты поддержки */
     html[data-site-theme="support"] body {
       background:
         radial-gradient(circle at top left, rgba(255, 184, 222, 0.3), transparent 55%),
@@ -61,7 +60,6 @@
         linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%);
     }
 
-    /* О команде */
     html[data-site-theme="about"] body {
       background:
         radial-gradient(circle at top left, rgba(255, 220, 120, 0.16), transparent 55%),
@@ -69,7 +67,6 @@
         linear-gradient(160deg, #0c0a05, #0c0a05 45%, #12100a 100%);
     }
 
-    /* Магазин */
     html[data-site-theme="shop"] body {
       background:
         radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%),
@@ -77,7 +74,6 @@
         linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%);
     }
 
-    /* Отчетность */
     html[data-site-theme="report"] body {
       background:
         radial-gradient(circle at top left, rgba(162, 108, 255, 0.2), transparent 50%),
@@ -85,7 +81,6 @@
         linear-gradient(160deg, #090510, #0a0512 45%, #050411 100%);
     }
 
-    /* Руководство (Бирюзовый/Циановый) */
     html[data-site-theme="guide"] body {
       background:
         radial-gradient(circle at top left, rgba(0, 229, 255, 0.15), transparent 50%),
@@ -93,7 +88,6 @@
         linear-gradient(160deg, #020a10, #041018 45%, #02080d 100%);
     }
 
-    /* Лидерборд (Огненно-оранжевый) */
     html[data-site-theme="leaderboard"] body {
       background:
         radial-gradient(circle at top left, rgba(255, 61, 0, 0.18), transparent 55%),
@@ -138,7 +132,6 @@
       min-width: 0;
     }
 
-    /* ЛОГОТИП */
     .logo {
       width: 48px;
       height: 48px;
@@ -154,39 +147,27 @@
       flex: 0 0 auto;
     }
     html[data-site-theme="support"] .logo {
-      background:
-        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.22), transparent 55%),
-        linear-gradient(135deg, rgba(255, 160, 210, 0.65), rgba(255, 120, 180, 0.6));
+      background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.22), transparent 55%), linear-gradient(135deg, rgba(255, 160, 210, 0.65), rgba(255, 120, 180, 0.6));
       border-color: rgba(255, 210, 240, 0.7);
     }
     html[data-site-theme="about"] .logo {
-      background:
-        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
-        linear-gradient(135deg, rgba(255, 191, 71, 0.55), rgba(108, 140, 255, 0.38));
+      background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%), linear-gradient(135deg, rgba(255, 191, 71, 0.55), rgba(108, 140, 255, 0.38));
       border-color: rgba(255, 230, 180, 0.45);
     }
     html[data-site-theme="shop"] .logo {
-      background:
-        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
-        linear-gradient(135deg, rgba(82, 199, 123, 0.45), rgba(255, 191, 71, 0.28));
+      background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%), linear-gradient(135deg, rgba(82, 199, 123, 0.45), rgba(255, 191, 71, 0.28));
       border-color: rgba(162, 241, 188, 0.42);
     }
     html[data-site-theme="report"] .logo {
-      background:
-        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
-        linear-gradient(135deg, rgba(162, 108, 255, 0.55), rgba(108, 204, 255, 0.38));
+      background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%), linear-gradient(135deg, rgba(162, 108, 255, 0.55), rgba(108, 204, 255, 0.38));
       border-color: rgba(200, 180, 255, 0.45);
     }
     html[data-site-theme="guide"] .logo {
-      background:
-        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
-        linear-gradient(135deg, rgba(0, 229, 255, 0.45), rgba(0, 180, 216, 0.35));
+      background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%), linear-gradient(135deg, rgba(0, 229, 255, 0.45), rgba(0, 180, 216, 0.35));
       border-color: rgba(180, 240, 255, 0.4);
     }
     html[data-site-theme="leaderboard"] .logo {
-      background:
-        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%),
-        linear-gradient(135deg, rgba(255, 61, 0, 0.45), rgba(255, 158, 0, 0.35));
+      background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%), linear-gradient(135deg, rgba(255, 61, 0, 0.45), rgba(255, 158, 0, 0.35));
       border-color: rgba(255, 180, 150, 0.4);
     }
 
@@ -222,118 +203,47 @@
       align-items: stretch;
     }
 
-    /* ПАНЕЛИ */
     .panel {
       border-radius: 22px;
       border: 1px solid rgba(191, 198, 255, 0.28);
       box-shadow: var(--shadow-lg);
       backdrop-filter: blur(18px);
-      background:
-        radial-gradient(circle at top left, rgba(108, 140, 255, 0.23), transparent 55%),
-        linear-gradient(155deg, rgba(18, 22, 38, 0.98), rgba(6, 7, 16, 1));
+      background: radial-gradient(circle at top left, rgba(108, 140, 255, 0.23), transparent 55%), linear-gradient(155deg, rgba(18, 22, 38, 0.98), rgba(6, 7, 16, 1));
       min-width: 0;
     }
-    html[data-site-theme="support"] .panel {
-      background: radial-gradient(circle at top left, rgba(255, 160, 210, 0.3), transparent 55%), linear-gradient(155deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1));
-      border-color: rgba(255, 190, 230, 0.45);
-    }
-    html[data-site-theme="about"] .panel {
-      background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.16), transparent 55%), linear-gradient(155deg, rgba(25, 19, 8, 0.98), rgba(10, 10, 14, 1));
-      border-color: rgba(255, 214, 122, 0.28);
-    }
-    html[data-site-theme="shop"] .panel {
-      background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), linear-gradient(155deg, rgba(10, 23, 14, 0.98), rgba(8, 10, 15, 1));
-      border-color: rgba(162, 241, 188, 0.22);
-    }
-    html[data-site-theme="report"] .panel {
-      background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.16), transparent 55%), linear-gradient(155deg, rgba(16, 9, 25, 0.98), rgba(10, 10, 14, 1));
-      border-color: rgba(180, 150, 255, 0.28);
-    }
-    html[data-site-theme="guide"] .panel {
-      background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.12), transparent 55%), linear-gradient(155deg, rgba(4, 14, 22, 0.98), rgba(2, 8, 12, 1));
-      border-color: rgba(0, 229, 255, 0.25);
-    }
-    html[data-site-theme="leaderboard"] .panel {
-      background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.12), transparent 55%), linear-gradient(155deg, rgba(22, 8, 4, 0.98), rgba(12, 4, 2, 1));
-      border-color: rgba(255, 61, 0, 0.25);
-    }
+    html[data-site-theme="support"] .panel { background: radial-gradient(circle at top left, rgba(255, 160, 210, 0.3), transparent 55%), linear-gradient(155deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1)); border-color: rgba(255, 190, 230, 0.45); }
+    html[data-site-theme="about"] .panel { background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.16), transparent 55%), linear-gradient(155deg, rgba(25, 19, 8, 0.98), rgba(10, 10, 14, 1)); border-color: rgba(255, 214, 122, 0.28); }
+    html[data-site-theme="shop"] .panel { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), linear-gradient(155deg, rgba(10, 23, 14, 0.98), rgba(8, 10, 15, 1)); border-color: rgba(162, 241, 188, 0.22); }
+    html[data-site-theme="report"] .panel { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.16), transparent 55%), linear-gradient(155deg, rgba(16, 9, 25, 0.98), rgba(10, 10, 14, 1)); border-color: rgba(180, 150, 255, 0.28); }
+    html[data-site-theme="guide"] .panel { background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.12), transparent 55%), linear-gradient(155deg, rgba(4, 14, 22, 0.98), rgba(2, 8, 12, 1)); border-color: rgba(0, 229, 255, 0.25); }
+    html[data-site-theme="leaderboard"] .panel { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.12), transparent 55%), linear-gradient(155deg, rgba(22, 8, 4, 0.98), rgba(12, 4, 2, 1)); border-color: rgba(255, 61, 0, 0.25); }
 
-    .hero-card, .rules, .game-card, .side {
-      padding: 1.2rem;
-      display: grid;
-      gap: 1rem;
-      min-width: 0;
-      align-content: start;
-    }
+    .hero-card, .rules, .game-card, .side { padding: 1.2rem; display: grid; gap: 1rem; min-width: 0; align-content: start; }
+    .section-head { display: grid; gap: 0.35rem; min-width: 0; }
+    .section-head h2 { font-size: clamp(1.2rem, 1.05rem + 0.4vw, 1.5rem); line-height: 1.15; letter-spacing: 0.01em; }
+    .section-head p { max-width: 62ch; color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.6; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
-    .section-head {
-      display: grid;
-      gap: 0.35rem;
-      min-width: 0;
-    }
-
-    .section-head h2 {
-      font-size: clamp(1.2rem, 1.05rem + 0.4vw, 1.5rem);
-      line-height: 1.15;
-      letter-spacing: 0.01em;
-    }
-
-    .section-head p {
-      max-width: 62ch;
-      color: var(--color-text-muted);
-      font-size: var(--text-sm);
-      line-height: 1.6;
-    }
-
-    .badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    /* БЕЙДЖИ */
     .badge {
-      padding: 0.4rem 0.85rem;
-      border-radius: 999px;
-      font-size: var(--text-xs);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-weight: 800;
-      border: 1px solid rgba(191, 198, 255, 0.28);
-      color: var(--color-text-muted);
+      padding: 0.4rem 0.85rem; border-radius: 999px; font-size: var(--text-xs);
+      text-transform: uppercase; letter-spacing: 0.12em; font-weight: 800;
+      border: 1px solid rgba(191, 198, 255, 0.28); color: var(--color-text-muted);
       background: rgba(9, 12, 26, 0.82);
     }
-    .badge.xp {
-      background: #ffbf47;
-      color: #18171c;
-      border-color: transparent;
-    }
+    .badge.xp { background: #ffbf47; color: #18171c; border-color: transparent; }
     html[data-site-theme="support"] .badge { background: rgba(34, 7, 24, 0.96); border-color: rgba(255, 190, 230, 0.5); }
     html[data-site-theme="support"] .badge.xp { background: #ff8fc4; color: #250512; }
-    
     html[data-site-theme="about"] .badge { background: rgba(25, 19, 8, 0.96); border-color: rgba(255, 214, 122, 0.35); }
-    
     html[data-site-theme="shop"] .badge { background: rgba(11, 21, 15, 0.96); border-color: rgba(162, 241, 188, 0.25); }
     html[data-site-theme="shop"] .badge.xp { background: #52c77b; color: #08110b; }
-    
     html[data-site-theme="report"] .badge { background: rgba(16, 9, 25, 0.96); border-color: rgba(180, 150, 255, 0.35); }
     html[data-site-theme="report"] .badge.xp { background: #a26cff; color: #fff; }
-
     html[data-site-theme="guide"] .badge { background: rgba(4, 18, 28, 0.96); border-color: rgba(0, 229, 255, 0.3); }
     html[data-site-theme="guide"] .badge.xp { background: #00e5ff; color: #002229; }
-
     html[data-site-theme="leaderboard"] .badge { background: rgba(28, 10, 4, 0.96); border-color: rgba(255, 61, 0, 0.3); }
     html[data-site-theme="leaderboard"] .badge.xp { background: #ff3d00; color: #fff; }
 
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(2.1rem, 5.2vw, 3.4rem);
-      line-height: 0.95;
-      text-transform: uppercase;
-      max-width: 13ch;
-    }
-
-    /* ЦВЕТ ЗАГОЛОВКОВ */
+    .hero h1 { font-family: var(--font-display); font-size: clamp(2.1rem, 5.2vw, 3.4rem); line-height: 0.95; text-transform: uppercase; max-width: 13ch; }
     .hero h1 span { color: var(--color-primary); text-shadow: 0 0 22px rgba(108, 140, 255, 0.65); }
     html[data-site-theme="support"] .hero h1 span { color: #ff8fc4; text-shadow: 0 0 26px rgba(255, 143, 196, 0.9); }
     html[data-site-theme="about"] .hero h1 span { color: #ffbf47; text-shadow: 0 0 22px rgba(255, 191, 71, 0.72); }
@@ -342,33 +252,11 @@
     html[data-site-theme="guide"] .hero h1 span { color: #00e5ff; text-shadow: 0 0 22px rgba(0, 229, 255, 0.65); }
     html[data-site-theme="leaderboard"] .hero h1 span { color: #ff5419; text-shadow: 0 0 22px rgba(255, 61, 0, 0.65); }
 
-    .hero p, .rules p, .game-card > p, .side p {
-      color: var(--color-text-muted);
-      font-size: var(--text-sm);
-    }
+    .hero p, .rules p, .game-card > p, .side p { color: var(--color-text-muted); font-size: var(--text-sm); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    /* КНОПКИ */
-    .btn {
-      min-height: 44px;
-      padding: 0.85rem 1.2rem;
-      border-radius: 16px;
-      font-size: var(--text-sm);
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .btn-primary {
-      color: #fff;
-      background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #6c8cff, #8aa3ff);
-      box-shadow: 0 20px 45px rgba(108, 140, 255, 0.72);
-    }
+    .btn { min-height: 44px; padding: 0.85rem 1.2rem; border-radius: 16px; font-size: var(--text-sm); font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+    .btn-primary { color: #fff; background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 20px 45px rgba(108, 140, 255, 0.72); }
     html[data-site-theme="support"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.2), transparent 55%), linear-gradient(135deg, #ff78b4, #ffb0dd); box-shadow: 0 20px 45px rgba(255, 144, 196, 0.78); }
     html[data-site-theme="about"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #ffbf47, #ffd979); box-shadow: 0 20px 45px rgba(255, 191, 71, 0.48); color: #18171c; }
     html[data-site-theme="shop"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #52c77b, #8fe0a8); box-shadow: 0 20px 45px rgba(82, 199, 123, 0.42); color: #08110b; }
@@ -376,42 +264,10 @@
     html[data-site-theme="guide"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #00b4d8, #00e5ff); box-shadow: 0 20px 45px rgba(0, 229, 255, 0.45); color: #001a22; }
     html[data-site-theme="leaderboard"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #ff3d00, #ff9e00); box-shadow: 0 20px 45px rgba(255, 61, 0, 0.45); color: #fff; }
 
-    .btn-secondary {
-      color: var(--color-text-muted);
-      background: rgba(9, 12, 26, 0.86);
-      border: 1px solid rgba(191, 198, 255, 0.3);
-    }
-
-    .mode-switch {
-      margin-top: 1rem;
-      margin-bottom: 0.75rem;
-      display: inline-flex;
-      flex-wrap: wrap;
-      border-radius: 999px;
-      padding: 0.25rem;
-      background: rgba(4, 6, 12, 0.85);
-      border: 1px solid rgba(191, 198, 255, 0.35);
-      max-width: 100%;
-      gap: 0.25rem;
-    }
-
-    .mode-btn {
-      border-radius: 999px;
-      padding: 0.5rem 1.15rem;
-      font-size: var(--text-sm);
-      font-weight: 700;
-      color: var(--color-text-muted);
-      background: transparent;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      white-space: nowrap;
-    }
-
-    .mode-btn.active {
-      color: var(--color-text-inverse);
-      background: linear-gradient(135deg, #6c8cff, #8aa3ff);
-      box-shadow: 0 10px 25px rgba(108, 140, 255, 0.6);
-    }
+    .btn-secondary { color: var(--color-text-muted); background: rgba(9, 12, 26, 0.86); border: 1px solid rgba(191, 198, 255, 0.3); }
+    .mode-switch { margin-top: 1rem; margin-bottom: 0.75rem; display: inline-flex; flex-wrap: wrap; border-radius: 999px; padding: 0.25rem; background: rgba(4, 6, 12, 0.85); border: 1px solid rgba(191, 198, 255, 0.35); max-width: 100%; gap: 0.25rem; }
+    .mode-btn { border-radius: 999px; padding: 0.5rem 1.15rem; font-size: var(--text-sm); font-weight: 700; color: var(--color-text-muted); background: transparent; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+    .mode-btn.active { color: var(--color-text-inverse); background: linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 10px 25px rgba(108, 140, 255, 0.6); }
 
     html[data-site-theme="support"] .mode-btn.active[data-mode="support"] { background: linear-gradient(135deg, #ff78b4, #ffb0dd); box-shadow: 0 10px 25px rgba(255, 144, 196, 0.7); }
     html[data-site-theme="about"] .mode-btn.active[data-mode="about"] { background: linear-gradient(135deg, #ffbf47, #ffd979); box-shadow: 0 10px 25px rgba(255, 191, 71, 0.45); color: #18171c; }
@@ -420,29 +276,9 @@
     html[data-site-theme="guide"] .mode-btn.active[data-mode="guide"] { background: linear-gradient(135deg, #00b4d8, #00e5ff); box-shadow: 0 10px 25px rgba(0, 229, 255, 0.45); color: #001a22; }
     html[data-site-theme="leaderboard"] .mode-btn.active[data-mode="leaderboard"] { background: linear-gradient(135deg, #ff3d00, #ff9e00); box-shadow: 0 10px 25px rgba(255, 61, 0, 0.45); color: #fff; }
 
-    .game-wrap {
-      margin-top: 0.75rem;
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr);
-      gap: 1rem;
-      align-items: start;
-    }
-
-    .rule-list, .feed, .log {
-      display: grid;
-      gap: 0.75rem;
-      min-width: 0;
-    }
-
-    /* ЭЛЕМЕНТЫ ПРАВИЛ И ЛОГОВ */
-    .rule-item, .log-item, .stat, .shop-card {
-      padding: 0.95rem;
-      border-radius: 16px;
-      background: rgba(13, 16, 32, 0.95);
-      border: 1px solid rgba(191, 198, 255, 0.3);
-      min-width: 0;
-      overflow-wrap: anywhere;
-    }
+    .game-wrap { margin-top: 0.75rem; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr); gap: 1rem; align-items: start; }
+    .rule-list, .feed, .log { display: grid; gap: 0.75rem; min-width: 0; }
+    .rule-item, .log-item, .stat, .shop-card { padding: 0.95rem; border-radius: 16px; background: rgba(13, 16, 32, 0.95); border: 1px solid rgba(191, 198, 255, 0.3); min-width: 0; overflow-wrap: anywhere; }
 
     html[data-site-theme="support"] .rule-item, html[data-site-theme="support"] .log-item, html[data-site-theme="support"] .stat, html[data-site-theme="support"] .shop-card { background: rgba(35, 10, 26, 0.96); border-color: rgba(255, 190, 230, 0.36); }
     html[data-site-theme="about"] .rule-item, html[data-site-theme="about"] .log-item, html[data-site-theme="about"] .stat, html[data-site-theme="about"] .shop-card { background: rgba(25, 19, 8, 0.96); border-color: rgba(255, 214, 122, 0.24); }
@@ -451,42 +287,11 @@
     html[data-site-theme="guide"] .rule-item, html[data-site-theme="guide"] .log-item, html[data-site-theme="guide"] .stat, html[data-site-theme="guide"] .shop-card { background: rgba(4, 14, 22, 0.96); border-color: rgba(0, 229, 255, 0.22); }
     html[data-site-theme="leaderboard"] .rule-item, html[data-site-theme="leaderboard"] .log-item, html[data-site-theme="leaderboard"] .stat, html[data-site-theme="leaderboard"] .shop-card { background: rgba(22, 8, 4, 0.96); border-color: rgba(255, 61, 0, 0.22); }
 
-    .rule-item {
-      display: grid;
-      grid-template-columns: 34px minmax(0, 1fr);
-      gap: 0.8rem;
-      align-items: start;
-    }
-
-    .rule-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      display: grid;
-      place-items: center;
-      font-size: 1rem;
-      font-weight: 900;
-      margin-top: 2px;
-    }
-
-    .rule-copy {
-      display: grid;
-      gap: 0.22rem;
-      min-width: 0;
-    }
-
-    .rule-copy strong {
-      font-size: 0.98rem;
-      line-height: 1.25;
-    }
-
-    .rule-copy span {
-      color: var(--color-text-muted);
-      font-size: var(--text-sm);
-      line-height: 1.55;
-      max-width: 38ch;
-      display: block;
-    }
+    .rule-item { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0.8rem; align-items: start; }
+    .rule-icon { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-size: 1rem; font-weight: 900; margin-top: 2px; }
+    .rule-copy { display: grid; gap: 0.22rem; min-width: 0; }
+    .rule-copy strong { font-size: 0.98rem; line-height: 1.25; }
+    .rule-copy span { color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.55; max-width: 38ch; display: block; }
     
     .rule-copy a { color: var(--color-primary); text-decoration: none; font-weight: 600; }
     html[data-site-theme="guide"] .rule-copy a { color: #00e5ff; }
@@ -497,72 +302,14 @@
     .warn { background: rgba(255, 191, 71, 0.18); color: #ffdf95; }
     .ban { background: rgba(255, 107, 136, 0.2); color: #ff9fb4; }
 
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 0.75rem;
-    }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem; }
+    .stat-label { color: var(--color-text-faint); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.16em; margin-bottom: 0.35rem; display: block; }
+    .stat-value { font-size: 1.1rem; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.2; }
+    .xp-bar { height: 14px; background: rgba(4, 6, 12, 0.9); border-radius: 999px; overflow: hidden; border: 1px solid rgba(191, 198, 255, 0.35); }
+    .xp-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ffbf47, #ffe38e); transition: width 300ms ease; border-radius: inherit; box-shadow: 0 0 26px rgba(255, 191, 71, 0.7); }
 
-    .stat-label {
-      color: var(--color-text-faint);
-      font-size: var(--text-xs);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin-bottom: 0.35rem;
-      display: block;
-    }
-
-    .stat-value {
-      font-size: 1.1rem;
-      font-weight: 800;
-      font-variant-numeric: tabular-nums;
-      line-height: 1.2;
-    }
-
-    .xp-bar {
-      height: 14px;
-      background: rgba(4, 6, 12, 0.9);
-      border-radius: 999px;
-      overflow: hidden;
-      border: 1px solid rgba(191, 198, 255, 0.35);
-    }
-
-    .xp-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #ffbf47, #ffe38e);
-      transition: width 300ms ease;
-      border-radius: inherit;
-      box-shadow: 0 0 26px rgba(255, 191, 71, 0.7);
-    }
-
-    /* КАРТОЧКИ СООБЩЕНИЙ */
-    .message-card {
-      padding: 1rem;
-      border-radius: 18px;
-      background:
-        radial-gradient(circle at 0 0, rgba(108, 140, 255, 0.45), transparent 70%),
-        linear-gradient(160deg, rgba(13, 16, 32, 0.98), rgba(5, 7, 15, 1));
-      border: 1px solid rgba(191, 198, 255, 0.4);
-      min-height: 250px;
-      display: grid;
-      align-content: start;
-      gap: 0.8rem;
-      position: relative;
-      overflow: hidden;
-      min-width: 0;
-    }
-
-    .message-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -40px -40px auto;
-      width: 160px;
-      height: 160px;
-      background: radial-gradient(circle, rgba(255, 191, 71, 0.45), transparent 65%);
-      pointer-events: none;
-      opacity: 0.6;
-    }
+    .message-card { padding: 1rem; border-radius: 18px; background: radial-gradient(circle at 0 0, rgba(108, 140, 255, 0.45), transparent 70%), linear-gradient(160deg, rgba(13, 16, 32, 0.98), rgba(5, 7, 15, 1)); border: 1px solid rgba(191, 198, 255, 0.4); min-height: 250px; display: grid; align-content: start; gap: 0.8rem; position: relative; overflow: hidden; min-width: 0; }
+    .message-card::after { content: ""; position: absolute; inset: auto -40px -40px auto; width: 160px; height: 160px; background: radial-gradient(circle, rgba(255, 191, 71, 0.45), transparent 65%); pointer-events: none; opacity: 0.6; }
 
     html[data-site-theme="support"] .message-card { background: radial-gradient(circle at 0 0, rgba(255, 160, 210, 0.45), transparent 70%), linear-gradient(160deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1)); border-color: rgba(255, 190, 230, 0.55); }
     html[data-site-theme="about"] .message-card { background: radial-gradient(circle at 0 0, rgba(255, 191, 71, 0.18), transparent 70%), linear-gradient(160deg, rgba(25, 19, 8, 0.98), rgba(11, 10, 15, 1)); border-color: rgba(255, 214, 122, 0.25); }
@@ -571,262 +318,45 @@
     html[data-site-theme="guide"] .message-card { background: radial-gradient(circle at 0 0, rgba(0, 229, 255, 0.15), transparent 70%), linear-gradient(160deg, rgba(4, 14, 22, 0.98), rgba(2, 8, 12, 1)); border-color: rgba(0, 229, 255, 0.25); }
     html[data-site-theme="leaderboard"] .message-card { background: radial-gradient(circle at 0 0, rgba(255, 61, 0, 0.15), transparent 70%), linear-gradient(160deg, rgba(22, 8, 4, 0.98), rgba(12, 4, 2, 1)); border-color: rgba(255, 61, 0, 0.25); }
 
-    .channel {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      font-size: var(--text-xs);
-      color: var(--color-text-faint);
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-    }
-
-    .channel-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #3dd68c;
-      box-shadow: 0 0 12px rgba(61, 214, 140, 0.9);
-    }
-
-    .author-row {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      min-width: 0;
-    }
-
-    .avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      color: #fff;
-      background: conic-gradient(from 210deg, #6c8cff, #ffbf47, #ff6b88, #6c8cff);
-      box-shadow: 0 18px 32px rgba(0, 0, 0, 0.95);
-      flex: 0 0 auto;
-    }
-
-    .author-name {
-      font-weight: 800;
-      font-size: var(--text-sm);
-      overflow-wrap: anywhere;
-      line-height: 1.25;
-    }
-
-    .author-meta {
-      color: var(--color-text-faint);
-      font-size: var(--text-xs);
-      overflow-wrap: anywhere;
-      line-height: 1.35;
-    }
-
-    .message-text {
-      font-size: 1rem;
-      line-height: 1.7;
-      max-width: 64ch;
-      overflow-wrap: anywhere;
-      text-wrap: pretty;
-      color: var(--color-text);
-    }
-    
+    .channel { display: inline-flex; align-items: center; gap: 0.55rem; font-size: var(--text-xs); color: var(--color-text-faint); text-transform: uppercase; letter-spacing: 0.18em; }
+    .channel-dot { width: 6px; height: 6px; border-radius: 999px; background: #3dd68c; box-shadow: 0 0 12px rgba(61, 214, 140, 0.9); }
+    .author-row { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
+    .avatar { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; font-weight: 900; color: #fff; background: conic-gradient(from 210deg, #6c8cff, #ffbf47, #ff6b88, #6c8cff); box-shadow: 0 18px 32px rgba(0, 0, 0, 0.95); flex: 0 0 auto; }
+    .author-name { font-weight: 800; font-size: var(--text-sm); overflow-wrap: anywhere; line-height: 1.25; }
+    .author-meta { color: var(--color-text-faint); font-size: var(--text-xs); overflow-wrap: anywhere; line-height: 1.35; }
+    .message-text { font-size: 1rem; line-height: 1.7; max-width: 64ch; overflow-wrap: anywhere; text-wrap: pretty; color: var(--color-text); }
     html[data-site-theme="guide"] .message-text strong { color: #00e5ff; }
     html[data-site-theme="leaderboard"] .message-text strong { color: #ff5419; }
+    .hint { color: var(--color-text-faint); font-size: var(--text-sm); min-height: 1.5em; line-height: 1.45; }
+    .controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
+    .action-btn { min-height: 48px; padding: 0.9rem 1rem; border-radius: 16px; font-weight: 800; font-size: var(--text-sm); border: 1px solid transparent; text-transform: uppercase; letter-spacing: 0.03em; }
+    .skip-btn { background: rgba(82, 199, 123, 0.12); color: #9af2b4; border-color: rgba(82, 199, 123, 0.5); }
+    .warn-btn { background: rgba(255, 191, 71, 0.15); color: #ffe29a; border-color: rgba(255, 191, 71, 0.55); }
+    .ban-btn { background: rgba(255, 107, 136, 0.18); color: #ffb1c1; border-color: rgba(255, 107, 136, 0.6); }
 
-    .hint {
-      color: var(--color-text-faint);
-      font-size: var(--text-sm);
-      min-height: 1.5em;
-      line-height: 1.45;
-    }
-
-    .controls {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.75rem;
-    }
-
-    .action-btn {
-      min-height: 48px;
-      padding: 0.9rem 1rem;
-      border-radius: 16px;
-      font-weight: 800;
-      font-size: var(--text-sm);
-      border: 1px solid transparent;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-    }
-
-    .skip-btn {
-      background: rgba(82, 199, 123, 0.12);
-      color: #9af2b4;
-      border-color: rgba(82, 199, 123, 0.5);
-    }
-
-    .warn-btn {
-      background: rgba(255, 191, 71, 0.15);
-      color: #ffe29a;
-      border-color: rgba(255, 191, 71, 0.55);
-    }
-
-    .ban-btn {
-      background: rgba(255, 107, 136, 0.18);
-      color: #ffb1c1;
-      border-color: rgba(255, 107, 136, 0.6);
-    }
-
-    .support-answer-row {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .support-answer-row-inner {
-      display: flex;
-      gap: 0.5rem;
-      align-items: stretch;
-    }
-
-    .support-input {
-      flex: 1 1 auto;
-      min-width: 0;
-      width: 100%;
-      padding: 0.7rem 0.85rem;
-      border-radius: 12px;
-      border: 1px solid rgba(191, 198, 255, 0.35);
-      background: rgba(4, 6, 12, 0.9);
-      color: var(--color-text);
-      font-size: var(--text-sm);
-    }
-
-    .support-input::placeholder {
-      color: var(--color-text-faint);
-    }
-
-    .support-check-btn {
-      flex: 0 0 auto;
-      min-height: 44px;
-      padding: 0.7rem 0.95rem;
-      border-radius: 12px;
-      font-size: var(--text-sm);
-      font-weight: 700;
-      background: rgba(108, 140, 255, 0.16);
-      border: 1px solid rgba(108, 140, 255, 0.7);
-      color: var(--color-text);
-      white-space: nowrap;
-    }
-
+    .support-answer-row { display: flex; flex-direction: column; gap: 0.5rem; }
+    .support-answer-row-inner { display: flex; gap: 0.5rem; align-items: stretch; }
+    .support-input { flex: 1 1 auto; min-width: 0; width: 100%; padding: 0.7rem 0.85rem; border-radius: 12px; border: 1px solid rgba(191, 198, 255, 0.35); background: rgba(4, 6, 12, 0.9); color: var(--color-text); font-size: var(--text-sm); }
+    .support-input::placeholder { color: var(--color-text-faint); }
+    .support-check-btn { flex: 0 0 auto; min-height: 44px; padding: 0.7rem 0.95rem; border-radius: 12px; font-size: var(--text-sm); font-weight: 700; background: rgba(108, 140, 255, 0.16); border: 1px solid rgba(108, 140, 255, 0.7); color: var(--color-text); white-space: nowrap; }
     html[data-site-theme="support"] .support-check-btn { background: rgba(255, 144, 196, 0.18); border-color: rgba(255, 144, 196, 0.8); }
     html[data-site-theme="report"] .support-check-btn { background: rgba(162, 108, 255, 0.18); border-color: rgba(162, 108, 255, 0.8); }
+    .support-result { font-size: var(--text-sm); color: var(--color-text-muted); min-height: 1.4em; line-height: 1.45; }
 
-    .support-result {
-      font-size: var(--text-sm);
-      color: var(--color-text-muted);
-      min-height: 1.4em;
-      line-height: 1.45;
-    }
+    .shop-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+    .shop-card { display: grid; gap: 0.75rem; align-content: start; }
+    .shop-card h3 { font-size: var(--text-base); line-height: 1.3; }
+    .shop-card p { color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.55; max-width: 34ch; }
+    .shop-price { display: inline-flex; align-items: center; gap: 0.35rem; width: fit-content; padding: 0.35rem 0.7rem; border-radius: 999px; font-size: var(--text-xs); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #18171c; background: #ffbf47; }
+    .shop-buy-btn { width: 100%; min-height: 46px; padding: 0.85rem 1rem; border-radius: 16px; font-weight: 800; font-size: var(--text-sm); border: 1px solid rgba(82, 199, 123, 0.45); background: rgba(82, 199, 123, 0.12); color: #a9f0bf; }
+    .shop-buy-btn[disabled] { opacity: 0.55; cursor: not-allowed; transform: none !important; }
 
-    .shop-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.75rem;
-    }
-
-    .shop-card {
-      display: grid;
-      gap: 0.75rem;
-      align-content: start;
-    }
-
-    .shop-card h3 {
-      font-size: var(--text-base);
-      line-height: 1.3;
-    }
-
-    .shop-card p {
-      color: var(--color-text-muted);
-      font-size: var(--text-sm);
-      line-height: 1.55;
-      max-width: 34ch;
-    }
-
-    .shop-price {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      width: fit-content;
-      padding: 0.35rem 0.7rem;
-      border-radius: 999px;
-      font-size: var(--text-xs);
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #18171c;
-      background: #ffbf47;
-    }
-
-    .shop-buy-btn {
-      width: 100%;
-      min-height: 46px;
-      padding: 0.85rem 1rem;
-      border-radius: 16px;
-      font-weight: 800;
-      font-size: var(--text-sm);
-      border: 1px solid rgba(82, 199, 123, 0.45);
-      background: rgba(82, 199, 123, 0.12);
-      color: #a9f0bf;
-    }
-
-    .shop-buy-btn[disabled] {
-      opacity: 0.55;
-      cursor: not-allowed;
-      transform: none !important;
-    }
-
-    .banner-line {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.75rem;
-      align-items: center;
-      padding: 0.85rem 0.95rem;
-      border-radius: 14px;
-      font-size: var(--text-sm);
-      background: rgba(4, 6, 12, 0.9);
-      border: 1px solid rgba(191, 198, 255, 0.3);
-      margin-top: 0.5rem;
-      flex-wrap: wrap;
-      line-height: 1.45;
-    }
-
-    .report-list-item {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      padding: 0.85rem;
-      border-radius: 12px;
-      background: rgba(4, 6, 12, 0.7);
-      border: 1px solid rgba(162, 108, 255, 0.25);
-    }
-    
-    html[data-site-theme="leaderboard"] .report-list-item {
-      border-color: rgba(255, 61, 0, 0.25);
-    }
-
-    .report-list-item span {
-      font-size: var(--text-xs);
-      color: var(--color-text-faint);
-    }
-    .report-list-item a {
-      color: #c4a1ff;
-      text-decoration: none;
-      font-size: var(--text-sm);
-      word-break: break-all;
-    }
-    .report-list-item a:hover {
-      text-decoration: underline;
-    }
+    .banner-line { display: flex; justify-content: space-between; gap: 0.75rem; align-items: center; padding: 0.85rem 0.95rem; border-radius: 14px; font-size: var(--text-sm); background: rgba(4, 6, 12, 0.9); border: 1px solid rgba(191, 198, 255, 0.3); margin-top: 0.5rem; flex-wrap: wrap; line-height: 1.45; }
+    .report-list-item { display: flex; flex-direction: column; gap: 0.35rem; padding: 0.85rem; border-radius: 12px; background: rgba(4, 6, 12, 0.7); border: 1px solid rgba(162, 108, 255, 0.25); }
+    html[data-site-theme="leaderboard"] .report-list-item { border-color: rgba(255, 61, 0, 0.25); }
+    .report-list-item span { font-size: var(--text-xs); color: var(--color-text-faint); }
+    .report-list-item a { color: #c4a1ff; text-decoration: none; font-size: var(--text-sm); word-break: break-all; }
+    .report-list-item a:hover { text-decoration: underline; }
 
     @media (max-width: 900px) {
       .hero, .game-wrap { grid-template-columns: 1fr; }
@@ -860,7 +390,6 @@
       <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Войдите или зарегистрируйтесь, чтобы начать смену и сохранять прогресс.</p>
       
       <input type="email" id="authEmail" class="support-input" placeholder="Ваш Email">
-  
       <input type="text" id="authNickname" class="support-input" placeholder="Ваш Никнейм (только для регистрации)">
       <input type="password" id="authPassword" class="support-input" placeholder="Пароль">
       
@@ -952,14 +481,12 @@
           <h2>Панель модератора</h2>
           <p>Сообщения и нарушения появятся только после нажатия «Начать смену».</p>
         </div>
-
         <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
           <div class="stat"><span class="stat-label">Обработано</span><div class="stat-value" id="resolvedValue">0</div></div>
           <div class="stat"><span class="stat-label">Правильных</span><div class="stat-value" id="correctValue">0</div></div>
           <div class="stat"><span class="stat-label">Ошибок</span><div class="stat-value" id="mistakeValue">0</div></div>
           <div class="stat"><span class="stat-label">Остаток XP</span><div class="stat-value" id="xpValue">0</div></div>
         </div>
-
         <div>
           <div class="xp-bar"><div class="xp-fill" id="xpFill"></div></div>
           <div id="resultBanner" class="banner-line">
@@ -967,7 +494,6 @@
             <span id="resultHint">Нажми «Начать смену», чтобы получить первое сообщение.</span>
           </div>
         </div>
-
         <div class="feed">
           <article class="message-card">
             <div class="channel"><span class="channel-dot"></span># tambov-73 / moderation</div>
@@ -981,7 +507,6 @@
             <div class="message-text" id="messageText">Пока сообщений нет. Нажми «Начать смену».</div>
             <div class="hint" id="hintText">Оценка: без нарушения, устное/пред/мут, бан/перма/глобал.</div>
           </article>
-
           <div class="controls">
             <button class="action-btn skip-btn" type="button" data-action="good">✅ Без нарушения</button>
             <button class="action-btn warn-btn" type="button" data-action="warn">⚠️ Устное / Пред / Мут</button>
@@ -995,14 +520,12 @@
           <h2>Панель агента поддержки</h2>
           <p>Вопросы игроков скрыты до старта. Начни смену, открывай запросы и помогай быстро, спокойно и по делу.</p>
         </div>
-
         <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
           <div class="stat"><span class="stat-label">Вопросов</span><div class="stat-value" id="supportResolvedValue">0</div></div>
           <div class="stat"><span class="stat-label">Зачтено</span><div class="stat-value" id="supportCorrectValue">0</div></div>
           <div class="stat"><span class="stat-label">Ошибок</span><div class="stat-value" id="supportMistakeValue">0</div></div>
           <div class="stat"><span class="stat-label">Общий XP</span><div class="stat-value" id="supportXpValue">0</div></div>
         </div>
-
         <div>
           <div class="xp-bar"><div class="xp-fill" id="supportXpFill"></div></div>
           <div id="supportBanner" class="banner-line">
@@ -1010,7 +533,6 @@
             <span id="supportBannerHint">Нажми «Начать смену», чтобы открыть первый вопрос.</span>
           </div>
         </div>
-
         <div class="feed">
           <article class="message-card">
             <div class="channel"><span class="channel-dot"></span># tambov-73 / support</div>
@@ -1061,7 +583,6 @@
           <h2>О команде</h2>
           <p>Небольшой раздел про тех, кто приложил руку к созданию сайта и самой идее проекта.</p>
         </div>
-
         <div class="feed">
           <article class="message-card">
             <div class="channel"><span class="channel-dot"></span># project / team</div>
@@ -1086,7 +607,6 @@
           <h2>Магазин</h2>
           <p>Здесь можно потратить накопленные XP на ускорение повышения или дисциплинарные бонусы.</p>
         </div>
-
         <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
           <div class="stat"><span class="stat-label">Модератор</span><div class="stat-value" id="shopModXp">0</div></div>
           <div class="stat"><span class="stat-label">Поддержка</span><div class="stat-value" id="shopSupportXp">0</div></div>
@@ -1094,9 +614,7 @@
           <div class="stat"><span class="stat-label">Потрачено</span><div class="stat-value" id="shopSpentXp">0</div></div>
           <div class="stat"><span class="stat-label">Доступно XP</span><div class="stat-value" id="shopTotalXp" style="color:var(--color-primary);">0</div></div>
         </div>
-
-        <div class="shop-grid" id="shopItemsContainer">
-          </div>
+        <div class="shop-grid" id="shopItemsContainer"></div>
       </section>
 
       <section class="panel game-card" id="mode-report" style="display:none;">
@@ -1104,11 +622,9 @@
           <h2>Форма отчетности</h2>
           <p>Сдайте свой ежедневный отчет онлайна из Discord сюда.</p>
         </div>
-
         <div id="reportAccessWarning" class="message-card" style="min-height: auto; align-content: center; text-align: center; color: var(--color-warning);">
           Вы не авторизованы! <br><span style="font-size: var(--text-sm); color: var(--color-text-muted);">Войдите в аккаунт, чтобы сдать отчет.</span>
         </div>
-
         <div class="feed" id="reportFormArea" style="display:none;">
           <article class="message-card" style="min-height: auto;">
             <div class="channel"><span class="channel-dot" style="background:#a26cff; box-shadow:0 0 12px rgba(162,108,255,0.9);"></span># tambov-73 / reports</div>
@@ -1127,14 +643,11 @@
               <div class="support-result" id="reportResultText"></div>
             </div>
           </article>
-          
           <div id="adminPanelArea" style="display:none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(191,198,255,0.2);">
             <h3 style="margin-bottom: 0.5rem; font-size: var(--text-sm); color: var(--color-primary); letter-spacing: 0.05em; text-transform: uppercase;">Панель Руководства</h3>
             <button class="btn btn-secondary" type="button" id="viewReportsBtn" style="width:100%;">Проверить сданные отчеты</button>
           </div>
-          
-          <div id="reportsListArea" style="display:none; margin-top: 0.5rem; flex-direction: column; gap: 0.5rem;">
-            </div>
+          <div id="reportsListArea" style="display:none; margin-top: 0.5rem; flex-direction: column; gap: 0.5rem;"></div>
         </div>
       </section>
 
@@ -1151,9 +664,6 @@
   </main>
 
   <script>
-    // ============================================
-    // Инициализация Supabase
-    // ============================================
     const supabaseUrl = 'https://icfihnroblyjjflsfepq.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljZmlobnJvYmx5ampmbHNmZXBxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4NjAxMDksImV4cCI6MjA5MTQzNjEwOX0.Hrvjg572mIKBG-2ffYEr4Fxvpz0hOAex9d6n7WylVkQ';
     const supa = window.supabase.createClient(supabaseUrl, supabaseKey);
@@ -1164,26 +674,11 @@
     let hasAccessCode = localStorage.getItem('access_JohnWickModer') === 'true';
     let hasReportAccessCode = localStorage.getItem('access_JohnWIckTopModer') === 'true';
 
-    // Список аккаунтов, которые будут видеть кнопку проверки отчетов:
     const adminEmails = ['daniiltimosin72@gmail.com', 'isayevrufat37@gmail.com', 'leha.br222@gmail.com'];
-    let state = {
-      resolved: 0,
-      correct: 0,
-      mistakes: 0,
-      current: null,
-      started: false,
-      log: [],
-      reportXp: 0 
-    };
-    let supportState = {
-      resolved: 0,
-      correct: 0,
-      mistakes: 0,
-      currentIndex: -1
-    };
-    let shopState = {
-      spent: 0
-    };
+    
+    let state = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false, log: [], reportXp: 0 };
+    let supportState = { resolved: 0, correct: 0, mistakes: 0, currentIndex: -1 };
+    let shopState = { spent: 0 };
 
     const authModal = document.getElementById('authModal');
     const loginBtnUI = document.getElementById('loginBtnUI');
@@ -1193,7 +688,6 @@
 
     async function loadProgress() {
       if(!currentUser) return;
-      
       const { data, error } = await supa.from('user_stats').select('*').eq('user_id', currentUser.id).single();
       if(data) {
         state.resolved = data.mod_resolved || 0;
@@ -1207,9 +701,7 @@
       
       const { data: repData } = await supa.from('reports').select('xp').eq('email', currentUser.email);
       state.reportXp = 0;
-      if (repData) {
-          state.reportXp = repData.reduce((sum, r) => sum + (r.xp || 0), 0);
-      }
+      if (repData) state.reportXp = repData.reduce((sum, r) => sum + (r.xp || 0), 0);
       
       updateModStats();
       updateSupportStats();
@@ -1219,23 +711,16 @@
     async function saveProgress() {
       if(!currentUser) return;
       const payload = {
-        user_id: currentUser.id,
-        email: currentUser.email, 
+        user_id: currentUser.id, email: currentUser.email, 
         nickname: currentUser.user_metadata?.nickname || currentUser.email.split('@')[0],
-        mod_resolved: state.resolved,
-        mod_correct: state.correct,
-        mod_mistakes: state.mistakes,
-        sup_resolved: supportState.resolved,
-        sup_correct: supportState.correct,
-        sup_mistakes: supportState.mistakes,
+        mod_resolved: state.resolved, mod_correct: state.correct, mod_mistakes: state.mistakes,
+        sup_resolved: supportState.resolved, sup_correct: supportState.correct, sup_mistakes: supportState.mistakes,
         shop_spent: shopState.spent
       };
       const { error } = await supa.from('user_stats').upsert(payload);
-      
       if (error) {
         const fallbackPayload = { ...payload };
-        delete fallbackPayload.email;
-        delete fallbackPayload.nickname;
+        delete fallbackPayload.email; delete fallbackPayload.nickname;
         await supa.from('user_stats').upsert(fallbackPayload);
       }
     }
@@ -1244,75 +729,35 @@
       currentUser = session?.user || null;
       if (currentUser) {
         userEmailDisplay.textContent = currentUser.user_metadata?.nickname || currentUser.email;
-        loginBtnUI.style.display = 'none';
-        logoutBtnUI.style.display = 'block';
-        authModal.style.display = 'none';
-        loadProgress(); 
+        loginBtnUI.style.display = 'none'; logoutBtnUI.style.display = 'block';
+        authModal.style.display = 'none'; loadProgress(); 
       } else {
-        userEmailDisplay.textContent = '';
-        loginBtnUI.style.display = 'block';
-        logoutBtnUI.style.display = 'none';
-        resetGame(); 
+        userEmailDisplay.textContent = ''; loginBtnUI.style.display = 'block';
+        logoutBtnUI.style.display = 'none'; resetGame(); 
       }
       checkReportAccess(); 
     });
 
-    loginBtnUI.onclick = () => { 
-      authModal.style.display = 'flex'; 
-      authErrorMsg.style.display = 'none'; 
-    };
-
-    document.getElementById('authCloseModal').onclick = () => { 
-      authModal.style.display = 'none'; 
-    };
-
-    logoutBtnUI.onclick = async () => { 
-      await supa.auth.signOut(); 
-    };
+    loginBtnUI.onclick = () => { authModal.style.display = 'flex'; authErrorMsg.style.display = 'none'; };
+    document.getElementById('authCloseModal').onclick = () => { authModal.style.display = 'none'; };
+    logoutBtnUI.onclick = async () => { await supa.auth.signOut(); };
 
     document.getElementById('authLoginSubmit').onclick = async () => {
       const email = document.getElementById('authEmail').value;
       const password = document.getElementById('authPassword').value;
-      if(!email || !password) {
-        authErrorMsg.textContent = "Введите Email и Пароль!";
-        authErrorMsg.style.color = "var(--color-warning)";
-        authErrorMsg.style.display = 'block';
-        return;
-      }
+      if(!email || !password) { authErrorMsg.textContent = "Введите Email и Пароль!"; authErrorMsg.style.color = "var(--color-warning)"; authErrorMsg.style.display = 'block'; return; }
       const { data, error } = await supa.auth.signInWithPassword({ email, password });
-      if(error) { 
-        authErrorMsg.textContent = error.message; 
-        authErrorMsg.style.color = "var(--color-error)";
-        authErrorMsg.style.display = 'block';
-      }
+      if(error) { authErrorMsg.textContent = error.message; authErrorMsg.style.color = "var(--color-error)"; authErrorMsg.style.display = 'block'; }
     };
 
     document.getElementById('authRegisterSubmit').onclick = async () => {
       const email = document.getElementById('authEmail').value;
       const nickname = document.getElementById('authNickname').value;
       const password = document.getElementById('authPassword').value;
-      
-      if(!email || !password || !nickname) {
-         authErrorMsg.textContent = "Заполните все поля, включая Никнейм!";
-         authErrorMsg.style.color = "var(--color-warning)";
-         authErrorMsg.style.display = 'block'; 
-         return;
-      }
-
-      const { data, error } = await supa.auth.signUp({ 
-        email, 
-        password,
-        options: { data: { nickname: nickname } }
-      });
-      if(error) { 
-        authErrorMsg.textContent = error.message; 
-        authErrorMsg.style.color = "var(--color-error)";
-        authErrorMsg.style.display = 'block';
-      } else { 
-        authErrorMsg.textContent = "Успешно! Вы зарегистрированы и вошли.";
-        authErrorMsg.style.color = "var(--color-success)"; 
-        authErrorMsg.style.display = 'block'; 
-      }
+      if(!email || !password || !nickname) { authErrorMsg.textContent = "Заполните все поля, включая Никнейм!"; authErrorMsg.style.color = "var(--color-warning)"; authErrorMsg.style.display = 'block'; return; }
+      const { data, error } = await supa.auth.signUp({ email, password, options: { data: { nickname: nickname } } });
+      if(error) { authErrorMsg.textContent = error.message; authErrorMsg.style.color = "var(--color-error)"; authErrorMsg.style.display = 'block'; } 
+      else { authErrorMsg.textContent = "Успешно! Вы зарегистрированы и вошли."; authErrorMsg.style.color = "var(--color-success)"; authErrorMsg.style.display = 'block'; }
     };
 
     const shopItems = [
@@ -1337,8 +782,7 @@
 
     const rightContent = {
       moderation: {
-        title: "Материалы модератора",
-        lead: "Здесь только подсказки по модерации: как оценивать сообщения, где достаточно предупреждения, а где уже нужен бан.",
+        title: "Материалы модератора", lead: "Здесь только подсказки по модерации: как оценивать сообщения, где достаточно предупреждения, а где уже нужен бан.",
         cards: [
           ["Без нарушения", "Обычное сообщение без спама, оскорблений, рекламы и провокаций."],
           ["Устное / Пред / Мут", "Подходит для флуда, капса, токсичности, помех и части поведенческих нарушений."],
@@ -1346,8 +790,7 @@
         ]
       },
       support: {
-        title: "Материалы агента поддержки",
-        lead: "Раздел агентов поддержки TAMBOV содержит темы про агента поддержки, шаблоны ответов и т.д.",
+        title: "Материалы агента поддержки", lead: "Раздел агентов поддержки TAMBOV содержит темы про агента поддержки, шаблоны ответов и т.д.",
         cards: [
           ["База знаний", "Для АП на форуме закреплены темы с шаблонами ответов, GPS-навигатором сервера и RolePlay терминами."],
           ["Работа и правила", "В разделе есть правила и обязанности агентов поддержки, правила поведения в чате хелперов и ежедневный норматив."],
@@ -1355,8 +798,7 @@
         ]
       },
       guide: {
-        title: "Контактная информация (ВК)",
-        lead: "Связь с руководством",
+        title: "Контактная информация (ВК)", lead: "Связь с руководством",
         cards: [
           ["Модерация", "Главный Модератор - Lexa_Mackenzie - <a href='https://vk.com/id783455796' target='_blank'>VK</a><br>Зам. ГМ - John Wick - <a href='https://vk.ru/its.daniqz' target='_blank'>VK</a><br>Зам. ГМ - Andrey_Caypen - <a href='https://vk.ru/andreycaypen' target='_blank'>VK</a><br>Куратор - Hunter_Mackenzie - <a href='https://vk.ru/exdsw1ndy' target='_blank'>VK</a>"],
           ["Администрация", "ГА - Lars_Crown - <a href='https://vk.com/larsellorcrowner' target='_blank'>VK</a><br>ЗГА - Egor_Versachi - <a href='https://vk.com/id775315885' target='_blank'>VK</a><br>ЗГА - Oskar_Lofrein - <a href='https://vk.com/oooutlivq' target='_blank'>VK</a><br>Куратор - Kiruha_Lubera - <a href='https://vk.ru/kiruha_wl' target='_blank'>VK</a>"],
@@ -1364,8 +806,7 @@
         ]
       },
       leaderboard: {
-        title: "О Лидерборде",
-        lead: "Рейтинг формируется на основе заработанного XP.",
+        title: "О Лидерборде", lead: "Рейтинг формируется на основе заработанного XP.",
         cards: [
           ["Обновление", "Таблица автоматически загружается и обновляется при входе в этот раздел."],
           ["XP за ответы", "Напоминаем, что за работу в качестве Агента Поддержки XP больше не зачисляется."],
@@ -1373,27 +814,19 @@
         ]
       },
       about: {
-        title: "О команде",
-        lead: "Краткая информация о людях, которые участвовали в создании сайта.",
+        title: "О команде", lead: "Краткая информация о людях, которые участвовали в создании сайта.",
         cards: [
           ["Создано", "John Wick."],
           ["При поддержке", "Leha_Mackenzie, Andrey_Caypen и Евгения Бабешко."]
         ]
       },
       shop: {
-        title: "Магазин модераторов",
-        lead: "Здесь вы можете потратить заработанные XP.",
-        cards: [
-          ["Выдача", "После покупки сделайте скриншот уведомления на экране и отправьте его руководству для получения бонуса."]
-        ]
+        title: "Магазин модераторов", lead: "Здесь вы можете потратить заработанные XP.",
+        cards: [ ["Выдача", "После покупки сделайте скриншот уведомления на экране и отправьте его руководству для получения бонуса."] ]
       },
       report: {
-        title: "Отчетность",
-        lead: "Раздел для сдачи отчетов.",
-        cards: [
-          ["Доступ", "Доступно всем авторизованным модераторам для сдачи."],
-          ["Проверка", "Руководство (Администраторы) имеет доступ к панели проверки."]
-        ]
+        title: "Отчетность", lead: "Раздел для сдачи отчетов.",
+        cards: [ ["Доступ", "Доступно всем авторизованным модераторам для сдачи."], ["Проверка", "Руководство (Администраторы) имеет доступ к панели проверки."] ]
       }
     };
 
@@ -1405,22 +838,15 @@
         rightCards.innerHTML = data.cards.map((item, idx) => `
           <div class="rule-item">
             <div class="rule-icon ${idx === 0 ? "ok" : idx === 1 ? "warn" : "ban"}">${idx === 0 ? "✓" : idx === 1 ? "?" : "ℹ"}</div>
-            <div class="rule-copy">
-              <strong>${item[0]}</strong>
-              <span>${item[1]}</span>
-            </div>
+            <div class="rule-copy"><strong>${item[0]}</strong><span>${item[1]}</span></div>
           </div>
         `).join("");
-      } else {
-        renderLogs();
-      }
+      } else { renderLogs(); }
     }
 
     const funnyLeft = ["Мелстройность","Смешнявка","Макенза","Сраупен","бурмалда","Рассыльщик_Мемов","ПолитТоксик","РелигБаттл","Дед_с_Клавой","Флуд_Бот"];
     const funnyRight = ["из_Тамбова","без_микрофона","на_ГлОбАнЕ","в_муте","с_вечным_баном","тянет_конфу","обижен_на_админов","любит_капс","ищет_баги","продаёт_вирты"];
-    function randomFunnyNick() {
-      return `${funnyLeft[Math.floor(Math.random() * funnyLeft.length)]}_${funnyRight[Math.floor(Math.random() * funnyRight.length)]}#${Math.floor(1000 + Math.random() * 8999)}`;
-    }
+    function randomFunnyNick() { return `${funnyLeft[Math.floor(Math.random() * funnyLeft.length)]}_${funnyRight[Math.floor(Math.random() * funnyRight.length)]}#${Math.floor(1000 + Math.random() * 8999)}`; }
 
     function createModerationMessages() {
       const warn = [
@@ -1452,13 +878,16 @@
       return messages;
     }
 
+    // ==========================================
+    // ПОЛНЫЙ МАССИВ ВОПРОСОВ ВОССТАНОВЛЕН
+    // ==========================================
     function createSupportQuestions() {
       return [
         { title: "Навигация и GPS", text: "Как найти заправку через GPS?", keywords: ["gps","заправ","бензин","ближ"] },
         { title: "Навигация и GPS", text: "Подскажите, как в навигаторе включить маршрут до автосалона?", keywords: ["gps","автосалон","маршрут"] },
         { title: "Работа и уровень", text: "С какого уровня я могу устроиться инкассатором?", keywords: ["инкассатор","уровень","15"] },
         { title: "Фракции и организации", text: "Как мне попасть в ОПГ, куда подавать заявку?", keywords: ["опг","заявк","форум"] },
-        { title: "Донат и VIP", text: "Как открыть донат-меню и купить Black Pass?", keywords: ["донат","black","pass","/donate  "] },
+        { title: "Донат и VIP", text: "Как открыть донат-меню и купить Black Pass?", keywords: ["донат","black","pass","/donate"] },
         { title: "Навигация и GPS", text: "Где в GPS найти ближайшее СТО для ремонта машины?", keywords: ["gps","сто","ремонт","машин"] },
         { title: "Навигация и GPS", text: "Как проложить маршрут до ближайшего банка через навигатор?", keywords: ["gps","банк","маршрут","ближ"] },
         { title: "Навигация и GPS", text: "Не могу найти автосервис в GPS, в каком разделе он?", keywords: ["gps","автосервис","раздел"] },
@@ -1696,17 +1125,9 @@
       shopSpentXp: document.getElementById("shopSpentXp")
     };
 
-    function initials(name) {
-      return name.split(/[#_\s]+/).filter(Boolean).slice(0, 2).map(part => part[0]).join("").toUpperCase();
-    }
-
-    function calcXP(value) {
-      return Math.floor(value / 10) * 15;
-    }
-
-    function getReportXp() {
-      return state.reportXp || 0;
-    }
+    function initials(name) { return name.split(/[#_\s]+/).filter(Boolean).slice(0, 2).map(part => part[0]).join("").toUpperCase(); }
+    function calcXP(value) { return Math.floor(value / 10) * 15; }
+    function getReportXp() { return state.reportXp || 0; }
 
     function renderLogs() {
       const logList = document.getElementById("logList");
@@ -1719,21 +1140,15 @@
     function pushLog(text) {
       state.log.unshift(text);
       state.log = state.log.slice(0, 50);
-      
       const curMode = document.querySelector(".mode-btn.active").dataset.mode;
-      if(curMode === 'moderation' || curMode === 'support') {
-         renderLogs();
-      }
+      if(curMode === 'moderation' || curMode === 'support') { renderLogs(); }
     }
 
-    function availableXp() {
-      return Math.max(0, calcXP(state.correct) + getReportXp() - shopState.spent);
-    }
+    function availableXp() { return Math.max(0, calcXP(state.correct) + getReportXp() - shopState.spent); }
 
     async function loadLeaderboard() {
       const lb = document.getElementById("leaderboardList");
       lb.innerHTML = '<div class="message-text">Загрузка...</div>';
-      
       try {
         const { data, error } = await supa.from('user_stats').select('*').order('mod_correct', { ascending: false }).limit(10);
         if (error || !data) {
@@ -1741,37 +1156,24 @@
            lb.innerHTML = '<div class="message-text" style="color:var(--color-error)">Не удалось загрузить таблицу. Убедитесь, что RLS позволяет чтение таблицы user_stats!</div>';
            return;
         }
-        
-        if(data.length === 0) {
-           lb.innerHTML = '<div class="message-text">Пока никого нет.</div>';
-           return;
-        }
-
+        if(data.length === 0) { lb.innerHTML = '<div class="message-text">Пока никого нет.</div>'; return; }
         lb.innerHTML = data.map((u, i) => {
           const userXp = Math.floor((u.mod_correct || 0) / 10) * 15 - (u.shop_spent || 0); 
           const name = u.nickname || (u.email ? u.email.split('@')[0] : `User_${u.user_id.substring(0,4)}`);
-          
           return `
             <div class="report-list-item" style="display:flex; justify-content:space-between; align-items:center; flex-direction:row;">
-              <div>
-                <strong style="font-size:1.1rem; color:var(--color-primary);">#${i+1}</strong> 
-                <span style="margin-left:0.5rem; font-weight: 600;">${name}</span>
-              </div>
+              <div><strong style="font-size:1.1rem; color:var(--color-primary);">#${i+1}</strong><span style="margin-left:0.5rem; font-weight: 600;">${name}</span></div>
               <div class="badge xp">${userXp} XP</div>
-            </div>
-          `;
+            </div>`;
         }).join('');
-      } catch (err) {
-        lb.innerHTML = '<div class="message-text">Ошибка при загрузке.</div>';
-      }
+      } catch (err) { lb.innerHTML = '<div class="message-text">Ошибка при загрузке.</div>'; }
     }
 
     function renderShopItems() {
       const container = document.getElementById('shopItemsContainer');
       container.innerHTML = shopItems.map(item => `
         <article class="shop-card">
-          <h3>${item.title}</h3>
-          <p>${item.desc}</p>
+          <h3>${item.title}</h3><p>${item.desc}</p>
           <div class="shop-price">${item.price} XP</div>
           <button class="shop-buy-btn" type="button" data-shop-id="${item.id}" data-price="${item.price}" data-title="${item.title}">Купить</button>
         </article>
@@ -1782,10 +1184,7 @@
           const title = btn.dataset.title;
           if (availableXp() >= price) {
             shopState.spent += price; 
-            updateShopStats();
-            updateModStats(); 
-            updateSupportStats();
-            saveProgress(); 
+            updateShopStats(); updateModStats(); updateSupportStats(); saveProgress(); 
             pushLog(`🛒 Куплен товар: ${title} за ${price} XP.`);
             alert(`✅ ВЫ УСПЕШНО КУПИЛИ ТОВАР:\n\n"${title}" за ${price} XP\n\n📸 Сделайте скриншот этого сообщения и отправьте его руководству для выдачи скидки/бонуса!`);
           }
@@ -1794,17 +1193,12 @@
     }
 
     function updateShopStats() {
-      const modXp = calcXP(state.correct);
-      const supportXp = 0;
-      const repXp = getReportXp();
       const totalXp = availableXp();
-
-      el.shopModXp.textContent = modXp;
-      el.shopSupportXp.textContent = supportXp;
-      if(el.shopReportXp) el.shopReportXp.textContent = repXp;
+      el.shopModXp.textContent = calcXP(state.correct);
+      el.shopSupportXp.textContent = 0;
+      if(el.shopReportXp) el.shopReportXp.textContent = getReportXp();
       el.shopTotalXp.textContent = totalXp;
       el.shopSpentXp.textContent = shopState.spent;
-
       document.querySelectorAll('.shop-buy-btn').forEach(btn => {
         const price = parseInt(btn.dataset.price);
         btn.disabled = totalXp < price;
@@ -1814,30 +1208,21 @@
 
     function updateModStats() {
       const xp = availableXp();
-      el.resolvedValue.textContent = state.resolved;
-      el.correctValue.textContent = state.correct;
-      el.mistakeValue.textContent = state.mistakes;
-      el.xpValue.textContent = xp;
+      el.resolvedValue.textContent = state.resolved; el.correctValue.textContent = state.correct;
+      el.mistakeValue.textContent = state.mistakes; el.xpValue.textContent = xp;
       el.xpFill.style.width = (Math.min(1, (state.correct % 10 || (state.correct ? 10 : 0)) / 10) * 100) + "%";
       el.resultBanner.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
-      el.resultHint.textContent = !state.started
-        ? "Нажми «Начать смену», чтобы получить первое сообщение."
-        : `Сейчас доступно ${xp} XP (с учетом трат).`;
-
+      el.resultHint.textContent = !state.started ? "Нажми «Начать смену», чтобы получить первое сообщение." : `Сейчас доступно ${xp} XP (с учетом трат).`;
       updateShopStats();
     }
 
     function updateSupportStats() {
       const xp = availableXp();
-      el.supportResolvedValue.textContent = supportState.resolved;
-      el.supportCorrectValue.textContent = supportState.correct;
-      el.supportMistakeValue.textContent = supportState.mistakes;
-      el.supportXpValue.textContent = xp;
+      el.supportResolvedValue.textContent = supportState.resolved; el.supportCorrectValue.textContent = supportState.correct;
+      el.supportMistakeValue.textContent = supportState.mistakes; el.supportXpValue.textContent = xp;
       el.supportXpFill.style.width = (Math.min(1, (supportState.correct % 10 || (supportState.correct ? 10 : 0)) / 10) * 100) + "%";
       el.supportBanner.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
-      el.supportBannerHint.textContent = !state.started
-        ? "Нажми «Начать смену», чтобы открыть вопрос. (За АП не дается XP)"
-        : `Общий баланс: ${xp} XP (Ответы АП не дают XP).`;
+      el.supportBannerHint.textContent = !state.started ? "Нажми «Начать смену», чтобы открыть вопрос. (За АП не дается XP)" : `Общий баланс: ${xp} XP (Ответы АП не дают XP).`;
       updateShopStats();
     }
 
@@ -1847,14 +1232,8 @@
       const adminPanel = document.getElementById('adminPanelArea');
 
       if (currentUser) {
-        warn.style.display = 'none';
-        formArea.style.display = 'block';
-
-        if (adminEmails.includes(currentUser.email)) {
-          adminPanel.style.display = 'block';
-        } else {
-          adminPanel.style.display = 'none';
-        }
+        warn.style.display = 'none'; formArea.style.display = 'block';
+        if (adminEmails.includes(currentUser.email)) { adminPanel.style.display = 'block'; } else { adminPanel.style.display = 'none'; }
       } else {
         warn.style.display = 'block';
         warn.innerHTML = 'Вы не авторизованы!<br><span style="font-size: var(--text-sm); color: var(--color-text-muted);">Войдите в аккаунт, чтобы сдать отчет.</span>';
@@ -1883,11 +1262,8 @@
       else if(mode === "leaderboard") currentTheme = "leaderboard";
 
       html.setAttribute("data-site-theme", currentTheme);
-      
       renderRight(mode);
-      if(mode === 'moderation' || mode === 'support') {
-         renderLogs();
-      }
+      if(mode === 'moderation' || mode === 'support') { renderLogs(); }
 
       if (mode === "moderation") {
         brandSubtitle.textContent = "Симулятор смены модераторов";
@@ -1908,8 +1284,7 @@
         brandSubtitle.textContent = "Таблица лидеров";
         heroTitle.innerHTML = 'Топ <span>модераторов</span>.';
         heroText.textContent = "Здесь отображаются сотрудники с наибольшим количеством XP (за вычетом трат в магазине).";
-        heroBadge2.textContent = "Режим: лидерборд";
-        loadLeaderboard();
+        heroBadge2.textContent = "Режим: лидерборд"; loadLeaderboard();
       } else if (mode === "about") {
         brandSubtitle.textContent = "Люди, которые сделали этот проект";
         heroTitle.innerHTML = 'Узнай, кто <span>стоит за идеей</span>.';
@@ -1919,14 +1294,12 @@
         brandSubtitle.textContent = "Магазин за XP";
         heroTitle.innerHTML = 'Трать <span>Опыт</span> на бонусы.';
         heroText.textContent = "Покупайте скидки для ускорения повышения или бонусы для снятия выговоров за накопленные XP.";
-        heroBadge2.textContent = "Режим: магазин";
-        updateShopStats();
+        heroBadge2.textContent = "Режим: магазин"; updateShopStats();
       } else if (mode === "report") {
         brandSubtitle.textContent = "Симулятор смены: Отчетность";
         heroTitle.innerHTML = 'Сдавай <span>отчеты</span> вовремя.';
         heroText.textContent = "Отправляй скриншоты своего онлайна в Discord для проверки руководством.";
-        heroBadge2.textContent = "Режим: отчетность";
-        checkReportAccess();
+        heroBadge2.textContent = "Режим: отчетность"; checkReportAccess();
       }
     }
 
@@ -1940,120 +1313,61 @@
     document.querySelectorAll(".mode-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const mode = btn.dataset.mode;
-        if (mode === 'shop' && !hasAccessCode) {
-          requestAccess('switch_tab_' + mode, btn);
-          return;
-        }
-        if (mode === 'report' && !hasReportAccessCode) {
-          requestAccess('switch_tab_' + mode, btn);
-          return;
-        }
+        if (mode === 'shop' && !hasAccessCode) { requestAccess('switch_tab_' + mode, btn); return; }
+        if (mode === 'report' && !hasReportAccessCode) { requestAccess('switch_tab_' + mode, btn); return; }
         switchMode(mode, btn);
       });
     });
 
-    document.getElementById('viewReportsBtn').addEventListener('click', () => {
-      renderReportsList();
-    });
+    document.getElementById('viewReportsBtn').addEventListener('click', () => { renderReportsList(); });
 
     document.getElementById('accessSubmitBtn').addEventListener('click', () => {
       const code = document.getElementById('accessCodeInput').value;
       const type = pendingAction?.type;
-
       if (type && type.startsWith('switch_tab_')) {
         const mode = type.replace('switch_tab_', '');
         if (mode === 'shop' && code === 'JohnWickModer') {
-          localStorage.setItem('access_JohnWickModer', 'true');
-          hasAccessCode = true;
-          document.getElementById('accessModal').style.display = 'none';
-          switchMode(mode, pendingAction.btn);
+          localStorage.setItem('access_JohnWickModer', 'true'); hasAccessCode = true;
+          document.getElementById('accessModal').style.display = 'none'; switchMode(mode, pendingAction.btn);
         } else if (mode === 'report' && code === 'JohnWIckTopModer') {
-          localStorage.setItem('access_JohnWIckTopModer', 'true');
-          hasReportAccessCode = true;
-          document.getElementById('accessModal').style.display = 'none';
-          switchMode(mode, pendingAction.btn);
-        } else {
-          document.getElementById('accessErrorMsg').style.display = 'block';
-        }
+          localStorage.setItem('access_JohnWIckTopModer', 'true'); hasReportAccessCode = true;
+          document.getElementById('accessModal').style.display = 'none'; switchMode(mode, pendingAction.btn);
+        } else { document.getElementById('accessErrorMsg').style.display = 'block'; }
       }
     });
 
-    document.getElementById('accessCloseBtn').addEventListener('click', () => {
-      document.getElementById('accessModal').style.display = 'none';
-    });
+    document.getElementById('accessCloseBtn').addEventListener('click', () => { document.getElementById('accessModal').style.display = 'none'; });
 
     document.getElementById('submitReportBtn').addEventListener('click', async () => {
       const link = document.getElementById('reportLinkInput').value.trim();
       const res = document.getElementById('reportResultText');
-      if(!link) {
-        res.textContent = "Пожалуйста, вставьте ссылку.";
-        res.style.color = "var(--color-warning)";
-        return;
-      }
-      if(!link.startsWith('http')) {
-        res.textContent = "Ссылка должна начинаться с http:// или https://";
-        res.style.color = "var(--color-warning)";
-        return;
-      }
+      if(!link) { res.textContent = "Пожалуйста, вставьте ссылку."; res.style.color = "var(--color-warning)"; return; }
+      if(!link.startsWith('http')) { res.textContent = "Ссылка должна начинаться с http:// или https://"; res.style.color = "var(--color-warning)"; return; }
 
-      const newReport = {
-        id: Date.now().toString() + Math.random().toString(36).substr(2, 9), 
-        email: currentUser ? currentUser.email : 'Неизвестно',
-        link: link,
-        date: new Date().toLocaleString('ru-RU'),
-        status: null,
-        xp: 0
-      };
-      
+      const newReport = { id: Date.now().toString() + Math.random().toString(36).substr(2, 9), email: currentUser ? currentUser.email : 'Неизвестно', link: link, date: new Date().toLocaleString('ru-RU'), status: null, xp: 0 };
       const { error } = await supa.from('reports').insert([newReport]);
-      
-      if (error) {
-          res.textContent = "Ошибка при сохранении: " + error.message;
-          res.style.color = "var(--color-error)";
-          return;
-      }
+      if (error) { res.textContent = "Ошибка при сохранении: " + error.message; res.style.color = "var(--color-error)"; return; }
 
-      res.textContent = "Отчет успешно отправлен и сохранен!";
-      res.style.color = "var(--color-success)";
-      document.getElementById('reportLinkInput').value = '';
-      pushLog(`📝 Отправлен отчет онлайна: ${link}`);
-      
-      if (document.getElementById('reportsListArea').style.display === 'flex') {
-        renderReportsList();
-      }
+      res.textContent = "Отчет успешно отправлен и сохранен!"; res.style.color = "var(--color-success)";
+      document.getElementById('reportLinkInput').value = ''; pushLog(`📝 Отправлен отчет онлайна: ${link}`);
+      if (document.getElementById('reportsListArea').style.display === 'flex') { renderReportsList(); }
     });
 
     window.gradeReport = async function(id, statusText, xpAmount, email) {
       const finalStatus = statusText + (xpAmount > 0 ? ` (+${xpAmount} XP)` : '');
       const { error } = await supa.from('reports').update({ status: finalStatus, xp: xpAmount }).eq('id', id);
-      if (error) {
-        alert('Ошибка при оценке: ' + error.message);
-        return;
-      }
-      
+      if (error) { alert('Ошибка при оценке: ' + error.message); return; }
       await renderReportsList();
       alert(`✅ Отчет оценен: ${statusText}!\n\nПользователю ${email} начислено ${xpAmount} XP.`);
-      
-      if (currentUser && currentUser.email === email) {
-        await loadProgress();
-      }
+      if (currentUser && currentUser.email === email) { await loadProgress(); }
     };
 
     async function renderReportsList() {
       const area = document.getElementById('reportsListArea');
-      area.style.display = 'flex';
-      area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка отчетов...</div>';
-      
+      area.style.display = 'flex'; area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка отчетов...</div>';
       const { data: storedReports, error } = await supa.from('reports').select('*').order('date', { ascending: false });
-      if (error) {
-        area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`;
-        return;
-      }
-
-      if (!storedReports || storedReports.length === 0) {
-        area.innerHTML = `<div class="report-list-item" style="text-align:center;">Отчетов пока нет.</div>`;
-        return;
-      }
+      if (error) { area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`; return; }
+      if (!storedReports || storedReports.length === 0) { area.innerHTML = `<div class="report-list-item" style="text-align:center;">Отчетов пока нет.</div>`; return; }
 
       area.innerHTML = storedReports.map(rep => `
         <div class="report-list-item">
@@ -2076,181 +1390,87 @@
     function randomMessage() {
       const item = moderationMessages[Math.floor(Math.random() * moderationMessages.length)];
       const user = randomFunnyNick();
-
       state.current = { ...item, user };
-      el.authorName.textContent = user;
-      el.authorMeta.textContent = "Неизвестно, есть ли нарушение";
-      el.messageText.textContent = item.text;
-      el.avatarBox.textContent = initials(user);
+      el.authorName.textContent = user; el.authorMeta.textContent = "Неизвестно, есть ли нарушение";
+      el.messageText.textContent = item.text; el.avatarBox.textContent = initials(user);
       el.hintText.textContent = "Выбери: без нарушения, устное/пред/мут или бан.";
     }
 
     function startGame() {
-      if (!currentUser) {
-        authModal.style.display = 'flex';
-        authErrorMsg.textContent = 'Для начала смены необходимо войти в аккаунт!';
-        authErrorMsg.style.color = 'var(--color-warning)';
-        authErrorMsg.style.display = 'block';
-        return;
-      }
-
-      state.started = true;
-      state.log = [];
-
-      el.supportQuestionTitle.textContent = "Вопрос скрыт";
-      el.supportMeta.textContent = "Нажми «Следующий вопрос»";
+      if (!currentUser) { authModal.style.display = 'flex'; authErrorMsg.textContent = 'Для начала смены необходимо войти в аккаунт!'; authErrorMsg.style.color = 'var(--color-warning)'; authErrorMsg.style.display = 'block'; return; }
+      state.started = true; state.log = [];
+      el.supportQuestionTitle.textContent = "Вопрос скрыт"; el.supportMeta.textContent = "Нажми «Следующий вопрос»";
       el.supportQuestionText.textContent = "Смена началась. Теперь можно открыть первый вопрос агента поддержки.";
-      el.supportAnswerInput.value = "";
-      el.supportResultText.textContent = "";
-
+      el.supportAnswerInput.value = ""; el.supportResultText.textContent = "";
       pushLog('Смена началась. Используй текущий режим ниже.');
-      randomMessage();
-      updateModStats();
-      updateSupportStats();
-
+      randomMessage(); updateModStats(); updateSupportStats();
       document.getElementById("game").scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     function resetGame() {
-      state.current = null;
-      state.started = false;
-      state.log = [];
-
-      el.authorName.textContent = "System";
-      el.authorMeta.textContent = "Сообщение появится после старта смены";
-      el.messageText.textContent = "Пока сообщений нет. Нажми «Начать смену».";
-      el.avatarBox.textContent = "T7";
+      state.current = null; state.started = false; state.log = [];
+      el.authorName.textContent = "System"; el.authorMeta.textContent = "Сообщение появится после старта смены";
+      el.messageText.textContent = "Пока сообщений нет. Нажми «Начать смену»."; el.avatarBox.textContent = "T7";
       el.hintText.textContent = "Оценка: без нарушения, устное/пред/мут, бан/перма/глобал.";
-      el.supportQuestionTitle.textContent = "Вопрос скрыт";
-      el.supportMeta.textContent = "Появится после начала смены";
+      el.supportQuestionTitle.textContent = "Вопрос скрыт"; el.supportMeta.textContent = "Появится после начала смены";
       el.supportQuestionText.textContent = "Нажми «Начать смену», затем открой вопрос и помоги игроку разобраться.";
-      el.supportAnswerInput.value = "";
-      el.supportResultText.textContent = "";
+      el.supportAnswerInput.value = ""; el.supportResultText.textContent = "";
       pushLog('Пока пусто. Нажми «Начать смену», чтобы начать работу.');
-
-      updateModStats();
-      updateSupportStats();
+      updateModStats(); updateSupportStats();
     }
 
     function judge(action) {
-      if (!state.started || !state.current) {
-        startGame();
-        return;
-      }
-
-      const isCorrect = action === state.current.type;
-      state.resolved++;
-      if (isCorrect) {
-        state.correct++;
-        pushLog(`✅ ${state.current.user}: верное решение (${action.toUpperCase()})`);
-      } else {
-        state.mistakes++;
-        pushLog(`❌ ${state.current.user}: решение не совпало с эталоном`);
-      }
-
-      updateModStats();
-      saveProgress(); 
-      setTimeout(randomMessage, 300);
+      if (!state.started || !state.current) { startGame(); return; }
+      const isCorrect = action === state.current.type; state.resolved++;
+      if (isCorrect) { state.correct++; pushLog(`✅ ${state.current.user}: верное решение (${action.toUpperCase()})`); } 
+      else { state.mistakes++; pushLog(`❌ ${state.current.user}: решение не совпало с эталоном`); }
+      updateModStats(); saveProgress(); setTimeout(randomMessage, 300);
     }
 
-    document.querySelectorAll("[data-action]").forEach(btn => {
-      btn.addEventListener("click", () => judge(btn.dataset.action));
-    });
+    document.querySelectorAll("[data-action]").forEach(btn => { btn.addEventListener("click", () => judge(btn.dataset.action)); });
     document.getElementById("startBtn").addEventListener("click", startGame);
     document.getElementById("resetBtn").addEventListener("click", resetGame);
 
     document.getElementById("supportNextBtn").addEventListener("click", () => {
-      if (!state.started) {
-        el.supportResultText.textContent = "Сначала нажми «Начать смену».";
-        el.supportResultText.style.color = "var(--color-warning)";
-        return;
-      }
-
+      if (!state.started) { el.supportResultText.textContent = "Сначала нажми «Начать смену»."; el.supportResultText.style.color = "var(--color-warning)"; return; }
       supportState.currentIndex = (supportState.currentIndex + 1) % supportQuestions.length;
       const q = supportQuestions[supportState.currentIndex];
-
-      el.supportQuestionTitle.textContent = q.title;
-      el.supportMeta.textContent = "Вопрос игрока";
-      el.supportQuestionText.textContent = q.text;
-      el.supportAnswerInput.value = "";
-      el.supportResultText.textContent = "";
-
+      el.supportQuestionTitle.textContent = q.title; el.supportMeta.textContent = "Вопрос игрока";
+      el.supportQuestionText.textContent = q.text; el.supportAnswerInput.value = ""; el.supportResultText.textContent = "";
       pushLog(`🟦 АП: выдан вопрос «${q.title}»`);
     });
 
     document.getElementById("supportCheckBtn").addEventListener("click", () => {
-      if (!state.started) {
-        el.supportResultText.textContent = "Сначала нажми «Начать смену».";
-        el.supportResultText.style.color = "var(--color-warning)";
-        return;
-      }
-
-      if (supportState.currentIndex < 0) {
-        el.supportResultText.textContent = "Сначала нажми «Следующий вопрос».";
-        el.supportResultText.style.color = "var(--color-warning)";
-        return;
-      }
+      if (!state.started) { el.supportResultText.textContent = "Сначала нажми «Начать смену»."; el.supportResultText.style.color = "var(--color-warning)"; return; }
+      if (supportState.currentIndex < 0) { el.supportResultText.textContent = "Сначала нажми «Следующий вопрос»."; el.supportResultText.style.color = "var(--color-warning)"; return; }
 
       const q = supportQuestions[supportState.currentIndex];
       const answer = el.supportAnswerInput.value.trim().toLowerCase();
-
-      if (!answer) {
-        el.supportResultText.textContent = "Напиши ответ игроку.";
-        el.supportResultText.style.color = "var(--color-text-muted)";
-        return;
-      }
+      if (!answer) { el.supportResultText.textContent = "Напиши ответ игроку."; el.supportResultText.style.color = "var(--color-text-muted)"; return; }
 
       supportState.resolved++;
       const ok = q.keywords.some(k => answer.includes(k));
-
       if (ok) {
-        supportState.correct++;
-        el.supportResultText.textContent = "Ответ засчитан: попал по смыслу.";
-        el.supportResultText.style.color = "var(--color-success)";
+        supportState.correct++; el.supportResultText.textContent = "Ответ засчитан: попал по смыслу."; el.supportResultText.style.color = "var(--color-success)";
         pushLog(`🟢 АП: ответ по вопросу «${q.title}» засчитан.`);
       } else {
-        supportState.mistakes++;
-        el.supportResultText.textContent = "Ответ не засчитан: мало ключевых ориентиров.";
-        el.supportResultText.style.color = "var(--color-error)";
+        supportState.mistakes++; el.supportResultText.textContent = "Ответ не засчитан: мало ключевых ориентиров."; el.supportResultText.style.color = "var(--color-error)";
         pushLog(`🔴 АП: ответ по вопросу «${q.title}» не засчитан.`);
       }
-
-      updateSupportStats();
-      saveProgress(); 
+      updateSupportStats(); saveProgress(); 
     });
 
-    el.supportAnswerInput.addEventListener("keydown", e => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        document.getElementById("supportCheckBtn").click();
-      }
-    });
+    el.supportAnswerInput.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); document.getElementById("supportCheckBtn").click(); } });
 
     (function () {
       const toggle = document.querySelector("[data-theme-toggle]");
-      let theme = "dark";
-      document.documentElement.setAttribute("data-theme", theme);
-
-      function sync() {
-        toggle.textContent = theme === "dark" ? "🌙" : "☀️";
-        toggle.setAttribute("aria-label", theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему");
-      }
-
+      let theme = "dark"; document.documentElement.setAttribute("data-theme", theme);
+      function sync() { toggle.textContent = theme === "dark" ? "🌙" : "☀️"; toggle.setAttribute("aria-label", theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"); }
       sync();
-
-      toggle.addEventListener("click", () => {
-        theme = theme === "dark" ? "light" : "dark";
-        document.documentElement.setAttribute("data-theme", theme);
-        sync();
-      });
+      toggle.addEventListener("click", () => { theme = theme === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", theme); sync(); });
     })();
 
-    renderRight("moderation");
-    renderLogs();
-    renderShopItems();
-    updateModStats();
-    updateSupportStats();
-    updateShopStats();
+    renderRight("moderation"); renderLogs(); renderShopItems(); updateModStats(); updateSupportStats(); updateShopStats();
   </script>
 </body>
 </html>
