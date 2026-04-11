@@ -52,16 +52,52 @@
       transition: background 350ms ease;
     }
 
-    /* === ТЕМЫ ОФОРМЛЕНИЯ === */
+    /* === СПЕЦИАЛЬНЫЕ ЦВЕТА И ТЕМЫ ДЛЯ КАЖДОГО РЕЖИМА === */
+    /* Поддержка (Розовый) */
     html[data-site-theme="support"] body { background: radial-gradient(circle at top left, rgba(255, 184, 222, 0.3), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 120, 180, 0.3), transparent 55%), linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%); }
-    html[data-site-theme="about"] body { background: radial-gradient(circle at top left, rgba(255, 220, 120, 0.16), transparent 55%), radial-gradient(circle at bottom right, rgba(108, 140, 255, 0.18), transparent 55%), linear-gradient(160deg, #0c0a05, #0c0a05 45%, #12100a 100%); }
-    html[data-site-theme="shop"] body { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.14), transparent 55%), linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%); }
-    html[data-site-theme="report"] body { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.2), transparent 50%), radial-gradient(circle at bottom right, rgba(108, 204, 255, 0.18), transparent 55%), linear-gradient(160deg, #090510, #0a0512 45%, #050411 100%); }
-    html[data-site-theme="guide"] body { background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.15), transparent 50%), radial-gradient(circle at bottom right, rgba(0, 180, 216, 0.15), transparent 55%), linear-gradient(160deg, #020a10, #041018 45%, #02080d 100%); }
-    html[data-site-theme="leaderboard"] body { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 158, 0, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); }
-    html[data-site-theme="admin_log"] body { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); }
+    html[data-site-theme="support"] .panel { background: radial-gradient(circle at top left, rgba(255, 160, 210, 0.3), transparent 55%), linear-gradient(155deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1)); border-color: rgba(255, 190, 230, 0.45); }
+    html[data-site-theme="support"] .btn-primary { background: linear-gradient(135deg, #ff78b4, #ffb0dd); box-shadow: 0 20px 45px rgba(255, 144, 196, 0.78); }
+    html[data-site-theme="support"] .hero h1 span { color: #ff8fc4; text-shadow: 0 0 26px rgba(255, 143, 196, 0.9); }
+    html[data-site-theme="support"] .logo { background: linear-gradient(135deg, rgba(255, 160, 210, 0.65), rgba(255, 120, 180, 0.6)); border-color: rgba(255, 210, 240, 0.7); }
+
+    /* Жалобы (Красный) */
     html[data-site-theme="complaints"] body { background: radial-gradient(circle at top left, rgba(255, 61, 61, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 107, 136, 0.15), transparent 55%), linear-gradient(160deg, #120505, #180408 45%, #0d0202 100%); }
-    html[data-site-theme="quests"] body { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.15), transparent 55%), linear-gradient(160deg, #0d0514, #120818 45%, #0a040d 100%); }
+    html[data-site-theme="complaints"] .panel { background: radial-gradient(circle at top left, rgba(255, 107, 136, 0.2), transparent 55%), linear-gradient(155deg, rgba(28, 10, 14, 0.98), rgba(16, 4, 6, 1)); border-color: rgba(255, 107, 136, 0.35); }
+    html[data-site-theme="complaints"] .btn-primary { background: linear-gradient(135deg, #ff3b60, #ff6b88); box-shadow: 0 20px 45px rgba(255, 107, 136, 0.6); }
+    html[data-site-theme="complaints"] .hero h1 span { color: #ff6b88; text-shadow: 0 0 26px rgba(255, 107, 136, 0.9); }
+    html[data-site-theme="complaints"] .logo { background: linear-gradient(135deg, rgba(255, 107, 136, 0.65), rgba(255, 59, 96, 0.6)); border-color: rgba(255, 107, 136, 0.5); }
+
+    /* Квесты (Фиолетовый) */
+    html[data-site-theme="quests"] body { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(196, 161, 255, 0.15), transparent 55%), linear-gradient(160deg, #0d0514, #120818 45%, #0a040d 100%); }
+    html[data-site-theme="quests"] .panel { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.2), transparent 55%), linear-gradient(155deg, rgba(18, 12, 28, 0.98), rgba(10, 6, 16, 1)); border-color: rgba(180, 150, 255, 0.35); }
+    html[data-site-theme="quests"] .btn-primary { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 20px 45px rgba(162, 108, 255, 0.6); }
+    html[data-site-theme="quests"] .hero h1 span { color: #c4a1ff; text-shadow: 0 0 26px rgba(162, 108, 255, 0.9); }
+    html[data-site-theme="quests"] .logo { background: linear-gradient(135deg, rgba(162, 108, 255, 0.65), rgba(196, 161, 255, 0.6)); border-color: rgba(180, 150, 255, 0.5); }
+
+    /* Общие разделы (Желтый/Оранжевый) */
+    html[data-site-theme="general"] body, html[data-site-theme="about"] body, html[data-site-theme="admin_log"] body { background: radial-gradient(circle at top left, rgba(255, 220, 120, 0.16), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.18), transparent 55%), linear-gradient(160deg, #0c0a05, #0c0a05 45%, #12100a 100%); }
+    html[data-site-theme="general"] .panel, html[data-site-theme="about"] .panel, html[data-site-theme="admin_log"] .panel { background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.16), transparent 55%), linear-gradient(155deg, rgba(25, 19, 8, 0.98), rgba(10, 10, 14, 1)); border-color: rgba(255, 214, 122, 0.28); }
+    html[data-site-theme="general"] .btn-primary, html[data-site-theme="about"] .btn-primary, html[data-site-theme="admin_log"] .btn-primary { background: linear-gradient(135deg, #ffbf47, #ffd979); box-shadow: 0 20px 45px rgba(255, 191, 71, 0.48); color: #18171c; }
+    html[data-site-theme="general"] .hero h1 span, html[data-site-theme="about"] .hero h1 span, html[data-site-theme="admin_log"] .hero h1 span { color: #ffbf47; text-shadow: 0 0 22px rgba(255, 191, 71, 0.72); }
+    html[data-site-theme="general"] .logo, html[data-site-theme="about"] .logo, html[data-site-theme="admin_log"] .logo { background: linear-gradient(135deg, rgba(255, 191, 71, 0.55), rgba(108, 140, 255, 0.38)); border-color: rgba(255, 230, 180, 0.45); }
+
+    /* Лидерборд (Огненный) */
+    html[data-site-theme="leaderboard"] body { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 158, 0, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); }
+    html[data-site-theme="leaderboard"] .panel { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.12), transparent 55%), linear-gradient(155deg, rgba(22, 8, 4, 0.98), rgba(12, 4, 2, 1)); border-color: rgba(255, 61, 0, 0.25); }
+    html[data-site-theme="leaderboard"] .btn-primary { background: linear-gradient(135deg, #ff3d00, #ff9e00); box-shadow: 0 20px 45px rgba(255, 61, 0, 0.45); color: #fff; }
+    html[data-site-theme="leaderboard"] .hero h1 span { color: #ff5419; text-shadow: 0 0 22px rgba(255, 61, 0, 0.65); }
+    
+    /* Магазин (Зеленый) */
+    html[data-site-theme="shop"] body { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.14), transparent 55%), linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%); }
+    html[data-site-theme="shop"] .panel { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), linear-gradient(155deg, rgba(10, 23, 14, 0.98), rgba(8, 10, 15, 1)); border-color: rgba(162, 241, 188, 0.22); }
+    html[data-site-theme="shop"] .btn-primary { background: linear-gradient(135deg, #52c77b, #8fe0a8); box-shadow: 0 20px 45px rgba(82, 199, 123, 0.42); color: #08110b; }
+    html[data-site-theme="shop"] .hero h1 span { color: #7fe8a0; text-shadow: 0 0 22px rgba(127, 232, 160, 0.62); }
+
+    /* Руководство (Бирюзовый) */
+    html[data-site-theme="guide"] body { background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.15), transparent 50%), radial-gradient(circle at bottom right, rgba(0, 180, 216, 0.15), transparent 55%), linear-gradient(160deg, #020a10, #041018 45%, #02080d 100%); }
+    html[data-site-theme="guide"] .panel { background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.12), transparent 55%), linear-gradient(155deg, rgba(4, 14, 22, 0.98), rgba(2, 8, 12, 1)); border-color: rgba(0, 229, 255, 0.25); }
+    html[data-site-theme="guide"] .btn-primary { background: linear-gradient(135deg, #00b4d8, #00e5ff); box-shadow: 0 20px 45px rgba(0, 229, 255, 0.45); color: #001a22; }
+    html[data-site-theme="guide"] .hero h1 span { color: #00e5ff; text-shadow: 0 0 22px rgba(0, 229, 255, 0.65); }
 
     button, input { font: inherit; }
     button { cursor: pointer; border: none; transition: transform var(--transition), background var(--transition), box-shadow var(--transition), opacity var(--transition), border-color var(--transition); }
@@ -72,19 +108,12 @@
     .topbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
     .brand { display: flex; align-items: center; gap: 0.85rem; min-width: 0; }
 
-    .logo {
-      width: 48px; height: 48px; display: grid; place-items: center; color: var(--color-text);
-      background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%), linear-gradient(135deg, rgba(108, 140, 255, 0.32), rgba(255, 107, 136, 0.22));
-      border-radius: 16px; box-shadow: var(--shadow-md); border: 1px solid rgba(255, 255, 255, 0.25); flex: 0 0 auto;
-    }
-    
     .brand-title { font-family: var(--font-display); font-size: var(--text-lg); letter-spacing: 0.08em; text-transform: uppercase; }
     .brand-sub { color: var(--color-text-muted); font-size: var(--text-sm); max-width: 42ch; }
 
     .theme-toggle { min-width: 44px; min-height: 44px; padding: 0 0.75rem; border-radius: 999px; color: var(--color-text); background: rgba(16, 21, 40, 0.85); border: 1px solid rgba(191, 198, 255, 0.35); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.8); flex: 0 0 auto; }
 
     .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 1rem; align-items: stretch; }
-
     .panel { border-radius: 22px; border: 1px solid rgba(191, 198, 255, 0.28); box-shadow: var(--shadow-lg); backdrop-filter: blur(18px); background: radial-gradient(circle at top left, rgba(108, 140, 255, 0.23), transparent 55%), linear-gradient(155deg, rgba(18, 22, 38, 0.98), rgba(6, 7, 16, 1)); min-width: 0; }
 
     .hero-card, .rules, .game-card, .side { padding: 1.2rem; display: grid; gap: 1rem; min-width: 0; align-content: start; }
@@ -103,38 +132,36 @@
     .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
     .btn { min-height: 44px; padding: 0.85rem 1.2rem; border-radius: 16px; font-size: var(--text-sm); font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
-    .btn-primary { color: #fff; background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 20px 45px rgba(108, 140, 255, 0.72); }
+    .btn-primary { color: #fff; background: linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 20px 45px rgba(108, 140, 255, 0.72); }
     .btn-secondary { color: var(--color-text-muted); background: rgba(9, 12, 26, 0.86); border: 1px solid rgba(191, 198, 255, 0.3); }
 
-    /* === ОБНОВЛЕННАЯ НАВИГАЦИЯ === */
+    /* === ОБНОВЛЕННАЯ ДВУХУРОВНЕВАЯ НАВИГАЦИЯ === */
     .nav-container { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0 1rem; }
-    .main-nav { 
-      display: flex; gap: 0.5rem; flex-wrap: wrap; 
-      background: rgba(13, 16, 32, 0.8); padding: 0.4rem; 
-      border-radius: 18px; border: 1px solid rgba(191, 198, 255, 0.2); width: fit-content;
-    }
-    .main-cat-btn { 
-      padding: 0.6rem 1.2rem; border-radius: 14px; font-size: var(--text-sm); font-weight: 800; 
-      color: var(--color-text-muted); background: transparent; text-transform: uppercase; 
-      letter-spacing: 0.05em; transition: all 0.3s ease; border: none; cursor: pointer;
-    }
+    .main-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; background: rgba(13, 16, 32, 0.8); padding: 0.4rem; border-radius: 18px; border: 1px solid rgba(191, 198, 255, 0.2); width: fit-content; }
+    
+    .main-cat-btn { padding: 0.6rem 1.2rem; border-radius: 14px; font-size: var(--text-sm); font-weight: 800; color: var(--color-text-muted); background: transparent; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s ease; border: none; cursor: pointer; }
     .main-cat-btn:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
     .main-cat-btn.active { color: var(--color-text-inverse); box-shadow: 0 4px 15px rgba(108, 140, 255, 0.5); }
     .main-cat-btn[data-cat="moderation"].active { background: linear-gradient(135deg, #6c8cff, #8aa3ff); }
     .main-cat-btn[data-cat="support"].active { background: linear-gradient(135deg, #ff78b4, #ffb0dd); }
-    .main-cat-btn[data-cat="general"].active { background: linear-gradient(135deg, #ffbf47, #ffd979); color: #18171c; box-shadow: 0 4px 15px rgba(255, 191, 71, 0.4); }
+    .main-cat-btn[data-cat="general"].active { background: linear-gradient(135deg, #ffbf47, #ffd979); color: #18171c; }
 
-    .sub-nav { 
-      display: flex; flex-wrap: wrap; gap: 0.35rem; 
-      background: rgba(4, 6, 12, 0.85); border: 1px solid rgba(191, 198, 255, 0.25); 
-      padding: 0.35rem; border-radius: 999px; width: fit-content; animation: fadeIn 0.3s ease;
-    }
+    .sub-nav { display: flex; flex-wrap: wrap; gap: 0.35rem; background: rgba(4, 6, 12, 0.85); border: 1px solid rgba(191, 198, 255, 0.25); padding: 0.35rem; border-radius: 999px; width: fit-content; animation: fadeIn 0.3s ease; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
 
-    .mode-btn { border-radius: 999px; padding: 0.5rem 1.15rem; font-size: var(--text-sm); font-weight: 700; color: var(--color-text-muted); background: transparent; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; }
+    .mode-btn { border-radius: 999px; padding: 0.5rem 1.15rem; font-size: var(--text-sm); font-weight: 700; color: var(--color-text-muted); background: transparent; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; transition: all 0.3s; }
     .mode-btn.active { color: var(--color-text-inverse); background: linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 8px 20px rgba(108, 140, 255, 0.5); }
-    .mode-btn.active[data-mode="complaints"] { background: linear-gradient(135deg, #ff6b88, #ff3b60); box-shadow: 0 8px 20px rgba(255, 107, 136, 0.5); color: #fff; }
-    .mode-btn.active[data-mode="quests"] { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 8px 20px rgba(162, 108, 255, 0.45); color: #fff; }
+
+    /* Цвет активной кнопки в подменю зависит от выбранной темы */
+    html[data-site-theme="support"] .mode-btn.active { background: linear-gradient(135deg, #ff78b4, #ffb0dd); box-shadow: 0 8px 20px rgba(255, 144, 196, 0.6); }
+    html[data-site-theme="complaints"] .mode-btn.active { background: linear-gradient(135deg, #ff6b88, #ff3b60); box-shadow: 0 8px 20px rgba(255, 107, 136, 0.5); color: #fff; }
+    html[data-site-theme="quests"] .mode-btn.active { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 8px 20px rgba(162, 108, 255, 0.45); color: #fff; }
+    html[data-site-theme="shop"] .mode-btn.active { background: linear-gradient(135deg, #52c77b, #8fe0a8); box-shadow: 0 8px 20px rgba(82, 199, 123, 0.35); color: #08110b; }
+    html[data-site-theme="report"] .mode-btn.active { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 8px 20px rgba(162, 108, 255, 0.35); color: #fff; }
+    html[data-site-theme="guide"] .mode-btn.active { background: linear-gradient(135deg, #00b4d8, #00e5ff); box-shadow: 0 8px 20px rgba(0, 229, 255, 0.35); color: #001a22; }
+    html[data-site-theme="leaderboard"] .mode-btn.active { background: linear-gradient(135deg, #ff3d00, #ff9e00); box-shadow: 0 8px 20px rgba(255, 61, 0, 0.35); color: #fff; }
+    html[data-site-theme="about"] .mode-btn.active { background: linear-gradient(135deg, #ffbf47, #ffd979); box-shadow: 0 8px 20px rgba(255, 191, 71, 0.35); color: #18171c; }
+    html[data-site-theme="admin_log"] .mode-btn.active { background: linear-gradient(135deg, #ffbf47, #ff9e00); box-shadow: 0 8px 20px rgba(255, 191, 71, 0.35); color: #18171c; }
 
     .game-wrap { margin-top: 0.75rem; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr); gap: 1rem; align-items: start; }
     .rule-list, .feed, .log { display: grid; gap: 0.75rem; min-width: 0; }
@@ -145,9 +172,7 @@
     .rule-copy { display: grid; gap: 0.22rem; min-width: 0; }
     .rule-copy strong { font-size: 0.98rem; line-height: 1.25; }
     .rule-copy span { color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.55; max-width: 38ch; display: block; }
-    .rule-copy a { color: var(--color-primary); text-decoration: none; font-weight: 600; }
-    .rule-copy a:hover { text-decoration: underline; }
-
+    
     .ok { background: rgba(82, 199, 123, 0.14); color: #8df0ae; }
     .warn { background: rgba(255, 191, 71, 0.18); color: #ffdf95; }
     .ban { background: rgba(255, 107, 136, 0.2); color: #ff9fb4; }
@@ -182,7 +207,6 @@
     .support-answer-row { display: flex; flex-direction: column; gap: 0.5rem; }
     .support-answer-row-inner { display: flex; gap: 0.5rem; align-items: stretch; }
     .support-input { flex: 1 1 auto; min-width: 0; width: 100%; padding: 0.7rem 0.85rem; border-radius: 12px; border: 1px solid rgba(191, 198, 255, 0.35); background: rgba(4, 6, 12, 0.9); color: var(--color-text); font-size: var(--text-sm); }
-    .support-input::placeholder { color: var(--color-text-faint); }
     .support-check-btn { flex: 0 0 auto; min-height: 44px; padding: 0.7rem 0.95rem; border-radius: 12px; font-size: var(--text-sm); font-weight: 700; background: rgba(108, 140, 255, 0.16); border: 1px solid rgba(108, 140, 255, 0.7); color: var(--color-text); white-space: nowrap; }
     .support-result { font-size: var(--text-sm); color: var(--color-text-muted); min-height: 1.4em; line-height: 1.45; }
 
@@ -612,46 +636,130 @@
       'maksimladnyj4@gmail.com'
     ];
     
-    // States
     let state = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false, log: [], reportXp: 0 };
     let supportState = { resolved: 0, correct: 0, mistakes: 0, currentIndex: -1 };
     let complaintState = { resolved: 0, correct: 0, mistakes: 0, current: null };
     let shopState = { spent: 0 };
 
+    let allModMessages = [];
+    let allSupQuestions = [];
+    let allComplaints = [];
     let modQueue = [];
     let supQueue = [];
     let compQueue = [];
 
-    // Load Local States for Complaints & Quests (since DB columns might not exist)
-    function loadLocalState() {
-      if(!currentUser) return;
-      const cStr = localStorage.getItem('comp_stats_' + currentUser.email);
-      if(cStr) {
-        const cParsed = JSON.parse(cStr);
-        complaintState.resolved = cParsed.resolved || 0;
-        complaintState.correct = cParsed.correct || 0;
-        complaintState.mistakes = cParsed.mistakes || 0;
-      }
-      updateComplaintStats();
-      renderQuests();
-    }
-
-    function saveLocalState() {
-      if(!currentUser) return;
-      localStorage.setItem('comp_stats_' + currentUser.email, JSON.stringify({
-        resolved: complaintState.resolved,
-        correct: complaintState.correct,
-        mistakes: complaintState.mistakes
-      }));
-    }
-
-    // Modal elements
     const authModal = document.getElementById('authModal');
     const nicknameModal = document.getElementById('nicknameModal');
     const loginBtnUI = document.getElementById('loginBtnUI');
     const logoutBtnUI = document.getElementById('logoutBtnUI');
     const userEmailDisplay = document.getElementById('userEmailDisplay');
     const authErrorMsg = document.getElementById('authErrorMsg');
+
+    // === ВОССТАНОВЛЕНИЕ КОНТЕНТА ПРАВОЙ ПАНЕЛИ ===
+    const rightContent = {
+      moderation: {
+        title: "Материалы модератора",
+        lead: "Подсказки по модерации: как оценивать сообщения.",
+        cards: [
+          ["Без нарушения", "Обычное сообщение без спама, оскорблений, рекламы."],
+          ["Устное / Пред / Мут", "Флуд, капс, токсичность, помехи, политика."],
+          ["Бан / Перма / Глобал", "Реклама проектов, РМТ, обход наказаний, слив инфы."]
+        ]
+      },
+      support: {
+        title: "Материалы агента поддержки",
+        lead: "База знаний для АП и шаблоны ответов.",
+        cards: [
+          ["База знаний", "Используйте команды /gps и знайте уровни работ."],
+          ["Ответы", "Давайте четкие и понятные ответы по игровому моду."],
+          ["Важно!", "XP за агента поддержки не зачисляется на общий баланс."]
+        ]
+      },
+      complaints: {
+        title: "Правила жалоб",
+        lead: "Как рассматривать репорты игроков.",
+        cards: [
+          ["Одобрить", "На скринах явное нарушение правил дискорда (оск, реклама)."],
+          ["Отказать", "Нет док-в, обрезаны, или нарушение из игры (ДМ, ДБ)."],
+          ["Передать КГМ", "Использовать СТРОГО для обжалования ЧСМ или банов ГМ."]
+        ]
+      },
+      quests: {
+        title: "Квесты",
+        lead: "Выполняй задания и забирай XP.",
+        cards: [
+          ["Прогресс", "Выполняйте норму в тренажерах, чтобы заполнить шкалу."],
+          ["Награды", "Нажмите кнопку 'Забрать', когда квест выполнен."]
+        ]
+      },
+      guide: {
+        title: "Контактная информация (ВК)",
+        lead: "Связь с руководством",
+        cards: [
+          ["Модерация", "ГМ - Lexa_Mackenzie<br>ЗГМ - John Wick<br>ЗГМ - Andrey_Caypen<br>Куратор - Hunter_Mackenzie"],
+          ["Администрация", "ГА - Lars_Crown<br>ЗГА - Egor_Versachi<br>ЗГА - Oskar_Lofrein<br>Куратор - Kiruha_Lubera"],
+          ["Агенты Поддержки", "Куратор - Ioana_Lost<br>Зам. Куратора - Kirill_Rendi"]
+        ]
+      },
+      leaderboard: {
+        title: "О Лидерборде",
+        lead: "Рейтинг формируется на основе заработанного XP.",
+        cards: [
+          ["Обновление", "Таблица рассчитывает баланс XP (опыт минус траты)."],
+          ["Никнейм", "Отображаются только сотрудники с установленным никнеймом."]
+        ]
+      },
+      about: {
+        title: "О команде",
+        lead: "Информация о людях, создавших тренажёр.",
+        cards: [
+          ["Создано", "John Wick."],
+          ["При поддержке", "Leha_Mackenzie, Andrey_Caypen и Евгения Бабешко."]
+        ]
+      },
+      shop: {
+        title: "Магазин модераторов",
+        lead: "Потратьте накопленные XP на скидки или рулетку.",
+        cards: [
+          ["Выдача", "Все покупки автоматически уходят в панель руководства."],
+          ["Рулетка", "Призы из рулетки выдаются либо автоматически (XP), либо отправляются логом руководству."]
+        ]
+      },
+      report: {
+        title: "Отчетность",
+        lead: "Сдача ежедневных отчетов онлайна.",
+        cards: [
+          ["Доступ", "Сдавать отчеты могут все авторизованные модераторы."],
+          ["Проверка", "Только администрация может проверять и начислять XP."]
+        ]
+      },
+      admin_log: {
+        title: "Панель логов",
+        lead: "Только для руководства",
+        cards: [
+          ["Выдача", "Нажимайте 'Отметить как выданное' после выдачи приза/покупки в Discord."]
+        ]
+      }
+    };
+
+    function renderRight(mode) {
+      const rt = document.getElementById("rightTitle"); 
+      const rl = document.getElementById("rightLead"); 
+      const rc = document.getElementById("rightCards");
+      if(!rt || !rl || !rc) return;
+
+      const data = rightContent[mode];
+      if (data) {
+        rt.innerHTML = data.title;
+        rl.innerHTML = data.lead;
+        rc.innerHTML = data.cards.map((item, idx) => `
+          <div class="rule-item">
+            <div class="rule-icon ${idx === 0 ? "ok" : idx === 1 ? "warn" : "ban"}">${idx === 0 ? "✓" : idx === 1 ? "?" : "ℹ"}</div>
+            <div class="rule-copy"><strong>${item[0]}</strong><span>${item[1]}</span></div>
+          </div>
+        `).join("");
+      }
+    }
 
     // === ДВУХУРОВНЕВАЯ НАВИГАЦИЯ ===
     const mainNavBtns = document.querySelectorAll('.main-cat-btn');
@@ -683,12 +791,9 @@
       document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
       if(btn) btn.classList.add("active");
 
-      // Безопасное скрытие всех панелей и показ нужной
       allModesList.forEach(m => {
         const panel = document.getElementById("mode-" + m);
-        if(panel) {
-          panel.style.display = (m === mode) ? "" : "none";
-        }
+        if(panel) { panel.style.display = (m === mode) ? "" : "none"; }
       });
 
       let currentTheme = "mod";
@@ -712,32 +817,31 @@
       if(mode === 'admin_log') renderAdminLogs();
       if(mode === 'quests') renderQuests();
 
-      // Заголовки (Hero)
       const brandSub = document.getElementById("brandSubtitle");
       const hTitle = document.getElementById("heroTitle");
       const hText = document.getElementById("heroText");
       const hBadge = document.getElementById("heroBadge2");
 
       if (mode === "moderation") {
-        brandSub.textContent = "Симулятор смены модераторов"; hTitle.innerHTML = 'Следи за <span>порядком</span> на сервере.'; hText.textContent = "Проверяй сообщения, принимай решения и поддерживай порядок в чате."; hBadge.textContent = "Режим: модераторы";
+        if(brandSub) brandSub.textContent = "Симулятор смены модераторов"; if(hTitle) hTitle.innerHTML = 'Следи за <span>порядком</span> на сервере.'; if(hText) hText.textContent = "Проверяй сообщения, принимай решения и поддерживай порядок в чате."; if(hBadge) hBadge.textContent = "Режим: модераторы";
       } else if (mode === "complaints") {
-        brandSub.textContent = "Симулятор смены: Жалобы"; hTitle.innerHTML = 'Рассматривай <span>репорты</span>.'; hText.textContent = "Изучай доказательства игроков и выноси вердикты. Спорные моменты и ЧСМ передавай КГМ."; hBadge.textContent = "Режим: жалобы";
+        if(brandSub) brandSub.textContent = "Симулятор смены: Жалобы"; if(hTitle) hTitle.innerHTML = 'Рассматривай <span>репорты</span>.'; if(hText) hText.textContent = "Изучай доказательства игроков и выноси вердикты. Спорные моменты и ЧСМ передавай КГМ."; if(hBadge) hBadge.textContent = "Режим: жалобы";
       } else if (mode === "support") {
-        brandSub.textContent = "Симулятор смены агентов поддержки"; hTitle.innerHTML = 'Создавай <span>уют</span> и помогай игрокам.'; hText.textContent = "Отвечай на вопросы игроков, ориентируйся в материалах."; hBadge.textContent = "Режим: агенты поддержки";
+        if(brandSub) brandSub.textContent = "Симулятор смены агентов поддержки"; if(hTitle) hTitle.innerHTML = 'Создавай <span>уют</span> и помогай игрокам.'; if(hText) hText.textContent = "Отвечай на вопросы игроков, ориентируйся в материалах."; if(hBadge) hBadge.textContent = "Режим: агенты поддержки";
       } else if (mode === "quests") {
-        brandSub.textContent = "Квесты сотрудников"; hTitle.innerHTML = 'Выполняй <span>задания</span>.'; hText.textContent = "Получай бонусный XP за активную работу в симуляторе. Задания обновляются автоматически."; hBadge.textContent = "Режим: квесты";
+        if(brandSub) brandSub.textContent = "Квесты сотрудников"; if(hTitle) hTitle.innerHTML = 'Выполняй <span>задания</span>.'; if(hText) hText.textContent = "Получай бонусный XP за активную работу в симуляторе. Задания обновляются автоматически."; if(hBadge) hBadge.textContent = "Режим: квесты";
       } else if (mode === "guide") {
-        brandSub.textContent = "Руководство Сервера"; hTitle.innerHTML = 'Контакты <span>руководства</span>.'; hText.textContent = "Основная информация и контактные данные."; hBadge.textContent = "Режим: руководство";
+        if(brandSub) brandSub.textContent = "Руководство Сервера"; if(hTitle) hTitle.innerHTML = 'Контакты <span>руководства</span>.'; if(hText) hText.textContent = "Основная информация и контактные данные."; if(hBadge) hBadge.textContent = "Режим: руководство";
       } else if (mode === "leaderboard") {
-        brandSub.textContent = "Таблица лидеров"; hTitle.innerHTML = 'Топ <span>модераторов</span>.'; hText.textContent = "Отображаются сотрудники с наибольшим количеством XP."; hBadge.textContent = "Режим: лидерборд";
+        if(brandSub) brandSub.textContent = "Таблица лидеров"; if(hTitle) hTitle.innerHTML = 'Топ <span>модераторов</span>.'; if(hText) hText.textContent = "Отображаются сотрудники с наибольшим количеством XP."; if(hBadge) hBadge.textContent = "Режим: лидерборд";
       } else if (mode === "about") {
-        brandSub.textContent = "Люди, которые сделали этот проект"; hTitle.innerHTML = 'Узнай, кто <span>стоит за идеей</span>.'; hText.textContent = "Этот раздел посвящён авторам и тем, кто помогал собрать тренажёр."; hBadge.textContent = "Режим: о команде";
+        if(brandSub) brandSub.textContent = "Люди, которые сделали этот проект"; if(hTitle) hTitle.innerHTML = 'Узнай, кто <span>стоит за идеей</span>.'; if(hText) hText.textContent = "Этот раздел посвящён авторам и тем, кто помогал собрать тренажёр."; if(hBadge) hBadge.textContent = "Режим: о команде";
       } else if (mode === "shop") {
-        brandSub.textContent = "Магазин за XP"; hTitle.innerHTML = 'Трать <span>Опыт</span> на бонусы.'; hText.textContent = "Покупайте скидки для ускорения повышения или бонусы за накопленные XP."; hBadge.textContent = "Режим: магазин";
+        if(brandSub) brandSub.textContent = "Магазин за XP"; if(hTitle) hTitle.innerHTML = 'Трать <span>Опыт</span> на бонусы.'; if(hText) hText.textContent = "Покупайте скидки для ускорения повышения или бонусы за накопленные XP."; if(hBadge) hBadge.textContent = "Режим: магазин";
       } else if (mode === "report") {
-        brandSub.textContent = "Симулятор смены: Отчетность"; hTitle.innerHTML = 'Сдавай <span>отчеты</span> вовремя.'; hText.textContent = "Отправляй скриншоты своего онлайна в Discord для проверки руководством."; hBadge.textContent = "Режим: отчетность";
+        if(brandSub) brandSub.textContent = "Симулятор смены: Отчетность"; if(hTitle) hTitle.innerHTML = 'Сдавай <span>отчеты</span> вовремя.'; if(hText) hText.textContent = "Отправляй скриншоты своего онлайна в Discord для проверки руководством."; if(hBadge) hBadge.textContent = "Режим: отчетность";
       } else if (mode === "admin_log") {
-        brandSub.textContent = "Админ-Панель"; hTitle.innerHTML = 'Логи <span>выдач</span>.'; hText.textContent = "Здесь отображаются все покупки и выигрыши в рулетку, требующие ручной выдачи Руководством в Discord."; hBadge.textContent = "Режим: руководство";
+        if(brandSub) brandSub.textContent = "Админ-Панель"; if(hTitle) hTitle.innerHTML = 'Логи <span>выдач</span>.'; if(hText) hText.textContent = "Здесь отображаются все покупки и выигрыши в рулетку, требующие ручной выдачи Руководством в Discord."; if(hBadge) hBadge.textContent = "Режим: руководство";
       }
     }
 
@@ -781,7 +885,32 @@
       await supa.auth.updateUser({ data: { nickname: val } });
       if (currentUser) { await supa.from('user_stats').update({ nickname: val }).eq('user_id', currentUser.id); }
       currentNickname = val; userEmailDisplay.textContent = val; nicknameModal.style.display = 'none';
+      
+      // Автостарт если сбилось
+      if(!state.started && el.authorName?.textContent === "System") { startGame(); }
     });
+
+    function loadLocalState() {
+      if(!currentUser) return;
+      const cStr = localStorage.getItem('comp_stats_' + currentUser.email);
+      if(cStr) {
+        const cParsed = JSON.parse(cStr);
+        complaintState.resolved = cParsed.resolved || 0;
+        complaintState.correct = cParsed.correct || 0;
+        complaintState.mistakes = cParsed.mistakes || 0;
+      }
+      updateComplaintStats();
+      renderQuests();
+    }
+
+    function saveLocalState() {
+      if(!currentUser) return;
+      localStorage.setItem('comp_stats_' + currentUser.email, JSON.stringify({
+        resolved: complaintState.resolved,
+        correct: complaintState.correct,
+        mistakes: complaintState.mistakes
+      }));
+    }
 
     async function loadProgress() {
       if(!currentUser) return;
@@ -863,24 +992,6 @@
       { id: 'bonus_2', title: "Иммунитет на ошибку", desc: "Покупается заранее. Спасает от наказания за мелкий косяк.", price: 400 },
       { id: 'fortune', title: "Колесо Фортуны", desc: "Испытай удачу и получи случайный бонус или штраф!", price: 250 }
     ];
-
-    function renderRight(mode) {
-      const rt = document.getElementById("rightTitle"); const rl = document.getElementById("rightLead"); const rc = document.getElementById("rightCards");
-      if(!rt || !rl || !rc) return;
-
-      if(mode === 'admin_log') { rt.textContent = "Панель логов"; rl.textContent = "Только для руководства"; rc.innerHTML = ""; return; }
-      if(mode === 'complaints') {
-        rt.textContent = "Правила жалоб"; rl.textContent = "Как рассматривать репорты";
-        rc.innerHTML = `<div class="rule-item"><div class="rule-icon ok">✓</div><div class="rule-copy"><strong>Одобрить</strong><span>Если на скриншотах явное нарушение правил (реклама, оск, политика).</span></div></div>
-                        <div class="rule-item"><div class="rule-icon warn">❌</div><div class="rule-copy"><strong>Отказать</strong><span>Если док-в нет, обрезаны, или нарушение касается самой игры (ДМ, ДБ - это к админам серверов, не дискорда).</span></div></div>
-                        <div class="rule-item"><div class="rule-icon ban">👑</div><div class="rule-copy"><strong>Передать КГМ</strong><span>Используется СТРОГО для обжалования ЧСМ (Черного списка Модераторов).</span></div></div>`;
-        return;
-      }
-      if(mode === 'quests') { rt.textContent = "Квесты"; rl.textContent = "Выполняй и забирай XP"; rc.innerHTML = ""; return; }
-      
-      // Default
-      rt.textContent = "Правила раздела"; rl.textContent = "Обращайте внимание на основные пункты."; rc.innerHTML = ""; 
-    }
 
     const funnyLeft = ["Мелстройность","Смешнявка","Макенза","Сраупен","бурмалда","Рассыльщик_Мемов","ПолитТоксик","РелигБаттл","Дед_с_Клавой","Флуд_Бот"];
     const funnyRight = ["из_Тамбова","без_микрофона","на_ГлОбАнЕ","в_муте","с_вечным_баном","тянет_конфу","обижен_на_админов","любит_капс","ищет_баги","продаёт_вирты"];
@@ -983,15 +1094,19 @@
         { type: "approve", text: "Чел поставил на аватарку свастику.", evidence: "Скриншот профиля Discord с запрещенной символикой." },
         { type: "approve", text: "Спам символами в основном чате.", evidence: "Скриншот чата: 'АХАХАХХАХАХАХАХХАХАХАХАХАХАХАХАХАХАХАХА'." },
         { type: "approve", text: "Вымогает деньги у новичков.", evidence: "Скриншот чата: 'Дайте 10к быстро или я вас по айпи вычислю'." },
-        { type: "reject", text: "Меня убил игрок возле больницы, накажите его!", evidence: "Фрапс из игры с ДМ-ом." }, // Это в игру, а не в ДС
+        { type: "reject", text: "Меня убил игрок возле больницы, накажите его!", evidence: "Фрапс из игры с ДМ-ом." },
         { type: "reject", text: "Лидер уволил меня просто так!!!", evidence: "Скриншот увольнения в игре." },
-        { type: "reject", text: "Забаньте этого мошенника, он кинул меня на машину.", evidence: "Отсутствуют доказательства." }, // Нет док-в
+        { type: "reject", text: "Забаньте этого мошенника, он кинул меня на машину.", evidence: "Отсутствуют доказательства." },
         { type: "reject", text: "Он назвал меня дураком в игре.", evidence: "Скриншот игрового чата." },
         { type: "pass", text: "Мне выдали ЧСМ за слив админ информации, но меня взломали, проверьте логи!", evidence: "Скриншот с табличкой блокировки ЧСМ." },
         { type: "pass", text: "Главный модератор забанил меня без причины, прошу пересмотр.", evidence: "Скриншот бана от ГМ." },
         { type: "pass", text: "Хочу обжаловать свой ЧСМ, который получил полгода назад. Осознал ошибку.", evidence: "Текст с извинениями." }
       ];
     }
+
+    allModMessages = createModerationMessages();
+    allSupQuestions = createSupportQuestions();
+    allComplaints = createComplaints();
 
     function calcXP(value) { return Math.floor(Number(value) / 10) * 15; }
     function getReportXp() { return Number(state.reportXp) || 0; }
@@ -1015,6 +1130,7 @@
 
     async function loadLeaderboard() {
       const lb = document.getElementById("leaderboardList");
+      if(!lb) return;
       lb.innerHTML = '<div class="message-text">Загрузка...</div>';
       try {
         const [statsRes, reportsRes] = await Promise.all([ supa.from('user_stats').select('*'), supa.from('reports').select('email, xp') ]);
@@ -1062,7 +1178,7 @@
           let outcomeMsg = `Вы выиграли: ${winnerItem.text}!\n\n`;
           if (winnerItem.xp) {
             shopState.spent = Number(shopState.spent) - Number(winnerItem.xp); 
-            outcomeMsg += winnerItem.xp > 0 ? `Опыт автоматически зачислен на баланс (+${winnerItem.xp} XP).` : `Штраф списан с баланса (${winnerItem.xp} XP).`;
+            outcomeMsg += winnerItem.xp > 0 ? `Опыт автоматически зачислен на баланс (+${winnerItem.xp} XP).` : `Штраф списан с баланса (${Math.abs(winnerItem.xp)} XP).`;
             updateShopStats(); updateModStats(); updateSupportStats(); updateComplaintStats(); saveProgress(); renderQuests();
             await logPurchase(`Рулетка: ${winnerItem.text}`, true);
           } else if (winnerItem.type === 'r-fail') { outcomeMsg += `В этот раз не повезло. Попробуйте еще раз!`;
@@ -1090,19 +1206,18 @@
       return data ? JSON.parse(data) : [];
     }
 
-    function claimQuest(qId, reward) {
+    window.claimQuest = function(qId, reward) {
       const claimed = getClaimedQuests();
       claimed.push(qId);
       localStorage.setItem('quests_' + currentUser.email, JSON.stringify(claimed));
       
-      // Зачисляем XP (путем вычитания из трат)
       shopState.spent -= reward;
       updateShopStats(); updateModStats(); updateSupportStats(); updateComplaintStats(); saveProgress();
       
       pushLog(`🏆 Квест выполнен! Зачислено +${reward} XP.`);
       alert(`✅ Квест выполнен!\nВам зачислено +${reward} XP.`);
       renderQuests();
-    }
+    };
 
     function renderQuests() {
       const container = document.getElementById('questsContainer');
@@ -1123,14 +1238,9 @@
 
         return `
           <div class="quest-card">
-            <div class="quest-header">
-              <span class="quest-title">${q.title}</span>
-              <span class="quest-reward">+${q.reward} XP</span>
-            </div>
+            <div class="quest-header"><span class="quest-title">${q.title}</span><span class="quest-reward">+${q.reward} XP</span></div>
             <div class="quest-desc">${q.desc} (${prog} / ${q.max})</div>
-            <div class="quest-progress-wrap">
-              <div class="quest-progress-fill" style="width: ${pct}%;"></div>
-            </div>
+            <div class="quest-progress-wrap"><div class="quest-progress-fill" style="width: ${pct}%;"></div></div>
             ${btnHTML}
           </div>
         `;
@@ -1139,79 +1249,68 @@
 
     function updateModStats() {
       const xp = availableXp();
-      if(el.resolvedValue) el.resolvedValue.textContent = state.resolved;
-      if(el.correctValue) el.correctValue.textContent = state.correct;
-      if(el.mistakeValue) el.mistakeValue.textContent = state.mistakes; 
-      if(el.xpValue) el.xpValue.textContent = xp;
-      if(el.xpFill) el.xpFill.style.width = (Math.min(1, (state.correct % 10 || (state.correct ? 10 : 0)) / 10) * 100) + "%";
-      if(el.resultBanner) el.resultBanner.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
-      if(el.resultHint) el.resultHint.textContent = !state.started ? "Нажми «Начать смену», чтобы получить первое сообщение." : `Сейчас доступно ${xp} XP (с учетом трат).`;
-      updateShopStats();
-      renderQuests(); // update quest progress
+      const elRes = document.getElementById("resolvedValue"); if(elRes) elRes.textContent = state.resolved;
+      const elCor = document.getElementById("correctValue"); if(elCor) elCor.textContent = state.correct;
+      const elMis = document.getElementById("mistakeValue"); if(elMis) elMis.textContent = state.mistakes; 
+      const elXp = document.getElementById("xpValue"); if(elXp) elXp.textContent = xp;
+      const elXpF = document.getElementById("xpFill"); if(elXpF) elXpF.style.width = (Math.min(1, (state.correct % 10 || (state.correct ? 10 : 0)) / 10) * 100) + "%";
+      const elBan = document.getElementById("resultBanner"); if(elBan) elBan.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
+      const elHin = document.getElementById("resultHint"); if(elHin) elHin.textContent = !state.started ? "Нажми «Начать смену», чтобы получить первое сообщение." : `Сейчас доступно ${xp} XP (с учетом трат).`;
+      updateShopStats(); renderQuests();
     }
 
     function updateSupportStats() {
       const xp = availableXp();
-      if(el.supportResolvedValue) el.supportResolvedValue.textContent = supportState.resolved;
-      if(el.supportCorrectValue) el.supportCorrectValue.textContent = supportState.correct;
-      if(el.supportMistakeValue) el.supportMistakeValue.textContent = supportState.mistakes; 
-      if(el.supportXpValue) el.supportXpValue.textContent = xp;
-      if(el.supportXpFill) el.supportXpFill.style.width = (Math.min(1, (supportState.correct % 10 || (supportState.correct ? 10 : 0)) / 10) * 100) + "%";
-      if(el.supportBanner) el.supportBanner.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
-      if(el.supportBannerHint) el.supportBannerHint.textContent = !state.started ? "Нажми «Начать смену», чтобы открыть вопрос." : `Общий баланс: ${xp} XP (Ответы АП не дают XP).`;
+      const elRes = document.getElementById("supportResolvedValue"); if(elRes) elRes.textContent = supportState.resolved;
+      const elCor = document.getElementById("supportCorrectValue"); if(elCor) elCor.textContent = supportState.correct;
+      const elMis = document.getElementById("supportMistakeValue"); if(elMis) elMis.textContent = supportState.mistakes; 
+      const elXp = document.getElementById("supportXpValue"); if(elXp) elXp.textContent = xp;
+      const elXpF = document.getElementById("supportXpFill"); if(elXpF) elXpF.style.width = (Math.min(1, (supportState.correct % 10 || (supportState.correct ? 10 : 0)) / 10) * 100) + "%";
+      const elBan = document.getElementById("supportBanner"); if(elBan) elBan.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
+      const elHin = document.getElementById("supportBannerHint"); if(elHin) elHin.textContent = !state.started ? "Нажми «Начать смену», чтобы открыть вопрос." : `Общий баланс: ${xp} XP (Ответы АП не дают XP).`;
       renderQuests();
     }
 
     function updateComplaintStats() {
       const xp = availableXp();
-      const rv = document.getElementById("compResolvedValue");
-      const cv = document.getElementById("compCorrectValue");
-      const mv = document.getElementById("compMistakeValue");
-      const xv = document.getElementById("compXpValue");
-      if(rv) rv.textContent = complaintState.resolved;
-      if(cv) cv.textContent = complaintState.correct;
-      if(mv) mv.textContent = complaintState.mistakes;
-      if(xv) xv.textContent = xp;
+      const rv = document.getElementById("compResolvedValue"); if(rv) rv.textContent = complaintState.resolved;
+      const cv = document.getElementById("compCorrectValue"); if(cv) cv.textContent = complaintState.correct;
+      const mv = document.getElementById("compMistakeValue"); if(mv) mv.textContent = complaintState.mistakes;
+      const xv = document.getElementById("compXpValue"); if(xv) xv.textContent = xp;
       renderQuests();
     }
 
-    function fillModQueue() { modQueue = createModerationMessages().map((_, i) => i); shuffleArray(modQueue); }
-    function fillSupQueue() { supQueue = createSupportQuestions().map((_, i) => i); shuffleArray(supQueue); }
-    function fillCompQueue() { compQueue = createComplaints().map((_, i) => i); shuffleArray(compQueue); }
+    function fillModQueue() { modQueue = allModMessages.map((_, i) => i); shuffleArray(modQueue); }
+    function fillSupQueue() { supQueue = allSupQuestions.map((_, i) => i); shuffleArray(supQueue); }
+    function fillCompQueue() { compQueue = allComplaints.map((_, i) => i); shuffleArray(compQueue); }
 
     function randomMessage() {
-      const messages = createModerationMessages();
       if (modQueue.length === 0) fillModQueue();
       const index = modQueue.pop();
-      const item = messages[index];
+      const item = allModMessages[index];
       
       const user = randomFunnyNick();
       state.current = { ...item, user };
-      if(el.authorName) el.authorName.textContent = user; 
-      if(el.authorMeta) el.authorMeta.textContent = "Неизвестно, есть ли нарушение";
-      if(el.messageText) el.messageText.textContent = item.text; 
-      if(el.avatarBox) el.avatarBox.textContent = initials(user);
-      if(el.hintText) el.hintText.textContent = "Выбери: без нарушения, устное/пред/мут или бан.";
+      
+      const elA = document.getElementById("authorName"); if(elA) elA.textContent = user; 
+      const elM = document.getElementById("authorMeta"); if(elM) elM.textContent = "Неизвестно, есть ли нарушение";
+      const elT = document.getElementById("messageText"); if(elT) elT.textContent = item.text; 
+      const elB = document.getElementById("avatarBox"); if(elB) elB.textContent = initials(user);
+      const elH = document.getElementById("hintText"); if(elH) elH.textContent = "Выбери: без нарушения, устное/пред/мут или бан.";
     }
 
     function randomComplaint() {
-      const compList = createComplaints();
       if (compQueue.length === 0) fillCompQueue();
       const index = compQueue.pop();
-      const item = compList[index];
+      const item = allComplaints[index];
       
       const user = randomFunnyNick();
       complaintState.current = { ...item, user };
       
-      const cAuthor = document.getElementById("compAuthor");
-      const cMeta = document.getElementById("compMeta");
-      const cText = document.getElementById("compText");
-      const cEvidence = document.getElementById("compEvidence");
-      
-      if(cAuthor) cAuthor.textContent = "Жалоба от " + user;
-      if(cMeta) cMeta.textContent = "Требуется вердикт";
-      if(cText) cText.textContent = item.text;
-      if(cEvidence) cEvidence.textContent = "Доказательства: " + item.evidence;
+      const cAuthor = document.getElementById("compAuthor"); if(cAuthor) cAuthor.textContent = "Жалоба от " + user;
+      const cMeta = document.getElementById("compMeta"); if(cMeta) cMeta.textContent = "Требуется вердикт";
+      const cText = document.getElementById("compText"); if(cText) cText.textContent = item.text;
+      const cEvidence = document.getElementById("compEvidence"); if(cEvidence) cEvidence.textContent = "Доказательства: " + item.evidence;
     }
 
     function startGame() {
@@ -1221,34 +1320,38 @@
       state.started = true; state.log = [];
       fillModQueue(); fillSupQueue(); fillCompQueue();
 
-      if(el.supportQuestionTitle) el.supportQuestionTitle.textContent = "Вопрос скрыт"; 
-      if(el.supportMeta) el.supportMeta.textContent = "Нажми «Следующий вопрос»";
-      if(el.supportQuestionText) el.supportQuestionText.textContent = "Смена началась. Теперь можно открыть первый вопрос агента поддержки.";
-      if(el.supportAnswerInput) el.supportAnswerInput.value = ""; 
-      if(el.supportResultText) el.supportResultText.textContent = "";
+      const elST = document.getElementById("supportQuestionTitle"); if(elST) elST.textContent = "Вопрос скрыт"; 
+      const elSM = document.getElementById("supportMeta"); if(elSM) elSM.textContent = "Нажми «Следующий вопрос»";
+      const elSQ = document.getElementById("supportQuestionText"); if(elSQ) elSQ.textContent = "Смена началась. Теперь можно открыть первый вопрос агента поддержки.";
+      const elSI = document.getElementById("supportAnswerInput"); if(elSI) elSI.value = ""; 
+      const elSR = document.getElementById("supportResultText"); if(elSR) elSR.textContent = "";
 
       pushLog('Смена началась. Используй текущий режим ниже.');
       randomMessage(); randomComplaint(); 
       updateModStats(); updateSupportStats(); updateComplaintStats();
-      document.getElementById("game").scrollIntoView({ behavior: "smooth", block: "start" });
+      
+      const gameEl = document.getElementById("game");
+      if(gameEl) gameEl.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     function resetGame() {
       state.current = null; state.started = false; state.log = [];
       modQueue = []; supQueue = []; compQueue = []; complaintState.current = null;
-      if(el.authorName) el.authorName.textContent = "System"; 
-      if(el.authorMeta) el.authorMeta.textContent = "Сообщение появится после старта смены";
-      if(el.messageText) el.messageText.textContent = "Пока сообщений нет. Нажми «Начать смену»."; 
-      if(el.avatarBox) el.avatarBox.textContent = "T7";
       
-      if(el.supportQuestionTitle) el.supportQuestionTitle.textContent = "Вопрос скрыт"; 
-      if(el.supportMeta) el.supportMeta.textContent = "Появится после начала смены";
-      if(el.supportQuestionText) el.supportQuestionText.textContent = "Нажми «Начать смену», затем открой вопрос и помоги игроку разобраться.";
+      const elA = document.getElementById("authorName"); if(elA) elA.textContent = "System"; 
+      const elM = document.getElementById("authorMeta"); if(elM) elM.textContent = "Сообщение появится после старта смены";
+      const elT = document.getElementById("messageText"); if(elT) elT.textContent = "Пока сообщений нет. Нажми «Начать смену»."; 
+      const elB = document.getElementById("avatarBox"); if(elB) elB.textContent = "T7";
+      const elH = document.getElementById("hintText"); if(elH) elH.textContent = "Оценка: без нарушения, устное/пред/мут, бан/перма/глобал.";
       
-      const cAuthor = document.getElementById("compAuthor");
-      if(cAuthor) cAuthor.textContent = "Жалоба скрыта";
-      const cText = document.getElementById("compText");
-      if(cText) cText.textContent = "Нажми «Начать смену», чтобы открыть первую жалобу.";
+      const elST = document.getElementById("supportQuestionTitle"); if(elST) elST.textContent = "Вопрос скрыт"; 
+      const elSM = document.getElementById("supportMeta"); if(elSM) elSM.textContent = "Появится после начала смены";
+      const elSQ = document.getElementById("supportQuestionText"); if(elSQ) elSQ.textContent = "Нажми «Начать смену», затем открой вопрос и помоги игроку разобраться.";
+      const elSI = document.getElementById("supportAnswerInput"); if(elSI) elSI.value = ""; 
+      const elSR = document.getElementById("supportResultText"); if(elSR) elSR.textContent = "";
+      
+      const cAuthor = document.getElementById("compAuthor"); if(cAuthor) cAuthor.textContent = "Жалоба скрыта";
+      const cText = document.getElementById("compText"); if(cText) cText.textContent = "Нажми «Начать смену», чтобы открыть первую жалобу.";
 
       pushLog('Пока пусто. Нажми «Начать смену», чтобы начать работу.');
       updateModStats(); updateSupportStats(); updateComplaintStats();
@@ -1269,7 +1372,7 @@
       complaintState.resolved = Number(complaintState.resolved) + 1;
       if (isCorrect) { 
          complaintState.correct = Number(complaintState.correct) + 1; 
-         shopState.spent -= 15; // Даем 15 XP за верную жалобу
+         shopState.spent -= 15; 
          pushLog(`✅ Жалоба: верный вердикт! (+15 XP)`); 
       } else { 
          complaintState.mistakes = Number(complaintState.mistakes) + 1; 
@@ -1287,50 +1390,56 @@
     const snb = document.getElementById("supportNextBtn");
     if(snb) snb.addEventListener("click", () => {
       if (!state.started) return;
-      const questions = createSupportQuestions();
       if (supQueue.length === 0) fillSupQueue();
       supportState.currentIndex = supQueue.pop();
-      const q = questions[supportState.currentIndex];
-      if(el.supportQuestionTitle) el.supportQuestionTitle.textContent = q.title; 
-      if(el.supportMeta) el.supportMeta.textContent = "Вопрос игрока";
-      if(el.supportQuestionText) el.supportQuestionText.textContent = q.text; 
-      if(el.supportAnswerInput) el.supportAnswerInput.value = ""; 
-      if(el.supportResultText) el.supportResultText.textContent = "";
+      const q = allSupQuestions[supportState.currentIndex];
+      
+      const elST = document.getElementById("supportQuestionTitle"); if(elST) elST.textContent = q.title; 
+      const elSM = document.getElementById("supportMeta"); if(elSM) elSM.textContent = "Вопрос игрока";
+      const elSQ = document.getElementById("supportQuestionText"); if(elSQ) elSQ.textContent = q.text; 
+      const elSI = document.getElementById("supportAnswerInput"); if(elSI) elSI.value = ""; 
+      const elSR = document.getElementById("supportResultText"); if(elSR) elSR.textContent = "";
       pushLog(`🟦 АП: выдан вопрос «${q.title}»`);
     });
 
     const scb = document.getElementById("supportCheckBtn");
     if(scb) scb.addEventListener("click", () => {
       if (!state.started || supportState.currentIndex < 0) return;
-      const questions = createSupportQuestions();
-      const q = questions[supportState.currentIndex];
-      const answer = el.supportAnswerInput.value.trim().toLowerCase();
+      const q = allSupQuestions[supportState.currentIndex];
+      const elSI = document.getElementById("supportAnswerInput");
+      const elSR = document.getElementById("supportResultText");
+      if(!elSI || !elSR) return;
+
+      const answer = elSI.value.trim().toLowerCase();
       if (!answer) return;
 
       supportState.resolved = Number(supportState.resolved) + 1;
       const ok = q.keywords.some(k => answer.includes(k));
       if (ok) {
         supportState.correct = Number(supportState.correct) + 1; 
-        if(el.supportResultText) { el.supportResultText.textContent = "Ответ засчитан: попал по смыслу."; el.supportResultText.style.color = "var(--color-success)"; }
+        elSR.textContent = "Ответ засчитан: попал по смыслу."; elSR.style.color = "var(--color-success)";
         pushLog(`🟢 АП: ответ засчитан.`);
       } else {
         supportState.mistakes = Number(supportState.mistakes) + 1; 
-        if(el.supportResultText) { el.supportResultText.textContent = "Ответ не засчитан: мало ключевых ориентиров."; el.supportResultText.style.color = "var(--color-error)"; }
+        elSR.textContent = "Ответ не засчитан: мало ключевых ориентиров."; elSR.style.color = "var(--color-error)";
         pushLog(`🔴 АП: ответ не засчитан.`);
       }
       updateSupportStats(); saveProgress(); 
     });
 
-    if(el.supportAnswerInput) el.supportAnswerInput.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); document.getElementById("supportCheckBtn").click(); } });
+    const elSI = document.getElementById("supportAnswerInput");
+    if(elSI) elSI.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); document.getElementById("supportCheckBtn")?.click(); } });
 
     (function () {
       const toggle = document.querySelector("[data-theme-toggle]");
+      if(!toggle) return;
       let theme = "dark"; document.documentElement.setAttribute("data-theme", theme);
       function sync() { toggle.textContent = theme === "dark" ? "🌙" : "☀️"; toggle.setAttribute("aria-label", theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"); }
       sync();
       toggle.addEventListener("click", () => { theme = theme === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", theme); sync(); });
     })();
 
+    // Запускаем изначальный рендер
     const initialActiveBtn = document.querySelector('.main-cat-btn.active');
     if(initialActiveBtn) initialActiveBtn.click();
     renderLogs(); renderShopItems(); updateModStats(); updateSupportStats(); updateShopStats();
