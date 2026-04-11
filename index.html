@@ -1437,7 +1437,7 @@
       { id: 'fortune', title: "Колесо Фортуны", desc: "Испытай удачу и получи случайный бонус!", price: 250 }
     ];
 
-    const rightCards = document.getElementById("rightCards");
+    const rightCards = document.getElementById("rightCards"); // Мы заменяем логи на карточки в нужных режимах
     const rightTitle = document.getElementById("rightTitle");
     const rightLead = document.getElementById("rightLead");
     const brandSubtitle = document.getElementById("brandSubtitle");
@@ -1811,8 +1811,11 @@
       else if(mode === "report") currentTheme = "report";
       html.setAttribute("data-site-theme", currentTheme);
       
-      renderRight(mode);
-      renderLogs();
+      if(mode === 'moderation' || mode === 'support') {
+         renderLogs();
+      } else {
+         renderRight(mode);
+      }
 
       if (mode === "moderation") {
         brandSubtitle.textContent = "Симулятор смены модераторов";
@@ -1898,7 +1901,7 @@
       document.getElementById('accessModal').style.display = 'none';
     });
 
-    document.getElementById('submitReportBtn').addEventListener('click', async () => {
+    document.getElementById('submitReportBtn').addEventListener('click', () => {
       const link = document.getElementById('reportLinkInput').value.trim();
       const res = document.getElementById('reportResultText');
       if(!link) {
@@ -1911,127 +1914,84 @@
         res.style.color = "var(--color-warning)";
         return;
       }
-      if(!currentUser) {
-        res.textContent = "Сначала войдите в аккаунт.";
-        res.style.color = "var(--color-warning)";
-        return;
-      }
 
-      const nickname = currentUser.user_metadata?.nickname || currentUser.email.split('@')[0];
-      const payload = {
-        user_id: currentUser.id,
-        email: currentUser.email,
-        nickname,
-        link,
-        date: new Date().toISOString(),
-        status: null
+      let storedReports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
+
+      const newReport = {
+        id: Date.now().toString() + Math.random().toString(36).substr(2, 9), 
+        email: currentUser ? currentUser.email : 'Неизвестно',
+        link: link,
+        date: new Date().toLocaleString('ru-RU'),
+        status: null 
       };
-
-      const { error } = await supa.from('reports').insert(payload);
-      if (error) {
-        console.error('Submit report error:', error);
-        res.textContent = "Не удалось сохранить отчет в базе. Проверь таблицу reports и права доступа (insert/select/update).";
-        res.style.color = "var(--color-error)";
-        return;
-      }
-
+      storedReports.unshift(newReport); 
+      localStorage.setItem('tambov_reports', JSON.stringify(storedReports));
+      
       res.textContent = "Отчет успешно отправлен и сохранен!";
       res.style.color = "var(--color-success)";
       document.getElementById('reportLinkInput').value = '';
       pushLog(`📝 Отправлен отчет онлайна: ${link}`);
-
+      
       if (document.getElementById('reportsListArea').style.display === 'flex') {
         renderReportsList();
       }
     });
 
-    window.gradeReport = async function(id, statusText, xpAmount, userEmail) {
-      const { data: reportRow, error: reportError } = await supa
-        .from('reports')
-        .select('*')
-        .eq('id', id)
-        .single();
+    window.gradeReport = function(id, statusText, xpAmount) {
+      let reports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
+      let bonuses = JSON.parse(localStorage.getItem('tambov_bonuses') || '{}');
 
-      if (reportError || !reportRow) {
-        alert('Не удалось найти отчет в базе данных.');
-        return;
-      }
-
-      const finalStatus = statusText + (xpAmount > 0 ? ` (+${xpAmount} XP)` : '');
-      const { error: updateError } = await supa
-        .from('reports')
-        .update({ status: finalStatus })
-        .eq('id', id);
-
-      if (updateError) {
-        console.error('Update report status error:', updateError);
-        alert('Не удалось обновить статус отчета. Проверь права update для таблицы reports.');
-        return;
-      }
-
-      if (xpAmount > 0 && userEmail) {
-        let bonuses = JSON.parse(localStorage.getItem('tambov_bonuses') || '{}');
-        bonuses[userEmail] = (bonuses[userEmail] || 0) + xpAmount;
-        localStorage.setItem('tambov_bonuses', JSON.stringify(bonuses));
-      }
-
-      await renderReportsList();
-
-      const totalBonus = userEmail ? (JSON.parse(localStorage.getItem('tambov_bonuses') || '{}')[userEmail] || 0) : 0;
-      alert(`✅ Отчет оценен: ${statusText}!
-
-Пользователю ${userEmail || 'неизвестно'} начислено ${xpAmount} XP.
-
-Всего ХР с отчетов у этого модератора: ${totalBonus} XP.`);
-
-      if (currentUser && currentUser.email === userEmail) {
-        updateModStats();
-        updateSupportStats();
-        updateShopStats();
+      let repIndex = reports.findIndex(r => r.id === id);
+      if (repIndex > -1) {
+        let rep = reports[repIndex];
+        rep.status = statusText + (xpAmount > 0 ? ` (+${xpAmount} XP)` : '');
+        
+        if (xpAmount > 0) {
+          bonuses[rep.email] = (bonuses[rep.email] || 0) + xpAmount;
+          localStorage.setItem('tambov_bonuses', JSON.stringify(bonuses));
+        }
+        
+        localStorage.setItem('tambov_reports', JSON.stringify(reports));
+        renderReportsList(); 
+        
+        let totalBonus = bonuses[rep.email] || 0;
+        alert(`✅ Отчет оценен: ${statusText}!\n\nПользователю ${rep.email} начислено ${xpAmount} XP.\n\nВсего ХР с отчетов у этого модератора: ${totalBonus} XP.`);
+        
+        if (currentUser && currentUser.email === rep.email) {
+          updateModStats();
+          updateSupportStats();
+          updateShopStats();
+        }
       }
     };
-async function renderReportsList() {
+
+    function renderReportsList() {
       const area = document.getElementById('reportsListArea');
       area.style.display = 'flex';
-      area.innerHTML = `<div class="report-list-item" style="text-align:center;">Загрузка отчетов...</div>`;
+      
+      let storedReports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
 
-      const { data, error } = await supa
-        .from('reports')
-        .select('*')
-        .order('date', { ascending: false });
-
-      if (error) {
-        console.error('Load reports error:', error);
-        area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Не удалось загрузить отчеты. Проверь таблицу reports и права select.</div>`;
-        return;
-      }
-
-      const reports = data || [];
-      if (reports.length === 0) {
+      if (storedReports.length === 0) {
         area.innerHTML = `<div class="report-list-item" style="text-align:center;">Отчетов пока нет.</div>`;
         return;
       }
 
-      area.innerHTML = reports.map(rep => {
-        const displayName = rep.nickname || rep.email || 'Неизвестно';
-        const displayDate = rep.date ? new Date(rep.date).toLocaleString('ru-RU') : 'Без даты';
-        return `
-          <div class="report-list-item">
-            <span>Сотрудник: <strong>${displayName}</strong>${rep.email ? ` (${rep.email})` : ''} • Дата: ${displayDate}</span>
-            <a href="${rep.link}" target="_blank" rel="noopener noreferrer">${rep.link}</a>
-            ${!rep.status ? `
-              <div style="display:flex; gap:0.5rem; margin-top:0.5rem; flex-wrap:wrap;">
-                <button class="badge xp" onclick="gradeReport('${rep.id}', 'Норма', 15, '${rep.email || ''}')" style="cursor:pointer; border:1px solid rgba(255,191,71,0.5);">Норма</button>
-                <button class="badge xp" style="background:#52c77b; color:#08110b; cursor:pointer; border:1px solid rgba(82,199,123,0.5);" onclick="gradeReport('${rep.id}', 'Перенорма', 30, '${rep.email || ''}')">Перенорма</button>
-                <button class="badge xp" style="background:#a26cff; color:#fff; cursor:pointer; border:1px solid rgba(162,108,255,0.5);" onclick="gradeReport('${rep.id}', 'Герой дня', 60, '${rep.email || ''}')">Герой дня</button>
-                <button class="badge ban" style="cursor:pointer; border:1px solid rgba(255,107,136,0.5);" onclick="gradeReport('${rep.id}', 'Не засчитано', 0, '${rep.email || ''}')">Не засчитано</button>
-              </div>
-            ` : `
-              <div style="margin-top:0.5rem; font-size:var(--text-xs); font-weight:800; color:var(--color-success); letter-spacing:0.06em;">СТАТУС: ${rep.status}</div>
-            `}
-          </div>
-        `;
-      }).join('');
+      area.innerHTML = storedReports.map(rep => `
+        <div class="report-list-item">
+          <span>Сотрудник: <strong>${rep.email}</strong> • Дата: ${rep.date}</span>
+          <a href="${rep.link}" target="_blank" rel="noopener noreferrer">${rep.link}</a>
+          ${!rep.status ? `
+            <div style="display:flex; gap:0.5rem; margin-top:0.5rem; flex-wrap:wrap;">
+              <button class="badge xp" onclick="gradeReport('${rep.id}', 'Норма', 15)" style="cursor:pointer; border:1px solid rgba(255,191,71,0.5);">Норма</button>
+              <button class="badge xp" style="background:#52c77b; color:#08110b; cursor:pointer; border:1px solid rgba(82,199,123,0.5);" onclick="gradeReport('${rep.id}', 'Перенорма', 30)">Перенорма</button>
+              <button class="badge xp" style="background:#a26cff; color:#fff; cursor:pointer; border:1px solid rgba(162,108,255,0.5);" onclick="gradeReport('${rep.id}', 'Герой дня', 60)">Герой дня</button>
+              <button class="badge ban" style="cursor:pointer; border:1px solid rgba(255,107,136,0.5);" onclick="gradeReport('${rep.id}', 'Не засчитано', 0)">Не засчитано</button>
+            </div>
+          ` : `
+            <div style="margin-top:0.5rem; font-size:var(--text-xs); font-weight:800; color:var(--color-success); letter-spacing:0.06em;">СТАТУС: ${rep.status}</div>
+          `}
+        </div>
+      `).join('');
     }
 
     function randomMessage() {
