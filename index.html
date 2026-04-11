@@ -599,11 +599,22 @@
     let supportState = { resolved: 0, correct: 0, mistakes: 0, currentIndex: -1 };
     let shopState = { spent: 0 };
 
+    // Системы для уникальных вопросов без повторений
+    let modQueue = [];
+    let supQueue = [];
+
     const authModal = document.getElementById('authModal');
     const loginBtnUI = document.getElementById('loginBtnUI');
     const logoutBtnUI = document.getElementById('logoutBtnUI');
     const userEmailDisplay = document.getElementById('userEmailDisplay');
     const authErrorMsg = document.getElementById('authErrorMsg');
+
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+    }
 
     async function loadProgress() {
       if(!currentUser) return;
@@ -947,9 +958,6 @@
       return messages;
     }
 
-    // ==========================================
-    // НОВЫЕ ВОПРОСЫ ПО BLACK RUSSIA
-    // ==========================================
     function createSupportQuestions() {
       return [
         { title: "Навигация", text: "Как найти правительство области в GPS?", keywords: ["/gps 1"] },
@@ -1059,14 +1067,10 @@
 
     function availableXp() { return Math.max(0, calcXP(state.correct) + getReportXp() - shopState.spent); }
 
-    // ==========================================
-    // ИСПРАВЛЕННЫЙ ЛИДЕРБОРД
-    // ==========================================
     async function loadLeaderboard() {
       const lb = document.getElementById("leaderboardList");
       lb.innerHTML = '<div class="message-text">Загрузка...</div>';
       try {
-        // Получаем обе таблицы, чтобы правильно посчитать общий опыт каждого сотрудника
         const [statsRes, reportsRes] = await Promise.all([
           supa.from('user_stats').select('*'),
           supa.from('reports').select('email, xp')
@@ -1074,7 +1078,6 @@
 
         if (statsRes.error) throw statsRes.error;
 
-        // Собираем XP за отчеты
         const repXpMap = {};
         if (reportsRes.data) {
           reportsRes.data.forEach(r => {
@@ -1084,16 +1087,13 @@
           });
         }
 
-        // Вычисляем итоговый баланс для каждого
         const calculatedData = statsRes.data.map(u => {
           const modXp = Math.floor((u.mod_correct || 0) / 10) * 15;
           const userRepXp = repXpMap[u.email] || 0;
-          // Итоговый баланс
           const userXp = modXp + userRepXp - (u.shop_spent || 0);
           return { ...u, userXp };
         });
 
-        // Сортируем локально по рассчитанному XP (от большего к меньшему)
         calculatedData.sort((a, b) => b.userXp - a.userXp);
         const top10 = calculatedData.slice(0, 10);
 
@@ -1338,8 +1338,21 @@
       `).join('');
     }
 
+    function fillModQueue() {
+      modQueue = moderationMessages.map((_, i) => i);
+      shuffleArray(modQueue);
+    }
+
+    function fillSupQueue() {
+      supQueue = supportQuestions.map((_, i) => i);
+      shuffleArray(supQueue);
+    }
+
     function randomMessage() {
-      const item = moderationMessages[Math.floor(Math.random() * moderationMessages.length)];
+      if (modQueue.length === 0) fillModQueue();
+      const index = modQueue.pop();
+      const item = moderationMessages[index];
+      
       const user = randomFunnyNick();
       state.current = { ...item, user };
       el.authorName.textContent = user; el.authorMeta.textContent = "Неизвестно, есть ли нарушение";
@@ -1350,6 +1363,11 @@
     function startGame() {
       if (!currentUser) { authModal.style.display = 'flex'; authErrorMsg.textContent = 'Для начала смены необходимо войти в аккаунт!'; authErrorMsg.style.color = 'var(--color-warning)'; authErrorMsg.style.display = 'block'; return; }
       state.started = true; state.log = [];
+      
+      // Подготавливаем новые перемешанные колоды при старте
+      fillModQueue();
+      fillSupQueue();
+
       el.supportQuestionTitle.textContent = "Вопрос скрыт"; el.supportMeta.textContent = "Нажми «Следующий вопрос»";
       el.supportQuestionText.textContent = "Смена началась. Теперь можно открыть первый вопрос агента поддержки.";
       el.supportAnswerInput.value = ""; el.supportResultText.textContent = "";
@@ -1360,6 +1378,7 @@
 
     function resetGame() {
       state.current = null; state.started = false; state.log = [];
+      modQueue = []; supQueue = [];
       el.authorName.textContent = "System"; el.authorMeta.textContent = "Сообщение появится после старта смены";
       el.messageText.textContent = "Пока сообщений нет. Нажми «Начать смену»."; el.avatarBox.textContent = "T7";
       el.hintText.textContent = "Оценка: без нарушения, устное/пред/мут, бан/перма/глобал.";
@@ -1384,7 +1403,10 @@
 
     document.getElementById("supportNextBtn").addEventListener("click", () => {
       if (!state.started) { el.supportResultText.textContent = "Сначала нажми «Начать смену»."; el.supportResultText.style.color = "var(--color-warning)"; return; }
-      supportState.currentIndex = (supportState.currentIndex + 1) % supportQuestions.length;
+      
+      if (supQueue.length === 0) fillSupQueue();
+      supportState.currentIndex = supQueue.pop();
+      
       const q = supportQuestions[supportState.currentIndex];
       el.supportQuestionTitle.textContent = q.title; el.supportMeta.textContent = "Вопрос игрока";
       el.supportQuestionText.textContent = q.text; el.supportAnswerInput.value = ""; el.supportResultText.textContent = "";
