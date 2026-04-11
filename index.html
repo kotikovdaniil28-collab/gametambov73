@@ -1266,6 +1266,8 @@
     let pendingAction = null; 
 
     let hasAccessCode = localStorage.getItem('access_JohnWickModer') === 'true';
+    // Добавили отдельную переменную для проверки доступа к Отчетности
+    let hasReportAccessCode = localStorage.getItem('access_JohnWIckTopModer') === 'true';
 
     // Список аккаунтов, которые будут видеть кнопку проверки отчетов:
     const adminEmails = ['daniiltimosin72@gmail.com', 'isayevrufat37@gmail.com', 'leha.br222@gmail.com'];
@@ -1274,7 +1276,6 @@
       resolved: 0,
       correct: 0,
       mistakes: 0,
-      report_xp: 0,
       current: null,
       started: false,
       log: []
@@ -1309,7 +1310,6 @@
         supportState.correct = data.sup_correct || 0;
         supportState.mistakes = data.sup_mistakes || 0;
         shopState.spent = data.shop_spent || 0;
-        state.report_xp = data.report_xp || 0;
         
         updateModStats();
         updateSupportStats();
@@ -1330,8 +1330,7 @@
         sup_resolved: supportState.resolved,
         sup_correct: supportState.correct,
         sup_mistakes: supportState.mistakes,
-        shop_spent: shopState.spent,
-        report_xp: state.report_xp
+        shop_spent: shopState.spent
       };
       
       const { error } = await supa.from('user_stats').upsert(payload);
@@ -1624,7 +1623,9 @@
     }
 
     function getReportXp() {
-      return state.report_xp || 0;
+      if (!currentUser) return 0;
+      let bonuses = JSON.parse(localStorage.getItem('tambov_bonuses') || '{}');
+      return bonuses[currentUser.email] || 0;
     }
 
     function renderLogs() {
@@ -1645,6 +1646,7 @@
       }
     }
 
+    // Итоговый доступный ХР БЕЗ учета ответов АП
     function availableXp() {
       return Math.max(0, calcXP(state.correct) + getReportXp() - shopState.spent);
     }
@@ -1872,6 +1874,10 @@
           requestAccess('switch_tab_' + mode, btn);
           return;
         }
+        if (mode === 'report' && !hasReportAccessCode) {
+          requestAccess('switch_tab_' + mode, btn);
+          return;
+        }
         switchMode(mode, btn);
       });
     });
@@ -1885,11 +1891,17 @@
       const type = pendingAction?.type;
 
       if (type && type.startsWith('switch_tab_')) {
-        if (code === 'JohnWickModer') {
+        const mode = type.replace('switch_tab_', '');
+        
+        if (mode === 'shop' && code === 'JohnWickModer') {
           localStorage.setItem('access_JohnWickModer', 'true');
           hasAccessCode = true;
           document.getElementById('accessModal').style.display = 'none';
-          const mode = type.replace('switch_tab_', '');
+          switchMode(mode, pendingAction.btn);
+        } else if (mode === 'report' && code === 'JohnWIckTopModer') {
+          localStorage.setItem('access_JohnWIckTopModer', 'true');
+          hasReportAccessCode = true;
+          document.getElementById('accessModal').style.display = 'none';
           switchMode(mode, pendingAction.btn);
         } else {
           document.getElementById('accessErrorMsg').style.display = 'block';
@@ -1901,11 +1913,9 @@
       document.getElementById('accessModal').style.display = 'none';
     });
 
-    // Отправка отчета в Supabase
-    document.getElementById('submitReportBtn').addEventListener('click', async () => {
+    document.getElementById('submitReportBtn').addEventListener('click', () => {
       const link = document.getElementById('reportLinkInput').value.trim();
       const res = document.getElementById('reportResultText');
-      
       if(!link) {
         res.textContent = "Пожалуйста, вставьте ссылку.";
         res.style.color = "var(--color-warning)";
@@ -1917,8 +1927,7 @@
         return;
       }
 
-      res.textContent = "Отправка...";
-      res.style.color = "var(--color-text-muted)";
+      let storedReports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
 
       const newReport = {
         id: Date.now().toString() + Math.random().toString(36).substr(2, 9), 
@@ -1927,14 +1936,8 @@
         date: new Date().toLocaleString('ru-RU'),
         status: null 
       };
-      
-      // Сохраняем в таблицу reports
-      const { error } = await supa.from('reports').insert([newReport]);
-      if (error) {
-         res.textContent = "Ошибка при отправке: " + error.message;
-         res.style.color = "var(--color-error)";
-         return;
-      }
+      storedReports.unshift(newReport); 
+      localStorage.setItem('tambov_reports', JSON.stringify(storedReports));
       
       res.textContent = "Отчет успешно отправлен и сохранен!";
       res.style.color = "var(--color-success)";
@@ -1946,56 +1949,41 @@
       }
     });
 
-    // Оценка отчета с сохранением в Supabase
-    window.gradeReport = async function(id, statusText, xpAmount, userEmail) {
-      const finalStatus = statusText + (xpAmount > 0 ? ` (+${xpAmount} XP)` : '');
-      
-      // Обновляем статус в таблице reports
-      const { error } = await supa.from('reports').update({ status: finalStatus }).eq('id', id);
-      
-      if (error) {
-         alert("Ошибка при сохранении: " + error.message);
-         return;
-      }
+    window.gradeReport = function(id, statusText, xpAmount) {
+      let reports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
+      let bonuses = JSON.parse(localStorage.getItem('tambov_bonuses') || '{}');
 
-      if (xpAmount > 0 && userEmail) {
-         // Получаем текущее количество report_xp модератора
-         const { data: userData } = await supa.from('user_stats').select('report_xp').eq('email', userEmail).single();
-         const currentBonus = (userData && userData.report_xp) ? userData.report_xp : 0;
-         const newBonus = currentBonus + xpAmount;
-         
-         // Обновляем report_xp
-         await supa.from('user_stats').update({ report_xp: newBonus }).eq('email', userEmail);
-         alert(`✅ Отчет оценен: ${statusText}!\n\nПользователю ${userEmail} начислено ${xpAmount} XP.\n\nВсего ХР с отчетов у этого модератора: ${newBonus} XP.`);
-      } else {
-         alert(`✅ Отчет оценен: ${statusText}!`);
-      }
-      
-      renderReportsList(); 
-      
-      // Обновляем статистику у себя, если мы оценили свой же отчет (мало ли)
-      if (currentUser && currentUser.email === userEmail) {
-        state.report_xp += xpAmount;
-        updateModStats();
-        updateSupportStats();
-        updateShopStats();
+      let repIndex = reports.findIndex(r => r.id === id);
+      if (repIndex > -1) {
+        let rep = reports[repIndex];
+        rep.status = statusText + (xpAmount > 0 ? ` (+${xpAmount} XP)` : '');
+        
+        if (xpAmount > 0) {
+          bonuses[rep.email] = (bonuses[rep.email] || 0) + xpAmount;
+          localStorage.setItem('tambov_bonuses', JSON.stringify(bonuses));
+        }
+        
+        localStorage.setItem('tambov_reports', JSON.stringify(reports));
+        renderReportsList(); 
+        
+        let totalBonus = bonuses[rep.email] || 0;
+        alert(`✅ Отчет оценен: ${statusText}!\n\nПользователю ${rep.email} начислено ${xpAmount} XP.\n\nВсего ХР с отчетов у этого модератора: ${totalBonus} XP.`);
+        
+        if (currentUser && currentUser.email === rep.email) {
+          updateModStats();
+          updateSupportStats();
+          updateShopStats();
+        }
       }
     };
 
-    // Загрузка списка отчетов из Supabase
-    async function renderReportsList() {
+    function renderReportsList() {
       const area = document.getElementById('reportsListArea');
       area.style.display = 'flex';
-      area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка отчетов...</div>';
       
-      const { data: storedReports, error } = await supa.from('reports').select('*').order('date', { ascending: false });
+      let storedReports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
 
-      if (error) {
-        area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка БД: ${error.message}</div>`;
-        return;
-      }
-
-      if (!storedReports || storedReports.length === 0) {
+      if (storedReports.length === 0) {
         area.innerHTML = `<div class="report-list-item" style="text-align:center;">Отчетов пока нет.</div>`;
         return;
       }
@@ -2006,10 +1994,10 @@
           <a href="${rep.link}" target="_blank" rel="noopener noreferrer">${rep.link}</a>
           ${!rep.status ? `
             <div style="display:flex; gap:0.5rem; margin-top:0.5rem; flex-wrap:wrap;">
-              <button class="badge xp" onclick="gradeReport('${rep.id}', 'Норма', 15, '${rep.email}')" style="cursor:pointer; border:1px solid rgba(255,191,71,0.5);">Норма</button>
-              <button class="badge xp" style="background:#52c77b; color:#08110b; cursor:pointer; border:1px solid rgba(82,199,123,0.5);" onclick="gradeReport('${rep.id}', 'Перенорма', 30, '${rep.email}')">Перенорма</button>
-              <button class="badge xp" style="background:#a26cff; color:#fff; cursor:pointer; border:1px solid rgba(162,108,255,0.5);" onclick="gradeReport('${rep.id}', 'Герой дня', 60, '${rep.email}')">Герой дня</button>
-              <button class="badge ban" style="cursor:pointer; border:1px solid rgba(255,107,136,0.5);" onclick="gradeReport('${rep.id}', 'Не засчитано', 0, '${rep.email}')">Не засчитано</button>
+              <button class="badge xp" onclick="gradeReport('${rep.id}', 'Норма', 15)" style="cursor:pointer; border:1px solid rgba(255,191,71,0.5);">Норма</button>
+              <button class="badge xp" style="background:#52c77b; color:#08110b; cursor:pointer; border:1px solid rgba(82,199,123,0.5);" onclick="gradeReport('${rep.id}', 'Перенорма', 30)">Перенорма</button>
+              <button class="badge xp" style="background:#a26cff; color:#fff; cursor:pointer; border:1px solid rgba(162,108,255,0.5);" onclick="gradeReport('${rep.id}', 'Герой дня', 60)">Герой дня</button>
+              <button class="badge ban" style="cursor:pointer; border:1px solid rgba(255,107,136,0.5);" onclick="gradeReport('${rep.id}', 'Не засчитано', 0)">Не засчитано</button>
             </div>
           ` : `
             <div style="margin-top:0.5rem; font-size:var(--text-xs); font-weight:800; color:var(--color-success); letter-spacing:0.06em;">СТАТУС: ${rep.status}</div>
