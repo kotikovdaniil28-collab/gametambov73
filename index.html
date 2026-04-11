@@ -54,60 +54,26 @@
 
     /* === ТЕМЫ ОФОРМЛЕНИЯ === */
     html[data-site-theme="support"] body {
-      background:
-        radial-gradient(circle at top left, rgba(255, 184, 222, 0.3), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(255, 120, 180, 0.3), transparent 55%),
-        linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%);
+      background: radial-gradient(circle at top left, rgba(255, 184, 222, 0.3), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 120, 180, 0.3), transparent 55%), linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%);
     }
-
     html[data-site-theme="about"] body {
-      background:
-        radial-gradient(circle at top left, rgba(255, 220, 120, 0.16), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(108, 140, 255, 0.18), transparent 55%),
-        linear-gradient(160deg, #0c0a05, #0c0a05 45%, #12100a 100%);
+      background: radial-gradient(circle at top left, rgba(255, 220, 120, 0.16), transparent 55%), radial-gradient(circle at bottom right, rgba(108, 140, 255, 0.18), transparent 55%), linear-gradient(160deg, #0c0a05, #0c0a05 45%, #12100a 100%);
     }
-
     html[data-site-theme="shop"] body {
-      background:
-        radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.14), transparent 55%),
-        linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%);
+      background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.14), transparent 55%), linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%);
     }
-
     html[data-site-theme="report"] body {
-      background:
-        radial-gradient(circle at top left, rgba(162, 108, 255, 0.2), transparent 50%),
-        radial-gradient(circle at bottom right, rgba(108, 204, 255, 0.18), transparent 55%),
-        linear-gradient(160deg, #090510, #0a0512 45%, #050411 100%);
+      background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.2), transparent 50%), radial-gradient(circle at bottom right, rgba(108, 204, 255, 0.18), transparent 55%), linear-gradient(160deg, #090510, #0a0512 45%, #050411 100%);
     }
-
     html[data-site-theme="guide"] body {
-      background:
-        radial-gradient(circle at top left, rgba(0, 229, 255, 0.15), transparent 50%),
-        radial-gradient(circle at bottom right, rgba(0, 180, 216, 0.15), transparent 55%),
-        linear-gradient(160deg, #020a10, #041018 45%, #02080d 100%);
+      background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.15), transparent 50%), radial-gradient(circle at bottom right, rgba(0, 180, 216, 0.15), transparent 55%), linear-gradient(160deg, #020a10, #041018 45%, #02080d 100%);
     }
-
     html[data-site-theme="leaderboard"] body {
-      background:
-        radial-gradient(circle at top left, rgba(255, 61, 0, 0.18), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(255, 158, 0, 0.15), transparent 55%),
-        linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%);
+      background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 158, 0, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%);
     }
 
     button, input { font: inherit; }
-
-    button {
-      cursor: pointer;
-      border: none;
-      transition:
-        transform var(--transition),
-        background var(--transition),
-        box-shadow var(--transition),
-        opacity var(--transition),
-        border-color var(--transition);
-    }
-
+    button { cursor: pointer; border: none; transition: transform var(--transition), background var(--transition), box-shadow var(--transition), opacity var(--transition), border-color var(--transition); }
     button:hover { transform: translateY(-1px); }
     button:active { transform: translateY(1px) scale(0.99); }
 
@@ -277,6 +243,73 @@
     .report-list-item a { color: #c4a1ff; text-decoration: none; font-size: var(--text-sm); word-break: break-all; }
     .report-list-item a:hover { text-decoration: underline; }
 
+    /* === СТИЛИ ДЛЯ РУЛЕТКИ (КОЛЕСО ФОРТУНЫ) === */
+    .roulette-wrapper {
+      width: 100%;
+      height: 140px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #0b0d12;
+      border: 2px solid rgba(191, 198, 255, 0.3);
+      box-shadow: inset 0 0 40px rgba(0,0,0,0.8);
+      margin-top: 1rem;
+    }
+    .roulette-track {
+      display: flex;
+      height: 100%;
+      /* Анимация будет задаваться через JS */
+    }
+    .roulette-item {
+      flex: 0 0 160px; /* Ширина одного лота */
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0.5rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: #fff;
+    }
+    .roulette-item i { font-size: 1.5rem; margin-bottom: 5px; }
+    
+    /* Цвета редкостей */
+    .r-leg { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #1a1a1a; text-shadow: 0px 1px 2px rgba(255,255,255,0.5); }
+    .r-rare { background: linear-gradient(135deg, #00b4d8, #0077b6); }
+    .r-bonus { background: linear-gradient(135deg, #52c77b, #2e7d32); }
+    .r-sec { background: linear-gradient(135deg, #a26cff, #4a00e0); }
+    .r-fail { background: linear-gradient(135deg, #444, #111); color: #ccc; }
+    .r-fine { background: linear-gradient(135deg, #ff6b88, #b71c1c); }
+
+    .roulette-pointer {
+      position: absolute;
+      top: 0; bottom: 0; left: 50%;
+      width: 4px;
+      background: #ff3d00;
+      transform: translateX(-50%);
+      z-index: 10;
+      box-shadow: 0 0 15px #ff3d00;
+    }
+    .roulette-pointer::after {
+      content: "▼";
+      position: absolute;
+      top: -5px; left: 50%;
+      transform: translateX(-50%);
+      color: #ff3d00;
+      font-size: 1.2rem;
+    }
+    .roulette-pointer::before {
+      content: "▲";
+      position: absolute;
+      bottom: -5px; left: 50%;
+      transform: translateX(-50%);
+      color: #ff3d00;
+      font-size: 1.2rem;
+    }
+
     @media (max-width: 900px) {
       .hero, .game-wrap { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -309,7 +342,7 @@
       <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Войдите или зарегистрируйтесь, чтобы начать смену и сохранять прогресс.</p>
       
       <input type="email" id="authEmail" class="support-input" placeholder="Ваш Email">
-      <input type="text" id="authNickname" class="support-input" placeholder="Ваш Никнейм (только для регистрации)">
+      <input type="text" id="authNickname" class="support-input" placeholder="Ваш Никнейм (Обязательно для всех)">
       <input type="password" id="authPassword" class="support-input" placeholder="Пароль">
       
       <div id="authErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0; line-height: 1.4;"></div>
@@ -321,6 +354,15 @@
     </div>
   </div>
 
+  <div id="nicknameModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); z-index: 10000; align-items: center; justify-content: center;">
+    <div class="panel" style="padding: 2rem; width: 90%; max-width: 360px; display: grid; gap: 1rem; box-sizing: border-box;">
+      <h2 style="margin: 0; font-family: var(--font-display); color: #ffbf47;">Внимание!</h2>
+      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Для участия в Лидерборде необходимо установить свой игровой Nickname.</p>
+      <input type="text" id="forceNicknameInput" class="support-input" placeholder="Например: John_Wick">
+      <button id="forceNicknameBtn" class="btn btn-primary" style="padding: 0.75rem;">Сохранить Никнейм</button>
+    </div>
+  </div>
+
   <div id="accessModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center;">
     <div class="panel" style="padding: 2rem; width: 90%; max-width: 360px; display: grid; gap: 1rem; box-sizing: border-box;">
       <h2 style="margin: 0; font-family: var(--font-display);">Доступ закрыт</h2>
@@ -329,6 +371,22 @@
       <div id="accessErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0; line-height: 1.4;">Неверный код доступа!</div>
       <button id="accessSubmitBtn" class="btn btn-primary" style="padding: 0.75rem;">Подтвердить</button>
       <button id="accessCloseBtn" class="btn" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted); padding: 0.75rem;">Отмена</button>
+    </div>
+  </div>
+
+  <div id="fortuneModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center;">
+    <div class="panel" style="padding: 2rem; width: 95%; max-width: 600px; display: flex; flex-direction: column; gap: 1rem; box-sizing: border-box; text-align: center;">
+      <h2 style="margin: 0; font-family: var(--font-display); font-size: var(--text-xl); color: #ffbf47;">Колесо Фортуны</h2>
+      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Испытай удачу! Призы могут быть добавлены на твой баланс или переданы Руководству.</p>
+      
+      <div class="roulette-wrapper">
+        <div class="roulette-pointer"></div>
+        <div class="roulette-track" id="rouletteTrack">
+          </div>
+      </div>
+      
+      <div id="fortuneResultText" style="min-height: 2em; font-size: var(--text-lg); font-weight: bold; color: var(--color-success); margin-top: 0.5rem;"></div>
+      <button id="closeFortuneBtn" class="btn btn-secondary" style="margin-top: 1rem; display: none;">Закрыть и забрать</button>
     </div>
   </div>
 
@@ -588,6 +646,7 @@
     const supa = window.supabase.createClient(supabaseUrl, supabaseKey);
 
     let currentUser = null;
+    let currentNickname = null;
     let pendingAction = null; 
 
     let hasAccessCode = localStorage.getItem('access_JohnWickModer') === 'true';
@@ -604,6 +663,7 @@
     let supQueue = [];
 
     const authModal = document.getElementById('authModal');
+    const nicknameModal = document.getElementById('nicknameModal');
     const loginBtnUI = document.getElementById('loginBtnUI');
     const logoutBtnUI = document.getElementById('logoutBtnUI');
     const userEmailDisplay = document.getElementById('userEmailDisplay');
@@ -615,6 +675,45 @@
         [array[i], array[j]] = [array[j], array[i]];
       }
     }
+
+    async function ensureNickname() {
+      if (!currentUser) return;
+      
+      let nick = currentUser.user_metadata?.nickname;
+      
+      if (!nick) {
+        const { data } = await supa.from('user_stats').select('nickname').eq('user_id', currentUser.id).single();
+        if (data && data.nickname) {
+          nick = data.nickname;
+          await supa.auth.updateUser({ data: { nickname: nick } });
+        }
+      }
+
+      if (!nick) {
+        nicknameModal.style.display = 'flex';
+      } else {
+        currentNickname = nick;
+        userEmailDisplay.textContent = nick;
+      }
+    }
+
+    document.getElementById('forceNicknameBtn').addEventListener('click', async () => {
+      const val = document.getElementById('forceNicknameInput').value.trim();
+      if (val.length < 3) {
+        alert("Никнейм должен быть длиннее 3 символов!");
+        return;
+      }
+      
+      await supa.auth.updateUser({ data: { nickname: val } });
+      if (currentUser) {
+        await supa.from('user_stats').update({ nickname: val }).eq('user_id', currentUser.id);
+      }
+      
+      currentNickname = val;
+      userEmailDisplay.textContent = val;
+      nicknameModal.style.display = 'none';
+    });
+
 
     async function loadProgress() {
       if(!currentUser) return;
@@ -636,13 +735,14 @@
       updateModStats();
       updateSupportStats();
       updateShopStats();
+      ensureNickname();
     }
 
     async function saveProgress() {
       if(!currentUser) return;
       const payload = {
         user_id: currentUser.id, email: currentUser.email, 
-        nickname: currentUser.user_metadata?.nickname || currentUser.email.split('@')[0],
+        nickname: currentNickname || currentUser.user_metadata?.nickname || currentUser.email.split('@')[0],
         mod_resolved: state.resolved, mod_correct: state.correct, mod_mistakes: state.mistakes,
         sup_resolved: supportState.resolved, sup_correct: supportState.correct, sup_mistakes: supportState.mistakes,
         shop_spent: shopState.spent
@@ -658,7 +758,8 @@
     supa.auth.onAuthStateChange((event, session) => {
       currentUser = session?.user || null;
       if (currentUser) {
-        userEmailDisplay.textContent = currentUser.user_metadata?.nickname || currentUser.email;
+        currentNickname = currentUser.user_metadata?.nickname;
+        userEmailDisplay.textContent = currentNickname || currentUser.email;
         loginBtnUI.style.display = 'none'; logoutBtnUI.style.display = 'block';
         authModal.style.display = 'none'; loadProgress(); 
       } else {
@@ -698,7 +799,7 @@
       { id: 'm_4', title: "М: Скидка -4 дня", desc: "Максимальная скидка. Повышение через 10 дней.", price: 900 },
       { id: 'bonus_1', title: "Снятие выговора", desc: "Серьезная покупка для исправления репутации.", price: 750 },
       { id: 'bonus_2', title: "Иммунитет на ошибку", desc: "Покупается заранее. Спасает от наказания за мелкий косяк.", price: 400 },
-      { id: 'fortune', title: "Колесо Фортуны", desc: "Испытай удачу и получи случайный бонус!", price: 250 }
+      { id: 'fortune', title: "Колесо Фортуны", desc: "Испытай удачу и получи случайный бонус или штраф!", price: 250 }
     ];
 
     const rightCards = document.getElementById("rightCards");
@@ -740,7 +841,7 @@
         cards: [
           ["Обновление", "Таблица автоматически загружается и обновляется при входе в этот раздел."],
           ["Сортировка", "Теперь таблица точно рассчитывает баланс XP, учитывая ответы на вопросы и траты в магазине."],
-          ["Внимание", "Если таблица пуста, создайте колонку `nickname` (тип text) в таблице `user_stats` в БД Supabase."]
+          ["Внимание", "Отображаются только никнеймы сотрудников. Без никнейма в топ попасть нельзя."]
         ]
       },
       about: {
@@ -829,7 +930,32 @@
         "Я тебя по IP вычислю, жди гостей вечером",
         "Напиши еще слово и я тебе интернет отключу",
         "Давайте все вместе нарушать правила, админы не справятся",
-        "Жди докс, клоун, я тебя найду"
+        "Жди докс, клоун, я тебя найду",
+        "Продам свою сборку на сервер, заходите",
+        "Да кому нужен этот ваш РП, давайте просто стреляться",
+        "Админы вообще не работают, только и умеют муты давать",
+        "Заходите в мой дискорд, там крутая музыка играет",
+        "Кто хочет со мной пойти на другой сервак?",
+        "Этот сервак скоро умрет, я вам говорю",
+        "Слышь, я тебя сейчас в чс закину, понял?",
+        "Да я твой дом труба шатал",
+        "Кому скинуть мой ВК? Давайте общаться там",
+        "Куплю номер ВОР, срочно пишите!",
+        "Сколько стоит випка? Хочу купить",
+        "Как стать админом? Я всё знаю про игру",
+        "Я устал тут играть, пойду в майнкрафт",
+        "Кто со мной в казино на миллион?",
+        "Дайте мне права на вождение фуры, пж",
+        "Как работает эта рулетка? Я ничего не понял",
+        "Где можно купить наркотики в игре?",
+        "Пойду ограблю банк, кто со мной?",
+        "Я сейчас буду всех ДМить, берегитесь!",
+        "Мой друг читер, и его не банят, ха-ха",
+        "Я знаю баг на бесконечные деньги, но не скажу кому",
+        "Как взломать аккаунт? Друг попросил узнать",
+        "Где скачать читы на бессмертие?",
+        "Продам свой аккаунт, кому нужен?",
+        "Я тут главный, слушайтесь меня все"
       ];
 
       const ban = [
@@ -890,7 +1016,19 @@
         "Я твою всю семью резал, понял меня?",
         "Сын шлюхи, иди отсюда",
         "Твоя мамаша мне вчера отсасывала",
-        "Чтоб твои родители сгорели"
+        "Чтоб твои родители сгорели",
+        "Куплю бизнес за рубли, кто продает?",
+        "Продам дом на рублевке за 5000 руб.",
+        "Обменяю свой акк в бравл старс на вирты здесь",
+        "Ищу людей для ДМ состава, будем всех разносить",
+        "Сливаю пароли от админ панелей, заходите [ссылка]",
+        "Кто хочет купить мой обход бана?",
+        "Продам бота для фермы, писать в лс",
+        "Я забанил админа, хотите узнать как?",
+        "Скиньте мне 100р на киви и я дам вам 10кк виртов",
+        "Продаю приватные логи с аккаунтами",
+        "Как обойти мут в чате? Помогите",
+        "Продаю макросы на стрельбу, дешево"
       ];
 
       const good = [
@@ -948,7 +1086,27 @@
         "Кто хочет просто покататься по ночному городу?",
         "Сколько времени занимает отсидка в деморгане за ДМ?",
         "Какая максимальная скорость у скайлайна в фулл тюнинге?",
-        "Всем удачной игры и хорошего лута на контах!"
+        "Всем удачной игры и хорошего лута на контах!",
+        "Когда будет следующий ивент на сервере?",
+        "Где найти расписание контов?",
+        "Как пожениться в игре?",
+        "Сколько стоит обручальное кольцо?",
+        "Как пожать руку другому игроку?",
+        "Где находится спортзал?",
+        "Как прокачать силу персонажа?",
+        "Можно ли купить яхту на сервере?",
+        "Где спавнятся вертолеты?",
+        "Как получить випку бесплатно?",
+        "Что дает промокод #tambov?",
+        "Где посмотреть список всех промокодов?",
+        "Как стать хелпером на сервере?",
+        "Какие обязанности у модератора Discord?",
+        "Как подать заявку на пост лидера?",
+        "Где найти правила захвата вышек?",
+        "Сколько человек нужно для бизвара?",
+        "Какое оружие лучше использовать на капте?",
+        "Где взять аптечки для фамы?",
+        "Как пополнить склад семьи?"
       ];
 
       const messages = [];
@@ -972,6 +1130,14 @@
         { title: "Навигация", text: "Как найти ближайшую заправку?", keywords: ["/gps 9", "команда /gps"] },
         { title: "Навигация", text: "Где находится работа водолаза?", keywords: ["/gps 4"] },
         { title: "Навигация", text: "Где найти транспортную компанию Батырево?", keywords: ["/gps 4"] },
+        { title: "Навигация", text: "Как найти автошколу?", keywords: ["/gps 1"] },
+        { title: "Навигация", text: "Где находится больница?", keywords: ["/gps 1"] },
+        { title: "Навигация", text: "Где можно купить еду?", keywords: ["/gps 8"] },
+        { title: "Навигация", text: "Где находится казино?", keywords: ["/gps 1"] },
+        { title: "Навигация", text: "Как найти банк?", keywords: ["/gps 1"] },
+        { title: "Навигация", text: "Где можно арендовать скутер?", keywords: ["/gps 1"] },
+        { title: "Навигация", text: "Где находится тюрьма (ФСИН)?", keywords: ["/gps 1"] },
+        { title: "Навигация", text: "Как доехать до Рублевки?", keywords: ["/gps 5"] },
         { title: "Команды", text: "Какой командой открыть инвентарь?", keywords: ["/inv", "/i"] },
         { title: "Команды", text: "Как показать свой паспорт игроку?", keywords: ["/pass"] },
         { title: "Команды", text: "Какая команда для передачи денег другому?", keywords: ["/pay"] },
@@ -986,7 +1152,13 @@
         { title: "Команды", text: "Как посмотреть свою статистику и уровень?", keywords: ["/mm", "/stat"] },
         { title: "Команды", text: "Как продать свою машину другому игроку?", keywords: ["/sellmycar"] },
         { title: "Команды", text: "Как загрузить машину на сервер?", keywords: ["/car"] },
-        { title: "Уровни", text: "Какой уровень нужен для работы дальнобойщиком?", keywords: ["10"] },
+        { title: "Команды", text: "Как открыть двери машины?", keywords: ["/lock"] },
+        { title: "Команды", text: "Как пристегнуть ремень безопасности?", keywords: ["/rem"] },
+        { title: "Команды", text: "Как включить фары?", keywords: ["/light"] },
+        { title: "Команды", text: "Как посмотреть список команд?", keywords: ["/help", "/mm"] },
+        { title: "Команды", text: "Как узнать время в игре?", keywords: ["/time"] },
+        { title: "Команды", text: "Как пожать руку игроку?", keywords: ["/hi"] },
+        { title: "Уровни", text: "Какой уровень нужен для работы дальнобойщиком?", keywords: ["18"] },
         { title: "Уровни", text: "С какого уровня доступна работа водолазом?", keywords: ["18"] },
         { title: "Уровни", text: "Какой уровень нужен на инкассатора?", keywords: ["15"] },
         { title: "Уровни", text: "С какого лвл я могу работать кладоискателем?", keywords: ["3"] },
@@ -994,6 +1166,15 @@
         { title: "Уровни", text: "Какой лвл нужен для работы таксистом?", keywords: ["3"] },
         { title: "Уровни", text: "С какого уровня можно стать автомехаником?", keywords: ["4"] },
         { title: "Уровни", text: "С какого уровня можно создать свою семью?", keywords: ["3"] },
+        { title: "Уровни", text: "С какого уровня можно работать курьером?", keywords: ["2"] },
+        { title: "Уровни", text: "Какой уровень нужен для работы строителем?", keywords: ["1", "начальн"] },
+        { title: "Уровни", text: "С какого уровня можно работать на заводе?", keywords: ["1", "начальн"] },
+        { title: "Уровни", text: "Какой уровень нужен для вступления в ОПГ?", keywords: ["3"] },
+        { title: "Уровни", text: "С какого уровня можно вступить в армию?", keywords: ["3"] },
+        { title: "Уровни", text: "Какой уровень нужен для работы в правительстве?", keywords: ["4"] },
+        { title: "Уровни", text: "С какого уровня можно купить бизнес?", keywords: ["10"] },
+        { title: "Уровни", text: "Какой уровень нужен для покупки дома?", keywords: ["1", "любог"] },
+        { title: "Уровни", text: "С какого уровня можно купить машину?", keywords: ["1", "любог"] },
         { title: "Вопросы", text: "Где можно купить ремкомплект?", keywords: ["24/7", "магазин", "азс"] },
         { title: "Вопросы", text: "Где взять лицензию на оружие?", keywords: ["лицензер", "правительств", "/gps 1"] },
         { title: "Вопросы", text: "Как получить военный билет?", keywords: ["арми", "вч", "военкомат"] },
@@ -1007,7 +1188,13 @@
         { title: "Вопросы", text: "Как использовать аптечку?", keywords: ["/healme", "/inv"] },
         { title: "Вопросы", text: "Как открыть/закрыть дверь своего дома?", keywords: ["/home"] },
         { title: "Вопросы", text: "Как подселить друга в дом?", keywords: ["/live"] },
-        { title: "Вопросы", text: "Как настроить безопасность аккаунта (привязки)?", keywords: ["/mm", "/settings", "безопасност"] }
+        { title: "Вопросы", text: "Как настроить безопасность аккаунта (привязки)?", keywords: ["/mm", "/settings", "безопасност"] },
+        { title: "Вопросы", text: "Как оплатить штрафы?", keywords: ["банк", "банкомат", "/gps 1"] },
+        { title: "Вопросы", text: "Где купить сим-карту?", keywords: ["24/7", "магазин"] },
+        { title: "Вопросы", text: "Как позвонить игроку?", keywords: ["/call"] },
+        { title: "Вопросы", text: "Как написать SMS?", keywords: ["/sms"] },
+        { title: "Вопросы", text: "Как добавить контакт в телефон?", keywords: ["/book"] },
+        { title: "Вопросы", text: "Как включить телефон?", keywords: ["/phone"] }
       ];
     }
 
@@ -1067,6 +1254,9 @@
 
     function availableXp() { return Math.max(0, calcXP(state.correct) + getReportXp() - shopState.spent); }
 
+    // ==========================================
+    // ЛИДЕРБОРД ТОЛЬКО ПО НИКНЕЙМАМ
+    // ==========================================
     async function loadLeaderboard() {
       const lb = document.getElementById("leaderboardList");
       lb.innerHTML = '<div class="message-text">Загрузка...</div>';
@@ -1087,26 +1277,28 @@
           });
         }
 
-        const calculatedData = statsRes.data.map(u => {
+        let calculatedData = statsRes.data.map(u => {
           const modXp = Math.floor((u.mod_correct || 0) / 10) * 15;
           const userRepXp = repXpMap[u.email] || 0;
           const userXp = modXp + userRepXp - (u.shop_spent || 0);
           return { ...u, userXp };
         });
 
+        // Фильтруем тех, у кого нет нормального никнейма (старые записи)
+        calculatedData = calculatedData.filter(u => u.nickname && u.nickname.trim().length > 0);
+
         calculatedData.sort((a, b) => b.userXp - a.userXp);
         const top10 = calculatedData.slice(0, 10);
 
         if(top10.length === 0) { 
-          lb.innerHTML = '<div class="message-text">Пока никого нет.</div>'; 
+          lb.innerHTML = '<div class="message-text">Пока никого нет или пользователи не обновили никнеймы.</div>'; 
           return; 
         }
 
         lb.innerHTML = top10.map((u, i) => {
-          const name = u.nickname || (u.email ? u.email.split('@')[0] : `User_${u.user_id.substring(0,4)}`);
           return `
             <div class="report-list-item" style="display:flex; justify-content:space-between; align-items:center; flex-direction:row;">
-              <div><strong style="font-size:1.1rem; color:var(--color-primary);">#${i+1}</strong><span style="margin-left:0.5rem; font-weight: 600;">${name}</span></div>
+              <div><strong style="font-size:1.1rem; color:var(--color-primary);">#${i+1}</strong><span style="margin-left:0.5rem; font-weight: 600;">${u.nickname}</span></div>
               <div class="badge xp">${u.userXp} XP</div>
             </div>`;
         }).join('');
@@ -1115,6 +1307,100 @@
         lb.innerHTML = '<div class="message-text">Ошибка при загрузке.</div>'; 
       }
     }
+
+    // ==========================================
+    // ЛОГИКА РУЛЕТКИ (КОЛЕСА ФОРТУНЫ)
+    // ==========================================
+    const fortunePrizes = [
+      { type: 'r-leg', icon: '🏆', text: '5000 Coins (DS)' },
+      { type: 'r-leg', icon: '🛡️', text: 'Иммунитет на выговор' },
+      { type: 'r-rare', icon: '💎', text: 'Освобождение (1 день)' },
+      { type: 'r-rare', icon: '🛡️', text: 'Иммунитет на пред' },
+      { type: 'r-rare', icon: '⏳', text: '-1 день до повышения' },
+      { type: 'r-bonus', icon: '⚡', text: 'x4 норма' },
+      { type: 'r-bonus', icon: '📦', text: 'Пакет: 125 XP', xp: 125 },
+      { type: 'r-bonus', icon: '📦', text: 'Пакет: 500 XP', xp: 500 },
+      { type: 'r-bonus', icon: '📦', text: 'Пакет: 1000 XP', xp: 1000 },
+      { type: 'r-sec', icon: '🎬', text: 'Секретный лот: Просмотр «Джона Уика»' },
+      { type: 'r-fail', icon: '💀', text: 'Сектор «Ничего»' },
+      { type: 'r-fine', icon: '📉', text: 'Штраф: -100 XP', xp: -100 }
+    ];
+
+    function startFortuneWheel() {
+      const modal = document.getElementById('fortuneModal');
+      const track = document.getElementById('rouletteTrack');
+      const resultText = document.getElementById('fortuneResultText');
+      const closeBtn = document.getElementById('closeFortuneBtn');
+      
+      modal.style.display = 'flex';
+      resultText.textContent = 'Крутим...';
+      closeBtn.style.display = 'none';
+      track.style.transition = 'none';
+      track.style.transform = 'translateX(0px)';
+      track.innerHTML = '';
+
+      // Генерируем "ленту" призов (80 элементов)
+      const numItems = 80;
+      const itemWidth = 160;
+      let winningIndex = Math.floor(Math.random() * 10) + 65; // Победитель где-то в конце
+      
+      let winnerItem = null;
+
+      for (let i = 0; i < numItems; i++) {
+        const p = fortunePrizes[Math.floor(Math.random() * fortunePrizes.length)];
+        if (i === winningIndex) winnerItem = p;
+        
+        const el = document.createElement('div');
+        el.className = `roulette-item ${p.type}`;
+        el.innerHTML = `<i>${p.icon}</i><span>${p.text}</span>`;
+        track.appendChild(el);
+      }
+
+      // Небольшая задержка перед стартом анимации, чтобы DOM обновился
+      setTimeout(() => {
+        const offset = (winningIndex * itemWidth) - (itemWidth / 2) + (Math.random() * 40 - 20); // Центрируем на победителе + рандомный сдвиг
+        track.style.transition = 'transform 6s cubic-bezier(0.15, 0.85, 0.2, 1)';
+        track.style.transform = `translateX(-${offset}px)`;
+        
+        // После остановки рулетки
+        setTimeout(() => {
+          let outcomeMsg = `Вы выиграли: ${winnerItem.text}!`;
+          
+          // Применяем XP если это пакет или штраф
+          if (winnerItem.xp) {
+            if (winnerItem.xp > 0) {
+              // Добавляем XP через фиктивную "сдачу отчета" или бонус, но проще всего временно изменить shopState.spent в минус, так как XP считается динамически
+              shopState.spent -= winnerItem.xp; 
+              outcomeMsg += `\nНа баланс зачислено ${winnerItem.xp} XP!`;
+            } else {
+              shopState.spent -= winnerItem.xp; // минус на минус дает плюс, значит потрачено больше
+              outcomeMsg += `\nС баланса списано ${Math.abs(winnerItem.xp)} XP!`;
+            }
+            updateShopStats();
+            updateModStats();
+            updateSupportStats();
+            saveProgress();
+          }
+
+          resultText.textContent = `🎁 ${winnerItem.text} 🎁`;
+          
+          pushLog(`🎰 Рулетка: Выпал приз "${winnerItem.text}".`);
+          
+          if(!winnerItem.xp) {
+             alert(`✅ КОЛЕСО ФОРТУНЫ!\n\nВы выиграли: "${winnerItem.text}"\n\n📸 Сделайте скриншот этого сообщения и отправьте его руководству для выдачи приза!`);
+          } else {
+             alert(`✅ КОЛЕСО ФОРТУНЫ!\n\n${outcomeMsg}`);
+          }
+          
+          closeBtn.style.display = 'inline-block';
+        }, 6200);
+
+      }, 100);
+    }
+
+    document.getElementById('closeFortuneBtn').addEventListener('click', () => {
+      document.getElementById('fortuneModal').style.display = 'none';
+    });
 
     function renderShopItems() {
       const container = document.getElementById('shopItemsContainer');
@@ -1125,15 +1411,24 @@
           <button class="shop-buy-btn" type="button" data-shop-id="${item.id}" data-price="${item.price}" data-title="${item.title}">Купить</button>
         </article>
       `).join('');
+      
       container.querySelectorAll('.shop-buy-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const price = parseInt(btn.dataset.price);
           const title = btn.dataset.title;
+          const id = btn.dataset.shopId;
+          
           if (availableXp() >= price) {
             shopState.spent += price; 
             updateShopStats(); updateModStats(); updateSupportStats(); saveProgress(); 
-            pushLog(`🛒 Куплен товар: ${title} за ${price} XP.`);
-            alert(`✅ ВЫ УСПЕШНО КУПИЛИ ТОВАР:\n\n"${title}" за ${price} XP\n\n📸 Сделайте скриншот этого сообщения и отправьте его руководству для выдачи скидки/бонуса!`);
+            
+            if (id === 'fortune') {
+               pushLog(`🛒 Куплен билет "Колесо Фортуны" за ${price} XP.`);
+               startFortuneWheel();
+            } else {
+               pushLog(`🛒 Куплен товар: ${title} за ${price} XP.`);
+               alert(`✅ ВЫ УСПЕШНО КУПИЛИ ТОВАР:\n\n"${title}" за ${price} XP\n\n📸 Сделайте скриншот этого сообщения и отправьте его руководству для выдачи скидки/бонуса!`);
+            }
           }
         });
       });
@@ -1362,9 +1657,14 @@
 
     function startGame() {
       if (!currentUser) { authModal.style.display = 'flex'; authErrorMsg.textContent = 'Для начала смены необходимо войти в аккаунт!'; authErrorMsg.style.color = 'var(--color-warning)'; authErrorMsg.style.display = 'block'; return; }
+      
+      if (!currentNickname) {
+        ensureNickname();
+        return;
+      }
+
       state.started = true; state.log = [];
       
-      // Подготавливаем новые перемешанные колоды при старте
       fillModQueue();
       fillSupQueue();
 
