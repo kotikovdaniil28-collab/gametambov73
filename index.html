@@ -895,6 +895,29 @@
       line-height: 1.45;
     }
 
+    .report-list-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      padding: 0.85rem;
+      border-radius: 12px;
+      background: rgba(4, 6, 12, 0.7);
+      border: 1px solid rgba(162, 108, 255, 0.25);
+    }
+    .report-list-item span {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+    }
+    .report-list-item a {
+      color: #c4a1ff;
+      text-decoration: none;
+      font-size: var(--text-sm);
+      word-break: break-all;
+    }
+    .report-list-item a:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 900px) {
       .hero, .game-wrap { grid-template-columns: 1fr; }
       .stats-grid, .shop-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -935,11 +958,11 @@
     </div>
   </div>
 
-  <!-- Модальное окно кода доступа (Магазин / Отчетность) -->
+  <!-- Модальное окно кода доступа (Магазин / Отчетность / Просмотр отчетов) -->
   <div id="accessModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center;">
     <div class="panel" style="padding: 2rem; width: 90%; max-width: 360px; display: grid; gap: 1rem; box-sizing: border-box;">
       <h2 style="margin: 0; font-family: var(--font-display);">Доступ закрыт</h2>
-      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Введите код доступа для просмотра этого раздела.</p>
+      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Введите код доступа для выполнения этого действия.</p>
       <input type="password" id="accessCodeInput" class="support-input" placeholder="Код доступа">
       <div id="accessErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0; line-height: 1.4;">Неверный код доступа!</div>
       <button id="accessSubmitBtn" class="btn btn-primary" style="padding: 0.75rem;">Подтвердить</button>
@@ -1018,7 +1041,7 @@
           <div class="stat"><span class="stat-label">Обработано</span><div class="stat-value" id="resolvedValue">0</div></div>
           <div class="stat"><span class="stat-label">Правильных</span><div class="stat-value" id="correctValue">0</div></div>
           <div class="stat"><span class="stat-label">Ошибок</span><div class="stat-value" id="mistakeValue">0</div></div>
-          <div class="stat"><span class="stat-label">Реком. XP</span><div class="stat-value" id="xpValue">0</div></div>
+          <div class="stat"><span class="stat-label">Остаток XP</span><div class="stat-value" id="xpValue">0</div></div>
         </div>
 
         <div>
@@ -1061,7 +1084,7 @@
           <div class="stat"><span class="stat-label">Вопросов</span><div class="stat-value" id="supportResolvedValue">0</div></div>
           <div class="stat"><span class="stat-label">Зачтено</span><div class="stat-value" id="supportCorrectValue">0</div></div>
           <div class="stat"><span class="stat-label">Ошибок</span><div class="stat-value" id="supportMistakeValue">0</div></div>
-          <div class="stat"><span class="stat-label">Реком. XP</span><div class="stat-value" id="supportXpValue">0</div></div>
+          <div class="stat"><span class="stat-label">Остаток XP</span><div class="stat-value" id="supportXpValue">0</div></div>
         </div>
 
         <div>
@@ -1127,10 +1150,10 @@
         </div>
 
         <div class="stats-grid">
-          <div class="stat"><span class="stat-label">XP модератора</span><div class="stat-value" id="shopModXp">0</div></div>
-          <div class="stat"><span class="stat-label">XP поддержки</span><div class="stat-value" id="shopSupportXp">0</div></div>
-          <div class="stat"><span class="stat-label">Всего XP</span><div class="stat-value" id="shopTotalXp">0</div></div>
-          <div class="stat"><span class="stat-label">Потрачено</span><div class="stat-value" id="shopSpentXp">0</div></div>
+          <div class="stat"><span class="stat-label">Заработано (Модер)</span><div class="stat-value" id="shopModXp">0</div></div>
+          <div class="stat"><span class="stat-label">Заработано (АП)</span><div class="stat-value" id="shopSupportXp">0</div></div>
+          <div class="stat"><span class="stat-label">Всего потрачено</span><div class="stat-value" id="shopSpentXp">0</div></div>
+          <div class="stat"><span class="stat-label">Доступно XP</span><div class="stat-value" id="shopTotalXp" style="color:var(--color-primary);">0</div></div>
         </div>
 
         <div class="shop-grid" id="shopItemsContainer">
@@ -1166,6 +1189,15 @@
               <div class="support-result" id="reportResultText"></div>
             </div>
           </article>
+          
+          <div style="margin-top: 0.5rem;">
+            <button class="btn btn-secondary" type="button" id="viewReportsBtn" style="width:100%;">Посмотреть Отчеты</button>
+          </div>
+          
+          <!-- Зона для отображения отчетов после ввода пароля -->
+          <div id="reportsListArea" style="display:none; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <!-- Список отчетов будет тут -->
+          </div>
         </div>
       </section>
 
@@ -1191,10 +1223,13 @@
 
     let currentUser = null;
     let hasAccessCode = false;
-    let pendingMode = null;
+    let pendingAction = null; // Хранит действие, которое ждет ввода кода
 
     // Email адреса, которым разрешено видеть форму в Отчетности
     const allowedReportEmails = ['daniiltimosin72@gmail.com', 'isayevrufat37@gmail.com', 'leha.br222@gmail.com'];
+
+    // Локальное хранилище для отчетов
+    let storedReports = JSON.parse(localStorage.getItem('tambov_reports') || '[]');
 
     let state = {
       resolved: 0,
@@ -1520,7 +1555,7 @@
     }
 
     function availableXp() {
-      return calcXP(state.correct) + calcXP(supportState.correct) - shopState.spent;
+      return Math.max(0, calcXP(state.correct) + calcXP(supportState.correct) - shopState.spent);
     }
 
     function renderShopItems() {
@@ -1539,9 +1574,11 @@
           const price = parseInt(btn.dataset.price);
           const title = btn.dataset.title;
           if (availableXp() >= price) {
-            shopState.spent += price;
+            shopState.spent += price; // ТРАТИМ ОЧКИ
             updateShopStats();
-            saveProgress();
+            updateModStats(); // Обновляем везде, чтобы показать актуальный остаток
+            updateSupportStats();
+            saveProgress(); // Сохраняем в БД
             pushLog(`🛒 Куплен товар: ${title} за ${price} XP.`);
             alert(`✅ ВЫ УСПЕШНО КУПИЛИ ТОВАР:\n\n"${title}" за ${price} XP\n\n📸 Сделайте скриншот этого сообщения и отправьте его руководству для выдачи скидки/бонуса!`);
           }
@@ -1552,7 +1589,7 @@
     function updateShopStats() {
       const modXp = calcXP(state.correct);
       const supportXp = calcXP(supportState.correct);
-      const totalXp = Math.max(0, modXp + supportXp - shopState.spent);
+      const totalXp = availableXp();
 
       el.shopModXp.textContent = modXp;
       el.shopSupportXp.textContent = supportXp;
@@ -1567,7 +1604,7 @@
     }
 
     function updateModStats() {
-      const xp = calcXP(state.correct);
+      const xp = availableXp();
       el.resolvedValue.textContent = state.resolved;
       el.correctValue.textContent = state.correct;
       el.mistakeValue.textContent = state.mistakes;
@@ -1577,13 +1614,13 @@
       el.resultBanner.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
       el.resultHint.textContent = !state.started
         ? "Нажми «Начать смену», чтобы получить первое сообщение."
-        : `Сейчас рекомендовано ${xp} XP.`;
+        : `Сейчас доступно ${xp} XP (с учетом трат).`;
 
       updateShopStats();
     }
 
     function updateSupportStats() {
-      const xp = calcXP(supportState.correct);
+      const xp = availableXp();
       el.supportResolvedValue.textContent = supportState.resolved;
       el.supportCorrectValue.textContent = supportState.correct;
       el.supportMistakeValue.textContent = supportState.mistakes;
@@ -1593,7 +1630,7 @@
       el.supportBanner.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
       el.supportBannerHint.textContent = !state.started
         ? "Нажми «Начать смену», чтобы открыть первый вопрос."
-        : `Сейчас рекомендовано ${xp} XP.`;
+        : `Сейчас доступно ${xp} XP (с учетом трат).`;
 
       updateShopStats();
     }
@@ -1613,7 +1650,7 @@
 
     function switchMode(mode, btn) {
       document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
+      if(btn) btn.classList.add("active");
 
       document.getElementById("mode-moderation").style.display = mode === "moderation" ? "" : "none";
       document.getElementById("mode-support").style.display = mode === "support" ? "" : "none";
@@ -1654,34 +1691,47 @@
       }
     }
 
-    function checkAccessAndSwitch(mode, btn) {
-      if ((mode === 'shop' || mode === 'report') && !hasAccessCode) {
-        pendingMode = mode;
-        document.getElementById('accessModal').style.display = 'flex';
-        document.getElementById('accessErrorMsg').style.display = 'none';
-        document.getElementById('accessCodeInput').value = '';
-        return;
-      }
-      switchMode(mode, btn);
+    // Универсальная функция для проверки доступа
+    function requestAccess(actionType, targetElementBtn) {
+      pendingAction = { type: actionType, btn: targetElementBtn };
+      document.getElementById('accessModal').style.display = 'flex';
+      document.getElementById('accessErrorMsg').style.display = 'none';
+      document.getElementById('accessCodeInput').value = '';
     }
 
     document.querySelectorAll(".mode-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const mode = btn.dataset.mode;
-        checkAccessAndSwitch(mode, btn);
+        if ((mode === 'shop' || mode === 'report') && !hasAccessCode) {
+          requestAccess('switch_tab_' + mode, btn);
+          return;
+        }
+        switchMode(mode, btn);
       });
+    });
+
+    // Обработчик кнопки "Посмотреть отчеты"
+    document.getElementById('viewReportsBtn').addEventListener('click', () => {
+      requestAccess('view_reports', null);
     });
 
     document.getElementById('accessSubmitBtn').addEventListener('click', () => {
       const code = document.getElementById('accessCodeInput').value;
-      if (code === 'JohnWickModer') {
+      const type = pendingAction?.type;
+
+      // Проверка для вкладок Магазин/Отчетность
+      if (type && type.startsWith('switch_tab_') && code === 'JohnWickModer') {
         hasAccessCode = true;
         document.getElementById('accessModal').style.display = 'none';
-        if (pendingMode) {
-          const btn = document.querySelector(`.mode-btn[data-mode="${pendingMode}"]`);
-          switchMode(pendingMode, btn);
-        }
-      } else {
+        const mode = type.replace('switch_tab_', '');
+        switchMode(mode, pendingAction.btn);
+      } 
+      // Проверка для просмотра отчетов
+      else if (type === 'view_reports' && code === 'StaffModerQ980') {
+        document.getElementById('accessModal').style.display = 'none';
+        renderReportsList();
+      } 
+      else {
         document.getElementById('accessErrorMsg').style.display = 'block';
       }
     });
@@ -1704,12 +1754,44 @@
         res.style.color = "var(--color-warning)";
         return;
       }
+
+      // Сохраняем в localStorage
+      const newReport = {
+        email: currentUser ? currentUser.email : 'Неизвестно',
+        link: link,
+        date: new Date().toLocaleString('ru-RU')
+      };
+      storedReports.unshift(newReport); // добавляем в начало
+      localStorage.setItem('tambov_reports', JSON.stringify(storedReports));
       
-      res.textContent = "Отчет успешно отправлен на проверку!";
+      res.textContent = "Отчет успешно отправлен и сохранен!";
       res.style.color = "var(--color-success)";
       document.getElementById('reportLinkInput').value = '';
       pushLog(`📝 Отправлен отчет онлайна: ${link}`);
+      
+      // Если список уже открыт, обновляем его
+      if (document.getElementById('reportsListArea').style.display === 'flex') {
+        renderReportsList();
+      }
     });
+
+    // Функция отображения сохраненных отчетов
+    function renderReportsList() {
+      const area = document.getElementById('reportsListArea');
+      area.style.display = 'flex';
+      
+      if (storedReports.length === 0) {
+        area.innerHTML = `<div class="report-list-item" style="text-align:center;">Отчетов пока нет.</div>`;
+        return;
+      }
+
+      area.innerHTML = storedReports.map(rep => `
+        <div class="report-list-item">
+          <span>Сотрудник: <strong>${rep.email}</strong> • Дата: ${rep.date}</span>
+          <a href="${rep.link}" target="_blank" rel="noopener noreferrer">${rep.link}</a>
+        </div>
+      `).join('');
+    }
 
     function randomMessage() {
       const item = moderationMessages[Math.floor(Math.random() * moderationMessages.length)];
