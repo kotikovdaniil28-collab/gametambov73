@@ -2170,31 +2170,25 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         
-        // === АУДИО ЭФФЕКТЫ ===
-        let isMusicEnabled = false; 
-        let isSfxEnabled = true;    
-        
+        // === 1. АУДИО ===
+        let isMusicEnabled = false, isSfxEnabled = true;    
         const uiSoundConfig = { volume: 0.15, pitch: 600, type: 'sine', duration: 0.04 };
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
         function playUIClick() {
             if (!isSfxEnabled) return;
             if (audioCtx.state === 'suspended') audioCtx.resume();
-            const osc = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
+            const osc = audioCtx.createOscillator(), gainNode = audioCtx.createGain();
             osc.type = uiSoundConfig.type;
             osc.frequency.setValueAtTime(uiSoundConfig.pitch, audioCtx.currentTime);
             osc.frequency.exponentialRampToValueAtTime(uiSoundConfig.pitch / 2, audioCtx.currentTime + uiSoundConfig.duration);
             gainNode.gain.setValueAtTime(uiSoundConfig.volume, audioCtx.currentTime);
             gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + uiSoundConfig.duration);
-            osc.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-            osc.start();
-            osc.stop(audioCtx.currentTime + uiSoundConfig.duration);
+            osc.connect(gainNode); gainNode.connect(audioCtx.destination);
+            osc.start(); osc.stop(audioCtx.currentTime + uiSoundConfig.duration);
         }
 
-        const bgMusic = new Audio('https://upload.wikimedia.org/wikipedia/commons/b/b4/Chopin_Nocturne_Op_9_No_2_1923.ogg');
-        bgMusic.loop = true; bgMusic.volume = 1.0;
+        const bgMusic = new Audio('https://upload.wikimedia.org/wikipedia/commons/b/b4/Chopin_Nocturne_Op_9_No_2_1923.ogg'); bgMusic.loop = true; bgMusic.volume = 1.0;
         const sndOk = new Audio('https://actions.google.com/sounds/v1/ui/pop.ogg'); sndOk.volume = 0.4;
         const sndFail = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg'); sndFail.volume = 0.2;
         const sndWin = new Audio('https://actions.google.com/sounds/v1/cartoon/clown_horn.ogg'); sndWin.volume = 0.3;
@@ -2217,21 +2211,14 @@
             if (isMusicEnabled) { e.target.textContent = '🎵'; bgMusic.play().catch(()=>{ isMusicEnabled = false; e.target.textContent = '🔇'; }); } 
             else { e.target.textContent = '🔇'; bgMusic.pause(); }
         });
-        
-        document.getElementById('sfxToggleBtn').addEventListener('click', (e) => {
-            isSfxEnabled = !isSfxEnabled;
-            e.target.textContent = isSfxEnabled ? '🔊' : '🔈';
-        });
+        document.getElementById('sfxToggleBtn').addEventListener('click', (e) => { isSfxEnabled = !isSfxEnabled; e.target.textContent = isSfxEnabled ? '🔊' : '🔈'; });
 
-        // === БАЗА ДАННЫХ И ИНИЦИАЛИЗАЦИЯ ===
+        // === 2. БАЗА ДАННЫХ И СОСТОЯНИЕ ===
         const supabaseUrl = 'https://icfihnroblyjjflsfepq.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljZmlobnJvYmx5ampmbHNmZXBxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4NjAxMDksImV4cCI6MjA5MTQzNjEwOX0.Hrvjg572mIKBG-2ffYEr4Fxvpz0hOAex9d6n7WylVkQ';
         const supa = window.supabase.createClient(supabaseUrl, supabaseKey);
         
-        let currentUser = null; 
-        let currentNickname = null;
-        let pendingAction = null; 
-        
+        let currentUser = null, currentNickname = null, pendingAction = null; 
         let hasAccessCode = localStorage.getItem('access_shop') === 'true';
         let hasReportAccessCode = localStorage.getItem('access_report') === 'true';
         let hasApShopAccess = localStorage.getItem('access_ap_shop') === 'true';
@@ -2244,19 +2231,17 @@
         let supportState = { resolved: 0, correct: 0, mistakes: 0, currentIndex: -1, started: false };
         let complaintState = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false };
         let shopState = { spent: 0, apSpent: 0 };
-
         let modQueue = [], supQueue = [], compQueue = [];
-        let allModMessages = [], allSupQuestions = [], allComplaints = [];
 
-        // === МАССИВЫ МАГАЗИНА ===
+        // === 3. МАССИВЫ МАГАЗИНА И КВЕСТОВ ===
         const shopItems = [
             { id: 'mm_1', title: "ММ: Скидка -1 день", desc: "Ускоряет повышение Младшего Модератора (ММ → М).", price: 200, icon: "⏳" },
             { id: 'm_1', title: "М: Скидка -1 день", desc: "Ускоряет повышение Модератора (М → СМ).", price: 250, icon: "⏳" },
             { id: 'sm_1', title: "СМ: Скидка -1 день", desc: "Ускоряет повышение Старшего Модератора (СМ → ЗГМ).", price: 300, icon: "⏳" },
             { id: 'bonus_1', title: "Снятие предупреждения", desc: "Снимает 1 активное предупреждение.", price: 200, icon: "🛡️" },
             { id: 'bonus_2', title: "Снятие выговора", desc: "Снимает 1 активный выговор.", price: 400, icon: "🔥" },
-            { id: 'bonus_3', title: "Иммунитет на предупреждение", desc: "Защищает от получения 1 предупреждения в будущем.", price: 300, icon: "🛡️" },
-            { id: 'bonus_4', title: "Иммунитет на выговор", desc: "Защищает от получения 1 выговора в будущем.", price: 500, icon: "👑" },
+            { id: 'bonus_3', title: "Иммунитет на предупреждение", desc: "Защищает от 1 предупреждения в будущем.", price: 300, icon: "🛡️" },
+            { id: 'bonus_4', title: "Иммунитет на выговор", desc: "Защищает от 1 выговора в будущем.", price: 500, icon: "👑" },
             { id: 'bonus_5', title: "Неактив (1 день)", desc: "Взять неактив без потери нормы.", price: 150, icon: "🛌" },
             { id: 'roulette_mod', title: "Рулетка Модерации", desc: "Испытай удачу! Выиграй до 500 XP.", price: 100, icon: "🎰", action: 'mod_roulette' },
             { id: 'coin_mod', title: "Орёл или Решка", desc: "Ставка 500 XP. Угадай и удвой!", price: 500, icon: "🪙", action: 'mod_coin' },
@@ -2279,20 +2264,102 @@
             { id: 'q4', title: 'Мастер Своего Дела', desc: 'Рассмотреть 200 сообщений в тренажёре', max: 200, getProgress: () => state.resolved, reward: 500 }
         ];
 
-        // === ГЕНЕРАЦИЯ СООБЩЕНИЙ И АНТИ-СПАМ ===
+        // === 4. МАССИВЫ СООБЩЕНИЙ И ЖАЛОБ (БЕЗ ОБРЕЗОК) ===
+        const allModMessages = [
+            {type:"warn",text:"АХАХАХАХХАХАХАХАХАХАХАХАХАХАХАХАХАХХА"},{type:"warn",text:"ААААААААААААААААААААААААААААААААААААААА"},{type:"warn",text:"ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ"},{type:"warn",text:"ООООООООООООООООООООООООООООООООООООООО"},{type:"warn",text:"УУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУ"},{type:"warn",text:"Как дела ????????????????????????"},{type:"warn",text:"Куплю супру срочно!!!!!!!!!!!!!!!!!!!!"},{type:"warn",text:"Эй,,,,,,,,,, кто тут главный????????"},{type:"warn",text:"Продам аксы+++++++++++++++++++++"},{type:"warn",text:"Кто в казик $$$$$$$$$$$$$$$$$$$$$$$"},{type:"warn",text:"Кто в патруль? Кто в патруль? Кто в патруль?"},{type:"warn",text:"1 2 3 4 5 Проверка чата"},{type:"warn",text:"фвлыофдвлофыдвло (сори клаву проверяю)"},{type:"warn",text:"куплю машину быстро"},{type:"warn",text:"spam spam spam spam spam"},{type:"warn",text:"@everyone зайдите в игру пж"},{type:"warn",text:"@here кто продаст ремку?"},{type:"warn",text:"@Lexa_Mackenzie @Lexa_Mackenzie @Lexa_Mackenzie"},{type:"warn",text:"@John Wick ответь в лс"},{type:"warn",text:"Дайте 10к на развитие пожалуйста, я новичок"},{type:"warn",text:"Пацаны, скиньтесь по 100 рублей на фаму пж"},{type:"warn",text:"Админы, дайте админку или виртов хоть чуть-чуть"},{type:"warn",text:"Кто может задонатить мне на блек пасс? Умоляю"},{type:"warn",text:"Подарите машину, мне не на чем ездить"},{type:"warn",text:"Да ваш президент вообще ничего не понимает в экономике"},{type:"warn",text:"Моя религия самая правильная, а вы все не правы"},{type:"warn",text:"Слава [название страны]! Все остальные — мусор"},{type:"warn",text:"Кто за какую партию голосовал? Давайте обсудим"},{type:"warn",text:"Политики вообще оборзели в край"},{type:"warn",text:"Ты вообще к****, иди откисай на спавне"},{type:"warn",text:"Да вы вы тут нули, я вас один раскидаю"},{type:"warn",text:"Плачь больше, форумная крыса"},{type:"warn",text:"Чел, у тебя iq как у хлебушка, не пиши сюда"},{type:"warn",text:"Боже, какие же криворукие сидят в этой фракции"},{type:"warn",text:"Слышь, герой, пошли в войс, я тебе объясню кто ты"},{type:"warn",text:"Что ты там вякнул? Иди уроки делай, ш*****а"},{type:"warn",text:"Твоя фама - сборище н***их, лови аптечку"},{type:"warn",text:"Все бабы в этой игре играть не умеют"},{type:"warn",text:"Ненавижу [национальность], вечно они всё руинят"},{type:"warn",text:"Твое место на кухне, а не в ОПГ"},{type:"warn",text:"Играешь как девчонка, иди в куклы играй"},{type:"warn",text:"Админ, я тебе в лс флудить буду пока не ответишь"},{type:"warn",text:"Давайте все вместе репорт админам заспамим"},{type:"warn",text:"Эй, модер, ты вообще работать собираешься?"},{type:"warn",text:"Давай, забань меня, тебе же хуже будет"},{type:"warn",text:"Я тебя по IP вычислю, жди гостей вечером"},{type:"warn",text:"Напиши еще слово и я тебе интернет отключу"},{type:"warn",text:"Жди докс, к****, я тебя найду"},{type:"warn",text:"Админы вообще не работают, только и умеют муты давать"},{type:"warn",text:"Слышь, я тебя сейчас в чс закину, понял?"},{type:"warn",text:"Да я твой дом труба шатал"},{type:"warn",text:"Сколько стоит випка? Хочу купить"},{type:"warn",text:"Как стать админом? Я всё знаю про игру"},{type:"warn",text:"Кто со мной в казино на миллион?"},{type:"warn",text:"Как работает эта рулетка? Я ничего не понял"},{type:"warn",text:"Где можно купить наркотики в игре?"},{type:"warn",text:"Пойду ограблю банк, кто со мной?"},{type:"warn",text:"Я сейчас буду всех ДМить, берегитесь!"},{type:"warn",text:"Как взломать аккаунт? Друг попросил узнать"},{type:"warn",text:"Где скачать читы на бессмертие?"},{type:"warn",text:"Продам свой аккаунт, кому нужен?"},{type:"warn",text:"ДА ВЫ ВСЕ ТУТ К****Ы, СЕРВЕР МЁРТВЫЙ"},{type:"warn",text:"Ты щас рот закроешь и пойдешь отсюда, понял?"},
+            {type:"ban",text:"Продам вирты, 1кк = 50 рублей. Писать в ЛС"},{type:"ban",text:"Куплю жирный аккаунт с випкой за реал"},{type:"ban",text:"Кто продаст супру за 500 рублей на карту?"},{type:"ban",text:"Обменяю скины в CS:GO на вирты тут"},{type:"ban",text:"Продаю симку блатную, оплата криптой"},{type:"ban",text:"Продам фаму 10 лвл за 2000 рублей"},{type:"ban",text:"Куплю админку за деньги, кому переводить?"},{type:"ban",text:"Обменяю 10кк на 1 сервере на ваши 10кк на 5 сервере"},{type:"ban",text:"Перекину вирты с Тамбова на другой сервер"},{type:"ban",text:"Есть имущка на 3 серве, меняю на Тамбов 73"},{type:"ban",text:"Трансфер виртов, комиссия 5%. Пишите в лс."},{type:"ban",text:"Парни, открылся новый топ РП проект discord.gg/fake-rp"},{type:"ban",text:"Надоел этот сервер, пошлите играть на другой"},{type:"ban",text:"Заходите на мой проект вместо этого"},{type:"ban",text:"Идет набор в админы на новом сервере 192.168.1.1:7777"},{type:"ban",text:"Смотрите какую жесткую аварию с трупами нашел [ссылка]"},{type:"ban",text:"Зацените р***члененку, жесть просто [ссылка]"},{type:"ban",text:"Кому скинуть ц* в лс? добавляйтесь"},{type:"ban",text:"Я пробил его по номеру, вот его адрес: ул. Пушкина д. 10"},{type:"ban",text:"Слил номер телефона ГА в открытый доступ"},{type:"ban",text:"Его зовут Вася Пупкин, учится в 7Б школе №5, давайте загнобим"},{type:"ban",text:"Работает баг на удвоение денег! Переведите мне 50к"},{type:"ban",text:"Удвою ваши вирты, кидайте на банк счет 12345"},{type:"ban",text:"Сливаю приватный аимбот на наш сервер"},{type:"ban",text:"Я с читами играю уже месяц и меня не банят"},{type:"ban",text:"Скрипт на авто-рыбалку (работает 100%): dropmefiles.com/virus"},{type:"ban",text:"Продам мефедрон, гашиш. Доставка по городу"},{type:"ban",text:"Давайте заминируем школу, рецепт бомбы вот тут: [ссылка]"},{type:"ban",text:"Твоя м*** сд***а в канаве, в******к"},{type:"ban",text:"Я твою всю семью р***л, понял меня?"},{type:"ban",text:"Сын ш***и, иди отсюда"},{type:"ban",text:"Чтоб твои родители сг***ли"},{type:"ban",text:"Куплю бизнес за рубли, кто продает?"},{type:"ban",text:"Ищу людей для ДМ состава, будем всех разносить"},{type:"ban",text:"Сливаю пароли от админ панелей, заходите [ссылка]"}
+        ];
+
+        const allSupQuestions = [
+            { title: "Навигация", text: "Как найти правительство области в GPS?", keywords: ["/gps 1"] }, { title: "Навигация", text: "Где находится здание ФСБ?", keywords: ["/gps 1"] }, { title: "Навигация", text: "Как доехать до автосалона низкого класса?", keywords: ["/gps 3"] }, { title: "Навигация", text: "Где устроиться работать на шахту?", keywords: ["/gps 2"] }, { title: "Навигация", text: "Не могу найти автосервис (СТО), подскажите команду.", keywords: ["/gps 11"] }, { title: "Навигация", text: "Как найти ближайшую заправку?", keywords: ["/gps 9", "команда"] }, { title: "Навигация", text: "Где находится работа водолаза?", keywords: ["/gps 4"] }, { title: "Навигация", text: "Как найти автошколу?", keywords: ["/gps 1"] }, { title: "Навигация", text: "Где находится больница?", keywords: ["/gps 1"] }, { title: "Навигация", text: "Где находится тюрьма (ФСИН)?", keywords: ["/gps 1"] }, { title: "Команды", text: "Какой командой открыть инвентарь?", keywords: ["/inv", "/i"] }, { title: "Команды", text: "Как показать свой паспорт игроку?", keywords: ["/pass"] }, { title: "Команды", text: "Какая команда для передачи денег другому?", keywords: ["/pay"] }, { title: "Команды", text: "Как использовать ремкомплект для починки?", keywords: ["/repair", "инвентар"] }, { title: "Команды", text: "Подскажите команду, чтобы завести машину.", keywords: ["/engine"] }, { title: "Команды", text: "Как выкинуть пассажира из моего авто?", keywords: ["/eject"] }, { title: "Команды", text: "Как показать медкарту врачу?", keywords: ["/med"] }, { title: "Команды", text: "Как показать лицензии?", keywords: ["/lic"] }, { title: "Команды", text: "Какая команда открывает багажник?", keywords: ["/trunk"] }, { title: "Команды", text: "Как заправить машину на АЗС?", keywords: ["/fill"] }, { title: "Команды", text: "Как посмотреть свою статистику и уровень?", keywords: ["/mm", "/stat"] }, { title: "Команды", text: "Как открыть двери машины?", keywords: ["/lock"] }, { title: "Уровни", text: "Какой уровень нужен для работы дальнобойщиком?", keywords: ["18"] }, { title: "Уровни", text: "С какого уровня доступна работа водолазом?", keywords: ["18"] }, { title: "Уровни", text: "Какой уровень нужен на инкассатора?", keywords: ["15"] }, { title: "Уровни", text: "С какого лвл я могу работать кладоискателем?", keywords: ["3"] }, { title: "Уровни", text: "С какого уровня доступна работа в МЧС?", keywords: ["3"] }, { title: "Вопросы", text: "Где можно купить ремкомплект?", keywords: ["24/7", "магазин", "азс"] }, { title: "Вопросы", text: "Где взять лицензию на оружие?", keywords: ["лицензер", "правительств", "/gps 1"] }, { title: "Вопросы", text: "Как устроиться в ОПГ?", keywords: ["собеседован", "форум"] }, { title: "Вопросы", text: "Сколько стоит создание семьи?", keywords: ["3кк", "3 миллион"] }, { title: "Вопросы", text: "Как купить Black Pass?", keywords: ["/donate", "/bp"] }, { title: "Вопросы", text: "Как оплатить штрафы?", keywords: ["банк", "банкомат"] }, { title: "Не вижу каналов", meta: "Дискорд", text: "Я зашел на сервер, но вижу только приветствие. Что нужно сделать?", keywords: ['вериф', 'роль', 'правил', 'канал'] }, { title: "Не приходит код", meta: "Проблема", text: "Мне не приходит код подтверждения на почту. Что делать?", keywords: ['спам', 'почт', 'подожд'] }, { title: "Куда жаловаться", meta: "Жалобы", text: "Хочу подать жалобу на модератора. Куда писать?", keywords: ['жалоб', 'скрин', 'форум', 'форма'] }, { title: "Почему мут", meta: "Наказания", text: "Мне выдали мут, но я не понял за что.", keywords: ['причин', 'срок', 'модерат'] }
+        ];
+
+        const allComplaints = [
+            { text: 'Игрок жалуется, что модератор выдал мут за капс, хотя в сообщении было одно слово.', evidence: 'Скрин: "ПОМОГИТЕ".', type: 'reject' },
+            { text: 'Жалоба на игрока, который в голосовом и текстовом канале оскорбил семью.', evidence: 'Видео с прямыми оскорблениями.', type: 'approve' },
+            { text: 'Пользователь просит наказать за бан, но в доказательствах обрезанный скрин.', evidence: 'Один скрин без ID и даты.', type: 'reject' },
+            { text: 'Жалоба на администратора: выдал наказание знакомому в обход правил.', evidence: 'Скрины, упоминание блата.', type: 'pass' },
+            { text: 'Игрок отправил жалобу на обход мута через твинк и приложил скрины.', evidence: 'Скрин признания и совпадение ID.', type: 'approve' },
+            { text: 'Жалоба на то, что хелпер не ответил в течение 3 минут ночью.', evidence: 'Только время отправки.', type: 'reject' },
+            { text: 'Игрок сообщает, что модератор угрожал ему баном без причины в ЛС.', evidence: 'Полная переписка и ник модератора.', type: 'approve' },
+            { text: 'Жалоба касается возможной продажи доната сотрудником.', evidence: 'Скрины перевода, переписки.', type: 'pass' }
+        ];
+
+        // === 5. ПРАВАЯ ПАНЕЛЬ И НАВИГАЦИЯ ===
+        const rightContent = {
+            moderation: { title: "Материалы модератора", lead: "Подсказки по модерации: как оценивать сообщения.", cards: [ ["Без нарушения", "Обычное сообщение."], ["Пред / Мут", "Флуд, капс, политика."], ["Бан / Перма", "Реклама, РМТ, обход банов."] ] },
+            timeattack: { title: "Спидран", lead: "Правила режима на время.", cards: [ ["Время", "Дается 60 секунд. Ошибка = минус 3 секунды."], ["Опыт", "XP не зачисляется на баланс."] ] },
+            support: { title: "Материалы АП", lead: "База знаний для АП и шаблоны ответов.", cards: [ ["База знаний", "Используйте команды /gps и уровни работ."], ["Ответы", "Давайте четкие и понятные ответы."] ] },
+            complaints: { title: "Правила жалоб", lead: "Как рассматривать репорты.", cards: [ ["Одобрить", "Явное нарушение (оск, реклама)."], ["Отказать", "Нет док-в или обрезаны."], ["Передать", "Обжалование ЧСМ или банов ГМ."] ] },
+            quests: { title: "Квесты", lead: "Выполняй задания и забирай XP.", cards: [ ["Прогресс", "Выполняйте норму в тренажерах."], ["Награды", "Нажмите 'Забрать' после выполнения."] ] },
+            shop: { title: "Магазин модераторов", lead: "Тратьте XP.", cards: [ ["Выдача", "Все покупки уходят к руководству."], ["Рулетка", "Призы могут выдать XP или штраф."] ] }
+        };
+
+        function renderRight(mode) {
+            const rt = document.getElementById("rightTitle"), rl = document.getElementById("rightLead"), rc = document.getElementById("rightCards");
+            if(!rt || !rl || !rc) return;
+            const data = rightContent[mode] || rightContent['moderation'];
+            rt.innerHTML = data.title; rl.innerHTML = data.lead;
+            rc.innerHTML = data.cards.map((item, idx) => `<div class="rule-item"><div class="rule-icon ${idx===0?"ok":idx===1?"warn":"ban"}">${idx===0?"✓":idx===1?"?":"ℹ"}</div><div class="rule-copy"><strong>${item[0]}</strong><span>${item[1]}</span></div></div>`).join("");
+        }
+
+        const allModesList = ["moderation","timeattack","complaints","support","guide","leaderboard","about","shop","ap_shop","report","admin_log","ap_admin_log","quests","creator","leadership","ap_admin"];
+        function switchMode(mode, btn) {
+            document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
+            if(btn) btn.classList.add("active");
+            allModesList.forEach(m => { 
+                const panel = document.getElementById("mode-" + m); 
+                if(panel) { if(m===mode){ panel.style.display=""; panel.classList.remove('fade-in'); void panel.offsetWidth; panel.classList.add('fade-in'); } else panel.style.display="none"; }
+            });
+
+            let currentTheme = "mod";
+            if(["support","ap_admin","ap_admin_log","ap_shop"].includes(mode)) currentTheme = "support";
+            else if(["about","shop","leadership","report","guide","leaderboard","admin_log","complaints","quests","timeattack","creator"].includes(mode)) currentTheme = mode;
+            document.documentElement.setAttribute("data-site-theme", currentTheme);
+            renderRight(mode);
+
+            if(mode === 'leaderboard') loadLeaderboard(); 
+            if(mode === 'shop' || mode === 'ap_shop') updateShopStats();
+            if(mode === 'report') checkReportAccess(); 
+            if(mode === 'admin_log') renderAdminLogs(false); 
+            if(mode === 'ap_admin_log') renderAdminLogs(true);
+            if(mode === 'quests') renderQuests(); 
+            if(mode === 'creator') loadCreatorPanelData();
+            if(mode === 'leadership' || mode === 'ap_admin') loadUsersForAdmin();
+        }
+
+        document.querySelectorAll('.main-cat-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.main-cat-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active');
+                const subNavs = { general: document.getElementById('subNavGeneral'), moderation: document.getElementById('subNavModeration'), support: document.getElementById('subNavSupport') };
+                Object.values(subNavs).forEach(nav => { if(nav) nav.style.display = 'none'; });
+                const cat = btn.dataset.cat; if(subNavs[cat]) { subNavs[cat].style.display = 'flex'; const firstBtn = subNavs[cat].querySelector('.mode-btn'); if(firstBtn) firstBtn.click(); }
+            });
+        });
+
+        document.querySelectorAll(".mode-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const mode = btn.dataset.mode;
+                if (mode === 'shop' && !hasAccessCode) { requestAccess('switch_tab_' + mode, btn); return; }
+                if (mode === 'report' && !hasReportAccessCode) { requestAccess('switch_tab_' + mode, btn); return; }
+                if (mode === 'ap_shop' && !hasApShopAccess) { requestAccess('switch_tab_' + mode, btn); return; }
+                switchMode(mode, btn);
+            });
+        });
+
+        // === 6. ЛОГИКА ИГРЫ И АНТИ-СПАМ ===
         function randomFunnyNick() { 
-            const funnyLeft = ["Мелстройность", "Смешнявка", "Макенза", "Сраупен", "бурмалда", "Рассыльщик_Мемов", "ПолитТоксик", "РелигБаттл", "Дед_с_Клавой", "Флуд_Бот"];
-            const funnyRight = ["из_Тамбова", "без_микрофона", "на_ГлОбАнЕ", "в_муте", "с_вечным_баном", "тянет_конфу", "обижен_на_админов", "любит_капс", "ищет_баги", "продаёт_вирты"];
+            const funnyLeft = ["Мелстройность", "Смешнявка", "Макенза", "Сраупен", "бурмалда", "Рассыльщик", "ПолитТоксик", "РелигБаттл", "Дед_с_Клавой"];
+            const funnyRight = ["из_Тамбова", "без_микрофона", "на_ГлОбАнЕ", "в_муте", "с_баном", "тянет_конфу", "обижен", "любит_капс", "ищет_баги"];
             return `${funnyLeft[Math.floor(Math.random() * funnyLeft.length)]}_${funnyRight[Math.floor(Math.random() * funnyRight.length)]}#${Math.floor(1000 + Math.random() * 8999)}`;
         }
-        
         function shuffleArray(array) { for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [array[i], array[j]] = [array[j], array[i]]; } }
         function initials(name) { return name.split(/[#_\s]+/).filter(Boolean).slice(0, 2).map(part => part[0]).join("").toUpperCase(); }
         function calcXP(value) { return Math.floor(Number(value) / 10) * 15; }
         function availableXp() { return Math.max(0, calcXP(state.correct) + Number(state.reportXp || 0) - Number(shopState.spent || 0)); }
         function availablePts() { return Math.max(0, calcXP(supportState.correct) - Number(shopState.apSpent || 0)); }
 
-        let lastActionTime = 0; let spamWarnings = 0; let spamTimerInterval = null;
+        let lastActionTime = 0, spamWarnings = 0, spamTimerInterval = null;
         function isSpamming() {
             const now = Date.now(); const blockUntil = localStorage.getItem('spam_block_until');
             if (blockUntil && now < blockUntil) return true;
@@ -2308,21 +2375,18 @@
 
         function showSpamModalWithTimer() {
             const blockUntil = localStorage.getItem('spam_block_until'); if (!blockUntil) return;
-            const modal = document.getElementById('spamModal'); const closeBtn = document.getElementById('closeSpamModal');
+            const modal = document.getElementById('spamModal'), closeBtn = document.getElementById('closeSpamModal');
             modal.style.display = 'flex'; closeBtn.disabled = true; closeBtn.style.opacity = '0.5'; closeBtn.style.cursor = 'not-allowed';
             let timeLeft = Math.ceil((blockUntil - Date.now()) / 1000); if (timeLeft < 0) timeLeft = 60;
             closeBtn.textContent = `Блокировка: ${timeLeft} сек...`; clearInterval(spamTimerInterval);
             spamTimerInterval = setInterval(() => {
                 timeLeft--;
-                if (timeLeft <= 0) {
-                    clearInterval(spamTimerInterval); localStorage.removeItem('spam_block_until');
-                    closeBtn.disabled = false; closeBtn.style.opacity = '1'; closeBtn.style.cursor = 'pointer'; closeBtn.textContent = 'Я понял, больше не буду';
-                } else { closeBtn.textContent = `Блокировка: ${timeLeft} сек...`; }
+                if (timeLeft <= 0) { clearInterval(spamTimerInterval); localStorage.removeItem('spam_block_until'); closeBtn.disabled = false; closeBtn.style.opacity = '1'; closeBtn.style.cursor = 'pointer'; closeBtn.textContent = 'Я понял, больше не буду'; } 
+                else closeBtn.textContent = `Блокировка: ${timeLeft} сек...`;
             }, 1000);
         }
         document.getElementById('closeSpamModal').addEventListener('click', (e) => { if (!e.target.disabled) document.getElementById('spamModal').style.display = 'none'; });
 
-        // === ИГРОВАЯ ЛОГИКА ===
         function pushLog(text) { state.log.unshift(text); state.log = state.log.slice(0, 50); renderLogs(); }
         function renderLogs() {
             const logList = document.getElementById("logList"); if (!logList) return;
@@ -2330,39 +2394,33 @@
         }
 
         function startGame() {
-            state.started = true; supportState.started = true; complaintState.started = true;
-            document.getElementById('startBtn').disabled = true; randomMessage();
+            state.started = true; supportState.started = true; complaintState.started = true; document.getElementById('startBtn').disabled = true;
+            randomMessage(); randomComplaint();
             if (allSupQuestions.length) {
                 if (supQueue.length === 0) { supQueue = allSupQuestions.map((_, i) => i); shuffleArray(supQueue); }
                 supportState.currentIndex = supQueue.pop(); const q = allSupQuestions[supportState.currentIndex];
-                document.getElementById("supportQuestionTitle").textContent = q.title || "Вопрос"; document.getElementById("supportMeta").textContent = q.meta || "Вопрос игрока";
-                document.getElementById("supportQuestionText").textContent = q.text || "Без текста"; document.getElementById("supportResultText").textContent = "";
+                document.getElementById("supportQuestionTitle").textContent = q.title || "Вопрос"; document.getElementById("supportMeta").textContent = q.meta || "Вопрос игрока"; document.getElementById("supportQuestionText").textContent = q.text || "Без текста"; document.getElementById("supportResultText").textContent = "";
             }
-            randomComplaint(); updateModStats(); updateSupportStats(); updateComplaintStats();
+            updateModStats(); updateSupportStats(); updateComplaintStats();
             document.getElementById("game").scrollIntoView({ behavior: "smooth", block: "start" });
         }
 
         function resetGame() {
-            state.started = false; supportState.started = false; complaintState.started = false;
-            document.getElementById('startBtn').disabled = false;
-            document.getElementById("messageText").textContent = "Пока сообщений нет. Нажми «Начать смену».";
-            document.getElementById("compText").textContent = "Нажми «Начать смену».";
-            document.getElementById("supportQuestionText").textContent = "Нажми «Начать смену».";
+            state.started = false; supportState.started = false; complaintState.started = false; document.getElementById('startBtn').disabled = false;
+            document.getElementById("messageText").textContent = "Пока сообщений нет. Нажми «Начать смену»."; document.getElementById("compText").textContent = "Нажми «Начать смену»."; document.getElementById("supportQuestionText").textContent = "Нажми «Начать смену».";
             pushLog('Смена сброшена.'); updateModStats(); updateSupportStats(); updateComplaintStats();
         }
 
         function randomMessage() {
             if (modQueue.length === 0) { modQueue = allModMessages.map((_, i) => i); shuffleArray(modQueue); }
             const item = allModMessages[modQueue.pop()]; const user = randomFunnyNick(); state.current = { ...item, user };
-            document.getElementById("authorName").textContent = user; document.getElementById("authorMeta").textContent = "Ожидает проверки";
-            document.getElementById("messageText").textContent = item.text; document.getElementById("avatarBox").textContent = initials(user);
+            document.getElementById("authorName").textContent = user; document.getElementById("authorMeta").textContent = "Ожидает проверки"; document.getElementById("messageText").textContent = item.text; document.getElementById("avatarBox").textContent = initials(user);
         }
 
         function randomComplaint() {
             if (compQueue.length === 0) { compQueue = allComplaints.map((_, i) => i); shuffleArray(compQueue); }
             const item = allComplaints[compQueue.pop()]; complaintState.current = item;
-            document.getElementById("compAuthor").textContent = randomFunnyNick(); document.getElementById("compMeta").textContent = "Ожидает вердикта";
-            document.getElementById("compText").textContent = item.text; document.getElementById("compEvidence").textContent = "Доказательства: " + item.evidence;
+            document.getElementById("compAuthor").textContent = randomFunnyNick(); document.getElementById("compMeta").textContent = "Ожидает вердикта"; document.getElementById("compText").textContent = item.text; document.getElementById("compEvidence").textContent = "Доказательства: " + item.evidence;
         }
 
         window.judge = function(action) {
@@ -2383,7 +2441,7 @@
             updateComplaintStats(); saveProgress(); randomComplaint();
         };
 
-        document.getElementById('supportCheckBtn').addEventListener('click', () => {
+        document.getElementById('supportCheckBtn')?.addEventListener('click', () => {
             if (!supportState.started || supportState.currentIndex < 0) return;
             const q = allSupQuestions[supportState.currentIndex]; const answer = document.getElementById("supportAnswerInput").value.trim().toLowerCase();
             const resEl = document.getElementById("supportResultText");
@@ -2394,21 +2452,17 @@
             updateSupportStats(); saveProgress();
         });
 
-        document.getElementById('supportNextBtn').addEventListener('click', () => {
+        document.getElementById('supportNextBtn')?.addEventListener('click', () => {
             if (!supportState.started) return;
             if (supQueue.length === 0) { supQueue = allSupQuestions.map((_, i) => i); shuffleArray(supQueue); }
             supportState.currentIndex = supQueue.pop(); const q = allSupQuestions[supportState.currentIndex];
-            document.getElementById("supportQuestionTitle").textContent = q.title; document.getElementById("supportQuestionText").textContent = q.text;
-            document.getElementById("supportAnswerInput").value = ""; document.getElementById("supportResultText").textContent = "";
+            document.getElementById("supportQuestionTitle").textContent = q.title; document.getElementById("supportQuestionText").textContent = q.text; document.getElementById("supportAnswerInput").value = ""; document.getElementById("supportResultText").textContent = "";
         });
 
-        // === ОБНОВЛЕНИЕ ИНТЕРФЕЙСА ===
+        // === 7. ОБНОВЛЕНИЕ ИНТЕРФЕЙСА ===
         function updateModStats() {
             const xp = availableXp();
-            document.getElementById("resolvedValue").textContent = state.resolved;
-            document.getElementById("correctValue").textContent = state.correct;
-            document.getElementById("mistakeValue").textContent = state.mistakes;
-            document.getElementById("xpValue").textContent = xp;
+            document.getElementById("resolvedValue").textContent = state.resolved; document.getElementById("correctValue").textContent = state.correct; document.getElementById("mistakeValue").textContent = state.mistakes; document.getElementById("xpValue").textContent = xp;
             document.getElementById("xpFill").style.width = (Math.min(1, (state.correct % 10 || (state.correct ? 10 : 0)) / 10) * 100) + "%";
             document.getElementById("resultBanner").firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
             document.getElementById("resultHint").textContent = !state.started ? "Нажми «Начать смену», чтобы получить сообщение." : `Сейчас доступно ${xp} XP.`;
@@ -2416,20 +2470,13 @@
         }
         function updateSupportStats() {
             const pts = availablePts();
-            document.getElementById("supportResolvedValue").textContent = supportState.resolved;
-            document.getElementById("supportCorrectValue").textContent = supportState.correct;
-            document.getElementById("supportMistakeValue").textContent = supportState.mistakes;
-            document.getElementById("supportXpValue").textContent = pts;
+            document.getElementById("supportResolvedValue").textContent = supportState.resolved; document.getElementById("supportCorrectValue").textContent = supportState.correct; document.getElementById("supportMistakeValue").textContent = supportState.mistakes; document.getElementById("supportXpValue").textContent = pts;
             document.getElementById("supportXpFill").style.width = (Math.min(1, (supportState.correct % 10 || (supportState.correct ? 10 : 0)) / 10) * 100) + "%";
             document.getElementById("supportBannerHint").textContent = !state.started ? "Нажми «Начать смену», чтобы открыть вопрос." : `Общий баланс: ${pts} Баллов.`;
             updateShopStats(); renderQuests();
         }
         function updateComplaintStats() {
-            document.getElementById("compResolvedValue").textContent = complaintState.resolved;
-            document.getElementById("compCorrectValue").textContent = complaintState.correct;
-            document.getElementById("compMistakeValue").textContent = complaintState.mistakes;
-            document.getElementById("compXpValue").textContent = availableXp();
-            renderQuests();
+            document.getElementById("compResolvedValue").textContent = complaintState.resolved; document.getElementById("compCorrectValue").textContent = complaintState.correct; document.getElementById("compMistakeValue").textContent = complaintState.mistakes; document.getElementById("compXpValue").textContent = availableXp(); renderQuests();
         }
         function updateShopStats() {
             if(document.getElementById('shopTotalXp')) document.getElementById('shopTotalXp').textContent = availableXp();
@@ -2439,7 +2486,7 @@
             renderShopItems(); renderApShopItems();
         }
 
-        // === МАГАЗИН И МИНИ-ИГРЫ ===
+        // === 8. МАГАЗИН И МИНИ-ИГРЫ ===
         function renderShopItems() {
             const container = document.getElementById('shopItemsContainer'); if(!container) return;
             container.innerHTML = ''; const currentXp = availableXp();
@@ -2481,7 +2528,6 @@
             } else playSound('fail');
         };
 
-        // Рулетка
         function openFortune(isAp = false) {
             const modal = document.getElementById('fortuneModal'); const track = document.getElementById('rouletteTrack'); const resultText = document.getElementById('fortuneResultText');
             document.getElementById('fortuneTitle').textContent = isAp ? "Рулетка АП" : "Рулетка Модерации"; document.getElementById('fortuneTitle').style.color = isAp ? "#ff8fc4" : "#ffbf47";
@@ -2505,37 +2551,25 @@
         }
         document.getElementById('closeFortuneBtn').addEventListener('click', () => { document.getElementById('fortuneModal').style.display = 'none'; });
 
-        // Орёл или Решка
         function openCoinGame() {
-            document.getElementById('coinModal').style.display = 'flex';
-            document.getElementById('coinResult').textContent = '';
-            document.getElementById('coinAnimation').style.display = 'none';
-            document.getElementById('closeCoinBtn').style.display = 'none';
-            document.getElementById('btnHeads').disabled = false; document.getElementById('btnTails').disabled = false;
+            document.getElementById('coinModal').style.display = 'flex'; document.getElementById('coinResult').textContent = ''; document.getElementById('coinAnimation').style.display = 'none'; document.getElementById('closeCoinBtn').style.display = 'none'; document.getElementById('btnHeads').disabled = false; document.getElementById('btnTails').disabled = false;
         }
         function playCoin(choice) {
             document.getElementById('btnHeads').disabled = true; document.getElementById('btnTails').disabled = true;
             const anim = document.getElementById('coinAnimation'); anim.style.display = 'block'; anim.classList.add('flipping');
             setTimeout(async () => {
-                anim.classList.remove('flipping');
-                const outcome = Math.random() < 0.5 ? 'heads' : 'tails';
-                anim.textContent = outcome === 'heads' ? '🦅' : '🪙';
-                const won = choice === outcome;
+                anim.classList.remove('flipping'); const outcome = Math.random() < 0.5 ? 'heads' : 'tails'; anim.textContent = outcome === 'heads' ? '🦅' : '🪙'; const won = choice === outcome;
                 if (won) { shopState.spent -= 1000; await logPurchase(`Орёл/Решка: Победа (1000 XP)`, true, false, 0); document.getElementById('coinResult').textContent = 'Победа! Выпал ' + (outcome==='heads'?'Орёл':'Решка') + '. +1000 XP'; document.getElementById('coinResult').style.color = 'var(--color-success)'; playSound('win'); }
                 else { document.getElementById('coinResult').textContent = 'Проигрыш. Выпал ' + (outcome==='heads'?'Орёл':'Решка') + '.'; document.getElementById('coinResult').style.color = 'var(--color-error)'; playSound('fail'); }
                 updateShopStats(); updateModStats(); await saveProgress(); document.getElementById('closeCoinBtn').style.display = 'inline-block';
             }, 2000);
         }
-        document.getElementById('btnHeads').addEventListener('click', () => playCoin('heads'));
-        document.getElementById('btnTails').addEventListener('click', () => playCoin('tails'));
-        document.getElementById('closeCoinBtn').addEventListener('click', () => document.getElementById('coinModal').style.display = 'none');
+        document.getElementById('btnHeads')?.addEventListener('click', () => playCoin('heads'));
+        document.getElementById('btnTails')?.addEventListener('click', () => playCoin('tails'));
+        document.getElementById('closeCoinBtn')?.addEventListener('click', () => document.getElementById('coinModal').style.display = 'none');
 
-        // Сейфы
         function openSafesGame() {
-            document.getElementById('safesModal').style.display = 'flex';
-            document.getElementById('safesResult').textContent = '';
-            document.getElementById('closeSafesBtn').style.display = 'none';
-            document.querySelectorAll('.safe-btn').forEach(btn => { btn.textContent = '🧰'; btn.disabled = false; });
+            document.getElementById('safesModal').style.display = 'flex'; document.getElementById('safesResult').textContent = ''; document.getElementById('closeSafesBtn').style.display = 'none'; document.querySelectorAll('.safe-btn').forEach(btn => { btn.textContent = '🧰'; btn.disabled = false; });
         }
         document.querySelectorAll('.safe-btn').forEach(btn => {
             btn.addEventListener('click', async () => {
@@ -2547,23 +2581,13 @@
                 updateShopStats(); updateModStats(); await saveProgress(); document.getElementById('closeSafesBtn').style.display = 'inline-block';
             });
         });
-        document.getElementById('closeSafesBtn').addEventListener('click', () => document.getElementById('safesModal').style.display = 'none');
+        document.getElementById('closeSafesBtn')?.addEventListener('click', () => document.getElementById('safesModal').style.display = 'none');
 
-        // Викторина
-        const jwCharacters = [
-            { name: "John Wick", img: "https://upload.wikimedia.org/wikipedia/en/3/34/John_Wick_Chapter_2_Poster.jpg" },
-            { name: "Winston Scott", img: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/Winston_Scott_%28John_Wick%29.jpg/220px-Winston_Scott_%28John_Wick%29.jpg" },
-            { name: "Bowery King", img: "https://i.pinimg.com/736x/87/00/ce/8700ce18c5e69de01b3d7db636e788b7.jpg" }
-        ];
+        const jwCharacters = [ { name: "John Wick", img: "https://upload.wikimedia.org/wikipedia/en/3/34/John_Wick_Chapter_2_Poster.jpg" }, { name: "Winston Scott", img: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/Winston_Scott_%28John_Wick%29.jpg/220px-Winston_Scott_%28John_Wick%29.jpg" }, { name: "Bowery King", img: "https://i.pinimg.com/736x/87/00/ce/8700ce18c5e69de01b3d7db636e788b7.jpg" } ];
         function openJwQuiz() {
-            document.getElementById('jwModal').style.display = 'flex';
-            document.getElementById('closeJwBtn').style.display = 'none';
-            document.getElementById('jwResult').textContent = '';
+            document.getElementById('jwModal').style.display = 'flex'; document.getElementById('closeJwBtn').style.display = 'none'; document.getElementById('jwResult').textContent = '';
             const optsContainer = document.getElementById('jwOptions'); optsContainer.innerHTML = '';
-            
-            const correctChar = jwCharacters[Math.floor(Math.random() * jwCharacters.length)];
-            document.getElementById('jwImage').src = correctChar.img;
-            
+            const correctChar = jwCharacters[Math.floor(Math.random() * jwCharacters.length)]; document.getElementById('jwImage').src = correctChar.img;
             let options = [...jwCharacters]; shuffleArray(options);
             options.forEach(char => {
                 const btn = document.createElement('button'); btn.className = 'jw-option-btn'; btn.textContent = char.name;
@@ -2572,152 +2596,12 @@
                     if (char.name === correctChar.name) { shopState.spent -= 1500; await logPurchase(`Викторина JW: Победа (1500 XP)`, true, false, 0); document.getElementById('jwResult').textContent = 'Правильно! +1500 XP'; document.getElementById('jwResult').style.color = 'var(--color-success)'; playSound('win'); }
                     else { document.getElementById('jwResult').textContent = 'Неверно. Это ' + correctChar.name; document.getElementById('jwResult').style.color = 'var(--color-error)'; playSound('fail'); }
                     updateShopStats(); updateModStats(); await saveProgress(); document.getElementById('closeJwBtn').style.display = 'inline-block';
-                };
-                optsContainer.appendChild(btn);
+                }; optsContainer.appendChild(btn);
             });
         }
-        document.getElementById('closeJwBtn').addEventListener('click', () => document.getElementById('jwModal').style.display = 'none');
+        document.getElementById('closeJwBtn')?.addEventListener('click', () => document.getElementById('jwModal').style.display = 'none');
 
-        // === ОТЧЕТНОСТЬ И АВТОРИЗАЦИЯ ===
-        function checkReportAccess() {
-            const warn = document.getElementById('reportAccessWarning'); const formArea = document.getElementById('reportFormArea');
-            const adminPanel = document.getElementById('adminPanelArea');
-            if (currentUser) {
-                if(warn) warn.style.display = 'none'; if(formArea) formArea.style.display = 'block';
-                if (adminEmails.includes(currentUser.email)) { if(adminPanel) adminPanel.style.display = 'block'; }
-            } else {
-                if(warn) warn.style.display = 'block'; if(formArea) formArea.style.display = 'none';
-            }
-        }
-
-        document.getElementById('submitReportBtn').addEventListener('click', async () => {
-            if (!currentUser) return;
-            const link = document.getElementById('reportLinkInput').value.trim(); const res = document.getElementById('reportResultText');
-            if (!link.startsWith('http')) { res.textContent = "Укажите корректную ссылку!"; res.style.color = "var(--color-error)"; return; }
-            res.textContent = "Отправка..."; res.style.color = "var(--color-text-muted)";
-            const { error } = await supa.from('reports').insert([{ id: Date.now().toString(), email: currentUser.email, link: link, date: new Date().toLocaleString('ru-RU'), status: 'На проверке', xp: 0 }]);
-            if (error) { res.textContent = "Ошибка: " + error.message; res.style.color = "var(--color-error)"; return; }
-            res.textContent = "Отчет успешно отправлен!"; res.style.color = "var(--color-success)"; document.getElementById('reportLinkInput').value = ''; playSound('win');
-        });
-
-        document.getElementById('viewReportsBtn')?.addEventListener('click', async () => {
-            const listArea = document.getElementById('reportsListArea'); if(!listArea) return;
-            if(listArea.style.display === 'flex') { listArea.style.display = 'none'; return; }
-            listArea.style.display = 'flex'; listArea.innerHTML = 'Загрузка...';
-            const { data: reports } = await supa.from('reports').select('*').neq('email', 'ACCESS_KEY').order('date', { ascending: false }).limit(30);
-            if(reports && reports.length > 0) {
-                listArea.innerHTML = reports.map(r => `
-                    <div style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 12px; border: 1px solid rgba(191,198,255,0.2);">
-                        <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem;"><strong>${r.email}</strong><span style="color:var(--color-text-faint); font-size: 0.8rem;">${r.date}</span></div>
-                        <div style="margin-bottom: 0.5rem;"><a href="${r.link}" target="_blank" style="color: var(--color-primary);">Скриншот онлайна</a></div>
-                        <div style="display:flex; justify-content:space-between; align-items:center;">
-                            <span style="color: ${r.status === 'Одобрено' ? 'var(--color-success)' : r.status === 'Отказано' ? 'var(--color-error)' : 'var(--color-warning)'}">${r.status} (${r.xp} XP)</span>
-                            ${r.status === 'На проверке' ? `<div style="display:flex; gap: 0.5rem;"><button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; border-color: var(--color-success); color: var(--color-success);" onclick="processReport('${r.id}', true)">Одобрить (100 XP)</button><button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; border-color: var(--color-error); color: var(--color-error);" onclick="processReport('${r.id}', false)">Отказать</button></div>` : ''}
-                        </div>
-                    </div>`).join('');
-            } else listArea.innerHTML = '<div class="message-text">Нет отчетов</div>';
-        });
-
-        window.processReport = async function(id, approve) {
-            await supa.from('reports').update({ status: approve ? 'Одобрено' : 'Отказано', xp: approve ? 100 : 0 }).eq('id', id);
-            document.getElementById('viewReportsBtn').click(); setTimeout(() => document.getElementById('viewReportsBtn').click(), 100);
-        };
-
-        // === ПАНЕЛЬ СОЗДАТЕЛЯ И ЛОГИ ===
-        let creatorUsersList = [];
-        async function loadCreatorPanelData() {
-            if (!currentUser || currentUser.email !== creatorEmail) return;
-            const sel = document.getElementById('creatorUserSelect'); if (sel) sel.innerHTML = '<option>Загрузка...</option>';
-            const { data: users } = await supa.from('user_stats').select('user_id, nickname, email, shop_spent');
-            if (users && users.length > 0) { creatorUsersList = users; if (sel) sel.innerHTML = users.map(u => `<option value="${u.user_id}">${u.nickname || u.email} (Списано: ${u.shop_spent || 0})</option>`).join(''); }
-            
-            const list = document.getElementById('creatorKeysList'); if (!list) return; list.innerHTML = 'Загрузка ключей...';
-            const { data: keys } = await supa.from('reports').select('*').eq('email', 'ACCESS_KEY').order('date', { ascending: false });
-            if (keys && keys.length > 0) {
-                list.innerHTML = keys.map(k => `<div style="display:flex; justify-content:space-between; align-items:center; background: rgba(0,0,0,0.5); padding: 0.5rem 1rem; border-radius: 8px;"><div><strong style="color:var(--color-primary); font-size: 1.1rem;">${k.link}</strong> <span style="font-size:0.8rem; color:var(--color-text-faint);">(${k.status === 'shop' ? 'Магазин' : k.status === 'report' ? 'Отчеты' : 'Магазин АП'})</span></div><button class="badge ban del-key-btn" data-id="${k.id}" style="cursor:pointer; padding: 0.5rem 1rem;">Удалить</button></div>`).join('');
-                list.querySelectorAll('.del-key-btn').forEach(btn => { btn.addEventListener('click', async () => { btn.disabled = true; await supa.from('reports').delete().eq('id', btn.dataset.id); loadCreatorPanelData(); }); });
-            } else list.innerHTML = '<div style="font-size:var(--text-sm); color:var(--color-text-faint);">Ключей пока нет</div>';
-        }
-
-        document.getElementById('creatorAddKeyBtn')?.addEventListener('click', async () => {
-            const role = document.getElementById('creatorKeyRole').value; const keyStr = document.getElementById('creatorKeyInput').value.trim();
-            if (keyStr.length < 3) return alert("Ключ должен быть длиннее 3 символов!");
-            document.getElementById('creatorAddKeyBtn').disabled = true;
-            const { error } = await supa.from('reports').insert([{ id: Date.now().toString(), email: 'ACCESS_KEY', link: keyStr, date: new Date().toLocaleString('ru-RU'), status: role, xp: 0 }]);
-            if (!error) { document.getElementById('creatorKeyInput').value = ''; alert("Ключ успешно создан!"); loadCreatorPanelData(); }
-            document.getElementById('creatorAddKeyBtn').disabled = false;
-        });
-
-        document.getElementById('creatorXpBtn')?.addEventListener('click', async () => {
-             const userId = document.getElementById('creatorUserSelect').value; const amount = Number(document.getElementById('creatorXpAmount').value);
-             if (!userId || isNaN(amount)) return;
-             const targetUser = creatorUsersList.find(u => u.user_id === userId); if(!targetUser) return;
-             const newSpent = (Number(targetUser.shop_spent) || 0) - amount; 
-             await supa.from('user_stats').update({ shop_spent: newSpent }).eq('user_id', userId); alert(`Успешно! Баланс изменен.`); loadCreatorPanelData();
-        });
-
-        document.getElementById('trollWipeXpBtn')?.addEventListener('click', async () => {
-            if (!currentUser || currentUser.email !== creatorEmail) return;
-            const targetNick = document.getElementById('trollCustomNick').value.trim() || randomFunnyNick();
-            await supa.from('user_stats').upsert({ user_id: currentUser.id, email: currentUser.email, nickname: targetNick, shop_spent: 99999 });
-            alert(`🤡 Троллинг: XP обнулен, новый ник: ${targetNick}`); location.reload();
-        });
-
-        document.getElementById('trollRenameBtn')?.addEventListener('click', async () => {
-            if (!currentUser || currentUser.email !== creatorEmail) return;
-            const targetNick = document.getElementById('trollCustomNick').value.trim() || randomFunnyNick();
-            await supa.from('user_stats').update({ nickname: targetNick }).eq('user_id', currentUser.id);
-            alert(`🤡 Троллинг: Ник изменен на ${targetNick}`); location.reload();
-        });
-
-        async function renderAdminLogs(isAp = false) {
-            const area = document.getElementById(isAp ? 'apAdminLogsArea' : 'adminLogsArea'); if(!area) return;
-            area.innerHTML = 'Загрузка...';
-            const { data: logs } = await supa.from('admin_logs').select('*').eq('type', isAp ? 'ap_shop' : 'mod_shop').order('created_at', { ascending: false }).limit(50);
-            if(logs && logs.length > 0) {
-                area.innerHTML = logs.map(log => `<div style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 12px; border: 1px solid rgba(191,198,255,0.2); display:flex; justify-content:space-between; align-items:center;"><div><strong style="color: ${isAp ? '#ff8fc4' : '#ffbf47'};">${log.nickname}</strong><div style="font-size:0.9rem; margin: 0.2rem 0;">Покупка/Выигрыш: <span style="font-weight: bold;">${log.item_name}</span></div><div style="font-size:0.8rem; color:var(--color-text-faint);">${new Date(log.created_at).toLocaleString('ru-RU')}</div></div><div style="text-align: right;"><div style="margin-bottom: 0.5rem; color: ${log.status === 'Выдано' || log.status === 'Автоматически зачислено' ? 'var(--color-success)' : 'var(--color-warning)'}">${log.status}</div>${log.status === 'Ожидает выдачи' ? `<button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="markLogIssued('${log.id}', ${isAp})">Отметить как выданное</button>` : ''}</div></div>`).join('');
-            } else area.innerHTML = '<div class="message-text">Логи пусты.</div>';
-        }
-        window.markLogIssued = async function(id, isAp) { await supa.from('admin_logs').update({ status: 'Выдано' }).eq('id', id); renderAdminLogs(isAp); };
-        document.getElementById('loadAdminLogsBtn')?.addEventListener('click', () => renderAdminLogs(false));
-        document.getElementById('loadApAdminLogsBtn')?.addEventListener('click', () => renderAdminLogs(true));
-
-        // === ИНИЦИАЛИЗАЦИЯ ===
-        function bindEssentialButtons() {
-            document.querySelectorAll('[data-action]').forEach(btn => { btn.onclick = () => judge(btn.dataset.action); });
-            document.querySelectorAll('[data-comp-action]').forEach(btn => { btn.onclick = () => judgeComplaint(btn.dataset.compAction); });
-            const sb = document.getElementById('startBtn'); if (sb) sb.onclick = startGame;
-            const rb = document.getElementById('resetBtn'); if (rb) rb.onclick = resetGame;
-            const themeBtn = document.querySelector('[data-theme-toggle]');
-            if(themeBtn) { themeBtn.onclick = () => { const root = document.documentElement; if(root.getAttribute('data-theme') === 'dark') { root.setAttribute('data-theme', 'light'); themeBtn.textContent = '☀️'; } else { root.setAttribute('data-theme', 'dark'); themeBtn.textContent = '🌙'; } }; }
-        }
-
-        allModMessages = [
-            {type:"warn", text:"АХАХАХАХХАХАХАХАХАХАХАХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХАХАХАХХА"},
-            {type:"warn", text:"УУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУ"},
-            {type:"warn", text:"Как дела ????????????????????????"},
-            {type:"warn", text:"Моя религия самая правильная, а вы все не правы"},
-            {type:"ban", text:"Продам вирты, 1кк = 50 рублей"},
-            {type:"ban", text:"Парни, открылся новый топ РП проект: discord.gg/fake-rp"},
-            {type:"ban", text:"Слил номер телефона ГА в открытый доступ"},
-            {type:"ban", text:"Продам мефедрон, гашиш"},
-            {type:"good", text:"ПАЦАНЫ КТО НА КАПТ БЫСТРО ЗАЛЕТАЙТЕ"},
-            {type:"good", text:"Во сколько сегодня собеседование в Мэрию?"}
-        ]; // (Массив сокращен для стабильной работы скрипта, генератор работает случайным образом)
-
-        allSupQuestions = [
-            { title: "Навигация", text: "Как найти правительство области в GPS?", keywords: ["/gps 1"] },
-            { title: "Команды", text: "Какой командой открыть инвентарь?", keywords: ["/inv", "/i"] },
-            { title: "Уровни", text: "Какой уровень нужен для работы дальнобойщиком?", keywords: ["18"] },
-            { title: "Не вижу каналов", meta: "Discord", text: "Вижу только приветствие в ДС, что делать?", keywords: ['вериф', 'роль', 'правил', 'канал'] }
-        ];
-
-        allComplaints = [
-            { text: 'Игрок жалуется, что модератор выдал мут за капс, хотя в сообщении было одно слово.', evidence: 'Скрин: "ПОМОГИТЕ".', type: 'reject' },
-            { text: 'Жалоба на игрока, который оскорбил семью.', evidence: 'Видео с прямыми оскорблениями.', type: 'approve' },
-            { text: 'Жалоба на администратора: выдал наказание знакомому в обход правил.', evidence: 'Скрины, подозрение на блат.', type: 'pass' }
-        ];
-
+        // === 9. КВЕСТЫ И ЛИДЕРБОРД ===
         function renderQuests() {
             const cont = document.getElementById('questsContainer'); if(!cont) return;
             const claimed = localStorage.getItem('quests_' + (currentUser ? currentUser.email : '')) ? JSON.parse(localStorage.getItem('quests_' + (currentUser ? currentUser.email : ''))) : [];
@@ -2732,29 +2616,176 @@
             shopState.spent -= reward; updateShopStats(); updateModStats(); updateSupportStats(); saveProgress(); playSound('win'); alert(`✅ Квест выполнен! +${reward} XP.`); renderQuests();
         };
 
-        // Запуск
-        bindEssentialButtons();
-        renderShopItems();
-        renderApShopItems();
-        renderQuests();
+        window.loadLeaderboard = async function() {
+            const list = document.getElementById('leaderboardList'); if(!list) return;
+            list.innerHTML = '<div class="message-text" style="text-align:center; padding:2rem;">Загрузка данных...</div>';
+            const { data: users, error } = await supa.from('user_stats').select('nickname, email, mod_correct, shop_spent, sup_correct, ap_spent');
+            if(error || !users) { list.innerHTML = `<div class="message-text">Ошибка: ${error?.message}</div>`; return; }
+            const { data: repData } = await supa.from('reports').select('email, xp').eq('status', 'Одобрено');
+            
+            let modArr = [], apArr = [];
+            users.forEach(u => {
+                let reportXp = 0; if (repData) repData.forEach(r => { if(r.email === u.email) reportXp += (Number(r.xp)||0); });
+                const mXp = Math.max(0, calcXP(u.mod_correct) + reportXp - Number(u.shop_spent||0));
+                const aXp = Math.max(0, calcXP(u.sup_correct) - Number(u.ap_spent||0));
+                if(u.nickname) { modArr.push({ name: u.nickname, score: mXp }); apArr.push({ name: u.nickname, score: aXp }); }
+            });
+            modArr.sort((a,b)=>b.score-a.score); apArr.sort((a,b)=>b.score-a.score);
+            
+            window.lbModHTML = modArr.slice(0,10).map((u, i) => `<div class="rule-item" style="border-color: ${i===0?'#ffbf47':i===1?'#a7afcf':i===2?'#cd7f32':'rgba(191,198,255,0.3)'};"><div class="rule-icon" style="background: ${i===0?'#ffbf47':i===1?'#a7afcf':i===2?'#cd7f32':'transparent'}; color: ${i<3?'#000':'var(--color-text-faint)'}; font-size:1.2rem;">${i+1}</div><div class="rule-copy" style="display:flex; justify-content:space-between; align-items:center;"><strong>${u.name}</strong><span class="badge xp">${u.score} XP</span></div></div>`).join('');
+            window.lbApHTML = apArr.slice(0,10).map((u, i) => `<div class="rule-item" style="border-color: ${i<3?'#ff8fc4':'rgba(191,198,255,0.3)'};"><div class="rule-icon" style="background: ${i<3?'#ff8fc4':'transparent'}; color: ${i<3?'#000':'var(--color-text-faint)'}; font-size:1.2rem;">${i+1}</div><div class="rule-copy" style="display:flex; justify-content:space-between; align-items:center;"><strong>${u.name}</strong><span class="badge" style="background:#ff8fc4; color:#000;">${u.score} Баллов</span></div></div>`).join('');
+            list.innerHTML = window.lbModHTML || '<div class="message-text">Топ пуст.</div>';
+        };
+        document.getElementById('lbBtnMod')?.addEventListener('click', () => { document.getElementById('leaderboardList').innerHTML = window.lbModHTML; document.getElementById('lbBtnMod').className="btn btn-primary"; document.getElementById('lbBtnAp').className="btn btn-secondary"; });
+        document.getElementById('lbBtnAp')?.addEventListener('click', () => { document.getElementById('leaderboardList').innerHTML = window.lbApHTML; document.getElementById('lbBtnAp').className="btn btn-primary"; document.getElementById('lbBtnMod').className="btn btn-secondary"; });
 
-        // Авторизация Supabase
+        // === 10. ПАНЕЛИ СОЗДАТЕЛЯ И АДМИНА ===
+        let creatorUsersList = [];
+        async function loadCreatorPanelData() {
+            if (!currentUser || currentUser.email !== creatorEmail) return;
+            const sel = document.getElementById('creatorUserSelect'); if (sel) sel.innerHTML = '<option>Загрузка...</option>';
+            const { data: users } = await supa.from('user_stats').select('user_id, nickname, email, shop_spent');
+            if (users && users.length > 0) { creatorUsersList = users; if (sel) sel.innerHTML = users.map(u => `<option value="${u.user_id}">${u.nickname || u.email} (Списано: ${u.shop_spent || 0})</option>`).join(''); }
+            
+            const list = document.getElementById('creatorKeysList'); if (!list) return; list.innerHTML = 'Загрузка ключей...';
+            const { data: keys } = await supa.from('reports').select('*').eq('email', 'ACCESS_KEY').order('date', { ascending: false });
+            if (keys && keys.length > 0) {
+                list.innerHTML = keys.map(k => `<div style="display:flex; justify-content:space-between; align-items:center; background: rgba(0,0,0,0.5); padding: 0.5rem 1rem; border-radius: 8px;"><div><strong style="color:var(--color-primary); font-size: 1.1rem;">${k.link}</strong> <span style="font-size:0.8rem; color:var(--color-text-faint);">(${k.status})</span></div><button class="badge ban del-key-btn" data-id="${k.id}" style="cursor:pointer; padding: 0.5rem 1rem;">Удалить</button></div>`).join('');
+                list.querySelectorAll('.del-key-btn').forEach(btn => { btn.addEventListener('click', async () => { btn.disabled = true; await supa.from('reports').delete().eq('id', btn.dataset.id); loadCreatorPanelData(); }); });
+            } else list.innerHTML = '<div style="font-size:var(--text-sm); color:var(--color-text-faint);">Ключей пока нет</div>';
+        }
+        document.getElementById('creatorAddKeyBtn')?.addEventListener('click', async () => {
+            const role = document.getElementById('creatorKeyRole').value; const keyStr = document.getElementById('creatorKeyInput').value.trim();
+            if (keyStr.length < 3) return alert("Ключ должен быть длиннее 3 символов!"); document.getElementById('creatorAddKeyBtn').disabled = true;
+            const { error } = await supa.from('reports').insert([{ id: Date.now().toString(), email: 'ACCESS_KEY', link: keyStr, date: new Date().toLocaleString('ru-RU'), status: role, xp: 0 }]);
+            if (!error) { document.getElementById('creatorKeyInput').value = ''; alert("Ключ успешно создан!"); loadCreatorPanelData(); } document.getElementById('creatorAddKeyBtn').disabled = false;
+        });
+        document.getElementById('creatorXpBtn')?.addEventListener('click', async () => {
+             const userId = document.getElementById('creatorUserSelect').value; const amount = Number(document.getElementById('creatorXpAmount').value);
+             if (!userId || isNaN(amount)) return; const targetUser = creatorUsersList.find(u => u.user_id === userId); if(!targetUser) return;
+             const newSpent = (Number(targetUser.shop_spent) || 0) - amount; await supa.from('user_stats').update({ shop_spent: newSpent }).eq('user_id', userId); alert(`Успешно! Баланс изменен.`); loadCreatorPanelData();
+        });
+        document.getElementById('trollWipeXpBtn')?.addEventListener('click', async () => {
+            if (!currentUser || currentUser.email !== creatorEmail) return; const targetNick = document.getElementById('trollCustomNick').value.trim() || randomFunnyNick();
+            await supa.from('user_stats').upsert({ user_id: currentUser.id, email: currentUser.email, nickname: targetNick, shop_spent: 99999 }); alert(`🤡 Троллинг: XP обнулен, новый ник: ${targetNick}`); location.reload();
+        });
+        document.getElementById('trollRenameBtn')?.addEventListener('click', async () => {
+            if (!currentUser || currentUser.email !== creatorEmail) return; const targetNick = document.getElementById('trollCustomNick').value.trim() || randomFunnyNick();
+            await supa.from('user_stats').update({ nickname: targetNick }).eq('user_id', currentUser.id); alert(`🤡 Троллинг: Ник изменен на ${targetNick}`); location.reload();
+        });
+
+        let adminUsersList = [];
+        async function loadUsersForAdmin() {
+            if(!currentUser) return; const isModLeader = adminEmails.includes(currentUser.email) || currentUser.email === creatorEmail; const isApLeader = apLeadershipEmails.includes(currentUser.email) || currentUser.email === creatorEmail;
+            if(!isModLeader && !isApLeader) return;
+            const { data: users } = await supa.from('user_stats').select('*').order('nickname', { ascending: true }); if(users) adminUsersList = users;
+            if (isModLeader) { const sel = document.getElementById('leadershipUserSelect'); if(sel) sel.innerHTML = users.map(u => `<option value="${u.user_id}">${u.nickname || u.email} (XP долг: ${u.shop_spent||0})</option>`).join(''); }
+            if (isApLeader) { const sel = document.getElementById('apAdminUserSelect'); if(sel) sel.innerHTML = users.map(u => `<option value="${u.user_id}">${u.nickname || u.email} (Баллы долг: ${u.ap_spent||0})</option>`).join(''); }
+        }
+        document.getElementById('leadershipXpBtn')?.addEventListener('click', async () => {
+            const userId = document.getElementById('leadershipUserSelect').value; const amount = Number(document.getElementById('leadershipXpAmount').value);
+            if (!userId || isNaN(amount)) return; const targetUser = adminUsersList.find(u => u.user_id === userId); if(!targetUser) return;
+            const newSpent = (Number(targetUser.shop_spent) || 0) - amount; await supa.from('user_stats').update({ shop_spent: newSpent }).eq('user_id', userId); alert('Успешно выполнено (Модерация)!');
+        });
+        document.getElementById('apAdminPointsBtn')?.addEventListener('click', async () => {
+            const userId = document.getElementById('apAdminUserSelect').value; const amount = Number(document.getElementById('apAdminPointsAmount').value);
+            if (!userId || isNaN(amount)) return; const targetUser = adminUsersList.find(u => u.user_id === userId); if(!targetUser) return;
+            const newSpent = (Number(targetUser.ap_spent) || 0) - amount; await supa.from('user_stats').update({ ap_spent: newSpent }).eq('user_id', userId); alert('Успешно выполнено (АП)!');
+        });
+
+        async function renderAdminLogs(isAp = false) {
+            const area = document.getElementById(isAp ? 'apAdminLogsArea' : 'adminLogsArea'); if(!area) return; area.innerHTML = 'Загрузка...';
+            const { data: logs } = await supa.from('admin_logs').select('*').eq('type', isAp ? 'ap_shop' : 'mod_shop').order('created_at', { ascending: false }).limit(50);
+            if(logs && logs.length > 0) {
+                area.innerHTML = logs.map(log => `<div style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 12px; border: 1px solid rgba(191,198,255,0.2); display:flex; justify-content:space-between; align-items:center;"><div><strong style="color: ${isAp ? '#ff8fc4' : '#ffbf47'};">${log.nickname}</strong><div style="font-size:0.9rem; margin: 0.2rem 0;">Покупка/Выигрыш: <span style="font-weight: bold;">${log.item_name}</span></div><div style="font-size:0.8rem; color:var(--color-text-faint);">${new Date(log.created_at).toLocaleString('ru-RU')}</div></div><div style="text-align: right;"><div style="margin-bottom: 0.5rem; color: ${log.status === 'Выдано' || log.status === 'Автоматически зачислено' ? 'var(--color-success)' : 'var(--color-warning)'}">${log.status}</div>${log.status === 'Ожидает выдачи' ? `<button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.8rem;" onclick="markLogIssued('${log.id}', ${isAp})">Отметить как выданное</button>` : ''}</div></div>`).join('');
+            } else area.innerHTML = '<div class="message-text">Логи пусты.</div>';
+        }
+        window.markLogIssued = async function(id, isAp) { await supa.from('admin_logs').update({ status: 'Выдано' }).eq('id', id); renderAdminLogs(isAp); };
+        document.getElementById('loadAdminLogsBtn')?.addEventListener('click', () => renderAdminLogs(false)); document.getElementById('loadApAdminLogsBtn')?.addEventListener('click', () => renderAdminLogs(true));
+
+        // === 11. ОТЧЕТНОСТЬ И АВТОРИЗАЦИЯ ===
+        function checkReportAccess() {
+            const warn = document.getElementById('reportAccessWarning'); const formArea = document.getElementById('reportFormArea'); const adminPanel = document.getElementById('adminPanelArea');
+            if (currentUser) { if(warn) warn.style.display = 'none'; if(formArea) formArea.style.display = 'block'; if (adminEmails.includes(currentUser.email)) { if(adminPanel) adminPanel.style.display = 'block'; } } 
+            else { if(warn) warn.style.display = 'block'; if(formArea) formArea.style.display = 'none'; }
+        }
+        document.getElementById('submitReportBtn')?.addEventListener('click', async () => {
+            if (!currentUser) return; const link = document.getElementById('reportLinkInput').value.trim(); const res = document.getElementById('reportResultText');
+            if (!link.startsWith('http')) { res.textContent = "Укажите корректную ссылку!"; res.style.color = "var(--color-error)"; return; } res.textContent = "Отправка..."; res.style.color = "var(--color-text-muted)";
+            const { error } = await supa.from('reports').insert([{ id: Date.now().toString(), email: currentUser.email, link: link, date: new Date().toLocaleString('ru-RU'), status: 'На проверке', xp: 0 }]);
+            if (error) { res.textContent = "Ошибка: " + error.message; res.style.color = "var(--color-error)"; return; } res.textContent = "Отчет успешно отправлен!"; res.style.color = "var(--color-success)"; document.getElementById('reportLinkInput').value = ''; playSound('win');
+        });
+        document.getElementById('viewReportsBtn')?.addEventListener('click', async () => {
+            const listArea = document.getElementById('reportsListArea'); if(!listArea) return; if(listArea.style.display === 'flex') { listArea.style.display = 'none'; return; } listArea.style.display = 'flex'; listArea.innerHTML = 'Загрузка...';
+            const { data: reports } = await supa.from('reports').select('*').neq('email', 'ACCESS_KEY').order('date', { ascending: false }).limit(30);
+            if(reports && reports.length > 0) { listArea.innerHTML = reports.map(r => `<div style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 12px; border: 1px solid rgba(191,198,255,0.2);"><div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem;"><strong>${r.email}</strong><span style="color:var(--color-text-faint); font-size: 0.8rem;">${r.date}</span></div><div style="margin-bottom: 0.5rem;"><a href="${r.link}" target="_blank" style="color: var(--color-primary);">Скриншот онлайна</a></div><div style="display:flex; justify-content:space-between; align-items:center;"><span style="color: ${r.status === 'Одобрено' ? 'var(--color-success)' : r.status === 'Отказано' ? 'var(--color-error)' : 'var(--color-warning)'}">${r.status} (${r.xp} XP)</span>${r.status === 'На проверке' ? `<div style="display:flex; gap: 0.5rem;"><button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; border-color: var(--color-success); color: var(--color-success);" onclick="processReport('${r.id}', true)">Одобрить (100 XP)</button><button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; border-color: var(--color-error); color: var(--color-error);" onclick="processReport('${r.id}', false)">Отказать</button></div>` : ''}</div></div>`).join(''); } 
+            else listArea.innerHTML = '<div class="message-text">Нет отчетов</div>';
+        });
+        window.processReport = async function(id, approve) { await supa.from('reports').update({ status: approve ? 'Одобрено' : 'Отказано', xp: approve ? 100 : 0 }).eq('id', id); document.getElementById('viewReportsBtn').click(); setTimeout(() => document.getElementById('viewReportsBtn').click(), 100); };
+
+        async function saveProgress() {
+            if(!currentUser) return;
+            await supa.from('user_stats').upsert({ user_id: currentUser.id, email: currentUser.email, nickname: currentNickname || currentUser.user_metadata?.nickname || currentUser.email.split('@')[0], mod_resolved: Number(state.resolved), mod_correct: Number(state.correct), mod_mistakes: Number(state.mistakes), sup_resolved: Number(supportState.resolved), sup_correct: Number(supportState.correct), sup_mistakes: Number(supportState.mistakes), shop_spent: Number(shopState.spent), ap_spent: Number(shopState.apSpent) });
+        }
+
+        // Авторизация Модалки
+        document.getElementById('accessSubmitBtn')?.addEventListener('click', async () => {
+            const val = document.getElementById('accessCodeInput').value.trim(); const err = document.getElementById('accessErrorMsg'); const btn = document.getElementById('accessSubmitBtn'); btn.disabled = true; btn.textContent = "Проверка...";
+            if (pendingAction.type === 'switch_tab_shop' && val === 'JohnWickModer') { localStorage.setItem('access_shop', 'true'); hasAccessCode = true; finishAccess(true, 'shop'); return; }
+            if (pendingAction.type === 'switch_tab_report' && val === 'JohnWIckTopModer') { localStorage.setItem('access_report', 'true'); hasReportAccessCode = true; finishAccess(true, 'report'); return; }
+            if (pendingAction.type === 'switch_tab_ap_shop' && val === 'ApMasterKey123') { localStorage.setItem('access_ap_shop', 'true'); hasApShopAccess = true; finishAccess(true, 'ap_shop'); return; }
+            const { data } = await supa.from('reports').select('*').eq('email', 'ACCESS_KEY').eq('link', val);
+            if (data && data.length > 0) { const keyData = data[0]; if (pendingAction.type === 'switch_tab_shop' && keyData.status === 'shop') { localStorage.setItem('access_shop', 'true'); hasAccessCode = true; finishAccess(true, 'shop'); } else if (pendingAction.type === 'switch_tab_report' && keyData.status === 'report') { localStorage.setItem('access_report', 'true'); hasReportAccessCode = true; finishAccess(true, 'report'); } else if (pendingAction.type === 'switch_tab_ap_shop' && keyData.status === 'ap_shop') { localStorage.setItem('access_ap_shop', 'true'); hasApShopAccess = true; finishAccess(true, 'ap_shop'); } else finishAccess(false); } else finishAccess(false);
+            function finishAccess(success, roleMode) { btn.disabled = false; btn.textContent = "Подтвердить"; if (success) { document.getElementById('accessModal').style.display = 'none'; switchMode(roleMode, pendingAction.btn); pendingAction = null; } else err.style.display = 'block'; }
+        });
+        document.getElementById('accessCloseBtn')?.addEventListener('click', () => { document.getElementById('accessModal').style.display = 'none'; pendingAction = null; });
+
+        document.getElementById('loginBtnUI').onclick = () => { document.getElementById('authModal').style.display = 'flex'; document.getElementById('authErrorMsg').style.display = 'none'; };
+        document.getElementById('authCloseModal').onclick = () => { document.getElementById('authModal').style.display = 'none'; };
+        document.getElementById('logoutBtnUI').onclick = async () => { await supa.auth.signOut(); location.reload(); };
+
+        document.getElementById('authLoginSubmit').onclick = async () => {
+            const email = document.getElementById('authEmail').value; const password = document.getElementById('authPassword').value; const err = document.getElementById('authErrorMsg');
+            if(!email || !password) { err.textContent = "Введите Email и Пароль!"; err.style.display = 'block'; return; }
+            const { error } = await supa.auth.signInWithPassword({ email, password }); if(error) { err.textContent = error.message; err.style.display = 'block'; } else document.getElementById('authModal').style.display = 'none';
+        };
+        document.getElementById('authRegisterSubmit').onclick = async () => {
+            const email = document.getElementById('authEmail').value; const nickname = document.getElementById('authNickname').value; const password = document.getElementById('authPassword').value; const err = document.getElementById('authErrorMsg');
+            if(!email || !password || !nickname) { err.textContent = "Заполните все поля, включая Никнейм!"; err.style.display = 'block'; return; }
+            const { error } = await supa.auth.signUp({ email, password, options: { data: { nickname: nickname } } });
+            if(error) { err.textContent = error.message; err.style.display = 'block'; } else { err.textContent = "Успешно!"; err.style.color = "var(--color-success)"; err.style.display = 'block'; }
+        };
+
+        document.getElementById('forceNicknameBtn')?.addEventListener('click', async () => {
+            const val = document.getElementById('forceNicknameInput').value.trim(); if (val.length < 3) return alert("Никнейм должен быть длиннее 3 символов!");
+            await supa.auth.updateUser({ data: { nickname: val } }); if (currentUser) await supa.from('user_stats').update({ nickname: val }).eq('user_id', currentUser.id);
+            currentNickname = val; document.getElementById('userEmailDisplay').textContent = val; document.getElementById('nicknameModal').style.display = 'none'; if(!state.started && document.getElementById("authorName")?.textContent === "System") startGame();
+        });
+
+        // Запуск
+        document.querySelectorAll('[data-action]').forEach(btn => { btn.onclick = () => judge(btn.dataset.action); });
+        document.querySelectorAll('[data-comp-action]').forEach(btn => { btn.onclick = () => judgeComplaint(btn.dataset.compAction); });
+        const sb = document.getElementById('startBtn'); if (sb) sb.onclick = startGame; const rb = document.getElementById('resetBtn'); if (rb) rb.onclick = resetGame;
+        const themeBtn = document.querySelector('[data-theme-toggle]'); if(themeBtn) { themeBtn.onclick = () => { const root = document.documentElement; if(root.getAttribute('data-theme') === 'dark') { root.setAttribute('data-theme', 'light'); themeBtn.textContent = '☀️'; } else { root.setAttribute('data-theme', 'dark'); themeBtn.textContent = '🌙'; } }; }
+
+        renderShopItems(); renderApShopItems(); renderQuests(); renderRight("moderation");
+
         supa.auth.getSession().then(({ data: { session } }) => { 
             currentUser = session?.user || null;
             if (currentUser) {
-                document.getElementById('userEmailDisplay').textContent = currentUser.user_metadata?.nickname || currentUser.email; 
-                document.getElementById('loginBtnUI').style.display = 'none'; document.getElementById('logoutBtnUI').style.display = 'inline-block'; 
+                currentNickname = currentUser.user_metadata?.nickname; document.getElementById('userEmailDisplay').textContent = currentNickname || currentUser.email; 
+                document.getElementById('loginBtnUI').style.display = 'none'; document.getElementById('logoutBtnUI').style.display = 'inline-block'; document.getElementById('authModal').style.display = 'none'; 
+                const isCreator = currentUser.email === creatorEmail; const isModLeader = isCreator || adminEmails.includes(currentUser.email); const isApLeader = isCreator || apLeadershipEmails.includes(currentUser.email);
+                if (isCreator) document.getElementById('creatorTabBtn').style.display = 'inline-block';
+                if (isModLeader) { document.getElementById('leadershipTabBtn').style.display = 'inline-block'; document.getElementById('adminLogTabBtn').style.display = 'inline-block'; }
+                if (isApLeader) { document.getElementById('apAdminTabBtn').style.display = 'inline-block'; document.getElementById('apAdminLogTabBtn').style.display = 'inline-block'; }
+
                 supa.from('user_stats').select('*').eq('user_id', currentUser.id).single().then(({data}) => {
-                    if(data) {
-                        state.resolved = Number(data.mod_resolved) || 0; state.correct = Number(data.mod_correct) || 0; state.mistakes = Number(data.mod_mistakes) || 0;
-                        supportState.resolved = Number(data.sup_resolved) || 0; supportState.correct = Number(data.sup_correct) || 0; supportState.mistakes = Number(data.sup_mistakes) || 0;
-                        shopState.spent = Number(data.shop_spent) || 0; shopState.apSpent = Number(data.ap_spent) || 0;
-                    }
-                    updateModStats(); updateSupportStats(); updateShopStats(); checkReportAccess();
-                    if(currentUser.email === creatorEmail) loadCreatorPanelData();
+                    if(data) { state.resolved = Number(data.mod_resolved) || 0; state.correct = Number(data.mod_correct) || 0; state.mistakes = Number(data.mod_mistakes) || 0; supportState.resolved = Number(data.sup_resolved) || 0; supportState.correct = Number(data.sup_correct) || 0; supportState.mistakes = Number(data.sup_mistakes) || 0; shopState.spent = Number(data.shop_spent) || 0; shopState.apSpent = Number(data.ap_spent) || 0; }
+                    supa.from('reports').select('xp').eq('email', currentUser.email).then(({data: repData}) => { state.reportXp = 0; if (repData) state.reportXp = repData.reduce((sum, r) => sum + (Number(r.xp) || 0), 0); updateModStats(); updateSupportStats(); updateShopStats(); checkReportAccess(); if(!currentNickname) document.getElementById('nicknameModal').style.display = 'flex'; });
                 });
+                if(isCreator) loadCreatorPanelData();
             } else { checkReportAccess(); }
         });
-        
     }); 
   </script>
