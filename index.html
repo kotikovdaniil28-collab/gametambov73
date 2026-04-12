@@ -62,11 +62,13 @@
     html[data-site-theme="admin_log"] body { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); }
     html[data-site-theme="complaints"] body { background: radial-gradient(circle at top left, rgba(255, 61, 61, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 107, 136, 0.15), transparent 55%), linear-gradient(160deg, #120505, #180408 45%, #0d0202 100%); }
     html[data-site-theme="quests"] body { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(196, 161, 255, 0.15), transparent 55%), linear-gradient(160deg, #0d0514, #120818 45%, #0a040d 100%); }
+    html[data-site-theme="creator"] body { background: radial-gradient(circle at top left, rgba(255, 107, 136, 0.2), transparent 55%), radial-gradient(circle at bottom right, rgba(162, 108, 255, 0.2), transparent 55%), linear-gradient(160deg, #1a0510, #0a0208 45%, #050104 100%); }
 
-    button, input { font: inherit; }
+    button, input, select { font: inherit; }
     button { cursor: pointer; border: none; transition: transform var(--transition), background var(--transition), box-shadow var(--transition), opacity var(--transition), border-color var(--transition); }
     button:hover { transform: translateY(-1px); }
     button:active { transform: translateY(1px) scale(0.99); }
+    button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
     .page { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; padding: 1rem 0 2rem; }
     .topbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
@@ -87,6 +89,7 @@
     html[data-site-theme="admin_log"] .logo { background: linear-gradient(135deg, rgba(255, 191, 71, 0.45), rgba(255, 61, 0, 0.35)); border-color: rgba(255, 214, 122, 0.4); }
     html[data-site-theme="complaints"] .logo { background: linear-gradient(135deg, rgba(255, 107, 136, 0.65), rgba(255, 59, 96, 0.6)); border-color: rgba(255, 107, 136, 0.5); }
     html[data-site-theme="quests"] .logo { background: linear-gradient(135deg, rgba(162, 108, 255, 0.65), rgba(196, 161, 255, 0.6)); border-color: rgba(180, 150, 255, 0.5); }
+    html[data-site-theme="creator"] .logo { background: linear-gradient(135deg, rgba(255, 107, 136, 0.65), rgba(162, 108, 255, 0.6)); border-color: rgba(255, 107, 136, 0.5); }
 
     .brand-title { font-family: var(--font-display); font-size: var(--text-lg); letter-spacing: 0.08em; text-transform: uppercase; }
     .brand-sub { color: var(--color-text-muted); font-size: var(--text-sm); max-width: 42ch; }
@@ -106,6 +109,7 @@
     html[data-site-theme="admin_log"] .panel { background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.12), transparent 55%), linear-gradient(155deg, rgba(25, 19, 8, 0.98), rgba(10, 10, 14, 1)); border-color: rgba(255, 191, 71, 0.25); }
     html[data-site-theme="complaints"] .panel { background: radial-gradient(circle at top left, rgba(255, 107, 136, 0.2), transparent 55%), linear-gradient(155deg, rgba(28, 10, 14, 0.98), rgba(16, 4, 6, 1)); border-color: rgba(255, 107, 136, 0.35); }
     html[data-site-theme="quests"] .panel { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.2), transparent 55%), linear-gradient(155deg, rgba(18, 12, 28, 0.98), rgba(10, 6, 16, 1)); border-color: rgba(180, 150, 255, 0.35); }
+    html[data-site-theme="creator"] .panel { background: radial-gradient(circle at top left, rgba(255, 107, 136, 0.2), transparent 55%), linear-gradient(155deg, rgba(28, 10, 20, 0.98), rgba(16, 4, 10, 1)); border-color: rgba(255, 107, 136, 0.4); }
 
     .hero-card, .rules, .game-card, .side { padding: 1.2rem; display: grid; gap: 1rem; min-width: 0; align-content: start; }
     .section-head { display: grid; gap: 0.35rem; min-width: 0; }
@@ -139,6 +143,7 @@
     html[data-site-theme="complaints"] .hero h1 span { color: #ff6b88; text-shadow: 0 0 26px rgba(255, 107, 136, 0.9); }
     html[data-site-theme="quests"] .hero h1 span { color: #c4a1ff; text-shadow: 0 0 26px rgba(162, 108, 255, 0.9); }
     html[data-site-theme="admin_log"] .hero h1 span { color: #ffbf47; text-shadow: 0 0 22px rgba(255, 191, 71, 0.72); }
+    html[data-site-theme="creator"] .hero h1 span { color: #ff6b88; text-shadow: 0 0 26px rgba(255, 107, 136, 0.9); }
 
     .hero p, .rules p, .game-card > p, .side p { color: var(--color-text-muted); font-size: var(--text-sm); }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
@@ -182,6 +187,7 @@
     html[data-site-theme="leaderboard"] .mode-btn.active { background: linear-gradient(135deg, #ff3d00, #ff9e00); color: #fff; box-shadow: 0 8px 20px rgba(255, 61, 0, 0.35); }
     html[data-site-theme="about"] .mode-btn.active { background: linear-gradient(135deg, #ffbf47, #ffd979); color: #18171c; box-shadow: 0 8px 20px rgba(255, 191, 71, 0.35); }
     html[data-site-theme="admin_log"] .mode-btn.active { background: linear-gradient(135deg, #ffbf47, #ff9e00); color: #18171c; box-shadow: 0 8px 20px rgba(255, 191, 71, 0.35); }
+    html[data-site-theme="creator"] .mode-btn.active { background: linear-gradient(135deg, #ff3b60, #ff6b88); color: #fff; box-shadow: 0 8px 20px rgba(255, 107, 136, 0.5); }
 
     .game-wrap { margin-top: 0.75rem; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr); gap: 1rem; align-items: start; }
     .rule-list, .feed, .log { display: grid; gap: 0.75rem; min-width: 0; }
@@ -447,6 +453,7 @@
         <button class="mode-btn" data-mode="shop" type="button">Магазин</button>
         <button class="mode-btn" data-mode="report" type="button">Отчетность</button>
         <button class="mode-btn" data-mode="admin_log" type="button" id="adminLogTabBtn" style="display:none; color: #ffbf47;">Выдачи (Админ)</button>
+        <button class="mode-btn" data-mode="creator" type="button" id="creatorTabBtn" style="display:none; color: #ff6b88;">Панель Создателя</button>
       </div>
 
       <div class="sub-nav" id="subNavSupport" style="display:none;">
@@ -462,6 +469,37 @@
     </div>
 
     <section class="game-wrap" id="game">
+      
+      <section class="panel game-card" id="mode-creator" style="display:none;">
+        <div class="section-head">
+          <h2 style="color: #ff6b88;">Панель Создателя (John Wick)</h2>
+          <p>Управление пользователями и генерация ключей доступа.</p>
+        </div>
+
+        <div style="background: rgba(13, 16, 32, 0.6); padding: 1rem; border-radius: 16px; border: 1px solid rgba(255, 107, 136, 0.3); margin-bottom: 1rem;">
+          <h3 style="margin-bottom: 0.5rem; font-size: var(--text-sm); color: var(--color-primary); text-transform: uppercase;">Выдача / Изъятие XP</h3>
+          <select id="creatorUserSelect" class="support-input" style="margin-bottom: 0.5rem;"><option>Загрузка...</option></select>
+          <input type="number" id="creatorXpAmount" class="support-input" placeholder="Количество XP (например: 100 или -50)" style="margin-bottom: 0.5rem;">
+          <button id="creatorXpBtn" class="btn btn-primary" style="width: 100%;">Изменить баланс XP</button>
+        </div>
+
+        <div style="background: rgba(13, 16, 32, 0.6); padding: 1rem; border-radius: 16px; border: 1px solid rgba(255, 191, 71, 0.3);">
+          <h3 style="margin-bottom: 0.5rem; font-size: var(--text-sm); color: var(--color-warning); text-transform: uppercase;">Ключи доступа</h3>
+          <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
+            <select id="creatorKeyRole" class="support-input" style="flex: 1; min-width: 120px;">
+              <option value="shop">Магазин</option>
+              <option value="report">Отчеты</option>
+            </select>
+            <input type="text" id="creatorKeyInput" class="support-input" placeholder="Код ключа (напр. VIP-123)" style="flex: 2; min-width: 200px;">
+          </div>
+          <button id="creatorAddKeyBtn" class="btn btn-secondary" style="width: 100%; border-color: var(--color-warning); color: var(--color-warning);">Создать ключ</button>
+          
+          <div style="margin-top: 1rem; font-size: var(--text-sm); color: var(--color-text-muted);">Активные ключи:</div>
+          <div id="creatorKeysList" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            </div>
+        </div>
+      </section>
+
       <section class="panel game-card" id="mode-moderation">
         <div class="section-head">
           <h2>Панель модератора</h2>
@@ -724,8 +762,9 @@
         let currentNickname = null;
         let pendingAction = null; 
 
-        let hasAccessCode = localStorage.getItem('access_JohnWickModer') === 'true';
-        let hasReportAccessCode = localStorage.getItem('access_JohnWIckTopModer') === 'true';
+        // Загружаем сохраненные доступы из памяти
+        let hasAccessCode = localStorage.getItem('access_shop') === 'true' || localStorage.getItem('access_JohnWickModer') === 'true';
+        let hasReportAccessCode = localStorage.getItem('access_report') === 'true' || localStorage.getItem('access_JohnWIckTopModer') === 'true';
 
         const adminEmails = [
           'daniiltimosin72@gmail.com', 
@@ -1152,6 +1191,14 @@
             cards: [
               ["Выдача", "Нажимайте 'Отметить как выданное' после выдачи приза/покупки в Discord."]
             ]
+          },
+          creator: {
+            title: "Управление доступом",
+            lead: "Только для Создателя (John Wick).",
+            cards: [
+              ["XP", "Выдача или снятие XP обновляет shop_spent пользователя. Отрицательное число выдаст XP."],
+              ["Ключи", "Все ключи сохраняются в базе. Модератор вводит их для доступа к закрытым разделам."]
+            ]
           }
         };
 
@@ -1197,7 +1244,7 @@
           });
         });
 
-        const allModesList = ["moderation", "complaints", "support", "guide", "leaderboard", "about", "shop", "report", "admin_log", "quests"];
+        const allModesList = ["moderation", "complaints", "support", "guide", "leaderboard", "about", "shop", "report", "admin_log", "quests", "creator"];
         
         function switchMode(mode, btn) {
           document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
@@ -1217,6 +1264,7 @@
           else if(mode === "admin_log") currentTheme = "admin_log";
           else if(mode === "complaints") currentTheme = "complaints";
           else if(mode === "quests") currentTheme = "quests";
+          else if(mode === "creator") currentTheme = "creator";
 
           document.documentElement.setAttribute("data-site-theme", currentTheme);
           renderRight(mode);
@@ -1227,6 +1275,7 @@
           if(mode === 'report') checkReportAccess();
           if(mode === 'admin_log') renderAdminLogs();
           if(mode === 'quests') renderQuests();
+          if(mode === 'creator') loadCreatorPanelData();
 
           const brandSub = document.getElementById("brandSubtitle");
           const hTitle = document.getElementById("heroTitle");
@@ -1271,6 +1320,10 @@
             if(brandSub) brandSub.textContent = "Админ-Панель";
             if(hTitle) hTitle.innerHTML = 'Логи <span>выдач</span>.'; if(hText) hText.textContent = "Здесь отображаются все покупки и выигрыши в рулетку, требующие ручной выдачи Руководством в Discord.";
             if(hBadge) hBadge.textContent = "Режим: руководство";
+          } else if (mode === "creator") {
+            if(brandSub) brandSub.textContent = "Панель Создателя";
+            if(hTitle) hTitle.innerHTML = 'Только для <span>Джона Уика</span>.'; if(hText) hText.textContent = "Управление базой данных, выдача опыта и создание ключей доступа.";
+            if(hBadge) hBadge.textContent = "Режим: Бог";
           }
         }
 
@@ -1287,26 +1340,54 @@
           pendingAction = null;
         });
 
-        document.getElementById('accessSubmitBtn').addEventListener('click', () => {
+        document.getElementById('accessSubmitBtn').addEventListener('click', async () => {
           const val = document.getElementById('accessCodeInput').value.trim();
           const err = document.getElementById('accessErrorMsg');
+          const btn = document.getElementById('accessSubmitBtn');
           
-          if (pendingAction && pendingAction.type === 'switch_tab_shop') {
-              if (val === 'JohnWickModer') {
-                  localStorage.setItem('access_JohnWickModer', 'true');
-                  hasAccessCode = true;
+          btn.disabled = true;
+          btn.textContent = "Проверка...";
+
+          // Сначала проверяем старые запасные ключи для Джона Уика
+          if (pendingAction.type === 'switch_tab_shop' && val === 'JohnWickModer') {
+              localStorage.setItem('access_JohnWickModer', 'true');
+              hasAccessCode = true;
+              finishAccess(true, 'shop');
+              return;
+          }
+          if (pendingAction.type === 'switch_tab_report' && val === 'JohnWIckTopModer') {
+              localStorage.setItem('access_JohnWIckTopModer', 'true');
+              hasReportAccessCode = true;
+              finishAccess(true, 'report');
+              return;
+          }
+
+          // Если это не запасной ключ, ищем сгенерированный ключ в БД
+          const { data, error } = await supa.from('reports').select('*').eq('email', 'ACCESS_KEY').eq('link', val);
+          
+          if (data && data.length > 0) {
+             const keyData = data[0];
+             if (pendingAction.type === 'switch_tab_shop' && keyData.status === 'shop') {
+                 localStorage.setItem('access_shop', 'true');
+                 hasAccessCode = true;
+                 finishAccess(true, 'shop');
+             } else if (pendingAction.type === 'switch_tab_report' && keyData.status === 'report') {
+                 localStorage.setItem('access_report', 'true');
+                 hasReportAccessCode = true;
+                 finishAccess(true, 'report');
+             } else {
+                 finishAccess(false);
+             }
+          } else {
+             finishAccess(false);
+          }
+
+          function finishAccess(success, roleMode) {
+              btn.disabled = false;
+              btn.textContent = "Подтвердить";
+              if (success) {
                   document.getElementById('accessModal').style.display = 'none';
-                  switchMode('shop', pendingAction.btn);
-                  pendingAction = null;
-              } else {
-                  err.style.display = 'block';
-              }
-          } else if (pendingAction && pendingAction.type === 'switch_tab_report') {
-              if (val === 'JohnWIckTopModer') {
-                  localStorage.setItem('access_JohnWIckTopModer', 'true');
-                  hasReportAccessCode = true;
-                  document.getElementById('accessModal').style.display = 'none';
-                  switchMode('report', pendingAction.btn);
+                  switchMode(roleMode, pendingAction.btn);
                   pendingAction = null;
               } else {
                   err.style.display = 'block';
@@ -1323,7 +1404,7 @@
           });
         });
 
-        const funnyLeft = ["Мелстройность","Смешнявка","Макенза","Сраупен","бурмалда","Винстон Скотт","АндрейСраупен","РелигБаттл","Дед_с_Клавой","Флуд_Бот"];
+        const funnyLeft = ["Мелстройность","Смешнявка","Макенза","Сраупен","бурмалда","Рассыльщик_Мемов","ПолитТоксик","РелигБаттл","Дед_с_Клавой","Флуд_Бот"];
         const funnyRight = ["из_Тамбова","без_микрофона","на_ГлОбАнЕ","в_муте","с_вечным_баном","тянет_конфу","обижен_на_админов","любит_капс","ищет_баги","продаёт_вирты"];
         function randomFunnyNick() { 
           return `${funnyLeft[Math.floor(Math.random() * funnyLeft.length)]}_${funnyRight[Math.floor(Math.random() * funnyRight.length)]}#${Math.floor(1000 + Math.random() * 8999)}`;
@@ -1380,6 +1461,14 @@
 
         async function loadProgress() {
           if(!currentUser) return;
+          
+          // Проверка доступа для панели Создателя
+          if (currentUser.email === 'daniiltimosin72@gmail.com') {
+             document.getElementById('creatorTabBtn').style.display = 'inline-block';
+          } else {
+             document.getElementById('creatorTabBtn').style.display = 'none';
+          }
+
           const { data, error } = await supa.from('user_stats').select('*').eq('user_id', currentUser.id).single();
           if(data) {
             state.resolved = Number(data.mod_resolved) || 0; 
@@ -1424,6 +1513,7 @@
           } else {
             userEmailDisplay.textContent = ''; loginBtnUI.style.display = 'block';
             logoutBtnUI.style.display = 'none'; resetGame(); checkReportAccess(); renderQuests();
+            document.getElementById('creatorTabBtn').style.display = 'none';
           }
         }
 
@@ -1448,6 +1538,108 @@
           if(error) { authErrorMsg.textContent = error.message; authErrorMsg.style.color = "var(--color-error)"; authErrorMsg.style.display = 'block'; } 
           else { authErrorMsg.textContent = "Успешно! Вы зарегистрированы и вошли."; authErrorMsg.style.color = "var(--color-success)"; authErrorMsg.style.display = 'block'; }
         };
+
+        // === ПАНЕЛЬ СОЗДАТЕЛЯ (ЛОГИКА) ===
+        let creatorUsersList = [];
+
+        async function loadCreatorPanelData() {
+            if (currentUser.email !== 'daniiltimosin72@gmail.com') return;
+
+            // 1. Загрузка пользователей
+            const sel = document.getElementById('creatorUserSelect');
+            sel.innerHTML = '<option>Загрузка...</option>';
+            const { data: users, error: errUsers } = await supa.from('user_stats').select('user_id, nickname, email, shop_spent');
+            if (users && users.length > 0) {
+                creatorUsersList = users;
+                sel.innerHTML = users.map(u => `<option value="${u.user_id}">${u.nickname || u.email} (Списано: ${u.shop_spent})</option>`).join('');
+            } else {
+                sel.innerHTML = '<option>Нет пользователей</option>';
+            }
+
+            // 2. Загрузка ключей
+            await loadCreatorKeys();
+        }
+
+        async function loadCreatorKeys() {
+            const list = document.getElementById('creatorKeysList');
+            list.innerHTML = 'Загрузка...';
+            const { data: keys } = await supa.from('reports').select('*').eq('email', 'ACCESS_KEY').order('date', { ascending: false });
+            
+            if (keys && keys.length > 0) {
+                list.innerHTML = keys.map(k => `
+                  <div style="display:flex; justify-content:space-between; align-items:center; background: rgba(0,0,0,0.5); padding: 0.5rem; border-radius: 8px;">
+                    <div><strong style="color:var(--color-primary);">${k.link}</strong> <span style="font-size:0.8rem; color:var(--color-text-faint);">(${k.status === 'shop' ? 'Магазин' : 'Отчеты'})</span></div>
+                    <button class="badge ban del-key-btn" data-id="${k.id}" style="cursor:pointer;">Удалить</button>
+                  </div>
+                `).join('');
+
+                list.querySelectorAll('.del-key-btn').forEach(btn => {
+                    btn.addEventListener('click', async () => {
+                        const id = btn.dataset.id;
+                        btn.disabled = true;
+                        btn.textContent = "...";
+                        await supa.from('reports').delete().eq('id', id);
+                        await loadCreatorKeys();
+                    });
+                });
+            } else {
+                list.innerHTML = '<div style="font-size:var(--text-sm); color:var(--color-text-faint);">Нет созданных ключей.</div>';
+            }
+        }
+
+        document.getElementById('creatorXpBtn').addEventListener('click', async () => {
+            const sel = document.getElementById('creatorUserSelect');
+            const valInput = document.getElementById('creatorXpAmount');
+            const res = document.getElementById('creatorXpResult');
+            
+            const userId = sel.value;
+            const amount = parseInt(valInput.value);
+
+            if (!userId || isNaN(amount)) {
+                res.textContent = "Ошибка: введите корректное число XP.";
+                res.style.color = "var(--color-warning)";
+                return;
+            }
+
+            const user = creatorUsersList.find(u => u.user_id === userId);
+            if (!user) return;
+
+            // Выдача XP = уменьшение shop_spent. Снятие XP = увеличение shop_spent.
+            const newShopSpent = (Number(user.shop_spent) || 0) - amount;
+
+            const { error } = await supa.from('user_stats').update({ shop_spent: newShopSpent }).eq('user_id', userId);
+            if (error) {
+                res.textContent = "Ошибка БД: " + error.message;
+                res.style.color = "var(--color-error)";
+            } else {
+                res.textContent = `Успешно! Баланс пользователя ${user.nickname} изменён на ${amount > 0 ? '+'+amount : amount} XP.`;
+                res.style.color = "var(--color-success)";
+                valInput.value = '';
+                await loadCreatorPanelData(); // обновляем список
+            }
+        });
+
+        document.getElementById('creatorAddKeyBtn').addEventListener('click', async () => {
+            const role = document.getElementById('creatorKeyRole').value;
+            const keyStr = document.getElementById('creatorKeyInput').value.trim();
+            const btn = document.getElementById('creatorAddKeyBtn');
+
+            if (keyStr.length < 3) {
+                alert("Ключ должен быть длиннее 3 символов!"); return;
+            }
+
+            btn.disabled = true;
+            const newKey = { id: Date.now().toString(), email: 'ACCESS_KEY', link: keyStr, date: new Date().toLocaleString('ru-RU'), status: role, xp: 0 };
+            
+            const { error } = await supa.from('reports').insert([newKey]);
+            if (error) {
+                alert("Ошибка: " + error.message);
+            } else {
+                document.getElementById('creatorKeyInput').value = '';
+                await loadCreatorKeys();
+            }
+            btn.disabled = false;
+        });
 
         async function logPurchase(itemName, isAutoLog) {
           if (!currentUser) return;
@@ -1578,7 +1770,7 @@
 
         // === АНТИ-СПАМ С ЖЕСТКОЙ БЛОКИРОВКОЙ ===
         let clickTimestamps = [];
-        let blockUntil = 0;
+        let blockUntil = parseInt(localStorage.getItem('spam_block_until') || '0');
         let spamTimerInterval;
 
         function isSpamming() {
@@ -1586,7 +1778,7 @@
           
           // Если игрок уже в блокировке
           if (now < blockUntil) {
-            document.getElementById('spamModal').style.display = 'flex';
+            showSpamModalWithTimer();
             return true;
           }
 
@@ -1597,6 +1789,7 @@
           // 5 кликов за 3 секунды = спам
           if (clickTimestamps.length >= 5) {
             blockUntil = now + 60000; // Ровно 60 секунд блокировки
+            localStorage.setItem('spam_block_until', blockUntil.toString());
             clickTimestamps = []; // Сбрасываем историю
             showSpamModalWithTimer();
             return true;
@@ -1623,6 +1816,7 @@
             timeLeft--;
             if (timeLeft <= 0) {
               clearInterval(spamTimerInterval);
+              localStorage.removeItem('spam_block_until'); // Очищаем из памяти
               closeBtn.disabled = false;
               closeBtn.style.opacity = '1';
               closeBtn.style.cursor = 'pointer';
@@ -1631,6 +1825,11 @@
               closeBtn.textContent = `Блокировка: ${timeLeft} сек...`;
             }
           }, 1000);
+        }
+
+        // Проверка при загрузке страницы (вдруг он обновил страницу во время бана)
+        if (blockUntil > Date.now()) {
+           showSpamModalWithTimer();
         }
 
         document.getElementById('closeSpamModal').addEventListener('click', (e) => {
@@ -1805,7 +2004,7 @@
         async function renderReportsList() {
           const area = document.getElementById('reportsListArea');
           area.style.display = 'flex'; area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка отчетов...</div>';
-          const { data: storedReports, error } = await supa.from('reports').select('*').not('link', 'like', '[АВТОВЫДАЧА]%').order('date', { ascending: false });
+          const { data: storedReports, error } = await supa.from('reports').select('*').not('link', 'like', '[АВТОВЫДАЧА]%').not('email', 'eq', 'ACCESS_KEY').order('date', { ascending: false });
           if (error) { area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`; return; }
           if (!storedReports || storedReports.length === 0) { area.innerHTML = `<div class="report-list-item" style="text-align:center;">Отчетов пока нет.</div>`; return; }
 
