@@ -35,8 +35,15 @@
       --transition: 220ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    * { 
+        box-sizing: border-box; 
+        margin: 0; 
+        padding: 0; 
+    }
+
+    html { 
+        scroll-behavior: smooth; 
+    }
 
     body {
       min-height: 100dvh;
@@ -53,333 +60,550 @@
     }
 
     /* === ТЕМЫ ОФОРМЛЕНИЯ === */
-    html[data-site-theme="support"] body { background: radial-gradient(circle at top left, rgba(255, 184, 222, 0.3), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 120, 180, 0.3), transparent 55%), linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%); }
-    html[data-site-theme="about"] body { background: radial-gradient(circle at top left, rgba(255, 220, 120, 0.16), transparent 55%), radial-gradient(circle at bottom right, rgba(108, 140, 255, 0.18), transparent 55%), linear-gradient(160deg, #0c0a05, #0c0a05 45%, #12100a 100%); }
-    html[data-site-theme="shop"] body { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.14), transparent 55%), linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%); }
-    html[data-site-theme="report"] body { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.2), transparent 50%), radial-gradient(circle at bottom right, rgba(108, 204, 255, 0.18), transparent 55%), linear-gradient(160deg, #090510, #0a0512 45%, #050411 100%); }
-    html[data-site-theme="guide"] body { background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.15), transparent 50%), radial-gradient(circle at bottom right, rgba(0, 180, 216, 0.15), transparent 55%), linear-gradient(160deg, #020a10, #041018 45%, #02080d 100%); }
-    html[data-site-theme="leaderboard"] body { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 158, 0, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); }
-    html[data-site-theme="admin_log"] body { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); }
-    html[data-site-theme="complaints"] body { background: radial-gradient(circle at top left, rgba(255, 61, 61, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 107, 136, 0.15), transparent 55%), linear-gradient(160deg, #120505, #180408 45%, #0d0202 100%); }
-    html[data-site-theme="quests"] body { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(196, 161, 255, 0.15), transparent 55%), linear-gradient(160deg, #0d0514, #120818 45%, #0a040d 100%); }
-    html[data-site-theme="creator"] body { background: radial-gradient(circle at top left, rgba(255, 107, 136, 0.2), transparent 55%), radial-gradient(circle at bottom right, rgba(162, 108, 255, 0.2), transparent 55%), linear-gradient(160deg, #1a0510, #0a0208 45%, #050104 100%); }
+    html[data-site-theme="support"] body { 
+        background: radial-gradient(circle at top left, rgba(255, 184, 222, 0.3), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 120, 180, 0.3), transparent 55%), linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%); 
+    }
+    html[data-site-theme="about"] body { 
+        background: radial-gradient(circle at top left, rgba(255, 220, 120, 0.16), transparent 55%), radial-gradient(circle at bottom right, rgba(108, 140, 255, 0.18), transparent 55%), linear-gradient(160deg, #0c0a05, #0c0a05 45%, #12100a 100%); 
+    }
+    html[data-site-theme="shop"] body { 
+        background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.14), transparent 55%), linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%); 
+    }
+    html[data-site-theme="report"] body { 
+        background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.2), transparent 50%), radial-gradient(circle at bottom right, rgba(108, 204, 255, 0.18), transparent 55%), linear-gradient(160deg, #090510, #0a0512 45%, #050411 100%); 
+    }
+    html[data-site-theme="guide"] body { 
+        background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.15), transparent 50%), radial-gradient(circle at bottom right, rgba(0, 180, 216, 0.15), transparent 55%), linear-gradient(160deg, #020a10, #041018 45%, #02080d 100%); 
+    }
+    html[data-site-theme="leaderboard"] body { 
+        background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 158, 0, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); 
+    }
+    html[data-site-theme="admin_log"] body { 
+        background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); 
+    }
+    html[data-site-theme="complaints"] body { 
+        background: radial-gradient(circle at top left, rgba(255, 61, 61, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 107, 136, 0.15), transparent 55%), linear-gradient(160deg, #120505, #180408 45%, #0d0202 100%); 
+    }
+    html[data-site-theme="quests"] body { 
+        background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(196, 161, 255, 0.15), transparent 55%), linear-gradient(160deg, #0d0514, #120818 45%, #0a040d 100%); 
+    }
+    html[data-site-theme="timeattack"] body { 
+        background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.25), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 61, 0, 0.2), transparent 55%), linear-gradient(160deg, #181005, #120502 45%, #0d0202 100%); 
+    }
+    html[data-site-theme="creator"] body { 
+        background: radial-gradient(circle at top left, rgba(255, 107, 136, 0.2), transparent 55%), radial-gradient(circle at bottom right, rgba(162, 108, 255, 0.2), transparent 55%), linear-gradient(160deg, #1a0510, #0a0208 45%, #050104 100%); 
+    }
 
     button, input, select { font: inherit; }
-    button { cursor: pointer; border: none; transition: transform var(--transition), background var(--transition), box-shadow var(--transition), opacity var(--transition), border-color var(--transition); }
+    button { 
+        cursor: pointer; 
+        border: none; 
+        transition: transform var(--transition), background var(--transition), box-shadow var(--transition), opacity var(--transition), border-color var(--transition); 
+    }
     button:hover { transform: translateY(-1px); }
     button:active { transform: translateY(1px) scale(0.99); }
     button:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-    .page { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; padding: 1rem 0 2rem; }
-    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-    .brand { display: flex; align-items: center; gap: 0.85rem; min-width: 0; }
+    .page { 
+        width: min(1120px, calc(100% - 2rem)); 
+        margin: 0 auto; 
+        padding: 1rem 0 2rem; 
+    }
+    .topbar { 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        gap: 1rem; 
+        margin-bottom: 1rem; 
+    }
+    .brand { 
+        display: flex; 
+        align-items: center; 
+        gap: 0.85rem; 
+        min-width: 0; 
+    }
 
     .logo {
-      width: 48px; height: 48px; display: grid; place-items: center; color: var(--color-text);
+      width: 48px; 
+      height: 48px; 
+      display: grid; 
+      place-items: center; 
+      color: var(--color-text);
       background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%), linear-gradient(135deg, rgba(108, 140, 255, 0.32), rgba(255, 107, 136, 0.22));
-      border-radius: 16px; box-shadow: var(--shadow-md); border: 1px solid rgba(255, 255, 255, 0.25); flex: 0 0 auto;
+      border-radius: 16px; 
+      box-shadow: var(--shadow-md); 
+      border: 1px solid rgba(255, 255, 255, 0.25); 
+      flex: 0 0 auto;
     }
     
     html[data-site-theme="support"] .logo { background: linear-gradient(135deg, rgba(255, 160, 210, 0.65), rgba(255, 120, 180, 0.6)); border-color: rgba(255, 210, 240, 0.7); }
-    html[data-site-theme="about"] .logo { background: linear-gradient(135deg, rgba(255, 191, 71, 0.55), rgba(108, 140, 255, 0.38)); border-color: rgba(255, 230, 180, 0.45); }
-    html[data-site-theme="shop"] .logo { background: linear-gradient(135deg, rgba(82, 199, 123, 0.45), rgba(255, 191, 71, 0.28)); border-color: rgba(162, 241, 188, 0.42); }
-    html[data-site-theme="report"] .logo { background: linear-gradient(135deg, rgba(162, 108, 255, 0.55), rgba(108, 204, 255, 0.38)); border-color: rgba(200, 180, 255, 0.45); }
-    html[data-site-theme="guide"] .logo { background: linear-gradient(135deg, rgba(0, 229, 255, 0.45), rgba(0, 180, 216, 0.35)); border-color: rgba(180, 240, 255, 0.4); }
-    html[data-site-theme="leaderboard"] .logo { background: linear-gradient(135deg, rgba(255, 61, 0, 0.45), rgba(255, 158, 0, 0.35)); border-color: rgba(255, 180, 150, 0.4); }
-    html[data-site-theme="admin_log"] .logo { background: linear-gradient(135deg, rgba(255, 191, 71, 0.45), rgba(255, 61, 0, 0.35)); border-color: rgba(255, 214, 122, 0.4); }
-    html[data-site-theme="complaints"] .logo { background: linear-gradient(135deg, rgba(255, 107, 136, 0.65), rgba(255, 59, 96, 0.6)); border-color: rgba(255, 107, 136, 0.5); }
-    html[data-site-theme="quests"] .logo { background: linear-gradient(135deg, rgba(162, 108, 255, 0.65), rgba(196, 161, 255, 0.6)); border-color: rgba(180, 150, 255, 0.5); }
+    html[data-site-theme="timeattack"] .logo { background: linear-gradient(135deg, rgba(255, 191, 71, 0.65), rgba(255, 61, 0, 0.6)); border-color: rgba(255, 191, 71, 0.7); }
     html[data-site-theme="creator"] .logo { background: linear-gradient(135deg, rgba(255, 107, 136, 0.65), rgba(162, 108, 255, 0.6)); border-color: rgba(255, 107, 136, 0.5); }
 
-    .brand-title { font-family: var(--font-display); font-size: var(--text-lg); letter-spacing: 0.08em; text-transform: uppercase; }
-    .brand-sub { color: var(--color-text-muted); font-size: var(--text-sm); max-width: 42ch; }
+    .brand-title { 
+        font-family: var(--font-display); 
+        font-size: var(--text-lg); 
+        letter-spacing: 0.08em; 
+        text-transform: uppercase; 
+    }
+    .brand-sub { 
+        color: var(--color-text-muted); 
+        font-size: var(--text-sm); 
+        max-width: 42ch; 
+    }
 
-    .theme-toggle { min-width: 44px; min-height: 44px; padding: 0 0.75rem; border-radius: 999px; color: var(--color-text); background: rgba(16, 21, 40, 0.85); border: 1px solid rgba(191, 198, 255, 0.35); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.8); flex: 0 0 auto; }
+    .icon-btn { 
+        min-width: 44px; 
+        min-height: 44px; 
+        padding: 0 0.75rem; 
+        border-radius: 999px; 
+        color: var(--color-text); 
+        background: rgba(16, 21, 40, 0.85); 
+        border: 1px solid rgba(191, 198, 255, 0.35); 
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.8); 
+        flex: 0 0 auto; 
+        font-size: 1.1rem; 
+    }
 
-    .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 1rem; align-items: stretch; }
+    .hero { 
+        display: grid; 
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); 
+        gap: 1rem; 
+        align-items: stretch; 
+    }
 
-    .panel { border-radius: 22px; border: 1px solid rgba(191, 198, 255, 0.28); box-shadow: var(--shadow-lg); backdrop-filter: blur(18px); background: radial-gradient(circle at top left, rgba(108, 140, 255, 0.23), transparent 55%), linear-gradient(155deg, rgba(18, 22, 38, 0.98), rgba(6, 7, 16, 1)); min-width: 0; }
+    .panel { 
+        border-radius: 22px; 
+        border: 1px solid rgba(191, 198, 255, 0.28); 
+        box-shadow: var(--shadow-lg); 
+        backdrop-filter: blur(18px); 
+        background: radial-gradient(circle at top left, rgba(108, 140, 255, 0.23), transparent 55%), linear-gradient(155deg, rgba(18, 22, 38, 0.98), rgba(6, 7, 16, 1)); 
+        min-width: 0; 
+    }
     
-    html[data-site-theme="support"] .panel { background: radial-gradient(circle at top left, rgba(255, 160, 210, 0.3), transparent 55%), linear-gradient(155deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1)); border-color: rgba(255, 190, 230, 0.45); }
-    html[data-site-theme="about"] .panel { background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.16), transparent 55%), linear-gradient(155deg, rgba(25, 19, 8, 0.98), rgba(10, 10, 14, 1)); border-color: rgba(255, 214, 122, 0.28); }
-    html[data-site-theme="shop"] .panel { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), linear-gradient(155deg, rgba(10, 23, 14, 0.98), rgba(8, 10, 15, 1)); border-color: rgba(162, 241, 188, 0.22); }
-    html[data-site-theme="report"] .panel { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.16), transparent 55%), linear-gradient(155deg, rgba(16, 9, 25, 0.98), rgba(10, 10, 14, 1)); border-color: rgba(180, 150, 255, 0.28); }
-    html[data-site-theme="guide"] .panel { background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.12), transparent 55%), linear-gradient(155deg, rgba(4, 14, 22, 0.98), rgba(2, 8, 12, 1)); border-color: rgba(0, 229, 255, 0.25); }
-    html[data-site-theme="leaderboard"] .panel { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.12), transparent 55%), linear-gradient(155deg, rgba(22, 8, 4, 0.98), rgba(12, 4, 2, 1)); border-color: rgba(255, 61, 0, 0.25); }
-    html[data-site-theme="admin_log"] .panel { background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.12), transparent 55%), linear-gradient(155deg, rgba(25, 19, 8, 0.98), rgba(10, 10, 14, 1)); border-color: rgba(255, 191, 71, 0.25); }
-    html[data-site-theme="complaints"] .panel { background: radial-gradient(circle at top left, rgba(255, 107, 136, 0.2), transparent 55%), linear-gradient(155deg, rgba(28, 10, 14, 0.98), rgba(16, 4, 6, 1)); border-color: rgba(255, 107, 136, 0.35); }
-    html[data-site-theme="quests"] .panel { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.2), transparent 55%), linear-gradient(155deg, rgba(18, 12, 28, 0.98), rgba(10, 6, 16, 1)); border-color: rgba(180, 150, 255, 0.35); }
+    html[data-site-theme="timeattack"] .panel { background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.16), transparent 55%), linear-gradient(155deg, rgba(25, 15, 8, 0.98), rgba(15, 8, 4, 1)); border-color: rgba(255, 191, 71, 0.4); }
     html[data-site-theme="creator"] .panel { background: radial-gradient(circle at top left, rgba(255, 107, 136, 0.2), transparent 55%), linear-gradient(155deg, rgba(28, 10, 20, 0.98), rgba(16, 4, 10, 1)); border-color: rgba(255, 107, 136, 0.4); }
 
-    .hero-card, .rules, .game-card, .side { padding: 1.2rem; display: grid; gap: 1rem; min-width: 0; align-content: start; }
-    .section-head { display: grid; gap: 0.35rem; min-width: 0; }
-    .section-head h2 { font-size: clamp(1.2rem, 1.05rem + 0.4vw, 1.5rem); line-height: 1.15; letter-spacing: 0.01em; }
-    .section-head p { max-width: 62ch; color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.6; }
-    
-    .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .badge { padding: 0.4rem 0.85rem; border-radius: 999px; font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 800; border: 1px solid rgba(191, 198, 255, 0.28); color: var(--color-text-muted); background: rgba(9, 12, 26, 0.82); }
-    .badge.xp { background: #ffbf47; color: #18171c; border-color: transparent; }
-    
-    html[data-site-theme="support"] .badge { background: rgba(34, 7, 24, 0.96); border-color: rgba(255, 190, 230, 0.5); }
-    html[data-site-theme="support"] .badge.xp { background: #ff8fc4; color: #250512; }
-    html[data-site-theme="about"] .badge { background: rgba(25, 19, 8, 0.96); border-color: rgba(255, 214, 122, 0.35); }
-    html[data-site-theme="shop"] .badge { background: rgba(11, 21, 15, 0.96); border-color: rgba(162, 241, 188, 0.25); }
-    html[data-site-theme="shop"] .badge.xp { background: #52c77b; color: #08110b; }
-    html[data-site-theme="report"] .badge { background: rgba(16, 9, 25, 0.96); border-color: rgba(180, 150, 255, 0.35); }
-    html[data-site-theme="report"] .badge.xp { background: #a26cff; color: #fff; }
-    html[data-site-theme="guide"] .badge { background: rgba(4, 18, 28, 0.96); border-color: rgba(0, 229, 255, 0.3); }
-    html[data-site-theme="guide"] .badge.xp { background: #00e5ff; color: #002229; }
-    html[data-site-theme="leaderboard"] .badge { background: rgba(28, 10, 4, 0.96); border-color: rgba(255, 61, 0, 0.3); }
-    html[data-site-theme="leaderboard"] .badge.xp { background: #ff3d00; color: #fff; }
+    .hero-card, .rules, .game-card, .side { 
+        padding: 1.2rem; 
+        display: grid; 
+        gap: 1rem; 
+        min-width: 0; 
+        align-content: start; 
+    }
 
-    .hero h1 { font-family: var(--font-display); font-size: clamp(2.1rem, 5.2vw, 3.4rem); line-height: 0.95; text-transform: uppercase; max-width: 13ch; }
-    .hero h1 span { color: var(--color-primary); text-shadow: 0 0 22px rgba(108, 140, 255, 0.65); }
-    html[data-site-theme="support"] .hero h1 span { color: #ff8fc4; text-shadow: 0 0 26px rgba(255, 143, 196, 0.9); }
-    html[data-site-theme="about"] .hero h1 span { color: #ffbf47; text-shadow: 0 0 22px rgba(255, 191, 71, 0.72); }
-    html[data-site-theme="shop"] .hero h1 span { color: #7fe8a0; text-shadow: 0 0 22px rgba(127, 232, 160, 0.62); }
-    html[data-site-theme="report"] .hero h1 span { color: #a26cff; text-shadow: 0 0 22px rgba(162, 108, 255, 0.72); }
-    html[data-site-theme="guide"] .hero h1 span { color: #00e5ff; text-shadow: 0 0 22px rgba(0, 229, 255, 0.65); }
-    html[data-site-theme="leaderboard"] .hero h1 span { color: #ff5419; text-shadow: 0 0 22px rgba(255, 61, 0, 0.65); }
-    html[data-site-theme="complaints"] .hero h1 span { color: #ff6b88; text-shadow: 0 0 26px rgba(255, 107, 136, 0.9); }
-    html[data-site-theme="quests"] .hero h1 span { color: #c4a1ff; text-shadow: 0 0 26px rgba(162, 108, 255, 0.9); }
-    html[data-site-theme="admin_log"] .hero h1 span { color: #ffbf47; text-shadow: 0 0 22px rgba(255, 191, 71, 0.72); }
+    .section-head { 
+        display: grid; 
+        gap: 0.35rem; 
+        min-width: 0; 
+    }
+    .section-head h2 { 
+        font-size: clamp(1.2rem, 1.05rem + 0.4vw, 1.5rem); 
+        line-height: 1.15; 
+        letter-spacing: 0.01em; 
+    }
+    .section-head p { 
+        max-width: 62ch; 
+        color: var(--color-text-muted); 
+        font-size: var(--text-sm); 
+        line-height: 1.6; 
+    }
+    
+    .badge-row { 
+        display: flex; 
+        flex-wrap: wrap; 
+        gap: 0.5rem; 
+    }
+    .badge { 
+        padding: 0.4rem 0.85rem; 
+        border-radius: 999px; 
+        font-size: var(--text-xs); 
+        text-transform: uppercase; 
+        letter-spacing: 0.12em; 
+        font-weight: 800; 
+        border: 1px solid rgba(191, 198, 255, 0.28); 
+        color: var(--color-text-muted); 
+        background: rgba(9, 12, 26, 0.82); 
+    }
+    .badge.xp { 
+        background: #ffbf47; 
+        color: #18171c; 
+        border-color: transparent; 
+    }
+
+    .hero h1 { 
+        font-family: var(--font-display); 
+        font-size: clamp(2.1rem, 5.2vw, 3.4rem); 
+        line-height: 0.95; 
+        text-transform: uppercase; 
+        max-width: 13ch; 
+    }
+    .hero h1 span { 
+        color: var(--color-primary); 
+        text-shadow: 0 0 22px rgba(108, 140, 255, 0.65); 
+    }
+    html[data-site-theme="timeattack"] .hero h1 span { color: #ffbf47; text-shadow: 0 0 26px rgba(255, 191, 71, 0.9); }
     html[data-site-theme="creator"] .hero h1 span { color: #ff6b88; text-shadow: 0 0 26px rgba(255, 107, 136, 0.9); }
 
-    .hero p, .rules p, .game-card > p, .side p { color: var(--color-text-muted); font-size: var(--text-sm); }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .hero p, .rules p, .game-card > p, .side p { 
+        color: var(--color-text-muted); 
+        font-size: var(--text-sm); 
+    }
+    .hero-actions { 
+        display: flex; 
+        flex-wrap: wrap; 
+        gap: 0.75rem; 
+    }
 
-    .btn { min-height: 44px; padding: 0.85rem 1.2rem; border-radius: 16px; font-size: var(--text-sm); font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
-    .btn-primary { color: #fff; background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 20px 45px rgba(108, 140, 255, 0.72); }
-    .btn-secondary { color: var(--color-text-muted); background: rgba(9, 12, 26, 0.86); border: 1px solid rgba(191, 198, 255, 0.3); }
+    .btn { 
+        min-height: 44px; 
+        padding: 0.85rem 1.2rem; 
+        border-radius: 16px; 
+        font-size: var(--text-sm); 
+        font-weight: 800; 
+        letter-spacing: 0.04em; 
+        text-transform: uppercase; 
+    }
+    .btn-primary { 
+        color: #fff; 
+        background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #6c8cff, #8aa3ff); 
+        box-shadow: 0 20px 45px rgba(108, 140, 255, 0.72); 
+    }
+    .btn-secondary { 
+        color: var(--color-text-muted); 
+        background: rgba(9, 12, 26, 0.86); 
+        border: 1px solid rgba(191, 198, 255, 0.3); 
+    }
 
-    html[data-site-theme="support"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.2), transparent 55%), linear-gradient(135deg, #ff78b4, #ffb0dd); box-shadow: 0 20px 45px rgba(255, 144, 196, 0.78); }
-    html[data-site-theme="about"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #ffbf47, #ffd979); box-shadow: 0 20px 45px rgba(255, 191, 71, 0.48); color: #18171c; }
-    html[data-site-theme="shop"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #52c77b, #8fe0a8); box-shadow: 0 20px 45px rgba(82, 199, 123, 0.42); color: #08110b; }
-    html[data-site-theme="report"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 20px 45px rgba(162, 108, 255, 0.48); color: #fff; }
-    html[data-site-theme="guide"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #00b4d8, #00e5ff); box-shadow: 0 20px 45px rgba(0, 229, 255, 0.45); color: #001a22; }
-    html[data-site-theme="leaderboard"] .btn-primary { background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #ff3d00, #ff9e00); box-shadow: 0 20px 45px rgba(255, 61, 0, 0.45); color: #fff; }
-    html[data-site-theme="complaints"] .btn-primary { background: linear-gradient(135deg, #ff3b60, #ff6b88); box-shadow: 0 20px 45px rgba(255, 107, 136, 0.6); }
-    html[data-site-theme="quests"] .btn-primary { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 20px 45px rgba(162, 108, 255, 0.6); }
+    html[data-site-theme="timeattack"] .btn-primary { background: linear-gradient(135deg, #ffbf47, #ff3d00); box-shadow: 0 20px 45px rgba(255, 191, 71, 0.6); color: #fff; }
 
     /* === ДВУХУРОВНЕВАЯ НАВИГАЦИЯ === */
-    .nav-container { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0 1rem; }
-    .main-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; background: rgba(13, 16, 32, 0.8); padding: 0.4rem; border-radius: 18px; border: 1px solid rgba(191, 198, 255, 0.2); width: fit-content; }
+    .nav-container { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 0.75rem; 
+        margin: 1.5rem 0 1rem; 
+    }
+    .main-nav { 
+        display: flex; 
+        gap: 0.5rem; 
+        flex-wrap: wrap; 
+        background: rgba(13, 16, 32, 0.8); 
+        padding: 0.4rem; 
+        border-radius: 18px; 
+        border: 1px solid rgba(191, 198, 255, 0.2); 
+        width: fit-content; 
+    }
     
-    .main-cat-btn { padding: 0.6rem 1.2rem; border-radius: 14px; font-size: var(--text-sm); font-weight: 800; color: var(--color-text-muted); background: transparent; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s ease; border: none; cursor: pointer; }
+    .main-cat-btn { 
+        padding: 0.6rem 1.2rem; 
+        border-radius: 14px; 
+        font-size: var(--text-sm); 
+        font-weight: 800; 
+        color: var(--color-text-muted); 
+        background: transparent; 
+        text-transform: uppercase; 
+        letter-spacing: 0.05em; 
+        transition: all 0.3s ease; 
+        border: none; 
+        cursor: pointer; 
+    }
     .main-cat-btn:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
     .main-cat-btn.active { color: var(--color-text-inverse); box-shadow: 0 4px 15px rgba(108, 140, 255, 0.5); }
     .main-cat-btn[data-cat="moderation"].active { background: linear-gradient(135deg, #6c8cff, #8aa3ff); }
     .main-cat-btn[data-cat="support"].active { background: linear-gradient(135deg, #ff78b4, #ffb0dd); }
     .main-cat-btn[data-cat="general"].active { background: linear-gradient(135deg, #ffbf47, #ffd979); color: #18171c; }
 
-    .sub-nav { display: flex; flex-wrap: wrap; gap: 0.35rem; background: rgba(4, 6, 12, 0.85); border: 1px solid rgba(191, 198, 255, 0.25); padding: 0.35rem; border-radius: 999px; width: fit-content; animation: fadeIn 0.3s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
-
-    .mode-btn { border-radius: 999px; padding: 0.5rem 1.15rem; font-size: var(--text-sm); font-weight: 700; color: var(--color-text-muted); background: transparent; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; transition: all 0.3s; }
-    .mode-btn.active { color: var(--color-text-inverse); background: linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 8px 20px rgba(108, 140, 255, 0.5); }
+    .sub-nav { 
+        display: flex; 
+        flex-wrap: wrap; 
+        gap: 0.35rem; 
+        background: rgba(4, 6, 12, 0.85); 
+        border: 1px solid rgba(191, 198, 255, 0.25); 
+        padding: 0.35rem; 
+        border-radius: 999px; 
+        width: fit-content; 
+        animation: fadeIn 0.3s ease; 
+    }
     
-    html[data-site-theme="support"] .mode-btn.active { background: linear-gradient(135deg, #ff78b4, #ffb0dd); box-shadow: 0 8px 20px rgba(255, 144, 196, 0.6); }
-    html[data-site-theme="complaints"] .mode-btn.active { background: linear-gradient(135deg, #ff6b88, #ff3b60); box-shadow: 0 8px 20px rgba(255, 107, 136, 0.5); color: #fff; }
-    html[data-site-theme="quests"] .mode-btn.active { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 8px 20px rgba(162, 108, 255, 0.45); color: #fff; }
-    html[data-site-theme="shop"] .mode-btn.active { background: linear-gradient(135deg, #52c77b, #8fe0a8); box-shadow: 0 8px 20px rgba(82, 199, 123, 0.35); color: #08110b; }
-    html[data-site-theme="report"] .mode-btn.active { background: linear-gradient(135deg, #a26cff, #c4a1ff); color: #fff; box-shadow: 0 8px 20px rgba(162, 108, 255, 0.35); }
-    html[data-site-theme="guide"] .mode-btn.active { background: linear-gradient(135deg, #00b4d8, #00e5ff); color: #001a22; box-shadow: 0 8px 20px rgba(0, 229, 255, 0.35); }
-    html[data-site-theme="leaderboard"] .mode-btn.active { background: linear-gradient(135deg, #ff3d00, #ff9e00); color: #fff; box-shadow: 0 8px 20px rgba(255, 61, 0, 0.35); }
-    html[data-site-theme="about"] .mode-btn.active { background: linear-gradient(135deg, #ffbf47, #ffd979); color: #18171c; box-shadow: 0 8px 20px rgba(255, 191, 71, 0.35); }
-    html[data-site-theme="admin_log"] .mode-btn.active { background: linear-gradient(135deg, #ffbf47, #ff9e00); color: #18171c; box-shadow: 0 8px 20px rgba(255, 191, 71, 0.35); }
+    @keyframes fadeIn { 
+        from { opacity: 0; transform: translateY(-5px); } 
+        to { opacity: 1; transform: translateY(0); } 
+    }
+
+    .mode-btn { 
+        border-radius: 999px; 
+        padding: 0.5rem 1.15rem; 
+        font-size: var(--text-sm); 
+        font-weight: 700; 
+        color: var(--color-text-muted); 
+        background: transparent; 
+        text-transform: uppercase; 
+        letter-spacing: 0.06em; 
+        white-space: nowrap; 
+        transition: all 0.3s; 
+    }
+    .mode-btn.active { 
+        color: var(--color-text-inverse); 
+        background: linear-gradient(135deg, #6c8cff, #8aa3ff); 
+        box-shadow: 0 8px 20px rgba(108, 140, 255, 0.5); 
+    }
+    
+    html[data-site-theme="timeattack"] .mode-btn.active { background: linear-gradient(135deg, #ffbf47, #ff3d00); color: #fff; box-shadow: 0 8px 20px rgba(255, 191, 71, 0.5); }
     html[data-site-theme="creator"] .mode-btn.active { background: linear-gradient(135deg, #ff3b60, #ff6b88); color: #fff; box-shadow: 0 8px 20px rgba(255, 107, 136, 0.5); }
 
-    .game-wrap { margin-top: 0.75rem; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr); gap: 1rem; align-items: start; }
-    .rule-list, .feed, .log { display: grid; gap: 0.75rem; min-width: 0; }
-    .rule-item, .log-item, .stat, .shop-card, .quest-card { padding: 0.95rem; border-radius: 16px; background: rgba(13, 16, 32, 0.95); border: 1px solid rgba(191, 198, 255, 0.3); min-width: 0; overflow-wrap: anywhere; }
+    .game-wrap { 
+        margin-top: 0.75rem; 
+        display: grid; 
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr); 
+        gap: 1rem; 
+        align-items: start; 
+    }
+    .rule-list, .feed, .log { 
+        display: grid; 
+        gap: 0.75rem; 
+        min-width: 0; 
+    }
+    .rule-item, .log-item, .stat, .shop-card, .quest-card { 
+        padding: 0.95rem; 
+        border-radius: 16px; 
+        background: rgba(13, 16, 32, 0.95); 
+        border: 1px solid rgba(191, 198, 255, 0.3); 
+        min-width: 0; 
+        overflow-wrap: anywhere; 
+    }
 
-    /* Тематические карточки правил и логов */
-    html[data-site-theme="support"] .rule-item, html[data-site-theme="support"] .log-item, html[data-site-theme="support"] .stat, html[data-site-theme="support"] .shop-card { background: rgba(35, 10, 26, 0.96); border-color: rgba(255, 190, 230, 0.36); }
-    html[data-site-theme="about"] .rule-item, html[data-site-theme="about"] .log-item, html[data-site-theme="about"] .stat, html[data-site-theme="about"] .shop-card { background: rgba(25, 19, 8, 0.96); border-color: rgba(255, 214, 122, 0.24); }
-    html[data-site-theme="shop"] .rule-item, html[data-site-theme="shop"] .log-item, html[data-site-theme="shop"] .stat, html[data-site-theme="shop"] .shop-card { background: rgba(11, 21, 15, 0.96); border-color: rgba(162, 241, 188, 0.22); }
-    html[data-site-theme="report"] .rule-item, html[data-site-theme="report"] .log-item, html[data-site-theme="report"] .stat, html[data-site-theme="report"] .shop-card { background: rgba(16, 9, 25, 0.96); border-color: rgba(180, 150, 255, 0.24); }
-    html[data-site-theme="guide"] .rule-item, html[data-site-theme="guide"] .log-item, html[data-site-theme="guide"] .stat, html[data-site-theme="guide"] .shop-card { background: rgba(4, 14, 22, 0.96); border-color: rgba(0, 229, 255, 0.22); }
-    html[data-site-theme="leaderboard"] .rule-item, html[data-site-theme="leaderboard"] .log-item, html[data-site-theme="leaderboard"] .stat, html[data-site-theme="leaderboard"] .shop-card { background: rgba(22, 8, 4, 0.96); border-color: rgba(255, 61, 0, 0.22); }
-
-    .rule-item { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0.8rem; align-items: start; }
-    .rule-icon { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-size: 1rem; font-weight: 900; margin-top: 2px; }
-    .rule-copy { display: grid; gap: 0.22rem; min-width: 0; }
+    .rule-item { 
+        display: grid; 
+        grid-template-columns: 34px minmax(0, 1fr); 
+        gap: 0.8rem; 
+        align-items: start; 
+    }
+    .rule-icon { 
+        width: 34px; 
+        height: 34px; 
+        border-radius: 10px; 
+        display: grid; 
+        place-items: center; 
+        font-size: 1rem; 
+        font-weight: 900; 
+        margin-top: 2px; 
+    }
+    .rule-copy { 
+        display: grid; 
+        gap: 0.22rem; 
+        min-width: 0; 
+    }
     .rule-copy strong { font-size: 0.98rem; line-height: 1.25; }
     .rule-copy span { color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.55; max-width: 38ch; display: block; }
-    .rule-copy a { color: var(--color-primary); text-decoration: none; font-weight: 600; }
-    .rule-copy a:hover { text-decoration: underline; }
-
+    
     .ok { background: rgba(82, 199, 123, 0.14); color: #8df0ae; }
     .warn { background: rgba(255, 191, 71, 0.18); color: #ffdf95; }
     .ban { background: rgba(255, 107, 136, 0.2); color: #ff9fb4; }
 
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem; }
-    .stat-label { color: var(--color-text-faint); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.16em; margin-bottom: 0.35rem; display: block; }
-    .stat-value { font-size: 1.1rem; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.2; }
+    .stats-grid { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+        gap: 0.75rem; 
+    }
+    .stat-label { 
+        color: var(--color-text-faint); 
+        font-size: var(--text-xs); 
+        text-transform: uppercase; 
+        letter-spacing: 0.16em; 
+        margin-bottom: 0.35rem; 
+        display: block; 
+    }
+    .stat-value { 
+        font-size: 1.1rem; 
+        font-weight: 800; 
+        font-variant-numeric: tabular-nums; 
+        line-height: 1.2; 
+    }
     
-    .xp-bar { height: 14px; background: rgba(4, 6, 12, 0.9); border-radius: 999px; overflow: hidden; border: 1px solid rgba(191, 198, 255, 0.35); }
-    .xp-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ffbf47, #ffe38e); transition: width 300ms ease; border-radius: inherit; box-shadow: 0 0 26px rgba(255, 191, 71, 0.7); }
+    .xp-bar { 
+        height: 14px; 
+        background: rgba(4, 6, 12, 0.9); 
+        border-radius: 999px; 
+        overflow: hidden; 
+        border: 1px solid rgba(191, 198, 255, 0.35); 
+    }
+    .xp-fill { 
+        height: 100%; 
+        width: 0%; 
+        background: linear-gradient(90deg, #ffbf47, #ffe38e); 
+        transition: width 300ms ease; 
+        border-radius: inherit; 
+        box-shadow: 0 0 26px rgba(255, 191, 71, 0.7); 
+    }
 
-    .message-card { padding: 1rem; border-radius: 18px; background: radial-gradient(circle at 0 0, rgba(108, 140, 255, 0.45), transparent 70%), linear-gradient(160deg, rgba(13, 16, 32, 0.98), rgba(5, 7, 15, 1)); border: 1px solid rgba(191, 198, 255, 0.4); min-height: 250px; display: grid; align-content: start; gap: 0.8rem; position: relative; overflow: hidden; min-width: 0; }
-    .message-card::after { content: ""; position: absolute; inset: auto -40px -40px auto; width: 160px; height: 160px; background: radial-gradient(circle, rgba(255, 191, 71, 0.45), transparent 65%); pointer-events: none; opacity: 0.6; }
+    .message-card { 
+        padding: 1rem; 
+        border-radius: 18px; 
+        background: radial-gradient(circle at 0 0, rgba(108, 140, 255, 0.45), transparent 70%), linear-gradient(160deg, rgba(13, 16, 32, 0.98), rgba(5, 7, 15, 1)); 
+        border: 1px solid rgba(191, 198, 255, 0.4); 
+        min-height: 250px; 
+        display: grid; 
+        align-content: start; 
+        gap: 0.8rem; 
+        position: relative; 
+        overflow: hidden; 
+        min-width: 0; 
+    }
+    .message-card::after { 
+        content: ""; 
+        position: absolute; 
+        inset: auto -40px -40px auto; 
+        width: 160px; 
+        height: 160px; 
+        background: radial-gradient(circle, rgba(255, 191, 71, 0.45), transparent 65%); 
+        pointer-events: none; 
+        opacity: 0.6; 
+    }
 
-    /* Тематические стили Message Card */
-    html[data-site-theme="support"] .message-card { background: radial-gradient(circle at 0 0, rgba(255, 160, 210, 0.45), transparent 70%), linear-gradient(160deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1)); border-color: rgba(255, 190, 230, 0.55); }
-    html[data-site-theme="about"] .message-card { background: radial-gradient(circle at 0 0, rgba(255, 191, 71, 0.18), transparent 70%), linear-gradient(160deg, rgba(25, 19, 8, 0.98), rgba(11, 10, 15, 1)); border-color: rgba(255, 214, 122, 0.25); }
-    html[data-site-theme="shop"] .message-card { background: radial-gradient(circle at 0 0, rgba(82, 199, 123, 0.2), transparent 70%), linear-gradient(160deg, rgba(11, 21, 15, 0.98), rgba(8, 10, 15, 1)); border-color: rgba(162, 241, 188, 0.25); }
-    html[data-site-theme="report"] .message-card { background: radial-gradient(circle at 0 0, rgba(162, 108, 255, 0.18), transparent 70%), linear-gradient(160deg, rgba(16, 9, 25, 0.98), rgba(11, 10, 15, 1)); border-color: rgba(180, 150, 255, 0.25); }
-    html[data-site-theme="guide"] .message-card { background: radial-gradient(circle at 0 0, rgba(0, 229, 255, 0.15), transparent 70%), linear-gradient(160deg, rgba(4, 14, 22, 0.98), rgba(2, 8, 12, 1)); border-color: rgba(0, 229, 255, 0.25); }
-    html[data-site-theme="leaderboard"] .message-card { background: radial-gradient(circle at 0 0, rgba(255, 61, 0, 0.15), transparent 70%), linear-gradient(160deg, rgba(22, 8, 4, 0.98), rgba(12, 4, 2, 1)); border-color: rgba(255, 61, 0, 0.25); }
-
-    .channel { display: inline-flex; align-items: center; gap: 0.55rem; font-size: var(--text-xs); color: var(--color-text-faint); text-transform: uppercase; letter-spacing: 0.18em; }
-    .channel-dot { width: 6px; height: 6px; border-radius: 999px; background: #3dd68c; box-shadow: 0 0 12px rgba(61, 214, 140, 0.9); }
-    .author-row { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
-    .avatar { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; font-weight: 900; color: #fff; background: conic-gradient(from 210deg, #6c8cff, #ffbf47, #ff6b88, #6c8cff); box-shadow: 0 18px 32px rgba(0, 0, 0, 0.95); flex: 0 0 auto; }
+    .channel { 
+        display: inline-flex; 
+        align-items: center; 
+        gap: 0.55rem; 
+        font-size: var(--text-xs); 
+        color: var(--color-text-faint); 
+        text-transform: uppercase; 
+        letter-spacing: 0.18em; 
+    }
+    .channel-dot { 
+        width: 6px; 
+        height: 6px; 
+        border-radius: 999px; 
+        background: #3dd68c; 
+        box-shadow: 0 0 12px rgba(61, 214, 140, 0.9); 
+    }
+    .author-row { 
+        display: flex; 
+        align-items: center; 
+        gap: 0.75rem; 
+        min-width: 0; 
+    }
+    .avatar { 
+        width: 44px; 
+        height: 44px; 
+        border-radius: 14px; 
+        display: grid; 
+        place-items: center; 
+        font-weight: 900; 
+        color: #fff; 
+        background: conic-gradient(from 210deg, #6c8cff, #ffbf47, #ff6b88, #6c8cff); 
+        box-shadow: 0 18px 32px rgba(0, 0, 0, 0.95); 
+        flex: 0 0 auto; 
+    }
     .author-name { font-weight: 800; font-size: var(--text-sm); overflow-wrap: anywhere; line-height: 1.25; }
     .author-meta { color: var(--color-text-faint); font-size: var(--text-xs); overflow-wrap: anywhere; line-height: 1.35; }
     .message-text { font-size: 1rem; line-height: 1.7; max-width: 64ch; overflow-wrap: anywhere; text-wrap: pretty; color: var(--color-text); }
     
-    html[data-site-theme="guide"] .message-text strong { color: #00e5ff; }
-    html[data-site-theme="leaderboard"] .message-text strong { color: #ff5419; }
-
     .hint { color: var(--color-text-faint); font-size: var(--text-sm); min-height: 1.5em; line-height: 1.45; }
-    .evidence-box { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); padding: 0.75rem; border-radius: 8px; font-size: var(--text-sm); color: #a7afcf; margin-top: 0.5rem; }
 
-    .controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
-    .action-btn { min-height: 48px; padding: 0.9rem 1rem; border-radius: 16px; font-weight: 800; font-size: var(--text-sm); border: 1px solid transparent; text-transform: uppercase; letter-spacing: 0.03em; }
+    .controls { 
+        display: grid; 
+        grid-template-columns: repeat(3, minmax(0, 1fr)); 
+        gap: 0.75rem; 
+    }
+    .action-btn { 
+        min-height: 48px; 
+        padding: 0.9rem 1rem; 
+        border-radius: 16px; 
+        font-weight: 800; 
+        font-size: var(--text-sm); 
+        border: 1px solid transparent; 
+        text-transform: uppercase; 
+        letter-spacing: 0.03em; 
+    }
     .skip-btn { background: rgba(82, 199, 123, 0.12); color: #9af2b4; border-color: rgba(82, 199, 123, 0.5); }
     .warn-btn { background: rgba(255, 191, 71, 0.15); color: #ffe29a; border-color: rgba(255, 191, 71, 0.55); }
     .ban-btn { background: rgba(255, 107, 136, 0.18); color: #ffb1c1; border-color: rgba(255, 107, 136, 0.6); }
-    .pass-btn { background: rgba(162, 108, 255, 0.18); color: #d4bbff; border-color: rgba(162, 108, 255, 0.6); }
 
-    .support-answer-row { display: flex; flex-direction: column; gap: 0.5rem; }
-    .support-answer-row-inner { display: flex; gap: 0.5rem; align-items: stretch; }
-    .support-input { flex: 1 1 auto; min-width: 0; width: 100%; padding: 0.7rem 0.85rem; border-radius: 12px; border: 1px solid rgba(191, 198, 255, 0.35); background: rgba(4, 6, 12, 0.9); color: var(--color-text); font-size: var(--text-sm); }
-    .support-input::placeholder { color: var(--color-text-faint); }
-    .support-check-btn { flex: 0 0 auto; min-height: 44px; padding: 0.7rem 0.95rem; border-radius: 12px; font-size: var(--text-sm); font-weight: 700; background: rgba(108, 140, 255, 0.16); border: 1px solid rgba(108, 140, 255, 0.7); color: var(--color-text); white-space: nowrap; }
-    
-    html[data-site-theme="support"] .support-check-btn { background: rgba(255, 144, 196, 0.18); border-color: rgba(255, 144, 196, 0.8); }
-    html[data-site-theme="report"] .support-check-btn { background: rgba(162, 108, 255, 0.18); border-color: rgba(162, 108, 255, 0.8); }
-    
-    .support-result { font-size: var(--text-sm); color: var(--color-text-muted); min-height: 1.4em; line-height: 1.45; }
+    .support-input { 
+        flex: 1 1 auto; 
+        min-width: 0; 
+        width: 100%; 
+        padding: 0.7rem 0.85rem; 
+        border-radius: 12px; 
+        border: 1px solid rgba(191, 198, 255, 0.35); 
+        background: rgba(4, 6, 12, 0.9); 
+        color: var(--color-text); 
+        font-size: var(--text-sm); 
+    }
 
-    .shop-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
-    .shop-card { display: grid; gap: 0.75rem; align-content: start; }
-    .shop-card h3 { font-size: var(--text-base); line-height: 1.3; }
-    .shop-card p { color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.55; max-width: 34ch; }
-    .shop-price { display: inline-flex; align-items: center; gap: 0.35rem; width: fit-content; padding: 0.35rem 0.7rem; border-radius: 999px; font-size: var(--text-xs); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #18171c; background: #ffbf47; }
-    .shop-buy-btn { width: 100%; min-height: 46px; padding: 0.85rem 1rem; border-radius: 16px; font-weight: 800; font-size: var(--text-sm); border: 1px solid rgba(82, 199, 123, 0.45); background: rgba(82, 199, 123, 0.12); color: #a9f0bf; }
-    .shop-buy-btn[disabled] { opacity: 0.55; cursor: not-allowed; transform: none !important; }
-
-    /* Квесты */
-    .quest-card { display: flex; flex-direction: column; gap: 0.8rem; }
-    .quest-header { display: flex; justify-content: space-between; align-items: center; }
-    .quest-title { font-weight: bold; font-size: 1.1rem; color: #fff; }
-    .quest-reward { background: rgba(255, 191, 71, 0.2); color: #ffbf47; padding: 0.2rem 0.6rem; border-radius: 8px; font-size: var(--text-xs); font-weight: 800; }
-    .quest-desc { color: var(--color-text-muted); font-size: var(--text-sm); }
-    .quest-progress-wrap { background: rgba(0,0,0,0.4); height: 10px; border-radius: 10px; overflow: hidden; position: relative; }
-    .quest-progress-fill { height: 100%; background: #a26cff; width: 0%; transition: width 0.3s; }
-    .quest-btn { padding: 0.6rem; border-radius: 10px; font-weight: 800; text-transform: uppercase; font-size: var(--text-sm); text-align: center; border: none; cursor: pointer; transition: all 0.3s; }
-    .quest-btn.claim { background: #52c77b; color: #000; box-shadow: 0 0 15px rgba(82, 199, 123, 0.5); }
-    .quest-btn.claim:hover { transform: translateY(-2px); }
-    .quest-btn.disabled { background: rgba(255,255,255,0.1); color: #666; cursor: not-allowed; }
-
-    .banner-line { display: flex; justify-content: space-between; gap: 0.75rem; align-items: center; padding: 0.85rem 0.95rem; border-radius: 14px; font-size: var(--text-sm); background: rgba(4, 6, 12, 0.9); border: 1px solid rgba(191, 198, 255, 0.3); margin-top: 0.5rem; flex-wrap: wrap; line-height: 1.45; }
-    .report-list-item { display: flex; flex-direction: column; gap: 0.35rem; padding: 0.85rem; border-radius: 12px; background: rgba(4, 6, 12, 0.7); border: 1px solid rgba(162, 108, 255, 0.25); }
+    /* Time Attack specific */
+    .timer-display { 
+        font-family: var(--font-display); 
+        font-size: 4rem; 
+        color: #ffbf47; 
+        text-align: center; 
+        text-shadow: 0 0 20px rgba(255, 191, 71, 0.6); 
+        line-height: 1; 
+        margin: 1rem 0; 
+    }
+    .timer-display.danger { 
+        color: #ff6b88; 
+        text-shadow: 0 0 20px rgba(255, 107, 136, 0.8); 
+        animation: pulse 1s infinite; 
+    }
     
-    html[data-site-theme="leaderboard"] .report-list-item { border-color: rgba(255, 61, 0, 0.25); }
-    
-    .report-list-item span { font-size: var(--text-xs); color: var(--color-text-faint); }
-    .report-list-item a { color: #c4a1ff; text-decoration: none; font-size: var(--text-sm); word-break: break-all; }
-    .report-list-item a:hover { text-decoration: underline; }
-
-    /* === СТИЛИ ДЛЯ РУЛЕТКИ === */
-    .roulette-wrapper { width: 100%; height: 140px; position: relative; overflow: hidden; border-radius: 12px; background: #0b0d12; border: 2px solid rgba(191, 198, 255, 0.3); box-shadow: inset 0 0 40px rgba(0,0,0,0.8); margin-top: 1rem; }
-    .roulette-track { display: flex; height: 100%; }
-    .roulette-item { flex: 0 0 160px; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0.5rem; border-right: 1px solid rgba(255,255,255,0.1); font-size: var(--text-sm); font-weight: 700; color: #fff; }
-    .roulette-item i { font-size: 1.5rem; margin-bottom: 5px; }
-    
-    .r-leg { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #1a1a1a; text-shadow: 0px 1px 2px rgba(255,255,255,0.5); }
-    .r-rare { background: linear-gradient(135deg, #00b4d8, #0077b6); }
-    .r-bonus { background: linear-gradient(135deg, #52c77b, #2e7d32); }
-    .r-sec { background: linear-gradient(135deg, #a26cff, #4a00e0); }
-    .r-fail { background: linear-gradient(135deg, #444, #111); color: #ccc; }
-    .r-fine { background: linear-gradient(135deg, #ff6b88, #b71c1c); }
-    
-    .roulette-pointer { position: absolute; top: 0; bottom: 0; left: 50%; width: 4px; background: #ff3d00; transform: translateX(-50%); z-index: 10; box-shadow: 0 0 15px #ff3d00; }
-    .roulette-pointer::after { content: "▼"; position: absolute; top: -5px; left: 50%; transform: translateX(-50%); color: #ff3d00; font-size: 1.2rem; }
-    .roulette-pointer::before { content: "▲"; position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); color: #ff3d00; font-size: 1.2rem; }
+    @keyframes pulse { 
+        0% { transform: scale(1); } 
+        50% { transform: scale(1.05); } 
+        100% { transform: scale(1); } 
+    }
 
     @media (max-width: 900px) {
       .hero, .game-wrap { grid-template-columns: 1fr; }
       .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .shop-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .controls { grid-template-columns: 1fr; }
-      .support-answer-row-inner { flex-direction: column; }
-      .support-check-btn, .hero-actions .btn { width: 100%; }
-      .rule-copy span, .message-text, .section-head p { max-width: 100%; }
-      .sub-nav { width: 100%; justify-content: center; }
-    }
-    @media (max-width: 560px) {
-      .page { width: min(100% - 1rem, 1120px); }
-      .topbar { flex-direction: column; align-items: stretch; }
-      .theme-toggle { align-self: flex-end; }
-      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .shop-grid { grid-template-columns: 1fr; }
-      .banner-line { flex-direction: column; align-items: flex-start; }
-      .hero h1 { max-width: 100%; }
-      .auth-actions { flex-direction: column; }
-      .main-nav { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
   <div id="authModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center;">
-    <div class="panel" style="padding: 2rem; width: 90%; max-width: 360px; display: grid; gap: 1rem; box-sizing: border-box;">
+    <div class="panel" style="padding: 2rem; width: 90%; max-width: 360px; display: grid; gap: 1rem;">
       <h2 style="margin: 0; font-family: var(--font-display);">Авторизация</h2>
-      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Войдите или зарегистрируйтесь, чтобы начать смену и сохранять прогресс.</p>
       <input type="email" id="authEmail" class="support-input" placeholder="Ваш Email">
       <input type="text" id="authNickname" class="support-input" placeholder="Ваш Никнейм (Обязательно)">
       <input type="password" id="authPassword" class="support-input" placeholder="Пароль">
-      <div id="authErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0; line-height: 1.4;"></div>
-      <div class="auth-actions" style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
-        <button id="authLoginSubmit" class="btn btn-primary" type="button" style="flex: 1; padding: 0.75rem;">Войти</button>
-        <button id="authRegisterSubmit" class="btn btn-secondary" type="button" style="flex: 1; padding: 0.75rem;">Создать</button>
+      <div id="authErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none;"></div>
+      <div style="display: flex; gap: 0.5rem;">
+        <button id="authLoginSubmit" class="btn btn-primary" style="flex: 1;">Войти</button>
+        <button id="authRegisterSubmit" class="btn btn-secondary" style="flex: 1;">Создать</button>
       </div>
-      <button id="authCloseModal" class="btn" type="button" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted); margin-top: 0.5rem; padding: 0.75rem;">Отмена</button>
+      <button id="authCloseModal" class="btn" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted);">Отмена</button>
     </div>
   </div>
 
   <div id="nicknameModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); z-index: 10000; align-items: center; justify-content: center;">
-    <div class="panel" style="padding: 2rem; width: 90%; max-width: 360px; display: grid; gap: 1rem; box-sizing: border-box;">
+    <div class="panel" style="padding: 2rem; width: 90%; max-width: 360px; display: grid; gap: 1rem;">
       <h2 style="margin: 0; font-family: var(--font-display); color: #ffbf47;">Внимание!</h2>
       <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Для участия в Лидерборде необходимо установить свой игровой Nickname.</p>
       <input type="text" id="forceNicknameInput" class="support-input" placeholder="Например: John_Wick">
-      <button id="forceNicknameBtn" class="btn btn-primary" type="button" style="padding: 0.75rem;">Сохранить Никнейм</button>
+      <button id="forceNicknameBtn" class="btn btn-primary">Сохранить Никнейм</button>
     </div>
   </div>
 
   <div id="accessModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(6px); z-index: 9999; align-items: center; justify-content: center;">
-    <div class="panel" style="padding: 2rem; width: 90%; max-width: 360px; display: grid; gap: 1rem; box-sizing: border-box;">
+    <div class="panel" style="padding: 2rem; width: 90%; max-width: 360px; display: grid; gap: 1rem;">
       <h2 style="margin: 0; font-family: var(--font-display);">Доступ закрыт</h2>
-      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Введите код доступа для выполнения этого действия.</p>
       <input type="password" id="accessCodeInput" class="support-input" placeholder="Код доступа">
-      <div id="accessErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; margin: 0; line-height: 1.4;">Неверный код доступа!</div>
-      <button id="accessSubmitBtn" class="btn btn-primary" type="button" style="padding: 0.75rem;">Подтвердить</button>
-      <button id="accessCloseBtn" class="btn" type="button" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted); padding: 0.75rem;">Отмена</button>
+      <div id="accessErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none;">Неверный код доступа!</div>
+      <button id="accessSubmitBtn" class="btn btn-primary">Подтвердить</button>
+      <button id="accessCloseBtn" class="btn" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted);">Отмена</button>
     </div>
   </div>
 
-  <div id="spamModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(8px); z-index: 10000; align-items: center; justify-content: center;">
-    <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 420px; display: grid; gap: 1.2rem; box-sizing: border-box; text-align: center; border-color: rgba(255, 107, 136, 0.5);">
+  <div id="spamModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(8px); z-index: 10000; align-items: center; justify-content: center; pointer-events: auto;">
+    <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 420px; display: grid; gap: 1.2rem; text-align: center; border-color: rgba(255, 107, 136, 0.5);">
       <div style="font-size: 3.5rem; margin-bottom: -1rem;">👮‍♂️</div>
       <h2 style="margin: 0; font-family: var(--font-display); color: var(--color-error); font-size: var(--text-lg); text-transform: uppercase;">Слишком быстро!</h2>
-      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0; line-height: 1.5;">
-        Кажется, вы нажимаете наугад. Тренажёр создан для вдумчивой работы, а не для кликера. В качестве штрафа <strong>выдача вердиктов заблокирована на 1 минуту</strong>. Пожалуйста, освежите знания правил.
-      </p>
-      <a href="https://rules-ds.netlify.app" target="_blank" class="btn btn-primary" style="text-decoration: none; display: inline-block; background: linear-gradient(135deg, #ff3b60, #ff6b88); box-shadow: 0 10px 25px rgba(255, 107, 136, 0.5);">Читать правила сервера</a>
-      <button id="closeSpamModal" class="btn" type="button" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted);">Блокировка...</button>
+      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Тренажёр создан для вдумчивой работы. <strong>Блокировка на 1 минуту</strong>. Пожалуйста, освежите знания правил.</p>
+      <a href="https://rules-ds.netlify.app" target="_blank" class="btn btn-primary" style="text-decoration: none; background: linear-gradient(135deg, #ff3b60, #ff6b88);">Читать правила сервера</a>
+      <button id="closeSpamModal" class="btn" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted);">Блокировка...</button>
     </div>
   </div>
 
@@ -396,7 +620,7 @@
   <main class="page">
     <header class="topbar">
       <div class="brand">
-        <div class="logo" aria-hidden="true">
+        <div class="logo">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 18.5V6.8C4 5.8 4.8 5 5.8 5h4.4"></path><rect x="9" y="3.5" width="11" height="8" rx="2"></rect><path d="M8 12.5 12 7l4 5.5"></path><path d="M4 21h9.5"></path>
           </svg>
@@ -409,10 +633,11 @@
       <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: flex-end;">
         <div id="authStatus" style="display: flex; align-items: center; gap: 0.5rem;">
           <span id="userEmailDisplay" style="font-size: var(--text-sm); color: var(--color-text-muted);"></span>
-          <button id="loginBtnUI" class="badge xp" type="button" style="cursor: pointer;">Войти</button>
-          <button id="logoutBtnUI" class="badge ban" type="button" style="cursor: pointer; display: none;">Выйти</button>
+          <button id="loginBtnUI" class="badge xp" type="button">Войти</button>
+          <button id="logoutBtnUI" class="badge ban" type="button" style="display: none;">Выйти</button>
         </div>
-        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Сменить тему">🌙</button>
+        <button class="icon-btn" type="button" id="musicToggleBtn" aria-label="Музыка">🔇</button>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Сменить тему">🌙</button>
       </div>
     </header>
 
@@ -421,20 +646,18 @@
         <div class="badge-row">
           <span class="badge">Discord • Tambov 73</span>
           <span class="badge" id="heroBadge2">Режим: модераторы</span>
-          <span class="badge xp">Смена начинается вручную</span>
         </div>
         <h1 id="heroTitle">Следи за <span>порядком</span> на сервере.</h1>
-        <p id="heroText">Проверяй сообщения, принимай решения и поддерживай порядок в чате. Всё показывается только после начала смены.</p>
+        <p id="heroText">Проверяй сообщения, принимай решения и поддерживай порядок в чате.</p>
         <div class="hero-actions">
           <button class="btn btn-primary" type="button" id="startBtn">Начать смену</button>
           <button class="btn btn-secondary" type="button" id="resetBtn">Сбросить смену</button>
         </div>
       </article>
-
       <aside class="panel rules">
         <div class="section-head">
-          <h2 id="rightTitle">Материалы модератора</h2>
-          <p id="rightLead">Здесь только подсказки по модерации.</p>
+            <h2 id="rightTitle">Материалы модератора</h2>
+            <p id="rightLead">Подсказки по модерации.</p>
         </div>
         <div class="rule-list" id="rightCards"></div>
       </aside>
@@ -449,6 +672,7 @@
 
       <div class="sub-nav" id="subNavModeration">
         <button class="mode-btn active" data-mode="moderation" type="button">Тренажёр</button>
+        <button class="mode-btn" data-mode="timeattack" type="button">На время ⏱️</button>
         <button class="mode-btn" data-mode="complaints" type="button">Жалобы</button>
         <button class="mode-btn" data-mode="shop" type="button">Магазин</button>
         <button class="mode-btn" data-mode="report" type="button">Отчетность</button>
@@ -473,30 +697,75 @@
       <section class="panel game-card" id="mode-creator" style="display:none;">
         <div class="section-head">
           <h2 style="color: #ff6b88;">Панель Создателя (John Wick)</h2>
-          <p>Управление пользователями и генерация ключей доступа.</p>
+          <p>Управление пользователями, выдача XP и троллинг.</p>
         </div>
 
         <div style="background: rgba(13, 16, 32, 0.6); padding: 1rem; border-radius: 16px; border: 1px solid rgba(255, 107, 136, 0.3); margin-bottom: 1rem;">
-          <h3 style="margin-bottom: 0.5rem; font-size: var(--text-sm); color: var(--color-primary); text-transform: uppercase;">Выдача / Изъятие XP</h3>
-          <select id="creatorUserSelect" class="support-input" style="margin-bottom: 0.5rem;"><option>Загрузка...</option></select>
+          <h3 style="margin-bottom: 0.5rem; font-size: var(--text-sm); color: var(--color-primary);">Выдача / Изъятие XP</h3>
+          <select id="creatorUserSelect" class="support-input" style="margin-bottom: 0.5rem;">
+              <option>Загрузка...</option>
+          </select>
           <input type="number" id="creatorXpAmount" class="support-input" placeholder="Количество XP (например: 100 или -50)" style="margin-bottom: 0.5rem;">
           <button id="creatorXpBtn" class="btn btn-primary" style="width: 100%;">Изменить баланс XP</button>
         </div>
 
+        <div style="background: rgba(28, 10, 20, 0.6); padding: 1rem; border-radius: 16px; border: 1px solid rgba(255, 107, 136, 0.5); margin-bottom: 1rem;">
+          <h3 style="margin-bottom: 0.5rem; font-size: var(--text-sm); color: var(--color-error);">Панель Троллинга 🤡</h3>
+          <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: 1rem;">Выберите игрока из списка выше, чтобы применить наказание.</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+            <button id="trollWipeXpBtn" class="btn btn-secondary" style="border-color: var(--color-error); color: var(--color-error);">⬇️ Опустить на дно (Обнулить XP)</button>
+            <button id="trollRenameBtn" class="btn btn-secondary" style="border-color: var(--color-warning); color: var(--color-warning);">🤡 Клеймо позора (Сменить ник)</button>
+          </div>
+        </div>
+
         <div style="background: rgba(13, 16, 32, 0.6); padding: 1rem; border-radius: 16px; border: 1px solid rgba(255, 191, 71, 0.3);">
-          <h3 style="margin-bottom: 0.5rem; font-size: var(--text-sm); color: var(--color-warning); text-transform: uppercase;">Ключи доступа</h3>
-          <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
-            <select id="creatorKeyRole" class="support-input" style="flex: 1; min-width: 120px;">
-              <option value="shop">Магазин</option>
-              <option value="report">Отчеты</option>
+          <h3 style="margin-bottom: 0.5rem; font-size: var(--text-sm); color: var(--color-warning);">Ключи доступа</h3>
+          <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <select id="creatorKeyRole" class="support-input" style="flex: 1;">
+                <option value="shop">Магазин</option>
+                <option value="report">Отчеты</option>
             </select>
-            <input type="text" id="creatorKeyInput" class="support-input" placeholder="Код ключа (напр. VIP-123)" style="flex: 2; min-width: 200px;">
+            <input type="text" id="creatorKeyInput" class="support-input" placeholder="Код ключа" style="flex: 2;">
           </div>
           <button id="creatorAddKeyBtn" class="btn btn-secondary" style="width: 100%; border-color: var(--color-warning); color: var(--color-warning);">Создать ключ</button>
-          
-          <div style="margin-top: 1rem; font-size: var(--text-sm); color: var(--color-text-muted);">Активные ключи:</div>
-          <div id="creatorKeysList" style="margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+          <div id="creatorKeysList" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem;"></div>
+        </div>
+      </section>
+
+      <section class="panel game-card" id="mode-timeattack" style="display:none;">
+        <div class="section-head">
+          <h2 style="color: #ffbf47;">Спидран (На время) ⏱️</h2>
+          <p>У вас есть ровно 60 секунд. Каждая ошибка отнимает 3 секунды. Сколько сообщений вы успеете разобрать?</p>
+        </div>
+        
+        <div class="timer-display" id="taTimer">01:00</div>
+        
+        <div class="stats-grid" style="margin-bottom: 1rem;">
+          <div class="stat"><span class="stat-label">Счет</span><div class="stat-value" id="taScore" style="color: var(--color-success);">0</div></div>
+          <div class="stat"><span class="stat-label">Ошибки</span><div class="stat-value" id="taMistakes" style="color: var(--color-error);">0</div></div>
+        </div>
+
+        <div id="taStartScreen" style="text-align: center; padding: 2rem 0;">
+          <button id="taStartBtn" class="btn btn-primary" style="font-size: 1.2rem; padding: 1rem 3rem;">Начать заезд!</button>
+        </div>
+
+        <div class="feed" id="taGameScreen" style="display:none;">
+          <article class="message-card">
+            <div class="channel"><span class="channel-dot" style="background:#ffbf47;"></span># speedrun / moderation</div>
+            <div class="author-row">
+              <div class="avatar" id="taAvatar">T7</div>
+              <div>
+                <div class="author-name" id="taAuthorName">System</div>
+                <div class="author-meta">Быстрее принимайте решение!</div>
+              </div>
             </div>
+            <div class="message-text" id="taMessageText" style="font-size: 1.1rem; font-weight: 600;">Загрузка...</div>
+          </article>
+          <div class="controls">
+            <button class="action-btn skip-btn" type="button" data-ta-action="good">✅ Без нарушения</button>
+            <button class="action-btn warn-btn" type="button" data-ta-action="warn">⚠️ Пред / Мут</button>
+            <button class="action-btn ban-btn" type="button" data-ta-action="ban">🔨 Бан</button>
+          </div>
         </div>
       </section>
 
@@ -625,7 +894,9 @@
           <h2>Таблица лидеров (Топ-10)</h2>
           <p>Самые активные сотрудники по количеству заработанного XP (с учетом трат).</p>
         </div>
-        <div class="feed" id="leaderboardList"><div class="message-text">Загрузка...</div></div>
+        <div class="feed" id="leaderboardList">
+            <div class="message-text">Загрузка...</div>
+        </div>
       </section>
 
       <section class="panel game-card" id="mode-guide" style="display:none;">
@@ -638,26 +909,56 @@
             <div>
               <h3 style="color: #6c8cff; margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid rgba(108,140,255,0.3); padding-bottom: 0.3rem;">Модерация Discord</h3>
               <div style="display: grid; gap: 0.6rem; font-size: var(--text-sm); color: var(--color-text-muted);">
-                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ГМ</strong> — Lexa_Mackenzie</span> <a href="https://vk.com/lexa_br" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
-                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ЗГМ</strong> — John Wick</span> <a href="https://vk.com/daniil_timoshin" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
-                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ЗГМ</strong> — Andrey_Caypen</span> <a href="https://vk.com/andrey_caypen" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
-                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Куратор</strong> — Hunter_Mackenzie</span> <a href="https://vk.com/" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                    <span><strong>ГМ</strong> — Lexa_Mackenzie</span> 
+                    <a href="https://vk.com/lexa_br" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[Перейти в ВК]</a>
+                </div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                    <span><strong>ЗГМ</strong> — John Wick</span> 
+                    <a href="https://vk.com/daniil_timoshin" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[Перейти в ВК]</a>
+                </div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                    <span><strong>ЗГМ</strong> — Andrey_Caypen</span> 
+                    <a href="https://vk.com/andrey_caypen" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[Перейти в ВК]</a>
+                </div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                    <span><strong>Куратор</strong> — Hunter_Mackenzie</span> 
+                    <a href="https://vk.com/" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[Перейти в ВК]</a>
+                </div>
               </div>
             </div>
             <div>
               <h3 style="color: #ffbf47; margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid rgba(255,191,71,0.3); padding-bottom: 0.3rem;">Администрация Сервера</h3>
               <div style="display: grid; gap: 0.6rem; font-size: var(--text-sm); color: var(--color-text-muted);">
-                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ГА</strong> — Lars_Crown</span> <a href="https://vk.com/" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
-                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ЗГА</strong> — Egor_Versachi</span> <a href="https://vk.com/" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
-                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ЗГА</strong> — Oskar_Lofrein</span> <a href="https://vk.com/" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
-                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Куратор Адм.</strong> — Kiruha_Lubera</span> <a href="https://vk.com/" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                    <span><strong>ГА</strong> — Lars_Crown</span> 
+                    <a href="https://vk.com/" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a>
+                </div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                    <span><strong>ЗГА</strong> — Egor_Versachi</span> 
+                    <a href="https://vk.com/" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a>
+                </div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                    <span><strong>ЗГА</strong> — Oskar_Lofrein</span> 
+                    <a href="https://vk.com/" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a>
+                </div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                    <span><strong>Куратор Адм.</strong> — Kiruha_Lubera</span> 
+                    <a href="https://vk.com/" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a>
+                </div>
               </div>
             </div>
             <div>
               <h3 style="color: #52c77b; margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid rgba(82,199,123,0.3); padding-bottom: 0.3rem;">Агенты Поддержки</h3>
               <div style="display: grid; gap: 0.6rem; font-size: var(--text-sm); color: var(--color-text-muted);">
-                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Куратор АП</strong> — Ioana_Lost</span> <a href="https://vk.com/" target="_blank" style="color:#52c77b;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
-                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Зам. Куратора АП</strong> — Kirill_Rendi</span> <a href="https://vk.com/" target="_blank" style="color:#52c77b;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                    <span><strong>Куратор АП</strong> — Ioana_Lost</span> 
+                    <a href="https://vk.com/" target="_blank" style="color:#52c77b;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a>
+                </div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                    <span><strong>Зам. Куратора АП</strong> — Kirill_Rendi</span> 
+                    <a href="https://vk.com/" target="_blank" style="color:#52c77b;text-decoration:none; font-weight: bold;">[Перейти в ВК]</a>
+                </div>
               </div>
             </div>
           </article>
@@ -721,6 +1022,7 @@
               <div class="support-result" id="reportResultText"></div>
             </div>
           </article>
+          
           <div id="adminPanelArea" style="display:none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(191,198,255,0.2);">
             <h3 style="margin-bottom: 0.5rem; font-size: var(--text-sm); color: var(--color-primary); letter-spacing: 0.05em; text-transform: uppercase;">Панель Руководства</h3>
             <button class="btn btn-secondary" type="button" id="viewReportsBtn" style="width:100%;">Проверить сданные отчеты</button>
@@ -735,7 +1037,9 @@
           <p>Покупки из магазина и Рулетки. Нажимайте «Отметить как выданное» после выдачи в Discord.</p>
         </div>
         <button class="btn btn-secondary" type="button" id="loadAdminLogsBtn" style="width:100%; margin-bottom:1rem;">Обновить список</button>
-        <div class="feed" id="adminLogsArea"><div class="message-text">Нажмите «Обновить список»</div></div>
+        <div class="feed" id="adminLogsArea">
+            <div class="message-text">Нажмите «Обновить список»</div>
+        </div>
       </section>
 
       <aside class="panel side">
@@ -753,6 +1057,53 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
         
+        // === АУДИО ЭФФЕКТЫ ===
+        let isAudioEnabled = false;
+        
+        // Фоновая музыка (Lo-fi)
+        const bgMusic = new Audio('https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3');
+        bgMusic.loop = true; 
+        bgMusic.volume = 0.15;
+        
+        // Звуки эффектов
+        const sndOk = new Audio('https://actions.google.com/sounds/v1/ui/pop.ogg'); 
+        sndOk.volume = 0.4;
+        const sndFail = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg'); 
+        sndFail.volume = 0.2;
+        const sndWin = new Audio('https://actions.google.com/sounds/v1/cartoon/clown_horn.ogg'); 
+        sndWin.volume = 0.3; 
+
+        function playSound(type) {
+            if (!isAudioEnabled) return;
+            if (type === 'ok') { 
+                sndOk.currentTime = 0; 
+                sndOk.play().catch(()=>{}); 
+            }
+            if (type === 'fail') { 
+                sndFail.currentTime = 0; 
+                sndFail.play().catch(()=>{}); 
+            }
+            if (type === 'win') { 
+                sndWin.currentTime = 0; 
+                sndWin.play().catch(()=>{}); 
+            }
+        }
+
+        const musicToggleBtn = document.getElementById('musicToggleBtn');
+        musicToggleBtn.addEventListener('click', () => {
+            isAudioEnabled = !isAudioEnabled;
+            if (isAudioEnabled) {
+                musicToggleBtn.textContent = '🎵';
+                bgMusic.play().catch(()=>{ 
+                    isAudioEnabled = false; 
+                    musicToggleBtn.textContent = '🔇'; 
+                });
+            } else {
+                musicToggleBtn.textContent = '🔇';
+                bgMusic.pause();
+            }
+        });
+
         // === БАЗА ДАННЫХ И ИНИЦИАЛИЗАЦИЯ ===
         const supabaseUrl = 'https://icfihnroblyjjflsfepq.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljZmlobnJvYmx5ampmbHNmZXBxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4NjAxMDksImV4cCI6MjA5MTQzNjEwOX0.Hrvjg572mIKBG-2ffYEr4Fxvpz0hOAex9d6n7WylVkQ';
@@ -773,13 +1124,39 @@
           'maksimladnyj4@gmail.com'
         ];
 
-        let state = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false, log: [], reportXp: 0 };
-        let supportState = { resolved: 0, correct: 0, mistakes: 0, currentIndex: -1, started: false };
-        let complaintState = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false };
-        let shopState = { spent: 0 };
+        let state = { 
+            resolved: 0, 
+            correct: 0, 
+            mistakes: 0, 
+            current: null, 
+            started: false, 
+            log: [], 
+            reportXp: 0 
+        };
+        let supportState = { 
+            resolved: 0, 
+            correct: 0, 
+            mistakes: 0, 
+            currentIndex: -1, 
+            started: false 
+        };
+        let complaintState = { 
+            resolved: 0, 
+            correct: 0, 
+            mistakes: 0, 
+            current: null, 
+            started: false 
+        };
+        let shopState = { 
+            spent: 0 
+        };
 
-        let allModMessages = []; let allSupQuestions = []; let allComplaints = [];
-        let modQueue = []; let supQueue = []; let compQueue = [];
+        let allModMessages = []; 
+        let allSupQuestions = []; 
+        let allComplaints = [];
+        let modQueue = []; 
+        let supQueue = []; 
+        let compQueue = [];
 
         const authModal = document.getElementById('authModal');
         const nicknameModal = document.getElementById('nicknameModal');
@@ -788,7 +1165,7 @@
         const userEmailDisplay = document.getElementById('userEmailDisplay');
         const authErrorMsg = document.getElementById('authErrorMsg');
 
-        // === ИНИЦИАЛИЗАЦИЯ ДАННЫХ ===
+        // === ИНИЦИАЛИЗАЦИЯ ДАННЫХ (ПОЛНЫЕ МАССИВЫ) ===
         function createModerationMessages() {
           const warn = [
             "АХАХАХАХХАХАХАХАХАХАХАХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХ",
@@ -865,8 +1242,13 @@
             "Как взломать аккаунт? Друг попросил узнать",
             "Где скачать читы на бессмертие?",
             "Продам свой аккаунт, кому нужен?",
-            "Я тут главный, слушайтесь меня все"
+            "Я тут главный, слушайтесь меня все",
+            "ДА ВЫ ВСЕ ТУТ КЛОУНЫ, СЕРВЕР МЁРТВЫЙ",
+            "Админ тупой, ничего не умеет, состав помойка.",
+            "Ты щас рот закроешь и пойдешь отсюда, понял?",
+            "Заходите на мой проект вместо этого, тут все админы мусор."
           ];
+
           const ban = [
             "Продам вирты, 1кк = 50 рублей. Писать в ЛС, оплата на киви",
             "Куплю жирный аккаунт с випкой за реал, предлагайте цены",
@@ -937,8 +1319,12 @@
             "Скиньте мне 100р на киви и я дам вам 10кк виртов",
             "Продаю приватные логи с аккаунтами",
             "Как обойти мут в чате? Помогите",
-            "Продаю макросы на стрельбу, дешево"
+            "Продаю макросы на стрельбу, дешево",
+            "Кто хочет купить разбан? Пишите в лс, договоримся.",
+            "Скину софт для обхода бана и античита, пинг в личку.",
+            "Устрою вам рейд вечером, вынесу весь ваш дискорд."
           ];
+
           const good = [
             "ПАЦАНЫ КТО НА КАПТ БЫСТРО ЗАЛЕТАЙТЕ ВСЕ В ИГРУ!!!!",
             "АДМИНЫ ПОЧЕМУ СЕРВЕР ЛАГАЕТ СДЕЛАЙТЕ ЧТО НИБУДЬ",
@@ -1014,12 +1400,17 @@
             "Сколько человек нужно для бизвара?",
             "Какое оружие лучше использовать на капте?",
             "Где взять аптечки для фамы?",
-            "Как пополнить склад семьи?"
+            "Как пополнить склад семьи?",
+            "Ребят, как отключить уведомления у этого канала?",
+            "Можно ли сегодня подать отчет позже? Интернет пропадал.",
+            "Почему удалили мое сообщение? Я вроде без нарушений писал."
           ];
+
           const messages = [];
           warn.forEach(text => { messages.push({ type: "warn", text }); });
           ban.forEach(text => { messages.push({ type: "ban", text }); });
           good.forEach(text => { messages.push({ type: "good", text }); });
+          
           return messages;
         }
 
@@ -1101,12 +1492,29 @@
             { title: "Вопросы", text: "Как позвонить игроку?", keywords: ["/call"] },
             { title: "Вопросы", text: "Как написать SMS?", keywords: ["/sms"] },
             { title: "Вопросы", text: "Как добавить контакт в телефон?", keywords: ["/book"] },
-            { title: "Вопросы", text: "Как включить телефон?", keywords: ["/phone"] }
+            { title: "Вопросы", text: "Как включить телефон?", keywords: ["/phone"] },
+            { title: 'Не вижу каналов', meta: 'Навигация Discord', text: 'Я зашел на сервер, но вижу только приветствие. Что нужно сделать, чтобы открылись остальные каналы?', keywords: ['вериф', 'роль', 'правил', 'канал'] },
+            { title: 'Не приходит код', meta: 'Техническая проблема', text: 'Мне не приходит код подтверждения на почту при входе. Что можно попробовать сделать?', keywords: ['спам', 'почт', 'подожд', 'повтор'] },
+            { title: 'Куда жаловаться', meta: 'Система жалоб', text: 'Хочу подать жалобу на модератора. Куда именно писать и что прикладывать?', keywords: ['жалоб', 'скрин', 'доказ', 'форма'] },
+            { title: 'Почему мут', meta: 'Разъяснение наказания', text: 'Мне выдали мут, но я не понял за что. Как мне узнать причину и срок?', keywords: ['причин', 'срок', 'наказ', 'модерат'] },
+            { title: 'Можно сменить ник?', meta: 'Профиль', text: 'Я случайно поставил плохой ник при регистрации. Как его поменять?', keywords: ['ник', 'смен', 'профил', 'админ'] },
+            { title: 'Где отчеты', meta: 'Отчетность', text: 'Я в составе и не понимаю, куда загружать отчеты за смену. Подскажи порядок действий.', keywords: ['отчет', 'ссылк', 'раздел', 'отправ'] },
+            { title: 'Не работает магазин', meta: 'Внутренний магазин', text: 'Я накопил XP, но не понимаю, где покупать награды и как они выдаются.', keywords: ['магазин', 'xp', 'куп', 'выдач'] },
+            { title: 'Как связаться с КГМ', meta: 'Эскалация', text: 'Вопрос спорный и обычный модератор не помогает. Как корректно передать ситуацию выше?', keywords: ['кгм', 'передат', 'руковод', 'ситуац'] }
           ];
         }
 
         function createComplaints() {
-          return []; // Заполняется позже в extendScenarioData
+          return [
+              { text: 'Игрок жалуется, что модератор выдал мут за капс, хотя в сообщении было одно слово заглавными буквами в эмоциональном контексте.', evidence: 'Скрин: "ПОМОГИТЕ" и сразу после этого обычные сообщения.', type: 'reject' },
+              { text: 'Поступила жалоба на игрока, который в голосовом и текстовом канале несколько раз оскорбил семью другого участника.', evidence: 'Видео + логи чата с прямыми оскорблениями.', type: 'approve' },
+              { text: 'Пользователь просит наказать модератора за бан, но в доказательствах есть только обрезанный скрин без контекста и без даты.', evidence: 'Один скрин без ID, даты и полного диалога.', type: 'reject' },
+              { text: 'Жалоба на администратора: заявитель утверждает, что тот выдал наказание своему знакомому в обход регламента, ситуация спорная и касается руководства.', evidence: 'Несколько скринов, упоминание администратора и возможного блата.', type: 'pass' },
+              { text: 'Игрок отправил жалобу на обход мута через твинк и приложил скрины двух аккаунтов с одинаковой манерой речи и признанием.', evidence: 'Скрин признания и совпадение Discord ID в профиле.', type: 'approve' },
+              { text: 'Жалоба на то, что хелпер не ответил в течение 3 минут ночью при низком онлайне.', evidence: 'Только время отправки вопроса и отсутствие других данных.', type: 'reject' },
+              { text: 'Игрок сообщает, что модератор угрожал ему баном без причины в личных сообщениях после конфликта в чате.', evidence: 'Полная переписка и совпадение ника модератора.', type: 'approve' },
+              { text: 'Жалоба касается возможной продажи доната сотрудником. В деле фигурируют переводы, личные сообщения и подозрение на схему.', evidence: 'Скрины перевода, переписки и упоминание сотрудника состава.', type: 'pass' }
+          ]; 
         }
 
         // === ВОССТАНОВЛЕНИЕ КОНТЕНТА ПРАВОЙ ПАНЕЛИ ===
@@ -1118,6 +1526,15 @@
               ["Без нарушения", "Обычное сообщение без спама, оскорблений, рекламы."],
               ["Устное / Пред / Мут", "Флуд, капс, токсичность, помехи, политика."],
               ["Бан / Перма / Глобал", "Реклама проектов, РМТ, обход наказаний, слив инфы."]
+            ]
+          },
+          timeattack: {
+            title: "Спидран",
+            lead: "Правила режима на время.",
+            cards: [
+              ["Время", "Дается 60 секунд. За ошибки отнимается 3 секунды."],
+              ["Опыт", "Бонусный XP: +10 за каждые 5 верных вердиктов."],
+              ["Внимание", "Штрафов за пропуск нет, но время не вернуть."]
             ]
           },
           support: {
@@ -1197,6 +1614,7 @@
             lead: "Только для Создателя (John Wick).",
             cards: [
               ["XP", "Выдача или снятие XP обновляет shop_spent пользователя. Отрицательное число выдаст XP."],
+              ["Троллинг", "Сброс XP ставит долг 99999. Смена ника моментально меняет имя в базе."],
               ["Ключи", "Все ключи сохраняются в базе. Модератор вводит их для доступа к закрытым разделам."]
             ]
           }
@@ -1228,6 +1646,7 @@
           moderation: document.getElementById('subNavModeration'),
           support: document.getElementById('subNavSupport')
         };
+        
         mainNavBtns.forEach(btn => {
           btn.addEventListener('click', () => {
             mainNavBtns.forEach(b => b.classList.remove('active'));
@@ -1244,11 +1663,16 @@
           });
         });
 
-        const allModesList = ["moderation", "complaints", "support", "guide", "leaderboard", "about", "shop", "report", "admin_log", "quests", "creator"];
+        const allModesList = [
+            "moderation", "timeattack", "complaints", "support", 
+            "guide", "leaderboard", "about", "shop", "report", 
+            "admin_log", "quests", "creator"
+        ];
         
         function switchMode(mode, btn) {
           document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
           if(btn) btn.classList.add("active");
+          
           allModesList.forEach(m => {
             const panel = document.getElementById("mode-" + m);
             if(panel) { panel.style.display = (m === mode) ? "" : "none"; }
@@ -1264,6 +1688,7 @@
           else if(mode === "admin_log") currentTheme = "admin_log";
           else if(mode === "complaints") currentTheme = "complaints";
           else if(mode === "quests") currentTheme = "quests";
+          else if(mode === "timeattack") currentTheme = "timeattack";
           else if(mode === "creator") currentTheme = "creator";
 
           document.documentElement.setAttribute("data-site-theme", currentTheme);
@@ -1286,6 +1711,10 @@
             if(brandSub) brandSub.textContent = "Симулятор смены модераторов";
             if(hTitle) hTitle.innerHTML = 'Следи за <span>порядком</span> на сервере.'; if(hText) hText.textContent = "Проверяй сообщения, принимай решения и поддерживай порядок в чате.";
             if(hBadge) hBadge.textContent = "Режим: модераторы";
+          } else if (mode === "timeattack") {
+            if(brandSub) brandSub.textContent = "Симулятор смены: На время";
+            if(hTitle) hTitle.innerHTML = 'Успей за <span>минуту</span>.'; if(hText) hText.textContent = "Проверяй сообщения как можно быстрее. За ошибки отнимается драгоценное время!";
+            if(hBadge) hBadge.textContent = "Режим: спидран";
           } else if (mode === "complaints") {
             if(brandSub) brandSub.textContent = "Симулятор смены: Жалобы";
             if(hTitle) hTitle.innerHTML = 'Рассматривай <span>репорты</span>.'; if(hText) hText.textContent = "Изучай доказательства игроков и выноси вердикты. Спорные моменты и ЧСМ передавай КГМ.";
@@ -1348,7 +1777,7 @@
           btn.disabled = true;
           btn.textContent = "Проверка...";
 
-          // Сначала проверяем старые запасные ключи для Джона Уика
+          // 1. Проверяем запасные ключи для Джона Уика
           if (pendingAction.type === 'switch_tab_shop' && val === 'JohnWickModer') {
               localStorage.setItem('access_JohnWickModer', 'true');
               hasAccessCode = true;
@@ -1362,7 +1791,7 @@
               return;
           }
 
-          // Если это не запасной ключ, ищем сгенерированный ключ в БД
+          // 2. Если это не запасной ключ, ищем ключ в БД
           const { data, error } = await supa.from('reports').select('*').eq('email', 'ACCESS_KEY').eq('link', val);
           
           if (data && data.length > 0) {
@@ -1406,6 +1835,7 @@
 
         const funnyLeft = ["Мелстройность","Смешнявка","Макенза","Сраупен","бурмалда","Рассыльщик_Мемов","ПолитТоксик","РелигБаттл","Дед_с_Клавой","Флуд_Бот"];
         const funnyRight = ["из_Тамбова","без_микрофона","на_ГлОбАнЕ","в_муте","с_вечным_баном","тянет_конфу","обижен_на_админов","любит_капс","ищет_баги","продаёт_вирты"];
+        
         function randomFunnyNick() { 
           return `${funnyLeft[Math.floor(Math.random() * funnyLeft.length)]}_${funnyRight[Math.floor(Math.random() * funnyRight.length)]}#${Math.floor(1000 + Math.random() * 8999)}`;
         }
@@ -1417,27 +1847,46 @@
           }
         }
 
-        function initials(name) { return name.split(/[#_\s]+/).filter(Boolean).slice(0, 2).map(part => part[0]).join("").toUpperCase(); }
+        function initials(name) { 
+            return name.split(/[#_\s]+/).filter(Boolean).slice(0, 2).map(part => part[0]).join("").toUpperCase(); 
+        }
 
         async function ensureNickname() {
           if (!currentUser) return;
           let nick = currentUser.user_metadata?.nickname;
+          
           if (!nick) {
             const { data } = await supa.from('user_stats').select('nickname').eq('user_id', currentUser.id).single();
-            if (data && data.nickname) { nick = data.nickname; await supa.auth.updateUser({ data: { nickname: nick } }); }
+            if (data && data.nickname) { 
+                nick = data.nickname; 
+                await supa.auth.updateUser({ data: { nickname: nick } }); 
+            }
           }
-          if (!nick) { nicknameModal.style.display = 'flex'; } 
-          else { currentNickname = nick; userEmailDisplay.textContent = nick; }
+          
+          if (!nick) { 
+              nicknameModal.style.display = 'flex'; 
+          } else { 
+              currentNickname = nick; 
+              userEmailDisplay.textContent = nick; 
+          }
         }
 
         document.getElementById('forceNicknameBtn').addEventListener('click', async () => {
           const val = document.getElementById('forceNicknameInput').value.trim();
           if (val.length < 3) { alert("Никнейм должен быть длиннее 3 символов!"); return; }
-          await supa.auth.updateUser({ data: { nickname: val } });
-          if (currentUser) { await supa.from('user_stats').update({ nickname: val }).eq('user_id', currentUser.id); }
-          currentNickname = val; userEmailDisplay.textContent = val; nicknameModal.style.display = 'none';
           
-          if(!state.started && document.getElementById("authorName")?.textContent === "System") { startGame(); }
+          await supa.auth.updateUser({ data: { nickname: val } });
+          if (currentUser) { 
+              await supa.from('user_stats').update({ nickname: val }).eq('user_id', currentUser.id); 
+          }
+          
+          currentNickname = val; 
+          userEmailDisplay.textContent = val; 
+          nicknameModal.style.display = 'none';
+          
+          if(!state.started && document.getElementById("authorName")?.textContent === "System") { 
+              startGame(); 
+          }
         });
 
         function loadLocalState() {
@@ -1449,13 +1898,16 @@
             complaintState.correct = Number(cParsed.correct) || 0;
             complaintState.mistakes = Number(cParsed.mistakes) || 0;
           }
-          updateComplaintStats(); renderQuests();
+          updateComplaintStats(); 
+          renderQuests();
         }
 
         function saveLocalState() {
           if(!currentUser) return;
           localStorage.setItem('comp_stats_' + currentUser.email, JSON.stringify({
-            resolved: complaintState.resolved, correct: complaintState.correct, mistakes: complaintState.mistakes
+            resolved: complaintState.resolved, 
+            correct: complaintState.correct, 
+            mistakes: complaintState.mistakes
           }));
         }
 
@@ -1474,26 +1926,39 @@
             state.resolved = Number(data.mod_resolved) || 0; 
             state.correct = Number(data.mod_correct) || 0; 
             state.mistakes = Number(data.mod_mistakes) || 0;
+            
             supportState.resolved = Number(data.sup_resolved) || 0; 
             supportState.correct = Number(data.sup_correct) || 0; 
             supportState.mistakes = Number(data.sup_mistakes) || 0;
+            
             shopState.spent = Number(data.shop_spent) || 0;
           }
           
           const { data: repData } = await supa.from('reports').select('xp').eq('email', currentUser.email);
-          state.reportXp = 0; if (repData) state.reportXp = repData.reduce((sum, r) => sum + (Number(r.xp) || 0), 0);
+          state.reportXp = 0; 
+          if (repData) {
+              state.reportXp = repData.reduce((sum, r) => sum + (Number(r.xp) || 0), 0);
+          }
           
-          loadLocalState(); updateModStats(); updateSupportStats(); updateShopStats();
+          loadLocalState(); 
+          updateModStats(); 
+          updateSupportStats(); 
+          updateShopStats();
           ensureNickname();
         }
 
         async function saveProgress() {
           if(!currentUser) return;
           const payload = {
-            user_id: currentUser.id, email: currentUser.email, 
+            user_id: currentUser.id, 
+            email: currentUser.email, 
             nickname: currentNickname || currentUser.user_metadata?.nickname || currentUser.email.split('@')[0],
-            mod_resolved: Number(state.resolved), mod_correct: Number(state.correct), mod_mistakes: Number(state.mistakes),
-            sup_resolved: Number(supportState.resolved), sup_correct: Number(supportState.correct), sup_mistakes: Number(supportState.mistakes),
+            mod_resolved: Number(state.resolved), 
+            mod_correct: Number(state.correct), 
+            mod_mistakes: Number(state.mistakes),
+            sup_resolved: Number(supportState.resolved), 
+            sup_correct: Number(supportState.correct), 
+            sup_mistakes: Number(supportState.mistakes),
             shop_spent: Number(shopState.spent)
           };
           await supa.from('user_stats').upsert(payload);
@@ -1509,10 +1974,17 @@
           if (currentUser) {
             currentNickname = currentUser.user_metadata?.nickname;
             userEmailDisplay.textContent = currentNickname || currentUser.email;
-            loginBtnUI.style.display = 'none'; logoutBtnUI.style.display = 'block'; authModal.style.display = 'none'; loadProgress();
+            loginBtnUI.style.display = 'none'; 
+            logoutBtnUI.style.display = 'block'; 
+            authModal.style.display = 'none'; 
+            loadProgress();
           } else {
-            userEmailDisplay.textContent = ''; loginBtnUI.style.display = 'block';
-            logoutBtnUI.style.display = 'none'; resetGame(); checkReportAccess(); renderQuests();
+            userEmailDisplay.textContent = ''; 
+            loginBtnUI.style.display = 'block';
+            logoutBtnUI.style.display = 'none'; 
+            resetGame(); 
+            checkReportAccess(); 
+            renderQuests();
             document.getElementById('creatorTabBtn').style.display = 'none';
           }
         }
@@ -1524,22 +1996,43 @@
         document.getElementById('authLoginSubmit').onclick = async () => {
           const email = document.getElementById('authEmail').value;
           const password = document.getElementById('authPassword').value;
-          if(!email || !password) { authErrorMsg.textContent = "Введите Email и Пароль!"; authErrorMsg.style.color = "var(--color-warning)"; authErrorMsg.style.display = 'block'; return; }
+          if(!email || !password) { 
+              authErrorMsg.textContent = "Введите Email и Пароль!"; 
+              authErrorMsg.style.color = "var(--color-warning)"; 
+              authErrorMsg.style.display = 'block'; 
+              return; 
+          }
           const { data, error } = await supa.auth.signInWithPassword({ email, password });
-          if(error) { authErrorMsg.textContent = error.message; authErrorMsg.style.color = "var(--color-error)"; authErrorMsg.style.display = 'block'; }
+          if(error) { 
+              authErrorMsg.textContent = error.message; 
+              authErrorMsg.style.color = "var(--color-error)"; 
+              authErrorMsg.style.display = 'block'; 
+          }
         };
 
         document.getElementById('authRegisterSubmit').onclick = async () => {
           const email = document.getElementById('authEmail').value;
           const nickname = document.getElementById('authNickname').value; 
           const password = document.getElementById('authPassword').value;
-          if(!email || !password || !nickname) { authErrorMsg.textContent = "Заполните все поля, включая Никнейм!"; authErrorMsg.style.color = "var(--color-warning)"; authErrorMsg.style.display = 'block'; return; }
+          if(!email || !password || !nickname) { 
+              authErrorMsg.textContent = "Заполните все поля, включая Никнейм!"; 
+              authErrorMsg.style.color = "var(--color-warning)"; 
+              authErrorMsg.style.display = 'block'; 
+              return; 
+          }
           const { data, error } = await supa.auth.signUp({ email, password, options: { data: { nickname: nickname } } });
-          if(error) { authErrorMsg.textContent = error.message; authErrorMsg.style.color = "var(--color-error)"; authErrorMsg.style.display = 'block'; } 
-          else { authErrorMsg.textContent = "Успешно! Вы зарегистрированы и вошли."; authErrorMsg.style.color = "var(--color-success)"; authErrorMsg.style.display = 'block'; }
+          if(error) { 
+              authErrorMsg.textContent = error.message; 
+              authErrorMsg.style.color = "var(--color-error)"; 
+              authErrorMsg.style.display = 'block'; 
+          } else { 
+              authErrorMsg.textContent = "Успешно! Вы зарегистрированы и вошли."; 
+              authErrorMsg.style.color = "var(--color-success)"; 
+              authErrorMsg.style.display = 'block'; 
+          }
         };
 
-        // === ПАНЕЛЬ СОЗДАТЕЛЯ (ЛОГИКА) ===
+        // === ПАНЕЛЬ СОЗДАТЕЛЯ (ЛОГИКА И ТРОЛЛИНГ) ===
         let creatorUsersList = [];
 
         async function loadCreatorPanelData() {
@@ -1590,14 +2083,12 @@
         document.getElementById('creatorXpBtn').addEventListener('click', async () => {
             const sel = document.getElementById('creatorUserSelect');
             const valInput = document.getElementById('creatorXpAmount');
-            const res = document.getElementById('creatorXpResult');
             
             const userId = sel.value;
             const amount = parseInt(valInput.value);
 
             if (!userId || isNaN(amount)) {
-                res.textContent = "Ошибка: введите корректное число XP.";
-                res.style.color = "var(--color-warning)";
+                alert("Ошибка: введите корректное число XP.");
                 return;
             }
 
@@ -1609,14 +2100,38 @@
 
             const { error } = await supa.from('user_stats').update({ shop_spent: newShopSpent }).eq('user_id', userId);
             if (error) {
-                res.textContent = "Ошибка БД: " + error.message;
-                res.style.color = "var(--color-error)";
+                alert("Ошибка БД: " + error.message);
             } else {
-                res.textContent = `Успешно! Баланс пользователя ${user.nickname} изменён на ${amount > 0 ? '+'+amount : amount} XP.`;
-                res.style.color = "var(--color-success)";
+                playSound('win');
+                alert(`Успешно! Баланс пользователя ${user.nickname} изменён на ${amount > 0 ? '+'+amount : amount} XP.`);
                 valInput.value = '';
                 await loadCreatorPanelData(); // обновляем список
             }
+        });
+
+        // Кнопки Троллинга
+        document.getElementById('trollWipeXpBtn').addEventListener('click', async () => {
+            const userId = document.getElementById('creatorUserSelect').value;
+            if (!userId) return;
+            
+            // Установим огромный долг, чтобы обнулить XP
+            await supa.from('user_stats').update({ shop_spent: 99999 }).eq('user_id', userId);
+            playSound('fail'); 
+            alert('Игрок опущен на дно (XP обнулен)!'); 
+            loadCreatorPanelData();
+        });
+
+        document.getElementById('trollRenameBtn').addEventListener('click', async () => {
+            const userId = document.getElementById('creatorUserSelect').value;
+            if (!userId) return;
+            
+            const funnyNames = ["Клоун_Из_Тамбова", "Главный_Пупсик", "Обиженка_1337", "Печенька_С_Форума"];
+            const newName = funnyNames[Math.floor(Math.random() * funnyNames.length)];
+            
+            await supa.from('user_stats').update({ nickname: newName }).eq('user_id', userId);
+            playSound('win'); 
+            alert(`Игроку выдано клеймо позора: ${newName}!`); 
+            loadCreatorPanelData();
         });
 
         document.getElementById('creatorAddKeyBtn').addEventListener('click', async () => {
@@ -1629,7 +2144,14 @@
             }
 
             btn.disabled = true;
-            const newKey = { id: Date.now().toString(), email: 'ACCESS_KEY', link: keyStr, date: new Date().toLocaleString('ru-RU'), status: role, xp: 0 };
+            const newKey = { 
+                id: Date.now().toString(), 
+                email: 'ACCESS_KEY', 
+                link: keyStr, 
+                date: new Date().toLocaleString('ru-RU'), 
+                status: role, 
+                xp: 0 
+            };
             
             const { error } = await supa.from('reports').insert([newKey]);
             if (error) {
@@ -1643,7 +2165,14 @@
 
         async function logPurchase(itemName, isAutoLog) {
           if (!currentUser) return;
-          const newLog = { id: Date.now().toString() + Math.random().toString(36).substr(2, 9), email: currentNickname || currentUser.email, link: '[АВТОВЫДАЧА] ' + itemName, date: new Date().toLocaleString('ru-RU'), status: isAutoLog ? 'Автоматически зачислено' : 'Ожидает выдачи', xp: 0 };
+          const newLog = { 
+              id: Date.now().toString() + Math.random().toString(36).substr(2, 9), 
+              email: currentNickname || currentUser.email, 
+              link: '[АВТОВЫДАЧА] ' + itemName, 
+              date: new Date().toLocaleString('ru-RU'), 
+              status: isAutoLog ? 'Автоматически зачислено' : 'Ожидает выдачи', 
+              xp: 0 
+          };
           await supa.from('reports').insert([newLog]);
         }
 
@@ -1684,39 +2213,67 @@
 
         function getClaimedQuests() {
           if(!currentUser) return [];
-          const data = localStorage.getItem('quests_' + currentUser.email); return data ? JSON.parse(data) : [];
+          const data = localStorage.getItem('quests_' + currentUser.email); 
+          return data ? JSON.parse(data) : [];
         }
 
         window.claimQuest = function(qId, reward) {
           if(!currentUser) return;
           const claimed = getClaimedQuests();
           if(claimed.includes(qId)) return;
-          claimed.push(qId); localStorage.setItem('quests_' + currentUser.email, JSON.stringify(claimed));
+          
+          claimed.push(qId); 
+          localStorage.setItem('quests_' + currentUser.email, JSON.stringify(claimed));
           
           shopState.spent = Number(shopState.spent) - reward;
-          updateShopStats(); updateModStats(); updateSupportStats(); updateComplaintStats();
+          updateShopStats(); 
+          updateModStats(); 
+          updateSupportStats(); 
+          updateComplaintStats();
           saveProgress();
           
           pushLog(`🏆 Квест выполнен! Зачислено +${reward} XP.`);
+          playSound('win');
           alert(`✅ Квест выполнен!\nВам зачислено +${reward} XP.`);
           renderQuests();
         };
 
         function renderQuests() {
-          const container = document.getElementById('questsContainer'); if(!container) return;
-          if(!currentUser) { container.innerHTML = '<div class="message-text">Войдите в аккаунт, чтобы выполнять квесты.</div>'; return; }
+          const container = document.getElementById('questsContainer'); 
+          if(!container) return;
+          if(!currentUser) { 
+              container.innerHTML = '<div class="message-text">Войдите в аккаунт, чтобы выполнять квесты.</div>'; 
+              return; 
+          }
           
           const claimed = getClaimedQuests();
           container.innerHTML = questsData.map(q => {
-            const prog = Math.min(q.getProgress(), q.max); const pct = (prog / q.max) * 100;
-            const isClaimed = claimed.includes(q.id); const canClaim = prog >= q.max && !isClaimed;
+            const prog = Math.min(q.getProgress(), q.max); 
+            const pct = (prog / q.max) * 100;
+            const isClaimed = claimed.includes(q.id); 
+            const canClaim = prog >= q.max && !isClaimed;
             
             let btnHTML = '';
-            if(isClaimed) btnHTML = `<button class="quest-btn disabled" disabled>Выполнено</button>`;
-            else if(canClaim) btnHTML = `<button class="quest-btn claim" onclick="window.claimQuest('${q.id}', ${q.reward})">Забрать +${q.reward} XP</button>`;
-            else btnHTML = `<button class="quest-btn disabled" disabled>В процессе</button>`;
+            if(isClaimed) {
+                btnHTML = `<button class="quest-btn disabled" disabled>Выполнено</button>`;
+            } else if(canClaim) {
+                btnHTML = `<button class="quest-btn claim" onclick="window.claimQuest('${q.id}', ${q.reward})">Забрать +${q.reward} XP</button>`;
+            } else {
+                btnHTML = `<button class="quest-btn disabled" disabled>В процессе</button>`;
+            }
 
-            return `<div class="quest-card"><div class="quest-header"><span class="quest-title">${q.title}</span><span class="quest-reward">+${q.reward} XP</span></div><div class="quest-desc">${q.desc} (${prog} / ${q.max})</div><div class="quest-progress-wrap"><div class="quest-progress-fill" style="width: ${pct}%;"></div></div>${btnHTML}</div>`;
+            return `
+            <div class="quest-card">
+                <div class="quest-header">
+                    <span class="quest-title">${q.title}</span>
+                    <span class="quest-reward">+${q.reward} XP</span>
+                </div>
+                <div class="quest-desc">${q.desc} (${prog} / ${q.max})</div>
+                <div class="quest-progress-wrap">
+                    <div class="quest-progress-fill" style="width: ${pct}%;"></div>
+                </div>
+                ${btnHTML}
+            </div>`;
           }).join('');
         }
 
@@ -1730,7 +2287,8 @@
           const elXpF = document.getElementById("xpFill"); if(elXpF) elXpF.style.width = (Math.min(1, (state.correct % 10 || (state.correct ? 10 : 0)) / 10) * 100) + "%";
           const elBan = document.getElementById("resultBanner"); if(elBan) elBan.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
           const elHin = document.getElementById("resultHint"); if(elHin) elHin.textContent = !state.started ? "Нажми «Начать смену», чтобы получить первое сообщение." : `Сейчас доступно ${xp} XP (с учетом трат).`;
-          updateShopStats(); renderQuests();
+          updateShopStats(); 
+          renderQuests();
         }
 
         function updateSupportStats() {
@@ -1761,6 +2319,7 @@
           const sR = document.getElementById("shopReportXp"); if(sR) sR.textContent = getReportXp();
           const sT = document.getElementById("shopTotalXp"); if(sT) sT.textContent = totalXp;
           const sSp = document.getElementById("shopSpentXp"); if(sSp) sSp.textContent = shopState.spent;
+          
           document.querySelectorAll('.shop-buy-btn').forEach(btn => {
             const price = parseInt(btn.dataset.price);
             btn.disabled = totalXp < price;
@@ -1791,6 +2350,7 @@
             blockUntil = now + 60000; // Ровно 60 секунд блокировки
             localStorage.setItem('spam_block_until', blockUntil.toString());
             clickTimestamps = []; // Сбрасываем историю
+            playSound('fail');
             showSpamModalWithTimer();
             return true;
           }
@@ -1839,14 +2399,27 @@
         });
 
         // === ИГРОВАЯ ЛОГИКА ===
-        function fillModQueue() { modQueue = allModMessages.map((_, i) => i); shuffleArray(modQueue); }
-        function fillSupQueue() { supQueue = allSupQuestions.map((_, i) => i); shuffleArray(supQueue); }
-        function fillCompQueue() { compQueue = allComplaints.map((_, i) => i); shuffleArray(compQueue); }
+        function fillModQueue() { 
+            modQueue = allModMessages.map((_, i) => i); 
+            shuffleArray(modQueue); 
+        }
+        function fillSupQueue() { 
+            supQueue = allSupQuestions.map((_, i) => i); 
+            shuffleArray(supQueue); 
+        }
+        function fillCompQueue() { 
+            compQueue = allComplaints.map((_, i) => i); 
+            shuffleArray(compQueue); 
+        }
 
         function randomMessage() {
           if (modQueue.length === 0) fillModQueue();
-          const index = modQueue.pop(); const item = allModMessages[index];
-          const user = randomFunnyNick(); state.current = { ...item, user };
+          const index = modQueue.pop(); 
+          const item = allModMessages[index];
+          const user = randomFunnyNick(); 
+          
+          state.current = { ...item, user };
+          
           const elA = document.getElementById("authorName"); if(elA) elA.textContent = user; 
           const elM = document.getElementById("authorMeta"); if(elM) elM.textContent = "Неизвестно, есть ли нарушение";
           const elT = document.getElementById("messageText"); if(elT) elT.textContent = item.text; 
@@ -1856,8 +2429,12 @@
 
         function randomComplaint() {
           if (compQueue.length === 0) fillCompQueue();
-          const index = compQueue.pop(); const item = allComplaints[index];
-          const user = randomFunnyNick(); complaintState.current = { ...item, user };
+          const index = compQueue.pop(); 
+          const item = allComplaints[index];
+          const user = randomFunnyNick(); 
+          
+          complaintState.current = { ...item, user };
+          
           const cAuthor = document.getElementById("compAuthor"); if(cAuthor) cAuthor.textContent = "Жалоба от " + user;
           const cMeta = document.getElementById("compMeta"); if(cMeta) cMeta.textContent = "Требуется вердикт";
           const cText = document.getElementById("compText"); if(cText) cText.textContent = item.text;
@@ -1865,8 +2442,17 @@
         }
 
         function startGame() {
-          if (!currentUser) { authModal.style.display = 'flex'; authErrorMsg.textContent = 'Для начала смены необходимо войти в аккаунт!'; authErrorMsg.style.color = 'var(--color-warning)'; authErrorMsg.style.display = 'block'; return; }
-          if (!currentNickname) { ensureNickname(); return; }
+          if (!currentUser) { 
+              authModal.style.display = 'flex'; 
+              authErrorMsg.textContent = 'Для начала смены необходимо войти в аккаунт!'; 
+              authErrorMsg.style.color = 'var(--color-warning)'; 
+              authErrorMsg.style.display = 'block'; 
+              return; 
+          }
+          if (!currentNickname) { 
+              ensureNickname(); 
+              return; 
+          }
 
           state.started = true;
           supportState.started = true;
@@ -1879,26 +2465,40 @@
 
           pushLog('Смена началась. Используй текущий режим ниже.');
           if (allModMessages.length) randomMessage();
+          
           if (allSupQuestions.length) {
             supportState.currentIndex = -1;
-            document.getElementById("supportQuestionTitle") && (document.getElementById("supportQuestionTitle").textContent = "Вопрос готов");
-            document.getElementById("supportMeta") && (document.getElementById("supportMeta").textContent = "Нажми «Следующий вопрос» или проверь первый сразу");
+            const titleEl = document.getElementById("supportQuestionTitle");
+            if (titleEl) titleEl.textContent = "Вопрос готов";
+            const metaEl = document.getElementById("supportMeta");
+            if (metaEl) metaEl.textContent = "Нажми «Следующий вопрос» или проверь первый сразу";
             nextSupportQuestion();
           }
+          
           if (allComplaints.length) randomComplaint();
 
           updateModStats();
           updateSupportStats();
           updateComplaintStats();
+          
           const gameEl = document.getElementById("game");
           if(gameEl) gameEl.scrollIntoView({ behavior: "smooth", block: "start" });
         }
 
         function resetGame() {
-          state.current = null; state.started = false; state.log = [];
-          supportState.started = false; supportState.currentIndex = -1;
-          complaintState.started = false; complaintState.current = null;
-          modQueue = []; supQueue = []; compQueue = [];
+          state.current = null; 
+          state.started = false; 
+          state.log = [];
+          
+          supportState.started = false; 
+          supportState.currentIndex = -1;
+          
+          complaintState.started = false; 
+          complaintState.current = null;
+          
+          modQueue = []; 
+          supQueue = []; 
+          compQueue = [];
           
           const elA = document.getElementById("authorName"); if(elA) elA.textContent = "System";
           const elM = document.getElementById("authorMeta"); if(elM) elM.textContent = "Сообщение появится после старта смены";
@@ -1916,7 +2516,9 @@
           const cText = document.getElementById("compText"); if(cText) cText.textContent = "Нажми «Начать смену», чтобы открыть первую жалобу.";
           
           pushLog('Пока пусто. Нажми «Начать смену», чтобы начать работу.');
-          updateModStats(); updateSupportStats(); updateComplaintStats();
+          updateModStats(); 
+          updateSupportStats(); 
+          updateComplaintStats();
         }
 
         function judge(action) {
@@ -1925,9 +2527,20 @@
 
           const isCorrect = action === state.current.type;
           state.resolved = Number(state.resolved) + 1;
-          if (isCorrect) { state.correct = Number(state.correct) + 1; pushLog(`✅ Тренажёр: верное решение (${action.toUpperCase()})`); } 
-          else { state.mistakes = Number(state.mistakes) + 1; pushLog(`❌ Тренажёр: ошибка (${action.toUpperCase()})`); }
-          updateModStats(); saveProgress(); setTimeout(randomMessage, 300);
+          
+          if (isCorrect) { 
+              state.correct = Number(state.correct) + 1; 
+              playSound('ok');
+              pushLog(`✅ Тренажёр: верное решение (${action.toUpperCase()})`); 
+          } else { 
+              state.mistakes = Number(state.mistakes) + 1; 
+              playSound('fail');
+              pushLog(`❌ Тренажёр: ошибка (${action.toUpperCase()})`); 
+          }
+          
+          updateModStats(); 
+          saveProgress(); 
+          setTimeout(randomMessage, 300);
         }
 
         function judgeComplaint(action) {
@@ -1936,15 +2549,21 @@
 
           const isCorrect = action === complaintState.current.type;
           complaintState.resolved = Number(complaintState.resolved) + 1;
+          
           if (isCorrect) { 
              complaintState.correct = Number(complaintState.correct) + 1;
              shopState.spent -= 15; 
+             playSound('ok');
              pushLog(`✅ Жалоба: верный вердикт! (+15 XP)`); 
           } else { 
              complaintState.mistakes = Number(complaintState.mistakes) + 1;
+             playSound('fail');
              pushLog(`❌ Жалоба: неверный вердикт!`); 
           }
-          updateComplaintStats(); saveProgress(); setTimeout(randomComplaint, 300);
+          
+          updateComplaintStats(); 
+          saveProgress(); 
+          setTimeout(randomComplaint, 300);
         }
 
         const snb = document.getElementById("supportNextBtn");
@@ -1952,8 +2571,22 @@
 
         const scb = document.getElementById("supportCheckBtn");
         if(scb) scb.addEventListener("manual-check", () => {
-          if (!state.started) { const err = document.getElementById("supportResultText"); if(err){err.textContent = "Сначала нажми «Начать смену»."; err.style.color = "var(--color-warning)";} return; }
-          if (supportState.currentIndex < 0) { const err = document.getElementById("supportResultText"); if(err){err.textContent = "Сначала нажми «Следующий вопрос»."; err.style.color = "var(--color-warning)";} return; }
+          if (!state.started) { 
+              const err = document.getElementById("supportResultText"); 
+              if(err){
+                  err.textContent = "Сначала нажми «Начать смену»."; 
+                  err.style.color = "var(--color-warning)";
+              } 
+              return; 
+          }
+          if (supportState.currentIndex < 0) { 
+              const err = document.getElementById("supportResultText"); 
+              if(err){
+                  err.textContent = "Сначала нажми «Следующий вопрос»."; 
+                  err.style.color = "var(--color-warning)";
+              } 
+              return; 
+          }
 
           const q = allSupQuestions[supportState.currentIndex];
           const elSI = document.getElementById("supportAnswerInput");
@@ -1962,32 +2595,54 @@
           if(!elSI || !elSR) return;
 
           const answer = elSI.value.trim().toLowerCase();
-          if (!answer) { elSR.textContent = "Напиши ответ игроку."; elSR.style.color = "var(--color-text-muted)"; return; }
+          if (!answer) { 
+              elSR.textContent = "Напиши ответ игроку."; 
+              elSR.style.color = "var(--color-text-muted)"; 
+              return; 
+          }
 
           supportState.resolved = Number(supportState.resolved) + 1;
           const ok = q.keywords.some(k => answer.includes(k));
+          
           if (ok) {
             supportState.correct = Number(supportState.correct) + 1;
-            elSR.textContent = "Ответ засчитан: попал по смыслу."; elSR.style.color = "var(--color-success)";
+            elSR.textContent = "Ответ засчитан: попал по смыслу."; 
+            elSR.style.color = "var(--color-success)";
+            playSound('ok');
             pushLog(`🟢 АП: ответ засчитан.`);
           } else {
             supportState.mistakes = Number(supportState.mistakes) + 1;
-            elSR.textContent = "Ответ не засчитан: мало ключевых ориентиров."; elSR.style.color = "var(--color-error)";
+            elSR.textContent = "Ответ не засчитан: мало ключевых ориентиров."; 
+            elSR.style.color = "var(--color-error)";
+            playSound('fail');
             pushLog(`🔴 АП: ответ не засчитан.`);
           }
-          updateSupportStats(); saveProgress(); 
+          
+          updateSupportStats(); 
+          saveProgress(); 
         });
 
         const elSI = document.getElementById("supportAnswerInput");
-        if(elSI) elSI.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); document.getElementById("supportCheckBtn")?.click(); } });
+        if(elSI) {
+            elSI.addEventListener("keydown", e => { 
+                if (e.key === "Enter") { 
+                    e.preventDefault(); 
+                    document.getElementById("supportCheckBtn")?.click(); 
+                } 
+            });
+        }
 
         // === ПАНЕЛЬ ОТЧЕТОВ / АДМИН ПАНЕЛЬ ===
         function checkReportAccess() {
           const warn = document.getElementById('reportAccessWarning');
-          const formArea = document.getElementById('reportFormArea'); const adminPanel = document.getElementById('adminPanelArea'); const adminTabBtn = document.getElementById('adminLogTabBtn');
+          const formArea = document.getElementById('reportFormArea'); 
+          const adminPanel = document.getElementById('adminPanelArea'); 
+          const adminTabBtn = document.getElementById('adminLogTabBtn');
+          
           if (currentUser) {
             if(warn) warn.style.display = 'none';
             if(formArea) formArea.style.display = 'block';
+            
             if (adminEmails.includes(currentUser.email)) { 
               if(adminPanel) adminPanel.style.display = 'block';
               if(adminTabBtn) adminTabBtn.style.display = 'inline-block';
@@ -1997,16 +2652,27 @@
             }
           } else {
             if(warn) warn.style.display = 'block';
-            if(formArea) formArea.style.display = 'none'; if(adminTabBtn) adminTabBtn.style.display = 'none';
+            if(formArea) formArea.style.display = 'none'; 
+            if(adminTabBtn) adminTabBtn.style.display = 'none';
           }
         }
 
         async function renderReportsList() {
           const area = document.getElementById('reportsListArea');
-          area.style.display = 'flex'; area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка отчетов...</div>';
+          area.style.display = 'flex'; 
+          area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка отчетов...</div>';
+          
           const { data: storedReports, error } = await supa.from('reports').select('*').not('link', 'like', '[АВТОВЫДАЧА]%').not('email', 'eq', 'ACCESS_KEY').order('date', { ascending: false });
-          if (error) { area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`; return; }
-          if (!storedReports || storedReports.length === 0) { area.innerHTML = `<div class="report-list-item" style="text-align:center;">Отчетов пока нет.</div>`; return; }
+          
+          if (error) { 
+              area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`; 
+              return; 
+          }
+          
+          if (!storedReports || storedReports.length === 0) { 
+              area.innerHTML = `<div class="report-list-item" style="text-align:center;">Отчетов пока нет.</div>`; 
+              return; 
+          }
 
           area.innerHTML = storedReports.map(rep => `
             <div class="report-list-item">
@@ -2027,10 +2693,17 @@
             btn.addEventListener('click', async () => {
                const { id, email, verdict, xp } = btn.dataset;
                btn.disabled = true;
+               
                const xpReward = parseInt(xp);
                const newStatus = verdict + (xpReward > 0 ? ` (+${xpReward} XP)` : '');
+               
                const { error } = await supa.from('reports').update({ status: newStatus, xp: xpReward }).eq('id', id);
-               if (error) { alert('Ошибка: ' + error.message); btn.disabled = false; return; }
+               if (error) { 
+                   alert('Ошибка: ' + error.message); 
+                   btn.disabled = false; 
+                   return; 
+               }
+               
                pushLog(`📋 Отчет ${email} проверен: ${verdict}`);
                await renderReportsList();
             });
@@ -2038,10 +2711,19 @@
         }
 
         async function renderAdminLogs() {
-          const area = document.getElementById('adminLogsArea'); area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка логов...</div>';
+          const area = document.getElementById('adminLogsArea'); 
+          area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка логов...</div>';
+          
           const { data: storedLogs, error } = await supa.from('reports').select('*').like('link', '[АВТОВЫДАЧА]%').order('date', { ascending: false });
-          if (error) { area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`; return; }
-          if (!storedLogs || storedLogs.length === 0) { area.innerHTML = `<div class="report-list-item" style="text-align:center;">Новых логов нет.</div>`; return; }
+          
+          if (error) { 
+              area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`; 
+              return; 
+          }
+          if (!storedLogs || storedLogs.length === 0) { 
+              area.innerHTML = `<div class="report-list-item" style="text-align:center;">Новых логов нет.</div>`; 
+              return; 
+          }
 
           area.innerHTML = storedLogs.map(log => `
             <div class="report-list-item" style="border-color: rgba(255, 191, 71, 0.4);">
@@ -2061,58 +2743,188 @@
                const id = btn.dataset.id;
                btn.disabled = true;
                btn.textContent = "Обновление...";
+               
                const { error } = await supa.from('reports').update({ status: 'Выдано Руководством' }).eq('id', id);
-               if (error) { alert('Ошибка: ' + error.message); btn.disabled = false; btn.textContent = "Отметить как выданное ✅"; return; }
+               if (error) { 
+                   alert('Ошибка: ' + error.message); 
+                   btn.disabled = false; 
+                   btn.textContent = "Отметить как выданное ✅"; 
+                   return; 
+               }
+               
                await renderAdminLogs();
             });
           });
         }
 
         document.getElementById('viewReportsBtn')?.addEventListener('click', () => { renderReportsList(); });
+        
         document.getElementById('loadAdminLogsBtn')?.addEventListener('click', () => { renderAdminLogs(); });
+        
         document.getElementById('submitReportBtn')?.addEventListener('click', async () => {
-          const link = document.getElementById('reportLinkInput').value.trim(); const res = document.getElementById('reportResultText');
-          if(!link || !link.startsWith('http')) { res.textContent = "Вставьте корректную ссылку (http/https)."; res.style.color = "var(--color-warning)"; return; }
-          const newReport = { id: Date.now().toString() + Math.random().toString(36).substr(2, 9), email: currentNickname || currentUser.email, link: link, date: new Date().toLocaleString('ru-RU'), status: null, xp: 0 };
+          const link = document.getElementById('reportLinkInput').value.trim(); 
+          const res = document.getElementById('reportResultText');
+          
+          if(!link || !link.startsWith('http')) { 
+              res.textContent = "Вставьте корректную ссылку (http/https)."; 
+              res.style.color = "var(--color-warning)"; 
+              return; 
+          }
+          
+          const newReport = { 
+              id: Date.now().toString() + Math.random().toString(36).substr(2, 9), 
+              email: currentNickname || currentUser.email, 
+              link: link, 
+              date: new Date().toLocaleString('ru-RU'), 
+              status: null, 
+              xp: 0 
+          };
+          
           const { error } = await supa.from('reports').insert([newReport]);
-          if (error) { res.textContent = "Ошибка при сохранении: " + error.message; res.style.color = "var(--color-error)"; return; }
-          res.textContent = "Отчет успешно отправлен и сохранен!"; res.style.color = "var(--color-success)";
-          document.getElementById('reportLinkInput').value = ''; pushLog(`📝 Отправлен отчет: ${link}`);
-          if (document.getElementById('reportsListArea').style.display === 'flex') { renderReportsList(); }
+          
+          if (error) { 
+              res.textContent = "Ошибка при сохранении: " + error.message; 
+              res.style.color = "var(--color-error)"; 
+              return; 
+          }
+          
+          res.textContent = "Отчет успешно отправлен и сохранен!"; 
+          res.style.color = "var(--color-success)";
+          document.getElementById('reportLinkInput').value = ''; 
+          pushLog(`📝 Отправлен отчет: ${link}`);
+          
+          if (document.getElementById('reportsListArea').style.display === 'flex') { 
+              renderReportsList(); 
+          }
         });
 
         function nextSupportQuestion() {
           if (!state.started) {
             const err = document.getElementById("supportResultText");
-            if (err) { err.textContent = "Сначала нажми «Начать смену»."; err.style.color = "var(--color-warning)"; }
+            if (err) { 
+                err.textContent = "Сначала нажми «Начать смену»."; 
+                err.style.color = "var(--color-warning)"; 
+            }
             return;
           }
+          
           if (!allSupQuestions.length) return;
           if (supQueue.length === 0) fillSupQueue();
+          
           supportState.currentIndex = supQueue.pop();
           const q = allSupQuestions[supportState.currentIndex];
+          
           const elST = document.getElementById("supportQuestionTitle"); if(elST) elST.textContent = q.title || "Вопрос игрока";
           const elSM = document.getElementById("supportMeta"); if(elSM) elSM.textContent = q.meta || "Вопрос игрока";
           const elSQ = document.getElementById("supportQuestionText"); if(elSQ) elSQ.textContent = q.text || "Без текста";
           const elSI = document.getElementById("supportAnswerInput"); if(elSI) elSI.value = "";
           const elSR = document.getElementById("supportResultText"); if(elSR) elSR.textContent = "";
+          
           pushLog(`🟦 АП: выдан вопрос «${q.title || 'Без названия'}»`);
         }
 
-        function extendScenarioData() {
-          if (Array.isArray(allComplaints)) {
-            allComplaints.push(
-              { text: 'Игрок жалуется, что модератор выдал мут за капс, хотя в сообщении было одно слово заглавными буквами в эмоциональном контексте.', evidence: 'Скрин: "ПОМОГИТЕ" и сразу после этого обычные сообщения.', type: 'reject' },
-              { text: 'Поступила жалоба на игрока, который в голосовом и текстовом канале несколько раз оскорбил семью другого участника.', evidence: 'Видео + логи чата с прямыми оскорблениями.', type: 'approve' },
-              { text: 'Пользователь просит наказать модератора за бан, но в доказательствах есть только обрезанный скрин без контекста и без даты.', evidence: 'Один скрин без ID, даты и полного диалога.', type: 'reject' },
-              { text: 'Жалоба на администратора: заявитель утверждает, что тот выдал наказание своему знакомому в обход регламента, ситуация спорная и касается руководства.', evidence: 'Несколько скринов, упоминание администратора и возможного блата.', type: 'pass' },
-              { text: 'Игрок отправил жалобу на обход мута через твинк и приложил скрины двух аккаунтов с одинаковой манерой речи и признанием.', evidence: 'Скрин признания и совпадение Discord ID в профиле.', type: 'approve' },
-              { text: 'Жалоба на то, что хелпер не ответил в течение 3 минут ночью при низком онлайне.', evidence: 'Только время отправки вопроса и отсутствие других данных.', type: 'reject' },
-              { text: 'Игрок сообщает, что модератор угрожал ему баном без причины в личных сообщениях после конфликта в чате.', evidence: 'Полная переписка и совпадение ника модератора.', type: 'approve' },
-              { text: 'Жалоба касается возможной продажи доната сотрудником. В деле фигурируют переводы, личные сообщения и подозрение на схему.', evidence: 'Скрины перевода, переписки и упоминание сотрудника состава.', type: 'pass' }
-            );
-          }
+        // === РЕЖИМ НА ВРЕМЯ (СПИДРАН) ===
+        let taTime = 0; 
+        let taTimerInterval = null; 
+        let taScore = 0; 
+        let taMistakes = 0; 
+        let taCurrent = null;
+
+        function renderTaMessage() {
+            if (modQueue.length === 0) fillModQueue();
+            const item = allModMessages[modQueue.pop()];
+            taCurrent = { ...item, user: randomFunnyNick() };
+            
+            document.getElementById("taAuthorName").textContent = taCurrent.user; 
+            document.getElementById("taMessageText").textContent = taCurrent.text; 
+            document.getElementById("taAvatar").textContent = taCurrent.user.substring(0,2).toUpperCase();
         }
+
+        document.getElementById('taStartBtn').addEventListener('click', () => {
+            if (!currentUser) { 
+                authModal.style.display = 'flex'; 
+                authErrorMsg.textContent = 'Для участия в Спидране необходимо войти в аккаунт!'; 
+                authErrorMsg.style.color = 'var(--color-warning)'; 
+                authErrorMsg.style.display = 'block'; 
+                return; 
+            }
+            
+            document.getElementById('taStartScreen').style.display = 'none';
+            document.getElementById('taGameScreen').style.display = 'grid';
+            
+            taScore = 0; 
+            taMistakes = 0; 
+            taTime = 60;
+            
+            document.getElementById('taScore').textContent = taScore;
+            document.getElementById('taMistakes').textContent = taMistakes;
+            
+            renderTaMessage();
+            playSound('ok');
+
+            clearInterval(taTimerInterval);
+            taTimerInterval = setInterval(() => {
+                taTime--;
+                const display = document.getElementById('taTimer');
+                display.textContent = `00:${taTime < 10 ? '0'+taTime : taTime}`;
+                
+                if (taTime <= 10) {
+                    display.classList.add('danger'); 
+                } else {
+                    display.classList.remove('danger');
+                }
+                
+                if (taTime <= 0) {
+                    clearInterval(taTimerInterval);
+                    endTimeAttack();
+                }
+            }, 1000);
+        });
+
+        function endTimeAttack() {
+            document.getElementById('taGameScreen').style.display = 'none';
+            document.getElementById('taStartScreen').style.display = 'block';
+            document.getElementById('taTimer').textContent = "ВРЕМЯ ВЫШЛО!";
+            document.getElementById('taTimer').classList.remove('danger');
+            
+            const bonusXp = Math.floor(taScore / 5) * 10; // 10 XP за каждые 5 правильных
+            
+            if (bonusXp > 0) {
+                shopState.spent -= bonusXp; // Выдаем XP (минус к потраченному)
+                playSound('win');
+                alert(`🏁 Спидран завершен!\nПравильно: ${taScore}\nОшибок: ${taMistakes}\n\nВы заработали +${bonusXp} XP!`);
+            } else {
+                playSound('fail');
+                alert(`🏁 Спидран завершен!\nПравильно: ${taScore}\nОшибок: ${taMistakes}\n\nСлишком мало правильных ответов для награды. Попробуйте еще раз!`);
+            }
+            
+            updateModStats();
+            saveProgress();
+        }
+
+        document.querySelectorAll('[data-ta-action]').forEach(btn => {
+            btn.onclick = () => {
+                if (taTime <= 0) return;
+                
+                const action = btn.dataset.taAction;
+                if (action === taCurrent.type) {
+                    taScore++; 
+                    playSound('ok'); 
+                    document.getElementById('taScore').textContent = taScore;
+                } else {
+                    taMistakes++; 
+                    taTime -= 3; // Штраф -3 сек
+                    playSound('fail'); 
+                    document.getElementById('taMistakes').textContent = taMistakes;
+                    
+                    // Эффект мигания таймера при ошибке
+                    const display = document.getElementById('taTimer');
+                    display.style.color = '#ff6b88'; 
+                    setTimeout(() => display.style.color = '', 300);
+                }
+                renderTaMessage();
+            };
+        });
 
         // КОЛЕСО ФОРТУНЫ 
         const fortunePrizes = [
@@ -2179,7 +2991,11 @@
                   shopState.spent = Number(shopState.spent) - Number(winnerItem.xp); 
                   outcomeMsg += `Штраф списан с баланса (${winnerItem.xp} XP).`;
                 }
-                updateShopStats(); updateModStats(); updateSupportStats(); saveProgress();
+                updateShopStats(); 
+                updateModStats(); 
+                updateSupportStats(); 
+                saveProgress();
+                
                 await logPurchase(`Рулетка: ${winnerItem.text}`, true);
               } else if (winnerItem.type === 'r-fail') {
                  outcomeMsg += `В этот раз не повезло. Попробуйте еще раз!`;
@@ -2190,23 +3006,34 @@
 
               resultText.textContent = `🎁 ${winnerItem.text} 🎁`;
               pushLog(`🎰 Рулетка: Выпал приз "${winnerItem.text}".`);
+              
+              if(winnerItem.type === 'r-fail' || winnerItem.type === 'r-fine') {
+                  playSound('fail');
+              } else {
+                  playSound('win');
+              }
+              
               alert(`✅ КОЛЕСО ФОРТУНЫ!\n\n${outcomeMsg}`);
               closeBtn.style.display = 'inline-block';
             }, 6200);
           }, 100);
         }
 
-        document.getElementById('closeFortuneBtn').addEventListener('click', () => { document.getElementById('fortuneModal').style.display = 'none'; });
+        document.getElementById('closeFortuneBtn').addEventListener('click', () => { 
+            document.getElementById('fortuneModal').style.display = 'none'; 
+        });
 
         function renderShopItems() {
           const container = document.getElementById('shopItemsContainer');
           container.innerHTML = shopItems.map(item => `
             <article class="shop-card">
-              <h3>${item.title}</h3><p>${item.desc}</p>
+              <h3>${item.title}</h3>
+              <p>${item.desc}</p>
               <div class="shop-price">${item.price} XP</div>
               <button class="shop-buy-btn" type="button" data-shop-id="${item.id}" data-price="${item.price}" data-title="${item.title}">Купить</button>
             </article>
           `).join('');
+          
           container.querySelectorAll('.shop-buy-btn').forEach(btn => {
             btn.addEventListener('click', async () => {
               const price = parseInt(btn.dataset.price);
@@ -2215,65 +3042,23 @@
               
               if (availableXp() >= price) {
                 shopState.spent = Number(shopState.spent) + price; 
-                updateShopStats(); updateModStats(); updateSupportStats(); saveProgress(); 
+                updateShopStats(); 
+                updateModStats(); 
+                updateSupportStats(); 
+                saveProgress(); 
                 
                 if (id === 'fortune') {
                    pushLog(`🛒 Куплен билет "Колесо Фортуны" за ${price} XP.`);
                    startFortuneWheel();
                 } else {
                    pushLog(`🛒 Куплен товар: ${title} за ${price} XP.`);
+                   playSound('win');
                    alert(`✅ ВЫ УСПЕШНО КУПИЛИ ТОВАР:\n\n"${title}" за ${price} XP\n\nИнформация об этом уже отправлена Руководству. Ничего присылать не нужно!`);
                    await logPurchase(`Магазин: ${title}`, false);
                 }
               }
             });
           });
-        }
-
-        async function loadLeaderboard() {
-          const lb = document.getElementById("leaderboardList");
-          lb.innerHTML = '<div class="message-text">Загрузка...</div>';
-          try {
-            const [statsRes, reportsRes] = await Promise.all([
-              supa.from('user_stats').select('*'),
-              supa.from('reports').select('email, xp')
-            ]);
-            if (statsRes.error) throw statsRes.error;
-
-            const repXpMap = {};
-            if (reportsRes.data) {
-              reportsRes.data.forEach(r => {
-                if (r.email && r.xp) {
-                  repXpMap[r.email] = (repXpMap[r.email] || 0) + Number(r.xp);
-                }
-              });
-            }
-
-            let calculatedData = statsRes.data.map(u => {
-              const modXp = Math.floor((Number(u.mod_correct) || 0) / 10) * 15;
-              const userRepXp = repXpMap[u.nickname || u.email] || repXpMap[u.email] || 0;
-              const userXp = Math.max(0, modXp + userRepXp - (Number(u.shop_spent) || 0));
-              return { ...u, userXp };
-            });
-            calculatedData = calculatedData.filter(u => u.nickname && u.nickname.trim().length > 0);
-            calculatedData.sort((a, b) => b.userXp - a.userXp);
-            const top10 = calculatedData.slice(0, 10);
-            if(top10.length === 0) { 
-              lb.innerHTML = '<div class="message-text">Пока никого нет или пользователи не обновили никнеймы.</div>';
-              return; 
-            }
-
-            lb.innerHTML = top10.map((u, i) => {
-              return `
-                <div class="report-list-item" style="display:flex; justify-content:space-between; align-items:center; flex-direction:row;">
-                  <div><strong style="font-size:1.1rem; color:var(--color-primary);">#${i+1}</strong><span style="margin-left:0.5rem; font-weight: 600;">${u.nickname}</span></div>
-                  <div class="badge xp">${u.userXp} XP</div>
-                </div>`;
-            }).join('');
-          } catch (err) { 
-            console.error(err);
-            lb.innerHTML = '<div class="message-text">Ошибка при загрузке.</div>';
-          }
         }
 
         function bindEssentialButtons() {
@@ -2283,29 +3068,47 @@
           document.querySelectorAll('[data-comp-action]').forEach(btn => {
             btn.onclick = () => judgeComplaint(btn.dataset.compAction);
           });
-          const sb = document.getElementById('startBtn'); if (sb) sb.onclick = startGame;
-          const rb = document.getElementById('resetBtn'); if (rb) rb.onclick = resetGame;
+          
+          const sb = document.getElementById('startBtn'); 
+          if (sb) sb.onclick = startGame;
+          
+          const rb = document.getElementById('resetBtn'); 
+          if (rb) rb.onclick = resetGame;
+          
           const scb = document.getElementById('supportCheckBtn');
           if (scb) scb.onclick = () => scb.dispatchEvent(new Event('manual-check'));
-          document.getElementById('viewReportsBtn') && (document.getElementById('viewReportsBtn').onclick = () => renderReportsList());
-          document.getElementById('loadAdminLogsBtn') && (document.getElementById('loadAdminLogsBtn').onclick = () => renderAdminLogs());
+          
+          const vrb = document.getElementById('viewReportsBtn');
+          if (vrb) vrb.onclick = () => renderReportsList();
+          
+          const lalb = document.getElementById('loadAdminLogsBtn');
+          if (lalb) lalb.onclick = () => renderAdminLogs();
         }
 
         // === ИНИЦИАЛИЗАЦИЯ И РЕНДЕР ===
         allModMessages = createModerationMessages();
         allSupQuestions = createSupportQuestions();
         allComplaints = createComplaints();
-        extendScenarioData();
         renderShopItems();
         bindEssentialButtons();
         
         (function () {
           const toggle = document.querySelector("[data-theme-toggle]");
           if(!toggle) return;
-          let theme = "dark"; document.documentElement.setAttribute("data-theme", theme);
-          function sync() { toggle.textContent = theme === "dark" ? "🌙" : "☀️"; toggle.setAttribute("aria-label", theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"); }
+          let theme = "dark"; 
+          document.documentElement.setAttribute("data-theme", theme);
+          
+          function sync() { 
+              toggle.textContent = theme === "dark" ? "🌙" : "☀️"; 
+              toggle.setAttribute("aria-label", theme === "dark" ? "Включить светлую тему" : "Включить тёмную тему"); 
+          }
           sync();
-          toggle.addEventListener("click", () => { theme = theme === "dark" ? "light" : "dark"; document.documentElement.setAttribute("data-theme", theme); sync(); });
+          
+          toggle.addEventListener("click", () => { 
+              theme = theme === "dark" ? "light" : "dark"; 
+              document.documentElement.setAttribute("data-theme", theme); 
+              sync(); 
+          });
         })();
         
         // Эмулируем клик по главной кнопке, чтобы показать "Тренажер Модерации"
