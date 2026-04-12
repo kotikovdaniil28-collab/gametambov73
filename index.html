@@ -47,23 +47,21 @@
       transition: background 350ms ease;
     }
 
-    html[data-site-theme="support"] body { background: radial-gradient(circle at top left, rgba(255, 184, 222, 0.3), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 120, 180, 0.3), transparent 55%), linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%); }
+    html[data-site-theme="support"] body, html[data-site-theme="ap_admin"] body { background: radial-gradient(circle at top left, rgba(255, 184, 222, 0.3), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 120, 180, 0.3), transparent 55%), linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%); }
     html[data-site-theme="about"] body { background: radial-gradient(circle at top left, rgba(255, 220, 120, 0.16), transparent 55%), radial-gradient(circle at bottom right, rgba(108, 140, 255, 0.18), transparent 55%), linear-gradient(160deg, #0c0a05, #0c0a05 45%, #12100a 100%); }
-    html[data-site-theme="shop"] body { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.14), transparent 55%), linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%); }
+    html[data-site-theme="shop"] body, html[data-site-theme="leadership"] body { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.14), transparent 55%), linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%); }
     html[data-site-theme="ap_shop"] body { background: radial-gradient(circle at top left, rgba(255, 143, 196, 0.3), transparent 55%), radial-gradient(circle at bottom right, rgba(162, 108, 255, 0.2), transparent 55%), linear-gradient(160deg, #1f0512, #120208 45%, #0a0105 100%); }
     html[data-site-theme="report"] body { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.2), transparent 50%), radial-gradient(circle at bottom right, rgba(108, 204, 255, 0.18), transparent 55%), linear-gradient(160deg, #090510, #0a0512 45%, #050411 100%); }
     html[data-site-theme="guide"] body { background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.15), transparent 50%), radial-gradient(circle at bottom right, rgba(0, 180, 216, 0.15), transparent 55%), linear-gradient(160deg, #020a10, #041018 45%, #02080d 100%); }
     html[data-site-theme="leaderboard"] body { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 158, 0, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); }
-    html[data-site-theme="admin_log"] body { background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 61, 0, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); }
+    html[data-site-theme="admin_log"] body { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); }
     html[data-site-theme="complaints"] body { background: radial-gradient(circle at top left, rgba(255, 61, 61, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 107, 136, 0.15), transparent 55%), linear-gradient(160deg, #120505, #180408 45%, #0d0202 100%); }
     html[data-site-theme="quests"] body { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(196, 161, 255, 0.15), transparent 55%), linear-gradient(160deg, #0d0514, #120818 45%, #0a040d 100%); }
     html[data-site-theme="timeattack"] body { background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.25), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 61, 0, 0.2), transparent 55%), linear-gradient(160deg, #181005, #120502 45%, #0d0202 100%); }
     html[data-site-theme="creator"] body { background: radial-gradient(circle at top left, rgba(255, 107, 136, 0.2), transparent 55%), radial-gradient(circle at bottom right, rgba(162, 108, 255, 0.2), transparent 55%), linear-gradient(160deg, #1a0510, #0a0208 45%, #050104 100%); }
-    html[data-site-theme="leadership"] body { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.2), transparent 55%), radial-gradient(circle at bottom right, rgba(108, 140, 255, 0.2), transparent 55%), linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%); }
-    html[data-site-theme="ap_admin"] body { background: radial-gradient(circle at top left, rgba(255, 184, 222, 0.2), transparent 55%), radial-gradient(circle at bottom right, rgba(82, 199, 123, 0.2), transparent 55%), linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%); }
 
+    /* Анимация переходов режимов */
     .fade-in { animation: modeFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-    .hero-content { transition: opacity 0.3s ease, transform 0.3s ease; }
     @keyframes modeFade { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
     button, input, select { font: inherit; }
@@ -75,7 +73,7 @@
     .page { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; padding: 1rem 0 2rem; }
     .topbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
     .brand { display: flex; align-items: center; gap: 0.85rem; min-width: 0; }
-    
+
     .logo { width: 48px; height: 48px; display: grid; place-items: center; color: var(--color-text);
       background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%), linear-gradient(135deg, rgba(108, 140, 255, 0.32), rgba(255, 107, 136, 0.22));
       border-radius: 16px; box-shadow: var(--shadow-md); border: 1px solid rgba(255, 255, 255, 0.25); flex: 0 0 auto;
@@ -97,12 +95,9 @@
     .brand-sub { color: var(--color-text-muted); font-size: var(--text-sm); max-width: 42ch; }
 
     .icon-btn { min-width: 44px; min-height: 44px; padding: 0 0.75rem; border-radius: 999px; color: var(--color-text); background: rgba(16, 21, 40, 0.85); border: 1px solid rgba(191, 198, 255, 0.35); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.8); flex: 0 0 auto; font-size: 1.1rem; }
-
     .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 1rem; align-items: stretch; }
-
-    .panel { border-radius: 22px; border: 1px solid rgba(191, 198, 255, 0.28); box-shadow: var(--shadow-lg); backdrop-filter: blur(18px);
-      background: radial-gradient(circle at top left, rgba(108, 140, 255, 0.23), transparent 55%), linear-gradient(155deg, rgba(18, 22, 38, 0.98), rgba(6, 7, 16, 1));
-      min-width: 0; }
+    
+    .panel { border-radius: 22px; border: 1px solid rgba(191, 198, 255, 0.28); box-shadow: var(--shadow-lg); backdrop-filter: blur(18px); background: radial-gradient(circle at top left, rgba(108, 140, 255, 0.23), transparent 55%), linear-gradient(155deg, rgba(18, 22, 38, 0.98), rgba(6, 7, 16, 1)); min-width: 0; }
     html[data-site-theme="support"] .panel, html[data-site-theme="ap_admin"] .panel { background: radial-gradient(circle at top left, rgba(255, 160, 210, 0.3), transparent 55%), linear-gradient(155deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1)); border-color: rgba(255, 190, 230, 0.45); }
     html[data-site-theme="about"] .panel { background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.16), transparent 55%), linear-gradient(155deg, rgba(25, 19, 8, 0.98), rgba(10, 10, 14, 1)); border-color: rgba(255, 214, 122, 0.28); }
     html[data-site-theme="shop"] .panel, html[data-site-theme="leadership"] .panel { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), linear-gradient(155deg, rgba(10, 23, 14, 0.98), rgba(8, 10, 15, 1)); border-color: rgba(162, 241, 188, 0.22); }
@@ -124,9 +119,8 @@
     .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .badge { padding: 0.4rem 0.85rem; border-radius: 999px; font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 800; border: 1px solid rgba(191, 198, 255, 0.28); color: var(--color-text-muted); background: rgba(9, 12, 26, 0.82); }
     .badge.xp { background: #ffbf47; color: #18171c; border-color: transparent; }
-    
     html[data-site-theme="support"] .badge, html[data-site-theme="ap_admin"] .badge { background: rgba(34, 7, 24, 0.96); border-color: rgba(255, 190, 230, 0.5); }
-    html[data-site-theme="support"] .badge.xp, html[data-site-theme="ap_admin"] .badge.xp, html[data-site-theme="ap_shop"] .badge.xp { background: #ff8fc4; color: #250512; }
+    html[data-site-theme="support"] .badge.xp, html[data-site-theme="ap_shop"] .badge.xp, html[data-site-theme="ap_admin"] .badge.xp { background: #ff8fc4; color: #250512; }
     html[data-site-theme="about"] .badge { background: rgba(25, 19, 8, 0.96); border-color: rgba(255, 214, 122, 0.35); }
     html[data-site-theme="shop"] .badge, html[data-site-theme="leadership"] .badge { background: rgba(11, 21, 15, 0.96); border-color: rgba(162, 241, 188, 0.25); }
     html[data-site-theme="shop"] .badge.xp, html[data-site-theme="leadership"] .badge.xp { background: #52c77b; color: #08110b; }
@@ -138,8 +132,7 @@
     html[data-site-theme="leaderboard"] .badge.xp { background: #ff3d00; color: #fff; }
 
     .hero h1 { font-family: var(--font-display); font-size: clamp(2.1rem, 5.2vw, 3.4rem); line-height: 0.95; text-transform: uppercase; max-width: 13ch; }
-    .hero h1 span { color: var(--color-primary); text-shadow: 0 0 22px rgba(108, 140, 255, 0.65); transition: color 0.3s, text-shadow 0.3s; }
-
+    .hero h1 span { color: var(--color-primary); text-shadow: 0 0 22px rgba(108, 140, 255, 0.65); }
     html[data-site-theme="support"] .hero h1 span, html[data-site-theme="ap_shop"] .hero h1 span, html[data-site-theme="ap_admin"] .hero h1 span { color: #ff8fc4; text-shadow: 0 0 26px rgba(255, 143, 196, 0.9); }
     html[data-site-theme="about"] .hero h1 span { color: #ffbf47; text-shadow: 0 0 22px rgba(255, 191, 71, 0.72); }
     html[data-site-theme="shop"] .hero h1 span, html[data-site-theme="leadership"] .hero h1 span { color: #7fe8a0; text-shadow: 0 0 22px rgba(127, 232, 160, 0.62); }
@@ -159,7 +152,7 @@
     .btn-primary { color: #fff; background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 15px 35px rgba(108, 140, 255, 0.5); }
     .btn-primary:hover { box-shadow: 0 20px 45px rgba(108, 140, 255, 0.7); }
     .btn-secondary { color: var(--color-text-muted); background: rgba(9, 12, 26, 0.86); border: 1px solid rgba(191, 198, 255, 0.3); }
-    .btn-secondary:hover:not(:disabled) { background: rgba(25, 30, 50, 0.9); color: #fff; }
+    .btn-secondary:hover { background: rgba(25, 30, 50, 0.9); color: #fff; }
 
     html[data-site-theme="support"] .btn-primary, html[data-site-theme="ap_shop"] .btn-primary, html[data-site-theme="ap_admin"] .btn-primary { background: linear-gradient(135deg, #ff78b4, #ffb0dd); box-shadow: 0 15px 35px rgba(255, 144, 196, 0.5); color: #1a0510;}
     html[data-site-theme="about"] .btn-primary { background: linear-gradient(135deg, #ffbf47, #ffd979); box-shadow: 0 15px 35px rgba(255, 191, 71, 0.4); color: #18171c; }
@@ -179,7 +172,6 @@
     .main-cat-btn { padding: 0.6rem 1.2rem; border-radius: 14px; font-size: var(--text-sm); font-weight: 800; color: var(--color-text-muted); background: transparent; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s ease; border: none; cursor: pointer; }
     .main-cat-btn:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
     .main-cat-btn.active { color: var(--color-text-inverse); box-shadow: 0 4px 15px rgba(108, 140, 255, 0.5); }
-
     .main-cat-btn[data-cat="moderation"].active { background: linear-gradient(135deg, #6c8cff, #8aa3ff); }
     .main-cat-btn[data-cat="support"].active { background: linear-gradient(135deg, #ff78b4, #ffb0dd); }
     .main-cat-btn[data-cat="general"].active { background: linear-gradient(135deg, #ffbf47, #ffd979); color: #18171c; }
@@ -190,7 +182,6 @@
     .mode-btn { border-radius: 999px; padding: 0.6rem 1.25rem; font-size: var(--text-sm); font-weight: 700; color: var(--color-text-muted); background: transparent; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; transition: all 0.3s; }
     .mode-btn:hover { color: #fff; }
     .mode-btn.active { color: var(--color-text-inverse); background: linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 8px 20px rgba(108, 140, 255, 0.5); }
-    
     html[data-site-theme="support"] .mode-btn.active, html[data-site-theme="ap_shop"] .mode-btn.active, html[data-site-theme="ap_admin"] .mode-btn.active { background: linear-gradient(135deg, #ff78b4, #ffb0dd); box-shadow: 0 8px 20px rgba(255, 144, 196, 0.6); }
     html[data-site-theme="complaints"] .mode-btn.active { background: linear-gradient(135deg, #ff6b88, #ff3b60); box-shadow: 0 8px 20px rgba(255, 107, 136, 0.5); color: #fff; }
     html[data-site-theme="quests"] .mode-btn.active { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 8px 20px rgba(162, 108, 255, 0.45); color: #fff; }
@@ -205,8 +196,8 @@
 
     .game-wrap { margin-top: 0.75rem; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr); gap: 1rem; align-items: start; }
     .rule-list, .feed, .log { display: grid; gap: 0.75rem; min-width: 0; }
-    .rule-item, .log-item, .stat, .quest-card { padding: 0.95rem; border-radius: 16px; background: rgba(13, 16, 32, 0.95); border: 1px solid rgba(191, 198, 255, 0.3); min-width: 0; overflow-wrap: anywhere; }
     
+    .rule-item, .log-item, .stat, .quest-card { padding: 0.95rem; border-radius: 16px; background: rgba(13, 16, 32, 0.95); border: 1px solid rgba(191, 198, 255, 0.3); min-width: 0; overflow-wrap: anywhere; }
     html[data-site-theme="support"] .rule-item, html[data-site-theme="support"] .log-item, html[data-site-theme="support"] .stat { background: rgba(35, 10, 26, 0.96); border-color: rgba(255, 190, 230, 0.36); }
     html[data-site-theme="about"] .rule-item, html[data-site-theme="about"] .log-item, html[data-site-theme="about"] .stat { background: rgba(25, 19, 8, 0.96); border-color: rgba(255, 214, 122, 0.24); }
     html[data-site-theme="shop"] .rule-item, html[data-site-theme="shop"] .log-item, html[data-site-theme="shop"] .stat { background: rgba(11, 21, 15, 0.96); border-color: rgba(162, 241, 188, 0.22); }
@@ -233,7 +224,6 @@
 
     .message-card { padding: 1.5rem; border-radius: 18px; background: radial-gradient(circle at 0 0, rgba(108, 140, 255, 0.45), transparent 70%), linear-gradient(160deg, rgba(13, 16, 32, 0.98), rgba(5, 7, 15, 1)); border: 1px solid rgba(191, 198, 255, 0.4); min-height: 250px; display: grid; align-content: start; gap: 1rem; position: relative; overflow: hidden; min-width: 0; }
     .message-card::after { content: ""; position: absolute; inset: auto -40px -40px auto; width: 160px; height: 160px; background: radial-gradient(circle, rgba(255, 191, 71, 0.45), transparent 65%); pointer-events: none; opacity: 0.6; }
-
     html[data-site-theme="support"] .message-card { background: radial-gradient(circle at 0 0, rgba(255, 160, 210, 0.45), transparent 70%), linear-gradient(160deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1)); border-color: rgba(255, 190, 230, 0.55); }
     html[data-site-theme="about"] .message-card { background: radial-gradient(circle at 0 0, rgba(255, 191, 71, 0.18), transparent 70%), linear-gradient(160deg, rgba(25, 19, 8, 0.98), rgba(11, 10, 15, 1)); border-color: rgba(255, 214, 122, 0.25); }
     html[data-site-theme="shop"] .message-card { background: radial-gradient(circle at 0 0, rgba(82, 199, 123, 0.2), transparent 70%), linear-gradient(160deg, rgba(11, 21, 15, 0.98), rgba(8, 10, 15, 1)); border-color: rgba(162, 241, 188, 0.25); }
@@ -266,7 +256,6 @@
     .support-check-btn { flex: 0 0 auto; min-height: 52px; padding: 0 1.5rem; border-radius: 12px; font-size: var(--text-sm); font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; background: linear-gradient(135deg, #6c8cff, #8aa3ff); border: none; color: #fff; white-space: nowrap; box-shadow: 0 8px 20px rgba(108, 140, 255, 0.4); transition: all 0.3s ease; }
     .support-check-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(108, 140, 255, 0.6); }
     .support-check-btn:active { transform: translateY(1px); }
-
     html[data-site-theme="support"] .support-check-btn { background: linear-gradient(135deg, #ff78b4, #ffb0dd); box-shadow: 0 8px 20px rgba(255, 120, 180, 0.4); }
     html[data-site-theme="report"] .support-check-btn { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 8px 20px rgba(162, 108, 255, 0.4); }
 
@@ -276,10 +265,23 @@
     .quest-btn.in-progress { background: rgba(108, 140, 255, 0.15); color: #8aa3ff; border: 1px solid rgba(108, 140, 255, 0.4); cursor: not-allowed; }
     .quest-btn.completed { background: rgba(82, 199, 123, 0.15); color: #52c77b; border: 1px solid rgba(82, 199, 123, 0.4); cursor: not-allowed; }
 
-    /* === МАГАЗИН === */
+    /* === КРАСИВЫЙ МАГАЗИН === */
     .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
-    .shop-card { display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem; border-radius: 20px; background: linear-gradient(145deg, rgba(20, 24, 44, 0.9), rgba(10, 12, 22, 0.95)); border: 1px solid rgba(108, 140, 255, 0.2); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
-    .shop-card:hover { transform: translateY(-5px); border-color: rgba(108, 140, 255, 0.6); box-shadow: 0 15px 40px rgba(108, 140, 255, 0.15); }
+    .shop-card { 
+      display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem; border-radius: 20px; 
+      background: linear-gradient(145deg, rgba(20, 24, 44, 0.9), rgba(10, 12, 22, 0.95)); 
+      border: 1px solid rgba(108, 140, 255, 0.3); 
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(108, 140, 255, 0.05); 
+      backdrop-filter: blur(10px); position: relative; overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; 
+    }
+    .shop-card::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+      transform: skewX(-20deg); transition: 0.5s; pointer-events: none;
+    }
+    .shop-card:hover { transform: translateY(-5px); border-color: rgba(108, 140, 255, 0.7); box-shadow: 0 15px 40px rgba(108, 140, 255, 0.2); }
+    .shop-card:hover::before { left: 150%; }
     .shop-card h3 { font-size: 1.2rem; color: #fff; margin: 0; line-height: 1.3; }
     .shop-card p { font-size: 0.9rem; color: var(--color-text-muted); margin: 0; flex-grow: 1; line-height: 1.5; }
     .shop-price { font-size: 1.4rem; font-weight: 900; color: #ffbf47; background: rgba(255, 191, 71, 0.1); padding: 0.5rem 1rem; border-radius: 12px; text-align: center; border: 1px solid rgba(255, 191, 71, 0.3); display: inline-block; margin-bottom: 0.5rem; }
@@ -288,7 +290,7 @@
     .shop-buy-btn:disabled { background: rgba(255, 255, 255, 0.1); color: #888; box-shadow: none; cursor: not-allowed; border: 1px solid rgba(255,255,255,0.1); }
 
     /* Специфичные стили для Магазина АП */
-    .ap-shop-card { border-color: rgba(255, 143, 196, 0.3); background: linear-gradient(145deg, rgba(35, 10, 26, 0.9), rgba(16, 4, 12, 0.95)); }
+    .ap-shop-card { border-color: rgba(255, 143, 196, 0.4); background: linear-gradient(145deg, rgba(35, 10, 26, 0.9), rgba(16, 4, 12, 0.95)); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 143, 196, 0.05); }
     .ap-shop-card:hover { border-color: rgba(255, 143, 196, 0.8); box-shadow: 0 15px 40px rgba(255, 143, 196, 0.25); }
     .ap-shop-card h3 { color: #ff8fc4; text-shadow: 0 0 10px rgba(255,143,196,0.3); }
     .ap-shop-price { color: #ff8fc4; border-color: #ff8fc4; background: rgba(255, 143, 196, 0.1); box-shadow: inset 0 0 10px rgba(255,143,196,0.2); }
@@ -305,7 +307,6 @@
     .roulette-item { width: 160px; height: 100%; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; text-align: center; padding: 1rem; border-right: 1px solid rgba(255, 255, 255, 0.05); box-sizing: border-box; }
     .roulette-item i { font-size: 2.8rem; font-style: normal; display: block; filter: drop-shadow(0 0 8px rgba(255,255,255,0.2)); margin-bottom: 0.2rem; }
     .roulette-item span { font-size: 0.85rem; font-weight: 700; line-height: 1.2; color: #fff; }
-    
     .r-leg { background: radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 70%); border-bottom: 3px solid #ffd700; }
     .r-leg span { color: #ffd700; text-shadow: 0 0 10px rgba(255,215,0,0.5); }
     .r-rare { background: radial-gradient(circle, rgba(162, 108, 255, 0.15) 0%, transparent 70%); border-bottom: 3px solid #a26cff; }
@@ -316,27 +317,21 @@
     .r-fine { background: radial-gradient(circle, rgba(255, 107, 136, 0.15) 0%, transparent 70%); border-bottom: 3px solid #ff6b88; }
     .r-fine span { color: #ff9fb4; }
 
-    /* === ОРЁЛ И РЕШКА === */
+    /* ОРЁЛ И РЕШКА / ТРИ СЕЙФА / ВИКТОРИНА */
     @keyframes coinFlipAnim { 0% { transform: scaleY(1); } 50% { transform: scaleY(0); } 100% { transform: scaleY(1); } }
     .flipping { animation: coinFlipAnim 0.15s infinite; }
-
-    /* === ТРИ СЕЙФА === */
     .safe-btn:hover:not(:disabled) { transform: scale(1.1); box-shadow: 0 10px 20px rgba(162, 108, 255, 0.4); }
-    
-    /* === ВИКТОРИНА === */
     .jw-option-btn { width: 100%; padding: 1rem; border-radius: 12px; background: rgba(255, 107, 136, 0.1); border: 2px solid rgba(255, 107, 136, 0.4); color: #fff; font-weight: bold; font-size: 1rem; transition: 0.3s; cursor: pointer; }
     .jw-option-btn:hover:not(:disabled) { background: rgba(255, 107, 136, 0.3); border-color: #ff6b88; transform: translateY(-2px); }
     .jw-option-btn.correct { background: rgba(82, 199, 123, 0.3) !important; border-color: #52c77b !important; color: #8df0ae !important; }
     .jw-option-btn.wrong { background: rgba(255, 107, 136, 0.4) !important; border-color: #ff6b88 !important; color: #ffb1c1 !important; }
-
+    
     .timer-display { font-family: var(--font-display); font-size: 4rem; color: #ffbf47; text-align: center; text-shadow: 0 0 20px rgba(255, 191, 71, 0.6); line-height: 1; margin: 1.5rem 0; transition: color 0.3s ease; }
     .timer-display.danger { color: #ff6b88; text-shadow: 0 0 20px rgba(255, 107, 136, 0.8); animation: pulse 1s infinite; }
     @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
     .support-answer-row { display: flex; flex-direction: column; gap: 0.5rem; }
     .support-answer-row-inner { display: flex; gap: 0.75rem; align-items: stretch; }
-    
-    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; }
 
     @media (max-width: 900px) {
       .hero, .game-wrap { grid-template-columns: 1fr; }
@@ -349,19 +344,13 @@
 </head>
 <body>
 
-  <div id="authModal" class="modal-overlay">
+  <div id="authModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center;">
     <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 400px; display: grid; gap: 1.2rem;">
       <h2 style="margin: 0; font-family: var(--font-display); text-align: center;">Авторизация</h2>
+      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0; text-align: center;">Войдите или зарегистрируйтесь.</p>
       <input type="email" id="authEmail" class="support-input" placeholder="Ваш Email">
+      <input type="text" id="authNickname" class="support-input" placeholder="Игровой Nickname">
       <input type="password" id="authPassword" class="support-input" placeholder="Пароль">
-      <hr style="border-color: rgba(191,198,255,0.1); margin: 0.5rem 0;">
-      <p style="font-size: 0.8rem; color: var(--color-text-faint); margin: 0; text-align:center;">При регистрации заполните поля ниже:</p>
-      <input type="text" id="authNickname" class="support-input" placeholder="Игровой Nickname (Для ТОПа)">
-      <select id="authRole" class="support-input">
-          <option value="player">Игрок (Просто посмотреть)</option>
-          <option value="moderator">Модератор Discord</option>
-          <option value="support">Агент Поддержки</option>
-      </select>
       <div id="authErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; text-align: center;"></div>
       <div style="display: flex; gap: 0.75rem; margin-top: 0.5rem;">
         <button id="authLoginSubmit" class="btn btn-primary" style="flex: 1;">Войти</button>
@@ -371,32 +360,19 @@
     </div>
   </div>
 
-  <div id="roleModal" class="modal-overlay" style="z-index: 10000;">
-    <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 400px; display: grid; gap: 1.2rem;">
-      <h2 style="margin: 0; font-family: var(--font-display); color: #ffbf47; text-align: center;">Выберите роль!</h2>
-      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0; text-align: center;">Для правильного отображения в Лидерборде выберите вашу должность:</p>
-      <select id="forceRoleSelect" class="support-input">
-          <option value="player">Игрок</option>
-          <option value="moderator">Модератор Discord</option>
-          <option value="support">Агент Поддержки</option>
-      </select>
-      <button id="forceRoleBtn" class="btn btn-primary">Сохранить</button>
-    </div>
-  </div>
-
-  <div id="nicknameModal" class="modal-overlay" style="z-index: 10001;">
+  <div id="nicknameModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 10000; align-items: center; justify-content: center;">
     <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 400px; display: grid; gap: 1.2rem;">
       <h2 style="margin: 0; font-family: var(--font-display); color: #ffbf47; text-align: center;">Внимание!</h2>
-      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0; text-align: center;">Для участия в Лидерборде необходимо установить свой игровой Nickname.</p>
+      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0; text-align: center;">Установите свой Nickname.</p>
       <input type="text" id="forceNicknameInput" class="support-input" placeholder="Например: John_Wick">
-      <button id="forceNicknameBtn" class="btn btn-primary">Сохранить Никнейм</button>
+      <button id="forceNicknameBtn" class="btn btn-primary">Сохранить</button>
     </div>
   </div>
 
-  <div id="accessModal" class="modal-overlay">
+  <div id="accessModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center;">
     <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 400px; display: grid; gap: 1.2rem;">
       <h2 style="margin: 0; font-family: var(--font-display); text-align: center;">Доступ закрыт</h2>
-      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0; text-align: center;">Введите код доступа для выполнения этого действия.</p>
+      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0; text-align: center;">Введите код доступа.</p>
       <input type="password" id="accessCodeInput" class="support-input" placeholder="Код доступа">
       <div id="accessErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; text-align: center;">Неверный код доступа!</div>
       <button id="accessSubmitBtn" class="btn btn-primary">Подтвердить</button>
@@ -404,69 +380,25 @@
     </div>
   </div>
 
-  <div id="spamModal" class="modal-overlay" style="z-index: 10000; pointer-events: auto;">
+  <div id="spamModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); z-index: 10000; align-items: center; justify-content: center; pointer-events: auto;">
     <div class="panel" style="padding: 3rem; width: 90%; max-width: 450px; display: grid; gap: 1.5rem; text-align: center; border: 2px solid rgba(255, 107, 136, 0.6); box-shadow: 0 0 50px rgba(255, 107, 136, 0.3);">
       <div style="font-size: 4rem; margin-bottom: -1.5rem; animation: pulse 2s infinite;">👮‍♂️</div>
       <h2 style="margin: 0; font-family: var(--font-display); color: var(--color-error); font-size: var(--text-xl); text-transform: uppercase;">Слишком быстро!</h2>
-      <p style="color: var(--color-text-muted); font-size: var(--text-base); margin: 0;">Тренажёр создан для вдумчивой работы, а не для кликера.<br><br>В качестве штрафа <strong>выдача вердиктов заблокирована на 1 минуту</strong>.</p>
+      <p style="color: var(--color-text-muted); font-size: var(--text-base); margin: 0;">Тренажёр создан для вдумчивой работы.<br><br>В качестве штрафа <strong>выдача вердиктов заблокирована на 1 минуту</strong>.</p>
       <button id="closeSpamModal" class="btn" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted);">Блокировка...</button>
     </div>
   </div>
 
-  <div id="fortuneModal" class="modal-overlay">
+  <div id="fortuneModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center;">
     <div class="panel" style="padding: 2.5rem; width: 95%; max-width: 600px; display: flex; flex-direction: column; gap: 1.5rem; text-align: center;">
       <h2 id="fortuneTitle" style="margin: 0; font-family: var(--font-display); font-size: var(--text-xl); color: #ffbf47;">Колесо Фортуны</h2>
-      <p id="fortuneDesc" style="color: var(--color-text-muted); font-size: var(--text-base); margin: 0;">Испытай удачу! Призы будут добавлены на баланс или отправлены Руководству.</p>
+      <p id="fortuneDesc" style="color: var(--color-text-muted); font-size: var(--text-base); margin: 0;">Испытай удачу!</p>
       <div class="roulette-wrapper">
           <div class="roulette-pointer"></div>
           <div class="roulette-track" id="rouletteTrack"></div>
       </div>
       <div id="fortuneResultText" style="min-height: 2.5em; font-size: var(--text-lg); font-weight: bold; color: var(--color-success); margin-top: 0.5rem;"></div>
       <button id="closeFortuneBtn" class="btn btn-secondary" type="button" style="margin-top: 1rem; display: none;">Закрыть и забрать</button>
-    </div>
-  </div>
-
-  <div id="coinModal" class="modal-overlay">
-    <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 400px; display: flex; flex-direction: column; gap: 1.5rem; text-align: center;">
-      <h2 style="margin: 0; font-family: var(--font-display); color: #ffbf47;">Орёл или Решка</h2>
-      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Ставка: 500 XP. Выбери сторону!</p>
-      <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 1rem;">
-          <button id="btnHeads" class="btn btn-primary" style="flex: 1;">Орёл</button>
-          <button id="btnTails" class="btn btn-secondary" style="flex: 1;">Решка</button>
-      </div>
-      <div id="coinAnimation" style="font-size: 5rem; display: none; text-shadow: 0 0 20px rgba(255, 191, 71, 0.5);">🪙</div>
-      <div id="coinResult" style="font-size: var(--text-lg); font-weight: bold; min-height: 2rem;"></div>
-      <button id="closeCoinBtn" class="btn" style="display: none;">Забрать результат</button>
-    </div>
-  </div>
-
-  <div id="safesModal" class="modal-overlay">
-    <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 450px; display: flex; flex-direction: column; gap: 1.5rem; text-align: center;">
-      <h2 style="margin: 0; font-family: var(--font-display); color: #a26cff;">Три Сейфа</h2>
-      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Ставка: 400 XP. В одном из сейфов 1200 XP!</p>
-      <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 1rem;" id="safesContainer">
-          <button class="safe-btn" data-index="0" style="font-size: 3.5rem; background: transparent; border: 2px solid #a26cff; border-radius: 16px; padding: 1.5rem; cursor: pointer; transition: 0.3s; flex: 1;">🧰</button>
-          <button class="safe-btn" data-index="1" style="font-size: 3.5rem; background: transparent; border: 2px solid #a26cff; border-radius: 16px; padding: 1.5rem; cursor: pointer; transition: 0.3s; flex: 1;">🧰</button>
-          <button class="safe-btn" data-index="2" style="font-size: 3.5rem; background: transparent; border: 2px solid #a26cff; border-radius: 16px; padding: 1.5rem; cursor: pointer; transition: 0.3s; flex: 1;">🧰</button>
-      </div>
-      <div id="safesResult" style="font-size: var(--text-lg); font-weight: bold; min-height: 2rem;"></div>
-      <button id="closeSafesBtn" class="btn" style="display: none;">Забрать результат</button>
-    </div>
-  </div>
-
-  <div id="jwModal" class="modal-overlay">
-    <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 500px; display: flex; flex-direction: column; gap: 1.5rem; text-align: center;">
-      <h2 style="margin: 0; font-family: var(--font-display); color: #ff6b88; text-transform: uppercase;">Кто это?</h2>
-      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Ставка: 600 XP. Угадай и забери 1500 XP.</p>
-      
-      <div style="width: 100%; height: 250px; border-radius: 12px; overflow: hidden; border: 2px solid #ff6b88; box-shadow: 0 0 20px rgba(255,107,136,0.3); position: relative; background: #000;">
-          <img id="jwImage" src="" alt="Character" onerror="this.src='https://ui-avatars.com/api/?name=Secret+Character&background=random&size=250'" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
-      </div>
-      
-      <div id="jwOptions" style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 0.5rem;"></div>
-      
-      <div id="jwResult" style="font-size: var(--text-lg); font-weight: bold; min-height: 2rem;"></div>
-      <button id="closeJwBtn" class="btn btn-secondary" style="display: none;">Закончить игру</button>
     </div>
   </div>
 
@@ -483,10 +415,9 @@
         </div>
         <div>
           <div class="brand-title">Tambov 73</div>
-          <div class="brand-sub" id="brandSubtitle">Симулятор смены</div>
+          <div class="brand-sub" id="brandSubtitle">Симулятор смены модераторов</div>
         </div>
       </div>
-  
       <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: flex-end;">
         <div id="authStatus" style="display: flex; align-items: center; gap: 0.5rem;">
           <span id="userEmailDisplay" style="font-size: var(--text-sm); color: var(--color-text-muted); font-weight: 600;"></span>
@@ -494,8 +425,8 @@
           <button id="logoutBtnUI" class="badge ban" type="button" style="cursor: pointer; display: none; padding: 0.5rem 1rem;">Выйти</button>
         </div>
         <div style="display: flex; gap: 0.5rem;">
-          <button class="icon-btn" type="button" id="musicToggleBtn" aria-label="Музыка" title="Фоновая музыка">🔇</button>
-          <button class="icon-btn" type="button" id="sfxToggleBtn" aria-label="Звуки" title="Звуки кнопок">🔊</button>
+          <button class="icon-btn" type="button" id="musicToggleBtn" title="Фоновая музыка">🔇</button>
+          <button class="icon-btn" type="button" id="sfxToggleBtn" title="Звуки кнопок">🔊</button>
           <button class="icon-btn" type="button" data-theme-toggle aria-label="Сменить тему">🌙</button>
         </div>
       </div>
@@ -507,22 +438,18 @@
           <span class="badge">Discord • Tambov 73</span>
           <span class="badge" id="heroBadge2">Режим: модераторы</span>
         </div>
-        <div class="hero-content" id="heroTextContainer">
-            <h1 id="heroTitle">Следи за <span>порядком</span> на сервере.</h1>
-            <p id="heroText">Проверяй сообщения, принимай решения и поддерживай порядок в чате.</p>
-        </div>
+        <h1 id="heroTitle">Следи за <span>порядком</span> на сервере.</h1>
+        <p id="heroText">Проверяй сообщения, принимай решения и поддерживай порядок в чате.</p>
         <div class="hero-actions">
           <button class="btn btn-primary" type="button" id="startBtn">Начать смену</button>
           <button class="btn btn-secondary" type="button" id="resetBtn">Сбросить смену</button>
         </div>
       </article>
-      
       <aside class="panel rules fade-in">
         <div class="section-head">
             <h2 id="rightTitle">Материалы модератора</h2>
             <p id="rightLead">Подсказки по модерации.</p>
         </div>
-      
         <div class="rule-list" id="rightCards"></div>
       </aside>
     </section>
@@ -546,14 +473,14 @@
       </div>
 
       <div class="sub-nav" id="subNavSupport" style="display:none;">
-        <button class="mode-btn active" data-mode="support" type="button">Тренажёр АП</button>
+        <button class="mode-btn" data-mode="support" type="button">Тренажёр АП</button>
         <button class="mode-btn" data-mode="ap_shop" type="button">Магазин АП</button>
-        <button class="mode-btn" data-mode="ap_admin_log" type="button" id="apAdminLogTabBtn" style="display:none; color: #ff8fc4;">Логи (АП)</button>
         <button class="mode-btn" data-mode="ap_admin" type="button" id="apAdminTabBtn" style="display:none; color: #ff8fc4;">Руководство АП</button>
+        <button class="mode-btn" data-mode="ap_admin_log" type="button" id="apAdminLogTabBtn" style="display:none; color: #ff8fc4;">Логи (АП)</button>
       </div>
 
       <div class="sub-nav" id="subNavGeneral" style="display:none;">
-        <button class="mode-btn active" data-mode="quests" type="button">Квесты</button>
+        <button class="mode-btn" data-mode="quests" type="button">Квесты</button>
         <button class="mode-btn" data-mode="leaderboard" type="button">Лидерборд</button>
         <button class="mode-btn" data-mode="guide" type="button">Руководство</button>
         <button class="mode-btn" data-mode="about" type="button">О команде</button>
@@ -563,85 +490,41 @@
     <section class="game-wrap" id="game">
       
       <section class="panel game-card fade-in" id="mode-creator" style="display:none;">
-    
         <div class="section-head"><h2 style="color: #ff6b88;">Панель Создателя (John Wick)</h2></div>
         <div style="background: rgba(13, 16, 32, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255, 107, 136, 0.3); margin-bottom: 1.5rem;">
           <h3 style="margin-bottom: 1rem; font-size: var(--text-base); color: var(--color-primary);">Выдача / Изъятие XP</h3>
           <select id="creatorUserSelect" class="support-input" style="margin-bottom: 1rem;"><option>Загрузка...</option></select>
-          <input type="number" id="creatorXpAmount" class="support-input" placeholder="Количество XP (+ или -)" style="margin-bottom: 1rem;">
-          <button id="creatorXpBtn" class="btn btn-primary" style="width: 100%; margin-bottom: 0.5rem;">Изменить баланс XP</button>
-          <button class="btn btn-secondary" style="width: 100%; border-color: var(--color-error); color: var(--color-error);" onclick="deleteUserAccount('creatorUserSelect', event)">🗑️ Удалить аккаунт пользователя</button>
-        </div>
-        <div style="background: rgba(28, 10, 20, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255, 107, 136, 0.5); margin-bottom: 1.5rem;">
-          <h3 style="margin-bottom: 0.5rem; font-size: var(--text-base); color: var(--color-error);">Панель Троллинга 🤡</h3>
-          <input type="text" id="trollCustomNick" class="support-input" placeholder="Свой ник (оставь пустым для рандома)" style="margin-bottom: 1rem; width: 100%;">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-            <button id="trollWipeXpBtn" class="btn btn-secondary" style="border-color: var(--color-error); color: var(--color-error);">⬇️ Обнулить XP</button>
-            <button id="trollRenameBtn" class="btn btn-secondary" style="border-color: var(--color-warning); color: var(--color-warning);">🤡 Сменить ник</button>
-          </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-            <button id="trollDebtBtn" class="btn btn-secondary" style="border-color: var(--color-error); color: var(--color-error);">📉 Долг -10000 XP</button>
-            <button id="trollStealXpBtn" class="btn btn-secondary" style="border-color: #a26cff; color: #a26cff;">🥷 Списать 5000 XP</button>
-          </div>
+          <input type="number" id="creatorXpAmount" class="support-input" placeholder="Количество XP (например: 100 или -50)" style="margin-bottom: 1rem;">
+          <button id="creatorXpBtn" class="btn btn-primary" style="width: 100%;">Изменить баланс XP</button>
         </div>
         <div style="background: rgba(13, 16, 32, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255, 191, 71, 0.3);">
           <h3 style="margin-bottom: 1rem; font-size: var(--text-base); color: var(--color-warning);">Ключи доступа</h3>
           <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-            <select id="creatorKeyRole" class="support-input" style="flex: 1;"><option value="shop">Магазин Мод.</option><option value="report">Отчеты</option></select>
+            <select id="creatorKeyRole" class="support-input" style="flex: 1;"><option value="shop">Магазин</option><option value="report">Отчеты</option><option value="ap_shop">Магазин АП</option></select>
             <input type="text" id="creatorKeyInput" class="support-input" placeholder="Код ключа" style="flex: 2;">
           </div>
           <button id="creatorAddKeyBtn" class="btn btn-secondary" style="width: 100%; border-color: var(--color-warning); color: var(--color-warning);">Создать ключ</button>
-          <div id="creatorKeysList" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;"></div>
         </div>
       </section>
 
       <section class="panel game-card fade-in" id="mode-leadership" style="display:none;">
-        <div class="section-head"><h2 style="color: #52c77b;">Панель Руководства (Модерация)</h2></div>
-        <div style="background: rgba(10, 23, 14, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(82, 199, 123, 0.3); margin-bottom: 1.5rem;">
-          <h3 style="margin-bottom: 1rem; font-size: var(--text-base); color: var(--color-success);">Управление пользователями</h3>
+        <div class="section-head"><h2 style="color: #52c77b;">Руководство (Модерация)</h2></div>
+        <div style="background: rgba(10, 23, 14, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(82, 199, 123, 0.3);">
+          <h3 style="margin-bottom: 1rem; color: var(--color-success);">Управление пользователями</h3>
           <select id="leadershipUserSelect" class="support-input" style="margin-bottom: 1rem;"><option>Загрузка...</option></select>
           <input type="number" id="leadershipXpAmount" class="support-input" placeholder="Количество XP (+ или -)" style="margin-bottom: 1rem;">
-          <button id="leadershipXpBtn" class="btn btn-primary" style="width: 100%; margin-bottom: 0.5rem;">Выдать / Списать XP</button>
-          <button class="btn btn-secondary" style="width: 100%; border-color: var(--color-error); color: var(--color-error);" onclick="deleteUserAccount('leadershipUserSelect', event)">🗑️ Удалить аккаунт пользователя</button>
-        </div>
-        <div style="background: rgba(13, 16, 32, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255, 191, 71, 0.3); margin-bottom: 1.5rem;">
-          <h3 style="margin-bottom: 1rem; font-size: var(--text-base); color: var(--color-warning);">Создание ключей (Магазин Мод.)</h3>
-          <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-            <select id="leadershipKeyRole" class="support-input" style="flex: 1;"><option value="shop">Магазин</option><option value="report">Отчеты</option></select>
-            <input type="text" id="leadershipKeyInput" class="support-input" placeholder="Свой код ключа" style="flex: 2;">
-          </div>
-          <button id="leadershipAddKeyBtn" class="btn btn-secondary" style="width: 100%; border-color: var(--color-warning); color: var(--color-warning);">Сгенерировать ключ</button>
-          <div id="leadershipKeysList" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;"></div>
+          <button id="leadershipXpBtn" class="btn btn-primary" style="width: 100%;">Выдать / Списать XP</button>
         </div>
       </section>
 
       <section class="panel game-card fade-in" id="mode-ap_admin" style="display:none;">
         <div class="section-head"><h2 style="color: #ff8fc4;">Руководство АП</h2></div>
-        <div style="background: rgba(35, 10, 26, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255, 143, 196, 0.3); margin-bottom: 1.5rem;">
-          <h3 style="margin-bottom: 1rem; font-size: var(--text-base); color: #ff8fc4;">Управление пользователями</h3>
+        <div style="background: rgba(35, 10, 26, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255, 143, 196, 0.3);">
+          <h3 style="margin-bottom: 1rem; color: #ff8fc4;">Управление пользователями</h3>
           <select id="apAdminUserSelect" class="support-input" style="margin-bottom: 1rem;"><option>Загрузка...</option></select>
-          <input type="number" id="apAdminPointsAmount" class="support-input" placeholder="Количество баллов (+ или -)" style="margin-bottom: 1rem;">
-          <button id="apAdminPointsBtn" class="btn btn-primary" style="width: 100%; margin-bottom: 0.5rem;">Изменить баланс</button>
-          <button class="btn btn-secondary" style="width: 100%; border-color: var(--color-error); color: var(--color-error);" onclick="deleteUserAccount('apAdminUserSelect', event)">🗑️ Удалить аккаунт пользователя</button>
+          <input type="number" id="apAdminPointsAmount" class="support-input" placeholder="Количество Баллов (+ или -)" style="margin-bottom: 1rem;">
+          <button id="apAdminPointsBtn" class="btn btn-primary" style="width: 100%;">Выдать / Списать Баллы</button>
         </div>
-        <div style="background: rgba(28, 10, 18, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255, 143, 196, 0.3);">
-          <h3 style="margin-bottom: 1rem; font-size: var(--text-base); color: var(--color-warning);">Ключи доступа к Магазину АП</h3>
-          <input type="text" id="apAdminKeyInput" class="support-input" placeholder="Код ключа" style="margin-bottom: 1rem; width: 100%;">
-          <button id="apAdminAddKeyBtn" class="btn btn-secondary" style="width: 100%; border-color: var(--color-warning); color: var(--color-warning);">Создать ключ</button>
-          <div id="apAdminKeysList" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;"></div>
-        </div>
-      </section>
-
-      <section class="panel game-card fade-in" id="mode-admin_log" style="display:none;">
-        <div class="section-head"><h2 style="color: #ffbf47;">Логи выдачи (Модерация)</h2><p>Покупки из магазина и Рулетки.</p></div>
-        <button class="btn btn-secondary" type="button" id="loadAdminLogsBtn" style="width:100%; margin-bottom:1.5rem;">Обновить список</button>
-        <div class="feed" id="adminLogsArea"><div class="message-text">Нажмите «Обновить список»</div></div>
-      </section>
-
-      <section class="panel game-card fade-in" id="mode-ap_admin_log" style="display:none;">
-        <div class="section-head"><h2 style="color: #ff8fc4;">Логи выдачи (АП)</h2><p>Нажимайте «Отметить как выданное» после выдачи в Discord.</p></div>
-        <button class="btn btn-secondary" type="button" id="loadApAdminLogsBtn" style="width:100%; margin-bottom:1.5rem;">Обновить список</button>
-        <div class="feed" id="apAdminLogsArea"><div class="message-text">Нажмите «Обновить список»</div></div>
       </section>
 
       <section class="panel game-card fade-in" id="mode-timeattack" style="display:none;">
@@ -650,7 +533,6 @@
           <p>У вас есть ровно 60 секунд. Каждая ошибка отнимает 3 секунды. Сколько сообщений вы успеете разобрать?</p>
         </div>
         <div class="timer-display" id="taTimer">01:00</div>
-  
         <div class="stats-grid" style="margin-bottom: 1rem;">
           <div class="stat"><span class="stat-label">Счет</span><div class="stat-value" id="taScore" style="color: var(--color-success); font-size: 1.5rem;">0</div></div>
           <div class="stat"><span class="stat-label">Ошибки</span><div class="stat-value" id="taMistakes" style="color: var(--color-error); font-size: 1.5rem;">0</div></div>
@@ -706,7 +588,7 @@
           <div class="controls">
             <button class="action-btn skip-btn" type="button" data-action="good">✅ Без нарушения</button>
             <button class="action-btn warn-btn" type="button" data-action="warn">⚠️ Устное / Пред / Мут</button>
-            <button class="action-btn ban-btn" type="button" data-action="ban">🔨 Бан / Перма / Глобал</button>
+            <button class="action-btn ban-btn" type="button" data-action="ban">🔨 Бан / Перма</button>
           </div>
         </div>
       </section>
@@ -730,7 +612,7 @@
               <div><div class="author-name" id="compAuthor">Жалоба скрыта</div><div class="author-meta" id="compMeta">Появится после начала смены</div></div>
             </div>
             <div class="message-text" id="compText">Нажми «Начать смену», чтобы открыть первую жалобу.</div>
-            <div class="evidence-box" id="compEvidence">Доказательства: Отсутствуют</div>
+            <div class="hint" id="compEvidence">Доказательства: Отсутствуют</div>
           </article>
           <div class="controls">
             <button class="action-btn warn-btn" type="button" data-comp-action="reject">❌ Отказать</button>
@@ -749,9 +631,8 @@
           <div class="stat"><span class="stat-label">Вопросов</span><div class="stat-value" id="supportResolvedValue">0</div></div>
           <div class="stat"><span class="stat-label">Зачтено</span><div class="stat-value" id="supportCorrectValue">0</div></div>
           <div class="stat"><span class="stat-label">Ошибок</span><div class="stat-value" id="supportMistakeValue">0</div></div>
-          <div class="stat"><span class="stat-label">Баланс Баллов</span><div class="stat-value" id="supportXpValue" style="color: #ff8fc4;">0</div></div>
+          <div class="stat"><span class="stat-label">Общий Баланс</span><div class="stat-value" id="supportXpValue" style="color: #ff8fc4;">0</div></div>
         </div>
-      
         <div>
           <div class="xp-bar"><div class="xp-fill" id="supportXpFill" style="background: linear-gradient(90deg, #ff78b4, #ffb0dd); box-shadow: 0 0 26px rgba(255,144,196,0.7);"></div></div>
           <div id="supportBanner" class="banner-line">
@@ -760,9 +641,8 @@
           </div>
         </div>
         <div class="feed">
-  
-        <article class="message-card">
-            <div class="channel"><span class="channel-dot" style="background: #ff8fc4; box-shadow: 0 0 12px rgba(255,144,196,0.9);"></span># tambov-73 / support</div>
+          <article class="message-card">
+            <div class="channel"><span class="channel-dot" style="background: #ff8fc4;"></span># tambov-73 / support</div>
             <div class="author-row">
               <div class="avatar" style="background: conic-gradient(from 210deg, #ff78b4, #ffb0dd, #ff78b4); color: #1a0510;">AP</div>
               <div><div class="author-name" id="supportQuestionTitle">Вопрос скрыт</div><div class="author-meta" id="supportMeta">Появится после начала смены</div></div>
@@ -770,95 +650,35 @@
             <div class="message-text" id="supportQuestionText">Нажми «Начать смену», затем открой вопрос и помоги игроку разобраться.</div>
             <div class="support-answer-row">
               <div class="support-answer-row-inner">
-              
-                <input id="supportAnswerInput" class="support-input" type="text" placeholder="Напиши ответ (команда или место)...">
+                <input id="supportAnswerInput" class="support-input" type="text" placeholder="Напиши ответ игроку...">
                 <button class="support-check-btn" type="button" id="supportCheckBtn">Проверить ответ</button>
               </div>
-              <div class="support-result" id="supportResultText"></div>
+              <div class="support-result" id="supportResultText" style="min-height: 2em; font-size: var(--text-sm);"></div>
             </div>
           </article>
           <button class="btn btn-secondary" type="button" id="supportNextBtn" style="width:100%;">Следующий вопрос</button>
-  
         </div>
       </section>
 
       <section class="panel game-card fade-in" id="mode-quests" style="display:none;">
         <div class="section-head">
           <h2>Система Квестов</h2>
-          <p>Выполняй задания в тренажёрах и получай бонусный опыт на свой баланс.</p>
+          <p>Выполняй задания в тренажёрах и получай бонусный XP на свой баланс.</p>
         </div>
         <div class="feed" id="questsContainer"></div>
       </section>
 
       <section class="panel game-card fade-in" id="mode-leaderboard" style="display:none;">
-  
         <div class="section-head">
           <h2>Таблица лидеров (Топ-10)</h2>
           <p>Самые активные сотрудники по количеству заработанного XP/Баллов.</p>
         </div>
         <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-            <button id="lbBtnMod" class="btn btn-primary" style="flex:1;">Топ Модераторов</button>
-            <button id="lbBtnAp" class="btn btn-secondary" style="flex:1;">Топ АП</button>
+          <button id="lbBtnMod" class="btn btn-primary" style="flex:1;">Топ Модерации (XP)</button>
+          <button id="lbBtnAp" class="btn btn-secondary" style="flex:1;">Топ АП (Баллы)</button>
         </div>
         <div class="feed" id="leaderboardList">
-            <div class="message-text" style="text-align: center; padding: 2rem;">⏳ Загрузка данных лидеров...</div>
-        </div>
-      </section>
-
-      <section class="panel game-card fade-in" id="mode-shop" style="display:none;">
-        <div class="section-head">
-          <h2>Магазин & Игры (Модерация)</h2>
-          <p>Трать накопленные XP на скидки, бонусы или испытай удачу в азартных играх!</p>
-        </div>
-        <div class="stats-grid">
-          <div class="stat"><span class="stat-label">Доступно XP</span><div class="stat-value" id="shopTotalXp" style="color:var(--color-primary);">0</div></div>
-          <div class="stat"><span class="stat-label">Потрачено</span><div class="stat-value" id="shopSpentXp">0</div></div>
-        </div>
-        <div class="shop-grid" id="shopItemsContainer"></div>
-      </section>
-
-      <section class="panel game-card fade-in" id="mode-ap_shop" style="display:none;">
-        <div class="section-head">
-          <h2 style="color: #ff8fc4;">Магазин АП</h2>
-          <p>Потрать накопленные баллы на иммунитеты или рулетки.</p>
-        </div>
-        <div class="stats-grid">
-          <div class="stat"><span class="stat-label">Доступно Баллов</span><div class="stat-value" id="apShopTotalPts" style="color:#ff8fc4;">0</div></div>
-          <div class="stat"><span class="stat-label">Потрачено</span><div class="stat-value" id="apShopSpentPts">0</div></div>
-        </div>
-        <div class="shop-grid" id="apShopItemsContainer"></div>
-      </section>
-
-      <section class="panel game-card fade-in" id="mode-report" style="display:none;">
-        <div class="section-head">
-          <h2>Форма отчетности</h2>
-          <p>Сдайте свой ежедневный отчет онлайна из Discord сюда.</p>
-        </div>
-        <div id="reportAccessWarning" class="message-card" style="min-height: auto; align-content: center; text-align: center; color: var(--color-warning);">
-          Вы не авторизованы! <br><span style="font-size: var(--text-sm); color: var(--color-text-muted);">Войдите в аккаунт, чтобы сдать отчет.</span>
-        </div>
-        
-        <div class="feed" id="reportFormArea" style="display:none;">
-          <article class="message-card" style="min-height: auto;">
-            <div class="channel"><span class="channel-dot" style="background:#a26cff;"></span># tambov-73 / reports</div>
-            <div class="author-row">
-              <div class="avatar" style="background: conic-gradient(from 210deg, #a26cff, #c4a1ff, #a26cff);">R</div>
-              <div><div class="author-name">Отчет Discord (Онлайн)</div><div class="author-meta">Вставьте ссылку на скриншот</div></div>
-            </div>
-            <div class="support-answer-row">
-              <div class="support-answer-row-inner">
-                <input id="reportLinkInput" class="support-input" type="url" placeholder="Ссылка (Imgur, Yapx)...">
-                <button class="support-check-btn" type="button" id="submitReportBtn">Отправить</button>
-              </div>
-              <div class="support-result" id="reportResultText"></div>
-            </div>
-          </article>
-          
-          <div id="adminPanelArea" style="display:none; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(191,198,255,0.2);">
-            <h3 style="margin-bottom: 1rem; font-size: var(--text-sm); color: var(--color-primary); text-transform: uppercase;">Панель Руководства</h3>
-            <button class="btn btn-secondary" type="button" id="viewReportsBtn" style="width:100%;">Проверить сданные отчеты</button>
-          </div>
-          <div id="reportsListArea" style="display:none; margin-top: 1rem; flex-direction: column; gap: 0.75rem;"></div>
+          <div class="message-text" style="text-align: center; padding: 2rem;">⏳ Загрузка данных лидеров...</div>
         </div>
       </section>
 
@@ -866,9 +686,29 @@
         <div class="section-head"><h2>Руководство Сервера</h2><p>Контакты руководящего состава для связи.</p></div>
         <div class="feed">
           <article class="message-card" style="min-height: auto; gap: 1.5rem; background: rgba(13, 16, 32, 0.6);">
-            <div><h3 style="color: #6c8cff; margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid rgba(108,140,255,0.3); padding-bottom: 0.3rem;">Модерация</h3><div style="display: grid; gap: 0.6rem; font-size: var(--text-sm); color: var(--color-text-muted);"><div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Главный Модератор</strong> — Lexa_Mackenzie</span> <a href="https://vk.com/id783455796" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[VK]</a></div><div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ЗГМ</strong> — John_Wick</span> <a href="https://vk.com/id628466808" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[VK]</a></div><div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ЗГМ</strong> — Andrey_Caypen</span> <a href="https://vk.ru/andreycaypen" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[VK]</a></div><div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Куратор модерации</strong> — Hunter_Mackenzie</span> <a href="https://vk.com/id641685097" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[VK]</a></div></div></div>
-            <div><h3 style="color: #ffbf47; margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid rgba(255,191,71,0.3); padding-bottom: 0.3rem;">Администрация</h3><div style="display: grid; gap: 0.6rem; font-size: var(--text-sm); color: var(--color-text-muted);"><div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Главный Администратор</strong> — Lars_Crown</span> <a href="https://vk.ru/larsellorcrowner" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[VK]</a></div><div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ЗГА</strong> — Egor_Versachi</span> <a href="https://vk.ru/id775315885" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[VK]</a></div><div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ЗГА</strong> — Oskar_Lofrein</span> <a href="https://vk.ru/oooutlivq" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[VK]</a></div><div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Куратор Администрации</strong> — Kiruha_Lubera</span> <a href="https://vk.ru/kiruha_wl" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[VK]</a></div></div></div>
-            <div><h3 style="color: #52c77b; margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid rgba(82,199,123,0.3); padding-bottom: 0.3rem;">Агенты Поддержки</h3><div style="display: grid; gap: 0.6rem; font-size: var(--text-sm); color: var(--color-text-muted);"><div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Куратор АП</strong></span> <a href="https://vk.ru/ioanalost" target="_blank" style="color:#52c77b;text-decoration:none; font-weight: bold;">[VK]</a></div><div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Заместитель Куратора АП</strong></span> <a href="https://vk.com/id861801616" target="_blank" style="color:#52c77b;text-decoration:none; font-weight: bold;">[VK]</a></div></div></div>
+            <div>
+              <h3 style="color: #6c8cff; margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid rgba(108,140,255,0.3); padding-bottom: 0.3rem;">Модерация</h3>
+              <div style="display: grid; gap: 0.6rem; font-size: var(--text-sm); color: var(--color-text-muted);">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Главный Модератор</strong> — Lexa_Mackenzie</span> <a href="https://vk.com/id783455796" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[VK]</a></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ЗГМ</strong> — John_Wick</span> <a href="https://vk.com/id628466808" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[VK]</a></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>ЗГМ</strong> — Andrey_Caypen</span> <a href="https://vk.ru/andreycaypen" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[VK]</a></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Куратор модерации</strong> — Hunter_Mackenzie</span> <a href="https://vk.com/id641685097" target="_blank" style="color:var(--color-primary);text-decoration:none; font-weight: bold;">[VK]</a></div>
+              </div>
+            </div>
+            <div>
+              <h3 style="color: #ffbf47; margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid rgba(255,191,71,0.3); padding-bottom: 0.3rem;">Администрация</h3>
+              <div style="display: grid; gap: 0.6rem; font-size: var(--text-sm); color: var(--color-text-muted);">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Главный Администратор</strong> — Lars_Crown</span> <a href="https://vk.ru/larsellorcrowner" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[VK]</a></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Куратор Администрации</strong> — Kiruha_Lubera</span> <a href="https://vk.ru/kiruha_wl" target="_blank" style="color:#ffbf47;text-decoration:none; font-weight: bold;">[VK]</a></div>
+              </div>
+            </div>
+            <div>
+              <h3 style="color: #52c77b; margin-bottom: 0.8rem; font-size: 1.1rem; border-bottom: 1px solid rgba(82,199,123,0.3); padding-bottom: 0.3rem;">Агенты Поддержки</h3>
+              <div style="display: grid; gap: 0.6rem; font-size: var(--text-sm); color: var(--color-text-muted);">
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Куратор АП</strong></span> <a href="https://vk.ru/ioanalost" target="_blank" style="color:#52c77b;text-decoration:none; font-weight: bold;">[VK]</a></div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;"><span><strong>Заместитель Куратора АП</strong></span> <a href="https://vk.com/id861801616" target="_blank" style="color:#52c77b;text-decoration:none; font-weight: bold;">[VK]</a></div>
+              </div>
+            </div>
           </article>
         </div>
       </section>
@@ -884,11 +724,66 @@
         </div>
       </section>
 
-      <aside class="panel side fade-in">
-        <div class="section-head">
-          <h2>Лог смены</h2>
-          <p>Здесь фиксируются ваши решения.</p>
+      <section class="panel game-card fade-in" id="mode-shop" style="display:none;">
+        <div class="section-head"><h2>Магазин & Игры (Модерация)</h2><p>Трать накопленные XP на скидки, бонусы или испытай удачу!</p></div>
+        <div class="stats-grid">
+          <div class="stat"><span class="stat-label">Доступно XP</span><div class="stat-value" id="shopTotalXp" style="color:var(--color-primary);">0</div></div>
+          <div class="stat"><span class="stat-label">Потрачено</span><div class="stat-value" id="shopSpentXp">0</div></div>
         </div>
+        <div class="shop-grid" id="shopItemsContainer"></div>
+      </section>
+
+      <section class="panel game-card fade-in" id="mode-ap_shop" style="display:none;">
+        <div class="section-head"><h2 style="color:#ff8fc4;">Магазин АП</h2><p>Трать накопленные Баллы на снятие наказаний или испытай удачу!</p></div>
+        <div class="stats-grid">
+          <div class="stat"><span class="stat-label">Доступно Баллов</span><div class="stat-value" id="apShopTotalPts" style="color:#ff8fc4;">0</div></div>
+          <div class="stat"><span class="stat-label">Потрачено</span><div class="stat-value" id="apShopSpentPts">0</div></div>
+        </div>
+        <div class="shop-grid" id="apShopItemsContainer"></div>
+      </section>
+
+      <section class="panel game-card fade-in" id="mode-report" style="display:none;">
+        <div class="section-head"><h2>Форма отчетности</h2><p>Сдайте свой ежедневный отчет онлайна из Discord сюда.</p></div>
+        <div id="reportAccessWarning" class="message-card" style="min-height: auto; align-content: center; text-align: center; color: var(--color-warning);">
+          Вы не авторизованы! <br><span style="font-size: var(--text-sm); color: var(--color-text-muted);">Войдите в аккаунт, чтобы сдать отчет.</span>
+        </div>
+        <div class="feed" id="reportFormArea" style="display:none;">
+          <article class="message-card" style="min-height: auto;">
+            <div class="channel"><span class="channel-dot" style="background:#a26cff;"></span># tambov-73 / reports</div>
+            <div class="author-row">
+              <div class="avatar" style="background: conic-gradient(from 210deg, #a26cff, #c4a1ff, #a26cff);">R</div>
+              <div><div class="author-name">Отчет Discord (Онлайн)</div><div class="author-meta">Вставьте ссылку на скриншот</div></div>
+            </div>
+            <div class="support-answer-row">
+              <div class="support-answer-row-inner">
+                <input id="reportLinkInput" class="support-input" type="url" placeholder="Ссылка (Imgur, Yapx)...">
+                <button class="support-check-btn" type="button" id="submitReportBtn">Отправить</button>
+              </div>
+              <div class="support-result" id="reportResultText"></div>
+            </div>
+          </article>
+          <div id="adminPanelArea" style="display:none; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(191,198,255,0.2);">
+            <h3 style="margin-bottom: 1rem; font-size: var(--text-sm); color: var(--color-primary); text-transform: uppercase;">Панель Руководства</h3>
+            <button class="btn btn-secondary" type="button" id="viewReportsBtn" style="width:100%;">Проверить сданные отчеты</button>
+          </div>
+          <div id="reportsListArea" style="display:none; margin-top: 1rem; flex-direction: column; gap: 0.75rem;"></div>
+        </div>
+      </section>
+
+      <section class="panel game-card fade-in" id="mode-admin_log" style="display:none;">
+        <div class="section-head"><h2 style="color: #ffbf47;">Логи выдачи (Мод)</h2><p>Покупки из магазина и Рулетки модерации. Нажимайте «Отметить как выданное» после выдачи в Discord.</p></div>
+        <button class="btn btn-secondary" type="button" id="loadAdminLogsBtn" style="width:100%; margin-bottom:1.5rem;">Обновить список логов модерации</button>
+        <div class="feed" id="adminLogsArea"><div class="message-text">Нажмите «Обновить список»</div></div>
+      </section>
+
+      <section class="panel game-card fade-in" id="mode-ap_admin_log" style="display:none;">
+        <div class="section-head"><h2 style="color: #ff8fc4;">Логи выдачи (АП)</h2><p>Покупки агентов поддержки из магазина АП. Нажимайте «Отметить как выданное» после выдачи в Discord.</p></div>
+        <button class="btn btn-secondary" type="button" id="loadApAdminLogsBtn" style="width:100%; margin-bottom:1.5rem;">Обновить список логов АП</button>
+        <div class="feed" id="apAdminLogsArea"><div class="message-text">Нажмите «Обновить список»</div></div>
+      </section>
+
+      <aside class="panel side fade-in">
+        <div class="section-head"><h2>Лог смены</h2><p>Здесь фиксируются ваши решения.</p></div>
         <div class="log" id="logList">
           <div class="log-item">Пока пусто. Нажми «Начать смену», чтобы начать работу.</div>
         </div>
@@ -899,11 +794,9 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // --- Аудио-эффекты ---
-        let isMusicEnabled = false;
-        let isSfxEnabled = true;
-        let musicStarted = false;
-
+        // === АУДИО ===
+        let isMusicEnabled = false; 
+        let isSfxEnabled = true;    
         const uiSoundConfig = { volume: 0.15, pitch: 600, type: 'sine', duration: 0.04 };
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
@@ -912,7 +805,6 @@
             if (audioCtx.state === 'suspended') audioCtx.resume();
             const osc = audioCtx.createOscillator();
             const gainNode = audioCtx.createGain();
-            
             osc.type = uiSoundConfig.type;
             osc.frequency.setValueAtTime(uiSoundConfig.pitch, audioCtx.currentTime);
             osc.frequency.exponentialRampToValueAtTime(uiSoundConfig.pitch / 2, audioCtx.currentTime + uiSoundConfig.duration);
@@ -923,42 +815,11 @@
             osc.start();
             osc.stop(audioCtx.currentTime + uiSoundConfig.duration);
         }
-
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('button') || e.target.closest('a')) playUIClick();
-        });
-
+        
+        document.addEventListener('click', (e) => { if (e.target.closest('button') || e.target.closest('a')) playUIClick(); });
+        
         const bgMusic = new Audio('https://upload.wikimedia.org/wikipedia/commons/b/b4/Chopin_Nocturne_Op_9_No_2_1923.ogg');
-        bgMusic.loop = true;
-        bgMusic.volume = 0.6;
-
-        document.body.addEventListener('click', () => {
-            if (!musicStarted && isMusicEnabled) {
-                bgMusic.play().catch(e => console.log("Автовоспроизведение заблокировано", e));
-                musicStarted = true;
-            }
-        }, {once: true});
-
-        const musicToggleBtn = document.getElementById('musicToggleBtn');
-        const sfxToggleBtn = document.getElementById('sfxToggleBtn');
-
-        musicToggleBtn.addEventListener('click', () => {
-            isMusicEnabled = !isMusicEnabled;
-            if (isMusicEnabled) {
-                musicToggleBtn.textContent = '🎵';
-                bgMusic.play().catch(e => alert("Браузер блокирует музыку до первого клика. Нажмите 'Ок' и музыка заиграет."));
-                musicStarted = true;
-            } else {
-                musicToggleBtn.textContent = '🔇';
-                bgMusic.pause();
-            }
-        });
-
-        sfxToggleBtn.addEventListener('click', () => {
-            isSfxEnabled = !isSfxEnabled;
-            sfxToggleBtn.textContent = isSfxEnabled ? '🔊' : '🔈';
-        });
-
+        bgMusic.loop = true; bgMusic.volume = 1.0;
         const sndOk = new Audio('https://actions.google.com/sounds/v1/ui/pop.ogg'); sndOk.volume = 0.4;
         const sndFail = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg'); sndFail.volume = 0.2;
         const sndWin = new Audio('https://actions.google.com/sounds/v1/cartoon/clown_horn.ogg'); sndWin.volume = 0.3;
@@ -970,1044 +831,821 @@
             if (type === 'win') { sndWin.currentTime = 0; sndWin.play().catch(()=>{}); }
         }
 
-        // --- База Данных Supabase ---
+        const musicToggleBtn = document.getElementById('musicToggleBtn');
+        const sfxToggleBtn = document.getElementById('sfxToggleBtn');
+
+        musicToggleBtn.addEventListener('click', () => {
+            isMusicEnabled = !isMusicEnabled;
+            if (isMusicEnabled) {
+                musicToggleBtn.textContent = '🎵'; bgMusic.play().catch(()=>{ isMusicEnabled = false; musicToggleBtn.textContent = '🔇'; });
+            } else { musicToggleBtn.textContent = '🔇'; bgMusic.pause(); }
+        });
+
+        sfxToggleBtn.addEventListener('click', () => {
+            isSfxEnabled = !isSfxEnabled;
+            sfxToggleBtn.textContent = isSfxEnabled ? '🔊' : '🔈';
+        });
+
+        // === SUPABASE (База Данных) ===
         const supabaseUrl = 'https://icfihnroblyjjflsfepq.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljZmlobnJvYmx5ampmbHNmZXBxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4NjAxMDksImV4cCI6MjA5MTQzNjEwOX0.Hrvjg572mIKBG-2ffYEr4Fxvpz0hOAex9d6n7WylVkQ';
         const supa = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        let currentUser = null;
-        let currentNickname = null;
-        let userRole = 'player';
+        let currentUser = null; let currentNickname = null;
+        let hasAccessCode = localStorage.getItem('access_shop') === 'true';
+        let hasReportAccessCode = localStorage.getItem('access_report') === 'true';
+        let hasApShopAccess = localStorage.getItem('access_ap_shop') === 'true';
         let pendingAction = null;
         
-        let hasAccessCode = localStorage.getItem('access_shop') === 'true' || localStorage.getItem('access_JohnWickModer') === 'true';
-        let hasReportAccessCode = localStorage.getItem('access_report') === 'true' || localStorage.getItem('access_JohnWIckTopModer') === 'true';
-        let hasApShopAccess = localStorage.getItem('access_ap_shop') === 'true';
-        
         const creatorEmail = 'daniiltimosin72@gmail.com';
-        const modLeadershipEmails = ['leha.br222@gmail.com', 'isayevrufat37@gmail.com', creatorEmail];
-        const apLeadershipEmails = ['dianarlkh@gmail.com', 'kirillbarvichus@gmail.com', creatorEmail];
+        const adminEmails = [creatorEmail, 'leha.br222@gmail.com', 'isayevrufat37@gmail.com'];
+        const apLeadershipEmails = [creatorEmail, 'dianarlkh@gmail.com', 'kirillbarvichus@gmail.com'];
 
         let state = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false, log: [], reportXp: 0 };
         let supportState = { resolved: 0, correct: 0, mistakes: 0, currentIndex: -1, started: false };
         let complaintState = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false };
         let shopState = { spent: 0, apSpent: 0 };
-        let taState = { score: 0, mistakes: 0, timeLeft: 60, interval: null, playing: false };
 
-        // СМЕШНЫЕ НИКИ ИЗ ТАМБОВА
-        const funnyLeft = [ "Мелстройность","Смешнявка","Макенза","Сраупен","бурмалда","Рассыльщик_Мемов","ПолитТоксик","РелигБаттл","Дед_с_Клавой","Флуд_Бот" ];
-        const funnyRight = [ "из_Тамбова","без_микрофона","на_ГлОбАнЕ","в_муте","с_вечным_баном","тянет_конфу","обижен_на_админов","любит_капс","ищет_баги","продаёт_вирты" ];
+        // === ЛОГИКА АНТИСПАМА ===
+        let lastActionTime = 0; let spamWarnings = 0; let spamTimerInterval = null;
+        function isSpamming() {
+            const now = Date.now();
+            const blockUntil = localStorage.getItem('spam_block_until');
+            if (blockUntil && now < blockUntil) return true;
+            if (now - lastActionTime < 1000) {
+                spamWarnings++;
+                if (spamWarnings >= 3) {
+                    const penaltyTime = now + 60000;
+                    localStorage.setItem('spam_block_until', penaltyTime);
+                    showSpamModalWithTimer();
+                    spamWarnings = 0;
+                    return true;
+                }
+            } else { spamWarnings = Math.max(0, spamWarnings - 1); }
+            lastActionTime = now;
+            return false;
+        }
+        function showSpamModalWithTimer() {
+            const blockUntil = localStorage.getItem('spam_block_until');
+            if (!blockUntil) return;
+            const modal = document.getElementById('spamModal');
+            const closeBtn = document.getElementById('closeSpamModal');
+            modal.style.display = 'flex';
+            closeBtn.disabled = true; closeBtn.style.opacity = '0.5'; closeBtn.style.cursor = 'not-allowed';
+            let timeLeft = Math.ceil((blockUntil - Date.now()) / 1000);
+            if (timeLeft < 0) timeLeft = 60;
+            closeBtn.textContent = `Блокировка: ${timeLeft} сек...`;
+            clearInterval(spamTimerInterval);
+            spamTimerInterval = setInterval(() => {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    clearInterval(spamTimerInterval); localStorage.removeItem('spam_block_until');
+                    closeBtn.disabled = false; closeBtn.style.opacity = '1'; closeBtn.style.cursor = 'pointer';
+                    closeBtn.textContent = 'Я понял, больше не буду';
+                } else { closeBtn.textContent = `Блокировка: ${timeLeft} сек...`; }
+            }, 1000);
+        }
+        document.getElementById('closeSpamModal').addEventListener('click', (e) => { if (!e.target.disabled) document.getElementById('spamModal').style.display = 'none'; });
+        if (localStorage.getItem('spam_block_until') > Date.now()) showSpamModalWithTimer();
+
+        // === ДАННЫЕ ===
+        const funnyLeft = ["Мелстройность","Смешнявка","Макенза","Сраупен","бурмалда","Рассыльщик_Мемов","ПолитТоксик","РелигБаттл","Дед_с_Клавой","Флуд_Бот"];
+        const funnyRight = ["из_Тамбова","без_микрофона","на_ГлОбАнЕ","в_муте","с_вечным_баном","тянет_конфу","обижен_на_админов","любит_капс","ищет_баги","продаёт_вирты"];
         function randomFunnyNick() { return `${funnyLeft[Math.floor(Math.random() * funnyLeft.length)]}_${funnyRight[Math.floor(Math.random() * funnyRight.length)]}#${Math.floor(1000 + Math.random() * 8999)}`; }
-        function initials(name) { return name.split(/[#_\s]+/).filter(Boolean).slice(0, 2).map(part => part[0]).join("").toUpperCase(); }
+        function initials(n) { return n ? n.substring(0,2).toUpperCase() : 'T7'; }
 
-        // --- Данные Тренажеров ---
+        // ЗАПОЛНЕНИЕ СООБЩЕНИЙ МОДЕРАЦИИ
         function createModerationMessages() {
-          const warn = [
-            "АХАХАХАХХАХАХАХАХАХАХАХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХАХАХАХХАХАХАХАХАХАХАХАХ",
-            "АААААААААААААААААААААААААААААААААААААААААААААААААААААААААААААА",
-            "ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ",
-            "ООООООООООООООООООООООООООООООООООООООООООООООООООООООООООООООО",
-            "УУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУ",
-            "Как дела ????????????????????????",
-            "Куплю супру срочно!!!!!!!!!!!!!!!!!!!!",
-            "Эй,,,,,,,,,, кто тут главный????????",
-            "Продам аксы+++++++++++++++++++++",
-            "Кто в казик $$$$$$$$$$$$$$$$$$$$$$$",
-            "Кто в патруль? \nКто в патруль? \nКто в патруль?",
-            "1\n2\n3\n4\n5\nПроверка чата",
-            "фвлыофдвлофыдвло (сори клаву проверяю)",
-            "куплю\nмашину\nбыстро",
-            "spam spam spam spam spam",
-            "@everyone зайдите в игру пж",
-            "@here кто продаст ремку?",
-            "@Lexa_Mackenzie @Lexa_Mackenzie @Lexa_Mackenzie",
-            "@John Wick ответь в лс",
-            "@Hunter_Mackenzie ау",
-            "Дайте 10к на развитие пожалуйста, я новичок",
-            "Пацаны, скиньтесь по 100 рублей на фаму пж",
-            "Админы, дайте админку или виртов хоть чуть-чуть",
-            "Кто может задонатить мне на блек пасс? Умоляю",
-            "Подарите машину, мне не на чем ездить",
-            "Да ваш президент вообще ничего не понимает в экономике",
-            "Моя религия самая правильная, а вы все не правы",
-            "Слава [название страны]! Все остальные — мусор",
-            "Кто за какую партию голосовал? Давайте обсудим",
-            "Политики вообще оборзели в край",
-            "Ты вообще к****, иди откисай на спавне",
-            "Да вы вы тут нули, я вас один раскидаю",
-            "Плачь больше, форумная крыса",
-            "Чел, у тебя iq как у хлебушка, не пиши сюда",
-            "Боже, какие же криворукие сидят в этой фракции",
-            "Слышь, герой, пошли в войс, я тебе объясню кто ты",
-            "Что ты там вякнул? Иди уроки делай, ш*****а",
-            "Твоя фама - сборище н***их, лови аптечку",
-            "Все бабы в этой игре играть не умеют",
-            "Ненавижу [национальность], вечно они всё руинят",
-            "Твое место на кухне, а не в ОПГ",
-            "Играешь как девчонка, иди в куклы играй",
-            "Админ, я тебе в лс флудить буду пока не ответишь",
-            "Давайте все вместе репорт админам заспамим",
-            "Эй, модер, ты вообще работать собираешься?",
-            "Давай, забань меня, тебе же хуже будет",
-            "Я тебя по IP вычислю, жди гостей вечером",
-            "Напиши еще слово и я тебе интернет отключу",
-            "Давайте все вместе нарушать правила, админы не справятся",
-            "Жди докс, к****, я тебя найду",
-            "Продам свою сборку на сервер, заходите",
-            "Да кому нужен этот ваш РП, давайте просто стреляться",
-            "Админы вообще не работают, только и умеют муты давать",
-            "Заходите в мой дискорд, там крутая музыка играет",
-            "Кто хочет со мной пойти на другой сервак?",
-            "Этот сервак скоро умрет, я вам говорю",
-            "Слышь, я тебя сейчас в чс закину, понял?",
-            "Да я твой дом труба шатал",
-            "Кому скинуть мой ВК? Давайте общаться там",
-            "Куплю номер ВОР, срочно пишите!",
-            "Сколько стоит випка? Хочу купить",
-            "Как стать админом? Я всё знаю про игру",
-            "Я устал тут играть, пойду в майнкрафт",
-            "Кто со мной в казино на миллион?",
-            "Дайте мне права на вождение фуры, пж",
-            "Как работает эта рулетка? Я ничего не понял",
-            "Где можно купить наркотики в игре?",
-            "Пойду ограблю банк, кто со мной?",
-            "Я сейчас буду всех ДМить, берегитесь!",
-            "Мой друг читер, и его не банят, ха-ха",
-            "Я знаю баг на бесконечные деньги, но не скажу кому",
-            "Как взломать аккаунт? Друг попросил узнать",
-            "Где скачать читы на бессмертие?",
-            "Продам свой аккаунт, кому нужен?",
-            "Я тут главный, слушайтесь меня все",
-            "ДА ВЫ ВСЕ ТУТ К****Ы, СЕРВЕР МЁРТВЫЙ",
-            "Админ т***й, ничего не умеет, состав п*****а.",
-            "Ты щас рот закроешь и пойдешь отсюда, понял?"
-          ];
-
-          const ban = [
-            "Продам вирты, 1кк = 50 рублей. Писать в ЛС, оплата на киви",
-            "Куплю жирный аккаунт с випкой за реал, предлагайте цены",
-            "Кто продаст супру за 500 рублей на карту?",
-            "Обменяю скины в CS:GO на вирты тут",
-            "Продаю симку блатную, оплата криптой",
-            "Продам фаму 10 лвл за 2000 рублей, только через гаранта",
-            "Куплю админку за деньги, кому переводить?",
-            "Обменяю 10кк на 1 сервере на ваши 10кк на 5 сервере",
-            "Перекину вирты с Тамбова на другой сервер, кто поможет?",
-            "Есть имущка на 3 серве, меняю на Тамбов 73",
-            "Кто готов перенести мне 50 лямов с Ред сервера сюда?",
-            "Трансфер виртов, комиссия 5%. Пишите в лс.",
-            "Парни, открылся новый топ РП проект, бонус при старте 50кк! Залетайте: discord.gg/fake-rp",
-            "Надоел этот сервер, пошлите играть на [Название конкурента], там обнова крутая",
-            "Заходите на мой проект вместо этого, тут все админы м***р.",
-            "Идет набор в админы на новом сервере, айпи: 192.168.1.1:7777",
-            "Заходите в мою беседу по сампу/крмп, ссылка в профиле",
-            "Тут админы злые, переходите на Радмир, там круче",
-            "Смотрите какую жесткую аварию с трупами нашел [ссылка]",
-            "Кому скинуть слив фоток той девки из фамы? Пишите +",
-            "Смотрите какая п***уха смешная [ссылка]",
-            "Зацените р***члененку, жесть просто [ссылка]",
-            "Кому скинуть ц* в лс? добавляйтесь",
-            "Я пробил его по номеру, вот его адрес: ул. Пушкина д. 10. Идите бейте его",
-            "А вот и реальное фото нашего лидера ОПГ [фото]",
-            "Слил номер телефона ГА в открытый доступ, чекайте",
-            "Его зовут Вася Пупкин, учится в 7Б школе №5, давайте загнобим",
-            "Скинул паспортные данные этого скамера в закреп",
-            "Прокачаю ваш аккаунт бесплатно, скидывайте логин и пароль в лс",
-            "Работает баг на удвоение денег! Переведите мне на счет 50к, я верну 100к",
-            "Раздача админок от разработчиков, введите пароль на этом сайте: [scam-site]",
-            "Я официальный гарант сервера, переводите деньги мне, я передам машину",
-            "Удвою ваши вирты, кидайте на банк счет 12345",
-            "Парни, нашел баг на дюп виртов через багажник, продам инфу за 1кк",
-            "Кто знает, как работает баг с бессмертием на капте?",
-            "Сливаю приватный аимбот на наш сервер, качайте пока не пофиксили",
-            "Я с читами играю уже месяц и меня не банят, античит дырявый",
-            "Продам способ на дюп машин, работает после рестарта",
-            "Проект скатился в помойку, разработчики только донат сосут, ливаем отсюда!",
-            "Экономика убита, админы блатят, сервер мертв, удаляйте игру",
-            "Давайте устроим бунт и заДМим весь сервер в знак протеста",
-            "Убогий проект, ни одной нормальной обновы за год",
-            "Все админы тут продажные, проект скоро закроется",
-            "Хах, мне основу забанили за читы, ну я с твинка зашел, мне норм",
-            "Получил мут в дискорде, создал новый акк чтобы тут написать",
-            "Обошел бан по айпи через VPN, админы сосут",
-            "Скрипт на авто-рыбалку (работает 100%): dropmefiles.com/virus",
-            "Слил базу данных сервера, скачивайте архив [ссылка]",
-            "Новый крутой ENB с автоустановкой (.exe файл), качайте",
-            "Стилер паролей для КРМП, кому скинуть?",
-            "Кто хочет подзаработать? Ищем курьеров для раскладки (закладки), ЗП высокая",
-            "Продам мефедрон, гашиш. Доставка по городу",
-            "Давайте заминируем школу, рецепт бомбы вот тут: [ссылка]",
-            "Слава террористам, они всё правильно делают!",
-            "Твоя м*** сд***а в канаве, в******к",
-            "Я твою всю семью р***л, понял меня?",
-            "Сын ш***и, иди отсюда",
-            "Твоя м***ша мне вчера отс*****ла",
-            "Чтоб твои родители сг***ли",
-            "Куплю бизнес за рубли, кто продает?",
-            "Продам дом на рублевке за 5000 руб.",
-            "Обменяю свой акк в бравл старс на вирты здесь",
-            "Ищу людей для ДМ состава, будем всех разносить",
-            "Сливаю пароли от админ панелей, заходите [ссылка]",
-            "Кто хочет купить мой обход бана?",
-            "Продам бота для фермы, писать в лс",
-            "Я забанил админа, хотите узнать как?",
-            "Скиньте мне 100р на киви и я дам вам 10кк виртов",
-            "Продаю приватные логи с аккаунтами",
-            "Как обойти мут в чате? Помогите",
-            "Продаю макросы на стрельбу, дешево",
-            "Кто хочет купить разбан? Пишите в лс, договоримся.",
-            "Скину софт для обхода бана и античита, пинг в личку.",
-            "Устрою вам рейд вечером, вынесу весь ваш дискорд."
-          ];
-
-          const good = [
-            "ПАЦАНЫ КТО НА КАПТ БЫСТРО ЗАЛЕТАЙТЕ ВСЕ В ИГРУ!!!!",
-            "АДМИНЫ ПОЧЕМУ СЕРВЕР ЛАГАЕТ СДЕЛАЙТЕ ЧТО НИБУДЬ",
-            "ПРОДАМ ГАРАЖ В АРЗАМАСЕ СРОЧНО ПИСАТЬ В ЛС",
-            "ГДЕ КУПИТЬ ЛИЦЕНЗИЮ НА ОРУЖИЕ АЛЛО???",
-            "БЫСТРЕЕ ВСЕ В ДИСКОРД ФАМЫ, СБОР НА ВЫШКИ",
-            "Парни, всем привет! Как настроение?",
-            "Кто может подсказать, во сколько сегодня собеседование в Мэрию?",
-            "Ищу напарника для работы на инкассаторах, 15 уровень есть",
-            "Подскажите, где находится ближайший автосалон низкого класса?",
-            "Куплю BMW M5 F90, бюджет 15кк. Пишите в ЛС",
-            "Продам квартиру в Арзамасе с ремонтом, цена договорная",
-            "Ребята, а как вступить в семью? Что для этого нужно?",
-            "Кто знает, почему сервер сейчас перезагружается?",
-            "Подскажите команду, чтобы посмотреть свой счет в банке",
-            "Есть тут кто из Батыревской ОПГ? Хочу к вам вступить",
-            "Собираю людей на совместную поездку на водолаза, жду в игре",
-            "Как правильно отыгрывать РП при проверке паспорта?",
-            "Где на форуме найти раздел с жалобами на игроков?",
-            "Во сколько обнуляются ежедневные задания в Блек Пассе?",
-            "Кто продаст ремкомплект? Стою на трассе Южный - Арзамас",
-            "Какая сейчас гос цена у Лады Приоры?",
-            "Посоветуйте, какую машину лучше взять новичку для дрифта?",
-            "Парни, кто в казино пойдет? У меня 500к фишек",
-            "Как повысить законопослушность, если она в минусе?",
-            "Возьмите в фаму адекватного игрока, онлайн 5+ часов",
-            "Где лучше всего зарабатывать на 5 уровне?",
-            "Сколько стоит страховка на спорткар?",
-            "Спасибо админам за быстрый ответ в репорт!",
-            "Красивая аватарка у тебя, бро",
-            "Кто-нибудь знает, когда выйдет следующее обновление?",
-            "Куплю номерные знаки В777ОР, предлагайте цену",
-            "Продам скины из старого пасса, недорого",
-            "Как работает система слета домов? Подскажите механику",
-            "Могу ли я иметь две машины, если у меня нет випки?",
-            "Где находится СТО для установки нитро?",
-            "Всем спокойной ночи, завтра на капт зайду",
-            "Парни, как включить поворотники на машине?",
-            "Ищу друга для совместного развития на сервере",
-            "Кто может подвезти до автошколы от спавна?",
-            "Сколько стоит аренда фуры на час?",
-            "Как оплатить штрафы, если банк закрыт?",
-            "Какой командой передать ключи от машины другу?",
-            "Где купить лицензию на оружие?",
-            "Подскажите расписание кораблей на сервере",
-            "Идет набор в семью 'Kings', автопарк 100кк, дом на Рублевке",
-            "Поздравляю нашего нового лидера СМИ с назначением!",
-            "Сколько слотов в инвентаре изначально?",
-            "Как пользоваться GPS навигатором?",
-            "Где посмотреть статистику своего персонажа?",
-            "Можно ли устроиться в больницу без медкарты?",
-            "Как долго делается лицензия пилота?",
-            "Кто хочет просто покататься по ночному городу?",
-            "Сколько времени занимает отсидка в деморгане за ДМ?",
-            "Какая максимальная скорость у скайлайна в фулл тюнинге?",
-            "Всем удачной игры и хорошего лута на контах!",
-            "Когда будет следующий ивент на сервере?",
-            "Где найти расписание контов?",
-            "Как пожениться в игре?",
-            "Сколько стоит обручальное кольцо?",
-            "Как пожать руку другому игроку?",
-            "Где находится спортзал?",
-            "Как прокачать силу персонажа?",
-            "Можно ли купить яхту на сервере?",
-            "Где спавнятся вертолеты?",
-            "Как получить випку бесплатно?",
-            "Что дает промокод #tambov?",
-            "Где посмотреть список всех промокодов?",
-            "Как стать хелпером на сервере?",
-            "Какие обязанности у модератора Discord?",
-            "Как подать заявку на пост лидера?",
-            "Где найти правила захвата вышек?",
-            "Сколько человек нужно для бизвара?",
-            "Какое оружие лучше использовать на капте?",
-            "Где взять аптечки для фамы?",
-            "Как пополнить склад семьи?",
-            "Ребят, как отключить уведомления у этого канала?",
-            "Можно ли сегодня подать отчет позже? Интернет пропадал.",
-            "Почему удалили мое сообщение? Я вроде без нарушений писал."
-          ];
-
-          const messages = [];
-          warn.forEach(text => { messages.push({ type: "warn", text }); });
-          ban.forEach(text => { messages.push({ type: "ban", text }); });
-          good.forEach(text => { messages.push({ type: "good", text }); });
-          
-          return messages;
+            const warn = ["spam spam spam", "@everyone зайдите в игру пж", "Дайте 10к на развитие пожалуйста", "Пацаны, скиньтесь по 100 рублей", "Админы, дайте админку", "Кто за какую партию голосовал? Давайте обсудим", "Ты вообще к****, иди откисай", "Чел, у тебя iq как у хлебушка", "Слышь, герой, пошли в войс", "Твоя фама - сборище н***их", "Все бабы в этой игре играть не умеют", "Админ, я тебе в лс флудить буду", "Давайте все вместе репорт админам заспамим", "Давай, забань меня, тебе же хуже будет", "Я тебя по IP вычислю", "Жди докс, к****", "ДА ВЫ ВСЕ ТУТ К****Ы, СЕРВЕР МЁРТВЫЙ", "Админ т***й, ничего не умеет", "Ты щас рот закроешь и пойдешь отсюда"];
+            const ban = ["Продам вирты, 1кк = 50 рублей", "Куплю жирный аккаунт с випкой за реал", "Продам фаму 10 лвл за 2000 рублей", "Трансфер виртов, комиссия 5%", "Парни, открылся новый топ РП проект: discord.gg/fake-rp", "Заходите на мой проект вместо этого", "Смотрите какую жесткую аварию с трупами нашел [ссылка]", "Зацените р***члененку [ссылка]", "Слил номер телефона ГА в открытый доступ", "Скинул паспортные данные этого скамера", "Прокачаю ваш аккаунт бесплатно, скидывайте пароль", "Сливаю приватный аимбот на наш сервер", "Продам способ на дюп машин", "Скрипт на авто-рыбалку: dropmefiles.com/virus", "Новый крутой ENB с автоустановкой (.exe файл)", "Ищем курьеров для раскладки (закладки), ЗП высокая", "Продам мефедрон, гашиш", "Давайте заминируем школу", "Слава террористам!", "Твоя м*** сд***а в канаве", "Я твою всю семью р***л"];
+            const good = ["ПАЦАНЫ КТО НА КАПТ БЫСТРО ЗАЛЕТАЙТЕ", "АДМИНЫ ПОЧЕМУ СЕРВЕР ЛАГАЕТ", "ПРОДАМ ГАРАЖ В АРЗАМАСЕ", "ГДЕ КУПИТЬ ЛИЦЕНЗИЮ НА ОРУЖИЕ", "Парни, всем привет!", "Во сколько сегодня собеседование в Мэрию?", "Подскажите, где находится ближайший автосалон?", "Куплю BMW M5 F90, бюджет 15кк.", "Ребята, а как вступить в семью?", "Подскажите команду, чтобы посмотреть свой счет в банке", "Как повысить законопослушность?", "Возьмите в фаму адекватного игрока", "Где лучше всего зарабатывать на 5 уровне?", "Спасибо админам за быстрый ответ в репорт!", "Кто-нибудь знает, когда выйдет следующее обновление?", "Могу ли я иметь две машины?", "Сколько стоит аренда фуры на час?", "Подскажите расписание кораблей на сервере", "Где найти правила захвата вышек?", "Почему удалили мое сообщение? Я вроде без нарушений писал."];
+            const messages = [];
+            warn.forEach(text => messages.push({ type: "warn", text }));
+            ban.forEach(text => messages.push({ type: "ban", text }));
+            good.forEach(text => messages.push({ type: "good", text }));
+            return messages;
         }
 
+        // ВОПРОСЫ ПОДДЕРЖКИ
         function createSupportQuestions() {
-          return [
-            { title: "Навигация", text: "Как найти правительство области в GPS?", keywords: ["/gps 1"] },
-            { title: "Навигация", text: "Где находится здание ФСБ?", keywords: ["/gps 1"] },
-            { title: "Навигация", text: "Как доехать до автосалона низкого класса?", keywords: ["/gps 3"] },
-            { title: "Навигация", text: "Где купить мотоцикл?", keywords: ["/gps 3"] },
-            { title: "Навигация", text: "Где устроиться работать на шахту?", keywords: ["/gps 2"] },
-            { title: "Навигация", text: "В каком разделе GPS найти ферму?", keywords: ["/gps 2"] },
-            { title: "Навигация", text: "Где найти базу Батыревской ОПГ?", keywords: ["/gps 5"] },
-            { title: "Навигация", text: "Где находится Лыткаринская ОПГ?", keywords: ["/gps 5"] },
-            { title: "Навигация", text: "Не могу найти автосервис (СТО), подскажите команду.", keywords: ["/gps 11"] },
-            { title: "Навигация", text: "Как найти ближайшую заправку?", keywords: ["/gps 9", "команда /gps"] },
-            { title: "Навигация", text: "Где находится работа водолаза?", keywords: ["/gps 4"] },
-            { title: "Навигация", text: "Где найти транспортную компанию Батырево?", keywords: ["/gps 4"] },
-            { title: "Навигация", text: "Как найти автошколу?", keywords: ["/gps 1"] },
-            { title: "Навигация", text: "Где находится больница?", keywords: ["/gps 1"] },
-            { title: "Навигация", text: "Где можно купить еду?", keywords: ["/gps 8"] },
-            { title: "Навигация", text: "Где находится казино?", keywords: ["/gps 1"] },
-            { title: "Навигация", text: "Как найти банк?", keywords: ["/gps 1"] },
-            { title: "Навигация", text: "Где можно арендовать скутер?", keywords: ["/gps 1"] },
-            { title: "Навигация", text: "Где находится тюрьма (ФСИН)?", keywords: ["/gps 1"] },
-            { title: "Навигация", text: "Как доехать до Рублевки?", keywords: ["/gps 5"] },
-            { title: "Команды", text: "Какой командой открыть инвентарь?", keywords: ["/inv", "/i"] },
-            { title: "Команды", text: "Как показать свой паспорт игроку?", keywords: ["/pass"] },
-            { title: "Команды", text: "Какая команда для передачи денег другому?", keywords: ["/pay"] },
-            { title: "Команды", text: "Как мне сменить ник в игре?", keywords: ["/mm", "/donate"] },
-            { title: "Команды", text: "Как использовать ремкомплект для починки?", keywords: ["/repair", "ремкомплект", "через инвентарь"] },
-            { title: "Команды", text: "Подскажите команду, чтобы завести машину.", keywords: ["/engine"] },
-            { title: "Команды", text: "Как выкинуть пассажира из моего авто?", keywords: ["/eject"] },
-            { title: "Команды", text: "Как показать медкарту врачу?", keywords: ["/med"] },
-            { title: "Команды", text: "Как показать лицензии?", keywords: ["/lic"] },
-            { title: "Команды", text: "Какая команда открывает багажник?", keywords: ["/trunk"] },
-            { title: "Команды", text: "Как заправить машину на АЗС?", keywords: ["/fill"] },
-            { title: "Команды", text: "Как посмотреть свою статистику и уровень?", keywords: ["/mm", "/stat"] },
-            { title: "Команды", text: "Как продать свою машину другому игроку?", keywords: ["/sellmycar"] },
-            { title: "Команды", text: "Как загрузить машину на сервер?", keywords: ["/car"] },
-            { title: "Команды", text: "Как открыть двери машины?", keywords: ["/lock"] },
-            { title: "Команды", text: "Как пристегнуть ремень безопасности?", keywords: ["/rem"] },
-            { title: "Команды", text: "Как включить фары?", keywords: ["/light"] },
-            { title: "Команды", text: "Как посмотреть список команд?", keywords: ["/help", "/mm"] },
-            { title: "Команды", text: "Как узнать время в игре?", keywords: ["/time"] },
-            { title: "Команды", text: "Как пожать руку игроку?", keywords: ["/hi"] },
-            { title: "Уровни", text: "Какой уровень нужен для работы дальнобойщиком?", keywords: ["18"] },
-            { title: "Уровни", text: "С какого уровня доступна работа водолазом?", keywords: ["18"] },
-            { title: "Уровни", text: "Какой уровень нужен на инкассатора?", keywords: ["15"] },
-            { title: "Уровни", text: "С какого лвл я могу работать кладоискателем?", keywords: ["3"] },
-            { title: "Уровни", text: "С какого уровня доступна работа в МЧС?", keywords: ["3"] },
-            { title: "Уровни", text: "Какой лвл нужен для работы таксистом?", keywords: ["3"] },
-            { title: "Уровни", text: "С какого уровня можно стать автомехаником?", keywords: ["4"] },
-            { title: "Уровни", text: "С какого уровня можно создать свою семью?", keywords: ["3"] },
-            { title: "Уровни", text: "С какого уровня можно работать курьером?", keywords: ["2"] },
-            { title: "Уровни", text: "Какой уровень нужен для работы строителем?", keywords: ["1", "начальн"] },
-            { title: "Уровни", text: "С какого уровня можно работать на заводе?", keywords: ["1", "начальн"] },
-            { title: "Уровни", text: "Какой уровень нужен для вступления в ОПГ?", keywords: ["3"] },
-            { title: "Уровни", text: "С какого уровня можно вступить в армию?", keywords: ["3"] },
-            { title: "Уровни", text: "Какой уровень нужен для работы в правительстве?", keywords: ["4"] },
-            { title: "Уровни", text: "С какого уровня можно купить бизнес?", keywords: ["10"] },
-            { title: "Уровни", text: "Какой уровень нужен для покупки дома?", keywords: ["1", "любог"] },
-            { title: "Уровни", text: "С какого уровня можно купить машину?", keywords: ["1", "любог"] },
-            { title: "Вопросы", text: "Где можно купить ремкомплект?", keywords: ["24/7", "магазин", "азс"] },
-            { title: "Вопросы", text: "Где взять лицензию на оружие?", keywords: ["лицензер", "правительств", "/gps 1"] },
-            { title: "Вопросы", text: "Как получить военный билет?", keywords: ["арми", "вч", "военкомат"] },
-            { title: "Вопросы", text: "Где подать жалобу на игрока?", keywords: ["форум", "forum.blackrussia"] },
-            { title: "Вопросы", text: "Как устроиться в ОПГ?", keywords: ["собеседован", "форум"] },
-            { title: "Вопросы", text: "Сколько стоит создание семьи?", keywords: ["3кк", "3 миллион"] },
-            { title: "Вопросы", text: "Где посмотреть сколько у меня предупреждений (варнов)?", keywords: ["/mm", "статистик"] },
-            { title: "Вопросы", text: "Как купить Black Pass?", keywords: ["/donate", "/bp"] },
-            { title: "Вопросы", text: "Как вызвать скорую помощь?", keywords: ["/call"] },
-            { title: "Вопросы", text: "Где можно купить аптечки?", keywords: ["24/7", "аптек", "больниц"] },
-            { title: "Вопросы", text: "Как использовать аптечку?", keywords: ["/healme", "/inv"] },
-            { title: "Вопросы", text: "Как открыть/закрыть дверь своего дома?", keywords: ["/home"] },
-            { title: "Вопросы", text: "Как подселить друга в дом?", keywords: ["/live"] },
-            { title: "Вопросы", text: "Как настроить безопасность аккаунта (привязки)?", keywords: ["/mm", "/settings", "безопасност"] },
-            { title: "Вопросы", text: "Как оплатить штрафы?", keywords: ["банк", "банкомат", "/gps 1"] },
-            { title: "Вопросы", text: "Где купить сим-карту?", keywords: ["24/7", "магазин"] },
-            { title: "Вопросы", text: "Как позвонить игроку?", keywords: ["/call"] },
-            { title: "Вопросы", text: "Как написать SMS?", keywords: ["/sms"] },
-            { title: "Вопросы", text: "Как добавить контакт в телефон?", keywords: ["/book"] },
-            { title: "Вопросы", text: "Как включить телефон?", keywords: ["/phone"] },
-            { title: 'Не вижу каналов', meta: 'Навигация Discord', text: 'Я зашел на сервер, но вижу только приветствие. Что нужно сделать, чтобы открылись остальные каналы?', keywords: ['вериф', 'роль', 'правил', 'канал'] },
-            { title: 'Не приходит код', meta: 'Техническая проблема', text: 'Мне не приходит код подтверждения на почту при входе. Что можно попробовать сделать?', keywords: ['спам', 'почт', 'подожд', 'повтор'] },
-            { title: 'Куда жаловаться', meta: 'Система жалоб', text: 'Хочу подать жалобу на модератора. Куда именно писать и что прикладывать?', keywords: ['жалоб', 'скрин', 'доказ', 'форма'] },
-            { title: 'Почему мут', meta: 'Разъяснение наказания', text: 'Мне выдали мут, но я не понял за что. Как мне узнать причину и срок?', keywords: ['причин', 'срок', 'наказ', 'модерат'] },
-            { title: 'Можно сменить ник?', meta: 'Профиль', text: 'Я случайно поставил плохой ник при регистрации. Как его поменять?', keywords: ['ник', 'смен', 'профил', 'админ'] },
-            { title: 'Где отчеты', meta: 'Отчетность', text: 'Я в составе и не понимаю, куда загружать отчеты за смену. Подскажи порядок действий.', keywords: ['отчет', 'ссылк', 'раздел', 'отправ'] },
-            { title: 'Не работает магазин', meta: 'Внутренний магазин', text: 'Я накопил XP, но не понимаю, где покупать награды и как они выдаются.', keywords: ['магазин', 'xp', 'куп', 'выдач'] },
-            { title: 'Как связаться с КГМ', meta: 'Эскалация', text: 'Вопрос спорный и обычный модератор не помогает. Как корректно передать ситуацию выше?', keywords: ['кгм', 'передат', 'руковод', 'ситуац'] }
-          ];
+            return [
+                { title: "Навигация", text: "Как найти правительство области в GPS?", keywords: ["/gps 1"] },
+                { title: "Навигация", text: "Как доехать до автосалона низкого класса?", keywords: ["/gps 3"] },
+                { title: "Навигация", text: "Где устроиться работать на шахту?", keywords: ["/gps 2"] },
+                { title: "Навигация", text: "Где найти базу Батыревской ОПГ?", keywords: ["/gps 5"] },
+                { title: "Навигация", text: "Не могу найти автосервис (СТО)", keywords: ["/gps 11"] },
+                { title: "Команды", text: "Какой командой открыть инвентарь?", keywords: ["/inv", "/i"] },
+                { title: "Команды", text: "Как показать свой паспорт игроку?", keywords: ["/pass"] },
+                { title: "Команды", text: "Какая команда для передачи денег другому?", keywords: ["/pay"] },
+                { title: "Команды", text: "Подскажите команду, чтобы завести машину.", keywords: ["/engine"] },
+                { title: "Команды", text: "Как заправить машину на АЗС?", keywords: ["/fill"] },
+                { title: "Уровни", text: "Какой уровень нужен для работы дальнобойщиком?", keywords: ["18"] },
+                { title: "Уровни", text: "С какого уровня доступна работа водолазом?", keywords: ["18"] },
+                { title: "Уровни", text: "С какого лвл я могу работать кладоискателем?", keywords: ["3"] },
+                { title: "Вопросы", text: "Где можно купить ремкомплект?", keywords: ["24/7", "магазин", "азс"] },
+                { title: "Вопросы", text: "Где взять лицензию на оружие?", keywords: ["лицензер", "правительств", "/gps 1"] },
+                { title: "Вопросы", text: "Как устроиться в ОПГ?", keywords: ["собеседован", "форум"] },
+                { title: "Не вижу каналов", meta: "Discord", text: "Вижу только приветствие в ДС, что делать?", keywords: ['вериф', 'роль', 'правил', 'канал'] },
+                { title: "Почему мут", meta: "Наказания", text: "Выдали мут, не понял за что.", keywords: ['причин', 'срок', 'наказ', 'модерат'] }
+            ];
         }
 
+        // ЖАЛОБЫ
         function createComplaints() {
-          return [
-              { text: 'Игрок жалуется, что модератор выдал мут за капс, хотя в сообщении было одно слово заглавными буквами в эмоциональном контексте.', evidence: 'Скрин: "ПОМОГИТЕ" и сразу после этого обычные сообщения.', type: 'reject' },
-              { text: 'Поступила жалоба на игрока, который в голосовом и текстовом канале несколько раз оскорбил семью другого участника.', evidence: 'Видео + логи чата с прямыми оскорблениями.', type: 'approve' },
-              { text: 'Пользователь просит наказать модератора за бан, но в доказательствах есть только обрезанный скрин без контекста и без даты.', evidence: 'Один скрин без ID, даты и полного диалога.', type: 'reject' },
-              { text: 'Жалоба на администратора: заявитель утверждает, что тот выдал наказание своему знакомому в обход регламента, ситуация спорная и касается руководства.', evidence: 'Несколько скринов, упоминание администратора и возможного блата.', type: 'pass' },
-              { text: 'Игрок отправил жалобу на обход мута через твинк и приложил скрины двух аккаунтов с одинаковой манерой речи и признанием.', evidence: 'Скрин признания и совпадение Discord ID в профиле.', type: 'approve' },
-              { text: 'Жалоба на то, что хелпер не ответил в течение 3 минут ночью при низком онлайне.', evidence: 'Только время отправки вопроса и отсутствие других данных.', type: 'reject' },
-              { text: 'Игрок сообщает, что модератор угрожал ему баном без причины в личных сообщениях после конфликта в чате.', evidence: 'Полная переписка и совпадение ника модератора.', type: 'approve' },
-              { text: 'Жалоба касается возможной продажи доната сотрудником. В деле фигурируют переводы, личные сообщения и подозрение на схему.', evidence: 'Скрины перевода, переписки и упоминание сотрудника состава.', type: 'pass' }
-          ];
-        }
-
-        // КОНТЕНТ ПРАВОЙ ПАНЕЛИ
-        const rightContent = {
-          moderation: { title: "Материалы модератора", lead: "Подсказки по модерации: как оценивать сообщения.", cards: [ ["Без нарушения", "Обычное сообщение без спама, оскорблений, рекламы."], ["Устное / Пред / Мут", "Флуд, капс, токсичность, помехи, политика."], ["Бан / Перма / Глобал", "Реклама проектов, РМТ, обход наказаний, слив инфы."] ] },
-          timeattack: { title: "Спидран", lead: "Правила режима на время.", cards: [ ["Время", "Дается 60 секунд. За ошибки отнимается 3 секунды."], ["Опыт", "Бонусный XP: +10 за каждые 5 верных вердиктов."], ["Внимание", "Штрафов за пропуск нет, но время не вернуть."] ] },
-          support: { title: "Материалы агента поддержки", lead: "База знаний для АП и шаблоны ответов.", cards: [ ["База знаний", "Используйте команды /gps и знайте уровни работ."], ["Ответы", "Давайте четкие и понятные ответы по игровому моду."], ["Важно!", "XP за агента поддержки не зачисляется на общий баланс модератора."] ] },
-          complaints: { title: "Правила жалоб", lead: "Как рассматривать репорты игроков.", cards: [ ["Одобрить", "На скринах явное нарушение правил дискорда (оск, реклама)."], ["Отказать", "Нет док-в, обрезаны, или нарушение из игры (ДМ, ДБ)."], ["Передать КГМ", "Использовать СТРОГО для обжалования ЧСМ или банов ГМ."] ] },
-          quests: { title: "Квесты", lead: "Выполняй задания и забирай XP.", cards: [ ["Прогресс", "Выполняйте норму в тренажерах, чтобы заполнить шкалу."], ["Награды", "Нажмите кнопку 'Забрать', когда квест выполнен."] ] },
-          guide: { title: "Контакты (ВК)", lead: "Все актуальные ссылки находятся в центре экрана.", cards: [ ["Кликабельно", "Нажмите на ссылку [VK], чтобы написать Руководству."] ] },
-          leaderboard: { title: "О Лидерборде", lead: "Рейтинг формируется на основе заработанного XP.", cards: [ ["Обновление", "Таблица рассчитывает баланс XP (опыт минус траты)."], ["Никнейм", "Отображаются только сотрудники с установленным никнеймом."] ] },
-          about: { title: "О команде", lead: "Информация о людях, создавших тренажёр.", cards: [ ["Создано", "John Wick."], ["При поддержке", "Leha_Mackenzie, Andrey_Caypen и Евгения Бабешко."] ] },
-          shop: { title: "Магазин модераторов", lead: "Потратьте накопленные XP на скидки или мини-игры.", cards: [ ["Выдача", "Все покупки (кроме игр) уходят в панель руководства."], ["Рулетка", "Призы из рулетки выдаются либо автоматически, либо отправляются логом."] ] },
-          ap_shop: { title: "Магазин АП", lead: "Потратьте накопленные баллы.", cards: [ ["Выдача", "Все покупки уходят в панель руководства АП."] ] },
-          report: { title: "Отчетность", lead: "Сдача ежедневных отчетов онлайна.", cards: [ ["Доступ", "Сдавать отчеты могут все авторизованные модераторы."], ["Проверка", "Только администрация может проверять и начислять XP."] ] },
-          admin_log: { title: "Панель логов (Мод)", lead: "Только для руководства", cards: [ ["Выдача", "Нажимайте 'Отметить как выданное' после выдачи приза/покупки в Discord."] ] },
-          ap_admin_log: { title: "Панель логов (АП)", lead: "Только для руководства АП", cards: [ ["Выдача", "Нажимайте 'Отметить как выданное' после выдачи приза/покупки в Discord."] ] },
-          creator: { title: "Управление доступом", lead: "Только для Создателя (John Wick).", cards: [ ["Управление", "Выдача или снятие XP, управление ключами."] ] },
-          leadership: { title: "Панель Руководства", lead: "Для ГМ и ЗГМ.", cards: [ ["Управление", "Выдача/снятие XP модераторам."] ] },
-          ap_admin: { title: "Руководство АП", lead: "Управление агентами поддержки.", cards: [ ["Управление", "Выдача/снятие Баллов АП."] ] }
-        };
-
-        function renderRight(mode) {
-          const rt = document.getElementById("rightTitle"); const rl = document.getElementById("rightLead"); const rc = document.getElementById("rightCards");
-          if(!rt || !rl || !rc) return;
-          const data = rightContent[mode];
-          if (data) {
-            rt.innerHTML = data.title; 
-            rl.innerHTML = data.lead;
-            rc.innerHTML = data.cards.map((item, idx) => `
-              <div class="rule-item">
-                <div class="rule-icon ${idx === 0 ? "ok" : idx === 1 ? "warn" : "ban"}">${idx === 0 ? "✓" : idx === 1 ? "?" : "ℹ"}</div>
-                <div class="rule-copy"><strong>${item[0]}</strong><span>${item[1]}</span></div>
-              </div>`).join("");
-          }
+            return [
+                { text: 'Игрок жалуется, что модератор выдал мут за капс, хотя в сообщении было одно слово заглавными буквами в эмоциональном контексте.', evidence: 'Скрин: "ПОМОГИТЕ" и сразу после этого обычные сообщения.', type: 'reject' },
+                { text: 'Поступила жалоба на игрока, который несколько раз оскорбил семью другого участника.', evidence: 'Видео + логи чата с прямыми оскорблениями.', type: 'approve' },
+                { text: 'Пользователь просит наказать за бан, но в доказательствах только обрезанный скрин без контекста.', evidence: 'Один скрин без ID, даты и полного диалога.', type: 'reject' },
+                { text: 'Жалоба на администратора: заявитель утверждает, что тот выдал наказание своему знакомому в обход регламента.', evidence: 'Несколько скринов, упоминание администратора и возможного блата.', type: 'pass' },
+                { text: 'Игрок отправил жалобу на обход мута через твинк.', evidence: 'Скрин признания и совпадение Discord ID в профиле.', type: 'approve' }
+            ];
         }
 
         let allModMessages = createModerationMessages();
         let allSupQuestions = createSupportQuestions();
         let allComplaints = createComplaints();
         
-        let modQueue = []; let supQueue = []; let compQueue = [];
+        let modQueue = [], supQueue = [], compQueue = [];
+        function shuffleArray(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+        
+        // === ЛОГИКА PROGRESS ===
+        function loadLocalState() {
+            if(!currentUser) return;
+            const cStr = localStorage.getItem('comp_stats_' + currentUser.email);
+            if(cStr) {
+                const cParsed = JSON.parse(cStr);
+                complaintState.resolved = Number(cParsed.resolved) || 0;
+                complaintState.correct = Number(cParsed.correct) || 0;
+                complaintState.mistakes = Number(cParsed.mistakes) || 0;
+            }
+            updateComplaintStats(); renderQuests();
+        }
+        function saveLocalState() {
+            if(!currentUser) return;
+            localStorage.setItem('comp_stats_' + currentUser.email, JSON.stringify({ resolved: complaintState.resolved, correct: complaintState.correct, mistakes: complaintState.mistakes }));
+        }
 
-        // Модальные окна
-        const authModal = document.getElementById('authModal');
-        const roleModal = document.getElementById('roleModal');
-        const nicknameModal = document.getElementById('nicknameModal');
-        const accessModal = document.getElementById('accessModal');
-        const spamModal = document.getElementById('spamModal');
-        const loginBtnUI = document.getElementById('loginBtnUI');
-        const logoutBtnUI = document.getElementById('logoutBtnUI');
-        const userEmailDisplay = document.getElementById('userEmailDisplay');
+        async function loadProgress() {
+            if(!currentUser) return;
+            const { data, error } = await supa.from('user_stats').select('*').eq('user_id', currentUser.id).single();
+            if(data) {
+                state.resolved = Number(data.mod_resolved) || 0;
+                state.correct = Number(data.mod_correct) || 0;
+                state.mistakes = Number(data.mod_mistakes) || 0;
+                supportState.resolved = Number(data.sup_resolved) || 0;
+                supportState.correct = Number(data.sup_correct) || 0;
+                supportState.mistakes = Number(data.sup_mistakes) || 0;
+                shopState.spent = Number(data.shop_spent) || 0;
+                shopState.apSpent = Number(data.ap_spent) || 0; // Загрузка трат АП
+            }
+            const { data: repData } = await supa.from('reports').select('xp').eq('email', currentUser.email);
+            state.reportXp = 0;
+            if (repData) state.reportXp = repData.reduce((sum, r) => sum + (Number(r.xp) || 0), 0);
+            
+            loadLocalState(); updateModStats(); updateSupportStats(); updateShopStats();
+        }
 
-        // --- Авторизация и Роли ---
-        function checkAuth() {
-            supa.auth.getSession().then(({ data: { session } }) => {
-                if (session && session.user) {
-                    currentUser = session.user;
-                
-                    userEmailDisplay.textContent = currentUser.email;
-                    loginBtnUI.style.display = 'none';
-                    logoutBtnUI.style.display = 'block';
-                    
-                    supa.from('profiles').select('nickname, role').eq('id', currentUser.id).single().then(({ data }) => {
-    
-                        if (data) {
-                            currentNickname = data.nickname;
-                            userRole = data.role || 'player';
-                
-                            if (!currentNickname) nicknameModal.style.display = 'flex';
-                            if (!data.role) roleModal.style.display = 'flex';
-                            updateAccessButtons();
-                        
-                        } else {
-                            supa.from('profiles').insert([{ id: currentUser.id, email: currentUser.email, role: 'player' }]).then(() => {
-                                roleModal.style.display = 'flex';
-                            });
-                        }
-                    });
-                    loadData();
-                } else {
-                    currentUser = null;
-                    currentNickname = null; userRole = 'player';
-                    userEmailDisplay.textContent = '';
-                    loginBtnUI.style.display = 'block'; logoutBtnUI.style.display = 'none';
-                    updateAccessButtons();
+        async function saveProgress() {
+            if(!currentUser) return;
+            const payload = {
+                user_id: currentUser.id, email: currentUser.email,
+                nickname: currentNickname || currentUser.email.split('@')[0],
+                mod_resolved: Number(state.resolved), mod_correct: Number(state.correct), mod_mistakes: Number(state.mistakes),
+                sup_resolved: Number(supportState.resolved), sup_correct: Number(supportState.correct), sup_mistakes: Number(supportState.mistakes),
+                shop_spent: Number(shopState.spent), ap_spent: Number(shopState.apSpent) // Сохранение трат АП
+            };
+            await supa.from('user_stats').upsert(payload);
+            saveLocalState();
+        }
+
+        function calcXP(value) { return Math.floor(Number(value) / 10) * 15; }
+        function getReportXp() { return Number(state.reportXp) || 0; }
+        function availableXp() { return Math.max(0, calcXP(state.correct) + getReportXp() - Number(shopState.spent)); }
+        function availablePts() { return Math.max(0, supportState.correct * 10 - supportState.mistakes * 5 - Number(shopState.apSpent)); }
+
+        function pushLog(text) {
+            state.log.unshift(text); state.log = state.log.slice(0, 50);
+            const logList = document.getElementById("logList");
+            if (logList) logList.innerHTML = state.log.length > 0 ? state.log.map(item => `<div class="log-item">${item}</div>`).join("") : '<div class="log-item">Пока пусто.</div>';
+        }
+
+        // === ОБНОВЛЕНИЕ UI ===
+        function updateModStats() {
+            const xp = availableXp();
+            const elRes = document.getElementById("resolvedValue"); if(elRes) elRes.textContent = state.resolved;
+            const elCor = document.getElementById("correctValue"); if(elCor) elCor.textContent = state.correct;
+            const elMis = document.getElementById("mistakeValue"); if(elMis) elMis.textContent = state.mistakes;
+            const elXp = document.getElementById("xpValue"); if(elXp) elXp.textContent = xp;
+            const elXpF = document.getElementById("xpFill");
+            if(elXpF) elXpF.style.width = (Math.min(1, (state.correct % 10 || (state.correct ? 10 : 0)) / 10) * 100) + "%";
+            
+            const elBan = document.getElementById("resultBanner");
+            if(elBan) elBan.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
+            const elHin = document.getElementById("resultHint");
+            if(elHin) elHin.textContent = !state.started ? "Нажми «Начать смену», чтобы получить первое сообщение." : `Сейчас доступно ${xp} XP (с учетом трат).`;
+            updateShopStats(); renderQuests();
+        }
+
+        function updateSupportStats() {
+            const pts = availablePts();
+            const elRes = document.getElementById("supportResolvedValue"); if(elRes) elRes.textContent = supportState.resolved;
+            const elCor = document.getElementById("supportCorrectValue"); if(elCor) elCor.textContent = supportState.correct;
+            const elMis = document.getElementById("supportMistakeValue"); if(elMis) elMis.textContent = supportState.mistakes;
+            const elXp = document.getElementById("supportXpValue"); if(elXp) elXp.textContent = pts;
+            const elXpF = document.getElementById("supportXpFill");
+            if(elXpF) elXpF.style.width = (Math.min(1, (supportState.correct % 10 || (supportState.correct ? 10 : 0)) / 10) * 100) + "%";
+            
+            const elBan = document.getElementById("supportBanner");
+            if(elBan) elBan.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
+            const elHin = document.getElementById("supportBannerHint");
+            if(elHin) elHin.textContent = !state.started ? "Нажми «Начать смену», чтобы открыть вопрос." : `Общий баланс: ${pts} Баллов.`;
+        }
+
+        function updateComplaintStats() {
+            const elRes = document.getElementById("compResolvedValue"); if(elRes) elRes.textContent = complaintState.resolved;
+            const elCor = document.getElementById("compCorrectValue"); if(elCor) elCor.textContent = complaintState.correct;
+            const elMis = document.getElementById("compMistakeValue"); if(elMis) elMis.textContent = complaintState.mistakes;
+            const elXp = document.getElementById("compXpValue"); if(elXp) elXp.textContent = availableXp();
+        }
+
+        function updateShopStats() {
+            const totalXpSpan = document.getElementById('shopTotalXp'); if(totalXpSpan) totalXpSpan.textContent = availableXp();
+            const spentXpSpan = document.getElementById('shopSpentXp'); if(spentXpSpan) spentXpSpan.textContent = Number(shopState.spent);
+            renderShopItems();
+            
+            const totalPtsSpan = document.getElementById('apShopTotalPts'); if(totalPtsSpan) totalPtsSpan.textContent = availablePts();
+            const spentPtsSpan = document.getElementById('apShopSpentPts'); if(spentPtsSpan) spentPtsSpan.textContent = Number(shopState.apSpent);
+            renderApShopItems();
+        }
+
+        // === ПЕРЕКЛЮЧЕНИЕ РЕЖИМОВ (С УНИКАЛЬНЫМИ СЛОГАНАМИ) ===
+        const allModesList = ["moderation", "timeattack", "complaints", "support", "guide", "leaderboard", "about", "shop", "ap_shop", "report", "admin_log", "ap_admin_log", "quests", "creator", "leadership", "ap_admin"];
+        
+        function switchMode(mode, btn) {
+            document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
+            if(btn) btn.classList.add("active");
+            allModesList.forEach(m => {
+                const panel = document.getElementById("mode-" + m);
+                if(panel) {
+                    if (m === mode) {
+                        panel.style.display = ""; panel.classList.remove('fade-in'); void panel.offsetWidth; panel.classList.add('fade-in');
+                    } else { panel.style.display = "none"; }
                 }
             });
-        }
-
-        function updateAccessButtons() {
-            const isCreator = currentUser && currentUser.email === creatorEmail;
-            const isModLeader = isCreator || (currentUser && modLeadershipEmails.includes(currentUser.email));
-            const isApLeader = isCreator || (currentUser && apLeadershipEmails.includes(currentUser.email));
-
-            document.getElementById('creatorTabBtn').style.display = isCreator ? 'block' : 'none';
-            document.getElementById('leadershipTabBtn').style.display = isModLeader ? 'block' : 'none';
-            document.getElementById('adminLogTabBtn').style.display = isModLeader ? 'block' : 'none';
-            document.getElementById('apAdminTabBtn').style.display = isApLeader ? 'block' : 'none';
-            document.getElementById('apAdminLogTabBtn').style.display = isApLeader ? 'block' : 'none';
-        }
-
-        loginBtnUI.onclick = () => { authModal.style.display = 'flex'; };
-        logoutBtnUI.onclick = async () => { await supa.auth.signOut(); location.reload(); };
-        document.getElementById('authCloseModal').onclick = () => { authModal.style.display = 'none'; };
-        
-        document.getElementById('authLoginSubmit').onclick = async () => {
-            const email = document.getElementById('authEmail').value;
-            const password = document.getElementById('authPassword').value;
-            const { error } = await supa.auth.signInWithPassword({ email, password });
-            if (error) { document.getElementById('authErrorMsg').textContent = 'Ошибка входа: ' + error.message; document.getElementById('authErrorMsg').style.display = 'block';
-            }
-            else { authModal.style.display = 'none'; checkAuth();
-            }
-        };
-
-        document.getElementById('authRegisterSubmit').onclick = async () => {
-            const email = document.getElementById('authEmail').value;
-            const password = document.getElementById('authPassword').value;
-            const nickname = document.getElementById('authNickname').value;
-            const role = document.getElementById('authRole').value;
-            const { data, error } = await supa.auth.signUp({ email, password });
-            if (error) { document.getElementById('authErrorMsg').textContent = 'Ошибка регистрации: ' + error.message; document.getElementById('authErrorMsg').style.display = 'block'; return;
-            }
             
-            if (data.user) {
-                await supa.from('profiles').insert([{ id: data.user.id, email: data.user.email, nickname: nickname || null, role: role }]);
-                authModal.style.display = 'none'; checkAuth();
+            // Темы
+            let currentTheme = "mod";
+            if(mode === "support" || mode === "ap_admin") currentTheme = "support";
+            else if(mode === "about") currentTheme = "about";
+            else if(mode === "shop" || mode === "leadership") currentTheme = "shop";
+            else if(mode === "ap_shop") currentTheme = "ap_shop";
+            else if(mode === "report") currentTheme = "report";
+            else if(mode === "guide") currentTheme = "guide";
+            else if(mode === "leaderboard") currentTheme = "leaderboard";
+            else if(mode === "admin_log" || mode === "ap_admin_log") currentTheme = "admin_log";
+            else if(mode === "complaints") currentTheme = "complaints";
+            else if(mode === "quests") currentTheme = "quests";
+            else if(mode === "timeattack") currentTheme = "timeattack";
+            else if(mode === "creator") currentTheme = "creator";
+            document.documentElement.setAttribute("data-site-theme", currentTheme);
+
+            // Обновление Слоганов и Баннеров
+            const hTitle = document.getElementById("heroTitle");
+            const hText = document.getElementById("heroText");
+            const hBadge = document.getElementById("heroBadge2");
+            const brandSub = document.getElementById("brandSubtitle");
+
+            const texts = {
+                moderation: { title: "Следи за <span>порядком</span> на сервере.", text: "Проверяй сообщения, принимай решения и поддерживай порядок в чате.", badge: "Режим: модераторы", sub: "Симулятор смены модераторов" },
+                timeattack: { title: "Режим <span>Спидран</span>.", text: "Успей рассмотреть как можно больше сообщений за 60 секунд.", badge: "Режим: на время", sub: "Спидран" },
+                complaints: { title: "Разбор <span>жалоб</span>.", text: "Рассматривай репорты от игроков и выноси справедливые вердикты.", badge: "Режим: жалобы", sub: "Жалобы игроков" },
+                support: { title: "Помогай <span>игрокам</span>.", text: "Отвечай на вопросы игроков, ориентируйся в командах и GPS.", badge: "Режим: поддержка", sub: "Симулятор Агента Поддержки" },
+                quests: { title: "Выполняй <span>квесты</span>.", text: "Получай бонусный XP за активную работу в симуляторе.", badge: "Режим: квесты", sub: "Система заданий" },
+                guide: { title: "Руководство <span>сервера</span>.", text: "Контактные данные руководства и полезные ссылки.", badge: "Режим: руководство", sub: "Контакты" },
+                leaderboard: { title: "Топ <span>лучших</span>.", text: "Самые активные сотрудники проекта по количеству опыта и баллов.", badge: "Режим: лидерборд", sub: "Рейтинг сотрудников" },
+                about: { title: "О <span>команде</span>.", text: "Информация о создателях и разработчиках тренажёра.", badge: "Режим: о команде", sub: "Авторы проекта" },
+                shop: { title: "Магазин <span>Модерации</span>.", text: "Покупай бонусы, скидки или крути рулетку за заработанный XP.", badge: "Режим: магазин", sub: "Магазин за XP" },
+                ap_shop: { title: "Магазин <span>Поддержки</span>.", text: "Трать заработанные баллы на снятие наказаний или крути рулетку АП.", badge: "Режим: магазин АП", sub: "Магазин за Баллы" },
+                report: { title: "Сдавай <span>отчеты</span>.", text: "Отправляй свои ежедневные отчеты для проверки руководством.", badge: "Режим: отчетность", sub: "Ежедневные отчеты" },
+                admin_log: { title: "Логи <span>модерации</span>.", text: "Контроль выдачи покупок из магазина модерации.", badge: "Режим: логи модерации", sub: "Выдачи модераторам" },
+                ap_admin_log: { title: "Логи <span>АП</span>.", text: "Контроль выдачи покупок агентов поддержки.", badge: "Режим: логи АП", sub: "Выдачи АП" },
+                creator: { title: "Панель <span>Создателя</span>.", text: "Полный контроль над базой данных и пользователями.", badge: "Режим: creator", sub: "Панель Создателя" },
+                leadership: { title: "Панель <span>Руководства</span>.", text: "Управление модераторами и балансом XP.", badge: "Режим: руководство мод.", sub: "Управление модерацией" },
+                ap_admin: { title: "Руководство <span>АП</span>.", text: "Управление агентами поддержки и их баллами.", badge: "Режим: руководство АП", sub: "Управление поддержкой" }
+            };
+
+            if (texts[mode]) {
+                if(hTitle) hTitle.innerHTML = texts[mode].title;
+                if(hText) hText.textContent = texts[mode].text;
+                if(hBadge) hBadge.textContent = texts[mode].badge;
+                if(brandSub) brandSub.textContent = texts[mode].sub;
             }
-        };
 
-        // ИСПРАВЛЕНА ОШИБКА ЗДЕСЬ (UPSERT)
-        document.getElementById('forceRoleBtn').onclick = async () => {
-            const btn = document.getElementById('forceRoleBtn');
-            const originalText = btn.textContent;
-            const role = document.getElementById('forceRoleSelect').value;
-            
-            if (currentUser) {
-                btn.textContent = 'Сохранение...';
-                btn.disabled = true;
-                
-                try {
-                    const { error } = await supa.from('profiles').upsert({ id: currentUser.id, email: currentUser.email, role: role });
-                    if (error) throw error;
-                    
-                    userRole = role;
-                    roleModal.style.display = 'none'; 
-                    updateAccessButtons(); 
-                } catch (error) {
-                    alert('Ошибка при сохранении роли: ' + error.message);
-                    console.error("Supabase Error:", error);
-                } finally {
-                    btn.textContent = originalText;
-                    btn.disabled = false;
-                }
-            }
-        };
-
-        document.getElementById('forceNicknameBtn').onclick = async () => {
-            const btn = document.getElementById('forceNicknameBtn');
-            const originalText = btn.textContent;
-            const nick = document.getElementById('forceNicknameInput').value.trim();
-            
-            if (nick && currentUser) {
-                btn.textContent = 'Сохранение...';
-                btn.disabled = true;
-
-                const { error } = await supa.from('profiles').update({ nickname: nick }).eq('id', currentUser.id);
-                
-                btn.textContent = originalText;
-                btn.disabled = false;
-                if (error) {
-                    alert('Ошибка при сохранении никнейма: ' + error.message);
-                    console.error("Supabase Error:", error);
-                } else {
-                    currentNickname = nick;
-                    nicknameModal.style.display = 'none'; 
-                }
-            } else if (!nick) {
-                alert('Пожалуйста, введите никнейм!');
-            }
-        };
-
-        // --- Сохранение и загрузка данных ---
-        async function saveData() {
-            if (!currentUser) return;
-            const totalXp = state.correct * 100 - state.mistakes * 50 + state.reportXp - shopState.spent;
-            const totalPts = supportState.correct * 10 - supportState.mistakes * 5 - shopState.apSpent;
-            await supa.from('profiles').update({
-                xp: totalXp,
-                pts: totalPts,
-                total_xp: state.correct * 100 + state.reportXp,
-                total_pts: supportState.correct * 10,
-                mod_correct: state.correct,
-                ap_correct: supportState.correct
-            }).eq('id', currentUser.id);
+            renderRight(mode);
+            if(mode === 'leaderboard') loadLeaderboard();
+            if(mode === 'shop' || mode === 'ap_shop') updateShopStats();
+            if(mode === 'report') checkReportAccess();
+            if(mode === 'admin_log') renderAdminLogs(false);
+            if(mode === 'ap_admin_log') renderAdminLogs(true);
+            if(mode === 'quests') renderQuests();
+            if(mode === 'creator') loadCreatorPanelData();
+            if(mode === 'leadership' || mode === 'ap_admin') loadUsersForAdmin();
         }
 
-        async function loadData() {
-            if(!currentUser) return;
-            const { data } = await supa.from('profiles').select('*').eq('id', currentUser.id).single();
-            if(data) {
-                state.correct = data.mod_correct || 0;
-                supportState.correct = data.ap_correct || 0;
-                updateUI();
-                updateSupportUI();
-            }
+        // Рендер правой панели (правила)
+        const rightContent = {
+            moderation: { title: "Материалы модератора", lead: "Подсказки по модерации: как оценивать сообщения.", cards: [ ["Без нарушения", "Обычное сообщение без спама."], ["Устное / Пред / Мут", "Флуд, капс, токсичность."], ["Бан / Перма / Глобал", "Реклама проектов, РМТ."] ] },
+            timeattack: { title: "Спидран", lead: "Правила режима на время.", cards: [ ["Время", "Дается 60 секунд. За ошибки отнимается 3 секунды."], ["Опыт", "Бонусный XP: +10 за каждые 5 верных вердиктов."] ] },
+            support: { title: "Материалы агента поддержки", lead: "База знаний для АП и шаблоны ответов.", cards: [ ["База знаний", "Используйте команды /gps и знайте уровни работ."], ["Ответы", "Давайте четкие и понятные ответы по игровому моду."] ] },
+            complaints: { title: "Правила жалоб", lead: "Как рассматривать репорты игроков.", cards: [ ["Одобрить", "На скринах явное нарушение."], ["Отказать", "Нет док-в, обрезаны."], ["Передать КГМ", "Обжалование ЧСМ или банов."] ] },
+            shop: { title: "Магазин модераторов", lead: "Потратьте накопленные XP.", cards: [ ["Выдача", "Все покупки уходят в панель руководства."], ["Рулетка", "Призы могут требовать выдачи."] ] },
+            ap_shop: { title: "Магазин АП", lead: "Потратьте накопленные баллы.", cards: [ ["Выдача", "Заявка на снятие наказания отправляется Руководству."] ] }
+        };
+        function renderRight(mode) {
+            const rt = document.getElementById("rightTitle"); const rl = document.getElementById("rightLead"); const rc = document.getElementById("rightCards");
+            if(!rt || !rl || !rc) return;
+            const data = rightContent[mode] || rightContent['moderation'];
+            rt.innerHTML = data.title; rl.innerHTML = data.lead;
+            rc.innerHTML = data.cards.map((item, idx) => ` <div class="rule-item"> <div class="rule-icon ${idx === 0 ? "ok" : idx === 1 ? "warn" : "ban"}">${idx === 0 ? "✓" : idx === 1 ? "?" : "ℹ"}</div> <div class="rule-copy"><strong>${item[0]}</strong><span>${item[1]}</span></div> </div>`).join("");
         }
 
-        // --- Навигация ---
+        // ОБРАБОТКА НАВИГАЦИИ (Вкладки)
         const mainCatBtns = document.querySelectorAll('.main-cat-btn');
-        const subNavs = {
-            'moderation': document.getElementById('subNavModeration'),
-            'support': document.getElementById('subNavSupport'),
-            'general': document.getElementById('subNavGeneral')
-        };
-        const modeBtns = document.querySelectorAll('.mode-btn');
-        const sections = document.querySelectorAll('.game-wrap > section');
-        const html = document.documentElement;
-
-        let activeLbTab = 'mod';
-        function switchMode(modeId, btn) {
-            sections.forEach(s => { s.style.display = 'none'; s.classList.remove('fade-in'); });
-            modeBtns.forEach(b => b.classList.remove('active'));
-            if(btn) btn.classList.add('active');
-            
-            const target = document.getElementById(`mode-${modeId}`);
-            if(target) { target.style.display = 'block'; target.classList.add('fade-in'); }
-            
-            if(modeId === 'moderation' || modeId === 'timeattack' || modeId === 'complaints' || modeId === 'creator' || modeId === 'leadership' || modeId === 'admin_log') {
-                html.setAttribute('data-site-theme', modeId === 'moderation' ? 'mod' : modeId);
-                document.getElementById('brandSubtitle').textContent = "Симулятор смены модераторов";
-            } else if(modeId === 'support' || modeId === 'ap_shop' || modeId === 'ap_admin' || modeId === 'ap_admin_log') {
-                html.setAttribute('data-site-theme', modeId);
-                document.getElementById('brandSubtitle').textContent = "Агенты Поддержки";
-            } else {
-                html.setAttribute('data-site-theme', modeId);
-            }
-
-            if(modeId === 'shop' && !hasAccessCode) {
-                pendingAction = () => switchMode('shop', document.querySelector('[data-mode="shop"]'));
-                target.style.display = 'none';
-                accessModal.style.display = 'flex';
-            }
-            if(modeId === 'report' && !hasReportAccessCode) {
-                 pendingAction = () => switchMode('report', document.querySelector('[data-mode="report"]'));
-                 target.style.display = 'none';
-                 accessModal.style.display = 'flex';
-            }
-            if(modeId === 'ap_shop' && !hasApShopAccess) {
-                 pendingAction = () => switchMode('ap_shop', document.querySelector('[data-mode="ap_shop"]'));
-                 target.style.display = 'none';
-                 accessModal.style.display = 'flex';
-            }
-
-            if(modeId === 'leaderboard') loadLeaderboard();
-            if(modeId === 'shop') renderShopItems();
-            if(modeId === 'ap_shop') renderApShopItems();
-            if(modeId === 'creator' || modeId === 'leadership' || modeId === 'ap_admin') loadUsersForAdmin();
-
-            renderRight(modeId);
-        }
-
+        const subNavs = { 'moderation': document.getElementById('subNavModeration'), 'support': document.getElementById('subNavSupport'), 'general': document.getElementById('subNavGeneral') };
         mainCatBtns.forEach(btn => {
             btn.onclick = () => {
-                mainCatBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
+                mainCatBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active');
                 Object.values(subNavs).forEach(nav => nav.style.display = 'none');
-    
-                const cat = btn.dataset.cat;
-                subNavs[cat].style.display = 'flex';
-                
-                if(cat === 'moderation') switchMode('moderation', document.querySelector('[data-mode="moderation"]'));
-                if(cat === 'support') switchMode('support', document.querySelector('[data-mode="support"]'));
-                if(cat === 'general') switchMode('quests', document.querySelector('[data-mode="quests"]'));
+                const cat = btn.dataset.cat; if(subNavs[cat]) { subNavs[cat].style.display = 'flex'; const firstBtn = subNavs[cat].querySelector('.mode-btn'); if(firstBtn) firstBtn.click(); }
             };
         });
-        modeBtns.forEach(btn => { btn.onclick = () => switchMode(btn.dataset.mode, btn); });
 
-        // Коды доступа
-        document.getElementById('accessSubmitBtn').onclick = async () => {
-            const code = document.getElementById('accessCodeInput').value;
-            const { data } = await supa.from('access_keys').select('*').eq('key_code', code).eq('is_used', false).single();
+        // Запросы доступа по коду
+        function requestAccess(actionType, btn) {
+            pendingAction = { type: actionType, btn: btn };
+            document.getElementById('accessCodeInput').value = ''; document.getElementById('accessErrorMsg').style.display = 'none';
+            document.getElementById('accessModal').style.display = 'flex';
+        }
+        document.getElementById('accessSubmitBtn').addEventListener('click', async () => {
+            const val = document.getElementById('accessCodeInput').value.trim(); const err = document.getElementById('accessErrorMsg'); const btn = document.getElementById('accessSubmitBtn');
+            btn.disabled = true; btn.textContent = "Проверка...";
             
-            if(data) {
-                await supa.from('access_keys').update({ is_used: true, used_by: currentUser ? currentUser.email : 'guest' }).eq('id', data.id);
-                if(data.role === 'shop') { localStorage.setItem('access_shop', 'true'); hasAccessCode = true; }
-                if(data.role === 'report') { localStorage.setItem('access_report', 'true');
-                hasReportAccessCode = true; }
-                if(data.role === 'ap_shop') { localStorage.setItem('access_ap_shop', 'true');
-                hasApShopAccess = true; }
-                
-                accessModal.style.display = 'none';
-                if(pendingAction) { pendingAction(); pendingAction = null; }
-            } else {
-                document.getElementById('accessErrorMsg').style.display = 'block';
-            }
-        };
-        document.getElementById('accessCloseBtn').onclick = () => { accessModal.style.display = 'none'; pendingAction = null; };
+            // Проверка мастер-ключей
+            if (pendingAction.type === 'switch_tab_shop' && val === 'JohnWickModer') { localStorage.setItem('access_shop', 'true'); hasAccessCode = true; finishAccess(true, 'shop'); return; }
+            if (pendingAction.type === 'switch_tab_report' && val === 'JohnWIckTopModer') { localStorage.setItem('access_report', 'true'); hasReportAccessCode = true; finishAccess(true, 'report'); return; }
+            if (pendingAction.type === 'switch_tab_ap_shop' && val === 'ApMasterKey123') { localStorage.setItem('access_ap_shop', 'true'); hasApShopAccess = true; finishAccess(true, 'ap_shop'); return; }
 
-        // --- Модерация ---
-        function shuffle(arr) { return arr.sort(() => Math.random() - 0.5); }
+            // Поиск в базе (используем reports для совместимости с логикой John Wick)
+            const { data } = await supa.from('reports').select('*').eq('email', 'ACCESS_KEY').eq('link', val);
+            if (data && data.length > 0) {
+                const keyData = data[0];
+                if (pendingAction.type === 'switch_tab_shop' && keyData.status === 'shop') { localStorage.setItem('access_shop', 'true'); hasAccessCode = true; finishAccess(true, 'shop'); } 
+                else if (pendingAction.type === 'switch_tab_report' && keyData.status === 'report') { localStorage.setItem('access_report', 'true'); hasReportAccessCode = true; finishAccess(true, 'report'); } 
+                else if (pendingAction.type === 'switch_tab_ap_shop' && keyData.status === 'ap_shop') { localStorage.setItem('access_ap_shop', 'true'); hasApShopAccess = true; finishAccess(true, 'ap_shop'); } 
+                else { finishAccess(false); }
+            } else { finishAccess(false); }
+
+            function finishAccess(success, roleMode) {
+                btn.disabled = false; btn.textContent = "Подтвердить";
+                if (success) { document.getElementById('accessModal').style.display = 'none'; switchMode(roleMode, pendingAction.btn); pendingAction = null; } 
+                else { err.style.display = 'block'; }
+            }
+        });
+        document.getElementById('accessCloseBtn').onclick = () => { document.getElementById('accessModal').style.display = 'none'; pendingAction = null; };
+
+        document.querySelectorAll(".mode-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const mode = btn.dataset.mode;
+                if (mode === 'shop' && !hasAccessCode) { requestAccess('switch_tab_' + mode, btn); return; }
+                if (mode === 'report' && !hasReportAccessCode) { requestAccess('switch_tab_' + mode, btn); return; }
+                if (mode === 'ap_shop' && !hasApShopAccess) { requestAccess('switch_tab_' + mode, btn); return; }
+                switchMode(mode, btn);
+            });
+        });
+
+        // === ИГРА: МОДЕРАЦИЯ И ЖАЛОБЫ ===
+        function randomMessage() {
+            if (modQueue.length === 0) { modQueue = allModMessages.map((_, i) => i); shuffleArray(modQueue); }
+            const index = modQueue.pop(); const item = allModMessages[index]; const user = randomFunnyNick();
+            state.current = { ...item, user };
+            document.getElementById("authorName").textContent = user; document.getElementById("authorMeta").textContent = "Ожидает проверки";
+            document.getElementById("messageText").textContent = item.text; document.getElementById("avatarBox").textContent = initials(user);
+        }
+        function randomComplaint() {
+            if (compQueue.length === 0) { compQueue = allComplaints.map((_, i) => i); shuffleArray(compQueue); }
+            const index = compQueue.pop(); const item = allComplaints[index];
+            complaintState.current = item;
+            document.getElementById("compAuthor").textContent = randomFunnyNick(); document.getElementById("compMeta").textContent = "Ожидает вердикта";
+            document.getElementById("compText").textContent = item.text; document.getElementById("compEvidence").textContent = "Доказательства: " + item.evidence;
+        }
         
         function startGame() {
-            state.started = true;
-            modQueue = shuffle([...allModMessages]);
+            state.started = true; supportState.started = true; complaintState.started = true;
             document.getElementById('startBtn').disabled = true;
-            document.getElementById('resultBanner').style.display = 'none';
-            nextMessage();
-        }
-
-        function resetGame() {
-            state = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false, log: [], reportXp: state.reportXp };
-            document.getElementById('startBtn').disabled = false;
-            document.getElementById('messageText').textContent = "Пока сообщений нет. Нажми «Начать смену».";
-            document.getElementById('authorName').textContent = "System";
-            document.getElementById('authorMeta').textContent = "Ожидание начала...";
-            document.getElementById('resultBanner').style.display = 'flex';
-            document.getElementById('resultHint').textContent = "Смена сброшена.";
-            document.getElementById('logList').innerHTML = '<div class="log-item">Пока пусто.</div>';
-            updateUI();
-        }
-
-        function nextMessage() {
-            if(!state.started) return;
-            if(modQueue.length === 0) modQueue = shuffle([...allModMessages]);
-            state.current = modQueue.pop();
-            
-            const user = randomFunnyNick();
-            document.getElementById('messageText').textContent = state.current.text;
-            document.getElementById('authorName').textContent = user;
-            document.getElementById('authorMeta').textContent = "Игрок сервера";
-            
-            const elB = document.getElementById("avatarBox"); 
-            if(elB) elB.textContent = initials(user);
-        }
-
-        let lastActionTime = 0;
-        let spamWarnings = 0; let isSpamBlocked = false;
-
-        function judge(verdict) {
-            if(!state.started || !state.current || isSpamBlocked) return;
-            const now = Date.now();
-            if(now - lastActionTime < 1000) {
-                spamWarnings++;
-                if(spamWarnings >= 3) {
-                    isSpamBlocked = true;
-                    spamModal.style.display = 'flex'; playSound('fail');
-                    let timeLeft = 60;
-                    const btn = document.getElementById('closeSpamModal');
-                    const timerId = setInterval(() => {
-                        timeLeft--;
-                        btn.textContent = `Блокировка... ${timeLeft}с`;
-                        if(timeLeft <= 0) {
-                            clearInterval(timerId); isSpamBlocked = false; spamWarnings = 0;
-                            spamModal.style.display = 'none'; btn.textContent = "Блокировка...";
-                        }
-                    }, 1000);
-                    return;
-                }
-            } else { spamWarnings = Math.max(0, spamWarnings - 1); }
-            lastActionTime = now;
-
-            state.resolved++;
-            let isCorrect = (verdict === state.current.type);
-            
-            if(isCorrect) { state.correct++; playSound('ok'); } else { state.mistakes++; playSound('fail'); }
-
-            addLog(state.current.text, verdict, state.current.type, isCorrect);
-            updateUI(); saveData(); nextMessage();
-        }
-
-        function addLog(text, chosen, actual, isCorrect) {
-            const map = { "good": "Без нарушения", "warn": "Пред/Мут", "ban": "Бан" };
-            const div = document.createElement('div');
-            div.className = "log-item";
-            div.innerHTML = `
-                <div style="font-size: var(--text-sm); margin-bottom: 0.4rem;">"${text.substring(0,40)}..."</div>
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <span class="badge ${isCorrect ? 'ok' : 'ban'}">${isCorrect ? 'Верно' : 'Ошибка'}</span>
-                    <span style="font-size: var(--text-xs); color: var(--color-text-faint);">Твой: ${map[chosen]} | Верно: ${map[actual]}</span>
-                </div>
-            `;
-            const list = document.getElementById('logList');
-            if(state.log.length === 0) list.innerHTML = '';
-            list.prepend(div);
-            state.log.unshift({text, chosen, actual, isCorrect});
-            if(state.log.length > 5) { list.lastChild.remove(); state.log.pop(); }
-        }
-
-        function updateUI() {
-            document.getElementById('resolvedValue').textContent = state.resolved;
-            document.getElementById('correctValue').textContent = state.correct;
-            document.getElementById('mistakeValue').textContent = state.mistakes;
-            const xp = Math.max(0, state.correct * 100 - state.mistakes * 50 + state.reportXp - shopState.spent);
-            document.getElementById('xpValue').textContent = xp;
-            document.getElementById('shopTotalXp').textContent = xp;
-            document.getElementById('xpFill').style.width = Math.min(100, (xp / 1000) * 10) + '%';
-        }
-
-        // --- Поддержка ---
-        function supportStart() {
-            supportState.started = true;
-            supQueue = shuffle([...allSupQuestions]);
-            document.getElementById('supportCheckBtn').disabled = false;
-            document.getElementById('supportNextBtn').disabled = false;
-            document.getElementById('supportBanner').style.display = 'none';
-            supportNext();
-        }
-
-        function supportNext() {
-            if(!supportState.started) return;
-            if(supQueue.length === 0) supQueue = shuffle([...allSupQuestions]);
-            supportState.current = supQueue.pop();
-            
-            document.getElementById('supportQuestionTitle').textContent = supportState.current.title;
-            document.getElementById('supportQuestionText').textContent = supportState.current.text;
-            document.getElementById('supportAnswerInput').value = "";
-            document.getElementById('supportResultText').innerHTML = "";
-            document.getElementById('supportMeta').textContent = "Игрок сервера";
-        }
-
-        document.getElementById('supportCheckBtn').onclick = () => {
-            if(!supportState.started || !supportState.current) { supportStart(); return; }
-            const ans = document.getElementById('supportAnswerInput').value.toLowerCase();
-            const keys = supportState.current.keywords.map(k => k.toLowerCase());
-            const isCorrect = keys.some(k => ans.includes(k));
-            supportState.resolved++;
-            
-            const resDiv = document.getElementById('supportResultText');
-            if(isCorrect) {
-                supportState.correct++; playSound('ok');
-                resDiv.innerHTML = `<span style="color:var(--color-success);">✅ Верно! Отличный ответ.</span>`;
-            } else {
-                supportState.mistakes++;
-                playSound('fail');
-                resDiv.innerHTML = `<span style="color:var(--color-error);">❌ Ошибка! Нужно было использовать: ${keys.join(' или ')}</span>`;
+            randomMessage();
+            if (allSupQuestions.length) {
+                if (supQueue.length === 0) { supQueue = allSupQuestions.map((_, i) => i); shuffleArray(supQueue); }
+                supportState.currentIndex = supQueue.pop();
+                const q = allSupQuestions[supportState.currentIndex];
+                document.getElementById("supportQuestionTitle").textContent = q.title || "Вопрос игрока";
+                document.getElementById("supportMeta").textContent = q.meta || "Вопрос из игры";
+                document.getElementById("supportQuestionText").textContent = q.text || "Без текста";
+                document.getElementById("supportResultText").textContent = "Напиши ответ и проверь";
             }
-            updateSupportUI(); saveData(); setTimeout(supportNext, 1500);
-        };
-        document.getElementById('supportNextBtn').onclick = supportNext;
-        function updateSupportUI() {
-            document.getElementById('supportResolvedValue').textContent = supportState.resolved;
-            document.getElementById('supportCorrectValue').textContent = supportState.correct;
-            document.getElementById('supportMistakeValue').textContent = supportState.mistakes;
-            const pts = Math.max(0, supportState.correct * 10 - supportState.mistakes * 5 - shopState.apSpent);
-            document.getElementById('supportXpValue').textContent = pts;
-            document.getElementById('apShopTotalPts').textContent = pts;
-            document.getElementById('supportXpFill').style.width = Math.min(100, (pts / 500) * 10) + '%';
+            randomComplaint();
+            updateModStats(); updateSupportStats(); updateComplaintStats();
+            document.getElementById("game").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        function resetGame() {
+            state.started = false; supportState.started = false; complaintState.started = false;
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById("messageText").textContent = "Пока сообщений нет. Нажми «Начать смену».";
+            document.getElementById("compText").textContent = "Нажми «Начать смену».";
+            document.getElementById("supportQuestionText").textContent = "Нажми «Начать смену».";
+            pushLog('Смена сброшена.'); updateModStats(); updateSupportStats(); updateComplaintStats();
         }
 
-        // --- Магазин ---
-        const shopItems = [
-            { id: "mod_role", title: "Роль @Модератор в DS", price: 25000, desc: "Официальная роль на сервере Discord.", icon: "🛡️" },
-            { id: "mod_promo", title: "Промокод на скидку", price: 10000, desc: "Секретный промокод.", icon: "🎟️" },
-            { id: "mod_roulette", title: "Крутить Рулетку", price: 1000, desc: "Выиграй до 5000 XP!", icon: "🎰", action: "roulette" },
-            { id: "mod_coin", title: "Орёл или Решка", price: 500, desc: "Шанс удвоить ставку.", icon: "🪙", action: "coin" },
-            { id: "mod_safe", title: "Три Сейфа", price: 400, desc: "Угадай сейф и забери x3.", icon: "🧰", action: "safe" },
-            { id: "mod_jw", title: "Викторина", price: 600, desc: "Угадай персонажа и забери x2.5.", icon: "🔫", action: "jw" }
-        ];
+        document.getElementById('startBtn').addEventListener('click', startGame);
+        document.getElementById('resetBtn').addEventListener('click', resetGame);
 
+        // Вердикты Модерации
+        document.querySelectorAll('[data-action]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (!state.started || !state.current) { startGame(); return; }
+                if (isSpamming()) return;
+                const action = btn.dataset.action; const isCorrect = action === state.current.type;
+                state.resolved++;
+                if (isCorrect) { state.correct++; playSound('ok'); pushLog(`✅ Тренажёр: верное решение`); } 
+                else { state.mistakes++; playSound('fail'); pushLog(`❌ Тренажёр: ошибка`); }
+                updateModStats(); saveProgress(); randomMessage();
+            });
+        });
+
+        // Вердикты Жалоб
+        document.querySelectorAll('[data-comp-action]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (!complaintState.started || !complaintState.current) { startGame(); return; }
+                if (isSpamming()) return;
+                const action = btn.dataset.compAction; const isCorrect = action === complaintState.current.type;
+                complaintState.resolved++;
+                if (isCorrect) { complaintState.correct++; playSound('ok'); pushLog(`✅ Жалобы: верный вердикт`); } 
+                else { complaintState.mistakes++; playSound('fail'); pushLog(`❌ Жалобы: ошибка`); }
+                updateComplaintStats(); saveProgress(); randomComplaint();
+            });
+        });
+
+        // Проверка АП
+        document.getElementById('supportCheckBtn').addEventListener('click', () => {
+            if (!supportState.started || supportState.currentIndex < 0) return;
+            const q = allSupQuestions[supportState.currentIndex];
+            const answer = document.getElementById("supportAnswerInput").value.trim().toLowerCase();
+            const resEl = document.getElementById("supportResultText");
+            if (!answer) { resEl.textContent = "Напиши ответ игроку."; return; }
+            supportState.resolved++;
+            const ok = q.keywords.some(k => answer.includes(k));
+            if (ok) {
+                supportState.correct++; resEl.textContent = "Ответ засчитан!"; resEl.style.color = "var(--color-success)"; playSound('ok'); pushLog(`🟢 АП: ответ засчитан.`);
+            } else {
+                supportState.mistakes++; resEl.textContent = "Ответ не засчитан: не хватает ключевых слов."; resEl.style.color = "var(--color-error)"; playSound('fail'); pushLog(`🔴 АП: ответ не засчитан.`);
+            }
+            updateSupportStats(); saveProgress();
+        });
+        document.getElementById('supportNextBtn').addEventListener('click', () => {
+            if (!supportState.started) return;
+            if (supQueue.length === 0) { supQueue = allSupQuestions.map((_, i) => i); shuffleArray(supQueue); }
+            supportState.currentIndex = supQueue.pop();
+            const q = allSupQuestions[supportState.currentIndex];
+            document.getElementById("supportQuestionTitle").textContent = q.title;
+            document.getElementById("supportQuestionText").textContent = q.text;
+            document.getElementById("supportAnswerInput").value = "";
+            document.getElementById("supportResultText").textContent = "";
+        });
+
+        // === МАГАЗИНЫ И ПОКУПКИ ===
+        async function logPurchase(itemName, isAutoLog, isAp = false, cost = 0) {
+            if (!currentUser) return;
+            const { error } = await supa.from('admin_logs').insert([{
+                user_email: currentUser.email,
+                nickname: currentNickname || currentUser.email,
+                item_name: itemName,
+                cost: cost,
+                type: isAp ? 'ap_shop' : 'mod_shop',
+                status: isAutoLog ? 'Автоматически зачислено' : 'Ожидает выдачи'
+            }]);
+            if(error) console.error("Ошибка лога покупки:", error);
+        }
+
+        const shopItems = [
+            { id: 'mm_1', title: "Скидка -1 день", desc: "Ускоряет повышение Младшего Модератора.", price: 200, icon: "⏳" },
+            { id: 'mod_1', title: "Снятие преда", desc: "Снятие активного предупреждения.", price: 300, icon: "🛡️" },
+            { id: 'mod_2', title: "Снятие выговора", desc: "Снятие активного выговора.", price: 400, icon: "🔥" },
+            { id: 'mod_roulette', title: "Крутить Рулетку", desc: "Выиграй до 5000 XP!", price: 100, icon: "🎰", action: "roulette" }
+        ];
         function renderShopItems() {
-            const container = document.getElementById('shopItemsContainer');
-            container.innerHTML = '';
-            const currentXp = Math.max(0, state.correct * 100 - state.mistakes * 50 + state.reportXp - shopState.spent);
+            const container = document.getElementById('shopItemsContainer'); if(!container) return; container.innerHTML = '';
+            const currentXp = availableXp();
             shopItems.forEach(item => {
                 const canAfford = currentXp >= item.price;
                 container.innerHTML += `
-                    <div class="shop-card">
-                        <div style="display:flex; justify-content:space-between; align-items:start;">
-                            <h3>${item.icon} ${item.title}</h3>
-                            <div class="shop-price">${item.price} XP</div>
-                        </div>
-                        <p>${item.desc}</p>
-                        <button class="shop-buy-btn" ${!canAfford ? 'disabled' : ''} onclick="buyItem('${item.id}', ${item.price}, '${item.action}')">
-                            ${canAfford ? 'Купить' : 'Не хватает XP'}
-                        </button>
-                    </div>
-                `;
+                <div class="shop-card">
+                    <div style="display:flex; justify-content:space-between; align-items:start;"><h3>${item.icon} ${item.title}</h3><div class="shop-price">${item.price} XP</div></div>
+                    <p>${item.desc}</p>
+                    <button class="shop-buy-btn" ${!canAfford ? 'disabled' : ''} onclick="buyItem('${item.id}', ${item.price}, '${item.action}')">${canAfford ? 'Купить' : 'Не хватает XP'}</button>
+                </div>`;
             });
         }
-
         window.buyItem = async function(id, price, action) {
-            const currentXp = Math.max(0, state.correct * 100 - state.mistakes * 50 + state.reportXp - shopState.spent);
-            if(currentXp >= price) {
-                shopState.spent += price;
-                updateUI(); saveData(); playSound('ok'); renderShopItems();
-                
-                if(action === 'roulette') openFortune();
-                else if(action === 'coin') { document.getElementById('coinModal').style.display = 'flex'; document.getElementById('coinResult').textContent = '';
-                document.getElementById('coinAnimation').style.display = 'block'; document.getElementById('closeCoinBtn').style.display = 'none'; }
-                else if(action === 'safe') { document.getElementById('safesModal').style.display = 'flex';
-                document.getElementById('safesResult').textContent = ''; document.getElementById('closeSafesBtn').style.display = 'none'; }
-                else if(action === 'jw') document.getElementById('jwModal').style.display = 'flex';
-                else {
-                    const item = shopItems.find(i => i.id === id);
-                    if(currentUser) {
-                        await supa.from('admin_logs').insert([{ user_email: currentUser.email, nickname: currentNickname || 'Неизвестно', item_name: item.title, cost: price, type: 'mod_shop' }]);
-                        alert(`Вы успешно купили: ${item.title}! Ожидайте выдачи от Руководства.`);
-                    }
+            if (availableXp() >= price) {
+                shopState.spent += price; playSound('ok'); updateShopStats(); await saveProgress();
+                if (action === 'roulette') { openFortune(false); } 
+                else { 
+                    const item = shopItems.find(i => i.id === id); 
+                    await logPurchase(`Покупка: ${item.title}`, false, false, price);
+                    alert(`Куплено: ${item.title}. Заявка отправлена руководству!`); 
                 }
             } else { playSound('fail'); }
         };
 
         const apShopItems = [
-            { id: "ap_imm", title: "Снятие 1 выговора", price: 200, desc: "Иммунитет на снятие преда.", icon: "🛡️" },
-            { id: "ap_role", title: "Кастомная роль в DS", price: 500, desc: "Роль с вашим названием.", icon: "🎨" },
-            { id: "ap_roulette", title: "Рулетка АП", price: 50, desc: "Выиграй баллы!", icon: "🎰", action: "ap_roulette" }
+            { id: 'ap_1', title: "Снятие предупреждения", desc: "Снимает 1 активное предупреждение.", price: 15, icon: "🛡️" },
+            { id: 'ap_2', title: "Снятие выговора", desc: "Снимает 1 активный выговор.", price: 25, icon: "🔥" },
+            { id: 'ap_3', title: "Иммунитет на выговор", desc: "Защищает от получения 1 выговора.", price: 40, icon: "👑" },
+            { id: 'ap_4', title: "Неактив (1 день)", desc: "Взять неактив без потери нормы.", price: 10, icon: "🛌" },
+            { id: 'ap_roulette', title: "Рулетка АП", desc: "Испытай удачу! Выиграй до 50 баллов.", price: 10, icon: "🎰", action: 'ap_roulette' }
         ];
-
         function renderApShopItems() {
-            const container = document.getElementById('apShopItemsContainer');
-            container.innerHTML = '';
-            const currentPts = Math.max(0, supportState.correct * 10 - supportState.mistakes * 5 - shopState.apSpent);
+            const container = document.getElementById('apShopItemsContainer'); if(!container) return; container.innerHTML = '';
+            const currentPts = availablePts();
             apShopItems.forEach(item => {
                 const canAfford = currentPts >= item.price;
                 container.innerHTML += `
-                    <div class="shop-card ap-shop-card">
-                        <div style="display:flex; justify-content:space-between; align-items:start;">
-                            <h3>${item.icon} ${item.title}</h3>
-                            <div class="shop-price ap-shop-price">${item.price} PTS</div>
-                        </div>
-                        <p>${item.desc}</p>
-                        <button class="shop-buy-btn ap-shop-buy-btn" ${!canAfford ? 'disabled' : ''} onclick="buyApItem('${item.id}', ${item.price}, '${item.action}')">
-                            ${canAfford ? 'Купить' : 'Не хватает Баллов'}
-                        </button>
-                    </div>
-                `;
+                <div class="shop-card ap-shop-card">
+                    <div style="display:flex; justify-content:space-between; align-items:start;"><h3>${item.icon} ${item.title}</h3><div class="shop-price ap-shop-price">${item.price} Баллов</div></div>
+                    <p>${item.desc}</p>
+                    <button class="shop-buy-btn ap-shop-buy-btn" ${!canAfford ? 'disabled' : ''} onclick="buyApItem('${item.id}', ${item.price}, '${item.action}')">${canAfford ? 'Купить' : 'Не хватает Баллов'}</button>
+                </div>`;
             });
         }
-
         window.buyApItem = async function(id, price, action) {
-            const currentPts = Math.max(0, supportState.correct * 10 - supportState.mistakes * 5 - shopState.apSpent);
-            if(currentPts >= price) {
-                shopState.apSpent += price;
-                updateSupportUI(); saveData(); playSound('ok'); renderApShopItems();
-                if(action === 'ap_roulette') alert("Вы крутите рулетку АП! (В разработке)");
-                else {
-                    const item = apShopItems.find(i => i.id === id);
-                    if(currentUser) {
-                        await supa.from('admin_logs').insert([{ user_email: currentUser.email, nickname: currentNickname || 'Неизвестно', item_name: item.title, cost: price, type: 'ap_shop' }]);
-                        alert(`Вы купили: ${item.title} за баллы! Ожидайте выдачи от Руководства АП.`);
-                    }
+            if (availablePts() >= price) {
+                shopState.apSpent += price; playSound('ok'); updateShopStats(); await saveProgress();
+                if (action === 'ap_roulette') { openFortune(true); } 
+                else { 
+                    const item = apShopItems.find(i => i.id === id); 
+                    await logPurchase(`Покупка: ${item.title}`, false, true, price);
+                    alert(`Куплено: ${item.title}. Заявка отправлена руководству АП!`); 
                 }
             } else { playSound('fail'); }
         };
 
-        // --- Панели Руководства, Создателя и УДАЛЕНИЕ ---
-        async function loadUsersForAdmin() {
-            const selects = ['creatorUserSelect', 'leadershipUserSelect', 'apAdminUserSelect'];
-            const { data } = await supa.from('profiles').select('id, nickname, role, email');
-            if(data) {
-                selects.forEach(selId => {
-                    const sel = document.getElementById(selId);
-                    if(sel) {
-                        sel.innerHTML = '<option value="">Выберите пользователя...</option>';
-                        data.forEach(u => {
-                            sel.innerHTML += `<option value="${u.id}" data-email="${u.email}">${u.nickname || u.email} (${u.role})</option>`;
-                        });
-                    }
-                });
-            }
-        }
+        // === РУЛЕТКА ===
+        const fortuneModPrizes = [
+            { type: 'r-leg', icon: '🏆', text: '5000 XP', val: 5000 },
+            { type: 'r-rare', icon: '💎', text: '1000 XP', val: 1000 },
+            { type: 'r-rare', icon: '🛡️', text: 'Иммунитет', val: 0, prize: 'Иммунитет на пред' },
+            { type: 'r-bonus', icon: '📦', text: '500 XP', val: 500 },
+            { type: 'r-bonus', icon: '📦', text: '250 XP', val: 250 },
+            { type: 'r-fail', icon: '💀', text: 'Ничего', val: 0 },
+            { type: 'r-fine', icon: '📉', text: 'Штраф -100 XP', val: -100 }
+        ];
+        const fortuneApPrizes = [
+            { type: 'r-leg', icon: '🏆', text: '50 Баллов', val: 50 },
+            { type: 'r-rare', icon: '💎', text: '25 Баллов', val: 25 },
+            { type: 'r-rare', icon: '🛡️', text: 'Снятие преда', val: 0, prize: 'Снятие преда' },
+            { type: 'r-bonus', icon: '📦', text: '10 Баллов', val: 10 },
+            { type: 'r-bonus', icon: '📦', text: '5 Баллов', val: 5 },
+            { type: 'r-fail', icon: '💀', text: 'Ничего', val: 0 },
+            { type: 'r-fine', icon: '📉', text: 'Штраф -5 Баллов', val: -5 }
+        ];
 
-        async function modifyBalance(userId, amount, isPts) {
-            if(!userId || !amount) return;
-            alert(`Баланс изменен. (Требуется обновление БД)`);
-        }
-
-        document.getElementById('creatorXpBtn').onclick = () => modifyBalance(document.getElementById('creatorUserSelect').value, document.getElementById('creatorXpAmount').value, false);
-        document.getElementById('leadershipXpBtn').onclick = () => modifyBalance(document.getElementById('leadershipUserSelect').value, document.getElementById('leadershipXpAmount').value, false);
-        document.getElementById('apAdminPointsBtn').onclick = () => modifyBalance(document.getElementById('apAdminUserSelect').value, document.getElementById('apAdminPointsAmount').value, true);
-
-        // Функция удаления аккаунта
-        window.deleteUserAccount = async function(selectElementId, event) {
-            const select = document.getElementById(selectElementId);
-            const userId = select.value;
+        function openFortune(isAp = false) {
+            const modal = document.getElementById('fortuneModal');
+            const track = document.getElementById('rouletteTrack');
+            const resultText = document.getElementById('fortuneResultText');
+            const closeBtn = document.getElementById('closeFortuneBtn');
+            const title = document.getElementById('fortuneTitle');
             
-            if (!userId) {
-                alert('Пожалуйста, выберите пользователя из списка.');
-                return;
+            title.textContent = isAp ? "Рулетка АП" : "Рулетка Модерации";
+            title.style.color = isAp ? "#ff8fc4" : "#ffbf47";
+            resultText.textContent = ''; track.style.transition = 'none'; track.style.transform = 'translateX(0)';
+            track.innerHTML = ''; closeBtn.style.display = 'none'; modal.style.display = 'flex';
+
+            const prizesToUse = isAp ? fortuneApPrizes : fortuneModPrizes;
+            const numItems = 60; const itemWidth = 160;
+            let winningIndex = Math.floor(Math.random() * 10) + 45;
+            let winnerItem = null;
+
+            for (let i = 0; i < numItems; i++) {
+                const p = prizesToUse[Math.floor(Math.random() * prizesToUse.length)];
+                if (i === winningIndex) winnerItem = p;
+                track.innerHTML += `<div class="roulette-item ${p.type}"><i>${p.icon}</i><span>${p.text}</span></div>`;
             }
 
-            const option = select.options[select.selectedIndex];
-            const targetEmail = option.dataset.email;
-
-            if (targetEmail === creatorEmail || modLeadershipEmails.includes(targetEmail) || apLeadershipEmails.includes(targetEmail)) {
-                alert('🚫 В доступе отказано: Нельзя удалять аккаунты руководящего состава или Создателя проекта.');
-                return;
-            }
-
-            const confirmDelete = confirm(`Вы уверены, что хотите НАВСЕГДА удалить профиль пользователя ${option.text}?`);
-            if (confirmDelete) {
-                const btn = event.target;
-                const originalText = btn.textContent;
-                btn.textContent = 'Удаление...';
-                btn.disabled = true;
-                try {
-                    const { error } = await supa.from('profiles').delete().eq('id', userId);
-                    if (error) throw error;
+            setTimeout(() => {
+                const offset = (winningIndex * itemWidth) + (itemWidth / 2) - (modal.querySelector('.roulette-wrapper').offsetWidth / 2) + (Math.random() * 80 - 40);
+                track.style.transition = 'transform 5s cubic-bezier(0.15, 0.85, 0.2, 1)';
+                track.style.transform = `translateX(-${offset}px)`;
+                
+                setTimeout(async () => {
+                    let outcomeMsg = `Вы выиграли: ${winnerItem.text}!\n\n`;
+                    if (winnerItem.val !== 0) {
+                        if (isAp) shopState.apSpent -= winnerItem.val; else shopState.spent -= winnerItem.val;
+                        outcomeMsg += winnerItem.val > 0 ? `Начислено на баланс.` : `Штраф списан.`;
+                        await logPurchase(`Рулетка: ${winnerItem.text}`, true, isAp, 0);
+                    } else if (winnerItem.type === 'r-fail') {
+                        outcomeMsg += `В этот раз не повезло.`;
+                    } else {
+                        outcomeMsg += `Заявка отправлена Руководству! Ожидайте.`;
+                        await logPurchase(`Рулетка: ${winnerItem.text}`, false, isAp, 0);
+                    }
                     
-                    alert(`✅ Профиль пользователя успешно удален!`);
-                    loadUsersForAdmin();
-                    if (document.getElementById('mode-leaderboard').style.display === 'block') loadLeaderboard();
-                } catch (error) {
-                    alert('Ошибка при удалении пользователя: ' + error.message);
-                    console.error(error);
-                } finally {
-                    btn.textContent = originalText;
-                    btn.disabled = false;
-                }
+                    updateShopStats(); updateModStats(); updateSupportStats(); await saveProgress();
+                    resultText.textContent = `🎁 ${winnerItem.text} 🎁`;
+                    playSound(winnerItem.type === 'r-fail' || winnerItem.type === 'r-fine' ? 'fail' : 'win');
+                    alert(`✅ РУЛЕТКА ЗАВЕРШЕНА!\n\n${outcomeMsg}`);
+                    closeBtn.style.display = 'inline-block';
+                }, 5200);
+            }, 100);
+        }
+        document.getElementById('closeFortuneBtn').addEventListener('click', () => { document.getElementById('fortuneModal').style.display = 'none'; });
+
+        // === ПАНЕЛИ АДМИНИСТРАЦИИ (ВЫДАЧИ ЛОГОВ) ===
+        async function renderAdminLogs(isAp = false) {
+            const areaId = isAp ? 'apAdminLogsArea' : 'adminLogsArea';
+            const area = document.getElementById(areaId);
+            if(!area) return;
+            area.innerHTML = '<div class="message-text" style="text-align:center;">Загрузка логов...</div>';
+            
+            const { data: storedLogs, error } = await supa.from('admin_logs')
+                .select('*').eq('type', isAp ? 'ap_shop' : 'mod_shop').order('created_at', { ascending: false }).limit(40);
+
+            if (error) { area.innerHTML = `<div style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`; return; }
+            if (!storedLogs || storedLogs.length === 0) { area.innerHTML = `<div style="text-align:center;">Логов пока нет.</div>`; return; }
+            
+            area.innerHTML = storedLogs.map(log => `
+                <div class="rule-item" style="border-color: ${isAp ? 'rgba(255, 143, 196, 0.4)' : 'rgba(255, 191, 71, 0.4)'}; display: block;">
+                    <div style="font-size: var(--text-xs); color: var(--color-text-faint); margin-bottom: 0.5rem;">${new Date(log.created_at).toLocaleString('ru-RU')} • ${log.user_email}</div>
+                    <div style="font-size: var(--text-base); color: ${isAp ? '#ff8fc4' : 'var(--color-primary)'}; font-weight: bold;">${log.item_name} <span style="font-size: 0.8rem; color: #fff;">(${log.nickname})</span></div>
+                    ${log.status === 'Ожидает выдачи' ? `
+                        <div style="margin-top: 1rem;"><button class="btn btn-primary issue-btn" data-id="${log.id}" data-isap="${isAp}" style="padding: 0.4rem 1rem; font-size: 0.8rem;">Отметить как выданное</button></div>
+                    ` : `<div style="margin-top: 0.5rem; font-size: var(--text-sm); color: var(--color-success); font-weight: bold;">✓ ${log.status}</div>`}
+                </div>`).join('');
+                
+            area.querySelectorAll('.issue-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    btn.disabled = true;
+                    const { error } = await supa.from('admin_logs').update({ status: 'Выдано' }).eq('id', btn.dataset.id);
+                    if(!error) { playSound('ok'); renderAdminLogs(btn.dataset.isap === 'true'); } 
+                    else { alert('Ошибка!'); btn.disabled = false; }
+                });
+            });
+        }
+        document.getElementById('loadAdminLogsBtn').addEventListener('click', () => renderAdminLogs(false));
+        document.getElementById('loadApAdminLogsBtn')?.addEventListener('click', () => renderAdminLogs(true));
+
+        // === ПАНЕЛЬ СОЗДАТЕЛЯ (Управление XP) ===
+        async function loadCreatorPanelData() {
+            if (!currentUser || currentUser.email !== creatorEmail) return;
+            const sel = document.getElementById('creatorUserSelect');
+            const { data: users } = await supa.from('user_stats').select('user_id, nickname, email, shop_spent');
+            if (users) sel.innerHTML = users.map(u => `<option value="${u.user_id}">${u.nickname || u.email} (Списано: ${u.shop_spent})</option>`).join('');
+        }
+        document.getElementById('creatorXpBtn').addEventListener('click', async () => {
+            const userId = document.getElementById('creatorUserSelect').value;
+            const amount = parseInt(document.getElementById('creatorXpAmount').value);
+            if (!userId || isNaN(amount)) { alert("Выберите юзера и введите число!"); return; }
+            
+            const { data, error } = await supa.from('user_stats').select('shop_spent').eq('user_id', userId).single();
+            // Если записи нет - это не критично, просто считаем что spent = 0, но лучше обработать грамотно
+            let currentSpent = data ? (Number(data.shop_spent) || 0) : 0;
+            
+            const newSpent = currentSpent - amount; // Выдаем XP путем уменьшения потраченного
+            const { error: updErr } = await supa.from('user_stats').update({ shop_spent: newSpent }).eq('user_id', userId);
+            
+            if (updErr) alert('Ошибка БД! Убедитесь что колонки shop_spent существуют: ' + updErr.message);
+            else { playSound('win'); alert(`Успешно! Баланс изменен на ${amount} XP.`); loadCreatorPanelData(); }
+        });
+
+        // ПАНЕЛЬ РУКОВОДСТВА АП (Управление Баллами)
+        async function loadUsersForAdmin() {
+            if(!currentUser) return;
+            const selL = document.getElementById('leadershipUserSelect');
+            const selA = document.getElementById('apAdminUserSelect');
+            const { data: users } = await supa.from('user_stats').select('user_id, nickname, email');
+            const opts = users ? users.map(u => `<option value="${u.user_id}">${u.nickname || u.email}</option>`).join('') : '<option>Пусто</option>';
+            if(selL) selL.innerHTML = opts; if(selA) selA.innerHTML = opts;
+        }
+        document.getElementById('apAdminPointsBtn')?.addEventListener('click', async () => {
+            const userId = document.getElementById('apAdminUserSelect').value;
+            const amount = parseInt(document.getElementById('apAdminPointsAmount').value);
+            if (!userId || isNaN(amount)) return;
+            
+            const { data } = await supa.from('user_stats').select('ap_spent').eq('user_id', userId).single();
+            let currentSpent = data ? (Number(data.ap_spent) || 0) : 0;
+            const newSpent = currentSpent - amount; 
+            
+            const { error } = await supa.from('user_stats').update({ ap_spent: newSpent }).eq('user_id', userId);
+            if(error) alert('Ошибка! ' + error.message);
+            else { playSound('ok'); alert(`Успешно изменено на ${amount} Баллов!`); }
+        });
+
+        // ОТЧЕТЫ (Сохраняем старую логику Джон Уика)
+        function checkReportAccess() {
+            const warn = document.getElementById('reportAccessWarning'); const formArea = document.getElementById('reportFormArea');
+            const adminPanel = document.getElementById('adminPanelArea');
+            if (currentUser) {
+                if(warn) warn.style.display = 'none'; if(formArea) formArea.style.display = 'block';
+                if (adminEmails.includes(currentUser.email)) { if(adminPanel) adminPanel.style.display = 'block'; }
+            } else {
+                if(warn) warn.style.display = 'block'; if(formArea) formArea.style.display = 'none';
+            }
+        }
+        document.getElementById('submitReportBtn').addEventListener('click', async () => {
+            if (!currentUser) return;
+            const link = document.getElementById('reportLinkInput').value.trim();
+            const res = document.getElementById('reportResultText');
+            if (!link.startsWith('http')) { res.textContent = "Укажите корректную ссылку!"; res.style.color = "var(--color-error)"; return; }
+            
+            res.textContent = "Отправка..."; res.style.color = "var(--color-text-muted)";
+            const report = { id: Date.now().toString(), email: currentUser.email, link: link, date: new Date().toLocaleString('ru-RU'), status: 'На проверке', xp: 0 };
+            const { error } = await supa.from('reports').insert([report]);
+            if (error) { res.textContent = "Ошибка: " + error.message; res.style.color = "var(--color-error)"; return; }
+            
+            res.textContent = "Отчет успешно отправлен!"; res.style.color = "var(--color-success)";
+            document.getElementById('reportLinkInput').value = ''; playSound('win');
+        });
+
+        // === ИНИЦИАЛИЗАЦИЯ И АВТОРИЗАЦИЯ ===
+        async function checkAuth() {
+            const { data: { session } } = await supa.auth.getSession();
+            if (session) {
+                currentUser = session.user;
+                document.getElementById('userEmailDisplay').textContent = currentUser.email;
+                document.getElementById('loginBtnUI').style.display = 'none';
+                document.getElementById('logoutBtnUI').style.display = 'inline-block';
+                
+                const { data } = await supa.from('user_stats').select('nickname').eq('user_id', currentUser.id).single();
+                if(data && data.nickname) currentNickname = data.nickname;
+                else { document.getElementById('nicknameModal').style.display = 'flex'; }
+                
+                // Настройка кнопок по ролям
+                const isCreator = currentUser.email === creatorEmail;
+                const isModLeader = isCreator || adminEmails.includes(currentUser.email);
+                const isApLeader = isCreator || apLeadershipEmails.includes(currentUser.email);
+                
+                if(isCreator) document.getElementById('creatorTabBtn').style.display = 'block';
+                if(isModLeader) { document.getElementById('leadershipTabBtn').style.display = 'block'; document.getElementById('adminLogTabBtn').style.display = 'block'; }
+                if(isApLeader) { document.getElementById('apAdminTabBtn').style.display = 'block'; document.getElementById('apAdminLogTabBtn').style.display = 'block'; }
+                
+                await loadProgress();
+            } else {
+                currentUser = null; currentNickname = null;
+                document.getElementById('loginBtnUI').style.display = 'inline-block';
+                document.getElementById('logoutBtnUI').style.display = 'none';
+            }
+        }
+
+        document.getElementById('loginBtnUI').onclick = () => { document.getElementById('authModal').style.display = 'flex'; };
+        document.getElementById('logoutBtnUI').onclick = async () => { await supa.auth.signOut(); location.reload(); };
+        document.getElementById('authCloseModal').onclick = () => { document.getElementById('authModal').style.display = 'none'; };
+
+        document.getElementById('authLoginSubmit').onclick = async () => {
+            const email = document.getElementById('authEmail').value.trim(); const password = document.getElementById('authPassword').value;
+            const err = document.getElementById('authErrorMsg');
+            const { error } = await supa.auth.signInWithPassword({ email, password });
+            if (error) { err.textContent = error.message; err.style.display = 'block'; } 
+            else { document.getElementById('authModal').style.display = 'none'; checkAuth(); }
+        };
+
+        document.getElementById('authRegisterSubmit').onclick = async () => {
+            const email = document.getElementById('authEmail').value.trim(); const password = document.getElementById('authPassword').value;
+            const nickname = document.getElementById('authNickname').value.trim();
+            const err = document.getElementById('authErrorMsg');
+            if (!email || !password || !nickname) { err.textContent = "Заполните все поля, включая Никнейм!"; err.style.display = 'block'; return; }
+            
+            const { data, error } = await supa.auth.signUp({ email, password, options: { data: { nickname: nickname } } });
+            if(error) { err.textContent = error.message; err.style.display = 'block'; } 
+            else { err.textContent = "Успешно зарегистрировано! Авторизация..."; err.style.color = "var(--color-success)"; err.style.display = 'block'; setTimeout(checkAuth, 1000); }
+        };
+
+        document.getElementById('forceNicknameBtn').onclick = async () => {
+            const nick = document.getElementById('forceNicknameInput').value.trim();
+            if (nick && currentUser) {
+                const { error } = await supa.from('user_stats').update({ nickname: nick }).eq('user_id', currentUser.id);
+                if (!error) { currentNickname = nick; document.getElementById('nicknameModal').style.display = 'none'; saveProgress(); }
+                else alert('Ошибка сохранения никнейма: ' + error.message);
             }
         };
 
-        // --- Лидерборд ---
-        document.getElementById('lbBtnMod').onclick = () => { activeLbTab = 'mod'; loadLeaderboard(); };
-        document.getElementById('lbBtnAp').onclick = () => { activeLbTab = 'ap'; loadLeaderboard(); };
-        
-        async function loadLeaderboard() {
-            const lb = document.getElementById('leaderboardList');
-            lb.innerHTML = `<div class="message-text" style="text-align: center; padding: 2rem;">⏳ Загрузка данных...</div>`;
-            
-            const field = activeLbTab === 'mod' ? 'xp' : 'pts';
-            const { data, error } = await supa.from('profiles').select('nickname, ' + field).order(field, { ascending: false }).limit(10);
-            if(data && data.length > 0) {
-                lb.innerHTML = '';
-                data.forEach((user, index) => {
-                    if(user[field] > 0) {
-                        lb.innerHTML += `
-                            <div class="message-card" style="min-height: auto; padding: 1rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
-                                <div><strong>#${index + 1}</strong> ${user.nickname || 'Неизвестный'}</div>
-                                <div style="color: ${activeLbTab==='mod' ? 'var(--color-primary)' : '#ff8fc4'}; font-weight: bold;">${user[field]} ${activeLbTab==='mod'?'XP':'Баллов'}</div>
-                            </div>
-                        `;
-                    }
-                });
-            } else {
-                lb.innerHTML = `<div class="message-text" style="text-align: center; padding: 2rem;">Нет данных.</div>`;
-            }
-        }
-
-        // Биндинг кнопок
-        document.querySelectorAll('[data-action]').forEach(btn => { btn.onclick = () => judge(btn.dataset.action); });
-        document.getElementById('startBtn').onclick = startGame;
-        document.getElementById('resetBtn').onclick = resetGame;
-        
         const themeBtn = document.querySelector('[data-theme-toggle]');
         if(themeBtn) {
             themeBtn.onclick = () => {
-                const root = document.documentElement;
-                const current = root.getAttribute('data-theme');
+                const root = document.documentElement; const current = root.getAttribute('data-theme');
                 if(current === 'dark') { root.setAttribute('data-theme', 'light'); themeBtn.textContent = '☀️'; }
                 else { root.setAttribute('data-theme', 'dark'); themeBtn.textContent = '🌙'; }
             };
         }
 
-        // Инициализация
         checkAuth();
         switchMode('moderation', document.querySelector('.mode-btn[data-mode="moderation"]'));
     });
