@@ -2222,6 +2222,13 @@
         let hasAccessCode = localStorage.getItem('access_shop') === 'true';
         let hasReportAccessCode = localStorage.getItem('access_report') === 'true';
         let hasApShopAccess = localStorage.getItem('access_ap_shop') === 'true';
+    // Функция вызова окна ввода пароля
+    function requestAccess(actionType, btnElement) {
+        pendingAction = { type: actionType, btn: btnElement };
+        document.getElementById('accessCodeInput').value = ''; 
+        document.getElementById('accessErrorMsg').style.display = 'none'; 
+        document.getElementById('accessModal').style.display = 'flex'; 
+    }
 
         const creatorEmail = 'daniiltimosin72@gmail.com';
         const adminEmails = [creatorEmail, 'leha.br222@gmail.com', 'isayevrufat37@gmail.com', 'maksimladnyj4@gmail.com'];
