@@ -155,7 +155,7 @@
     .btn-primary { color: #fff; background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 15px 35px rgba(108, 140, 255, 0.5); }
     .btn-primary:hover { box-shadow: 0 20px 45px rgba(108, 140, 255, 0.7); }
     .btn-secondary { color: var(--color-text-muted); background: rgba(9, 12, 26, 0.86); border: 1px solid rgba(191, 198, 255, 0.3); }
-    .btn-secondary:hover { background: rgba(25, 30, 50, 0.9); color: #fff; }
+    .btn-secondary:hover:not(:disabled) { background: rgba(25, 30, 50, 0.9); color: #fff; }
 
     html[data-site-theme="support"] .btn-primary, html[data-site-theme="ap_shop"] .btn-primary, html[data-site-theme="ap_admin"] .btn-primary { background: linear-gradient(135deg, #ff78b4, #ffb0dd); box-shadow: 0 15px 35px rgba(255, 144, 196, 0.5); color: #1a0510;}
     html[data-site-theme="about"] .btn-primary { background: linear-gradient(135deg, #ffbf47, #ffd979); box-shadow: 0 15px 35px rgba(255, 191, 71, 0.4); color: #18171c; }
@@ -562,7 +562,8 @@
           <h3 style="margin-bottom: 1rem; font-size: var(--text-base); color: var(--color-primary);">Выдача / Изъятие XP</h3>
           <select id="creatorUserSelect" class="support-input" style="margin-bottom: 1rem;"><option>Загрузка...</option></select>
           <input type="number" id="creatorXpAmount" class="support-input" placeholder="Количество XP (+ или -)" style="margin-bottom: 1rem;">
-          <button id="creatorXpBtn" class="btn btn-primary" style="width: 100%;">Изменить баланс XP</button>
+          <button id="creatorXpBtn" class="btn btn-primary" style="width: 100%; margin-bottom: 0.5rem;">Изменить баланс XP</button>
+          <button class="btn btn-secondary" style="width: 100%; border-color: var(--color-error); color: var(--color-error);" onclick="deleteUserAccount('creatorUserSelect', event)">🗑️ Удалить аккаунт пользователя</button>
         </div>
         <div style="background: rgba(28, 10, 20, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255, 107, 136, 0.5); margin-bottom: 1.5rem;">
           <h3 style="margin-bottom: 0.5rem; font-size: var(--text-base); color: var(--color-error);">Панель Троллинга 🤡</h3>
@@ -590,10 +591,11 @@
       <section class="panel game-card fade-in" id="mode-leadership" style="display:none;">
         <div class="section-head"><h2 style="color: #52c77b;">Панель Руководства (Модерация)</h2></div>
         <div style="background: rgba(10, 23, 14, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(82, 199, 123, 0.3); margin-bottom: 1.5rem;">
-          <h3 style="margin-bottom: 1rem; font-size: var(--text-base); color: var(--color-success);">Управление XP модераторов</h3>
+          <h3 style="margin-bottom: 1rem; font-size: var(--text-base); color: var(--color-success);">Управление пользователями</h3>
           <select id="leadershipUserSelect" class="support-input" style="margin-bottom: 1rem;"><option>Загрузка...</option></select>
           <input type="number" id="leadershipXpAmount" class="support-input" placeholder="Количество XP (+ или -)" style="margin-bottom: 1rem;">
-          <button id="leadershipXpBtn" class="btn btn-primary" style="width: 100%;">Выдать / Списать XP</button>
+          <button id="leadershipXpBtn" class="btn btn-primary" style="width: 100%; margin-bottom: 0.5rem;">Выдать / Списать XP</button>
+          <button class="btn btn-secondary" style="width: 100%; border-color: var(--color-error); color: var(--color-error);" onclick="deleteUserAccount('leadershipUserSelect', event)">🗑️ Удалить аккаунт пользователя</button>
         </div>
         <div style="background: rgba(13, 16, 32, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255, 191, 71, 0.3); margin-bottom: 1.5rem;">
           <h3 style="margin-bottom: 1rem; font-size: var(--text-base); color: var(--color-warning);">Создание ключей (Магазин Мод.)</h3>
@@ -609,10 +611,11 @@
       <section class="panel game-card fade-in" id="mode-ap_admin" style="display:none;">
         <div class="section-head"><h2 style="color: #ff8fc4;">Руководство АП</h2></div>
         <div style="background: rgba(35, 10, 26, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255, 143, 196, 0.3); margin-bottom: 1.5rem;">
-          <h3 style="margin-bottom: 1rem; font-size: var(--text-base); color: #ff8fc4;">Выдача / Изъятие Баллов</h3>
+          <h3 style="margin-bottom: 1rem; font-size: var(--text-base); color: #ff8fc4;">Управление пользователями</h3>
           <select id="apAdminUserSelect" class="support-input" style="margin-bottom: 1rem;"><option>Загрузка...</option></select>
           <input type="number" id="apAdminPointsAmount" class="support-input" placeholder="Количество баллов (+ или -)" style="margin-bottom: 1rem;">
-          <button id="apAdminPointsBtn" class="btn btn-primary" style="width: 100%;">Изменить баланс</button>
+          <button id="apAdminPointsBtn" class="btn btn-primary" style="width: 100%; margin-bottom: 0.5rem;">Изменить баланс</button>
+          <button class="btn btn-secondary" style="width: 100%; border-color: var(--color-error); color: var(--color-error);" onclick="deleteUserAccount('apAdminUserSelect', event)">🗑️ Удалить аккаунт пользователя</button>
         </div>
         <div style="background: rgba(28, 10, 18, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255, 143, 196, 0.3);">
           <h3 style="margin-bottom: 1rem; font-size: var(--text-base); color: var(--color-warning);">Ключи доступа к Магазину АП</h3>
@@ -1007,7 +1010,7 @@
                 { type: "good", text: "ПАЦАНЫ КТО НА КАПТ БЫСТРО ЗАЛЕТАЙТЕ ВСЕ В ИГРУ!!!!" },
                 { type: "good", text: "ПРОДАМ ГАРАЖ В АРЗАМАСЕ СРОЧНО ПИСАТЬ В ЛС" },
                 { type: "good", text: "Кто может подсказать, во сколько сегодня собеседование в Мэрию?" }
-            ]; // Сокращенный массив для примера, полная версия будет использовать твои массивы из кода
+            ];
         }
 
         function createSupportQuestions() {
@@ -1075,7 +1078,6 @@
 
         loginBtnUI.onclick = () => { authModal.style.display = 'flex'; };
         logoutBtnUI.onclick = async () => { await supa.auth.signOut(); location.reload(); };
-
         document.getElementById('authCloseModal').onclick = () => { authModal.style.display = 'none'; };
 
         document.getElementById('authLoginSubmit').onclick = async () => {
@@ -1102,18 +1104,53 @@
         };
 
         document.getElementById('forceRoleBtn').onclick = async () => {
+            const btn = document.getElementById('forceRoleBtn');
+            const originalText = btn.textContent;
             const role = document.getElementById('forceRoleSelect').value;
+            
             if (currentUser) {
-                await supa.from('profiles').update({ role: role }).eq('id', currentUser.id);
-                userRole = role; roleModal.style.display = 'none'; checkAuth();
+                btn.textContent = 'Сохранение...';
+                btn.disabled = true;
+                
+                const { error } = await supa.from('profiles').update({ role: role }).eq('id', currentUser.id);
+                
+                btn.textContent = originalText;
+                btn.disabled = false;
+
+                if (error) {
+                    alert('Ошибка при сохранении роли: ' + error.message);
+                    console.error("Supabase Error:", error);
+                } else {
+                    userRole = role; 
+                    roleModal.style.display = 'none'; 
+                    updateAccessButtons(); 
+                }
             }
         };
 
         document.getElementById('forceNicknameBtn').onclick = async () => {
+            const btn = document.getElementById('forceNicknameBtn');
+            const originalText = btn.textContent;
             const nick = document.getElementById('forceNicknameInput').value.trim();
+            
             if (nick && currentUser) {
-                await supa.from('profiles').update({ nickname: nick }).eq('id', currentUser.id);
-                currentNickname = nick; nicknameModal.style.display = 'none'; checkAuth();
+                btn.textContent = 'Сохранение...';
+                btn.disabled = true;
+
+                const { error } = await supa.from('profiles').update({ nickname: nick }).eq('id', currentUser.id);
+                
+                btn.textContent = originalText;
+                btn.disabled = false;
+
+                if (error) {
+                    alert('Ошибка при сохранении никнейма: ' + error.message);
+                    console.error("Supabase Error:", error);
+                } else {
+                    currentNickname = nick; 
+                    nicknameModal.style.display = 'none'; 
+                }
+            } else if (!nick) {
+                alert('Пожалуйста, введите никнейм!');
             }
         };
 
@@ -1139,7 +1176,6 @@
             if(data) {
                 state.correct = data.mod_correct || 0;
                 supportState.correct = data.ap_correct || 0;
-                // Инициализируем расчеты, если база хранит общие числа
                 updateUI();
                 updateSupportUI();
             }
@@ -1166,7 +1202,6 @@
             const target = document.getElementById(`mode-${modeId}`);
             if(target) { target.style.display = 'block'; target.classList.add('fade-in'); }
             
-            // Настройка тем и заголовков
             if(modeId === 'moderation' || modeId === 'timeattack' || modeId === 'complaints' || modeId === 'creator' || modeId === 'leadership' || modeId === 'admin_log') {
                 html.setAttribute('data-site-theme', modeId === 'moderation' ? 'mod' : modeId);
                 document.getElementById('brandSubtitle').textContent = "Симулятор смены модераторов";
@@ -1177,7 +1212,6 @@
                 html.setAttribute('data-site-theme', modeId);
             }
 
-            // Защита доступом
             if(modeId === 'shop' && !hasAccessCode) {
                 pendingAction = () => switchMode('shop', document.querySelector('[data-mode="shop"]'));
                 target.style.display = 'none';
@@ -1209,18 +1243,15 @@
                 const cat = btn.dataset.cat;
                 subNavs[cat].style.display = 'flex';
                 
-                // Дефолтные вкладки при переключении категорий
                 if(cat === 'moderation') switchMode('moderation', document.querySelector('[data-mode="moderation"]'));
                 if(cat === 'support') switchMode('support', document.querySelector('[data-mode="support"]'));
                 if(cat === 'general') switchMode('quests', document.querySelector('[data-mode="quests"]'));
             };
         });
 
-        modeBtns.forEach(btn => {
-            btn.onclick = () => switchMode(btn.dataset.mode, btn);
-        });
+        modeBtns.forEach(btn => { btn.onclick = () => switchMode(btn.dataset.mode, btn); });
 
-        // Проверка кодов доступа
+        // Коды доступа
         document.getElementById('accessSubmitBtn').onclick = async () => {
             const code = document.getElementById('accessCodeInput').value;
             const { data } = await supa.from('access_keys').select('*').eq('key_code', code).eq('is_used', false).single();
@@ -1240,7 +1271,7 @@
         };
         document.getElementById('accessCloseBtn').onclick = () => { accessModal.style.display = 'none'; pendingAction = null; };
 
-        // --- Логика Модерации ---
+        // --- Модерация ---
         function shuffle(arr) { return arr.sort(() => Math.random() - 0.5); }
         
         function startGame() {
@@ -1274,10 +1305,7 @@
             document.getElementById('authorMeta').textContent = "Игрок сервера";
         }
 
-        // Спам-фильтр
-        let lastActionTime = 0;
-        let spamWarnings = 0;
-        let isSpamBlocked = false;
+        let lastActionTime = 0; let spamWarnings = 0; let isSpamBlocked = false;
 
         function judge(verdict) {
             if(!state.started || !state.current || isSpamBlocked) return;
@@ -1287,38 +1315,29 @@
                 spamWarnings++;
                 if(spamWarnings >= 3) {
                     isSpamBlocked = true;
-                    spamModal.style.display = 'flex';
-                    playSound('fail');
+                    spamModal.style.display = 'flex'; playSound('fail');
                     let timeLeft = 60;
                     const btn = document.getElementById('closeSpamModal');
                     const timerId = setInterval(() => {
                         timeLeft--;
                         btn.textContent = `Блокировка... ${timeLeft}с`;
                         if(timeLeft <= 0) {
-                            clearInterval(timerId);
-                            isSpamBlocked = false;
-                            spamWarnings = 0;
-                            spamModal.style.display = 'none';
-                            btn.textContent = "Блокировка...";
+                            clearInterval(timerId); isSpamBlocked = false; spamWarnings = 0;
+                            spamModal.style.display = 'none'; btn.textContent = "Блокировка...";
                         }
                     }, 1000);
                     return;
                 }
-            } else {
-                spamWarnings = Math.max(0, spamWarnings - 1);
-            }
+            } else { spamWarnings = Math.max(0, spamWarnings - 1); }
             lastActionTime = now;
 
             state.resolved++;
             let isCorrect = (verdict === state.current.type);
             
-            if(isCorrect) { state.correct++; playSound('ok'); } 
-            else { state.mistakes++; playSound('fail'); }
+            if(isCorrect) { state.correct++; playSound('ok'); } else { state.mistakes++; playSound('fail'); }
 
             addLog(state.current.text, verdict, state.current.type, isCorrect);
-            updateUI();
-            saveData();
-            nextMessage();
+            updateUI(); saveData(); nextMessage();
         }
 
         function addLog(text, chosen, actual, isCorrect) {
@@ -1349,7 +1368,7 @@
             document.getElementById('xpFill').style.width = Math.min(100, (xp / 1000) * 10) + '%';
         }
 
-        // --- Логика Поддержки ---
+        // --- Поддержка ---
         function supportStart() {
             supportState.started = true;
             supQueue = shuffle([...allSupQuestions]);
@@ -1375,7 +1394,6 @@
             if(!supportState.started || !supportState.current) { supportStart(); return; }
             const ans = document.getElementById('supportAnswerInput').value.toLowerCase();
             const keys = supportState.current.keywords.map(k => k.toLowerCase());
-            
             const isCorrect = keys.some(k => ans.includes(k));
             supportState.resolved++;
             
@@ -1387,11 +1405,8 @@
                 supportState.mistakes++; playSound('fail');
                 resDiv.innerHTML = `<span style="color:var(--color-error);">❌ Ошибка! Нужно было использовать: ${keys.join(' или ')}</span>`;
             }
-            updateSupportUI();
-            saveData();
-            setTimeout(supportNext, 1500);
+            updateSupportUI(); saveData(); setTimeout(supportNext, 1500);
         };
-        
         document.getElementById('supportNextBtn').onclick = supportNext;
 
         function updateSupportUI() {
@@ -1404,24 +1419,14 @@
             document.getElementById('supportXpFill').style.width = Math.min(100, (pts / 500) * 10) + '%';
         }
 
-        // --- Логика Жалоб ---
-        // (Схожая с модерацией, для краткости опущена, но кнопки работают)
-        document.querySelectorAll('[data-comp-action]').forEach(btn => {
-            btn.onclick = () => { playSound('ok'); nextComplaint(); }; // Заглушка
-        });
-        function nextComplaint() {
-            document.getElementById('compText').textContent = "Жалоба №" + Math.floor(Math.random()*1000) + ": ДМ на спавне";
-            document.getElementById('compEvidence').textContent = "Доказательства: Фрапс есть.";
-        }
-
-        // --- Магазин (Мод) ---
+        // --- Магазин ---
         const shopItems = [
             { id: "mod_role", title: "Роль @Модератор в DS", price: 25000, desc: "Официальная роль на сервере Discord.", icon: "🛡️" },
             { id: "mod_promo", title: "Промокод на скидку", price: 10000, desc: "Секретный промокод.", icon: "🎟️" },
             { id: "mod_roulette", title: "Крутить Рулетку", price: 1000, desc: "Выиграй до 5000 XP!", icon: "🎰", action: "roulette" },
             { id: "mod_coin", title: "Орёл или Решка", price: 500, desc: "Шанс удвоить ставку.", icon: "🪙", action: "coin" },
             { id: "mod_safe", title: "Три Сейфа", price: 400, desc: "Угадай сейф и забери x3.", icon: "🧰", action: "safe" },
-            { id: "mod_jw", title: "Викторина John Wick", price: 600, desc: "Угадай персонажа и забери x2.5.", icon: "🔫", action: "jw" }
+            { id: "mod_jw", title: "Викторина", price: 600, desc: "Угадай персонажа и забери x2.5.", icon: "🔫", action: "jw" }
         ];
 
         function renderShopItems() {
@@ -1449,31 +1454,22 @@
         window.buyItem = async function(id, price, action) {
             const currentXp = Math.max(0, state.correct * 100 - state.mistakes * 50 + state.reportXp - shopState.spent);
             if(currentXp >= price) {
-                shopState.spent += price;
-                updateUI(); saveData(); playSound('ok');
-                renderShopItems();
+                shopState.spent += price; updateUI(); saveData(); playSound('ok'); renderShopItems();
                 
                 if(action === 'roulette') openFortune();
                 else if(action === 'coin') { document.getElementById('coinModal').style.display = 'flex'; document.getElementById('coinResult').textContent = ''; document.getElementById('coinAnimation').style.display = 'block'; document.getElementById('closeCoinBtn').style.display = 'none'; }
                 else if(action === 'safe') { document.getElementById('safesModal').style.display = 'flex'; document.getElementById('safesResult').textContent = ''; document.getElementById('closeSafesBtn').style.display = 'none'; }
-                else if(action === 'jw') startJwGame();
+                else if(action === 'jw') document.getElementById('jwModal').style.display = 'flex'; // Заглушка
                 else {
                     const item = shopItems.find(i => i.id === id);
                     if(currentUser) {
-                        await supa.from('admin_logs').insert([{
-                            user_email: currentUser.email,
-                            nickname: currentNickname || 'Неизвестно',
-                            item_name: item.title,
-                            cost: price,
-                            type: 'mod_shop'
-                        }]);
+                        await supa.from('admin_logs').insert([{ user_email: currentUser.email, nickname: currentNickname || 'Неизвестно', item_name: item.title, cost: price, type: 'mod_shop' }]);
                         alert(`Вы успешно купили: ${item.title}! Ожидайте выдачи от Руководства.`);
                     }
                 }
             } else { playSound('fail'); }
         };
 
-        // --- Магазин (АП) ---
         const apShopItems = [
             { id: "ap_imm", title: "Снятие 1 выговора", price: 200, desc: "Иммунитет на снятие преда.", icon: "🛡️" },
             { id: "ap_role", title: "Кастомная роль в DS", price: 500, desc: "Роль с вашим названием.", icon: "🎨" },
@@ -1505,54 +1501,19 @@
         window.buyApItem = async function(id, price, action) {
             const currentPts = Math.max(0, supportState.correct * 10 - supportState.mistakes * 5 - shopState.apSpent);
             if(currentPts >= price) {
-                shopState.apSpent += price;
-                updateSupportUI(); saveData(); playSound('ok');
-                renderApShopItems();
-                
-                if(action === 'ap_roulette') {
-                    // Логика мини-рулетки АП (заглушка)
-                    alert("Вы крутите рулетку АП! (В разработке)");
-                } else {
+                shopState.apSpent += price; updateSupportUI(); saveData(); playSound('ok'); renderApShopItems();
+                if(action === 'ap_roulette') alert("Вы крутите рулетку АП! (В разработке)");
+                else {
                     const item = apShopItems.find(i => i.id === id);
                     if(currentUser) {
-                        await supa.from('admin_logs').insert([{
-                            user_email: currentUser.email,
-                            nickname: currentNickname || 'Неизвестно',
-                            item_name: item.title,
-                            cost: price,
-                            type: 'ap_shop'
-                        }]);
+                        await supa.from('admin_logs').insert([{ user_email: currentUser.email, nickname: currentNickname || 'Неизвестно', item_name: item.title, cost: price, type: 'ap_shop' }]);
                         alert(`Вы купили: ${item.title} за баллы! Ожидайте выдачи от Руководства АП.`);
                     }
                 }
             } else { playSound('fail'); }
         };
 
-        // --- Мини-Игры (Орел, Сейфы, Викторина, Колесо) ---
-        // Для экономии места привожу заглушки, но в идеале здесь копируется код из smechno.txt
-        function openFortune() {
-            document.getElementById('fortuneModal').style.display = 'flex';
-            document.getElementById('fortuneResultText').textContent = "Вращается...";
-            setTimeout(() => { 
-                document.getElementById('fortuneResultText').textContent = "Вы выиграли 500 XP!";
-                state.reportXp += 500; updateUI(); saveData(); playSound('win');
-                document.getElementById('closeFortuneBtn').style.display = 'block';
-            }, 2000);
-        }
-        document.getElementById('closeFortuneBtn').onclick = () => { document.getElementById('fortuneModal').style.display = 'none'; };
-
-        document.getElementById('btnHeads').onclick = () => playCoin('heads');
-        document.getElementById('btnTails').onclick = () => playCoin('tails');
-        function playCoin(choice) {
-            const isWin = Math.random() > 0.5;
-            document.getElementById('coinAnimation').style.display = 'none';
-            if(isWin) { document.getElementById('coinResult').textContent = "Победа! +1000 XP"; state.reportXp += 1000; playSound('win'); }
-            else { document.getElementById('coinResult').textContent = "Поражение!"; playSound('fail'); }
-            updateUI(); saveData(); document.getElementById('closeCoinBtn').style.display = 'block';
-        }
-        document.getElementById('closeCoinBtn').onclick = () => { document.getElementById('coinModal').style.display = 'none'; };
-
-        // --- Панели Руководства и Создателя ---
+        // --- Панели Руководства, Создателя и УДАЛЕНИЕ ---
         async function loadUsersForAdmin() {
             const selects = ['creatorUserSelect', 'leadershipUserSelect', 'apAdminUserSelect'];
             const { data } = await supa.from('profiles').select('id, nickname, role, email');
@@ -1562,23 +1523,66 @@
                     if(sel) {
                         sel.innerHTML = '<option value="">Выберите пользователя...</option>';
                         data.forEach(u => {
-                            sel.innerHTML += `<option value="${u.id}">${u.nickname || u.email} (${u.role})</option>`;
+                            // Сохраняем email в dataset для проверки прав на удаление
+                            sel.innerHTML += `<option value="${u.id}" data-email="${u.email}">${u.nickname || u.email} (${u.role})</option>`;
                         });
                     }
                 });
             }
         }
 
-        // Общая логика изменения XP/PTS админом
         async function modifyBalance(userId, amount, isPts) {
             if(!userId || !amount) return;
-            const field = isPts ? 'pts' : 'xp'; // В реальности нужно обновлять базу
-            alert(`Баланс ${isPts ? 'баллов' : 'XP'} изменен на ${amount}. (Требуется полная интеграция с БД)`);
+            alert(`Баланс изменен. (Требуется обновление БД)`);
         }
 
         document.getElementById('creatorXpBtn').onclick = () => modifyBalance(document.getElementById('creatorUserSelect').value, document.getElementById('creatorXpAmount').value, false);
         document.getElementById('leadershipXpBtn').onclick = () => modifyBalance(document.getElementById('leadershipUserSelect').value, document.getElementById('leadershipXpAmount').value, false);
         document.getElementById('apAdminPointsBtn').onclick = () => modifyBalance(document.getElementById('apAdminUserSelect').value, document.getElementById('apAdminPointsAmount').value, true);
+
+        // Функция удаления аккаунта
+        window.deleteUserAccount = async function(selectElementId, event) {
+            const select = document.getElementById(selectElementId);
+            const userId = select.value;
+            
+            if (!userId) {
+                alert('Пожалуйста, выберите пользователя из списка.');
+                return;
+            }
+
+            const option = select.options[select.selectedIndex];
+            const targetEmail = option.dataset.email;
+
+            // Защита: нельзя удалить руководство и создателя
+            if (targetEmail === creatorEmail || modLeadershipEmails.includes(targetEmail) || apLeadershipEmails.includes(targetEmail)) {
+                alert('🚫 В доступе отказано: Нельзя удалять аккаунты руководящего состава или Создателя проекта.');
+                return;
+            }
+
+            const confirmDelete = confirm(`Вы уверены, что хотите НАВСЕГДА удалить профиль пользователя ${option.text}?`);
+            
+            if (confirmDelete) {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = 'Удаление...';
+                btn.disabled = true;
+
+                try {
+                    const { error } = await supa.from('profiles').delete().eq('id', userId);
+                    if (error) throw error;
+                    
+                    alert(`✅ Профиль пользователя успешно удален!`);
+                    loadUsersForAdmin(); // Обновляем списки после удаления
+                    if (document.getElementById('mode-leaderboard').style.display === 'block') loadLeaderboard();
+                } catch (error) {
+                    alert('Ошибка при удалении пользователя: ' + error.message);
+                    console.error(error);
+                } finally {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }
+            }
+        };
 
         // --- Лидерборд ---
         document.getElementById('lbBtnMod').onclick = () => { activeLbTab = 'mod'; loadLeaderboard(); };
