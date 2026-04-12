@@ -2722,13 +2722,49 @@
             const { error } = await supa.from('reports').insert([{ id: Date.now().toString(), email: currentUser.email, link: link, date: new Date().toLocaleString('ru-RU'), status: 'На проверке', xp: 0 }]);
             if (error) { res.textContent = "Ошибка: " + error.message; res.style.color = "var(--color-error)"; return; } res.textContent = "Отчет успешно отправлен!"; res.style.color = "var(--color-success)"; document.getElementById('reportLinkInput').value = ''; playSound('win');
         });
-        document.getElementById('viewReportsBtn')?.addEventListener('click', async () => {
-            const listArea = document.getElementById('reportsListArea'); if(!listArea) return; if(listArea.style.display === 'flex') { listArea.style.display = 'none'; return; } listArea.style.display = 'flex'; listArea.innerHTML = 'Загрузка...';
+                document.getElementById('viewReportsBtn')?.addEventListener('click', async () => {
+            const listArea = document.getElementById('reportsListArea'); 
+            if(!listArea) return; 
+            if(listArea.style.display === 'flex') { listArea.style.display = 'none'; return; } 
+            listArea.style.display = 'flex'; 
+            listArea.innerHTML = 'Загрузка...';
+            
             const { data: reports } = await supa.from('reports').select('*').neq('email', 'ACCESS_KEY').order('date', { ascending: false }).limit(30);
-            if(reports && reports.length > 0) { listArea.innerHTML = reports.map(r => `<div style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 12px; border: 1px solid rgba(191,198,255,0.2);"><div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem;"><strong>${r.email}</strong><span style="color:var(--color-text-faint); font-size: 0.8rem;">${r.date}</span></div><div style="margin-bottom: 0.5rem;"><a href="${r.link}" target="_blank" style="color: var(--color-primary);">Скриншот онлайна</a></div><div style="display:flex; justify-content:space-between; align-items:center;"><span style="color: ${r.status === 'Одобрено' ? 'var(--color-success)' : r.status === 'Отказано' ? 'var(--color-error)' : 'var(--color-warning)'}">${r.status} (${r.xp} XP)</span>${r.status === 'На проверке' ? `<div style="display:flex; gap: 0.5rem;"><button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; border-color: var(--color-success); color: var(--color-success);" onclick="processReport('${r.id}', true)">Одобрить (100 XP)</button><button class="btn btn-secondary" style="padding: 0.3rem 0.6rem; font-size: 0.8rem; border-color: var(--color-error); color: var(--color-error);" onclick="processReport('${r.id}', false)">Отказать</button></div>` : ''}</div></div>`).join(''); } 
-            else listArea.innerHTML = '<div class="message-text">Нет отчетов</div>';
+            
+            if(reports && reports.length > 0) { 
+                listArea.innerHTML = reports.map(r => `
+                <div style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 12px; border: 1px solid rgba(191,198,255,0.2);">
+                    <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem;">
+                        <strong>${r.email}</strong><span style="color:var(--color-text-faint); font-size: 0.8rem;">${r.date}</span>
+                    </div>
+                    <div style="margin-bottom: 0.5rem;">
+                        <a href="${r.link}" target="_blank" style="color: var(--color-primary);">Скриншот онлайна</a>
+                    </div>
+                    <div style="display:flex; flex-direction: column; gap: 0.5rem;">
+                        <span style="color: ${r.xp > 0 ? 'var(--color-success)' : r.status === 'Не засчитано' ? 'var(--color-error)' : 'var(--color-warning)'}">${r.status} (${r.xp} XP)</span>
+                        
+                        ${(r.status === 'На проверке' || r.status.includes('Ожидает')) ? `
+                        <div style="display:flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem;">
+                            <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: #52c77b; color: #52c77b;" onclick="processReport('${r.id}', 'Норма', 15)">Норма (15)</button>
+                            <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: #3dd68c; color: #3dd68c;" onclick="processReport('${r.id}', 'Перенорма', 30)">Перенорма (30)</button>
+                            <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: #ffbf47; color: #ffbf47;" onclick="processReport('${r.id}', 'Герой дня', 60)">Герой дня (60)</button>
+                            <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: var(--color-error); color: var(--color-error);" onclick="processReport('${r.id}', 'Не засчитано', 0)">Отказ</button>
+                        </div>` : ''}
+                    </div>
+                </div>`).join(''); 
+            } else {
+                listArea.innerHTML = '<div class="message-text">Нет отчетов</div>';
+            }
         });
-        window.processReport = async function(id, approve) { await supa.from('reports').update({ status: approve ? 'Одобрено' : 'Отказано', xp: approve ? 100 : 0 }).eq('id', id); document.getElementById('viewReportsBtn').click(); setTimeout(() => document.getElementById('viewReportsBtn').click(), 100); };
+
+        // Обновленная функция обработки (принимает текст статуса и сумму XP)
+        window.processReport = async function(id, statusText, xpAmount) { 
+            await supa.from('reports').update({ status: statusText, xp: xpAmount }).eq('id', id); 
+            
+            // Быстрое переоткрытие вкладки для обновления визуала
+            document.getElementById('viewReportsBtn').click(); 
+            setTimeout(() => document.getElementById('viewReportsBtn').click(), 100); 
+        };
 
         async function saveProgress() {
             if(!currentUser) return;
