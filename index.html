@@ -37,31 +37,15 @@
       --transition: 220ms cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0;
-    }
-
-    html { 
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      min-height: 100dvh;
-      font-family: var(--font-body);
-      font-size: var(--text-base);
-      color: var(--color-text);
-      line-height: 1.6;
-      overflow-x: hidden;
-      background:
-        radial-gradient(circle at top left, rgba(108, 140, 255, 0.2), transparent 50%),
-        radial-gradient(circle at bottom right, rgba(255, 107, 136, 0.18), transparent 55%),
-        linear-gradient(160deg, #05060a, #05060a 45%, #040711 100%);
+      min-height: 100dvh; font-family: var(--font-body); font-size: var(--text-base); color: var(--color-text); line-height: 1.6; overflow-x: hidden;
+      background: radial-gradient(circle at top left, rgba(108, 140, 255, 0.2), transparent 50%), radial-gradient(circle at bottom right, rgba(255, 107, 136, 0.18), transparent 55%), linear-gradient(160deg, #05060a, #05060a 45%, #040711 100%);
       transition: background 350ms ease;
     }
 
-    /* === УНИКАЛЬНЫЕ ТЕМЫ ДЛЯ КАЖДОЙ ВКЛАДКИ === */
     html[data-site-theme="support"] body { background: radial-gradient(circle at top left, rgba(255, 184, 222, 0.3), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 120, 180, 0.3), transparent 55%), linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%); }
     html[data-site-theme="about"] body { background: radial-gradient(circle at top left, rgba(255, 220, 120, 0.16), transparent 55%), radial-gradient(circle at bottom right, rgba(108, 140, 255, 0.18), transparent 55%), linear-gradient(160deg, #0c0a05, #0c0a05 45%, #12100a 100%); }
     html[data-site-theme="shop"] body { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.14), transparent 55%), linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%); }
@@ -75,27 +59,16 @@
     html[data-site-theme="creator"] body { background: radial-gradient(circle at top left, rgba(255, 107, 136, 0.2), transparent 55%), radial-gradient(circle at bottom right, rgba(162, 108, 255, 0.2), transparent 55%), linear-gradient(160deg, #1a0510, #0a0208 45%, #050104 100%); }
 
     button, input, select { font: inherit; }
-
-    button { 
-      cursor: pointer; 
-      border: none;
-      transition: transform var(--transition), background var(--transition), box-shadow var(--transition), opacity var(--transition), border-color var(--transition);
-    }
+    button { cursor: pointer; border: none; transition: transform var(--transition), background var(--transition), box-shadow var(--transition), opacity var(--transition), border-color var(--transition); }
     button:hover { transform: translateY(-2px); }
     button:active { transform: translateY(1px) scale(0.98); }
     button:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; }
 
     .page { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; padding: 1rem 0 2rem; }
-
     .topbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
     .brand { display: flex; align-items: center; gap: 0.85rem; min-width: 0; }
 
-    .logo {
-      width: 48px; height: 48px; display: grid; place-items: center; color: var(--color-text);
-      background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%), linear-gradient(135deg, rgba(108, 140, 255, 0.32), rgba(255, 107, 136, 0.22));
-      border-radius: 16px; box-shadow: var(--shadow-md); border: 1px solid rgba(255, 255, 255, 0.25); flex: 0 0 auto;
-    }
-    
+    .logo { width: 48px; height: 48px; display: grid; place-items: center; color: var(--color-text); background: radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.16), transparent 55%), linear-gradient(135deg, rgba(108, 140, 255, 0.32), rgba(255, 107, 136, 0.22)); border-radius: 16px; box-shadow: var(--shadow-md); border: 1px solid rgba(255, 255, 255, 0.25); flex: 0 0 auto; }
     html[data-site-theme="support"] .logo { background: linear-gradient(135deg, rgba(255, 160, 210, 0.65), rgba(255, 120, 180, 0.6)); border-color: rgba(255, 210, 240, 0.7); }
     html[data-site-theme="about"] .logo { background: linear-gradient(135deg, rgba(255, 191, 71, 0.55), rgba(108, 140, 255, 0.38)); border-color: rgba(255, 230, 180, 0.45); }
     html[data-site-theme="shop"] .logo { background: linear-gradient(135deg, rgba(82, 199, 123, 0.45), rgba(255, 191, 71, 0.28)); border-color: rgba(162, 241, 188, 0.42); }
@@ -111,18 +84,11 @@
     .brand-title { font-family: var(--font-display); font-size: var(--text-lg); letter-spacing: 0.08em; text-transform: uppercase; }
     .brand-sub { color: var(--color-text-muted); font-size: var(--text-sm); max-width: 42ch; }
 
-    .icon-btn { 
-      min-width: 44px; min-height: 44px; padding: 0 0.75rem; border-radius: 999px; color: var(--color-text); 
-      background: rgba(16, 21, 40, 0.85); border: 1px solid rgba(191, 198, 255, 0.35); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.8); flex: 0 0 auto; font-size: 1.1rem;
-    }
+    .icon-btn { min-width: 44px; min-height: 44px; padding: 0 0.75rem; border-radius: 999px; color: var(--color-text); background: rgba(16, 21, 40, 0.85); border: 1px solid rgba(191, 198, 255, 0.35); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.8); flex: 0 0 auto; font-size: 1.1rem; }
 
     .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 1rem; align-items: stretch; }
 
-    /* Фон панелей в зависимости от темы */
-    .panel { 
-      border-radius: 22px; border: 1px solid rgba(191, 198, 255, 0.28); box-shadow: var(--shadow-lg); backdrop-filter: blur(18px);
-      background: radial-gradient(circle at top left, rgba(108, 140, 255, 0.23), transparent 55%), linear-gradient(155deg, rgba(18, 22, 38, 0.98), rgba(6, 7, 16, 1)); min-width: 0; 
-    }
+    .panel { border-radius: 22px; border: 1px solid rgba(191, 198, 255, 0.28); box-shadow: var(--shadow-lg); backdrop-filter: blur(18px); background: radial-gradient(circle at top left, rgba(108, 140, 255, 0.23), transparent 55%), linear-gradient(155deg, rgba(18, 22, 38, 0.98), rgba(6, 7, 16, 1)); min-width: 0; }
     html[data-site-theme="support"] .panel { background: radial-gradient(circle at top left, rgba(255, 160, 210, 0.3), transparent 55%), linear-gradient(155deg, rgba(35, 10, 26, 0.98), rgba(16, 4, 20, 1)); border-color: rgba(255, 190, 230, 0.45); }
     html[data-site-theme="about"] .panel { background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.16), transparent 55%), linear-gradient(155deg, rgba(25, 19, 8, 0.98), rgba(10, 10, 14, 1)); border-color: rgba(255, 214, 122, 0.28); }
     html[data-site-theme="shop"] .panel { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), linear-gradient(155deg, rgba(10, 23, 14, 0.98), rgba(8, 10, 15, 1)); border-color: rgba(162, 241, 188, 0.22); }
@@ -141,9 +107,7 @@
     .section-head p { max-width: 62ch; color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.6; }
     
     .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .badge { 
-      padding: 0.4rem 0.85rem; border-radius: 999px; font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 800; border: 1px solid rgba(191, 198, 255, 0.28); color: var(--color-text-muted); background: rgba(9, 12, 26, 0.82); 
-    }
+    .badge { padding: 0.4rem 0.85rem; border-radius: 999px; font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.12em; font-weight: 800; border: 1px solid rgba(191, 198, 255, 0.28); color: var(--color-text-muted); background: rgba(9, 12, 26, 0.82); }
     .badge.xp { background: #ffbf47; color: #18171c; border-color: transparent; }
     
     html[data-site-theme="support"] .badge { background: rgba(34, 7, 24, 0.96); border-color: rgba(255, 190, 230, 0.5); }
@@ -176,14 +140,9 @@
     .hero p, .rules p, .game-card > p, .side p { color: var(--color-text-muted); font-size: var(--text-sm); }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
-    .btn { 
-      min-height: 48px; padding: 0.85rem 1.5rem; border-radius: 16px; font-size: var(--text-sm); font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center;
-    }
-    .btn-primary { 
-      color: #fff; background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 15px 35px rgba(108, 140, 255, 0.5); 
-    }
+    .btn { min-height: 48px; padding: 0.85rem 1.5rem; border-radius: 16px; font-size: var(--text-sm); font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; }
+    .btn-primary { color: #fff; background: radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.18), transparent 55%), linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 15px 35px rgba(108, 140, 255, 0.5); }
     .btn-primary:hover { box-shadow: 0 20px 45px rgba(108, 140, 255, 0.7); }
-
     .btn-secondary { color: var(--color-text-muted); background: rgba(9, 12, 26, 0.86); border: 1px solid rgba(191, 198, 255, 0.3); }
     .btn-secondary:hover { background: rgba(25, 30, 50, 0.9); color: #fff; }
 
@@ -340,13 +299,16 @@
     .r-fine { background: radial-gradient(circle, rgba(255, 107, 136, 0.15) 0%, transparent 70%); border-bottom: 3px solid #ff6b88; }
     .r-fine span { color: #ff9fb4; }
 
-    /* === ОРЁЛ И РЕШКА АНИМАЦИЯ === */
+    /* === ОРЁЛ И РЕШКА === */
     @keyframes coinFlipAnim {
         0% { transform: scaleY(1); }
         50% { transform: scaleY(0); }
         100% { transform: scaleY(1); }
     }
     .flipping { animation: coinFlipAnim 0.15s infinite; }
+
+    /* === ТРИ СЕЙФА === */
+    .safe-btn:hover:not(:disabled) { transform: scale(1.1); box-shadow: 0 10px 20px rgba(162, 108, 255, 0.4); }
 
     .timer-display { font-family: var(--font-display); font-size: 4rem; color: #ffbf47; text-align: center; text-shadow: 0 0 20px rgba(255, 191, 71, 0.6); line-height: 1; margin: 1.5rem 0; transition: color 0.3s ease; }
     .timer-display.danger { color: #ff6b88; text-shadow: 0 0 20px rgba(255, 107, 136, 0.8); animation: pulse 1s infinite; }
@@ -436,6 +398,20 @@
       <div id="coinAnimation" style="font-size: 5rem; display: none; text-shadow: 0 0 20px rgba(255, 191, 71, 0.5);">🪙</div>
       <div id="coinResult" style="font-size: var(--text-lg); font-weight: bold; min-height: 2rem;"></div>
       <button id="closeCoinBtn" class="btn" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted); display: none;">Забрать результат</button>
+    </div>
+  </div>
+
+  <div id="safesModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center;">
+    <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 450px; display: flex; flex-direction: column; gap: 1.5rem; text-align: center;">
+      <h2 style="margin: 0; font-family: var(--font-display); color: #a26cff;">Три Сейфа</h2>
+      <p style="color: var(--color-text-muted); font-size: var(--text-sm); margin: 0;">Ставка: 400 XP. В одном из сейфов лежит 1200 XP (х3)! Угадай, в каком.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 1rem;" id="safesContainer">
+          <button class="safe-btn" data-index="0" style="font-size: 3.5rem; background: transparent; border: 2px solid #a26cff; border-radius: 16px; padding: 1.5rem; cursor: pointer; transition: 0.3s; flex: 1;">🧰</button>
+          <button class="safe-btn" data-index="1" style="font-size: 3.5rem; background: transparent; border: 2px solid #a26cff; border-radius: 16px; padding: 1.5rem; cursor: pointer; transition: 0.3s; flex: 1;">🧰</button>
+          <button class="safe-btn" data-index="2" style="font-size: 3.5rem; background: transparent; border: 2px solid #a26cff; border-radius: 16px; padding: 1.5rem; cursor: pointer; transition: 0.3s; flex: 1;">🧰</button>
+      </div>
+      <div id="safesResult" style="font-size: var(--text-lg); font-weight: bold; min-height: 2rem;"></div>
+      <button id="closeSafesBtn" class="btn" style="background: transparent; border: 1px solid rgba(191,198,255,0.3); color: var(--color-text-muted); display: none;">Забрать результат</button>
     </div>
   </div>
 
@@ -1726,7 +1702,7 @@
           await supa.from('reports').insert([newLog]);
         }
 
-        // === ОБНОВЛЕННЫЙ МАГАЗИН (С МИНИ-ИГРАМИ) ===
+        // === ОБНОВЛЕННЫЙ МАГАЗИН ===
         const shopItems = [
           { id: 'mm_1', title: "ММ: Скидка -1 день", desc: "Ускоряет повышение Младшего Модератора (ММ → М).", price: 200 },
           { id: 'mm_2', title: "ММ: Скидка -2 дня", desc: "Максимальная скидка. Повышение через 5 дней.", price: 450 },
@@ -1737,7 +1713,8 @@
           { id: 'bonus_2', title: "Иммунитет на ошибку", desc: "Покупается заранее. Спасает от наказания за мелкий косяк.", price: 400 },
           { id: 'fortune', title: "Колесо Фортуны", desc: "Испытай удачу и получи случайный бонус или штраф!", price: 250 },
           { id: 'fortune_vip', title: "VIP Рулетка", desc: "Высокие ставки! Эксклюзивные призы или жесткий штраф.", price: 800 },
-          { id: 'coinflip', title: "Орёл или Решка", desc: "Ставка 500 XP. Угадаешь — получишь 1000 XP, нет — потеряешь ставку.", price: 500 }
+          { id: 'coinflip', title: "Орёл или Решка", desc: "Ставка 500 XP. Угадаешь — получишь 1000 XP, нет — потеряешь ставку.", price: 500 },
+          { id: 'safes', title: "Три Сейфа 🧰", desc: "Ставка 400 XP. Найди клад в одном из сейфов и забери 1200 XP!", price: 400 }
         ];
 
         function calcXP(value) { return Math.floor(Number(value) / 10) * 15; }
@@ -2126,7 +2103,7 @@
 
         const fortuneVipPrizes = [
           { type: 'r-leg', icon: '👑', text: '10000 Coins (DS)' },
-          { type: 'r-leg', icon: '🚀', text: '+1 ранг (Сразу)' },
+          { type: 'r-bonus', icon: '📦', text: 'Пакет: 3000 XP', xp: 3000 },
           { type: 'r-bonus', icon: '📦', text: 'Джекпот: 2500 XP', xp: 2500 },
           { type: 'r-rare', icon: '💎', text: 'Иммунитет на неделю' },
           { type: 'r-bonus', icon: '📦', text: 'Пакет: 1500 XP', xp: 1500 },
@@ -2205,13 +2182,12 @@
                 document.getElementById('btnTails').style.display = 'none';
                 
                 const anim = document.getElementById('coinAnimation');
-                anim.style.display = 'block';
-                anim.classList.add('flipping');
-                playSound('ok'); 
+                anim.style.display = 'block'; anim.classList.add('flipping'); playSound('ok'); 
                 
                 setTimeout(async () => {
                     anim.classList.remove('flipping');
-                    const win = Math.random() > 0.5; // Шанс 50 на 50
+                    // Абсолютно честный рандом 50 на 50
+                    const win = Math.random() < 0.5; 
                     const resText = document.getElementById('coinResult');
                     
                     if (win) {
@@ -2219,7 +2195,7 @@
                         resText.textContent = `Выпал ${choiceName}! Победил! (+1000 XP)`;
                         resText.style.color = 'var(--color-success)';
                         playSound('win');
-                        shopState.spent = Number(shopState.spent) - 1000; // Компенсируем затраты 500 и даем еще 500 чистыми
+                        shopState.spent = Number(shopState.spent) - 1000; 
                         await logPurchase(`Мини-игра: Победа в Орёл и Решка (+500 чистыми)`, true);
                     } else {
                         anim.textContent = isHeads ? '🪙' : '🦅';
@@ -2237,6 +2213,68 @@
         });
 
         document.getElementById('closeCoinBtn')?.addEventListener('click', () => { document.getElementById('coinModal').style.display = 'none'; });
+
+        // === ИГРА: ТРИ СЕЙФА ===
+        function openSafesGame() {
+            const modal = document.getElementById('safesModal');
+            document.getElementById('safesResult').textContent = '';
+            document.getElementById('closeSafesBtn').style.display = 'none';
+            
+            const btns = document.querySelectorAll('.safe-btn');
+            btns.forEach(b => {
+                b.style.display = 'block';
+                b.textContent = '🧰';
+                b.disabled = false;
+                b.style.borderColor = '#a26cff';
+                b.style.opacity = '1';
+                b.style.boxShadow = 'none';
+            });
+            modal.style.display = 'flex';
+        }
+
+        document.querySelectorAll('.safe-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.safe-btn').forEach(b => b.disabled = true);
+                playSound('ok');
+                
+                const chosen = parseInt(btn.dataset.index);
+                const winner = Math.floor(Math.random() * 3); // 1 шанс из 3-х
+                const resText = document.getElementById('safesResult');
+                
+                setTimeout(async () => {
+                    document.querySelectorAll('.safe-btn').forEach(b => {
+                        const idx = parseInt(b.dataset.index);
+                        if (idx === winner) {
+                            b.textContent = '💰';
+                            b.style.borderColor = 'var(--color-success)';
+                            b.style.boxShadow = '0 0 20px rgba(82, 199, 123, 0.5)';
+                        } else {
+                            b.textContent = '🕷️';
+                            b.style.borderColor = 'var(--color-error)';
+                            b.style.opacity = '0.5';
+                        }
+                    });
+
+                    if (chosen === winner) {
+                        resText.textContent = `Угадал! Вы нашли 1200 XP (+800 чистыми)!`;
+                        resText.style.color = 'var(--color-success)';
+                        playSound('win');
+                        shopState.spent = Number(shopState.spent) - 1200; 
+                        await logPurchase(`Мини-игра: Три Сейфа (Победа +800 чистыми)`, true);
+                    } else {
+                        resText.textContent = `Мимо! Сейф был пуст. (-400 XP)`;
+                        resText.style.color = 'var(--color-error)';
+                        playSound('fail');
+                        await logPurchase(`Мини-игра: Три Сейфа (Проигрыш)`, true);
+                    }
+                    updateShopStats(); updateModStats(); updateSupportStats(); saveProgress();
+                    document.getElementById('closeSafesBtn').style.display = 'block';
+                }, 600);
+            });
+        });
+
+        document.getElementById('closeSafesBtn')?.addEventListener('click', () => { document.getElementById('safesModal').style.display = 'none'; });
+
 
         function renderShopItems() {
           const container = document.getElementById('shopItemsContainer');
@@ -2262,6 +2300,8 @@
                    pushLog(`🛒 Куплен билет "VIP Рулетка" за ${price} XP.`); startFortuneWheel(true);
                 } else if (id === 'coinflip') {
                    pushLog(`🛒 Куплена игра "Орёл или Решка" за ${price} XP.`); openCoinFlip();
+                } else if (id === 'safes') {
+                   pushLog(`🛒 Куплена игра "Три Сейфа" за ${price} XP.`); openSafesGame();
                 } else {
                    pushLog(`🛒 Куплен товар: ${title} за ${price} XP.`); playSound('win'); alert(`✅ ВЫ УСПЕШНО КУПИЛИ ТОВАР:\n\n"${title}" за ${price} XP\n\nИнформация об этом уже отправлена Руководству. Ничего присылать не нужно!`); await logPurchase(`Магазин: ${title}`, false);
                 }
