@@ -93,7 +93,7 @@
     html[data-site-theme="about"] .panel { background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.16), transparent 55%), linear-gradient(155deg, rgba(25, 19, 8, 0.98), rgba(10, 10, 14, 1)); border-color: rgba(255, 214, 122, 0.28); }
     html[data-site-theme="shop"] .panel { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), linear-gradient(155deg, rgba(10, 23, 14, 0.98), rgba(8, 10, 15, 1)); border-color: rgba(162, 241, 188, 0.22); }
     html[data-site-theme="report"] .panel { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.16), transparent 55%), linear-gradient(155deg, rgba(16, 9, 25, 0.98), rgba(10, 10, 14, 1)); border-color: rgba(180, 150, 255, 0.28); }
-    html[data-site-theme="guide"] .panel { background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.12), transparent 55%), linear-gradient(155deg, rgba(4, 14, 22, 0.98), rgba(2, 8, 12, 1)); border-color: rgba(0, 229, 255, 0.25); }
+    html[data-site-theme="guide"] .panel { background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.15), transparent 55%), linear-gradient(155deg, rgba(4, 14, 22, 0.98), rgba(2, 8, 12, 1)); border-color: rgba(0, 229, 255, 0.25); }
     html[data-site-theme="leaderboard"] .panel { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.12), transparent 55%), linear-gradient(155deg, rgba(22, 8, 4, 0.98), rgba(12, 4, 2, 1)); border-color: rgba(255, 61, 0, 0.25); }
     html[data-site-theme="admin_log"] .panel { background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.12), transparent 55%), linear-gradient(155deg, rgba(25, 19, 8, 0.98), rgba(10, 10, 14, 1)); border-color: rgba(255, 191, 71, 0.25); }
     html[data-site-theme="complaints"] .panel { background: radial-gradient(circle at top left, rgba(255, 107, 136, 0.2), transparent 55%), linear-gradient(155deg, rgba(28, 10, 14, 0.98), rgba(16, 4, 6, 1)); border-color: rgba(255, 107, 136, 0.35); }
@@ -156,6 +156,7 @@
     html[data-site-theme="quests"] .btn-primary { background: linear-gradient(135deg, #a26cff, #c4a1ff); box-shadow: 0 15px 35px rgba(162, 108, 255, 0.5); }
     html[data-site-theme="admin_log"] .btn-primary { background: linear-gradient(135deg, #ffbf47, #ff9e00); box-shadow: 0 15px 35px rgba(255, 191, 71, 0.4); color: #18171c; }
     html[data-site-theme="timeattack"] .btn-primary { background: linear-gradient(135deg, #ffbf47, #ff3d00); box-shadow: 0 15px 35px rgba(255, 191, 71, 0.5); color: #fff; }
+    html[data-site-theme="creator"] .btn-primary { background: linear-gradient(135deg, #ff3b60, #ff6b88); box-shadow: 0 8px 20px rgba(255, 107, 136, 0.5); color: #fff; }
 
     /* === ДВУХУРОВНЕВАЯ НАВИГАЦИЯ === */
     .nav-container { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0 1rem; }
@@ -733,7 +734,7 @@
       <section class="panel game-card" id="mode-shop" style="display:none;">
         <div class="section-head">
           <h2>Магазин & Игры</h2>
-          <p>Трать накопленные XP на скидки, бонусы или испытай удачу в азартных играх!</p>
+          <p>Трать накопленные XP на скидки, бонусы или испытай удачу в играх!</p>
         </div>
         <div class="stats-grid">
           <div class="stat"><span class="stat-label">Доступно XP</span><div class="stat-value" id="shopTotalXp" style="color:var(--color-primary);">0</div></div>
@@ -1204,123 +1205,338 @@
 
         // === ВОССТАНОВЛЕНИЕ КОНТЕНТА ПРАВОЙ ПАНЕЛИ ===
         const rightContent = {
-          moderation: { title: "Материалы модератора", lead: "Подсказки по модерации: как оценивать сообщения.", cards: [ ["Без нарушения", "Обычное сообщение без спама, оскорблений, рекламы."], ["Устное / Пред / Мут", "Флуд, капс, токсичность, помехи, политика."], ["Бан / Перма / Глобал", "Реклама проектов, РМТ, обход наказаний, слив инфы."] ] },
-          timeattack: { title: "Спидран", lead: "Правила режима на время.", cards: [ ["Время", "Дается 60 секунд. За ошибки отнимается 3 секунды."], ["Опыт", "Бонусный XP: +10 за каждые 5 верных вердиктов."], ["Внимание", "Штрафов за пропуск нет, но время не вернуть."] ] },
-          support: { title: "Материалы агента поддержки", lead: "База знаний для АП и шаблоны ответов.", cards: [ ["База знаний", "Используйте команды /gps и знайте уровни работ."], ["Ответы", "Давайте четкие и понятные ответы по игровому моду."], ["Важно!", "XP за агента поддержки не зачисляется на общий баланс."] ] },
-          complaints: { title: "Правила жалоб", lead: "Как рассматривать репорты игроков.", cards: [ ["Одобрить", "На скринах явное нарушение правил дискорда (оск, реклама)."], ["Отказать", "Нет док-в, обрезаны, или нарушение из игры (ДМ, ДБ)."], ["Передать КГМ", "Использовать СТРОГО для обжалования ЧСМ или банов ГМ."] ] },
-          quests: { title: "Квесты", lead: "Выполняй задания и забирай XP.", cards: [ ["Прогресс", "Выполняйте норму в тренажерах, чтобы заполнить шкалу."], ["Награды", "Нажмите кнопку 'Забрать', когда квест выполнен."] ] },
-          guide: { title: "Контакты (ВК)", lead: "Все актуальные ссылки находятся в центре экрана.", cards: [ ["Кликабельно", "Нажмите на ссылку [Перейти в ВК], чтобы написать Руководству."] ] },
-          leaderboard: { title: "О Лидерборде", lead: "Рейтинг формируется на основе заработанного XP.", cards: [ ["Обновление", "Таблица рассчитывает баланс XP (опыт минус траты)."], ["Никнейм", "Отображаются только сотрудники с установленным никнеймом."] ] },
-          about: { title: "О команде", lead: "Информация о людях, создавших тренажёр.", cards: [ ["Создано", "John Wick."], ["При поддержке", "Leha_Mackenzie, Andrey_Caypen и Евгения Бабешко."] ] },
-          shop: { title: "Магазин модераторов", lead: "Потратьте накопленные XP на скидки или мини-игры.", cards: [ ["Выдача", "Все покупки (кроме игр) уходят в панель руководства."], ["Рулетка", "Призы из рулетки выдаются либо автоматически (XP), либо отправляются логом."] ] },
-          report: { title: "Отчетность", lead: "Сдача ежедневных отчетов онлайна.", cards: [ ["Доступ", "Сдавать отчеты могут все авторизованные модераторы."], ["Проверка", "Только администрация может проверять и начислять XP."] ] },
-          admin_log: { title: "Панель логов", lead: "Только для руководства", cards: [ ["Выдача", "Нажимайте 'Отметить как выданное' после выдачи приза/покупки в Discord."] ] },
-          creator: { title: "Управление доступом", lead: "Только для Создателя (John Wick).", cards: [ ["XP", "Выдача или снятие XP обновляет shop_spent пользователя."], ["Троллинг", "Сброс XP ставит долг 99999. Смена ника моментально меняет имя в базе."], ["Ключи", "Все ключи сохраняются в базе. Модератор вводит их для доступа."] ] }
+          moderation: {
+            title: "Материалы модератора",
+            lead: "Подсказки по модерации: как оценивать сообщения.",
+            cards: [
+              ["Без нарушения", "Обычное сообщение без спама, оскорблений, рекламы."],
+              ["Устное / Пред / Мут", "Флуд, капс, токсичность, помехи, политика."],
+              ["Бан / Перма / Глобал", "Реклама проектов, РМТ, обход наказаний, слив инфы."]
+            ]
+          },
+          timeattack: {
+            title: "Спидран",
+            lead: "Правила режима на время.",
+            cards: [
+              ["Время", "Дается 60 секунд. За ошибки отнимается 3 секунды."],
+              ["Опыт", "Бонусный XP: +10 за каждые 5 верных вердиктов."],
+              ["Внимание", "Штрафов за пропуск нет, но время не вернуть."]
+            ]
+          },
+          support: {
+            title: "Материалы агента поддержки",
+            lead: "База знаний для АП и шаблоны ответов.",
+            cards: [
+              ["База знаний", "Используйте команды /gps и знайте уровни работ."],
+              ["Ответы", "Давайте четкие и понятные ответы по игровому моду."],
+              ["Важно!", "XP за агента поддержки не зачисляется на общий баланс."]
+            ]
+          },
+          complaints: {
+            title: "Правила жалоб",
+            lead: "Как рассматривать репорты игроков.",
+            cards: [
+              ["Одобрить", "На скринах явное нарушение правил дискорда (оск, реклама)."],
+              ["Отказать", "Нет док-в, обрезаны, или нарушение из игры (ДМ, ДБ)."],
+              ["Передать КГМ", "Использовать СТРОГО для обжалования ЧСМ или банов ГМ."]
+            ]
+          },
+          quests: {
+            title: "Квесты",
+            lead: "Выполняй задания и забирай XP.",
+            cards: [
+              ["Прогресс", "Выполняйте норму в тренажерах, чтобы заполнить шкалу."],
+              ["Награды", "Нажмите кнопку 'Забрать', когда квест выполнен."]
+            ]
+          },
+          guide: {
+            title: "Контакты (ВК)",
+            lead: "Все актуальные ссылки находятся в центре экрана.",
+            cards: [
+              ["Кликабельно", "Нажмите на ссылку [Перейти в ВК], чтобы написать Руководству."]
+            ]
+          },
+          leaderboard: {
+            title: "О Лидерборде",
+            lead: "Рейтинг формируется на основе заработанного XP.",
+            cards: [
+              ["Обновление", "Таблица рассчитывает баланс XP (опыт минус траты)."],
+              ["Никнейм", "Отображаются только сотрудники с установленным никнеймом."]
+            ]
+          },
+          about: {
+            title: "О команде",
+            lead: "Информация о людях, создавших тренажёр.",
+            cards: [
+              ["Создано", "John Wick."],
+              ["При поддержке", "Leha_Mackenzie, Andrey_Caypen и Евгения Бабешко."]
+            ]
+          },
+          shop: {
+            title: "Магазин модераторов",
+            lead: "Потратьте накопленные XP на скидки или мини-игры.",
+            cards: [
+              ["Выдача", "Все покупки (кроме игр) уходят в панель руководства."],
+              ["Рулетка", "Призы из рулетки выдаются либо автоматически (XP), либо отправляются логом."]
+            ]
+          },
+          report: {
+            title: "Отчетность",
+            lead: "Сдача ежедневных отчетов онлайна.",
+            cards: [
+              ["Доступ", "Сдавать отчеты могут все авторизованные модераторы."],
+              ["Проверка", "Только администрация может проверять и начислять XP."]
+            ]
+          },
+          admin_log: {
+            title: "Панель логов",
+            lead: "Только для руководства",
+            cards: [
+              ["Выдача", "Нажимайте 'Отметить как выданное' после выдачи приза/покупки в Discord."]
+            ]
+          },
+          creator: {
+            title: "Управление доступом",
+            lead: "Только для Создателя (John Wick).",
+            cards: [
+              ["XP", "Выдача или снятие XP обновляет shop_spent пользователя."],
+              ["Троллинг", "Сброс XP ставит долг 99999. Смена ника моментально меняет имя в базе."],
+              ["Ключи", "Все ключи сохраняются в базе. Модератор вводит их для доступа."]
+            ]
+          }
         };
 
         function renderRight(mode) {
-          const rt = document.getElementById("rightTitle"); const rl = document.getElementById("rightLead"); const rc = document.getElementById("rightCards");
+          const rt = document.getElementById("rightTitle");
+          const rl = document.getElementById("rightLead"); 
+          const rc = document.getElementById("rightCards");
+          
           if(!rt || !rl || !rc) return;
+
           const data = rightContent[mode];
           if (data) {
-            rt.innerHTML = data.title; rl.innerHTML = data.lead;
+            rt.innerHTML = data.title;
+            rl.innerHTML = data.lead;
             rc.innerHTML = data.cards.map((item, idx) => `
               <div class="rule-item">
                 <div class="rule-icon ${idx === 0 ? "ok" : idx === 1 ? "warn" : "ban"}">${idx === 0 ? "✓" : idx === 1 ? "?" : "ℹ"}</div>
-                <div class="rule-copy"><strong>${item[0]}</strong><span>${item[1]}</span></div>
-              </div>`).join("");
+                <div class="rule-copy">
+                    <strong>${item[0]}</strong>
+                    <span>${item[1]}</span>
+                </div>
+              </div>
+            `).join("");
           }
         }
 
         // === ДВУХУРОВНЕВАЯ НАВИГАЦИЯ ===
         const mainNavBtns = document.querySelectorAll('.main-cat-btn');
-        const subNavs = { general: document.getElementById('subNavGeneral'), moderation: document.getElementById('subNavModeration'), support: document.getElementById('subNavSupport') };
+        const subNavs = {
+          general: document.getElementById('subNavGeneral'),
+          moderation: document.getElementById('subNavModeration'),
+          support: document.getElementById('subNavSupport')
+        };
         mainNavBtns.forEach(btn => {
           btn.addEventListener('click', () => {
-            mainNavBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active');
-            Object.values(subNavs).forEach(nav => { if(nav) nav.style.display = 'none'; });
+            mainNavBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            Object.values(subNavs).forEach(nav => { 
+                if(nav) nav.style.display = 'none'; 
+            });
+
             const cat = btn.dataset.cat;
-            if(subNavs[cat]) { subNavs[cat].style.display = 'flex'; const firstBtn = subNavs[cat].querySelector('.mode-btn'); if(firstBtn) firstBtn.click(); }
+            if(subNavs[cat]) {
+               subNavs[cat].style.display = 'flex';
+               const firstBtn = subNavs[cat].querySelector('.mode-btn');
+               if(firstBtn) firstBtn.click();
+            }
           });
         });
-        const allModesList = [ "moderation", "timeattack", "complaints", "support", "guide", "leaderboard", "about", "shop", "report", "admin_log", "quests", "creator" ];
+        const allModesList = [
+            "moderation", "timeattack", "complaints", "support", 
+            "guide", "leaderboard", "about", "shop", "report", 
+            "admin_log", "quests", "creator"
+        ];
         function switchMode(mode, btn) {
           document.querySelectorAll(".mode-btn").forEach(b => b.classList.remove("active"));
           if(btn) btn.classList.add("active");
-          allModesList.forEach(m => { const panel = document.getElementById("mode-" + m); if(panel) { panel.style.display = (m === mode) ? "" : "none"; } });
-          
+          allModesList.forEach(m => {
+            const panel = document.getElementById("mode-" + m);
+            if(panel) { 
+                panel.style.display = (m === mode) ? "" : "none"; 
+            }
+          });
           let currentTheme = "mod";
-          if(mode === "support") currentTheme = "support"; else if(mode === "about") currentTheme = "about"; else if(mode === "shop") currentTheme = "shop"; else if(mode === "report") currentTheme = "report"; else if(mode === "guide") currentTheme = "guide"; else if(mode === "leaderboard") currentTheme = "leaderboard"; else if(mode === "admin_log") currentTheme = "admin_log"; else if(mode === "complaints") currentTheme = "complaints"; else if(mode === "quests") currentTheme = "quests"; else if(mode === "timeattack") currentTheme = "timeattack"; else if(mode === "creator") currentTheme = "creator";
-          document.documentElement.setAttribute("data-site-theme", currentTheme);
           
-          renderRight(mode);
-          if(mode === 'moderation' || mode === 'support' || mode === 'complaints') { renderLogs(); }
-          if(mode === 'leaderboard') loadLeaderboard(); if(mode === 'shop') updateShopStats(); if(mode === 'report') checkReportAccess(); if(mode === 'admin_log') renderAdminLogs(); if(mode === 'quests') renderQuests(); if(mode === 'creator') loadCreatorPanelData();
+          if(mode === "support") currentTheme = "support";
+          else if(mode === "about") currentTheme = "about";
+          else if(mode === "shop") currentTheme = "shop";
+          else if(mode === "report") currentTheme = "report";
+          else if(mode === "guide") currentTheme = "guide";
+          else if(mode === "leaderboard") currentTheme = "leaderboard";
+          else if(mode === "admin_log") currentTheme = "admin_log";
+          else if(mode === "complaints") currentTheme = "complaints";
+          else if(mode === "quests") currentTheme = "quests";
+          else if(mode === "timeattack") currentTheme = "timeattack";
+          else if(mode === "creator") currentTheme = "creator";
 
-          const brandSub = document.getElementById("brandSubtitle"); const hTitle = document.getElementById("heroTitle"); const hText = document.getElementById("heroText"); const hBadge = document.getElementById("heroBadge2");
+          document.documentElement.setAttribute("data-site-theme", currentTheme);
+          renderRight(mode);
+          if(mode === 'moderation' || mode === 'support' || mode === 'complaints') { 
+              renderLogs();
+          }
+          if(mode === 'leaderboard') loadLeaderboard();
+          if(mode === 'shop') updateShopStats();
+          if(mode === 'report') checkReportAccess();
+          if(mode === 'admin_log') renderAdminLogs();
+          if(mode === 'quests') renderQuests();
+          if(mode === 'creator') loadCreatorPanelData();
+
+          const brandSub = document.getElementById("brandSubtitle");
+          const hTitle = document.getElementById("heroTitle");
+          const hText = document.getElementById("heroText");
+          const hBadge = document.getElementById("heroBadge2");
           if (mode === "moderation") {
-            if(brandSub) brandSub.textContent = "Симулятор смены модераторов"; if(hTitle) hTitle.innerHTML = 'Следи за <span>порядком</span> на сервере.'; if(hText) hText.textContent = "Проверяй сообщения, принимай решения и поддерживай порядок в чате."; if(hBadge) hBadge.textContent = "Режим: модераторы";
+            if(brandSub) brandSub.textContent = "Симулятор смены модераторов";
+            if(hTitle) hTitle.innerHTML = 'Следи за <span>порядком</span> на сервере.'; 
+            if(hText) hText.textContent = "Проверяй сообщения, принимай решения и поддерживай порядок в чате.";
+            if(hBadge) hBadge.textContent = "Режим: модераторы";
           } else if (mode === "timeattack") {
-            if(brandSub) brandSub.textContent = "Симулятор смены: На время"; if(hTitle) hTitle.innerHTML = 'Успей за <span>минуту</span>.'; if(hText) hText.textContent = "Проверяй сообщения как можно быстрее. За ошибки отнимается драгоценное время!"; if(hBadge) hBadge.textContent = "Режим: спидран";
+            if(brandSub) brandSub.textContent = "Симулятор смены: На время";
+            if(hTitle) hTitle.innerHTML = 'Успей за <span>минуту</span>.'; 
+            if(hText) hText.textContent = "Проверяй сообщения как можно быстрее. За ошибки отнимается драгоценное время!";
+            if(hBadge) hBadge.textContent = "Режим: спидран";
           } else if (mode === "complaints") {
-            if(brandSub) brandSub.textContent = "Симулятор смены: Жалобы"; if(hTitle) hTitle.innerHTML = 'Рассматривай <span>репорты</span>.'; if(hText) hText.textContent = "Изучай доказательства игроков и выноси вердикты. Спорные моменты и ЧСМ передавай КГМ."; if(hBadge) hBadge.textContent = "Режим: жалобы";
+            if(brandSub) brandSub.textContent = "Симулятор смены: Жалобы";
+            if(hTitle) hTitle.innerHTML = 'Рассматривай <span>репорты</span>.'; 
+            if(hText) hText.textContent = "Изучай доказательства игроков и выноси вердикты. Спорные моменты и ЧСМ передавай КГМ.";
+            if(hBadge) hBadge.textContent = "Режим: жалобы";
           } else if (mode === "support") {
-            if(brandSub) brandSub.textContent = "Симулятор смены агентов поддержки"; if(hTitle) hTitle.innerHTML = 'Создавай <span>уют</span> и помогай игрокам.'; if(hText) hText.textContent = "Отвечай на вопросы игроков, ориентируйся в материалах."; if(hBadge) hBadge.textContent = "Режим: агенты поддержки";
+            if(brandSub) brandSub.textContent = "Симулятор смены агентов поддержки";
+            if(hTitle) hTitle.innerHTML = 'Создавай <span>уют</span> и помогай игрокам.'; 
+            if(hText) hText.textContent = "Отвечай на вопросы игроков, ориентируйся в материалах.";
+            if(hBadge) hBadge.textContent = "Режим: агенты поддержки";
           } else if (mode === "quests") {
-            if(brandSub) brandSub.textContent = "Квесты сотрудников"; if(hTitle) hTitle.innerHTML = 'Выполняй <span>задания</span>.'; if(hText) hText.textContent = "Получай бонусный XP за активную работу в симуляторе. Задания обновляются автоматически."; if(hBadge) hBadge.textContent = "Режим: квесты";
+            if(brandSub) brandSub.textContent = "Квесты сотрудников";
+            if(hTitle) hTitle.innerHTML = 'Выполняй <span>задания</span>.'; 
+            if(hText) hText.textContent = "Получай бонусный XP за активную работу в симуляторе. Задания обновляются автоматически.";
+            if(hBadge) hBadge.textContent = "Режим: квесты";
           } else if (mode === "guide") {
-            if(brandSub) brandSub.textContent = "Руководство Сервера"; if(hTitle) hTitle.innerHTML = 'Контакты <span>руководства</span>.'; if(hText) hText.textContent = "Основная информация и контактные данные."; if(hBadge) hBadge.textContent = "Режим: руководство";
+            if(brandSub) brandSub.textContent = "Руководство Сервера";
+            if(hTitle) hTitle.innerHTML = 'Контакты <span>руководства</span>.'; 
+            if(hText) hText.textContent = "Основная информация и контактные данные."; 
+            if(hBadge) hBadge.textContent = "Режим: руководство";
           } else if (mode === "leaderboard") {
-            if(brandSub) brandSub.textContent = "Таблица лидеров"; if(hTitle) hTitle.innerHTML = 'Топ <span>модераторов</span>.'; if(hText) hText.textContent = "Отображаются сотрудники с наибольшим количеством XP."; if(hBadge) hBadge.textContent = "Режим: лидерборд";
+            if(brandSub) brandSub.textContent = "Таблица лидеров";
+            if(hTitle) hTitle.innerHTML = 'Топ <span>модераторов</span>.'; 
+            if(hText) hText.textContent = "Отображаются сотрудники с наибольшим количеством XP."; 
+            if(hBadge) hBadge.textContent = "Режим: лидерборд";
           } else if (mode === "about") {
-            if(brandSub) brandSub.textContent = "Люди, которые сделали этот проект"; if(hTitle) hTitle.innerHTML = 'Узнай, кто <span>стоит за идеей</span>.'; if(hText) hText.textContent = "Этот раздел посвящён авторам и тем, кто помогал собрать тренажёр."; if(hBadge) hBadge.textContent = "Режим: о команде";
+            if(brandSub) brandSub.textContent = "Люди, которые сделали этот проект";
+            if(hTitle) hTitle.innerHTML = 'Узнай, кто <span>стоит за идеей</span>.'; 
+            if(hText) hText.textContent = "Этот раздел посвящён авторам и тем, кто помогал собрать тренажёр.";
+            if(hBadge) hBadge.textContent = "Режим: о команде";
           } else if (mode === "shop") {
-            if(brandSub) brandSub.textContent = "Магазин за XP"; if(hTitle) hTitle.innerHTML = 'Трать <span>Опыт</span> на бонусы.'; if(hText) hText.textContent = "Покупайте скидки для ускорения повышения или испытай удачу в играх."; if(hBadge) hBadge.textContent = "Режим: магазин";
+            if(brandSub) brandSub.textContent = "Магазин за XP";
+            if(hTitle) hTitle.innerHTML = 'Трать <span>Опыт</span> на бонусы.'; 
+            if(hText) hText.textContent = "Покупайте скидки для ускорения повышения или испытай удачу в играх.";
+            if(hBadge) hBadge.textContent = "Режим: магазин";
           } else if (mode === "report") {
-            if(brandSub) brandSub.textContent = "Симулятор смены: Отчетность"; if(hTitle) hTitle.innerHTML = 'Сдавай <span>отчеты</span> вовремя.'; if(hText) hText.textContent = "Отправляй скриншоты своего онлайна в Discord для проверки руководством."; if(hBadge) hBadge.textContent = "Режим: отчетность";
+            if(brandSub) brandSub.textContent = "Симулятор смены: Отчетность";
+            if(hTitle) hTitle.innerHTML = 'Сдавай <span>отчеты</span> вовремя.'; 
+            if(hText) hText.textContent = "Отправляй скриншоты своего онлайна в Discord для проверки руководством.";
+            if(hBadge) hBadge.textContent = "Режим: отчетность";
           } else if (mode === "admin_log") {
-            if(brandSub) brandSub.textContent = "Админ-Панель"; if(hTitle) hTitle.innerHTML = 'Логи <span>выдач</span>.'; if(hText) hText.textContent = "Здесь отображаются все покупки и выигрыши в рулетку, требующие ручной выдачи Руководством в Discord."; if(hBadge) hBadge.textContent = "Режим: руководство";
+            if(brandSub) brandSub.textContent = "Админ-Панель";
+            if(hTitle) hTitle.innerHTML = 'Логи <span>выдач</span>.'; 
+            if(hText) hText.textContent = "Здесь отображаются все покупки и выигрыши в рулетку, требующие ручной выдачи Руководством в Discord.";
+            if(hBadge) hBadge.textContent = "Режим: руководство";
           } else if (mode === "creator") {
-            if(brandSub) brandSub.textContent = "Панель Создателя"; if(hTitle) hTitle.innerHTML = 'Только для <span>Джона Уика</span>.'; if(hText) hText.textContent = "Управление базой данных, выдача опыта и создание ключей доступа."; if(hBadge) hBadge.textContent = "Режим: Бог";
+            if(brandSub) brandSub.textContent = "Панель Создателя";
+            if(hTitle) hTitle.innerHTML = 'Только для <span>Джона Уика</span>.'; 
+            if(hText) hText.textContent = "Управление базой данных, выдача опыта и создание ключей доступа.";
+            if(hBadge) hBadge.textContent = "Режим: Бог";
           }
         }
 
         // === ОБРАБОТЧИКИ ДОСТУПА ===
         function requestAccess(actionType, targetElementBtn) {
           pendingAction = { type: actionType, btn: targetElementBtn };
-          document.getElementById('accessModal').style.display = 'flex'; document.getElementById('accessErrorMsg').style.display = 'none'; document.getElementById('accessCodeInput').value = '';
+          document.getElementById('accessModal').style.display = 'flex';
+          document.getElementById('accessErrorMsg').style.display = 'none';
+          document.getElementById('accessCodeInput').value = '';
         }
 
-        document.getElementById('accessCloseBtn').addEventListener('click', () => { document.getElementById('accessModal').style.display = 'none'; pendingAction = null; });
+        document.getElementById('accessCloseBtn').addEventListener('click', () => {
+          document.getElementById('accessModal').style.display = 'none';
+          pendingAction = null;
+        });
         document.getElementById('accessSubmitBtn').addEventListener('click', async () => {
-          const val = document.getElementById('accessCodeInput').value.trim(); const err = document.getElementById('accessErrorMsg'); const btn = document.getElementById('accessSubmitBtn');
-          btn.disabled = true; btn.textContent = "Проверка...";
+          const val = document.getElementById('accessCodeInput').value.trim();
+          const err = document.getElementById('accessErrorMsg');
+          const btn = document.getElementById('accessSubmitBtn');
+          
+          btn.disabled = true;
+          btn.textContent = "Проверка...";
 
-          if (pendingAction.type === 'switch_tab_shop' && val === 'JohnWickModer') { localStorage.setItem('access_JohnWickModer', 'true'); hasAccessCode = true; finishAccess(true, 'shop'); return; }
-          if (pendingAction.type === 'switch_tab_report' && val === 'JohnWIckTopModer') { localStorage.setItem('access_JohnWIckTopModer', 'true'); hasReportAccessCode = true; finishAccess(true, 'report'); return; }
+          if (pendingAction.type === 'switch_tab_shop' && val === 'JohnWickModer') {
+              localStorage.setItem('access_JohnWickModer', 'true');
+              hasAccessCode = true;
+              finishAccess(true, 'shop');
+              return;
+          }
+          if (pendingAction.type === 'switch_tab_report' && val === 'JohnWIckTopModer') {
+              localStorage.setItem('access_JohnWIckTopModer', 'true');
+              hasReportAccessCode = true;
+              finishAccess(true, 'report');
+              return;
+          }
 
           const { data, error } = await supa.from('reports').select('*').eq('email', 'ACCESS_KEY').eq('link', val);
           if (data && data.length > 0) {
              const keyData = data[0];
-             if (pendingAction.type === 'switch_tab_shop' && keyData.status === 'shop') { localStorage.setItem('access_shop', 'true'); hasAccessCode = true; finishAccess(true, 'shop'); } 
-             else if (pendingAction.type === 'switch_tab_report' && keyData.status === 'report') { localStorage.setItem('access_report', 'true'); hasReportAccessCode = true; finishAccess(true, 'report'); } 
-             else { finishAccess(false); }
-          } else { finishAccess(false); }
+             if (pendingAction.type === 'switch_tab_shop' && keyData.status === 'shop') {
+                 localStorage.setItem('access_shop', 'true');
+                 hasAccessCode = true;
+                 finishAccess(true, 'shop');
+             } else if (pendingAction.type === 'switch_tab_report' && keyData.status === 'report') {
+                 localStorage.setItem('access_report', 'true');
+                 hasReportAccessCode = true;
+                 finishAccess(true, 'report');
+             } else {
+                 finishAccess(false);
+             }
+          } else {
+             finishAccess(false);
+          }
 
           function finishAccess(success, roleMode) {
-              btn.disabled = false; btn.textContent = "Подтвердить";
-              if (success) { document.getElementById('accessModal').style.display = 'none'; switchMode(roleMode, pendingAction.btn); pendingAction = null; } else { err.style.display = 'block'; }
+              btn.disabled = false;
+              btn.textContent = "Подтвердить";
+              if (success) {
+                  document.getElementById('accessModal').style.display = 'none';
+                  switchMode(roleMode, pendingAction.btn);
+                  pendingAction = null;
+              } else {
+                  err.style.display = 'block';
+              }
           }
         });
         document.querySelectorAll(".mode-btn").forEach(btn => {
           btn.addEventListener("click", () => {
             const mode = btn.dataset.mode;
-            if (mode === 'shop' && !hasAccessCode) { requestAccess('switch_tab_' + mode, btn); return; }
-            if (mode === 'report' && !hasReportAccessCode) { requestAccess('switch_tab_' + mode, btn); return; }
+            if (mode === 'shop' && !hasAccessCode) { 
+                requestAccess('switch_tab_' + mode, btn); 
+                return; 
+            }
+            if (mode === 'report' && !hasReportAccessCode) { 
+                requestAccess('switch_tab_' + mode, btn); 
+                return; 
+            }
             switchMode(mode, btn);
           });
         });
-
         const funnyLeft = [ "Мелстройность","Смешнявка","Макенза","Сраупен","бурмалда","Рассыльщик_Мемов","ПолитТоксик","РелигБаттл","Дед_с_Клавой","Флуд_Бот" ];
         const funnyRight = [ "из_Тамбова","без_микрофона","на_ГлОбАнЕ","в_муте","с_вечным_баном","тянет_конфу","обижен_на_админов","любит_капс","ищет_баги","продаёт_вирты" ];
         function randomFunnyNick() { return `${funnyLeft[Math.floor(Math.random() * funnyLeft.length)]}_${funnyRight[Math.floor(Math.random() * funnyRight.length)]}#${Math.floor(1000 + Math.random() * 8999)}`; }
@@ -1349,38 +1565,74 @@
         function loadLocalState() {
           if(!currentUser) return;
           const cStr = localStorage.getItem('comp_stats_' + currentUser.email);
-          if(cStr) { const cParsed = JSON.parse(cStr); complaintState.resolved = Number(cParsed.resolved) || 0; complaintState.correct = Number(cParsed.correct) || 0; complaintState.mistakes = Number(cParsed.mistakes) || 0; }
+          if(cStr) {
+            const cParsed = JSON.parse(cStr);
+            complaintState.resolved = Number(cParsed.resolved) || 0;
+            complaintState.correct = Number(cParsed.correct) || 0;
+            complaintState.mistakes = Number(cParsed.mistakes) || 0;
+          }
           updateComplaintStats(); renderQuests();
         }
 
         function saveLocalState() {
           if(!currentUser) return;
-          localStorage.setItem('comp_stats_' + currentUser.email, JSON.stringify({ resolved: complaintState.resolved, correct: complaintState.correct, mistakes: complaintState.mistakes }));
+          localStorage.setItem('comp_stats_' + currentUser.email, JSON.stringify({
+            resolved: complaintState.resolved, 
+            correct: complaintState.correct, 
+            mistakes: complaintState.mistakes
+          }));
         }
 
         async function loadProgress() {
           if(!currentUser) return;
-          if (currentUser.email === 'daniiltimosin72@gmail.com') { document.getElementById('creatorTabBtn').style.display = 'inline-block'; } else { document.getElementById('creatorTabBtn').style.display = 'none'; }
+          if (currentUser.email === 'daniiltimosin72@gmail.com') {
+             document.getElementById('creatorTabBtn').style.display = 'inline-block';
+          } else {
+             document.getElementById('creatorTabBtn').style.display = 'none';
+          }
+
           const { data, error } = await supa.from('user_stats').select('*').eq('user_id', currentUser.id).single();
           if(data) {
-            state.resolved = Number(data.mod_resolved) || 0; state.correct = Number(data.mod_correct) || 0; state.mistakes = Number(data.mod_mistakes) || 0;
-            supportState.resolved = Number(data.sup_resolved) || 0; supportState.correct = Number(data.sup_correct) || 0; supportState.mistakes = Number(data.sup_mistakes) || 0;
+            state.resolved = Number(data.mod_resolved) || 0;
+            state.correct = Number(data.mod_correct) || 0; 
+            state.mistakes = Number(data.mod_mistakes) || 0;
+            
+            supportState.resolved = Number(data.sup_resolved) || 0; 
+            supportState.correct = Number(data.sup_correct) || 0;
+            supportState.mistakes = Number(data.sup_mistakes) || 0;
+            
             shopState.spent = Number(data.shop_spent) || 0;
           }
+          
           const { data: repData } = await supa.from('reports').select('xp').eq('email', currentUser.email);
-          state.reportXp = 0; if (repData) { state.reportXp = repData.reduce((sum, r) => sum + (Number(r.xp) || 0), 0); }
-          loadLocalState(); updateModStats(); updateSupportStats(); updateShopStats(); ensureNickname();
+          state.reportXp = 0; 
+          if (repData) {
+              state.reportXp = repData.reduce((sum, r) => sum + (Number(r.xp) || 0), 0);
+          }
+          
+          loadLocalState();
+          updateModStats(); 
+          updateSupportStats(); 
+          updateShopStats();
+          ensureNickname();
         }
 
         async function saveProgress() {
           if(!currentUser) return;
           const payload = {
-            user_id: currentUser.id, email: currentUser.email, nickname: currentNickname || currentUser.user_metadata?.nickname || currentUser.email.split('@')[0],
-            mod_resolved: Number(state.resolved), mod_correct: Number(state.correct), mod_mistakes: Number(state.mistakes),
-            sup_resolved: Number(supportState.resolved), sup_correct: Number(supportState.correct), sup_mistakes: Number(supportState.mistakes),
+            user_id: currentUser.id, 
+            email: currentUser.email, 
+            nickname: currentNickname || currentUser.user_metadata?.nickname || currentUser.email.split('@')[0],
+            mod_resolved: Number(state.resolved), 
+            mod_correct: Number(state.correct), 
+            mod_mistakes: Number(state.mistakes),
+            sup_resolved: Number(supportState.resolved), 
+            sup_correct: Number(supportState.correct), 
+            sup_mistakes: Number(supportState.mistakes),
             shop_spent: Number(shopState.spent)
           };
-          await supa.from('user_stats').upsert(payload); saveLocalState();
+          await supa.from('user_stats').upsert(payload);
+          saveLocalState();
         }
 
         // AUTH
@@ -1390,85 +1642,220 @@
         function handleSession(session) {
           currentUser = session?.user || null;
           if (currentUser) {
-            currentNickname = currentUser.user_metadata?.nickname; userEmailDisplay.textContent = currentNickname || currentUser.email; loginBtnUI.style.display = 'none'; logoutBtnUI.style.display = 'block'; authModal.style.display = 'none'; loadProgress();
+            currentNickname = currentUser.user_metadata?.nickname;
+            userEmailDisplay.textContent = currentNickname || currentUser.email;
+            loginBtnUI.style.display = 'none'; 
+            logoutBtnUI.style.display = 'block'; 
+            authModal.style.display = 'none'; 
+            loadProgress();
           } else {
-            userEmailDisplay.textContent = ''; loginBtnUI.style.display = 'block'; logoutBtnUI.style.display = 'none'; resetGame(); checkReportAccess(); renderQuests(); document.getElementById('creatorTabBtn').style.display = 'none';
+            userEmailDisplay.textContent = ''; 
+            loginBtnUI.style.display = 'block';
+            logoutBtnUI.style.display = 'none'; 
+            resetGame(); 
+            checkReportAccess(); 
+            renderQuests();
+            document.getElementById('creatorTabBtn').style.display = 'none';
           }
         }
 
-        loginBtnUI.onclick = () => { authModal.style.display = 'flex'; authErrorMsg.style.display = 'none'; };
-        document.getElementById('authCloseModal').onclick = () => { authModal.style.display = 'none'; };
-        logoutBtnUI.onclick = async () => { await supa.auth.signOut(); };
+        loginBtnUI.onclick = () => { 
+            authModal.style.display = 'flex';
+            authErrorMsg.style.display = 'none'; 
+        };
+        
+        document.getElementById('authCloseModal').onclick = () => { 
+            authModal.style.display = 'none';
+        };
+        
+        logoutBtnUI.onclick = async () => { 
+            await supa.auth.signOut();
+        };
 
         document.getElementById('authLoginSubmit').onclick = async () => {
-          const email = document.getElementById('authEmail').value; const password = document.getElementById('authPassword').value;
-          if(!email || !password) { authErrorMsg.textContent = "Введите Email и Пароль!"; authErrorMsg.style.color = "var(--color-warning)"; authErrorMsg.style.display = 'block'; return; }
+          const email = document.getElementById('authEmail').value;
+          const password = document.getElementById('authPassword').value;
+          
+          if(!email || !password) { 
+              authErrorMsg.textContent = "Введите Email и Пароль!";
+              authErrorMsg.style.color = "var(--color-warning)"; 
+              authErrorMsg.style.display = 'block'; 
+              return; 
+          }
+          
           const { data, error } = await supa.auth.signInWithPassword({ email, password });
-          if(error) { authErrorMsg.textContent = error.message; authErrorMsg.style.color = "var(--color-error)"; authErrorMsg.style.display = 'block'; }
+          if(error) { 
+              authErrorMsg.textContent = error.message;
+              authErrorMsg.style.color = "var(--color-error)"; 
+              authErrorMsg.style.display = 'block'; 
+          }
         };
         document.getElementById('authRegisterSubmit').onclick = async () => {
-          const email = document.getElementById('authEmail').value; const nickname = document.getElementById('authNickname').value; const password = document.getElementById('authPassword').value;
-          if(!email || !password || !nickname) { authErrorMsg.textContent = "Заполните все поля, включая Никнейм!"; authErrorMsg.style.color = "var(--color-warning)"; authErrorMsg.style.display = 'block'; return; }
-          const { data, error } = await supa.auth.signUp({ email, password, options: { data: { nickname: nickname } } });
-          if(error) { authErrorMsg.textContent = error.message; authErrorMsg.style.color = "var(--color-error)"; authErrorMsg.style.display = 'block'; } else { authErrorMsg.textContent = "Успешно! Вы зарегистрированы и вошли."; authErrorMsg.style.color = "var(--color-success)"; authErrorMsg.style.display = 'block'; }
+          const email = document.getElementById('authEmail').value;
+          const nickname = document.getElementById('authNickname').value; 
+          const password = document.getElementById('authPassword').value;
+          
+          if(!email || !password || !nickname) { 
+              authErrorMsg.textContent = "Заполните все поля, включая Никнейм!";
+              authErrorMsg.style.color = "var(--color-warning)"; 
+              authErrorMsg.style.display = 'block'; 
+              return; 
+          }
+          
+          const { data, error } = await supa.auth.signUp({ 
+              email, 
+              password, 
+              options: { data: { nickname: nickname } } 
+          });
+          if(error) { 
+              authErrorMsg.textContent = error.message;
+              authErrorMsg.style.color = "var(--color-error)"; 
+              authErrorMsg.style.display = 'block'; 
+          } else { 
+              authErrorMsg.textContent = "Успешно! Вы зарегистрированы и вошли.";
+              authErrorMsg.style.color = "var(--color-success)"; 
+              authErrorMsg.style.display = 'block'; 
+          }
         };
 
-        // === ПАНЕЛЬ СОЗДАТЕЛЯ ===
+        // === ПАНЕЛЬ СОЗДАТЕЛЯ (ЛОГИКА И ТРОЛЛИНГ) ===
         let creatorUsersList = [];
         async function loadCreatorPanelData() {
             if (currentUser.email !== 'daniiltimosin72@gmail.com') return;
-            const sel = document.getElementById('creatorUserSelect'); sel.innerHTML = '<option>Загрузка...</option>';
+            // 1. Загрузка пользователей
+            const sel = document.getElementById('creatorUserSelect');
+            sel.innerHTML = '<option>Загрузка...</option>';
+            
             const { data: users, error: errUsers } = await supa.from('user_stats').select('user_id, nickname, email, shop_spent');
-            if (users && users.length > 0) { creatorUsersList = users; sel.innerHTML = users.map(u => `<option value="${u.user_id}">${u.nickname || u.email} (Списано: ${u.shop_spent})</option>`).join(''); } else { sel.innerHTML = '<option>Нет пользователей</option>'; }
+            if (users && users.length > 0) {
+                creatorUsersList = users;
+                sel.innerHTML = users.map(u => `<option value="${u.user_id}">${u.nickname || u.email} (Списано: ${u.shop_spent})</option>`).join('');
+            } else {
+                sel.innerHTML = '<option>Нет пользователей</option>';
+            }
+
+            // 2. Загрузка ключей
             await loadCreatorKeys();
         }
 
         async function loadCreatorKeys() {
-            const list = document.getElementById('creatorKeysList'); list.innerHTML = 'Загрузка...';
+            const list = document.getElementById('creatorKeysList');
+            list.innerHTML = 'Загрузка...';
+            
             const { data: keys } = await supa.from('reports').select('*').eq('email', 'ACCESS_KEY').order('date', { ascending: false });
             if (keys && keys.length > 0) {
                 list.innerHTML = keys.map(k => `
                   <div style="display:flex; justify-content:space-between; align-items:center; background: rgba(0,0,0,0.5); padding: 0.5rem 1rem; border-radius: 8px;">
-                    <div><strong style="color:var(--color-primary); font-size: 1.1rem;">${k.link}</strong> <span style="font-size:0.8rem; color:var(--color-text-faint); margin-left: 0.5rem;">(${k.status === 'shop' ? 'Магазин' : 'Отчеты'})</span></div>
+                    <div>
+                        <strong style="color:var(--color-primary); font-size: 1.1rem;">${k.link}</strong> 
+                        <span style="font-size:0.8rem; color:var(--color-text-faint); margin-left: 0.5rem;">(${k.status === 'shop' ? 'Магазин' : 'Отчеты'})</span>
+                    </div>
                     <button class="badge ban del-key-btn" data-id="${k.id}" style="cursor:pointer; padding: 0.5rem 1rem;">Удалить</button>
-                  </div>`).join('');
+                  </div>
+                `).join('');
                 list.querySelectorAll('.del-key-btn').forEach(btn => {
-                    btn.addEventListener('click', async () => { const id = btn.dataset.id; btn.disabled = true; btn.textContent = "..."; await supa.from('reports').delete().eq('id', id); await loadCreatorKeys(); });
+                    btn.addEventListener('click', async () => {
+                        const id = btn.dataset.id;
+                        btn.disabled = true;
+                        btn.textContent = "...";
+                        await supa.from('reports').delete().eq('id', id);
+                        await loadCreatorKeys();
+                    });
                 });
-            } else { list.innerHTML = '<div style="font-size:var(--text-sm); color:var(--color-text-faint);">Нет созданных ключей.</div>'; }
+            } else {
+                list.innerHTML = '<div style="font-size:var(--text-sm); color:var(--color-text-faint);">Нет созданных ключей.</div>';
+            }
         }
 
         document.getElementById('creatorXpBtn').addEventListener('click', async () => {
-            const sel = document.getElementById('creatorUserSelect'); const valInput = document.getElementById('creatorXpAmount');
-            const userId = sel.value; const amount = parseInt(valInput.value);
-            if (!userId || isNaN(amount)) { alert("Ошибка: введите корректное число XP."); return; }
-            const user = creatorUsersList.find(u => u.user_id === userId); if (!user) return;
+            const sel = document.getElementById('creatorUserSelect');
+            const valInput = document.getElementById('creatorXpAmount');
+            
+            const userId = sel.value;
+            const amount = parseInt(valInput.value);
+
+            if (!userId || isNaN(amount)) {
+                alert("Ошибка: введите корректное число XP.");
+                return;
+            }
+
+            const user = creatorUsersList.find(u => u.user_id === userId);
+            if (!user) return;
+
+            // Выдача XP = уменьшение shop_spent. Снятие XP = увеличение shop_spent.
             const newShopSpent = (Number(user.shop_spent) || 0) - amount;
+
             const { error } = await supa.from('user_stats').update({ shop_spent: newShopSpent }).eq('user_id', userId);
-            if (error) { alert("Ошибка БД: " + error.message); } else { playSound('win'); alert(`Успешно! Баланс изменён на ${amount > 0 ? '+'+amount : amount} XP.`); valInput.value = ''; await loadCreatorPanelData(); }
+            if (error) {
+                alert("Ошибка БД: " + error.message);
+            } else {
+                playSound('win');
+                alert(`Успешно! Баланс пользователя ${user.nickname} изменён на ${amount > 0 ? '+'+amount : amount} XP.`);
+                valInput.value = '';
+                await loadCreatorPanelData(); // обновляем список
+            }
         });
 
+        // Кнопки Троллинга
         document.getElementById('trollWipeXpBtn').addEventListener('click', async () => {
-            const userId = document.getElementById('creatorUserSelect').value; if (!userId) return;
+            const userId = document.getElementById('creatorUserSelect').value;
+            if (!userId) return;
+            
+            // Установим огромный долг, чтобы обнулить XP
             await supa.from('user_stats').update({ shop_spent: 99999 }).eq('user_id', userId);
-            playSound('fail'); alert('Игрок опущен на дно (XP обнулен)!'); loadCreatorPanelData();
+            playSound('fail'); 
+            alert('Игрок опущен на дно (XP обнулен)!'); 
+            loadCreatorPanelData();
         });
 
         document.getElementById('trollRenameBtn').addEventListener('click', async () => {
-            const userId = document.getElementById('creatorUserSelect').value; if (!userId) return;
-            const customNickInput = document.getElementById('trollCustomNick').value.trim(); let newName = customNickInput;
-            if (!newName) { const funnyNames = ["Клоун_Из_Тамбова", "Главный_Пупсик", "Обиженка_1337", "Печенька_С_Форума"]; newName = funnyNames[Math.floor(Math.random() * funnyNames.length)]; }
+            const userId = document.getElementById('creatorUserSelect').value;
+            if (!userId) return;
+            
+            const customNickInput = document.getElementById('trollCustomNick').value.trim();
+            let newName = customNickInput;
+            
+            // Если поле пустое, берем рандомный
+            if (!newName) {
+                const funnyNames = ["Клоун_Из_Тамбова", "Главный_Пупсик", "Обиженка_1337", "Печенька_С_Форума"];
+                newName = funnyNames[Math.floor(Math.random() * funnyNames.length)];
+            }
+            
             await supa.from('user_stats').update({ nickname: newName }).eq('user_id', userId);
-            playSound('win'); alert(`Игроку выдано клеймо позора: ${newName}!`); document.getElementById('trollCustomNick').value = ''; loadCreatorPanelData();
+            playSound('win'); 
+            alert(`Игроку выдано клеймо позора: ${newName}!`); 
+            
+            document.getElementById('trollCustomNick').value = ''; // Очищаем поле
+            loadCreatorPanelData();
         });
 
         document.getElementById('creatorAddKeyBtn').addEventListener('click', async () => {
-            const role = document.getElementById('creatorKeyRole').value; const keyStr = document.getElementById('creatorKeyInput').value.trim(); const btn = document.getElementById('creatorAddKeyBtn');
-            if (keyStr.length < 3) { alert("Ключ должен быть длиннее 3 символов!"); return; }
+            const role = document.getElementById('creatorKeyRole').value;
+            const keyStr = document.getElementById('creatorKeyInput').value.trim();
+            const btn = document.getElementById('creatorAddKeyBtn');
+
+            if (keyStr.length < 3) {
+                alert("Ключ должен быть длиннее 3 символов!"); 
+                return;
+            }
+
             btn.disabled = true;
-            const newKey = { id: Date.now().toString(), email: 'ACCESS_KEY', link: keyStr, date: new Date().toLocaleString('ru-RU'), status: role, xp: 0 };
+            const newKey = { 
+                id: Date.now().toString(), 
+                email: 'ACCESS_KEY', 
+                link: keyStr, 
+                date: new Date().toLocaleString('ru-RU'), 
+                status: role, 
+                xp: 0 
+            };
+            
             const { error } = await supa.from('reports').insert([newKey]);
-            if (error) { alert("Ошибка: " + error.message); } else { document.getElementById('creatorKeyInput').value = ''; await loadCreatorKeys(); }
+            if (error) {
+                alert("Ошибка: " + error.message);
+            } else {
+                document.getElementById('creatorKeyInput').value = '';
+                await loadCreatorKeys();
+            }
             btn.disabled = false;
         });
 
@@ -1476,8 +1863,11 @@
           if (!currentUser) return;
           const newLog = { 
               id: Date.now().toString() + Math.random().toString(36).substr(2, 9), 
-              email: currentNickname || currentUser.email, link: '[АВТОВЫДАЧА] ' + itemName, 
-              date: new Date().toLocaleString('ru-RU'), status: isAutoLog ? 'Автоматически зачислено' : 'Ожидает выдачи', xp: 0 
+              email: currentNickname || currentUser.email, 
+              link: '[АВТОВЫДАЧА] ' + itemName, 
+              date: new Date().toLocaleString('ru-RU'), 
+              status: isAutoLog ? 'Автоматически зачислено' : 'Ожидает выдачи', 
+              xp: 0 
           };
           await supa.from('reports').insert([newLog]);
         }
@@ -1495,13 +1885,27 @@
           { id: 'jw_quiz', title: "Викторина «Джон Уик»", desc: "Угадай персонажа по фото. Ставка 600 XP, награда 1500 XP!", price: 600 }
         ];
 
-        function calcXP(value) { return Math.floor(Number(value) / 10) * 15; }
-        function getReportXp() { return Number(state.reportXp) || 0; }
-        function availableXp() { return Math.max(0, calcXP(state.correct) + getReportXp() - Number(shopState.spent)); }
+        function calcXP(value) { 
+            return Math.floor(Number(value) / 10) * 15;
+        }
+        
+        function getReportXp() { 
+            return Number(state.reportXp) || 0; 
+        }
+        
+        function availableXp() { 
+            return Math.max(0, calcXP(state.correct) + getReportXp() - Number(shopState.spent));
+        }
 
-        function pushLog(text) { state.log.unshift(text); state.log = state.log.slice(0, 50); renderLogs(); }
+        function pushLog(text) {
+          state.log.unshift(text);
+          state.log = state.log.slice(0, 50);
+          renderLogs();
+        }
+
         function renderLogs() {
-          const logList = document.getElementById("logList"); if (!logList) return;
+          const logList = document.getElementById("logList");
+          if (!logList) return;
           logList.innerHTML = state.log.length > 0 ? state.log.map(item => `<div class="log-item">${item}</div>`).join("") : '<div class="log-item">Пока пусто. Нажми «Начать смену».</div>';
         }
 
@@ -1513,30 +1917,67 @@
           { id: 'q4', title: 'Мастер Своего Дела', desc: 'Рассмотреть 200 сообщений в тренажёре', max: 200, getProgress: () => state.resolved, reward: 500 }
         ];
 
-        function getClaimedQuests() { if(!currentUser) return []; const data = localStorage.getItem('quests_' + currentUser.email); return data ? JSON.parse(data) : []; }
+        function getClaimedQuests() {
+          if(!currentUser) return [];
+          const data = localStorage.getItem('quests_' + currentUser.email); 
+          return data ? JSON.parse(data) : [];
+        }
 
         window.claimQuest = function(qId, reward) {
-          if(!currentUser) return; const claimed = getClaimedQuests(); if(claimed.includes(qId)) return;
-          claimed.push(qId); localStorage.setItem('quests_' + currentUser.email, JSON.stringify(claimed));
+          if(!currentUser) return;
+          const claimed = getClaimedQuests();
+          if(claimed.includes(qId)) return;
+          
+          claimed.push(qId); 
+          localStorage.setItem('quests_' + currentUser.email, JSON.stringify(claimed));
+          
           shopState.spent = Number(shopState.spent) - reward;
-          updateShopStats(); updateModStats(); updateSupportStats(); updateComplaintStats(); saveProgress();
-          pushLog(`🏆 Квест выполнен! Зачислено +${reward} XP.`); playSound('win'); alert(`✅ Квест выполнен!\nВам зачислено +${reward} XP.`); renderQuests();
+          updateShopStats(); 
+          updateModStats(); 
+          updateSupportStats(); 
+          updateComplaintStats();
+          saveProgress();
+          
+          pushLog(`🏆 Квест выполнен! Зачислено +${reward} XP.`);
+          playSound('win');
+          alert(`✅ Квест выполнен!\nВам зачислено +${reward} XP.`);
+          renderQuests();
         };
 
         function renderQuests() {
-          const container = document.getElementById('questsContainer'); if(!container) return;
-          if(!currentUser) { container.innerHTML = '<div class="message-text">Войдите в аккаунт, чтобы выполнять квесты.</div>'; return; }
+          const container = document.getElementById('questsContainer'); 
+          if(!container) return;
+          if(!currentUser) { 
+              container.innerHTML = '<div class="message-text">Войдите в аккаунт, чтобы выполнять квесты.</div>';
+              return; 
+          }
+          
           const claimed = getClaimedQuests();
           container.innerHTML = questsData.map(q => {
-            const prog = Math.min(q.getProgress(), q.max); const pct = (prog / q.max) * 100;
-            const isClaimed = claimed.includes(q.id); const canClaim = prog >= q.max && !isClaimed;
+            const prog = Math.min(q.getProgress(), q.max); 
+            const pct = (prog / q.max) * 100;
+            const isClaimed = claimed.includes(q.id); 
+            const canClaim = prog >= q.max && !isClaimed;
+            
             let btnHTML = '';
-            if(isClaimed) { btnHTML = `<button class="quest-btn completed" disabled>✅ Выполнено</button>`; } else if(canClaim) { btnHTML = `<button class="quest-btn claim" onclick="window.claimQuest('${q.id}', ${q.reward})">Забрать +${q.reward} XP</button>`; } else { btnHTML = `<button class="quest-btn in-progress" disabled>⏳ В процессе</button>`; }
+            if(isClaimed) {
+                btnHTML = `<button class="quest-btn completed" disabled>✅ Выполнено</button>`;
+            } else if(canClaim) {
+                btnHTML = `<button class="quest-btn claim" onclick="window.claimQuest('${q.id}', ${q.reward})">Забрать +${q.reward} XP</button>`;
+            } else {
+                btnHTML = `<button class="quest-btn in-progress" disabled>⏳ В процессе</button>`;
+            }
+
             return `
             <div class="quest-card">
-                <div class="quest-header"><span class="quest-title">${q.title}</span><span class="quest-reward">+${q.reward} XP</span></div>
+                <div class="quest-header">
+                    <span class="quest-title">${q.title}</span>
+                    <span class="quest-reward">+${q.reward} XP</span>
+                </div>
                 <div class="quest-desc">${q.desc} (${prog} / ${q.max})</div>
-                <div class="quest-progress-wrap"><div class="quest-progress-fill" style="width: ${pct}%;"></div></div>
+                <div class="quest-progress-wrap">
+                    <div class="quest-progress-fill" style="width: ${pct}%;"></div>
+                </div>
                 ${btnHTML}
             </div>`;
           }).join('');
@@ -1547,23 +1988,38 @@
           const xp = availableXp();
           const elRes = document.getElementById("resolvedValue"); if(elRes) elRes.textContent = state.resolved;
           const elCor = document.getElementById("correctValue"); if(elCor) elCor.textContent = state.correct;
-          const elMis = document.getElementById("mistakeValue"); if(elMis) elMis.textContent = state.mistakes; 
+          const elMis = document.getElementById("mistakeValue");
+          if(elMis) elMis.textContent = state.mistakes; 
           const elXp = document.getElementById("xpValue"); if(elXp) elXp.textContent = xp;
-          const elXpF = document.getElementById("xpFill"); if(elXpF) elXpF.style.width = (Math.min(1, (state.correct % 10 || (state.correct ? 10 : 0)) / 10) * 100) + "%";
-          const elBan = document.getElementById("resultBanner"); if(elBan) elBan.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
-          const elHin = document.getElementById("resultHint"); if(elHin) elHin.textContent = !state.started ? "Нажми «Начать смену», чтобы получить первое сообщение." : `Сейчас доступно ${xp} XP (с учетом трат).`;
-          updateShopStats(); renderQuests();
+          
+          const elXpF = document.getElementById("xpFill");
+          if(elXpF) elXpF.style.width = (Math.min(1, (state.correct % 10 || (state.correct ? 10 : 0)) / 10) * 100) + "%";
+          
+          const elBan = document.getElementById("resultBanner"); 
+          if(elBan) elBan.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
+          const elHin = document.getElementById("resultHint"); 
+          if(elHin) elHin.textContent = !state.started ? "Нажми «Начать смену», чтобы получить первое сообщение." : `Сейчас доступно ${xp} XP (с учетом трат).`;
+          
+          updateShopStats(); 
+          renderQuests();
         }
 
         function updateSupportStats() {
           const xp = availableXp();
           const elRes = document.getElementById("supportResolvedValue"); if(elRes) elRes.textContent = supportState.resolved;
           const elCor = document.getElementById("supportCorrectValue"); if(elCor) elCor.textContent = supportState.correct;
-          const elMis = document.getElementById("supportMistakeValue"); if(elMis) elMis.textContent = supportState.mistakes; 
+          const elMis = document.getElementById("supportMistakeValue");
+          if(elMis) elMis.textContent = supportState.mistakes; 
           const elXp = document.getElementById("supportXpValue"); if(elXp) elXp.textContent = xp;
-          const elXpF = document.getElementById("supportXpFill"); if(elXpF) elXpF.style.width = (Math.min(1, (supportState.correct % 10 || (supportState.correct ? 10 : 0)) / 10) * 100) + "%";
-          const elBan = document.getElementById("supportBanner"); if(elBan) elBan.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
-          const elHin = document.getElementById("supportBannerHint"); if(elHin) elHin.textContent = !state.started ? "Нажми «Начать смену», чтобы открыть вопрос." : `Общий баланс: ${xp} XP (Ответы АП не дают XP).`;
+          
+          const elXpF = document.getElementById("supportXpFill");
+          if(elXpF) elXpF.style.width = (Math.min(1, (supportState.correct % 10 || (supportState.correct ? 10 : 0)) / 10) * 100) + "%";
+          
+          const elBan = document.getElementById("supportBanner"); 
+          if(elBan) elBan.firstElementChild.innerHTML = `<strong>${!state.started ? "Результат: смена ещё не начата" : "Результат: смена в процессе"}</strong>`;
+          const elHin = document.getElementById("supportBannerHint"); 
+          if(elHin) elHin.textContent = !state.started ? "Нажми «Начать смену», чтобы открыть вопрос." : `Общий баланс: ${xp} XP (Ответы АП не дают XP).`;
+          
           renderQuests();
         }
 
@@ -1571,8 +2027,10 @@
           const xp = availableXp();
           const rv = document.getElementById("compResolvedValue"); if(rv) rv.textContent = complaintState.resolved;
           const cv = document.getElementById("compCorrectValue"); if(cv) cv.textContent = complaintState.correct;
-          const mv = document.getElementById("compMistakeValue"); if(mv) mv.textContent = complaintState.mistakes;
+          const mv = document.getElementById("compMistakeValue");
+          if(mv) mv.textContent = complaintState.mistakes;
           const xv = document.getElementById("compXpValue"); if(xv) xv.textContent = xp;
+          
           renderQuests();
         }
 
@@ -1588,162 +2046,362 @@
           });
         }
 
-        // === АНТИ-СПАМ ===
+        // === АНТИ-СПАМ С ЖЕСТКОЙ БЛОКИРОВКОЙ ===
         let clickTimestamps = [];
         let blockUntil = parseInt(localStorage.getItem('spam_block_until') || '0');
         let spamTimerInterval;
 
         function isSpamming() {
           const now = Date.now();
-          if (now < blockUntil) { showSpamModalWithTimer(); return true; }
-          clickTimestamps.push(now); clickTimestamps = clickTimestamps.filter(time => now - time <= 3000);
+          // Если игрок уже в блокировке
+          if (now < blockUntil) {
+            showSpamModalWithTimer();
+            return true;
+          }
+
+          clickTimestamps.push(now);
+          // Оставляем только клики за последние 3 секунды
+          clickTimestamps = clickTimestamps.filter(time => now - time <= 3000);
+          // 5 кликов за 3 секунды = спам
           if (clickTimestamps.length >= 5) {
-            blockUntil = now + 60000; localStorage.setItem('spam_block_until', blockUntil.toString()); clickTimestamps = []; 
-            playSound('fail'); showSpamModalWithTimer(); return true;
+            blockUntil = now + 60000;
+            // Ровно 60 секунд блокировки
+            localStorage.setItem('spam_block_until', blockUntil.toString());
+            clickTimestamps = []; // Сбрасываем историю
+            playSound('fail');
+            showSpamModalWithTimer();
+            return true;
           }
           return false;
         }
 
         function showSpamModalWithTimer() {
-          const modal = document.getElementById('spamModal'); const closeBtn = document.getElementById('closeSpamModal');
-          modal.style.display = 'flex'; closeBtn.disabled = true; closeBtn.style.opacity = '0.5'; closeBtn.style.cursor = 'not-allowed';
-          let timeLeft = Math.ceil((blockUntil - Date.now()) / 1000); if (timeLeft < 0) timeLeft = 60;
+          const modal = document.getElementById('spamModal');
+          const closeBtn = document.getElementById('closeSpamModal');
+          
+          modal.style.display = 'flex';
+          closeBtn.disabled = true;
+          closeBtn.style.opacity = '0.5';
+          closeBtn.style.cursor = 'not-allowed';
+          
+          let timeLeft = Math.ceil((blockUntil - Date.now()) / 1000);
+          if (timeLeft < 0) timeLeft = 60;
+          
           closeBtn.textContent = `Блокировка: ${timeLeft} сек...`;
+          
           clearInterval(spamTimerInterval);
           spamTimerInterval = setInterval(() => {
             timeLeft--;
-            if (timeLeft <= 0) { clearInterval(spamTimerInterval); localStorage.removeItem('spam_block_until'); closeBtn.disabled = false; closeBtn.style.opacity = '1'; closeBtn.style.cursor = 'pointer'; closeBtn.textContent = 'Я понял, больше не буду'; } else { closeBtn.textContent = `Блокировка: ${timeLeft} сек...`; }
+            if (timeLeft <= 0) {
+              clearInterval(spamTimerInterval);
+              localStorage.removeItem('spam_block_until'); // Очищаем из памяти
+              closeBtn.disabled = false;
+              closeBtn.style.opacity = '1';
+              closeBtn.style.cursor = 'pointer';
+              closeBtn.textContent = 'Я понял, больше не буду';
+            } else {
+              closeBtn.textContent = `Блокировка: ${timeLeft} сек...`;
+            }
           }, 1000);
         }
 
-        if (blockUntil > Date.now()) { showSpamModalWithTimer(); }
-        document.getElementById('closeSpamModal').addEventListener('click', (e) => { if (!e.target.disabled) { document.getElementById('spamModal').style.display = 'none'; } });
+        // Проверка при загрузке страницы
+        if (blockUntil > Date.now()) {
+           showSpamModalWithTimer();
+        }
+
+        document.getElementById('closeSpamModal').addEventListener('click', (e) => {
+          if (!e.target.disabled) {
+            document.getElementById('spamModal').style.display = 'none';
+          }
+        });
 
         // === ИГРОВАЯ ЛОГИКА ===
-        function fillModQueue() { modQueue = allModMessages.map((_, i) => i); shuffleArray(modQueue); }
-        function fillSupQueue() { supQueue = allSupQuestions.map((_, i) => i); shuffleArray(supQueue); }
-        function fillCompQueue() { compQueue = allComplaints.map((_, i) => i); shuffleArray(compQueue); }
+        function fillModQueue() { 
+            modQueue = allModMessages.map((_, i) => i);
+            shuffleArray(modQueue); 
+        }
+        function fillSupQueue() { 
+            supQueue = allSupQuestions.map((_, i) => i);
+            shuffleArray(supQueue); 
+        }
+        function fillCompQueue() { 
+            compQueue = allComplaints.map((_, i) => i);
+            shuffleArray(compQueue); 
+        }
 
         function randomMessage() {
           if (modQueue.length === 0) fillModQueue();
-          const index = modQueue.pop(); const item = allModMessages[index]; const user = randomFunnyNick(); 
+          const index = modQueue.pop(); 
+          const item = allModMessages[index];
+          const user = randomFunnyNick(); 
+          
           state.current = { ...item, user };
           const elA = document.getElementById("authorName"); if(elA) elA.textContent = user; 
           const elM = document.getElementById("authorMeta"); if(elM) elM.textContent = "Неизвестно, есть ли нарушение";
           const elT = document.getElementById("messageText"); if(elT) elT.textContent = item.text; 
           const elB = document.getElementById("avatarBox"); if(elB) elB.textContent = initials(user);
-          const elH = document.getElementById("hintText"); if(elH) elH.textContent = "Выбери: без нарушения, устное/пред/мут или бан.";
+          const elH = document.getElementById("hintText");
+          if(elH) elH.textContent = "Выбери: без нарушения, устное/пред/мут или бан.";
         }
 
         function randomComplaint() {
           if (compQueue.length === 0) fillCompQueue();
-          const index = compQueue.pop(); const item = allComplaints[index]; const user = randomFunnyNick(); 
+          const index = compQueue.pop(); 
+          const item = allComplaints[index];
+          const user = randomFunnyNick(); 
+          
           complaintState.current = { ...item, user };
           const cAuthor = document.getElementById("compAuthor"); if(cAuthor) cAuthor.textContent = "Жалоба от " + user;
-          const cMeta = document.getElementById("compMeta"); if(cMeta) cMeta.textContent = "Требуется вердикт";
+          const cMeta = document.getElementById("compMeta");
+          if(cMeta) cMeta.textContent = "Требуется вердикт";
           const cText = document.getElementById("compText"); if(cText) cText.textContent = item.text;
-          const cEvidence = document.getElementById("compEvidence"); if(cEvidence) cEvidence.textContent = "Доказательства: " + item.evidence;
+          const cEvidence = document.getElementById("compEvidence");
+          if(cEvidence) cEvidence.textContent = "Доказательства: " + item.evidence;
         }
 
         function startGame() {
-          if (!currentUser) { authModal.style.display = 'flex'; authErrorMsg.textContent = 'Для начала смены необходимо войти в аккаунт!'; authErrorMsg.style.color = 'var(--color-warning)'; authErrorMsg.style.display = 'block'; return; }
-          if (!currentNickname) { ensureNickname(); return; }
+          if (!currentUser) { 
+              authModal.style.display = 'flex';
+              authErrorMsg.textContent = 'Для начала смены необходимо войти в аккаунт!'; 
+              authErrorMsg.style.color = 'var(--color-warning)'; 
+              authErrorMsg.style.display = 'block'; 
+              return;
+          }
+          if (!currentNickname) { 
+              ensureNickname();
+              return; 
+          }
 
-          state.started = true; supportState.started = true; complaintState.started = true; state.log = [];
-          fillModQueue(); fillSupQueue(); fillCompQueue();
+          state.started = true;
+          supportState.started = true;
+          complaintState.started = true;
+          state.log = [];
+
+          fillModQueue();
+          fillSupQueue();
+          fillCompQueue();
+
           pushLog('Смена началась. Используй текущий режим ниже.');
           if (allModMessages.length) randomMessage();
+          
           if (allSupQuestions.length) {
             supportState.currentIndex = -1;
-            const titleEl = document.getElementById("supportQuestionTitle"); if (titleEl) titleEl.textContent = "Вопрос готов";
-            const metaEl = document.getElementById("supportMeta"); if (metaEl) metaEl.textContent = "Нажми «Следующий вопрос» или проверь первый сразу";
+            const titleEl = document.getElementById("supportQuestionTitle");
+            if (titleEl) titleEl.textContent = "Вопрос готов";
+            const metaEl = document.getElementById("supportMeta");
+            if (metaEl) metaEl.textContent = "Нажми «Следующий вопрос» или проверь первый сразу";
             nextSupportQuestion();
           }
+          
           if (allComplaints.length) randomComplaint();
-          updateModStats(); updateSupportStats(); updateComplaintStats();
-          const gameEl = document.getElementById("game"); if(gameEl) gameEl.scrollIntoView({ behavior: "smooth", block: "start" });
+          
+          updateModStats();
+          updateSupportStats();
+          updateComplaintStats();
+          
+          const gameEl = document.getElementById("game");
+          if(gameEl) gameEl.scrollIntoView({ behavior: "smooth", block: "start" });
         }
 
         function resetGame() {
-          state.current = null; state.started = false; state.log = []; supportState.started = false; supportState.currentIndex = -1; complaintState.started = false; complaintState.current = null;
-          modQueue = []; supQueue = []; compQueue = [];
+          state.current = null;
+          state.started = false; 
+          state.log = [];
+          
+          supportState.started = false; 
+          supportState.currentIndex = -1;
+          
+          complaintState.started = false; 
+          complaintState.current = null;
+          
+          modQueue = []; 
+          supQueue = []; 
+          compQueue = [];
           
           const elA = document.getElementById("authorName"); if(elA) elA.textContent = "System";
           const elM = document.getElementById("authorMeta"); if(elM) elM.textContent = "Сообщение появится после старта смены";
-          const elT = document.getElementById("messageText"); if(elT) elT.textContent = "Пока сообщений нет. Нажми «Начать смену»."; 
+          const elT = document.getElementById("messageText");
+          if(elT) elT.textContent = "Пока сообщений нет. Нажми «Начать смену»."; 
           const elB = document.getElementById("avatarBox"); if(elB) elB.textContent = "T7";
           const elH = document.getElementById("hintText"); if(elH) elH.textContent = "Оценка: без нарушения, устное/пред/мут, бан/перма/глобал.";
           
-          const elST = document.getElementById("supportQuestionTitle"); if(elST) elST.textContent = "Вопрос скрыт"; 
+          const elST = document.getElementById("supportQuestionTitle");
+          if(elST) elST.textContent = "Вопрос скрыт"; 
           const elSM = document.getElementById("supportMeta"); if(elSM) elSM.textContent = "Появится после начала смены";
-          const elSQ = document.getElementById("supportQuestionText"); if(elSQ) elSQ.textContent = "Нажми «Начать смену», затем открой вопрос и помоги игроку разобраться.";
-          const elSI = document.getElementById("supportAnswerInput"); if(elSI) elSI.value = ""; 
+          const elSQ = document.getElementById("supportQuestionText");
+          if(elSQ) elSQ.textContent = "Нажми «Начать смену», затем открой вопрос и помоги игроку разобраться.";
+          const elSI = document.getElementById("supportAnswerInput");
+          if(elSI) elSI.value = ""; 
           const elSR = document.getElementById("supportResultText"); if(elSR) elSR.textContent = "";
           
-          const cAuthor = document.getElementById("compAuthor"); if(cAuthor) cAuthor.textContent = "Жалоба скрыта";
+          const cAuthor = document.getElementById("compAuthor");
+          if(cAuthor) cAuthor.textContent = "Жалоба скрыта";
           const cText = document.getElementById("compText"); if(cText) cText.textContent = "Нажми «Начать смену», чтобы открыть первую жалобу.";
           
           pushLog('Пока пусто. Нажми «Начать смену», чтобы начать работу.');
-          updateModStats(); updateSupportStats(); updateComplaintStats();
+          updateModStats(); 
+          updateSupportStats(); 
+          updateComplaintStats();
         }
 
         function judge(action) {
           if (!state.started || !state.current) { startGame(); return; }
           if (isSpamming()) return;
-          const isCorrect = action === state.current.type; state.resolved = Number(state.resolved) + 1;
-          if (isCorrect) { state.correct = Number(state.correct) + 1; playSound('ok'); pushLog(`✅ Тренажёр: верное решение (${action.toUpperCase()})`); } else { state.mistakes = Number(state.mistakes) + 1; playSound('fail'); pushLog(`❌ Тренажёр: ошибка (${action.toUpperCase()})`); }
-          updateModStats(); saveProgress(); setTimeout(randomMessage, 300);
+
+          const isCorrect = action === state.current.type;
+          state.resolved = Number(state.resolved) + 1;
+          
+          if (isCorrect) { 
+              state.correct = Number(state.correct) + 1;
+              playSound('ok');
+              pushLog(`✅ Тренажёр: верное решение (${action.toUpperCase()})`); 
+          } else { 
+              state.mistakes = Number(state.mistakes) + 1;
+              playSound('fail');
+              pushLog(`❌ Тренажёр: ошибка (${action.toUpperCase()})`); 
+          }
+          
+          updateModStats();
+          saveProgress(); 
+          setTimeout(randomMessage, 300);
         }
 
         function judgeComplaint(action) {
           if (!state.started || !complaintState.current) { startGame(); return; }
           if (isSpamming()) return;
-          const isCorrect = action === complaintState.current.type; complaintState.resolved = Number(complaintState.resolved) + 1;
-          if (isCorrect) { complaintState.correct = Number(complaintState.correct) + 1; shopState.spent -= 15; playSound('ok'); pushLog(`✅ Жалоба: верный вердикт! (+15 XP)`); } else { complaintState.mistakes = Number(complaintState.mistakes) + 1; playSound('fail'); pushLog(`❌ Жалоба: неверный вердикт!`); }
-          updateComplaintStats(); saveProgress(); setTimeout(randomComplaint, 300);
+
+          const isCorrect = action === complaintState.current.type;
+          complaintState.resolved = Number(complaintState.resolved) + 1;
+          
+          if (isCorrect) { 
+             complaintState.correct = Number(complaintState.correct) + 1;
+             shopState.spent -= 15; 
+             playSound('ok');
+             pushLog(`✅ Жалоба: верный вердикт! (+15 XP)`);
+          } else { 
+             complaintState.mistakes = Number(complaintState.mistakes) + 1;
+             playSound('fail');
+             pushLog(`❌ Жалоба: неверный вердикт!`); 
+          }
+          
+          updateComplaintStats();
+          saveProgress(); 
+          setTimeout(randomComplaint, 300);
         }
 
-        const snb = document.getElementById("supportNextBtn"); if(snb) snb.addEventListener("click", nextSupportQuestion);
+        const snb = document.getElementById("supportNextBtn");
+        if(snb) snb.addEventListener("click", nextSupportQuestion);
         
         const scb = document.getElementById("supportCheckBtn");
         if(scb) scb.addEventListener("click", () => {
-          if (!state.started) { const err = document.getElementById("supportResultText"); if(err){ err.textContent = "Сначала нажми «Начать смену»."; err.style.color = "var(--color-warning)"; } return; }
-          if (supportState.currentIndex < 0) { const err = document.getElementById("supportResultText"); if(err){ err.textContent = "Сначала нажми «Следующий вопрос»."; err.style.color = "var(--color-warning)"; } return; }
+          if (!state.started) { 
+              const err = document.getElementById("supportResultText"); 
+              if(err){
+                  err.textContent = "Сначала нажми «Начать смену»."; 
+                  err.style.color = "var(--color-warning)";
+              } 
+              return; 
+          }
+          if (supportState.currentIndex < 0) { 
+              const err = document.getElementById("supportResultText"); 
+              if(err){
+                  err.textContent = "Сначала нажми «Следующий вопрос»."; 
+                  err.style.color = "var(--color-warning)";
+              } 
+              return; 
+          }
 
           const q = allSupQuestions[supportState.currentIndex];
-          const elSI = document.getElementById("supportAnswerInput"); const elSR = document.getElementById("supportResultText");
+          const elSI = document.getElementById("supportAnswerInput");
+          const elSR = document.getElementById("supportResultText");
+ 
           if(!elSI || !elSR) return;
+
           const answer = elSI.value.trim().toLowerCase();
-          if (!answer) { elSR.textContent = "Напиши ответ игроку."; elSR.style.color = "var(--color-text-muted)"; return; }
+          if (!answer) { 
+              elSR.textContent = "Напиши ответ игроку.";
+              elSR.style.color = "var(--color-text-muted)"; 
+              return; 
+          }
 
           supportState.resolved = Number(supportState.resolved) + 1;
           const ok = q.keywords.some(k => answer.includes(k));
           
-          if (ok) { supportState.correct = Number(supportState.correct) + 1; elSR.textContent = "Ответ засчитан: попал по смыслу."; elSR.style.color = "var(--color-success)"; playSound('ok'); pushLog(`🟢 АП: ответ засчитан.`); } else { supportState.mistakes = Number(supportState.mistakes) + 1; elSR.textContent = "Ответ не засчитан: мало ключевых ориентиров."; elSR.style.color = "var(--color-error)"; playSound('fail'); pushLog(`🔴 АП: ответ не засчитан.`); }
-          updateSupportStats(); saveProgress(); 
+          if (ok) {
+            supportState.correct = Number(supportState.correct) + 1;
+            elSR.textContent = "Ответ засчитан: попал по смыслу."; 
+            elSR.style.color = "var(--color-success)";
+            playSound('ok');
+            pushLog(`🟢 АП: ответ засчитан.`);
+          } else {
+            supportState.mistakes = Number(supportState.mistakes) + 1;
+            elSR.textContent = "Ответ не засчитан: мало ключевых ориентиров."; 
+            elSR.style.color = "var(--color-error)";
+            playSound('fail');
+            pushLog(`🔴 АП: ответ не засчитан.`);
+          }
+          
+          updateSupportStats();
+          saveProgress(); 
         });
 
         const elSI = document.getElementById("supportAnswerInput");
-        if(elSI) { elSI.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); document.getElementById("supportCheckBtn")?.click(); } }); }
+        if(elSI) {
+            elSI.addEventListener("keydown", e => { 
+                if (e.key === "Enter") { 
+                    e.preventDefault(); 
+                    document.getElementById("supportCheckBtn")?.click(); 
+                } 
+            });
+        }
 
         // === ПАНЕЛЬ ОТЧЕТОВ / АДМИН ПАНЕЛЬ ===
         function checkReportAccess() {
-          const warn = document.getElementById('reportAccessWarning'); const formArea = document.getElementById('reportFormArea'); const adminPanel = document.getElementById('adminPanelArea'); const adminTabBtn = document.getElementById('adminLogTabBtn');
+          const warn = document.getElementById('reportAccessWarning');
+          const formArea = document.getElementById('reportFormArea'); 
+          const adminPanel = document.getElementById('adminPanelArea'); 
+          const adminTabBtn = document.getElementById('adminLogTabBtn');
+          
           if (currentUser) {
-            if(warn) warn.style.display = 'none'; if(formArea) formArea.style.display = 'block';
-            if (adminEmails.includes(currentUser.email)) { if(adminPanel) adminPanel.style.display = 'block'; if(adminTabBtn) adminTabBtn.style.display = 'inline-block'; } else { if(adminPanel) adminPanel.style.display = 'none'; if(adminTabBtn) adminTabBtn.style.display = 'none'; }
-          } else { if(warn) warn.style.display = 'block'; if(formArea) formArea.style.display = 'none'; if(adminTabBtn) adminTabBtn.style.display = 'none'; }
+            if(warn) warn.style.display = 'none';
+            if(formArea) formArea.style.display = 'block';
+            
+            if (adminEmails.includes(currentUser.email)) { 
+              if(adminPanel) adminPanel.style.display = 'block';
+              if(adminTabBtn) adminTabBtn.style.display = 'inline-block';
+            } else { 
+              if(adminPanel) adminPanel.style.display = 'none';
+              if(adminTabBtn) adminTabBtn.style.display = 'none';
+            }
+          } else {
+            if(warn) warn.style.display = 'block';
+            if(formArea) formArea.style.display = 'none'; 
+            if(adminTabBtn) adminTabBtn.style.display = 'none';
+          }
         }
 
         async function renderReportsList() {
-          const area = document.getElementById('reportsListArea'); area.style.display = 'flex'; area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка отчетов...</div>';
+          const area = document.getElementById('reportsListArea');
+          area.style.display = 'flex'; 
+          area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка отчетов...</div>';
+          
           const { data: storedReports, error } = await supa.from('reports').select('*').not('link', 'like', '[АВТОВЫДАЧА]%').not('email', 'eq', 'ACCESS_KEY').order('date', { ascending: false });
-          if (error) { area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`; return; }
-          if (!storedReports || storedReports.length === 0) { area.innerHTML = `<div class="report-list-item" style="text-align:center;">Отчетов пока нет.</div>`; return; }
+          
+          if (error) { 
+              area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`;
+              return; 
+          }
+          
+          if (!storedReports || storedReports.length === 0) { 
+              area.innerHTML = `<div class="report-list-item" style="text-align:center;">Отчетов пока нет.</div>`;
+              return; 
+          }
 
           area.innerHTML = storedReports.map(rep => `
             <div class="report-list-item">
-              <span>Сотрудник: <strong>${rep.email}</strong> • Дата: ${rep.date}</span><a href="${rep.link}" target="_blank" rel="noopener noreferrer">${rep.link}</a>
+              <span>Сотрудник: <strong>${rep.email}</strong> • Дата: ${rep.date}</span>
+              <a href="${rep.link}" target="_blank" rel="noopener noreferrer">${rep.link}</a>
               ${!rep.status ? `
                 <div style="display:flex; gap:0.5rem; margin-top:0.75rem; flex-wrap:wrap;">
                   <button class="badge xp grade-btn" data-id="${rep.id}" data-email="${rep.email}" data-verdict="Норма" data-xp="15" style="cursor:pointer; padding: 0.5rem 1rem; border:1px solid rgba(255,191,71,0.5);">Норма</button>
@@ -1752,24 +2410,45 @@
                   <button class="badge ban grade-btn" data-id="${rep.id}" data-email="${rep.email}" data-verdict="Не засчитано" data-xp="0" style="cursor:pointer; padding: 0.5rem 1rem; border:1px solid rgba(255,107,136,0.5);">Не засчитано</button>
                 </div>
               ` : `<div style="margin-top:0.5rem; font-size:var(--text-sm); font-weight:800; color:var(--color-success); letter-spacing:0.06em;">СТАТУС: ${rep.status}</div>`}
-            </div>`).join('');
+            </div>
+          `).join('');
 
           area.querySelectorAll('.grade-btn').forEach(btn => {
             btn.addEventListener('click', async () => {
-               const { id, email, verdict, xp } = btn.dataset; btn.disabled = true;
-               const xpReward = parseInt(xp); const newStatus = verdict + (xpReward > 0 ? ` (+${xpReward} XP)` : '');
+               const { id, email, verdict, xp } = btn.dataset;
+               btn.disabled = true;
+               
+               const xpReward = parseInt(xp);
+               const newStatus = verdict + (xpReward > 0 ? ` (+${xpReward} XP)` : '');
+               
                const { error } = await supa.from('reports').update({ status: newStatus, xp: xpReward }).eq('id', id);
-               if (error) { alert('Ошибка: ' + error.message); btn.disabled = false; return; }
-               playSound('ok'); pushLog(`📋 Отчет ${email} проверен: ${verdict}`); await renderReportsList();
+               
+               if (error) { 
+                   alert('Ошибка: ' + error.message); 
+                   btn.disabled = false; 
+                   return; 
+               }
+               
+               playSound('ok');
+               pushLog(`📋 Отчет ${email} проверен: ${verdict}`);
+               await renderReportsList();
             });
           });
         }
 
         async function renderAdminLogs() {
-          const area = document.getElementById('adminLogsArea'); area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка логов...</div>';
+          const area = document.getElementById('adminLogsArea');
+          area.innerHTML = '<div class="report-list-item" style="text-align:center;">Загрузка логов...</div>';
+          
           const { data: storedLogs, error } = await supa.from('reports').select('*').like('link', '[АВТОВЫДАЧА]%').order('date', { ascending: false });
-          if (error) { area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`; return; }
-          if (!storedLogs || storedLogs.length === 0) { area.innerHTML = `<div class="report-list-item" style="text-align:center;">Новых логов нет.</div>`; return; }
+          if (error) { 
+              area.innerHTML = `<div class="report-list-item" style="text-align:center; color: var(--color-error);">Ошибка: ${error.message}</div>`;
+              return; 
+          }
+          if (!storedLogs || storedLogs.length === 0) { 
+              area.innerHTML = `<div class="report-list-item" style="text-align:center;">Новых логов нет.</div>`;
+              return; 
+          }
 
           area.innerHTML = storedLogs.map(log => `
             <div class="report-list-item" style="border-color: rgba(255, 191, 71, 0.4);">
@@ -1780,80 +2459,200 @@
                   <button class="badge xp issue-btn" data-id="${log.id}" style="cursor:pointer; padding: 0.5rem 1rem; border:1px solid rgba(82,199,123,0.8); background: rgba(82, 199, 123, 0.15); color: #52c77b;">Отметить как выданное ✅</button>
                 </div>
               ` : `<div style="margin-top:0.5rem; font-size:var(--text-sm); font-weight:800; color:var(--color-text-faint); letter-spacing:0.06em;">СТАТУС: ${log.status}</div>`}
-            </div>`).join('');
+            </div>
+          `).join('');
           
           area.querySelectorAll('.issue-btn').forEach(btn => {
             btn.addEventListener('click', async () => {
-               const id = btn.dataset.id; btn.disabled = true; btn.textContent = "Обновление...";
+               const id = btn.dataset.id;
+               btn.disabled = true;
+               btn.textContent = "Обновление...";
+               
                const { error } = await supa.from('reports').update({ status: 'Выдано Руководством' }).eq('id', id);
-               if (error) { alert('Ошибка: ' + error.message); btn.disabled = false; btn.textContent = "Отметить как выданное ✅"; return; }
-               playSound('ok'); await renderAdminLogs();
+               if (error) { 
+                   alert('Ошибка: ' + error.message); 
+                   btn.disabled = false; 
+                   btn.textContent = "Отметить как выданное ✅"; 
+                   return; 
+               }
+               
+               playSound('ok');
+               await renderAdminLogs();
             });
           });
         }
 
-        document.getElementById('viewReportsBtn')?.addEventListener('click', () => { renderReportsList(); });
-        document.getElementById('loadAdminLogsBtn')?.addEventListener('click', () => { renderAdminLogs(); });
+        document.getElementById('viewReportsBtn')?.addEventListener('click', () => { 
+            renderReportsList(); 
+        });
+        
+        document.getElementById('loadAdminLogsBtn')?.addEventListener('click', () => { 
+            renderAdminLogs(); 
+        });
         
         document.getElementById('submitReportBtn')?.addEventListener('click', async () => {
-          const link = document.getElementById('reportLinkInput').value.trim(); const res = document.getElementById('reportResultText');
-          if(!link || !link.startsWith('http')) { res.textContent = "Вставьте корректную ссылку (http/https)."; res.style.color = "var(--color-warning)"; return; }
-          const newReport = { id: Date.now().toString() + Math.random().toString(36).substr(2, 9), email: currentNickname || currentUser.email, link: link, date: new Date().toLocaleString('ru-RU'), status: null, xp: 0 };
+          const link = document.getElementById('reportLinkInput').value.trim(); 
+          const res = document.getElementById('reportResultText');
+          
+          if(!link || !link.startsWith('http')) { 
+              res.textContent = "Вставьте корректную ссылку (http/https)."; 
+              res.style.color = "var(--color-warning)"; 
+              return; 
+          }
+          
+          const newReport = { 
+              id: Date.now().toString() + Math.random().toString(36).substr(2, 9), 
+              email: currentNickname || currentUser.email, 
+              link: link, 
+              date: new Date().toLocaleString('ru-RU'), 
+              status: null, 
+              xp: 0 
+          };
+          
           const { error } = await supa.from('reports').insert([newReport]);
-          if (error) { res.textContent = "Ошибка при сохранении: " + error.message; res.style.color = "var(--color-error)"; return; }
-          res.textContent = "Отчет успешно отправлен и сохранен!"; res.style.color = "var(--color-success)"; document.getElementById('reportLinkInput').value = ''; 
-          playSound('win'); pushLog(`📝 Отправлен отчет: ${link}`); if (document.getElementById('reportsListArea').style.display === 'flex') { renderReportsList(); }
+          
+          if (error) { 
+              res.textContent = "Ошибка при сохранении: " + error.message;
+              res.style.color = "var(--color-error)"; 
+              return; 
+          }
+          
+          res.textContent = "Отчет успешно отправлен и сохранен!";
+          res.style.color = "var(--color-success)";
+          document.getElementById('reportLinkInput').value = ''; 
+          
+          playSound('win');
+          pushLog(`📝 Отправлен отчет: ${link}`);
+          
+          if (document.getElementById('reportsListArea').style.display === 'flex') { 
+              renderReportsList();
+          }
         });
 
         function nextSupportQuestion() {
-          if (!state.started) { const err = document.getElementById("supportResultText"); if (err) { err.textContent = "Сначала нажми «Начать смену»."; err.style.color = "var(--color-warning)"; } return; }
+          if (!state.started) {
+            const err = document.getElementById("supportResultText");
+            if (err) { 
+                err.textContent = "Сначала нажми «Начать смену».";
+                err.style.color = "var(--color-warning)"; 
+            }
+            return;
+          }
+          
           if (!allSupQuestions.length) return;
           if (supQueue.length === 0) fillSupQueue();
-          supportState.currentIndex = supQueue.pop(); const q = allSupQuestions[supportState.currentIndex];
           
-          const elST = document.getElementById("supportQuestionTitle"); if(elST) elST.textContent = q.title || "Вопрос игрока";
+          supportState.currentIndex = supQueue.pop();
+          const q = allSupQuestions[supportState.currentIndex];
+          
+          const elST = document.getElementById("supportQuestionTitle");
+          if(elST) elST.textContent = q.title || "Вопрос игрока";
           const elSM = document.getElementById("supportMeta"); if(elSM) elSM.textContent = q.meta || "Вопрос игрока";
           const elSQ = document.getElementById("supportQuestionText"); if(elSQ) elSQ.textContent = q.text || "Без текста";
           const elSI = document.getElementById("supportAnswerInput"); if(elSI) elSI.value = "";
           const elSR = document.getElementById("supportResultText"); if(elSR) elSR.textContent = "";
+          
           pushLog(`🟦 АП: выдан вопрос «${q.title || 'Без названия'}»`);
         }
 
         // === РЕЖИМ НА ВРЕМЯ (СПИДРАН) ===
-        let taTime = 0; let taTimerInterval = null; let taScore = 0; let taMistakes = 0; let taCurrent = null;
+        let taTime = 0;
+        let taTimerInterval = null; 
+        let taScore = 0; 
+        let taMistakes = 0; 
+        let taCurrent = null;
         
         function renderTaMessage() {
             if (modQueue.length === 0) fillModQueue();
-            const item = allModMessages[modQueue.pop()]; taCurrent = { ...item, user: randomFunnyNick() };
-            document.getElementById("taAuthorName").textContent = taCurrent.user; document.getElementById("taMessageText").textContent = taCurrent.text; document.getElementById("taAvatar").textContent = taCurrent.user.substring(0,2).toUpperCase();
+            const item = allModMessages[modQueue.pop()];
+            taCurrent = { ...item, user: randomFunnyNick() };
+            
+            document.getElementById("taAuthorName").textContent = taCurrent.user; 
+            document.getElementById("taMessageText").textContent = taCurrent.text; 
+            document.getElementById("taAvatar").textContent = taCurrent.user.substring(0,2).toUpperCase();
         }
 
         document.getElementById('taStartBtn').addEventListener('click', () => {
-            if (!currentUser) { authModal.style.display = 'flex'; authErrorMsg.textContent = 'Для участия в Спидране необходимо войти в аккаунт!'; authErrorMsg.style.color = 'var(--color-warning)'; authErrorMsg.style.display = 'block'; return; }
-            document.getElementById('taStartScreen').style.display = 'none'; document.getElementById('taGameScreen').style.display = 'grid';
-            taScore = 0; taMistakes = 0; taTime = 60;
-            document.getElementById('taScore').textContent = taScore; document.getElementById('taMistakes').textContent = taMistakes;
-            renderTaMessage(); playSound('ok');
+            if (!currentUser) { 
+                authModal.style.display = 'flex'; 
+                authErrorMsg.textContent = 'Для участия в Спидране необходимо войти в аккаунт!'; 
+                authErrorMsg.style.color = 'var(--color-warning)'; 
+                authErrorMsg.style.display = 'block'; 
+                return; 
+            }
+            
+            document.getElementById('taStartScreen').style.display = 'none';
+            document.getElementById('taGameScreen').style.display = 'grid';
+            
+            taScore = 0; 
+            taMistakes = 0; 
+            taTime = 60;
+            
+            document.getElementById('taScore').textContent = taScore;
+            document.getElementById('taMistakes').textContent = taMistakes;
+            
+            renderTaMessage();
+            playSound('ok');
+
             clearInterval(taTimerInterval);
             taTimerInterval = setInterval(() => {
-                taTime--; const display = document.getElementById('taTimer'); display.textContent = `00:${taTime < 10 ? '0'+taTime : taTime}`;
-                if (taTime <= 10) { display.classList.add('danger'); } else { display.classList.remove('danger'); }
-                if (taTime <= 0) { clearInterval(taTimerInterval); endTimeAttack(); }
+                taTime--;
+                const display = document.getElementById('taTimer');
+                display.textContent = `00:${taTime < 10 ? '0'+taTime : taTime}`;
+                
+                if (taTime <= 10) {
+                    display.classList.add('danger');
+                } else {
+                    display.classList.remove('danger');
+                }
+                
+                if (taTime <= 0) {
+                    clearInterval(taTimerInterval);
+                    endTimeAttack();
+                }
             }, 1000);
         });
         
         function endTimeAttack() {
-            document.getElementById('taGameScreen').style.display = 'none'; document.getElementById('taStartScreen').style.display = 'block'; document.getElementById('taTimer').textContent = "ВРЕМЯ ВЫШЛО!"; document.getElementById('taTimer').classList.remove('danger');
+            document.getElementById('taGameScreen').style.display = 'none';
+            document.getElementById('taStartScreen').style.display = 'block';
+            document.getElementById('taTimer').textContent = "ВРЕМЯ ВЫШЛО!";
+            document.getElementById('taTimer').classList.remove('danger');
+            
             const bonusXp = Math.floor(taScore / 5) * 10;
-            if (bonusXp > 0) { shopState.spent -= bonusXp; playSound('win'); alert(`🏁 Спидран завершен!\nПравильно: ${taScore}\nОшибок: ${taMistakes}\n\nВы заработали +${bonusXp} XP!`); } else { playSound('fail'); alert(`🏁 Спидран завершен!\nПравильно: ${taScore}\nОшибок: ${taMistakes}\n\nСлишком мало правильных ответов для награды. Попробуйте еще раз!`); }
-            updateModStats(); saveProgress();
+            
+            if (bonusXp > 0) {
+                shopState.spent -= bonusXp;
+                playSound('win');
+                alert(`🏁 Спидран завершен!\nПравильно: ${taScore}\nОшибок: ${taMistakes}\n\nВы заработали +${bonusXp} XP!`);
+            } else {
+                playSound('fail');
+                alert(`🏁 Спидран завершен!\nПравильно: ${taScore}\nОшибок: ${taMistakes}\n\nСлишком мало правильных ответов для награды. Попробуйте еще раз!`);
+            }
+            
+            updateModStats();
+            saveProgress();
         }
 
         document.querySelectorAll('[data-ta-action]').forEach(btn => {
             btn.onclick = () => {
                 if (taTime <= 0) return;
+                
                 const action = btn.dataset.taAction;
-                if (action === taCurrent.type) { taScore++; playSound('ok'); document.getElementById('taScore').textContent = taScore; } else { taMistakes++; taTime -= 3; playSound('fail'); document.getElementById('taMistakes').textContent = taMistakes; const display = document.getElementById('taTimer'); display.style.color = '#ff6b88'; setTimeout(() => display.style.color = '', 300); }
+                if (action === taCurrent.type) {
+                    taScore++; 
+                    playSound('ok'); 
+                    document.getElementById('taScore').textContent = taScore;
+                } else {
+                    taMistakes++; 
+                    taTime -= 3; 
+                    playSound('fail'); 
+                    document.getElementById('taMistakes').textContent = taMistakes;
+                    
+                    const display = document.getElementById('taTimer');
+                    display.style.color = '#ff6b88'; 
+                    setTimeout(() => display.style.color = '', 300);
+                }
                 renderTaMessage();
             };
         });
@@ -1897,28 +2696,52 @@
           modal.querySelector('h2').textContent = isVip ? 'VIP Рулетка' : 'Колесо Фортуны';
           modal.querySelector('p').textContent = isVip ? 'Высокие ставки — эксклюзивные призы или суровые штрафы!' : 'Испытай удачу! Призы будут добавлены на баланс или отправлены Руководству.';
 
-          modal.style.display = 'flex'; resultText.textContent = 'Крутим...'; closeBtn.style.display = 'none'; track.style.transition = 'none'; track.style.transform = 'translateX(0px)'; track.innerHTML = '';
+          modal.style.display = 'flex';
+          resultText.textContent = 'Крутим...';
+          closeBtn.style.display = 'none';
+          track.style.transition = 'none';
+          track.style.transform = 'translateX(0px)';
+          track.innerHTML = '';
 
-          const numItems = 80; const itemWidth = 160; let winningIndex = Math.floor(Math.random() * 10) + 65; let winnerItem = null;
+          const numItems = 80;
+          const itemWidth = 160;
+          let winningIndex = Math.floor(Math.random() * 10) + 65; 
+          
+          let winnerItem = null;
           for (let i = 0; i < numItems; i++) {
             const p = prizesToUse[Math.floor(Math.random() * prizesToUse.length)];
             if (i === winningIndex) winnerItem = p;
-            const el = document.createElement('div'); el.className = `roulette-item ${p.type}`; el.innerHTML = `<i>${p.icon}</i><span>${p.text}</span>`; track.appendChild(el);
+            
+            const el = document.createElement('div');
+            el.className = `roulette-item ${p.type}`;
+            el.innerHTML = `<i>${p.icon}</i><span>${p.text}</span>`;
+            track.appendChild(el);
           }
 
           setTimeout(() => {
-            const wrapperWidth = wrapper.offsetWidth; const targetCenter = (winningIndex * itemWidth) + (itemWidth / 2); const randomShift = (Math.random() * 80) - 40; const offset = targetCenter - (wrapperWidth / 2) + randomShift;
-            track.style.transition = 'transform 6s cubic-bezier(0.15, 0.85, 0.2, 1)'; track.style.transform = `translateX(-${offset}px)`;
+            const wrapperWidth = wrapper.offsetWidth;
+            const targetCenter = (winningIndex * itemWidth) + (itemWidth / 2);
+            const randomShift = (Math.random() * 80) - 40; 
+            const offset = targetCenter - (wrapperWidth / 2) + randomShift;
+
+            track.style.transition = 'transform 6s cubic-bezier(0.15, 0.85, 0.2, 1)';
+            track.style.transform = `translateX(-${offset}px)`;
             
             setTimeout(async () => {
               let outcomeMsg = `Вы выиграли: ${winnerItem.text}!\n\n`;
+              
               if (winnerItem.xp) {
                 if (winnerItem.xp > 0) {
-                  shopState.spent = Number(shopState.spent) - Number(winnerItem.xp); outcomeMsg += `Опыт автоматически зачислен на баланс (+${winnerItem.xp} XP).`;
+                  shopState.spent = Number(shopState.spent) - Number(winnerItem.xp); 
+                  outcomeMsg += `Опыт автоматически зачислен на баланс (+${winnerItem.xp} XP).`;
                 } else {
-                  shopState.spent = Number(shopState.spent) - Number(winnerItem.xp); outcomeMsg += `Штраф списан с баланса (${winnerItem.xp} XP).`;
+                  shopState.spent = Number(shopState.spent) - Number(winnerItem.xp); 
+                  outcomeMsg += `Штраф списан с баланса (${winnerItem.xp} XP).`;
                 }
-                updateShopStats(); updateModStats(); updateSupportStats(); saveProgress();
+                updateShopStats(); 
+                updateModStats(); 
+                updateSupportStats(); 
+                saveProgress();
                 await logPurchase(`Рулетка: ${winnerItem.text}`, true);
               } else if (winnerItem.type === 'r-fail') {
                  outcomeMsg += `В этот раз не повезло. Попробуйте еще раз!`;
@@ -1927,30 +2750,47 @@
                  await logPurchase(`Рулетка: ${winnerItem.text}`, false);
               }
 
-              resultText.textContent = `🎁 ${winnerItem.text} 🎁`; pushLog(`🎰 Рулетка: Выпал приз "${winnerItem.text}".`);
-              if(winnerItem.type === 'r-fail' || winnerItem.type === 'r-fine') { playSound('fail'); } else { playSound('win'); }
-              alert(`✅ РУЛЕТКА ЗАВЕРШЕНА!\n\n${outcomeMsg}`); closeBtn.style.display = 'inline-block';
+              resultText.textContent = `🎁 ${winnerItem.text} 🎁`;
+              pushLog(`🎰 Рулетка: Выпал приз "${winnerItem.text}".`);
+              
+              if(winnerItem.type === 'r-fail' || winnerItem.type === 'r-fine') {
+                  playSound('fail');
+              } else {
+                  playSound('win');
+              }
+              
+              alert(`✅ РУЛЕТКА ЗАВЕРШЕНА!\n\n${outcomeMsg}`);
+              closeBtn.style.display = 'inline-block';
             }, 6200);
           }, 100);
         }
 
-        document.getElementById('closeFortuneBtn').addEventListener('click', () => { document.getElementById('fortuneModal').style.display = 'none'; });
+        document.getElementById('closeFortuneBtn').addEventListener('click', () => { 
+            document.getElementById('fortuneModal').style.display = 'none'; 
+        });
         
         // === ИГРА: ОРЁЛ ИЛИ РЕШКА ===
         function openCoinFlip() {
             const modal = document.getElementById('coinModal');
-            document.getElementById('coinAnimation').style.display = 'none'; document.getElementById('coinResult').textContent = '';
-            document.getElementById('btnHeads').style.display = 'block'; document.getElementById('btnTails').style.display = 'block';
-            document.getElementById('closeCoinBtn').style.display = 'none'; modal.style.display = 'flex';
+            document.getElementById('coinAnimation').style.display = 'none';
+            document.getElementById('coinResult').textContent = '';
+            document.getElementById('btnHeads').style.display = 'block';
+            document.getElementById('btnTails').style.display = 'block';
+            document.getElementById('closeCoinBtn').style.display = 'none';
+            modal.style.display = 'flex';
         }
 
         ['btnHeads', 'btnTails'].forEach(btnId => {
             document.getElementById(btnId)?.addEventListener('click', () => {
-                const isHeads = btnId === 'btnHeads'; const choiceName = isHeads ? 'Орёл' : 'Решка';
-                document.getElementById('btnHeads').style.display = 'none'; document.getElementById('btnTails').style.display = 'none';
+                const isHeads = btnId === 'btnHeads';
+                const choiceName = isHeads ? 'Орёл' : 'Решка';
+                document.getElementById('btnHeads').style.display = 'none';
+                document.getElementById('btnTails').style.display = 'none';
                 
                 const anim = document.getElementById('coinAnimation');
-                anim.style.display = 'block'; anim.classList.add('flipping'); playSound('ok'); 
+                anim.style.display = 'block';
+                anim.classList.add('flipping');
+                playSound('ok'); 
                 
                 setTimeout(async () => {
                     anim.classList.remove('flipping');
@@ -1959,16 +2799,22 @@
                     
                     if (win) {
                         anim.textContent = isHeads ? '🦅' : '🪙'; 
-                        resText.textContent = `Выпал ${choiceName}! Победил! (+1000 XP)`; resText.style.color = 'var(--color-success)';
-                        playSound('win'); shopState.spent = Number(shopState.spent) - 1000; 
+                        resText.textContent = `Выпал ${choiceName}! Победил! (+1000 XP)`;
+                        resText.style.color = 'var(--color-success)';
+                        playSound('win');
+                        shopState.spent = Number(shopState.spent) - 1000; 
                         await logPurchase(`Мини-игра: Победа в Орёл и Решка (+500 чистыми)`, true);
                     } else {
-                        anim.textContent = isHeads ? '🪙' : '🦅'; const opp = isHeads ? 'Решка' : 'Орёл';
-                        resText.textContent = `Выпал ${opp}. Проигрыш! (-500 XP)`; resText.style.color = 'var(--color-error)';
-                        playSound('fail'); await logPurchase(`Мини-игра: Проигрыш в Орёл и Решка`, true);
+                        anim.textContent = isHeads ? '🪙' : '🦅';
+                        const opp = isHeads ? 'Решка' : 'Орёл';
+                        resText.textContent = `Выпал ${opp}. Проигрыш! (-500 XP)`;
+                        resText.style.color = 'var(--color-error)';
+                        playSound('fail');
+                        await logPurchase(`Мини-игра: Проигрыш в Орёл и Решка`, true);
                     }
                     
-                    updateShopStats(); updateModStats(); updateSupportStats(); saveProgress(); document.getElementById('closeCoinBtn').style.display = 'block';
+                    updateShopStats(); updateModStats(); updateSupportStats(); saveProgress();
+                    document.getElementById('closeCoinBtn').style.display = 'block';
                 }, 2000);
             });
         });
@@ -1978,31 +2824,58 @@
         // === ИГРА: ТРИ СЕЙФА ===
         function openSafesGame() {
             const modal = document.getElementById('safesModal');
-            document.getElementById('safesResult').textContent = ''; document.getElementById('closeSafesBtn').style.display = 'none';
+            document.getElementById('safesResult').textContent = '';
+            document.getElementById('closeSafesBtn').style.display = 'none';
+            
             const btns = document.querySelectorAll('.safe-btn');
-            btns.forEach(b => { b.style.display = 'block'; b.textContent = '🧰'; b.disabled = false; b.style.borderColor = '#a26cff'; b.style.opacity = '1'; b.style.boxShadow = 'none'; });
+            btns.forEach(b => {
+                b.style.display = 'block';
+                b.textContent = '🧰';
+                b.disabled = false;
+                b.style.borderColor = '#a26cff';
+                b.style.opacity = '1';
+                b.style.boxShadow = 'none';
+            });
             modal.style.display = 'flex';
         }
 
         document.querySelectorAll('.safe-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.safe-btn').forEach(b => b.disabled = true); playSound('ok');
-                const chosen = parseInt(btn.dataset.index); const winner = Math.floor(Math.random() * 3); const resText = document.getElementById('safesResult');
+                document.querySelectorAll('.safe-btn').forEach(b => b.disabled = true);
+                playSound('ok');
+                
+                const chosen = parseInt(btn.dataset.index);
+                const winner = Math.floor(Math.random() * 3); // 1 шанс из 3-х
+                const resText = document.getElementById('safesResult');
                 
                 setTimeout(async () => {
                     document.querySelectorAll('.safe-btn').forEach(b => {
                         const idx = parseInt(b.dataset.index);
-                        if (idx === winner) { b.textContent = '💰'; b.style.borderColor = 'var(--color-success)'; b.style.boxShadow = '0 0 20px rgba(82, 199, 123, 0.5)'; } 
-                        else { b.textContent = '🕷️'; b.style.borderColor = 'var(--color-error)'; b.style.opacity = '0.5'; }
+                        if (idx === winner) {
+                            b.textContent = '💰';
+                            b.style.borderColor = 'var(--color-success)';
+                            b.style.boxShadow = '0 0 20px rgba(82, 199, 123, 0.5)';
+                        } else {
+                            b.textContent = '🕷️';
+                            b.style.borderColor = 'var(--color-error)';
+                            b.style.opacity = '0.5';
+                        }
                     });
 
                     if (chosen === winner) {
-                        resText.textContent = `Угадал! Вы нашли 1200 XP (+800 чистыми)!`; resText.style.color = 'var(--color-success)'; playSound('win'); shopState.spent = Number(shopState.spent) - 1200; 
+                        resText.textContent = `Угадал! Вы нашли 1200 XP (+800 чистыми)!`;
+                        resText.style.color = 'var(--color-success)';
+                        playSound('win');
+                        shopState.spent = Number(shopState.spent) - 1200; 
                         await logPurchase(`Мини-игра: Три Сейфа (Победа +800 чистыми)`, true);
                     } else {
-                        resText.textContent = `Мимо! Сейф был пуст. (-400 XP)`; resText.style.color = 'var(--color-error)'; playSound('fail'); await logPurchase(`Мини-игра: Три Сейфа (Проигрыш)`, true);
+                        resText.textContent = `Мимо! Сейф был пуст. (-400 XP)`;
+                        resText.style.color = 'var(--color-error)';
+                        playSound('fail');
+                        await logPurchase(`Мини-игра: Три Сейфа (Проигрыш)`, true);
                     }
-                    updateShopStats(); updateModStats(); updateSupportStats(); saveProgress(); document.getElementById('closeSafesBtn').style.display = 'block';
+                    updateShopStats(); updateModStats(); updateSupportStats(); saveProgress();
+                    document.getElementById('closeSafesBtn').style.display = 'block';
                 }, 600);
             });
         });
@@ -2010,12 +2883,14 @@
         document.getElementById('closeSafesBtn')?.addEventListener('click', () => { document.getElementById('safesModal').style.display = 'none'; });
 
         // === ВИКТОРИНА «ДЖОН УИК» ===
+        // ОБНОВЛЕННЫЕ ССЫЛКИ НА ИЗОБРАЖЕНИЯ (TMDB API)
         const jwQuestions = [
-            { img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Ian_McShane_2019_by_Glenn_Francis.jpg/400px-Ian_McShane_2019_by_Glenn_Francis.jpg", options: ["Уинстон Скотт", "Харон", "Вигго Тарасов"], answer: 0 },
-            { img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Lance_Reddick_2019_by_Glenn_Francis.jpg/400px-Lance_Reddick_2019_by_Glenn_Francis.jpg", options: ["Кассиан", "Харон", "Маркиз де Грамон"], answer: 1 },
-            { img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Laurence_Fishburne_2016.jpg/400px-Laurence_Fishburne_2016.jpg", options: ["Король «Боулера»", "Акира", "Уинстон"], answer: 0 },
-            { img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Donnie_Yen_at_the_2016_San_Diego_Comic_Con_International_2.jpg/400px-Donnie_Yen_at_the_2016_San_Diego_Comic_Con_International_2.jpg", options: ["Кайн", "Шимазу", "Никто (Mr. Nobody)"], answer: 0 },
-            { img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Bill_Skarsg%C3%A5rd_2017.jpg/400px-Bill_Skarsg%C3%A5rd_2017.jpg", options: ["Вигго Тарасов", "Сантино Д'Антонио", "Маркиз де Грамон"], answer: 2 }
+            { img: "https://image.tmdb.org/t/p/w500/q9qKbux5Jo76Sj8IL3G7JI6GIqa.jpg", options: ["Уинстон Скотт", "Харон", "Вигго Тарасов"], answer: 0 },
+            { img: "https://image.tmdb.org/t/p/w500/lD3XheUKPj2x21qHqBv01B2H2Q3.jpg", options: ["Кассиан", "Харон", "Маркиз де Грамон"], answer: 1 },
+            { img: "https://image.tmdb.org/t/p/w500/8suOsuQdO4Psn3H10G4yD9kH7Oq.jpg", options: ["Король «Боулера»", "Акира", "Уинстон"], answer: 0 },
+            { img: "https://image.tmdb.org/t/p/w500/qh0B2Y83QosZJm87Mv6i45Q0Ld5.jpg", options: ["Кайн", "Шимазу", "Никто (Mr. Nobody)"], answer: 0 },
+            { img: "https://image.tmdb.org/t/p/w500/wiGqG4s8NbnY8rA5T0228oE7I7N.jpg", options: ["Вигго Тарасов", "Сантино Д'Антонио", "Маркиз де Грамон"], answer: 2 },
+            { img: "https://image.tmdb.org/t/p/w500/A0HpeA0PZp4Zq3N2hGj5gW2rFkO.jpg", options: ["Акира", "Коджи", "Шимазу"], answer: 2 }
         ];
 
         let jwCurrentQ = null;
