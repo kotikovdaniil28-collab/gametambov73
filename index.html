@@ -148,6 +148,527 @@
     /* Рулетка */
     .roulette-wrapper { position: relative; width: 100%; height: 140px; background: #0a0c16; border-radius: 16px; overflow: hidden; border: 2px solid #ffbf47; }
     .roulette-pointer { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 4px; height: 100%; background: #ffbf47; z-index: 10; }
+    .roulette-track { display: flex; height: 100%; width: max-content; transition: transform 6s cubic-bezier(0.15, 0.85, 0.2, 1); }
+    .roulette-item { width: 140px; height: 100%; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0.5rem; border-right: 1px solid rgba(255, 255, 255, 0.05); }
+    .roulette-item i { font-size: 2.2rem; margin-bottom: 0.3rem; font-style: normal; }
+    .roulette-item span { font-size: 0.8rem; font-weight: 700; color: #fff; }
+    
+    .r-leg { background: radial-gradient(circle, rgba(255, 215, 0, 0.15), transparent); border-bottom: 3px solid #ffd700; }
+    .r-rare { background: radial-gradient(circle, rgba(162, 108, 255, 0.15), transparent); border-bottom: 3px solid #a26cff; }
+    .r-bonus { background: radial-gradient(circle, rgba(82, 199, 123, 0.15), transparent); border-bottom: 3px solid #52c77b; }
+    .r-fine { background: radial-gradient(circle, rgba(255, 107, 136, 0.15), transparent); border-bottom: 3px solid #ff6b88; }
+    .r-fail { background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent); border-bottom: 3px solid #555; }
+
+    /* Три Сейфа & Джон Уик */
+    .safe-btn { font-size: 3.5rem; background: transparent; border: 2px solid #a26cff; border-radius: 16px; padding: 1.5rem; cursor: pointer; transition: 0.3s; flex: 1; text-align: center; }
+    .safe-btn:hover:not(:disabled) { transform: scale(1.1); box-shadow: 0 10px 20px rgba(162, 108, 255, 0.4); }
+    .jw-option-btn { width: 100%; padding: 1rem; border-radius: 12px; background: rgba(255, 107, 136, 0.1); border: 2px solid rgba(255, 107, 136, 0.4); color: #fff; font-weight: bold; font-size: 1rem; transition: 0.3s; cursor: pointer; margin-bottom: 0.5rem; }
+    .jw-option-btn:hover:not(:disabled) { background: rgba(255, 107, 136, 0.3); transform: translateY(-2px); }
+    .jw-option-btn.correct { background: rgba(82, 199, 123, 0.3) !important; border-color: #52c77b !important; color: #8df0ae !important; }
+    .jw-option-btn.wrong { background: rgba(255, 107, 136, 0.4) !important; border-color: #ff6b88 !important; color: #ffb1c1 !important; }
+
+    .timer-display { font-family: var(--font-display); font-size: 4rem; color: #ffbf47; text-align: center; text-shadow: 0 0 20px rgba(255, 191, 71, 0.6); margin: 1.5rem 0; }
+
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 9999; align-items: center; justify-content: center; }
+    @media (max-width: 900px) { .hero, .game-wrap { grid-template-columns: 1fr; } .controls { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <div id="authModal" class="modal-overlay">
+    <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 400px; display: grid; gap: 1.2rem;">
+      <h2 style="text-align: center;">Авторизация</h2>
+      <input type="email" id="authEmail" class="support-input" placeholder="Email">
+      <input type="text" id="authNickname" class="support-input" placeholder="Игровой Nickname">
+      <input type="password" id="authPassword" class="support-input" placeholder="Пароль">
+      <div id="authErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; text-align: center;"></div>
+      <div style="display: flex; gap: 0.5rem;"><button id="authLoginSubmit" class="btn btn-primary" style="flex:1;">Войти</button><button id="authRegisterSubmit" class="btn btn-secondary" style="flex:1;">Создать</button></div>
+      <button id="authCloseModal" class="btn btn-secondary">Отмена</button>
+    </div>
+  </div>
+
+  <div id="accessModal" class="modal-overlay">
+    <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 400px; display: grid; gap: 1.2rem;">
+      <h2 style="text-align: center;">Доступ закрыт</h2>
+      <input type="password" id="accessCodeInput" class="support-input" placeholder="Код доступа">
+      <div id="accessErrorMsg" style="color: var(--color-error); font-size: var(--text-sm); display: none; text-align: center;">Неверный код!</div>
+      <button id="accessSubmitBtn" class="btn btn-primary">Подтвердить</button>
+      <button id="accessCloseBtn" class="btn btn-secondary">Отмена</button>
+    </div>
+  </div>
+
+  <div id="fortuneModal" class="modal-overlay">
+    <div class="panel" style="padding: 2.5rem; width: 95%; max-width: 600px; display: flex; flex-direction: column; gap: 1.5rem; text-align: center;">
+      <h2 id="fortuneTitle" style="color: #ffbf47; margin: 0;">Рулетка</h2>
+      <div class="roulette-wrapper"><div class="roulette-pointer"></div><div class="roulette-track" id="rouletteTrack"></div></div>
+      <div id="fortuneResultText" style="font-size: var(--text-lg); font-weight: bold; color: var(--color-success);"></div>
+      <button id="closeFortuneBtn" class="btn btn-secondary" style="display: none;">Забрать</button>
+    </div>
+  </div>
+
+  <div id="coinModal" class="modal-overlay">
+    <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 400px; display: flex; flex-direction: column; gap: 1.5rem; text-align: center;">
+      <h2 style="margin: 0; color: #ffbf47;">Орёл или Решка</h2>
+      <p style="color: var(--color-text-muted); margin: 0;">Ставка: 500 XP. Выбери сторону!</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 1rem;">
+          <button id="btnHeads" class="btn btn-primary" style="flex: 1;">Орёл</button>
+          <button id="btnTails" class="btn btn-secondary" style="flex: 1;">Решка</button>
+      </div>
+      <div id="coinAnimation" style="font-size: 5rem; display: none;">🪙</div>
+      <div id="coinResult" style="font-size: var(--text-lg); font-weight: bold; min-height: 2rem;"></div>
+      <button id="closeCoinBtn" class="btn btn-secondary" style="display: none;">Забрать</button>
+    </div>
+  </div>
+
+  <div id="safesModal" class="modal-overlay">
+    <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 450px; display: flex; flex-direction: column; gap: 1.5rem; text-align: center;">
+      <h2 style="margin: 0; color: #a26cff;">Три Сейфа</h2>
+      <p style="color: var(--color-text-muted); margin: 0;">Ставка: 400 XP. Угадай, где клад (x3)!</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 1rem;" id="safesContainer">
+          <button class="safe-btn" data-index="0">🧰</button>
+          <button class="safe-btn" data-index="1">🧰</button>
+          <button class="safe-btn" data-index="2">🧰</button>
+      </div>
+      <div id="safesResult" style="font-size: var(--text-lg); font-weight: bold; min-height: 2rem;"></div>
+      <button id="closeSafesBtn" class="btn btn-secondary" style="display: none;">Забрать</button>
+    </div>
+  </div>
+
+  <div id="jwModal" class="modal-overlay">
+    <div class="panel" style="padding: 2.5rem; width: 90%; max-width: 500px; display: flex; flex-direction: column; gap: 1.5rem; text-align: center;">
+      <h2 style="margin: 0; color: #ff6b88;">Кто это?</h2>
+      <p style="color: var(--color-text-muted); margin: 0;">Ставка: 600 XP. Награда: 1500 XP.</p>
+      <div style="width: 100%; height: 250px; border-radius: 12px; overflow: hidden; border: 2px solid #ff6b88;">
+          <img id="jwImage" src="" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+      </div>
+      <div id="jwOptions" style="display: flex; flex-direction: column;"></div>
+      <div id="jwResult" style="font-size: var(--text-lg); font-weight: bold; min-height: 2rem;"></div>
+      <button id="closeJwBtn" class="btn btn-secondary" style="display: none;">Закончить</button>
+    </div>
+  </div>
+
+  <main class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 18.5V6.8C4 5.8 4.8 5 5.8 5h4.4"/><rect x="9" y="3.5" width="11" height="8" rx="2"/><path d="M8 12.5 12 7l4 5.5"/><path d="M4 21h9.5"/></svg>
+        </div>
+        <div>
+          <div class="brand-title">Tambov 73</div>
+          <div class="brand-sub" id="brandSubtitle">Симулятор смены</div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <span id="userEmailDisplay" style="font-size: var(--text-sm); color: var(--color-text-muted);"></span>
+        <button id="loginBtnUI" class="badge xp">Войти</button>
+        <button id="logoutBtnUI" class="badge ban" style="display:none;">Выйти</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <article class="panel hero-card fade-in">
+        <div class="badge-row"><span class="badge" id="heroBadge">Режим: загрузка</span></div>
+        <div class="hero-transition" id="heroTextContainer">
+            <h1 id="heroTitle">Добро <span>пожаловать</span>.</h1>
+            <p id="heroText">Выберите режим работы.</p>
+        </div>
+        <div class="hero-actions">
+          <button class="btn btn-primary" id="startBtn">Начать смену</button>
+          <button class="btn btn-secondary" id="resetBtn">Сбросить</button>
+        </div>
+      </article>
+      <aside class="panel rules fade-in">
+        <div class="section-head"><h2 id="rightTitle">Материалы</h2><p id="rightLead">Подсказки</p></div>
+        <div class="rule-list" id="rightCards"></div>
+      </aside>
+    </section>
+
+    <div class="nav-container">
+      <div class="main-nav">
+        <button class="main-cat-btn active" data-cat="moderation">🛡️ Модерация</button>
+        <button class="main-cat-btn" data-cat="support">💬 Поддержка</button>
+        <button class="main-cat-btn" data-cat="general">🌐 Общее</button>
+      </div>
+      <div class="sub-nav" id="subNavModeration">
+        <button class="mode-btn active" data-mode="moderation">Тренажёр</button>
+        <button class="mode-btn" data-mode="timeattack">На время</button>
+        <button class="mode-btn" data-mode="complaints">Жалобы</button>
+        <button class="mode-btn" data-mode="shop">Магазин</button>
+        <button class="mode-btn" data-mode="report">Отчетность</button>
+        <button class="mode-btn" data-mode="admin_log" id="adminLogTabBtn" style="display:none; color:#ffbf47;">Логи (Мод)</button>
+        <button class="mode-btn" data-mode="leadership" id="leadershipTabBtn" style="display:none; color:#52c77b;">Руководство</button>
+        <button class="mode-btn" data-mode="creator" id="creatorTabBtn" style="display:none; color:#ff6b88;">Создатель</button>
+      </div>
+      <div class="sub-nav" id="subNavSupport" style="display:none;">
+        <button class="mode-btn" data-mode="support">Тренажёр АП</button>
+        <button class="mode-btn" data-mode="ap_shop">Магазин АП</button>
+        <button class="mode-btn" data-mode="ap_admin_log" id="apAdminLogTabBtn" style="display:none; color:#ff8fc4;">Логи (АП)</button>
+        <button class="mode-btn" data-mode="ap_admin" id="apAdminTabBtn" style="display:none; color:#ff8fc4;">Руководство АП</button>
+      </div>
+      <div class="sub-nav" id="subNavGeneral" style="display:none;">
+        <button class="mode-btn" data-mode="quests">Квесты</button>
+        <button class="mode-btn" data-mode="leaderboard">Лидерборд</button>
+        <button class="mode-btn" data-mode="guide">Руководство</button>
+        <button class="mode-btn" data-mode="about">О команде</button>
+      </div>
+    </div>
+
+    <section class="game-wrap" id="game">
+      
+      <section class="panel game-card" id="mode-moderation">
+        <div class="stats-grid">
+          <div class="stat"><span class="stat-label">Проверено</span><div class="stat-value" id="resolvedValue">0</div></div>
+          <div class="stat"><span class="stat-label">Верно</span><div class="stat-value" id="correctValue">0</div></div>
+          <div class="stat"><span class="stat-label">Ошибки</span><div class="stat-value" id="mistakeValue">0</div></div>
+          <div class="stat"><span class="stat-label">Доступно XP</span><div class="stat-value" id="xpValue" style="color:var(--color-primary);">0</div></div>
+        </div>
+        <div class="feed">
+          <article class="message-card">
+            <div class="author-row">
+              <div class="avatar" id="avatarBox">T7</div>
+              <div><div class="author-name" id="authorName">System</div><div class="author-meta" id="authorMeta">Ожидание...</div></div>
+            </div>
+            <div class="message-text" id="messageText">Нажми «Начать смену».</div>
+          </article>
+          <div class="controls">
+            <button class="action-btn skip-btn" data-action="good">✅ Без нарушения</button>
+            <button class="action-btn warn-btn" data-action="warn">⚠️ Пред / Мут</button>
+            <button class="action-btn ban-btn" data-action="ban">🔨 Бан</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel game-card" id="mode-support" style="display:none;">
+        <div class="stats-grid">
+          <div class="stat"><span class="stat-label">Ответов</span><div class="stat-value" id="supportResolvedValue">0</div></div>
+          <div class="stat"><span class="stat-label">Верно</span><div class="stat-value" id="supportCorrectValue">0</div></div>
+          <div class="stat"><span class="stat-label">Баллы АП</span><div class="stat-value" id="supportXpValue" style="color:#ff8fc4;">0</div></div>
+        </div>
+        <div class="feed">
+          <article class="message-card">
+            <div class="author-row">
+              <div class="avatar" style="background:#ff8fc4;color:#000;">АП</div>
+              <div><div class="author-name" id="supportQuestionTitle">Вопрос скрыт</div></div>
+            </div>
+            <div class="message-text" id="supportQuestionText">Нажми «Начать смену».</div>
+            <div style="display:flex; gap:0.5rem; margin-top:1rem;">
+              <input id="supportAnswerInput" class="support-input" placeholder="Ваш ответ (команда, место, термин)...">
+              <button class="support-check-btn" id="supportCheckBtn">Проверить</button>
+            </div>
+            <div id="supportResultText" style="margin-top:0.5rem; font-weight:bold;"></div>
+          </article>
+          <button class="btn btn-secondary" id="supportNextBtn">Следующий вопрос</button>
+        </div>
+      </section>
+
+      <section class="panel game-card" id="mode-ap_shop" style="display:none;">
+        <div class="section-head"><h2 style="color:#ff8fc4;">Магазин АП</h2><p>Обменивай баллы на иммунитеты и бонусы.</p></div>
+        <div class="stats-grid">
+          <div class="stat"><span class="stat-label">Ваши Баллы</span><div class="stat-value" id="apTotalPoints" style="color:#ff8fc4;">0</div></div>
+          <div class="stat"><span class="stat-label">Потрачено</span><div class="stat-value" id="apSpentPoints">0</div></div>
+        </div>
+        <div class="shop-grid" id="apShopItemsContainer"></div>
+      </section>
+
+      <section class="panel game-card" id="mode-ap_admin" style="display:none;">
+        <div class="section-head"><h2 style="color:#ff8fc4;">Управление АП</h2></div>
+        <div style="background: rgba(35, 10, 26, 0.6); padding: 1.5rem; border-radius: 16px; margin-bottom: 1rem;">
+          <h3 style="color:#ff8fc4; margin-bottom:1rem;">Выдача / Снятие Баллов</h3>
+          <select id="apAdminUserSelect" class="support-input" style="margin-bottom: 0.5rem;"></select>
+          <input type="number" id="apAdminPointsAmount" class="support-input" placeholder="Количество баллов (+ или -)" style="margin-bottom: 0.5rem;">
+          <button id="apAdminPointsBtn" class="btn btn-primary" style="width:100%;">Применить</button>
+        </div>
+        <div style="background: rgba(13, 16, 32, 0.6); padding: 1.5rem; border-radius: 16px;">
+          <h3 style="color:var(--color-warning); margin-bottom:1rem;">Ключи к Магазину АП</h3>
+          <input type="text" id="apKeyInput" class="support-input" placeholder="Свой код ключа" style="margin-bottom: 0.5rem;">
+          <button id="apAddKeyBtn" class="btn btn-secondary" style="width:100%;">Создать ключ</button>
+          <div id="apKeysList" style="margin-top: 1rem;"></div>
+        </div>
+      </section>
+
+      <section class="panel game-card" id="mode-ap_admin_log" style="display:none;">
+        <div class="section-head"><h2 style="color:#ff8fc4;">Логи выдачи АП</h2><p>Покупки агентов поддержки из магазина.</p></div>
+        <button class="btn btn-secondary" id="loadApLogsBtn" style="width:100%; margin-bottom:1rem;">Обновить логи</button>
+        <div class="feed" id="apLogsArea"></div>
+      </section>
+
+      <section class="panel game-card" id="mode-admin_log" style="display:none;">
+        <div class="section-head"><h2 style="color:#ffbf47;">Логи выдачи (Модерация)</h2></div>
+        <button class="btn btn-secondary" id="loadModLogsBtn" style="width:100%; margin-bottom:1rem;">Обновить логи</button>
+        <div class="feed" id="modLogsArea"></div>
+      </section>
+
+      <section class="panel game-card" id="mode-timeattack" style="display:none;">
+        <div class="section-head"><h2 style="color: #ffbf47;">Спидран ⏱️</h2><p>У вас 60 секунд. Ошибка = -3 сек.</p></div>
+        <div class="timer-display" id="taTimer">01:00</div>
+        <div class="stats-grid" style="margin-bottom: 1rem;">
+          <div class="stat"><span class="stat-label">Счет</span><div class="stat-value" id="taScore" style="color: var(--color-success);">0</div></div>
+          <div class="stat"><span class="stat-label">Ошибки</span><div class="stat-value" id="taMistakes" style="color: var(--color-error);">0</div></div>
+        </div>
+        <div id="taStartScreen" style="text-align: center; padding: 2rem 0;"><button id="taStartBtn" class="btn btn-primary">Начать заезд!</button></div>
+        <div class="feed" id="taGameScreen" style="display:none;">
+          <article class="message-card">
+            <div class="author-row">
+              <div class="avatar" id="taAvatar">T7</div>
+              <div><div class="author-name" id="taAuthorName">System</div></div>
+            </div>
+            <div class="message-text" id="taMessageText">Загрузка...</div>
+          </article>
+          <div class="controls">
+            <button class="action-btn skip-btn" data-ta-action="good">✅ Без нарушения</button>
+            <button class="action-btn warn-btn" data-ta-action="warn">⚠️ Пред / Мут</button>
+            <button class="action-btn ban-btn" data-ta-action="ban">🔨 Бан</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel game-card" id="mode-shop" style="display:none;">
+        <div class="section-head"><h2>Магазин & Игры</h2><p>Трать накопленные XP на скидки, бонусы или испытай удачу.</p></div>
+        <div class="stats-grid">
+          <div class="stat"><span class="stat-label">Доступно XP</span><div class="stat-value" id="shopTotalXp" style="color:var(--color-primary);">0</div></div>
+          <div class="stat"><span class="stat-label">Потрачено</span><div class="stat-value" id="shopSpentXp">0</div></div>
+        </div>
+        <div class="shop-grid" id="shopItemsContainer"></div>
+      </section>
+
+      <section class="panel game-card" id="mode-complaints" style="display:none;">
+        <div class="stats-grid">
+          <div class="stat"><span class="stat-label">Рассмотрено</span><div class="stat-value" id="compResolvedValue">0</div></div>
+          <div class="stat"><span class="stat-label">Верно</span><div class="stat-value" id="compCorrectValue">0</div></div>
+        </div>
+        <div class="feed">
+          <article class="message-card">
+            <div class="author-row">
+              <div class="avatar" style="background: conic-gradient(from 210deg, #ff6b88, #ff3b60, #ff6b88);">Ж</div>
+              <div><div class="author-name" id="compAuthor">Жалоба скрыта</div></div>
+            </div>
+            <div class="message-text" id="compText">Нажми «Начать смену».</div>
+            <div class="evidence-box" id="compEvidence" style="color:var(--color-text-faint);"></div>
+          </article>
+          <div class="controls">
+            <button class="action-btn warn-btn" data-comp-action="reject">❌ Отказать</button>
+            <button class="action-btn skip-btn" data-comp-action="approve">✅ Одобрить</button>
+            <button class="action-btn pass-btn" data-comp-action="pass">👑 Передать</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel game-card" id="mode-quests" style="display:none;">
+        <div class="section-head"><h2>Система Квестов</h2></div>
+        <div class="feed" id="questsContainer"></div>
+      </section>
+
+      <section class="panel game-card" id="mode-leadership" style="display:none;">
+        <div class="section-head"><h2 style="color:#52c77b;">Руководство Модерации</h2></div>
+        <div style="background: rgba(10, 23, 14, 0.6); padding: 1.5rem; border-radius: 16px; margin-bottom: 1rem;">
+          <h3 style="color:var(--color-success); margin-bottom:1rem;">Управление XP</h3>
+          <select id="leadershipUserSelect" class="support-input" style="margin-bottom: 0.5rem;"></select>
+          <input type="number" id="leadershipXpAmount" class="support-input" placeholder="Количество XP (+ или -)" style="margin-bottom: 0.5rem;">
+          <button id="leadershipXpBtn" class="btn btn-primary" style="width:100%;">Изменить баланс</button>
+        </div>
+        <div style="background: rgba(13, 16, 32, 0.6); padding: 1.5rem; border-radius: 16px;">
+          <h3 style="color:var(--color-warning); margin-bottom:1rem;">Создание ключей доступа</h3>
+          <select id="leadershipKeyRole" class="support-input" style="margin-bottom: 0.5rem;"><option value="shop">Магазин</option><option value="report">Отчеты</option></select>
+          <input type="text" id="leadershipKeyInput" class="support-input" placeholder="Код ключа" style="margin-bottom: 0.5rem;">
+          <button id="leadershipAddKeyBtn" class="btn btn-secondary" style="width:100%;">Сгенерировать ключ</button>
+          <div id="leadershipKeysList" style="margin-top: 1rem;"></div>
+        </div>
+      </section>
+
+      <section class="panel game-card" id="mode-creator" style="display:none;">
+        <div class="section-head"><h2 style="color:#ff6b88;">Панель Создателя (John Wick)</h2></div>
+        <div style="background: rgba(13, 16, 32, 0.6); padding: 1.5rem; border-radius: 16px; margin-bottom: 1rem;">
+          <h3 style="color:var(--color-primary); margin-bottom:1rem;">Выдача / Изъятие XP</h3>
+          <select id="creatorUserSelect" class="support-input" style="margin-bottom: 0.5rem;"></select>
+          <input type="number" id="creatorXpAmount" class="support-input" placeholder="Количество XP" style="margin-bottom: 0.5rem;">
+          <button id="creatorXpBtn" class="btn btn-primary" style="width:100%;">Изменить</button>
+        </div>
+        <div style="background: rgba(28, 10, 20, 0.6); padding: 1.5rem; border-radius: 16px; margin-bottom: 1rem;">
+          <h3 style="color:var(--color-error); margin-bottom:1rem;">Панель Троллинга 🤡</h3>
+          <input type="text" id="trollCustomNick" class="support-input" placeholder="Свой ник (пусто для рандома)" style="margin-bottom: 0.5rem;">
+          <div style="display: flex; gap: 0.5rem;">
+            <button id="trollWipeXpBtn" class="btn btn-secondary" style="flex:1; border-color:var(--color-error); color:var(--color-error);">Обнулить XP</button>
+            <button id="trollRenameBtn" class="btn btn-secondary" style="flex:1; border-color:var(--color-warning); color:var(--color-warning);">Сменить ник</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel game-card" id="mode-report" style="display:none;">
+        <div class="section-head"><h2>Отчетность</h2><p>Отправляй скриншоты своего онлайна в Discord.</p></div>
+        <div id="reportAccessWarning" class="message-card" style="align-content:center; text-align:center;">Войдите в аккаунт!</div>
+        <div class="feed" id="reportFormArea" style="display:none;">
+          <article class="message-card" style="min-height: auto;">
+            <input id="reportLinkInput" class="support-input" type="url" placeholder="Ссылка (Imgur, Yapx)..." style="margin-bottom: 0.5rem;">
+            <button class="support-check-btn" id="submitReportBtn" style="width:100%;">Отправить</button>
+            <div id="reportResultText" style="margin-top: 0.5rem; font-weight:bold;"></div>
+          </article>
+          <div id="adminPanelArea" style="display:none; margin-top:1rem;">
+            <button class="btn btn-secondary" id="viewReportsBtn" style="width:100%;">Проверить сданные отчеты</button>
+            <div id="reportsListArea" style="margin-top: 1rem; display:flex; flex-direction:column; gap:0.5rem;"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel game-card" id="mode-leaderboard" style="display:none;"><div id="leaderboardList"></div></section>
+      <section class="panel game-card" id="mode-guide" style="display:none;"><div class="message-card" style="min-height:auto;">Раздел Контактов: Для связи с руководством пишите в Discord или VK.</div></section>
+      <section class="panel game-card" id="mode-about" style="display:none;"><div class="message-card" style="min-height:auto;">Сайт создан <strong>John Wick</strong> при поддержке <strong>Leha_Mackenzie</strong>, <strong>Andrey_Caypen</strong> и <strong>Евгения Бабешко</strong>.</div></section>
+
+      <aside class="panel side fade-in">
+        <div class="section-head"><h2>Лог смены</h2></div>
+        <div class="log" id="logList"><div class="log-item">Нажми «Начать смену».</div></div>
+      </aside>
+    </section>
+  </main>
+  <!DOCTYPE html>
+<html lang="ru" data-theme="dark" data-site-theme="mod">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer">
+  <title>Tambov 73 — Тренажёр</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem); --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem); --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --color-text: #f5f5ff; --color-text-muted: #a7afcf; --color-text-faint: #717895; --color-text-inverse: #0b0d12;
+      --color-primary: #6c8cff; --color-success: #52c77b; --color-warning: #ffbf47; --color-error: #ff6b88;
+      --shadow-md: 0 14px 40px rgba(0, 0, 0, 0.6); --shadow-lg: 0 24px 80px rgba(0, 0, 0, 0.85);
+      --font-display: "Russo One", system-ui, sans-serif; --font-body: "Inter", system-ui, sans-serif;
+      --transition: 220ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100dvh; font-family: var(--font-body); font-size: var(--text-base); color: var(--color-text); line-height: 1.6; overflow-x: hidden;
+      background: radial-gradient(circle at top left, rgba(108, 140, 255, 0.2), transparent 50%), radial-gradient(circle at bottom right, rgba(255, 107, 136, 0.18), transparent 55%), linear-gradient(160deg, #05060a, #05060a 45%, #040711 100%);
+      transition: background 350ms ease;
+    }
+    /* Темы страниц */
+    html[data-site-theme="support"] body { background: radial-gradient(circle at top left, rgba(255, 184, 222, 0.3), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 120, 180, 0.3), transparent 55%), linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%); }
+    html[data-site-theme="about"] body { background: radial-gradient(circle at top left, rgba(255, 220, 120, 0.16), transparent 55%), radial-gradient(circle at bottom right, rgba(108, 140, 255, 0.18), transparent 55%), linear-gradient(160deg, #0c0a05, #0c0a05 45%, #12100a 100%); }
+    html[data-site-theme="shop"] body { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.14), transparent 55%), linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%); }
+    html[data-site-theme="report"] body { background: radial-gradient(circle at top left, rgba(162, 108, 255, 0.2), transparent 50%), radial-gradient(circle at bottom right, rgba(108, 204, 255, 0.18), transparent 55%), linear-gradient(160deg, #090510, #0a0512 45%, #050411 100%); }
+    html[data-site-theme="guide"] body { background: radial-gradient(circle at top left, rgba(0, 229, 255, 0.15), transparent 50%), radial-gradient(circle at bottom right, rgba(0, 180, 216, 0.15), transparent 55%), linear-gradient(160deg, #020a10, #041018 45%, #02080d 100%); }
+    html[data-site-theme="leaderboard"] body { background: radial-gradient(circle at top left, rgba(255, 61, 0, 0.18), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 158, 0, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); }
+    html[data-site-theme="admin_log"] body { background: radial-gradient(circle at top left, rgba(255, 191, 71, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 61, 0, 0.15), transparent 55%), linear-gradient(160deg, #100502, #180804 45%, #0d0402 100%); }
+    html[data-site-theme="complaints"] body { background: radial-gradient(circle at top left, rgba(255, 61, 61, 0.15), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 107, 136, 0.15), transparent 55%), linear-gradient(160deg, #120505, #180408 45%, #0d0202 100%); }
+    html[data-site-theme="creator"] body { background: radial-gradient(circle at top left, rgba(255, 107, 136, 0.2), transparent 55%), radial-gradient(circle at bottom right, rgba(162, 108, 255, 0.2), transparent 55%), linear-gradient(160deg, #1a0510, #0a0208 45%, #050104 100%); }
+    html[data-site-theme="leadership"] body { background: radial-gradient(circle at top left, rgba(82, 199, 123, 0.2), transparent 55%), radial-gradient(circle at bottom right, rgba(108, 140, 255, 0.2), transparent 55%), linear-gradient(160deg, #061008, #07110a 45%, #0a1116 100%); }
+    html[data-site-theme="ap_admin"] body { background: radial-gradient(circle at top left, rgba(255, 184, 222, 0.2), transparent 55%), radial-gradient(circle at bottom right, rgba(82, 199, 123, 0.2), transparent 55%), linear-gradient(160deg, #2b0714, #250512 45%, #180212 100%); }
+    html[data-site-theme="ap_shop"] body { background: radial-gradient(circle at top left, rgba(255, 143, 196, 0.2), transparent 55%), radial-gradient(circle at bottom right, rgba(255, 191, 71, 0.15), transparent 55%), linear-gradient(160deg, #250512, #180212 45%, #0d0108 100%); }
+
+    .fade-in { animation: modeFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .hero-transition { transition: opacity 0.3s ease, transform 0.3s ease; }
+    @keyframes modeFade { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+    button, input, select { font: inherit; }
+    button { cursor: pointer; border: none; transition: all var(--transition); }
+    button:hover { transform: translateY(-2px); }
+    button:active { transform: translateY(1px) scale(0.98); }
+    button:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; }
+
+    .page { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; padding: 1rem 0 2rem; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .brand { display: flex; align-items: center; gap: 0.85rem; min-width: 0; }
+    .logo { width: 48px; height: 48px; display: grid; place-items: center; color: var(--color-text); border-radius: 16px; box-shadow: var(--shadow-md); flex: 0 0 auto; }
+    
+    html[data-site-theme="mod"] .logo { background: linear-gradient(135deg, rgba(108, 140, 255, 0.32), rgba(255, 107, 136, 0.22)); border: 1px solid rgba(255, 255, 255, 0.25); }
+    html[data-site-theme="support"] .logo { background: linear-gradient(135deg, rgba(255, 160, 210, 0.65), rgba(255, 120, 180, 0.6)); border: 1px solid rgba(255, 210, 240, 0.7); }
+    html[data-site-theme="creator"] .logo { background: linear-gradient(135deg, rgba(255, 107, 136, 0.65), rgba(162, 108, 255, 0.6)); border: 1px solid rgba(255, 107, 136, 0.5); }
+    html[data-site-theme="leadership"] .logo { background: linear-gradient(135deg, rgba(82, 199, 123, 0.65), rgba(108, 140, 255, 0.6)); border: 1px solid rgba(82, 199, 123, 0.5); }
+    html[data-site-theme="ap_admin"] .logo { background: linear-gradient(135deg, rgba(255, 160, 210, 0.65), rgba(82, 199, 123, 0.6)); border: 1px solid rgba(255, 160, 210, 0.5); }
+    html[data-site-theme="ap_shop"] .logo { background: linear-gradient(135deg, rgba(255, 143, 196, 0.55), rgba(255, 191, 71, 0.38)); border: 1px solid rgba(255, 210, 240, 0.45); }
+
+    .brand-title { font-family: var(--font-display); font-size: var(--text-lg); letter-spacing: 0.08em; text-transform: uppercase; }
+    .brand-sub { color: var(--color-text-muted); font-size: var(--text-sm); max-width: 42ch; }
+    .icon-btn { min-width: 44px; min-height: 44px; padding: 0 0.75rem; border-radius: 999px; color: var(--color-text); background: rgba(16, 21, 40, 0.85); border: 1px solid rgba(191, 198, 255, 0.35); flex: 0 0 auto; font-size: 1.1rem; }
+    
+    .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 1rem; align-items: stretch; }
+    .panel { border-radius: 22px; border: 1px solid rgba(191, 198, 255, 0.28); box-shadow: var(--shadow-lg); backdrop-filter: blur(18px); background: linear-gradient(155deg, rgba(18, 22, 38, 0.98), rgba(6, 7, 16, 1)); min-width: 0; }
+    
+    .hero-card, .rules, .game-card, .side { padding: 1.2rem; display: grid; gap: 1rem; min-width: 0; align-content: start; }
+    .section-head { display: grid; gap: 0.35rem; min-width: 0; }
+    .section-head h2 { font-size: clamp(1.2rem, 1.05rem + 0.4vw, 1.5rem); line-height: 1.15; }
+    .section-head p { max-width: 62ch; color: var(--color-text-muted); font-size: var(--text-sm); line-height: 1.6; }
+    
+    .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .badge { padding: 0.4rem 0.85rem; border-radius: 999px; font-size: var(--text-xs); text-transform: uppercase; font-weight: 800; border: 1px solid rgba(191, 198, 255, 0.28); color: var(--color-text-muted); background: rgba(9, 12, 26, 0.82); }
+    .badge.xp { background: #ffbf47; color: #18171c; border-color: transparent; }
+    
+    .hero h1 { font-family: var(--font-display); font-size: clamp(2.1rem, 5.2vw, 3.4rem); line-height: 0.95; text-transform: uppercase; }
+    .hero h1 span { color: var(--color-primary); text-shadow: 0 0 22px rgba(108, 140, 255, 0.65); transition: color 0.3s; }
+    .hero p { color: var(--color-text-muted); font-size: var(--text-sm); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    .btn { min-height: 48px; padding: 0.85rem 1.5rem; border-radius: 16px; font-size: var(--text-sm); font-weight: 800; text-transform: uppercase; display: inline-flex; align-items: center; justify-content: center; }
+    .btn-primary { color: #fff; background: linear-gradient(135deg, #6c8cff, #8aa3ff); box-shadow: 0 15px 35px rgba(108, 140, 255, 0.5); }
+    .btn-secondary { color: var(--color-text-muted); background: rgba(9, 12, 26, 0.86); border: 1px solid rgba(191, 198, 255, 0.3); }
+
+    .nav-container { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0 1rem; }
+    .main-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; background: rgba(13, 16, 32, 0.8); padding: 0.4rem; border-radius: 18px; border: 1px solid rgba(191, 198, 255, 0.2); width: fit-content; }
+    .main-cat-btn { padding: 0.6rem 1.2rem; border-radius: 14px; font-size: var(--text-sm); font-weight: 800; color: var(--color-text-muted); background: transparent; text-transform: uppercase; }
+    .main-cat-btn.active { color: var(--color-text-inverse); box-shadow: 0 4px 15px rgba(108, 140, 255, 0.5); }
+    .main-cat-btn[data-cat="moderation"].active { background: linear-gradient(135deg, #6c8cff, #8aa3ff); }
+    .main-cat-btn[data-cat="support"].active { background: linear-gradient(135deg, #ff78b4, #ffb0dd); }
+    .main-cat-btn[data-cat="general"].active { background: linear-gradient(135deg, #ffbf47, #ffd979); color: #18171c; }
+
+    .sub-nav { display: flex; flex-wrap: wrap; gap: 0.35rem; background: rgba(4, 6, 12, 0.85); border: 1px solid rgba(191, 198, 255, 0.25); padding: 0.35rem; border-radius: 999px; width: fit-content; }
+    .mode-btn { border-radius: 999px; padding: 0.6rem 1.25rem; font-size: var(--text-sm); font-weight: 700; color: var(--color-text-muted); background: transparent; text-transform: uppercase; white-space: nowrap; }
+    .mode-btn.active { color: var(--color-text-inverse); background: linear-gradient(135deg, #6c8cff, #8aa3ff); }
+
+    .game-wrap { margin-top: 0.75rem; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr); gap: 1rem; align-items: start; }
+    .rule-list, .feed, .log { display: grid; gap: 0.75rem; min-width: 0; }
+    .rule-item, .log-item, .stat, .quest-card { padding: 0.95rem; border-radius: 16px; background: rgba(13, 16, 32, 0.95); border: 1px solid rgba(191, 198, 255, 0.3); min-width: 0; }
+    .rule-item { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0.8rem; align-items: start; }
+    .rule-icon { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-size: 1rem; font-weight: 900; }
+    .ok { background: rgba(82, 199, 123, 0.14); color: #8df0ae; }
+    .warn { background: rgba(255, 191, 71, 0.18); color: #ffdf95; }
+    .ban { background: rgba(255, 107, 136, 0.2); color: #ff9fb4; }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem; }
+    .stat-label { color: var(--color-text-faint); font-size: var(--text-xs); text-transform: uppercase; margin-bottom: 0.35rem; display: block; }
+    .stat-value { font-size: 1.1rem; font-weight: 800; }
+    .xp-bar { height: 14px; background: rgba(4, 6, 12, 0.9); border-radius: 999px; overflow: hidden; border: 1px solid rgba(191, 198, 255, 0.35); }
+    .xp-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #ffbf47, #ffe38e); transition: width 300ms; }
+
+    .message-card { padding: 1.5rem; border-radius: 18px; background: rgba(13, 16, 32, 0.98); border: 1px solid rgba(191, 198, 255, 0.4); min-height: 250px; display: grid; align-content: start; gap: 1rem; }
+    .channel { display: inline-flex; align-items: center; gap: 0.55rem; font-size: var(--text-xs); color: var(--color-text-faint); text-transform: uppercase; }
+    .channel-dot { width: 6px; height: 6px; border-radius: 999px; background: #3dd68c; }
+    .author-row { display: flex; align-items: center; gap: 0.75rem; }
+    .avatar { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; font-weight: 900; background: conic-gradient(from 210deg, #6c8cff, #ffbf47, #ff6b88, #6c8cff); }
+    .author-name { font-weight: 800; font-size: var(--text-sm); }
+    .author-meta { color: var(--color-text-faint); font-size: var(--text-xs); }
+    .message-text { font-size: 1rem; line-height: 1.7; }
+    
+    .controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin-top: 0.5rem; }
+    .action-btn { min-height: 54px; padding: 0.9rem 1rem; border-radius: 16px; font-weight: 800; font-size: var(--text-sm); border: 2px solid transparent; text-transform: uppercase; }
+    .skip-btn { background: rgba(82, 199, 123, 0.15); color: #52c77b; border-color: rgba(82, 199, 123, 0.4); }
+    .warn-btn { background: rgba(255, 191, 71, 0.15); color: #ffe29a; border-color: rgba(255, 191, 71, 0.55); }
+    .ban-btn { background: rgba(255, 107, 136, 0.15); color: #ffb1c1; border-color: rgba(255, 107, 136, 0.6); }
+    .pass-btn { background: rgba(162, 108, 255, 0.15); color: #d4bbff; border-color: rgba(162, 108, 255, 0.6); }
+
+    .support-input { width: 100%; padding: 0.9rem 1rem; border-radius: 12px; border: 1px solid rgba(191, 198, 255, 0.35); background: rgba(4, 6, 12, 0.9); color: var(--color-text); }
+    .support-check-btn { min-height: 52px; padding: 0 1.5rem; border-radius: 12px; font-weight: 800; text-transform: uppercase; background: linear-gradient(135deg, #6c8cff, #8aa3ff); border: none; color: #fff; }
+    
+    .shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .shop-card { padding: 1.2rem; border-radius: 16px; background: rgba(20, 24, 44, 0.9); border: 1px solid rgba(108, 140, 255, 0.2); display: flex; flex-direction: column; gap: 0.8rem; transition: transform 0.3s; }
+    .shop-card:hover { transform: translateY(-3px); border-color: rgba(108, 140, 255, 0.5); }
+    .shop-card h3 { font-size: 1.1rem; margin: 0; color: #fff; }
+    .shop-card p { font-size: 0.85rem; color: var(--color-text-muted); margin: 0; flex-grow: 1; }
+    .shop-price { font-size: 1.2rem; font-weight: 900; color: #ffbf47; background: rgba(255, 191, 71, 0.1); padding: 0.4rem; border-radius: 10px; text-align: center; }
+    .shop-buy-btn { width: 100%; padding: 0.8rem; border-radius: 12px; font-weight: 800; text-transform: uppercase; background: #52c77b; color: #000; border: none; }
+    .shop-buy-btn:disabled { background: rgba(255, 255, 255, 0.1); color: #888; }
+
+    /* Рулетка */
+    .roulette-wrapper { position: relative; width: 100%; height: 140px; background: #0a0c16; border-radius: 16px; overflow: hidden; border: 2px solid #ffbf47; }
+    .roulette-pointer { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 4px; height: 100%; background: #ffbf47; z-index: 10; }
     .roulette-track { display: flex; height: 100%; width: max-content; }
     .roulette-item { width: 140px; height: 100%; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0.5rem; border-right: 1px solid rgba(255, 255, 255, 0.05); }
     .roulette-item i { font-size: 2.2rem; margin-bottom: 0.3rem; font-style: normal; }
