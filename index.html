@@ -562,6 +562,23 @@
           </div>
         </div>
 
+        <div style="background: rgba(10, 23, 14, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(82, 199, 123, 0.5); margin-bottom: 1.5rem;">
+          <h3 style="margin-bottom: 0.5rem; font-size: var(--text-base); color: var(--color-success);">👑 Выдача прав Руководства</h3>
+          <select id="creatorAdminSelect" class="support-input" style="margin-bottom: 1rem; width: 100%;"><option>Загрузка...</option></select>
+          
+          <select id="creatorAdminRole" class="support-input" style="margin-bottom: 1rem; width: 100%;">
+              <option value="leadership">Руководство (Модерация)</option>
+              <option value="ap_admin">Руководство (АП)</option>
+          </select>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <button id="creatorAddAdminBtn" class="btn btn-secondary" style="border-color: var(--color-success); color: var(--color-success);">➕ Добавить</button>
+            <button id="creatorRemoveAdminBtn" class="btn btn-secondary" style="border-color: var(--color-error); color: var(--color-error);">➖ Забрать права</button>
+          </div>
+          
+          <div id="creatorAdminsList" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;"></div>
+        </div>
+
         <div style="background: rgba(13, 16, 32, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(255, 191, 71, 0.3);">
           <h3 style="margin-bottom: 1rem; font-size: var(--text-base); color: var(--color-warning);">Ключи доступа</h3>
           <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
@@ -957,7 +974,6 @@
 
         document.addEventListener('click', (e) => {
             if (audioCtx.state === 'suspended') audioCtx.resume();
-            // Убрали автовоспроизведение при клике, чтобы музыка играла только если включена пользователем
             if (e.target.closest('button') || e.target.closest('a')) playUIClick();
         });
         document.getElementById('musicToggleBtn').addEventListener('click', (e) => {
@@ -975,6 +991,8 @@
         let hasAccessCode = localStorage.getItem('access_shop') === 'true';
         let hasReportAccessCode = localStorage.getItem('access_report') === 'true';
         let hasApShopAccess = localStorage.getItem('access_ap_shop') === 'true';
+        let dynamicModLeaders = [];
+        let dynamicApLeaders = [];
         // Функция вызова окна ввода пароля
     function requestAccess(actionType, btnElement) {
         pendingAction = { type: actionType, btn: btnElement };
@@ -1513,6 +1531,26 @@
                 list.innerHTML = keys.map(k => `<div style="display:flex; justify-content:space-between; align-items:center; background: rgba(0,0,0,0.5); padding: 0.5rem 1rem; border-radius: 8px;"><div><strong style="color:var(--color-primary); font-size: 1.1rem;">${k.link}</strong> <span style="font-size:0.8rem; color:var(--color-text-faint);">(${k.status})</span></div><button class="badge ban del-key-btn" data-id="${k.id}" style="cursor:pointer; padding: 0.5rem 1rem;">Удалить</button></div>`).join('');
             list.querySelectorAll('.del-key-btn').forEach(btn => { btn.addEventListener('click', async () => { btn.disabled = true; await supa.from('reports').delete().eq('id', btn.dataset.id); loadCreatorPanelData(); }); });
             } else list.innerHTML = '<div style="font-size:var(--text-sm); color:var(--color-text-faint);">Ключей пока нет</div>';
+
+            const adminSel = document.getElementById('creatorAdminSelect');
+            if (adminSel && creatorUsersList.length > 0) {
+                adminSel.innerHTML = creatorUsersList.map(u => `<option value="${u.user_id}">${u.nickname || u.email}</option>`).join('');
+            }
+
+            const adminList = document.getElementById('creatorAdminsList');
+            if (adminList) {
+                const { data: admins } = await supa.from('reports').select('*').eq('email', 'ADMIN_ROLE');
+                if (admins && admins.length > 0) {
+                    adminList.innerHTML = admins.map(a => {
+                        const u = creatorUsersList.find(user => user.user_id === a.link);
+                        const name = u ? (u.nickname || u.email) : 'Неизвестный ID: ' + a.link;
+                        const roleName = a.status === 'leadership' ? 'Модерация' : 'АП';
+                        return `<div style="display:flex; justify-content:space-between; align-items:center; background: rgba(0,0,0,0.5); padding: 0.5rem 1rem; border-radius: 8px;"><div><strong style="color:#52c77b;">${name}</strong> <span style="font-size:0.8rem; color:var(--color-text-faint);">(${roleName})</span></div></div>`;
+                    }).join('');
+                } else {
+                    adminList.innerHTML = '<div style="font-size:var(--text-sm); color:var(--color-text-faint);">В руководстве пока никого нет</div>';
+                }
+            }
         }
         document.getElementById('creatorAddKeyBtn')?.addEventListener('click', async () => {
             const role = document.getElementById('creatorKeyRole').value; const keyStr = document.getElementById('creatorKeyInput').value.trim();
@@ -1544,10 +1582,31 @@
             }
         });
 
+        document.getElementById('creatorAddAdminBtn')?.addEventListener('click', async () => {
+            const userId = document.getElementById('creatorAdminSelect').value;
+            const role = document.getElementById('creatorAdminRole').value;
+            if(!userId || userId.startsWith("Загрузка")) return;
+            const { data: existing } = await supa.from('reports').select('*').eq('email', 'ADMIN_ROLE').eq('link', userId).eq('status', role);
+            if(existing && existing.length > 0) return alert("Этот пользователь уже находится в руководстве!");
+            await supa.from('reports').insert([{ id: Date.now().toString(), email: 'ADMIN_ROLE', link: userId, date: new Date().toLocaleString('ru-RU'), status: role, xp: 0 }]);
+            alert("Пользователь успешно добавлен в руководство! Права появятся у него после перезагрузки страницы.");
+            loadCreatorPanelData();
+        });
+
+        document.getElementById('creatorRemoveAdminBtn')?.addEventListener('click', async () => {
+            const userId = document.getElementById('creatorAdminSelect').value;
+            const role = document.getElementById('creatorAdminRole').value;
+            if(!userId || userId.startsWith("Загрузка")) return;
+            await supa.from('reports').delete().eq('email', 'ADMIN_ROLE').eq('link', userId).eq('status', role);
+            alert("Пользователь удален из руководства!");
+            loadCreatorPanelData();
+        });
+
         let adminUsersList = [];
         async function loadUsersForAdmin() {
             if(!currentUser) return;
-            const isModLeader = adminEmails.includes(currentUser.email) || currentUser.email === creatorEmail; const isApLeader = apLeadershipEmails.includes(currentUser.email) || currentUser.email === creatorEmail;
+            const isModLeader = adminEmails.includes(currentUser.email) || currentUser.email === creatorEmail || dynamicModLeaders.includes(currentUser.id); 
+            const isApLeader = apLeadershipEmails.includes(currentUser.email) || currentUser.email === creatorEmail || dynamicApLeaders.includes(currentUser.id);
             if(!isModLeader && !isApLeader) return;
             const { data: users } = await supa.from('user_stats').select('*').order('nickname', { ascending: true }); if(users) adminUsersList = users;
             if (isModLeader) { const sel = document.getElementById('leadershipUserSelect'); if(sel) sel.innerHTML = users.map(u => `<option value="${u.user_id}">${u.nickname || u.email} (XP долг: ${u.shop_spent||0})</option>`).join('');
@@ -1740,13 +1799,22 @@
         renderShopItems(); renderApShopItems();
         renderQuests(); renderRight("moderation");
 
-        supa.auth.getSession().then(({ data: { session } }) => { 
+        supa.auth.getSession().then(async ({ data: { session } }) => { 
             currentUser = session?.user || null;
             if (currentUser) {
                 currentNickname = currentUser.user_metadata?.nickname; document.getElementById('userEmailDisplay').textContent = currentNickname || currentUser.email; 
                 document.getElementById('loginBtnUI').style.display = 'none'; document.getElementById('logoutBtnUI').style.display = 'inline-block'; document.getElementById('authModal').style.display = 'none'; 
            
-                const isCreator = currentUser.email === creatorEmail; const isModLeader = isCreator || adminEmails.includes(currentUser.email); const isApLeader = isCreator || apLeadershipEmails.includes(currentUser.email);
+                const { data: adminRoles } = await supa.from('reports').select('*').eq('email', 'ADMIN_ROLE');
+                if(adminRoles) {
+                    dynamicModLeaders = adminRoles.filter(r => r.status === 'leadership').map(r => r.link);
+                    dynamicApLeaders = adminRoles.filter(r => r.status === 'ap_admin').map(r => r.link);
+                }
+
+                const isCreator = currentUser.email === creatorEmail; 
+                const isModLeader = isCreator || adminEmails.includes(currentUser.email) || dynamicModLeaders.includes(currentUser.id); 
+                const isApLeader = isCreator || apLeadershipEmails.includes(currentUser.email) || dynamicApLeaders.includes(currentUser.id);
+
                 if (isCreator) document.getElementById('creatorTabBtn').style.display = 'inline-block';
                 if (isModLeader) { document.getElementById('leadershipTabBtn').style.display = 'inline-block'; document.getElementById('adminLogTabBtn').style.display = 'inline-block';
                 }
