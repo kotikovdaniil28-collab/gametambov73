@@ -199,7 +199,7 @@
     html[data-site-theme="leaderboard"] .mode-btn.active { background: linear-gradient(135deg, #ff3d00, #ff9e00); color: #fff; box-shadow: 0 8px 20px rgba(255, 61, 0, 0.35); }
     html[data-site-theme="about"] .mode-btn.active { background: linear-gradient(135deg, #ffbf47, #ffd979); color: #18171c; box-shadow: 0 8px 20px rgba(255, 191, 71, 0.35); }
     html[data-site-theme="admin_log"] .mode-btn.active, html[data-site-theme="ap_admin_log"] .mode-btn.active { background: linear-gradient(135deg, #ffbf47, #ff9e00); color: #18171c; box-shadow: 0 8px 20px rgba(255, 191, 71, 0.35); }
-    html[data-site-theme="timeattack"] .mode-btn.active { background: linear-gradient(135deg, #ffbf47, #ff3d00); color: #fff; box-shadow: 0 15px 35px rgba(255, 191, 71, 0.5); }
+    html[data-site-theme="timeattack"] .mode-btn.active { background: linear-gradient(135deg, #ffbf47, #ff3d00); color: #fff; box-shadow: 0 8px 20px rgba(255, 191, 71, 0.5); }
     html[data-site-theme="creator"] .mode-btn.active { background: linear-gradient(135deg, #ff3b60, #ff6b88); color: #fff; box-shadow: 0 8px 20px rgba(255, 107, 136, 0.5); }
 
     .game-wrap { margin-top: 0.75rem; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr); gap: 1rem; align-items: start; }
@@ -605,19 +605,6 @@
             <button id="leadershipDeleteBtn" class="btn btn-secondary" style="border-color: var(--color-error); color: var(--color-error); grid-column: span 2;">🗑️ Удалить аккаунт</button>
           </div>
         </div>
-
-        <div style="background: rgba(10, 23, 14, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(82, 199, 123, 0.3); margin-top: 1.5rem;">
-          <h3 style="margin-bottom: 1rem; font-size: var(--text-base); color: var(--color-success);">Ключи доступа (Модерация)</h3>
-          <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
-            <select id="leadershipKeyRole" class="support-input" style="flex: 1;">
-                <option value="shop">Магазин</option>
-                <option value="report">Отчеты</option>
-            </select>
-            <input type="text" id="leadershipKeyInput" class="support-input" placeholder="Код ключа" style="flex: 2;">
-          </div>
-          <button id="leadershipAddKeyBtn" class="btn btn-secondary" style="width: 100%; border-color: var(--color-success); color: var(--color-success);">Создать ключ</button>
-          <div id="leadershipKeysList" style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem;"></div>
-        </div>
       </section>
 
       <section class="panel game-card fade-in" id="mode-ap_admin" style="display:none;">
@@ -973,9 +960,10 @@
             osc.start(); osc.stop(audioCtx.currentTime + uiSoundConfig.duration);
         }
 
-        const bgMusic = new Audio('https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3'); 
-        bgMusic.loop = true; 
-        bgMusic.volume = 0.3; 
+        // Поставил приятный Lo-Fi бит в формате .mp3 (читают все браузеры) и сделал громкость на 30% (0.3), чтобы не било по ушам
+const bgMusic = new Audio('https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3'); 
+bgMusic.loop = true; 
+bgMusic.volume = 0.3;
         const sndOk = new Audio('https://actions.google.com/sounds/v1/ui/pop.ogg'); sndOk.volume = 0.4;
         const sndFail = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg'); sndFail.volume = 0.2;
         const sndWin = new Audio('https://actions.google.com/sounds/v1/cartoon/clown_horn.ogg'); sndWin.volume = 0.3;
@@ -991,25 +979,25 @@
             if (audioCtx.state === 'suspended') audioCtx.resume();
             if (e.target.closest('button') || e.target.closest('a')) playUIClick();
         });
-        document.getElementById('musicToggleBtn').addEventListener('click', (e) => {
-            isMusicEnabled = !isMusicEnabled;
-            if (isMusicEnabled) { 
-                e.target.textContent = '⏳';
-                bgMusic.play().then(() => {
-                    e.target.textContent = '🎵';
-                }).catch((err) => { 
-                    console.error("Ошибка музыки:", err);
-                    isMusicEnabled = false; 
-                    e.target.textContent = '🔇'; 
-                }); 
-            } 
-            else { 
-                e.target.textContent = '🔇'; 
-                bgMusic.pause(); 
-            }
-        });
+ document.getElementById('musicToggleBtn').addEventListener('click', (e) => {
+    isMusicEnabled = !isMusicEnabled;
+    if (isMusicEnabled) { 
+        e.target.textContent = '⏳'; // Показываем часики, пока грузится
+        bgMusic.play().then(() => {
+            e.target.textContent = '🎵'; // Как заиграло - ставим ноту
+        }).catch((err) => { 
+            console.error("Ошибка музыки:", err);
+            isMusicEnabled = false; 
+            e.target.textContent = '🔇'; 
+            alert('Браузер заблокировал аудио или ссылка недоступна. Кликни еще раз!');
+        }); 
+    } 
+    else { 
+        e.target.textContent = '🔇'; 
+        bgMusic.pause(); 
+    }
+});
         document.getElementById('sfxToggleBtn').addEventListener('click', (e) => { isSfxEnabled = !isSfxEnabled; e.target.textContent = isSfxEnabled ? '🔊' : '🔈'; });
-        
         // === 2. БАЗА ДАННЫХ И СОСТОЯНИЕ ===
         const supabaseUrl = 'https://icfihnroblyjjflsfepq.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljZmlobnJvYmx5ampmbHNmZXBxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4NjAxMDksImV4cCI6MjA5MTQzNjEwOX0.Hrvjg572mIKBG-2ffYEr4Fxvpz0hOAex9d6n7WylVkQ';
@@ -1021,24 +1009,22 @@
         let hasApShopAccess = localStorage.getItem('access_ap_shop') === 'true';
         let dynamicModLeaders = [];
         let dynamicApLeaders = [];
-        
-        function requestAccess(actionType, btnElement) {
-            pendingAction = { type: actionType, btn: btnElement };
-            document.getElementById('accessCodeInput').value = ''; 
-            document.getElementById('accessErrorMsg').style.display = 'none'; 
-            document.getElementById('accessModal').style.display = 'flex'; 
-        }
+        // Функция вызова окна ввода пароля
+    function requestAccess(actionType, btnElement) {
+        pendingAction = { type: actionType, btn: btnElement };
+        document.getElementById('accessCodeInput').value = ''; 
+        document.getElementById('accessErrorMsg').style.display = 'none'; 
+        document.getElementById('accessModal').style.display = 'flex'; 
+    }
 
         const creatorEmail = 'daniiltimosin72@gmail.com';
         const adminEmails = [creatorEmail, 'leha.br222@gmail.com', 'isayevrufat37@gmail.com', 'maksimladnyj4@gmail.com'];
         const apLeadershipEmails = [creatorEmail, 'dianarlkh@gmail.com', 'kirillbarvichus@gmail.com'];
-        
         let state = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false, log: [], reportXp: 0 };
         let supportState = { resolved: 0, correct: 0, mistakes: 0, currentIndex: -1, started: false };
         let complaintState = { resolved: 0, correct: 0, mistakes: 0, current: null, started: false };
         let shopState = { spent: 0, apSpent: 0 };
         let modQueue = [], supQueue = [], compQueue = [];
-        
         // === 3. МАССИВЫ МАГАЗИНА И КВЕСТОВ ===
         const shopItems = [
             { id: 'mm_1', title: "ММ: Скидка -1 день", desc: "Ускоряет повышение Младшего Модератора (ММ → М).", price: 200, icon: "⏳" },
@@ -1070,51 +1056,14 @@
             { id: 'q4', title: 'Мастер Своего Дела', desc: 'Рассмотреть 200 сообщений в тренажёре', max: 200, getProgress: () => state.resolved, reward: 500 }
         ];
 
-        // === 4. МАССИВЫ СООБЩЕНИЙ И ЖАЛОБ ===
+        // === 4. МАССИВЫ СООБЩЕНИЙ И ЖАЛОБ (БЕЗ ОБРЕЗОК) ===
         const allModMessages = [
             {type:"warn",text:"АХАХАХАХХАХАХАХАХАХАХАХАХАХАХАХАХАХХА"},{type:"warn",text:"ААААААААААААААААААААААААААААААААААААААА"},{type:"warn",text:"ЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫЫ"},{type:"warn",text:"ООООООООООООООООООООООООООООООООООООООО"},{type:"warn",text:"УУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУУ"},{type:"warn",text:"Как дела ????????????????????????"},{type:"warn",text:"Куплю супру срочно!!!!!!!!!!!!!!!!!!!!"},{type:"warn",text:"Эй,,,,,,,,,, кто тут главный????????"},{type:"warn",text:"Продам аксы+++++++++++++++++++++"},{type:"warn",text:"Кто в казик $$$$$$$$$$$$$$$$$$$$$$$"},{type:"warn",text:"Кто в патруль? Кто в патруль? Кто в патруль?"},{type:"warn",text:"1 2 3 4 5 Проверка чата"},{type:"warn",text:"фвлыофдвлофыдвло (сори клаву проверяю)"},{type:"warn",text:"куплю машину быстро"},{type:"warn",text:"spam spam spam spam spam"},{type:"warn",text:"@everyone зайдите в игру пж"},{type:"warn",text:"@here кто продаст ремку?"},{type:"warn",text:"@Lexa_Mackenzie @Lexa_Mackenzie @Lexa_Mackenzie"},{type:"warn",text:"@John Wick ответь в лс"},{type:"warn",text:"Дайте 10к на развитие пожалуйста, я новичок"},{type:"warn",text:"Пацаны, скиньтесь по 100 рублей на фаму пж"},{type:"warn",text:"Админы, дайте админку или виртов хоть чуть-чуть"},{type:"warn",text:"Кто может задонатить мне на блек пасс? Умоляю"},{type:"warn",text:"Подарите машину, мне не на чем ездить"},{type:"warn",text:"Да ваш президент вообще ничего не понимает в экономике"},{type:"warn",text:"Моя религия самая правильная, а вы все не правы"},{type:"warn",text:"Слава [название страны]! Все остальные — мусор"},{type:"warn",text:"Кто за какую партию голосовал? Давайте обсудим"},{type:"warn",text:"Политики вообще оборзели в край"},{type:"warn",text:"Ты вообще к****, иди откисай на спавне"},{type:"warn",text:"Да вы вы тут нули, я вас один раскидаю"},{type:"warn",text:"Плачь больше, форумная крыса"},{type:"warn",text:"Чел, у тебя iq как у хлебушка, не пиши сюда"},{type:"warn",text:"Боже, какие же криворукие сидят в этой фракции"},{type:"warn",text:"Слышь, герой, пошли в войс, я тебе объясню кто ты"},{type:"warn",text:"Что ты там вякнул? Иди уроки делай, ш*****а"},{type:"warn",text:"Твоя фама - сборище н***их, лови аптечку"},{type:"warn",text:"Все бабы в этой игре играть не умеют"},{type:"warn",text:"Ненавижу [национальность], вечно они всё руинят"},{type:"warn",text:"Твое место на кухне, а не в ОПГ"},{type:"warn",text:"Играешь как девчонка, иди в куклы играй"},{type:"warn",text:"Админ, я тебе в лс флудить буду пока не ответишь"},{type:"warn",text:"Давайте все вместе репорт админам заспамим"},{type:"warn",text:"Эй, модер, ты вообще работать собираешься?"},{type:"warn",text:"Давай, забань меня, тебе же хуже будет"},{type:"warn",text:"Я тебя по IP вычислю, жди гостей вечером"},{type:"warn",text:"Напиши еще слово и я тебе интернет отключу"},{type:"warn",text:"Жди докс, к****, я тебя найду"},{type:"warn",text:"Админы вообще не работают, только и умеют муты давать"},{type:"warn",text:"Слышь, я тебя сейчас в чс закину, понял?"},{type:"warn",text:"Да я твой дом труба шатал"},{type:"warn",text:"Сколько стоит випка? Хочу купить"},{type:"warn",text:"Как стать админом? Я всё знаю про игру"},{type:"warn",text:"Кто со мной в казино на миллион?"},{type:"warn",text:"Как работает эта рулетка? Я ничего не понял"},{type:"warn",text:"Где можно купить наркотики в игре?"},{type:"warn",text:"Пойду ограблю банк, кто со мной?"},{type:"warn",text:"Я сейчас буду всех ДМить, берегитесь!"},{type:"warn",text:"Как взломать аккаунт? Друг попросил узнать"},{type:"warn",text:"Где скачать читы на бессмертие?"},{type:"warn",text:"Продам свой аккаунт, кому нужен?"},{type:"warn",text:"ДА ВЫ ВСЕ ТУТ К****Ы, СЕРВЕР МЁРТВЫЙ"},{type:"warn",text:"Ты щас рот закроешь и пойдешь отсюда, понял?"},
             {type:"ban",text:"Продам вирты, 1кк = 50 рублей. Писать в ЛС"},{type:"ban",text:"Куплю жирный аккаунт с випкой за реал"},{type:"ban",text:"Кто продаст супру за 500 рублей на карту?"},{type:"ban",text:"Обменяю скины в CS:GO на вирты тут"},{type:"ban",text:"Продаю симку блатную, оплата криптой"},{type:"ban",text:"Продам фаму 10 лвл за 2000 рублей"},{type:"ban",text:"Куплю админку за деньги, кому переводить?"},{type:"ban",text:"Обменяю 10кк на 1 сервере на ваши 10кк на 5 сервере"},{type:"ban",text:"Перекину вирты с Тамбова на другой сервер"},{type:"ban",text:"Есть имущка на 3 серве, меняю на Тамбов 73"},{type:"ban",text:"Трансфер виртов, комиссия 5%. Пишите в лс."},{type:"ban",text:"Парни, открылся новый топ РП проект discord.gg/fake-rp"},{type:"ban",text:"Надоел этот сервер, пошлите играть на другой"},{type:"ban",text:"Заходите на мой проект вместо этого"},{type:"ban",text:"Идет набор в админы на новом сервере 192.168.1.1:7777"},{type:"ban",text:"Смотрите какую жесткую аварию с трупами нашел [ссылка]"},{type:"ban",text:"Зацените р***члененку, жесть просто [ссылка]"},{type:"ban",text:"Кому скинуть ц* в лс? добавляйтесь"},{type:"ban",text:"Я пробил его по номеру, вот его адрес: ул. Пушкина д. 10"},{type:"ban",text:"Слил номер телефона ГА в открытый доступ"},{type:"ban",text:"Его зовут Вася Пупкин, учится в 7Б школе №5, давайте загнобим"},{type:"ban",text:"Работает баг на удвоение денег! Переведите мне 50к"},{type:"ban",text:"Удвою ваши вирты, кидайте на банк счет 12345"},{type:"ban",text:"Сливаю приватный аимбот на наш сервер"},{type:"ban",text:"Я с читами играю уже месяц и меня не банят"},{type:"ban",text:"Скрипт на авто-рыбалку (работает 100%): dropmefiles.com/virus"},{type:"ban",text:"Продам мефедрон, гашиш. Доставка по городу"},{type:"ban",text:"Давайте заминируем школу, рецепт бомбы вот тут: [ссылка]"},{type:"ban",text:"Твоя м*** сд***а в канаве, в******к"},{type:"ban",text:"Я твою всю семью р***л, понял меня?"},{type:"ban",text:"Сын ш***и, иди отсюда"},{type:"ban",text:"Чтоб твои родители сг***ли"},{type:"ban",text:"Куплю бизнес за рубли, кто продает?"},{type:"ban",text:"Ищу людей для ДМ состава, будем всех разносить"},{type:"ban",text:"Сливаю пароли от админ панелей, заходите [ссылка]"}
         ];
 
-        // УМНЫЕ ОТВЕТЫ АП - РАСШИРЕННЫЕ КЛЮЧИ ДЛЯ ЛОЯЛЬНОСТИ
         const allSupQuestions = [
-            { title: "Навигация", text: "Как найти правительство области в GPS?", keywords: ["gps 1", "гпс 1", "правительств", "1"] },
-            { title: "Навигация", text: "Где находится здание ФСБ?", keywords: ["gps 1", "гпс 1", "фсб", "1"] },
-            { title: "Навигация", text: "Как доехать до автосалона низкого класса?", keywords: ["gps 3", "гпс 3", "низк", "3"] },
-            { title: "Навигация", text: "Где устроиться работать на шахту?", keywords: ["gps 2", "гпс 2", "шахт", "2"] },
-            { title: "Навигация", text: "Не могу найти автосервис (СТО), подскажите команду.", keywords: ["gps 11", "гпс 11", "сто", "автосерв", "11"] },
-            { title: "Навигация", text: "Как найти ближайшую заправку?", keywords: ["gps 9", "гпс 9", "азс", "заправк", "9"] },
-            { title: "Навигация", text: "Где находится работа водолаза?", keywords: ["gps 4", "гпс 4", "водолаз", "4"] },
-            { title: "Навигация", text: "Как найти автошколу?", keywords: ["gps 1", "гпс 1", "лиценз", "автошкол", "1"] },
-            { title: "Навигация", text: "Где находится больница?", keywords: ["gps 1", "гпс 1", "больниц", "цб", "1"] },
-            { title: "Навигация", text: "Где находится тюрьма (ФСИН)?", keywords: ["gps 1", "гпс 1", "фсин", "тюрьм", "1"] },
-            { title: "Команды", text: "Какой командой открыть инвентарь?", keywords: ["inv", "инв", "i", "ш", "инвентар"] },
-            { title: "Команды", text: "Как показать свой паспорт игроку?", keywords: ["pass", "пас", "паспорт"] },
-            { title: "Команды", text: "Какая команда для передачи денег другому?", keywords: ["pay", "пей", "пэй"] },
-            { title: "Команды", text: "Как использовать ремкомплект для починки?", keywords: ["repair", "репаир", "инв", "inv"] },
-            { title: "Команды", text: "Подскажите команду, чтобы завести машину.", keywords: ["engine", "енжин", "енджин", "завести"] },
-            { title: "Команды", text: "Как выкинуть пассажира из моего авто?", keywords: ["eject", "еджект"] },
-            { title: "Команды", text: "Как показать медкарту врачу?", keywords: ["med", "мед"] },
-            { title: "Команды", text: "Как показать лицензии?", keywords: ["lic", "лиц"] },
-            { title: "Команды", text: "Какая команда открывает багажник?", keywords: ["trunk", "транк", "багаж"] },
-            { title: "Команды", text: "Как заправить машину на АЗС?", keywords: ["fill", "филл", "заправ"] },
-            { title: "Команды", text: "Как посмотреть свою статистику и уровень?", keywords: ["mm", "мм", "стат", "stat"] },
-            { title: "Команды", text: "Как открыть двери машины?", keywords: ["lock", "лок", "двер"] },
-            { title: "Уровни", text: "Какой уровень нужен для работы дальнобойщиком?", keywords: ["18", "восемнадцат"] },
-            { title: "Уровни", text: "С какого уровня доступна работа водолазом?", keywords: ["18", "восемнадцат"] },
-            { title: "Уровни", text: "Какой уровень нужен на инкассатора?", keywords: ["15", "пятнадцат"] },
-            { title: "Уровни", text: "С какого лвл я могу работать кладоискателем?", keywords: ["3", "трет"] },
-            { title: "Уровни", text: "С какого уровня доступна работа в МЧС?", keywords: ["3", "трет"] },
-            { title: "Вопросы", text: "Где можно купить ремкомплект?", keywords: ["24/7", "24", "магазин", "азс"] },
-            { title: "Вопросы", text: "Где взять лицензию на оружие?", keywords: ["лицензер", "правительств", "gps 1", "гпс 1"] },
-            { title: "Вопросы", text: "Как устроиться в ОПГ?", keywords: ["собес", "форум", "баз", "опг"] },
-            { title: "Вопросы", text: "Сколько стоит создание семьи?", keywords: ["3кк", "3 кк", "3.000.000", "3к", "3 млн", "3 миллион"] },
-            { title: "Вопросы", text: "Как купить Black Pass?", keywords: ["donate", "донат", "bp", "бп"] },
-            { title: "Вопросы", text: "Как оплатить штрафы?", keywords: ["банк", "банкомат"] },
-            { title: "Не вижу каналов", meta: "Дискорд", text: "Я зашел на сервер, но вижу только приветствие. Что нужно сделать?", keywords: ['вериф', 'роль', 'правил', 'канал'] },
-            { title: "Не приходит код", meta: "Проблема", text: "Мне не приходит код подтверждения на почту. Что делать?", keywords: ['спам', 'почт', 'подожд'] },
-            { title: "Куда жаловаться", meta: "Жалобы", text: "Хочу подать жалобу на модератора. Куда писать?", keywords: ['жалоб', 'скрин', 'форум', 'форма', 'раздел'] },
-            { title: "Почему мут", meta: "Наказания", text: "Мне выдали мут, но я не понял за что.", keywords: ['причин', 'форум', 'жалоб', 'модерат', 'админ'] }
+            { title: "Навигация", text: "Как найти правительство области в GPS?", keywords: ["/gps 1"] }, { title: "Навигация", text: "Где находится здание ФСБ?", keywords: ["/gps 1"] }, { title: "Навигация", text: "Как доехать до автосалона низкого класса?", keywords: ["/gps 3"] }, { title: "Навигация", text: "Где устроиться работать на шахту?", keywords: ["/gps 2"] }, { title: "Навигация", text: "Не могу найти автосервис (СТО), подскажите команду.", keywords: ["/gps 11"] }, { title: "Навигация", text: "Как найти ближайшую заправку?", keywords: ["/gps 9", "команда"] }, { title: "Навигация", text: "Где находится работа водолаза?", keywords: ["/gps 4"] }, { title: "Навигация", text: "Как найти автошколу?", keywords: ["/gps 1"] }, { title: "Навигация", text: "Где находится больница?", keywords: ["/gps 1"] }, { title: "Навигация", text: "Где находится тюрьма (ФСИН)?", keywords: ["/gps 1"] }, { title: "Команды", text: "Какой командой открыть инвентарь?", keywords: ["/inv", "/i"] }, { title: "Команды", text: "Как показать свой паспорт игроку?", keywords: ["/pass"] }, { title: "Команды", text: "Какая команда для передачи денег другому?", keywords: ["/pay"] }, { title: "Команды", text: "Как использовать ремкомплект для починки?", keywords: ["/repair", "инвентар"] }, { title: "Команды", text: "Подскажите команду, чтобы завести машину.", keywords: ["/engine"] }, { title: "Команды", text: "Как выкинуть пассажира из моего авто?", keywords: ["/eject"] }, { title: "Команды", text: "Как показать медкарту врачу?", keywords: ["/med"] }, { title: "Команды", text: "Как показать лицензии?", keywords: ["/lic"] }, { title: "Команды", text: "Какая команда открывает багажник?", keywords: ["/trunk"] }, { title: "Команды", text: "Как заправить машину на АЗС?", keywords: ["/fill"] }, { title: "Команды", text: "Как посмотреть свою статистику и уровень?", keywords: ["/mm", "/stat"] }, { title: "Команды", text: "Как открыть двери машины?", keywords: ["/lock"] }, { title: "Уровни", text: "Какой уровень нужен для работы дальнобойщиком?", keywords: ["18"] }, { title: "Уровни", text: "С какого уровня доступна работа водолазом?", keywords: ["18"] }, { title: "Уровни", text: "Какой уровень нужен на инкассатора?", keywords: ["15"] }, { title: "Уровни", text: "С какого лвл я могу работать кладоискателем?", keywords: ["3"] }, { title: "Уровни", text: "С какого уровня доступна работа в МЧС?", keywords: ["3"] }, { title: "Вопросы", text: "Где можно купить ремкомплект?", keywords: ["24/7", "магазин", "азс"] }, { title: "Вопросы", text: "Где взять лицензию на оружие?", keywords: ["лицензер", "правительств", "/gps 1"] }, { title: "Вопросы", text: "Как устроиться в ОПГ?", keywords: ["собеседован", "форум"] }, { title: "Вопросы", text: "Сколько стоит создание семьи?", keywords: ["3кк", "3 миллион"] }, { title: "Вопросы", text: "Как купить Black Pass?", keywords: ["/donate", "/bp"] }, { title: "Вопросы", text: "Как оплатить штрафы?", keywords: ["банк", "банкомат"] }, { title: "Не вижу каналов", meta: "Дискорд", text: "Я зашел на сервер, но вижу только приветствие. Что нужно сделать?", keywords: ['вериф', 'роль', 'правил', 'канал'] }, { title: "Не приходит код", meta: "Проблема", text: "Мне не приходит код подтверждения на почту. Что делать?", keywords: ['спам', 'почт', 'подожд'] }, { title: "Куда жаловаться", meta: "Жалобы", text: "Хочу подать жалобу на модератора. Куда писать?", keywords: ['жалоб', 'скрин', 'форум', 'форма'] }, { title: "Почему мут", meta: "Наказания", text: "Мне выдали мут, но я не понял за что.", keywords: ['причин', 'срок', 'модерат'] }
         ];
 
         const allComplaints = [
@@ -1563,63 +1512,24 @@
         window.loadLeaderboard = async function() {
             const list = document.getElementById('leaderboardList');
             if(!list) return;
-            list.innerHTML = '<div class="message-text" style="text-align:center; padding:2rem;">⏳ Загрузка данных...</div>';
+            list.innerHTML = '<div class="message-text" style="text-align:center; padding:2rem;">Загрузка данных...</div>';
+            const { data: repData } = await supa.from('reports').select('email, xp').gt('xp', 0);
+            const { data: users } = await supa.from('user_stats').select('*');
+            let modArr = [], apArr = [];
+            users.forEach(u => {
+                let reportXp = 0; if (repData) repData.forEach(r => { if(r.email === u.email) reportXp += (Number(r.xp)||0); });
+                const mXp = Math.max(0, calcXP(u.mod_correct) + reportXp - Number(u.shop_spent||0));
+                const aXp = Math.max(0, calcXP(u.sup_correct) - Number(u.ap_spent||0));
+                if(u.nickname) { modArr.push({ name: u.nickname, score: mXp }); apArr.push({ name: u.nickname, score: aXp }); }
+            });
+            modArr.sort((a,b)=>b.score-a.score); apArr.sort((a,b)=>b.score-a.score);
             
-            try {
-                const { data: repData, error: repError } = await supa.from('reports').select('email, xp').gt('xp', 0).neq('email', 'ACCESS_KEY').neq('email', 'ADMIN_ROLE');
-                const { data: users, error: userError } = await supa.from('user_stats').select('*');
-
-                if (userError) throw userError;
-
-                let modArr = [], apArr = [];
-                
-                const allLeadersEmails = [...adminEmails, ...apLeadershipEmails, creatorEmail];
-                const allLeadersIds = [...dynamicModLeaders, ...dynamicApLeaders];
-
-                users.forEach(u => {
-                    // Исключаем руководство из ТОПа
-                    if (allLeadersEmails.includes(u.email) || allLeadersIds.includes(u.user_id)) {
-                        return; 
-                    }
-
-                    let reportXp = 0; 
-                    if (repData) repData.forEach(r => { if(r.email === u.email) reportXp += (Number(r.xp)||0); });
-                    
-                    const mXp = Math.max(0, calcXP(u.mod_correct) + reportXp - Number(u.shop_spent||0));
-                    const aXp = Math.max(0, calcXP(u.sup_correct) - Number(u.ap_spent||0));
-                    
-                    const mRes = Number(u.mod_resolved) || 0;
-                    const aRes = Number(u.sup_resolved) || 0;
-
-                    if(u.nickname) { 
-                        // Сортировка: Модер ли это или АП?
-                        if (mRes >= aRes && mXp > 0) {
-                            modArr.push({ name: u.nickname, score: mXp }); 
-                        }
-                        if (aRes > mRes && aXp > 0) {
-                            apArr.push({ name: u.nickname, score: aXp }); 
-                        }
-                        // Для тех кто только сдавал отчеты, но еще не играл в тренажер
-                        if (mRes === 0 && aRes === 0 && mXp > 0) {
-                            modArr.push({ name: u.nickname, score: mXp }); 
-                        }
-                    }
-                });
-                
-                modArr.sort((a,b)=>b.score-a.score); 
-                apArr.sort((a,b)=>b.score-a.score);
-                
-                window.lbModHTML = modArr.slice(0,10).map((u, i) => `<div class="rule-item" style="border-color: ${i===0?'#ffbf47':i===1?'#a7afcf':i===2?'#cd7f32':'rgba(191,198,255,0.3)'};"><div class="rule-icon" style="background: ${i===0?'#ffbf47':i===1?'#a7afcf':i===2?'#cd7f32':'transparent'}; color: ${i<3?'#000':'var(--color-text-faint)'}; font-size:1.2rem;">${i+1}</div><div class="rule-copy" style="display:flex; justify-content:space-between; align-items:center;"><strong>${u.name}</strong><span class="badge xp">${u.score} XP</span></div></div>`).join('');
-                window.lbApHTML = apArr.slice(0,10).map((u, i) => `<div class="rule-item" style="border-color: ${i<3?'#ff8fc4':'rgba(191,198,255,0.3)'};"><div class="rule-icon" style="background: ${i<3?'#ff8fc4':'transparent'}; color: ${i<3?'#000':'var(--color-text-faint)'}; font-size:1.2rem;">${i+1}</div><div class="rule-copy" style="display:flex; justify-content:space-between; align-items:center;"><strong>${u.name}</strong><span class="badge" style="background:#ff8fc4; color:#000;">${u.score} Баллов</span></div></div>`).join('');
-                
-                const isApActive = document.getElementById('lbBtnAp')?.classList.contains('btn-primary');
-                list.innerHTML = isApActive ? (window.lbApHTML || '<div class="message-text">Топ пуст.</div>') : (window.lbModHTML || '<div class="message-text">Топ пуст.</div>');
-            } catch (err) {
-                list.innerHTML = `<div class="message-text" style="color: var(--color-error)">Ошибка загрузки данных.</div>`;
-            }
+            window.lbModHTML = modArr.slice(0,10).map((u, i) => `<div class="rule-item" style="border-color: ${i===0?'#ffbf47':i===1?'#a7afcf':i===2?'#cd7f32':'rgba(191,198,255,0.3)'};"><div class="rule-icon" style="background: ${i===0?'#ffbf47':i===1?'#a7afcf':i===2?'#cd7f32':'transparent'}; color: ${i<3?'#000':'var(--color-text-faint)'}; font-size:1.2rem;">${i+1}</div><div class="rule-copy" style="display:flex; justify-content:space-between; align-items:center;"><strong>${u.name}</strong><span class="badge xp">${u.score} XP</span></div></div>`).join('');
+            window.lbApHTML = apArr.slice(0,10).map((u, i) => `<div class="rule-item" style="border-color: ${i<3?'#ff8fc4':'rgba(191,198,255,0.3)'};"><div class="rule-icon" style="background: ${i<3?'#ff8fc4':'transparent'}; color: ${i<3?'#000':'var(--color-text-faint)'}; font-size:1.2rem;">${i+1}</div><div class="rule-copy" style="display:flex; justify-content:space-between; align-items:center;"><strong>${u.name}</strong><span class="badge" style="background:#ff8fc4; color:#000;">${u.score} Баллов</span></div></div>`).join('');
+            list.innerHTML = window.lbModHTML || '<div class="message-text">Топ пуст.</div>';
         };
-        document.getElementById('lbBtnMod')?.addEventListener('click', () => { document.getElementById('leaderboardList').innerHTML = window.lbModHTML || '<div class="message-text">Топ пуст.</div>'; document.getElementById('lbBtnMod').className="btn btn-primary"; document.getElementById('lbBtnAp').className="btn btn-secondary"; });
-        document.getElementById('lbBtnAp')?.addEventListener('click', () => { document.getElementById('leaderboardList').innerHTML = window.lbApHTML || '<div class="message-text">Топ пуст.</div>'; document.getElementById('lbBtnAp').className="btn btn-primary"; document.getElementById('lbBtnMod').className="btn btn-secondary"; });
+        document.getElementById('lbBtnMod')?.addEventListener('click', () => { document.getElementById('leaderboardList').innerHTML = window.lbModHTML; document.getElementById('lbBtnMod').className="btn btn-primary"; document.getElementById('lbBtnAp').className="btn btn-secondary"; });
+        document.getElementById('lbBtnAp')?.addEventListener('click', () => { document.getElementById('leaderboardList').innerHTML = window.lbApHTML; document.getElementById('lbBtnAp').className="btn btn-primary"; document.getElementById('lbBtnMod').className="btn btn-secondary"; });
         // === 10. ПАНЕЛИ СОЗДАТЕЛЯ И АДМИНА ===
         let creatorUsersList = [];
         async function loadCreatorPanelData() {
@@ -1715,19 +1625,7 @@
             const isApLeader = apLeadershipEmails.includes(currentUser.email) || currentUser.email === creatorEmail || dynamicApLeaders.includes(currentUser.id);
             if(!isModLeader && !isApLeader) return;
             const { data: users } = await supa.from('user_stats').select('*').order('nickname', { ascending: true }); if(users) adminUsersList = users;
-            if (isModLeader) { 
-                const sel = document.getElementById('leadershipUserSelect'); if(sel) sel.innerHTML = users.map(u => `<option value="${u.user_id}">${u.nickname || u.email} (XP долг: ${u.shop_spent||0})</option>`).join('');
-                
-                // Загрузка ключей Руководства модерации
-                const listMod = document.getElementById('leadershipKeysList');
-                if (listMod) {
-                    listMod.innerHTML = 'Загрузка ключей...';
-                    const { data: keys } = await supa.from('reports').select('*').eq('email', 'ACCESS_KEY').in('status', ['shop', 'report']).order('date', { ascending: false });
-                    if (keys && keys.length > 0) {
-                        listMod.innerHTML = keys.map(k => `<div style="display:flex; justify-content:space-between; align-items:center; background: rgba(0,0,0,0.5); padding: 0.5rem 1rem; border-radius: 8px;"><div><strong style="color:var(--color-success); font-size: 1.1rem;">${k.link}</strong> <span style="font-size:0.8rem; color:var(--color-text-faint);">(${k.status})</span></div><button class="badge ban del-key-btn-mod" data-id="${k.id}" style="cursor:pointer; padding: 0.5rem 1rem;">Удалить</button></div>`).join('');
-                        listMod.querySelectorAll('.del-key-btn-mod').forEach(btn => { btn.addEventListener('click', async () => { btn.disabled = true; await supa.from('reports').delete().eq('id', btn.dataset.id); loadUsersForAdmin(); }); });
-                    } else listMod.innerHTML = '<div style="font-size:var(--text-sm); color:var(--color-text-faint);">Ключей пока нет</div>';
-                }
+            if (isModLeader) { const sel = document.getElementById('leadershipUserSelect'); if(sel) sel.innerHTML = users.map(u => `<option value="${u.user_id}">${u.nickname || u.email} (XP долг: ${u.shop_spent||0})</option>`).join('');
             }
             if (isApLeader) { const sel = document.getElementById('apAdminUserSelect');
             if(sel) sel.innerHTML = users.map(u => `<option value="${u.user_id}">${u.nickname || u.email} (Баллы долг: ${u.ap_spent||0})</option>`).join('');
@@ -1744,17 +1642,6 @@
             }
             }
         }
-
-        document.getElementById('leadershipAddKeyBtn')?.addEventListener('click', async () => {
-            const role = document.getElementById('leadershipKeyRole').value;
-            const keyStr = document.getElementById('leadershipKeyInput').value.trim();
-            if (keyStr.length < 3) return alert("Ключ должен быть длиннее 3 символов!");
-            document.getElementById('leadershipAddKeyBtn').disabled = true;
-            const { error } = await supa.from('reports').insert([{ id: Date.now().toString(), email: 'ACCESS_KEY', link: keyStr, date: new Date().toLocaleString('ru-RU'), status: role, xp: 0 }]);
-            if (!error) { document.getElementById('leadershipKeyInput').value = ''; alert("Ключ успешно создан!"); loadUsersForAdmin(); }
-            document.getElementById('leadershipAddKeyBtn').disabled = false;
-        });
-
         document.getElementById('leadershipXpBtn')?.addEventListener('click', async () => {
             const userId = document.getElementById('leadershipUserSelect').value; const amount = Number(document.getElementById('leadershipXpAmount').value);
             if (!userId || isNaN(amount)) return; const targetUser = adminUsersList.find(u => u.user_id === userId); if(!targetUser) return;
@@ -1806,7 +1693,7 @@
             const warn = document.getElementById('reportAccessWarning');
             const formArea = document.getElementById('reportFormArea'); const adminPanel = document.getElementById('adminPanelArea');
             if (currentUser) { if(warn) warn.style.display = 'none'; if(formArea) formArea.style.display = 'block';
-            if (adminEmails.includes(currentUser.email) || dynamicModLeaders.includes(currentUser.id)) { if(adminPanel) adminPanel.style.display = 'block'; } } 
+            if (adminEmails.includes(currentUser.email)) { if(adminPanel) adminPanel.style.display = 'block'; } } 
             else { if(warn) warn.style.display = 'block';
             if(formArea) formArea.style.display = 'none'; }
         }
@@ -1824,40 +1711,33 @@
             listArea.style.display = 'flex'; 
             listArea.innerHTML = 'Загрузка...';
             
-            try {
-                // Исключаем из загрузки системные записи ключей и ролей
-                const { data: reports, error } = await supa.from('reports').select('*').neq('email', 'ACCESS_KEY').neq('email', 'ADMIN_ROLE').order('date', { ascending: false }).limit(30);
-                
-                if(error) throw error;
-
-                if(reports && reports.length > 0) { 
-                    listArea.innerHTML = reports.map(r => `
-                    <div style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 12px; border: 1px solid rgba(191,198,255,0.2);">
-                        <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem;">
-                            <strong>${r.email}</strong><span style="color:var(--color-text-faint);
-                            font-size: 0.8rem;">${r.date}</span>
-                        </div>
-                        <div style="margin-bottom: 0.5rem;">
-                            <a href="${r.link}" target="_blank" style="color: var(--color-primary);">Скриншот онлайна</a>
-                        </div>
-                        <div style="display:flex; flex-direction: column; gap: 0.5rem;">
-                            <span style="color: ${r.xp > 0 ?
-                            'var(--color-success)' : r.status === 'Не засчитано' ? 'var(--color-error)' : 'var(--color-warning)'}">${r.status} (${r.xp} XP)</span>
-                            
-                            ${(r.status === 'На проверке' || r.status.includes('Ожидает')) ? `
-                            <div style="display:flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem;">
-                                <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: #52c77b; color: #52c77b;" onclick="processReport('${r.id}', 'Норма', 15)">Норма (15)</button>
-                                <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: #3dd68c; color: #3dd68c;" onclick="processReport('${r.id}', 'Перенорма', 30)">Перенорма (30)</button>
-                                <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: #ffbf47; color: #ffbf47;" onclick="processReport('${r.id}', 'Герой дня', 60)">Герой дня (60)</button>
-                                <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: var(--color-error); color: var(--color-error);" onclick="processReport('${r.id}', 'Не засчитано', 0)">Отказ</button>
-                            </div>` : ''}
-                        </div>
-                    </div>`).join(''); 
-                } else {
-                    listArea.innerHTML = '<div class="message-text">Нет отчетов</div>';
-                }
-            } catch (err) {
-                listArea.innerHTML = `<div class="message-text" style="color: var(--color-error)">Ошибка загрузки: ${err.message}</div>`;
+            const { data: reports } = await supa.from('reports').select('*').neq('email', 'ACCESS_KEY').order('date', { ascending: false }).limit(30);
+            
+            if(reports && reports.length > 0) { 
+                listArea.innerHTML = reports.map(r => `
+                <div style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 12px; border: 1px solid rgba(191,198,255,0.2);">
+                    <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem;">
+                        <strong>${r.email}</strong><span style="color:var(--color-text-faint);
+                        font-size: 0.8rem;">${r.date}</span>
+                    </div>
+                    <div style="margin-bottom: 0.5rem;">
+                        <a href="${r.link}" target="_blank" style="color: var(--color-primary);">Скриншот онлайна</a>
+                    </div>
+                    <div style="display:flex; flex-direction: column; gap: 0.5rem;">
+                        <span style="color: ${r.xp > 0 ?
+                        'var(--color-success)' : r.status === 'Не засчитано' ? 'var(--color-error)' : 'var(--color-warning)'}">${r.status} (${r.xp} XP)</span>
+                        
+                        ${(r.status === 'На проверке' || r.status.includes('Ожидает')) ? `
+                        <div style="display:flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem;">
+                            <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: #52c77b; color: #52c77b;" onclick="processReport('${r.id}', 'Норма', 15)">Норма (15)</button>
+                            <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: #3dd68c; color: #3dd68c;" onclick="processReport('${r.id}', 'Перенорма', 30)">Перенорма (30)</button>
+                            <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: #ffbf47; color: #ffbf47;" onclick="processReport('${r.id}', 'Герой дня', 60)">Герой дня (60)</button>
+                            <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: var(--color-error); color: var(--color-error);" onclick="processReport('${r.id}', 'Не засчитано', 0)">Отказ</button>
+                        </div>` : ''}
+                    </div>
+                </div>`).join(''); 
+            } else {
+                listArea.innerHTML = '<div class="message-text">Нет отчетов</div>';
             }
         });
 
@@ -1871,8 +1751,6 @@
         };
 
         async function saveProgress() {
-            if(!currentUser) return;
-         async function saveProgress() {
             if(!currentUser) return;
             await supa.from('user_stats').upsert({ user_id: currentUser.id, email: currentUser.email, nickname: currentNickname ||
             currentUser.user_metadata?.nickname || currentUser.email.split('@')[0], mod_resolved: Number(state.resolved), mod_correct: Number(state.correct), mod_mistakes: Number(state.mistakes), sup_resolved: Number(supportState.resolved), sup_correct: Number(supportState.correct), sup_mistakes: Number(supportState.mistakes), shop_spent: Number(shopState.spent), ap_spent: Number(shopState.apSpent) });
