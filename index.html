@@ -960,7 +960,10 @@
             osc.start(); osc.stop(audioCtx.currentTime + uiSoundConfig.duration);
         }
 
-        const bgMusic = new Audio('https://upload.wikimedia.org/wikipedia/commons/b/b4/Chopin_Nocturne_Op_9_No_2_1923.ogg'); bgMusic.loop = true; bgMusic.volume = 1.0;
+        // Поставил приятный Lo-Fi бит в формате .mp3 (читают все браузеры) и сделал громкость на 30% (0.3), чтобы не било по ушам
+const bgMusic = new Audio('https://cdn.pixabay.com/audio/2022/05/27/audio_1808fbf07a.mp3'); 
+bgMusic.loop = true; 
+bgMusic.volume = 0.3;
         const sndOk = new Audio('https://actions.google.com/sounds/v1/ui/pop.ogg'); sndOk.volume = 0.4;
         const sndFail = new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg'); sndFail.volume = 0.2;
         const sndWin = new Audio('https://actions.google.com/sounds/v1/cartoon/clown_horn.ogg'); sndWin.volume = 0.3;
@@ -976,11 +979,24 @@
             if (audioCtx.state === 'suspended') audioCtx.resume();
             if (e.target.closest('button') || e.target.closest('a')) playUIClick();
         });
-        document.getElementById('musicToggleBtn').addEventListener('click', (e) => {
-            isMusicEnabled = !isMusicEnabled;
-            if (isMusicEnabled) { e.target.textContent = '🎵'; bgMusic.play().catch(()=>{ isMusicEnabled = false; e.target.textContent = '🔇'; }); } 
-            else { e.target.textContent = '🔇'; bgMusic.pause(); }
-        });
+ document.getElementById('musicToggleBtn').addEventListener('click', (e) => {
+    isMusicEnabled = !isMusicEnabled;
+    if (isMusicEnabled) { 
+        e.target.textContent = '⏳'; // Показываем часики, пока грузится
+        bgMusic.play().then(() => {
+            e.target.textContent = '🎵'; // Как заиграло - ставим ноту
+        }).catch((err) => { 
+            console.error("Ошибка музыки:", err);
+            isMusicEnabled = false; 
+            e.target.textContent = '🔇'; 
+            alert('Браузер заблокировал аудио или ссылка недоступна. Кликни еще раз!');
+        }); 
+    } 
+    else { 
+        e.target.textContent = '🔇'; 
+        bgMusic.pause(); 
+    }
+});
         document.getElementById('sfxToggleBtn').addEventListener('click', (e) => { isSfxEnabled = !isSfxEnabled; e.target.textContent = isSfxEnabled ? '🔊' : '🔈'; });
         // === 2. БАЗА ДАННЫХ И СОСТОЯНИЕ ===
         const supabaseUrl = 'https://icfihnroblyjjflsfepq.supabase.co';
