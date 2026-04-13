@@ -1845,52 +1845,54 @@
             playSound('win');
         });
 
-        document.getElementById('viewReportsBtn')?.addEventListener('click', async () => {
+document.getElementById('viewReportsBtn')?.addEventListener('click', async () => {
             const listArea = document.getElementById('reportsListArea'); 
             if(!listArea) return; 
             if(listArea.style.display === 'flex') { listArea.style.display = 'none'; return; } 
             listArea.style.display = 'flex'; 
             listArea.innerHTML = '<div class="message-text">Загрузка данных...</div>';
             
-            // Фильтруем технические записи (ACCESS_KEY и ADMIN_ROLE)
-            const { data: reports, error } = await supa.from('reports')
-                .select('*')
-                .neq('email', 'ACCESS_KEY')
-                .neq('email', 'ADMIN_ROLE')
-                .order('date', { ascending: false })
-                .limit(30);
-            
-            if (error) {
-                listArea.innerHTML = `<div class="message-text" style="color: var(--color-error);">Ошибка БД: ${error.message}</div>`;
-                return;
-            }
+            try {
+                // Фильтруем технические записи (ACCESS_KEY и ADMIN_ROLE)
+                const { data: reports, error } = await supa.from('reports')
+                    .select('*')
+                    .neq('email', 'ACCESS_KEY')
+                    .neq('email', 'ADMIN_ROLE')
+                    .order('date', { ascending: false })
+                    .limit(30);
+                
+                if (error) throw error;
 
-            if(reports && reports.length > 0) { 
-                listArea.innerHTML = reports.map(r => `
-                <div style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 12px; border: 1px solid rgba(191,198,255,0.2);">
-                    <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem;">
-                        <strong>${r.email}</strong><span style="color:var(--color-text-faint); font-size: 0.8rem;">${r.date}</span>
-                    </div>
-                    <div style="margin-bottom: 0.5rem;">
-                        <a href="${r.link}" target="_blank" style="color: var(--color-primary);">Скриншот онлайна</a>
-                    </div>
-                    <div style="display:flex; flex-direction: column; gap: 0.5rem;">
-                        <span style="color: ${r.xp > 0 ? 'var(--color-success)' : r.status === 'Не засчитано' ? 'var(--color-error)' : 'var(--color-warning)'}">${r.status} (${r.xp} XP)</span>
-                        
-                        ${(r.status === 'На проверке' || r.status.includes('Ожидает')) ? `
-                        <div style="display:flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem;">
-                            <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: #52c77b; color: #52c77b;" onclick="processReport('${r.id}', 'Норма', 15)">Норма (15)</button>
-                            <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: #3dd68c; color: #3dd68c;" onclick="processReport('${r.id}', 'Перенорма', 30)">Перенорма (30)</button>
-                            <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: #ffbf47; color: #ffbf47;" onclick="processReport('${r.id}', 'Герой дня', 60)">Герой дня (60)</button>
-                            <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: var(--color-error); color: var(--color-error);" onclick="processReport('${r.id}', 'Не засчитано', 0)">Отказ</button>
-                        </div>` : ''}
-                    </div>
-                </div>`).join(''); 
-            } else {
-                listArea.innerHTML = '<div class="message-text">Отчетов пока нет</div>';
+                if(reports && reports.length > 0) { 
+                    listArea.innerHTML = reports.map(r => `
+                    <div style="background: rgba(0,0,0,0.5); padding: 1rem; border-radius: 12px; border: 1px solid rgba(191,198,255,0.2);">
+                        <div style="display:flex; justify-content:space-between; margin-bottom: 0.5rem;">
+                            <strong>${r.email || 'Неизвестно'}</strong><span style="color:var(--color-text-faint); font-size: 0.8rem;">${r.date || ''}</span>
+                        </div>
+                        <div style="margin-bottom: 0.5rem;">
+                            <a href="${r.link || '#'}" target="_blank" style="color: var(--color-primary);">Скриншот онлайна</a>
+                        </div>
+                        <div style="display:flex; flex-direction: column; gap: 0.5rem;">
+                            <span style="color: ${r.xp > 0 ? 'var(--color-success)' : r.status === 'Не засчитано' ? 'var(--color-error)' : 'var(--color-warning)'}">${r.status || 'Без статуса'} (${r.xp || 0} XP)</span>
+                            
+                            ${(r.status === 'На проверке' || r.status?.includes('Ожидает')) ? `
+                            <div style="display:flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem;">
+                                <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: #52c77b; color: #52c77b;" onclick="processReport('${r.id}', 'Норма', 15)">Норма (15)</button>
+                                <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: #3dd68c; color: #3dd68c;" onclick="processReport('${r.id}', 'Перенорма', 30)">Перенорма (30)</button>
+                                <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: #ffbf47; color: #ffbf47;" onclick="processReport('${r.id}', 'Герой дня', 60)">Герой дня (60)</button>
+                                <button class="btn btn-secondary" style="flex: 1; padding: 0.3rem; font-size: 0.75rem; border-color: var(--color-error); color: var(--color-error);" onclick="processReport('${r.id}', 'Не засчитано', 0)">Отказ</button>
+                            </div>` : ''}
+                        </div>
+                    </div>`).join(''); 
+                } else {
+                    listArea.innerHTML = '<div class="message-text">Отчетов пока нет</div>';
+                }
+            } catch (err) {
+                listArea.innerHTML = `<div class="message-text" style="color: var(--color-error);">Ошибка при загрузке: ${err.message}</div>`;
+                console.error(err);
             }
         });
-
+      
         window.processReport = async function(id, statusText, xpAmount) { 
             await supa.from('reports').update({ status: statusText, xp: xpAmount }).eq('id', id); 
             document.getElementById('viewReportsBtn').click(); 
