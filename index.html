@@ -1872,7 +1872,7 @@
 
         async function saveProgress() {
             if(!currentUser) return;
-            await supa.from('user async function saveProgress() {
+         async function saveProgress() {
             if(!currentUser) return;
             await supa.from('user_stats').upsert({ user_id: currentUser.id, email: currentUser.email, nickname: currentNickname ||
             currentUser.user_metadata?.nickname || currentUser.email.split('@')[0], mod_resolved: Number(state.resolved), mod_correct: Number(state.correct), mod_mistakes: Number(state.mistakes), sup_resolved: Number(supportState.resolved), sup_correct: Number(supportState.correct), sup_mistakes: Number(supportState.mistakes), shop_spent: Number(shopState.spent), ap_spent: Number(shopState.apSpent) });
