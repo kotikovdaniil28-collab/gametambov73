@@ -19739,5 +19739,235 @@ body.t73-v44-cat-organizations #gossOrgActionNavV4.t73-v44-goss-actions{display:
 })();
 </script>
 
+
+<script>
+/* === CHEBOKSARY V2 AUTH CONFIRM FIX ===
+   Исправляет сценарий Supabase Confirm signup:
+   - после клика в письме принимает access_token / refresh_token или code из URL;
+   - сохраняет сессию Supabase в localStorage;
+   - убирает конфликт старого патча, который пытался входить без подтверждения почты;
+   - регистрация теперь честно просит подтвердить email, а не обещает вход без письма.
+*/
+(function(){
+  if (window.__CHEB_V2_AUTH_CONFIRM_FIX__) return;
+  window.__CHEB_V2_AUTH_CONFIRM_FIX__ = true;
+
+  var SUPA_URL = window.CHEBOKSARY_SUPABASE_URL || 'https://zisjpdugogkntsmkvlha.supabase.co';
+  var SUPA_KEY = window.CHEBOKSARY_SUPABASE_KEY || 'sb_publishable_0q1B_GyskY1umJO7T-mTIQ_LkL9ncr_';
+  var GM_EMAIL = window.CHEBOKSARY_GM_EMAIL || 'daniiltimosin72@gmail.com';
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function $(id){ return document.getElementById(id); }
+  function cleanEmail(){ return String(($('authEmail') && $('authEmail').value) || '').trim().toLowerCase(); }
+  function cleanNick(){ return String(($('authNickname') && $('authNickname').value) || '').trim(); }
+  function cleanPass(){ return String(($('authPassword') && $('authPassword').value) || ''); }
+  function baseUrl(){ return window.location.origin + window.location.pathname; }
+  function cleanUrl(){ try { history.replaceState({}, document.title, baseUrl()); } catch(e) {} }
+
+  function client(){
+    if (window.__CHEB_AUTH_CLIENT) return window.__CHEB_AUTH_CLIENT;
+    if (window.__T73_SUPA && window.__T73_SUPA.auth) {
+      window.__CHEB_AUTH_CLIENT = window.__T73_SUPA;
+      return window.__CHEB_AUTH_CLIENT;
+    }
+    if (window.supabase && window.supabase.createClient) {
+      window.__CHEB_AUTH_CLIENT = window.supabase.createClient(SUPA_URL, SUPA_KEY, {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true
+        }
+      });
+      window.__T73_SUPA = window.__CHEB_AUTH_CLIENT;
+      window.supa = window.__CHEB_AUTH_CLIENT;
+      window.t73Supa = window.__CHEB_AUTH_CLIENT;
+      window.supabaseClient = window.__CHEB_AUTH_CLIENT;
+      return window.__CHEB_AUTH_CLIENT;
+    }
+    return null;
+  }
+
+  function setMsg(text, color){
+    var el = $('authErrorMsg');
+    if (el) {
+      el.textContent = text;
+      el.style.color = color || 'var(--color-error)';
+      el.style.display = 'block';
+    }
+  }
+
+  function banner(text, good){
+    var b = $('chebAuthConfirmBanner');
+    if (!b) {
+      b = document.createElement('div');
+      b.id = 'chebAuthConfirmBanner';
+      b.style.cssText = 'position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:12000;max-width:min(92vw,620px);padding:13px 16px;border-radius:16px;font-weight:900;text-align:center;line-height:1.35;box-shadow:0 18px 50px rgba(0,0,0,.42);backdrop-filter:blur(14px);font-family:Arial,sans-serif;';
+      document.body.appendChild(b);
+    }
+    b.textContent = text;
+    b.style.background = good ? 'rgba(34,197,94,.18)' : 'rgba(245,158,11,.18)';
+    b.style.border = good ? '1px solid rgba(34,197,94,.45)' : '1px solid rgba(245,158,11,.45)';
+    b.style.color = good ? '#bbf7d0' : '#fde68a';
+    clearTimeout(window.__chebAuthBannerTimer);
+    window.__chebAuthBannerTimer = setTimeout(function(){ try { b.remove(); } catch(e) {} }, 6500);
+  }
+
+  function readAuthParams(){
+    var hash = new URLSearchParams(String(window.location.hash || '').replace(/^#/, ''));
+    var query = new URLSearchParams(String(window.location.search || '').replace(/^\?/, ''));
+    return {
+      access_token: hash.get('access_token') || query.get('access_token') || '',
+      refresh_token: hash.get('refresh_token') || query.get('refresh_token') || '',
+      code: query.get('code') || '',
+      type: hash.get('type') || query.get('type') || '',
+      error: hash.get('error_description') || query.get('error_description') || hash.get('error') || query.get('error') || ''
+    };
+  }
+
+  async function ensureProfile(c, user){
+    if (!c || !user || !user.id || !user.email) return;
+    var nick = (user.user_metadata && (user.user_metadata.nickname || user.user_metadata.name)) || user.email;
+    try {
+      await c.from('user_stats').upsert([{ user_id:user.id, email:user.email, nickname:nick }], { onConflict:'user_id' });
+    } catch(e) {}
+    try {
+      if (String(user.email).toLowerCase() === String(GM_EMAIL).toLowerCase()) {
+        await c.from('reports').upsert([{ id:'role_moderator_' + user.id, email:'USER_ROLE', link:user.id, date:new Date().toISOString(), status:'moderator', xp:0 }], { onConflict:'id' });
+        await c.from('reports').upsert([{ id:'role_gm_leadership_' + user.id, email:'ADMIN_ROLE', link:user.id, date:new Date().toISOString(), status:'leadership', xp:0 }], { onConflict:'id' });
+      }
+    } catch(e) {}
+  }
+
+  async function handleEmailConfirmReturn(){
+    var c = client();
+    if (!c || !c.auth) return false;
+    var p = readAuthParams();
+    var looksLikeAuthReturn = !!(p.access_token || p.refresh_token || p.code || p.error || /signup|magiclink|recovery|email/.test(String(p.type || '').toLowerCase()));
+    if (!looksLikeAuthReturn) return false;
+
+    if (p.error) {
+      banner('Ссылка подтверждения не сработала: ' + decodeURIComponent(p.error).replace(/\+/g, ' '), false);
+      setMsg('Ссылка подтверждения не сработала: ' + decodeURIComponent(p.error).replace(/\+/g, ' '));
+      return true;
+    }
+
+    try {
+      if (p.access_token && p.refresh_token && c.auth.setSession) {
+        await c.auth.setSession({ access_token:p.access_token, refresh_token:p.refresh_token });
+      } else if (p.code && c.auth.exchangeCodeForSession) {
+        await c.auth.exchangeCodeForSession(p.code);
+      }
+      var res = await c.auth.getSession();
+      var session = res && res.data && res.data.session;
+      if (session && session.user) {
+        window.currentUser = session.user;
+        await ensureProfile(c, session.user);
+        cleanUrl();
+        banner('Почта подтверждена. Вход выполнен ✅', true);
+        setMsg('Почта подтверждена. Вход выполнен.', 'var(--color-success)');
+        setTimeout(function(){ window.location.reload(); }, 900);
+        return true;
+      }
+      banner('Почта могла подтвердиться, но сессия не пришла. Попробуйте войти email + пароль.', false);
+      setMsg('Почта могла подтвердиться, но сессия не пришла. Попробуйте войти email + пароль.', 'var(--color-warning)');
+      cleanUrl();
+      return true;
+    } catch(e) {
+      banner('Ошибка подтверждения: ' + (e && e.message ? e.message : e), false);
+      setMsg('Ошибка подтверждения: ' + (e && e.message ? e.message : e));
+      return true;
+    }
+  }
+
+  function patchAuthButtons(){
+    var login = $('authLoginSubmit');
+    if (login && login.dataset.chebConfirmFix !== '1') {
+      var l = login.cloneNode(true);
+      l.dataset.chebConfirmFix = '1';
+      l.dataset.v48 = '1';
+      login.replaceWith(l);
+      l.onclick = async function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+        var c = client();
+        var email = cleanEmail();
+        var password = cleanPass();
+        if (!c) return setMsg('Supabase ещё не загрузился. Обновите страницу.');
+        if (!emailRe.test(email)) return setMsg('Введите именно Email.');
+        if (!password) return setMsg('Введите пароль.');
+        setMsg('Вхожу...', 'var(--color-primary)');
+        var r = await c.auth.signInWithPassword({ email:email, password:password });
+        if (r.error) {
+          if (/confirm|confirmed|подтверд/i.test(String(r.error.message || ''))) {
+            return setMsg('Почта ещё не подтверждена. Откройте письмо от Supabase/Чебоксары и нажмите кнопку подтверждения. Если уже нажимали — проверьте пользователя в Supabase → Authentication → Users.', 'var(--color-warning)');
+          }
+          return setMsg(r.error.message);
+        }
+        if (r.data && r.data.user) await ensureProfile(c, r.data.user);
+        window.location.href = baseUrl();
+      };
+    }
+
+    var reg = $('authRegisterSubmit');
+    if (reg && reg.dataset.chebConfirmFix !== '1') {
+      var fresh = reg.cloneNode(true);
+      fresh.dataset.chebConfirmFix = '1';
+      fresh.dataset.v48 = '1';
+      fresh.dataset.t73v75NoConfirm = '1';
+      reg.replaceWith(fresh);
+      fresh.onclick = async function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+        var c = client();
+        var email = cleanEmail();
+        var nickname = cleanNick();
+        var password = cleanPass();
+        if (!c) return setMsg('Supabase ещё не загрузился. Обновите страницу.');
+        if (!emailRe.test(email)) return setMsg('Введите настоящую почту.');
+        if (nickname.length < 3) return setMsg('Введите игровой Nickname минимум 3 символа.');
+        if (password.length < 6) return setMsg('Пароль должен быть минимум 6 символов.');
+        setMsg('Создаю аккаунт и отправляю письмо подтверждения...', 'var(--color-primary)');
+        var r = await c.auth.signUp({
+          email: email,
+          password: password,
+          options: {
+            data: { nickname: nickname },
+            emailRedirectTo: baseUrl()
+          }
+        });
+        if (r.error) return setMsg(r.error.message);
+        if (r.data && r.data.session && r.data.user) {
+          await ensureProfile(c, r.data.user);
+          setMsg('Аккаунт создан, вход выполнен.', 'var(--color-success)');
+          setTimeout(function(){ window.location.href = baseUrl(); }, 600);
+          return;
+        }
+        setMsg('Аккаунт создан. Проверьте почту и нажмите кнопку подтверждения. После подтверждения вернитесь на сайт и войдите.', 'var(--color-success)');
+      };
+    }
+
+    var oldNote = $('t73V75AuthNote');
+    if (oldNote) oldNote.textContent = 'Подтверждение почты включено: после регистрации откройте письмо и подтвердите email.';
+  }
+
+  function boot(){
+    try { window.creatorEmail = GM_EMAIL; window.adminEmails = [GM_EMAIL]; } catch(e) {}
+    handleEmailConfirmReturn();
+    patchAuthButtons();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+  [120, 450, 900, 1800, 3500].forEach(function(ms){ setTimeout(boot, ms); });
+  var timer = 0;
+  try {
+    new MutationObserver(function(){ clearTimeout(timer); timer = setTimeout(patchAuthButtons, 120); }).observe(document.documentElement, { childList:true, subtree:true });
+  } catch(e) {}
+})();
+</script>
+<!-- === /CHEBOKSARY V2 AUTH CONFIRM FIX === -->
+
+
 </body>
 </html>
